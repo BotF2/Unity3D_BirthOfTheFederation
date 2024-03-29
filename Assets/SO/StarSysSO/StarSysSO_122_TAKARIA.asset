@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_122_TAKARIA
   m_EditorClassIdentifier: 
   StarSysInt: 122
-  Position: {x: 5700, y: 218, z: 7100}
+  Position: {x: 570, y: 21, z: 710}
   SysName: TAKARIA
   FirstOwner: 122
   StarType: 2

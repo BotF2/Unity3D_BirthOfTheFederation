@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_98_NORCADIA
   m_EditorClassIdentifier: 
   StarSysInt: 98
-  Position: {x: 2400, y: 11, z: 2400}
+  Position: {x: 240, y: 1, z: 240}
   SysName: NORCADIA
   FirstOwner: 98
   StarType: 3

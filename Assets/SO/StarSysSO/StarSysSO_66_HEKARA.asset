@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_66_HEKARA
   m_EditorClassIdentifier: 
   StarSysInt: 66
-  Position: {x: -4200, y: -238, z: -10600}
+  Position: {x: -420, y: -23, z: -1060}
   SysName: HEKARA
   FirstOwner: 66
   StarType: 4

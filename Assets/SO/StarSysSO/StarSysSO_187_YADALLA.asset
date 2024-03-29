@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_187_YADALLA
   m_EditorClassIdentifier: 
   StarSysInt: 187
-  Position: {x: 500, y: 99, z: -5400}
+  Position: {x: 50, y: 9, z: -540}
   SysName: YADALLA
   FirstOwner: 0
   StarType: 3

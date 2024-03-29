@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_70_JNAII
   m_EditorClassIdentifier: 
   StarSysInt: 70
-  Position: {x: -2800, y: 232, z: -11800}
+  Position: {x: -280, y: 23, z: -1180}
   SysName: JNAII
   FirstOwner: 70
   StarType: 3

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_23_BAJOR
   m_EditorClassIdentifier: 
   StarSysInt: 23
-  Position: {x: -4000, y: -211, z: -6300}
+  Position: {x: -400, y: -21, z: -630}
   SysName: BAJOR
   FirstOwner: 23
   StarType: 3

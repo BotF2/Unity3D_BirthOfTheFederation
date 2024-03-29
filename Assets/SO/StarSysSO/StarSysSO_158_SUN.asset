@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_158_SUN
   m_EditorClassIdentifier: 
   StarSysInt: 158
-  Position: {x: -2000, y: 100, z: -6100}
+  Position: {x: -200, y: 10, z: -610}
   SysName: SUN
   FirstOwner: 158
   StarType: 2

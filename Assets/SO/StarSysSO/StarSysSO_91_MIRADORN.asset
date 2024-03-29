@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_91_MIRADORN
   m_EditorClassIdentifier: 
   StarSysInt: 91
-  Position: {x: -2200, y: -188, z: -3100}
+  Position: {x: -220, y: -18, z: -310}
   SysName: MIRADORN
   FirstOwner: 91
   StarType: 4

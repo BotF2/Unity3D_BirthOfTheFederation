@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_113_RISA
   m_EditorClassIdentifier: 
   StarSysInt: 113
-  Position: {x: -1600, y: -15, z: -8100}
+  Position: {x: -160, y: -1, z: -810}
   SysName: RISA
   FirstOwner: 113
   StarType: 3

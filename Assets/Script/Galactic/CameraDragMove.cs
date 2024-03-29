@@ -4,15 +4,15 @@ using UnityEngine;
 public class CameraDragMove : MonoBehaviour
 {
     // Button Input Vars
-    public float panSpeed = 4000f;
-    public float scrollSpeed = 2000f;
-    public float minY = 50f;
-    public float maxY = 4000f;
-    public float mouseSpeed = 0.2f;
-    public float minX = -6000f;
-    public float maxX = 6000f;
+    public float panSpeed = 400f;
+    public float scrollSpeed = 200f;
+    public float minY = 5f;
+    public float maxY = 400f;
+    public float mouseSpeed = 20f;
+    public float minX = -600f;
+    public float maxX = 600f;
     public float minZ = -11400f;
-    public float maxZ = 1900f;
+    public float maxZ = 190f;
 
     // Mouse Input Vars
     private Vector3 dragOrigin;

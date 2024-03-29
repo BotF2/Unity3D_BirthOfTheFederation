@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_124_TALARIA
   m_EditorClassIdentifier: 
   StarSysInt: 124
-  Position: {x: -2900, y: -153, z: -8000}
+  Position: {x: -290, y: -15, z: -800}
   SysName: TALARIA
   FirstOwner: 124
   StarType: 0

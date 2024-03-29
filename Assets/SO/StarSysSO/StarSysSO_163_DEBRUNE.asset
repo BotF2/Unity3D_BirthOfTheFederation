@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_163_DEBRUNE
   m_EditorClassIdentifier: 
   StarSysInt: 163
-  Position: {x: 1300, y: -32, z: -6400}
+  Position: {x: 130, y: -3, z: -640}
   SysName: DEBRUNE
   FirstOwner: 163
   StarType: 0

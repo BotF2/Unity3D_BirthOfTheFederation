@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_64_HALKA
   m_EditorClassIdentifier: 
   StarSysInt: 64
-  Position: {x: -800, y: -174, z: -5500}
+  Position: {x: -80, y: -17, z: -550}
   SysName: HALKA
   FirstOwner: 64
   StarType: 2

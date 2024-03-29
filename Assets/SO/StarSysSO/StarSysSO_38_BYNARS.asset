@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_38_BYNARS
   m_EditorClassIdentifier: 
   StarSysInt: 38
-  Position: {x: -6300, y: 0, z: -9300}
+  Position: {x: -630, y: 0, z: -930}
   SysName: BYNARS
   FirstOwner: 38
   StarType: 2

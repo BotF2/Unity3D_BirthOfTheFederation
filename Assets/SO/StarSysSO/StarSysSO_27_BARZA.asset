@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_27_BARZA
   m_EditorClassIdentifier: 
   StarSysInt: 27
-  Position: {x: 900, y: -7, z: -13400}
+  Position: {x: 90, y: 0, z: -1340}
   SysName: BARZA
   FirstOwner: 27
   StarType: 2

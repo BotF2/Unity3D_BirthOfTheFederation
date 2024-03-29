@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "ShipSO", menuName = "ScriptableObjects/ShipSO", order = 1)]
+[CreateAssetMenu(fileName = "ShipSO", menuName = "ShipSO", order = 1)]
 public class ShipSO : ScriptableObject
 {
     public string Tech;

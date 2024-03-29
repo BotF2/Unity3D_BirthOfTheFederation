@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_159_HAYASHI
   m_EditorClassIdentifier: 
   StarSysInt: 159
-  Position: {x: 300, y: 49, z: -4600}
+  Position: {x: 30, y: 4, z: -460}
   SysName: HAYASHI
   FirstOwner: 159
   StarType: 3

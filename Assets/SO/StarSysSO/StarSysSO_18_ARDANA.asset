@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_18_ARDANA
   m_EditorClassIdentifier: 
   StarSysInt: 18
-  Position: {x: 300, y: -216, z: -8200}
+  Position: {x: 30, y: -21, z: -820}
   SysName: ARDANA
   FirstOwner: 18
   StarType: 3

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_46_DELTA
   m_EditorClassIdentifier: 
   StarSysInt: 46
-  Position: {x: -950, y: 115, z: -9600}
+  Position: {x: -95, y: 11, z: -960}
   SysName: DELTA
   FirstOwner: 46
   StarType: 2

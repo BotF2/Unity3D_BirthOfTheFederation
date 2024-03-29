@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_44_CORVALLE
   m_EditorClassIdentifier: 
   StarSysInt: 44
-  Position: {x: -900, y: -7, z: -14200}
+  Position: {x: -90, y: 0, z: -1420}
   SysName: CORVALLE
   FirstOwner: 44
   StarType: 4

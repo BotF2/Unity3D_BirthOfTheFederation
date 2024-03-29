@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_63_HAAKONIA
   m_EditorClassIdentifier: 
   StarSysInt: 63
-  Position: {x: 1600, y: -86, z: 7200}
+  Position: {x: 160, y: -8, z: 720}
   SysName: HAAKONIA
   FirstOwner: 63
   StarType: 4

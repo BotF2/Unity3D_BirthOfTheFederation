@@ -90,6 +90,7 @@ namespace Assets.Core
             }
             StarSysManager.instance.CreateGameSystems(civSOList);
 
+
         }
 
         public CivData resultInGameCivData;

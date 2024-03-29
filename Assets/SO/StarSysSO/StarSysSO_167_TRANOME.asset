@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_167_TRANOME
   m_EditorClassIdentifier: 
   StarSysInt: 167
-  Position: {x: 2800, y: 61, z: -6800}
+  Position: {x: 280, y: 6, z: -680}
   SysName: TRANOME
   FirstOwner: 167
   StarType: 2

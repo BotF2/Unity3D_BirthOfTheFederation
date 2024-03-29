@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_140_VENTAXIA
   m_EditorClassIdentifier: 
   StarSysInt: 140
-  Position: {x: -800, y: -44, z: -4700}
+  Position: {x: -80, y: -4, z: -470}
   SysName: VENTAXIA
   FirstOwner: 140
   StarType: 3

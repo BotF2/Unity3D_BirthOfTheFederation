@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_173_VADRIS
   m_EditorClassIdentifier: 
   StarSysInt: 173
-  Position: {x: 4500, y: -110, z: -5400}
+  Position: {x: 450, y: -11, z: -540}
   SysName: VADRIS
   FirstOwner: 0
   StarType: 2

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_174_AMLETH
   m_EditorClassIdentifier: 
   StarSysInt: 174
-  Position: {x: -5000, y: 200, z: -8500}
+  Position: {x: -500, y: 20, z: -850}
   SysName: AMLETH
   FirstOwner: 0
   StarType: 3

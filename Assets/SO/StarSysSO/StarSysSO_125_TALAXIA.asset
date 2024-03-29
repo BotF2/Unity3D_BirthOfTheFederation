@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_125_TALAXIA
   m_EditorClassIdentifier: 
   StarSysInt: 125
-  Position: {x: 500, y: 297, z: 6500}
+  Position: {x: 50, y: 29, z: 650}
   SysName: TALAXIA
   FirstOwner: 125
   StarType: 3

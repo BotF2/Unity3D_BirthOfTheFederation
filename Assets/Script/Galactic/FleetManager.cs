@@ -3,106 +3,111 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Security.Cryptography.X509Certificates;
+using TMPro;
 using UnityEngine;
 
 
 namespace Assets.Core
 {
-    //public enum FleetNames
-    //{
-    //    st,
-    //    nd,
-
-    //}
     public class FleetManager : MonoBehaviour
     {
-        public List<FleetSO> fleetSOListSmall;
+        public static FleetManager instance;
 
-        public List<FleetSO> fleetSOListMedium;
+        public List<FleetSO> fleetSOList;
 
-        public List<FleetSO> fleetSOListLarge;
+        public GameObject fleetPrefab;
 
         public List<FleetData> fleetDataList;
 
-        public Dictionary<CivEnum, List<FleetNamesSO>> allFleetNames = new Dictionary<CivEnum, List<FleetNamesSO>>();
+        public GameObject galaxyImage;
 
-        public void CreateNewGameFleets(int gameSize)
+        public GameObject galaxyCenter;
+
+        private void Awake()
         {
-            if(gameSize == 1)
+            if (instance != null)
             {
-                CreateFleetsBySOLists(fleetSOListSmall) ;
+                Destroy(gameObject);
             }
-            if (gameSize == 2)
+            else
             {
-                CreateFleetsBySOLists(fleetSOListMedium);
-            }
-            if (gameSize == 3)
-            {
-                CreateFleetsBySOLists(fleetSOListLarge);
+                instance = this;
+                DontDestroyOnLoad(gameObject);
             }
         }
-
-        public void CreateFleetsBySOLists(List<FleetSO> listFleetSO)
+        public void CreatGameStarterFleets(List<CivSO> listCivSO)
         {
-            foreach (var fleetSO in listFleetSO)
+            List<FleetData> fleetDatas = new List<FleetData>();
+            fleetDataList = fleetDatas;
+            foreach (var civSO in listCivSO)
             {
-                FleetData fleet = new FleetData();
-                fleet.civIndex = fleetSO.CivIndex;
-                fleet.civOwnerEnum = fleetSO.CivOwnerEnum;
-                int fleetIntName = 0;
-                fleetIntName = GetUniqueFleetName(fleet.civOwnerEnum, fleetIntName);
-                FleetNameInitializer newFleetName = new FleetNameInitializer();
-                FleetNamesSO myFleetNameSO = newFleetName.CreateFleetNamesSO(fleet.civOwnerEnum, fleetIntName);
-
-                if (allFleetNames.TryGetValue(fleet.civOwnerEnum, out listSONames))
-                {
-                    listSONames.Add(myFleetNameSO);
-                }
-                fleet.fleetName = "fleetIntName";
-                fleetDataList.Add(fleet);
+                FleetSO fleetSO = GetFleetSObyInt(civSO.CivInt);
+                FleetData fleetData = new FleetData();
+                fleetData.civIndex = fleetSO.CivIndex;
+                fleetData.fleetName = fleetSO.Name;
+                fleetData.description = fleetSO.description;
+                fleetData.insign = fleetSO.Insignia;
+                fleetData.civOwnerEnum = fleetSO.CivOwnerEnum;
+                fleetData.location  = fleetSO.location;
+                fleetData.ships = fleetSO.Ships;
+                fleetData.warpFactor = fleetSO.warpFactor;
+                fleetData.destination = fleetSO.destination;
+                fleetData.origin = fleetSO.origin;
+                fleetData.defaultWarp = 0;
+                if (!fleetDataList.Contains(fleetData))
+                    fleetDataList.Add(fleetData);
+                InstantiateStarterFleets(fleetData, fleetSO);
             }
+        }
+        public void InstantiateStarterFleets(FleetData fleetData, FleetSO fleetSO)
+        {
+            GameObject fleetNewGameOb = (GameObject)Instantiate(fleetPrefab, new Vector3(0, 0, 0),
+                    Quaternion.identity);
+            fleetNewGameOb.transform.Translate(new Vector3(fleetSO.location.x, fleetSO.location.y, fleetSO.location.z ));
+            //fleetNewGameOb.transform.Translate(new Vector3(sysData.Position.x, sysData.Position.z, sysData.Position.y));
+            fleetNewGameOb.transform.SetParent(galaxyCenter.transform, true);
+            //fleetNewGameOb.transform.localScale = new Vector3(1, 1, 1);
+            fleetNewGameOb.name = "Klingon Fart"; // fleetData.fleetName;
+            var ImageRenderers = fleetNewGameOb.GetComponentsInChildren<SpriteRenderer>();
+
+            var TMPs = fleetNewGameOb.GetComponentsInChildren<TextMeshProUGUI>();
+            foreach (var OneTmp in TMPs)
+            {
+                if (OneTmp != null && OneTmp.name == "StarName (TMP)")
+                    OneTmp.text = fleetData.fleetName;
+                else if (OneTmp != null && OneTmp.name == "Owner (TMP)")
+                    OneTmp.text = fleetData.fleetName.ToString();
+            }
+            var Renderers = fleetNewGameOb.GetComponentsInChildren<SpriteRenderer>();
+            foreach (var oneRenderer in Renderers)
+            {
+                if (oneRenderer != null)
+                {
+                    if (oneRenderer.name == "OwnerInsignia")
+                    {
+                        oneRenderer.sprite = fleetSO.Insignia;
+                        //oneRenderer.sprite.GetComponent<MeshFilter>().sharedMesh.RecalculateBounds();
+                    }
+
+                }
+            }
+            DropLineMovable ourDropLine = fleetNewGameOb.GetComponent<DropLineMovable>();
+
+            ourDropLine.GetLineRenderer();
+
+            Vector3 galaxyPlanePoint = new Vector3(fleetNewGameOb.transform.position.x,
+                galaxyImage.transform.position.y, fleetNewGameOb.transform.position.z);
+            Vector3[] points = { fleetNewGameOb.transform.position, galaxyPlanePoint };
+            ourDropLine.SetUpLine(points);
+
+            fleetNewGameOb.SetActive(true);
         }
         public FleetData resultFleetData;
-        private List<FleetNamesSO> listSONames;
-
-        public void AddFleetName(CivEnum civ, List<FleetNamesSO> newNameSO)
-        {
-            allFleetNames.Add(civ, newNameSO);
-        }
-
-        public FleetNamesSO FindFleetName(CivEnum civ, string nameSO)
-        {
-            List<FleetNamesSO> myList = new List<FleetNamesSO>();
-            myList = allFleetNames[civ];
-            return myList.Find(data => data.name == nameSO);
-        }
-
-        public int GetUniqueFleetName(CivEnum civEnum, int nameInt)
-        {
-            int intName = 0;
-            if (allFleetNames.TryGetValue(civEnum, out listSONames))
-            {
-
-                for(int i = 0; i < 1000; i++) 
-                {
-                    if (listSONames[i].intName != nameInt)
-                    {
-                        intName =i;
-                       //listSONames.Add
-                        break;
-                    }
-                }
-
-            }
-            
-            return intName;
-        }
 
         public FleetData GetFleetDataByName(string fleetName)
         {
 
             FleetData result = null;
-
 
             foreach (var fleet in fleetDataList)
             {
@@ -115,16 +120,27 @@ namespace Assets.Core
             return result;
 
         }
-        //public void OnNewGameButtonClicked(int gameSize)
-        //{
-        //    CreateNewGame(gameSize);
+        public FleetSO GetFleetSObyInt(int fleetInt)
+        {
 
-        //}
+            FleetSO result = null;
+
+
+            foreach (var fleetSO in fleetSOList)
+            {
+
+                if (fleetSO.CivIndex ==fleetInt)
+                {
+                    result = fleetSO;
+                }
+            }
+            return result;
+
+        }
 
         public void GetFleetByName(string fleetName)
         {
             resultFleetData = GetFleetDataByName(fleetName);
-
         }
 
     }

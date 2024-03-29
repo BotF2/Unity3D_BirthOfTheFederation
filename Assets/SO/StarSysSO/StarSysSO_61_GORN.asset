@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_61_GORN
   m_EditorClassIdentifier: 
   StarSysInt: 61
-  Position: {x: 2300, y: 184, z: -11000}
+  Position: {x: 230, y: 18, z: -1100}
   SysName: GORN
   FirstOwner: 61
   StarType: 2

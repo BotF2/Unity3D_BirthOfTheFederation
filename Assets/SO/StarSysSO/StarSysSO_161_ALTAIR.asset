@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_161_ALTAIR
   m_EditorClassIdentifier: 
   StarSysInt: 161
-  Position: {x: -2200, y: 26, z: -5500}
+  Position: {x: -220, y: 2, z: -550}
   SysName: ALTAIR
   FirstOwner: 161
   StarType: 2

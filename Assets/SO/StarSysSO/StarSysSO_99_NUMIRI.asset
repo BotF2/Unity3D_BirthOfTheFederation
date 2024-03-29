@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_99_NUMIRI
   m_EditorClassIdentifier: 
   StarSysInt: 99
-  Position: {x: 2700, y: 133, z: 6800}
+  Position: {x: 270, y: 13, z: 680}
   SysName: NUMIRI
   FirstOwner: 99
   StarType: 4

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_149_XEPOLITES
   m_EditorClassIdentifier: 
   StarSysInt: 149
-  Position: {x: -6800, y: -226, z: -6300}
+  Position: {x: -680, y: -22, z: -630}
   SysName: XEPOLITES
   FirstOwner: 149
   StarType: 2

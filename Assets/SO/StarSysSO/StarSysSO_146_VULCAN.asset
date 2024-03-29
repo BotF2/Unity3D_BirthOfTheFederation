@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_146_VULCAN
   m_EditorClassIdentifier: 
   StarSysInt: 146
-  Position: {x: -500, y: 100, z: -6500}
+  Position: {x: -50, y: 10, z: -650}
   SysName: VULCAN
   FirstOwner: 146
   StarType: 4

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_32_BOMAR
   m_EditorClassIdentifier: 
   StarSysInt: 32
-  Position: {x: 5700, y: -169, z: 5200}
+  Position: {x: 570, y: -16, z: 520}
   SysName: BOMAR
   FirstOwner: 32
   StarType: 2

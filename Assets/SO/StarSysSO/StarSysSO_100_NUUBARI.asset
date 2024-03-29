@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_100_NUUBARI
   m_EditorClassIdentifier: 
   StarSysInt: 100
-  Position: {x: 800, y: -179, z: 1400}
+  Position: {x: 80, y: -17, z: 140}
   SysName: NUUBARI
   FirstOwner: 100
   StarType: 2

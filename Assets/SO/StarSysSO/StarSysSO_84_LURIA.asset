@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_84_LURIA
   m_EditorClassIdentifier: 
   StarSysInt: 84
-  Position: {x: -3000, y: -225, z: -4100}
+  Position: {x: -300, y: -22, z: -410}
   SysName: LURIA
   FirstOwner: 84
   StarType: 3

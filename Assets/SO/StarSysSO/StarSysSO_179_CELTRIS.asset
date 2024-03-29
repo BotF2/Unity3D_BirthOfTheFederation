@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_179_CELTRIS
   m_EditorClassIdentifier: 
   StarSysInt: 179
-  Position: {x: -3800, y: 43, z: -7100}
+  Position: {x: -380, y: 4, z: -710}
   SysName: CELTRIS
   FirstOwner: 0
   StarType: 4

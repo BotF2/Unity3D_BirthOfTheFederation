@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_8_AKRITIRI
   m_EditorClassIdentifier: 
   StarSysInt: 8
-  Position: {x: 5500, y: -216, z: 6700}
+  Position: {x: 550, y: -21, z: 670}
   SysName: AKRITIRI
   FirstOwner: 8
   StarType: 4

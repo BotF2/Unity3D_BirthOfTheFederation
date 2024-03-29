@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_51_DRAI
   m_EditorClassIdentifier: 
   StarSysInt: 51
-  Position: {x: -4300, y: -234, z: 7300}
+  Position: {x: -430, y: -23, z: 730}
   SysName: DRAI
   FirstOwner: 51
   StarType: 3

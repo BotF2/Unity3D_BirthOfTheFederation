@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_144_VORGON
   m_EditorClassIdentifier: 
   StarSysInt: 144
-  Position: {x: 4400, y: 252, z: -13300}
+  Position: {x: 440, y: 25, z: -1330}
   SysName: VORGON
   FirstOwner: 144
   StarType: 3

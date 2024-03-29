@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_60_FLAXIA
   m_EditorClassIdentifier: 
   StarSysInt: 60
-  Position: {x: 4000, y: -125, z: -4600}
+  Position: {x: 400, y: -12, z: -460}
   SysName: FLAXIA
   FirstOwner: 60
   StarType: 3

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_130_TEPLA
   m_EditorClassIdentifier: 
   StarSysInt: 130
-  Position: {x: -5800, y: 58, z: 5500}
+  Position: {x: -580, y: 5, z: 550}
   SysName: TEPLA
   FirstOwner: 130
   StarType: 2

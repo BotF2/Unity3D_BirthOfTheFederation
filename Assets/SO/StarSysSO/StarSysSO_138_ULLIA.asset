@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_138_ULLIA
   m_EditorClassIdentifier: 
   StarSysInt: 138
-  Position: {x: -3600, y: -260, z: -4400}
+  Position: {x: -360, y: -26, z: -440}
   SysName: ULLIA
   FirstOwner: 138
   StarType: 4

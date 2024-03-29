@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_151_XYRILLIA
   m_EditorClassIdentifier: 
   StarSysInt: 151
-  Position: {x: 100, y: -188, z: -6300}
+  Position: {x: 10, y: -18, z: -630}
   SysName: XYRILLIA
   FirstOwner: 151
   StarType: 3

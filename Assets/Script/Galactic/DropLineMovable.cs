@@ -11,30 +11,41 @@ namespace Assets.Core
     public class DropLineMovable: MonoBehaviour
     {                 
         private LineRenderer lineRenderer;
-        private Transform[] points;
+        private Vector3[] points;
 
-        private void Awake()
+        //private void Awake()
+        //{
+        //    lineRenderer = GetComponent<LineRenderer>();
+        //}
+        public void GetLineRenderer()
         {
-
             lineRenderer = GetComponent<LineRenderer>();
         }
-        //public GalaxyDropLine(LineRenderer lineRender)
-        //{
-        //    if (lineRender == null)
-        //    lineRenderer = lineRender;
-        //}
-        public void SetUpLine(Transform[] points)
+
+        public void SetUpLine(Vector3[] points)
         {
             lineRenderer.positionCount = points.Length;
             this.points = points;
+            if (lineRenderer != null && points != null)
+            {
+                for (int i = 0; i < points.Length; i++)
+                {
+                    lineRenderer.SetPosition(i, points[i]);
+                }
+            }
         }
+        //public void SetUpLine(Vector3[] points)
+        //{
+        //    lineRenderer.positionCount = points.Length;
+        //    this.points = points;
+        //}
         private void Update()
         {
             if (lineRenderer != null && points != null)
             {
                 for (int i = 0; i < points.Length; i++)
                 {
-                    lineRenderer.SetPosition(i, points[i].position);
+                    lineRenderer.SetPosition(i, points[i]);
                 }
             }
         }

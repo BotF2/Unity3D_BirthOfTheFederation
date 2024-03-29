@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_11_ALSAURI
   m_EditorClassIdentifier: 
   StarSysInt: 11
-  Position: {x: 3600, y: -57, z: 5800}
+  Position: {x: 360, y: -5, z: 580}
   SysName: ALSAURI
   FirstOwner: 11
   StarType: 3

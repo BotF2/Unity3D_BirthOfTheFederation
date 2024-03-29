@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_31_BOLIA
   m_EditorClassIdentifier: 
   StarSysInt: 31
-  Position: {x: -3200, y: 215, z: -11600}
+  Position: {x: -320, y: 21, z: -1160}
   SysName: BOLIA
   FirstOwner: 31
   StarType: 4

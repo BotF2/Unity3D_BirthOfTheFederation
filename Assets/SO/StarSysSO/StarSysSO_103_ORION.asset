@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_103_ORION
   m_EditorClassIdentifier: 
   StarSysInt: 103
-  Position: {x: 200, y: 254, z: -7300}
+  Position: {x: 20, y: 25, z: -730}
   SysName: ORION
   FirstOwner: 103
   StarType: 5

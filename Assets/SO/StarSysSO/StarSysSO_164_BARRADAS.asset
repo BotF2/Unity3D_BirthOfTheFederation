@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_164_BARRADAS
   m_EditorClassIdentifier: 
   StarSysInt: 164
-  Position: {x: 800, y: -72, z: -6800}
+  Position: {x: 80, y: -7, z: -680}
   SysName: BARRADAS
   FirstOwner: 164
   StarType: 3

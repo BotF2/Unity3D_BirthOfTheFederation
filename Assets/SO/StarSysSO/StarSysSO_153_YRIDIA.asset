@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_153_YRIDIA
   m_EditorClassIdentifier: 
   StarSysInt: 153
-  Position: {x: -7000, y: 22, z: -13600}
+  Position: {x: -700, y: 2, z: -1360}
   SysName: YRIDIA
   FirstOwner: 153
   StarType: 2

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_118_SKRREEA
   m_EditorClassIdentifier: 
   StarSysInt: 118
-  Position: {x: -6800, y: -24, z: 5100}
+  Position: {x: -680, y: -2, z: 510}
   SysName: SKRREEA
   FirstOwner: 118
   StarType: 4

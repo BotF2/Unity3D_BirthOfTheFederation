@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_168_ANTARES
   m_EditorClassIdentifier: 
   StarSysInt: 168
-  Position: {x: 100, y: 80, z: -5200}
+  Position: {x: 10, y: 8, z: -520}
   SysName: ANTARES
   FirstOwner: 168
   StarType: 3

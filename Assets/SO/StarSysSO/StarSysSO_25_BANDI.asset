@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_25_BANDI
   m_EditorClassIdentifier: 
   StarSysInt: 25
-  Position: {x: 300, y: -216, z: -8900}
+  Position: {x: 30, y: -21, z: -890}
   SysName: BANDI
   FirstOwner: 25
   StarType: 3

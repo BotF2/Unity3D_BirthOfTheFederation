@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_175_ORIAS
   m_EditorClassIdentifier: 
   StarSysInt: 175
-  Position: {x: -5100, y: -195, z: -6800}
+  Position: {x: -510, y: -19, z: -680}
   SysName: ORIAS
   FirstOwner: 0
   StarType: 3

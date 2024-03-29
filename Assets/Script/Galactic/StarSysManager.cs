@@ -9,7 +9,6 @@ using UnityEditor;
 
 namespace Assets.Core
 {
-
     public class StarSysManager : MonoBehaviour
     {
         public static StarSysManager instance;
@@ -35,9 +34,8 @@ namespace Assets.Core
         }
         public void CreateGameSystems(List<CivSO> civSOList)
         {
-            //Galaxy galaxy = new Galaxy(GameManager.Instance);
-            //Galaxy.Instance.galaxy = galaxy;
-
+            List<StarSysData> starSysDatas = new List<StarSysData>();
+            starSysDataList = starSysDatas;
             foreach (var civSO in civSOList)
             {
                 StarSysSO starSysSO = GetStarSObyInt(civSO.CivInt);
@@ -65,11 +63,12 @@ namespace Assets.Core
                 //public GameObject _systemSphere;
                 //public List<GameObject> _fleetsInSystem;
                 #endregion
-                List<StarSysData> starSysDatas = new List<StarSysData>() { SysData};
-                if (!starSysDatas.Contains(SysData))
+
+                if (!starSysDataList.Contains(SysData))
                     starSysDataList.Add(SysData);
                 InstantiateSystemButton(SysData, civSO);
             }
+            FleetManager.instance.CreatGameStarterFleets(civSOList);
             SolarSystemView view = new SolarSystemView();
         }
         public void InstantiateSystemButton(StarSysData sysData, CivSO civSO)
@@ -114,6 +113,7 @@ namespace Assets.Core
              DropLineFixed ourDropLine = starSystemNewGameOb.GetComponent<DropLineFixed>();
             
             ourDropLine.GetLineRenderer();
+
             Vector3 galaxyPlanePoint = new Vector3(starSystemNewGameOb.transform.position.x,
                 galaxyImage.transform.position.y, starSystemNewGameOb.transform.position.z);
             Vector3[] points = {starSystemNewGameOb.transform.position, galaxyPlanePoint};

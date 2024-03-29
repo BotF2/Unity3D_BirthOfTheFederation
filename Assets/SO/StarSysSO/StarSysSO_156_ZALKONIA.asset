@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_156_ZALKONIA
   m_EditorClassIdentifier: 
   StarSysInt: 156
-  Position: {x: 1700, y: 219, z: -13700}
+  Position: {x: 170, y: 21, z: -1370}
   SysName: ZALKONIA
   FirstOwner: 156
   StarType: 3

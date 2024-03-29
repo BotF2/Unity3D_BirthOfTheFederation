@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_182_DOPA
   m_EditorClassIdentifier: 
   StarSysInt: 182
-  Position: {x: -6300, y: -290, z: -6400}
+  Position: {x: -630, y: -29, z: -640}
   SysName: DOPA
   FirstOwner: 0
   StarType: 3

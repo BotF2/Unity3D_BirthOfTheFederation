@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_105_PAKLED
   m_EditorClassIdentifier: 
   StarSysInt: 105
-  Position: {x: -400, y: -124, z: -3800}
+  Position: {x: -40, y: -12, z: -380}
   SysName: PAKLED
   FirstOwner: 105
   StarType: 2

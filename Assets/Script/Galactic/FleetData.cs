@@ -18,18 +18,7 @@ namespace Assets.Core
         public GameObject destination;
         public GameObject origin;
         public float defaultWarp = 0;
-        public FleetNamesSO namesSO;
 
-        void Start()
-        {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
     }
 }
 

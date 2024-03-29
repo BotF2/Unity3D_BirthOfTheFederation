@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_29_BETAZED
   m_EditorClassIdentifier: 
   StarSysInt: 29
-  Position: {x: -2900, y: 115, z: -9100}
+  Position: {x: -290, y: 11, z: -910}
   SysName: BETAZED
   FirstOwner: 29
   StarType: 2

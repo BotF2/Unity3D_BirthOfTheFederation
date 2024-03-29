@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_20_ARKARI
   m_EditorClassIdentifier: 
   StarSysInt: 20
-  Position: {x: 1300, y: -7, z: -13000}
+  Position: {x: 130, y: 0, z: -1300}
   SysName: ARKARI
   FirstOwner: 20
   StarType: 2

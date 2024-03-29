@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_54_ELAURIA
   m_EditorClassIdentifier: 
   StarSysInt: 54
-  Position: {x: 4000, y: -274, z: -2800}
+  Position: {x: 400, y: -27, z: -280}
   SysName: ELAURIA
   FirstOwner: 54
   StarType: 3

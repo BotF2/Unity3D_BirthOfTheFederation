@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_127_TAMARIA
   m_EditorClassIdentifier: 
   StarSysInt: 127
-  Position: {x: -3800, y: -245, z: -9000}
+  Position: {x: -380, y: -24, z: -900}
   SysName: TAMARIA
   FirstOwner: 127
   StarType: 2

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_177_KELRABI
   m_EditorClassIdentifier: 
   StarSysInt: 177
-  Position: {x: -4200, y: 62, z: -5200}
+  Position: {x: -420, y: 6, z: -520}
   SysName: KELRABI
   FirstOwner: 0
   StarType: 2

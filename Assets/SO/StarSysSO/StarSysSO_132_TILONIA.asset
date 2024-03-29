@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_132_TILONIA
   m_EditorClassIdentifier: 
   StarSysInt: 132
-  Position: {x: 1100, y: -231, z: -14400}
+  Position: {x: 110, y: -23, z: -1440}
   SysName: TILONIA
   FirstOwner: 132
   StarType: 0

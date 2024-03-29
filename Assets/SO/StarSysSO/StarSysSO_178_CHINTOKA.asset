@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_178_CHINTOKA
   m_EditorClassIdentifier: 
   StarSysInt: 178
-  Position: {x: -5200, y: -207, z: -9300}
+  Position: {x: -520, y: -20, z: -930}
   SysName: CHINTOKA
   FirstOwner: 0
   StarType: 3

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_65_HAZARI
   m_EditorClassIdentifier: 
   StarSysInt: 65
-  Position: {x: 5000, y: 120, z: 3500}
+  Position: {x: 500, y: 12, z: 350}
   SysName: HAZARI
   FirstOwner: 65
   StarType: 3

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_185_DRAYAN
   m_EditorClassIdentifier: 
   StarSysInt: 185
-  Position: {x: 5500, y: -22, z: 6400}
+  Position: {x: 550, y: -2, z: 640}
   SysName: DRAYAN
   FirstOwner: 0
   StarType: 4

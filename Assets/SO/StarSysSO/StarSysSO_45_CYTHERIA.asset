@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_45_CYTHERIA
   m_EditorClassIdentifier: 
   StarSysInt: 45
-  Position: {x: -1000, y: -57, z: 1000}
+  Position: {x: -100, y: -5, z: 100}
   SysName: CYTHERIA
   FirstOwner: 45
   StarType: 2

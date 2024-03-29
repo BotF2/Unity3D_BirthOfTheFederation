@@ -59,7 +59,7 @@ public class StarSysSOImporter : EditorWindow
                     StarSysSO StarSysSO = CreateInstance<StarSysSO>();
                     ////StarSysInt	,	StarSysSO Enum	,	StarSysSO Short Name	,	StarSysSO Long Name	,	Home System	,	Triat One	,	Trait Two	,	StarSysSO Image	,	Insginia	,	Population	,	Credits	,	Tech Points
                     StarSysSO.StarSysInt = int.Parse(fields[0]);
-                    StarSysSO.Position = new Vector3(int.Parse(fields[1]), int.Parse(fields[2]), int.Parse(fields[3]));
+                    StarSysSO.Position = new Vector3((int.Parse(fields[1]))/10, (int.Parse(fields[2]))/10, (int.Parse(fields[3]))/10);
                     StarSysSO.SysName = fields[4];
                     StarSysSO.FirstOwner = GetMyCivEnum(fields[5]);
                     StarSysSO.StarType = GetMyStarTypeEnum(fields[7]);

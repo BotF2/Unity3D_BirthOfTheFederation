@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_150_XINDI
   m_EditorClassIdentifier: 
   StarSysInt: 150
-  Position: {x: -1354, y: 300, z: -3143}
+  Position: {x: -135, y: 30, z: -314}
   SysName: XINDI
   FirstOwner: 150
   StarType: 2

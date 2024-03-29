@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_176_QUINOR
   m_EditorClassIdentifier: 
   StarSysInt: 176
-  Position: {x: -5300, y: -201, z: -6000}
+  Position: {x: -530, y: -20, z: -600}
   SysName: QUINOR
   FirstOwner: 0
   StarType: 4

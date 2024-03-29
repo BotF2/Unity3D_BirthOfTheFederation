@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_50_DOSI
   m_EditorClassIdentifier: 
   StarSysInt: 50
-  Position: {x: -4400, y: -273, z: 1730}
+  Position: {x: -440, y: -27, z: 173}
   SysName: DOSI
   FirstOwner: 50
   StarType: 2

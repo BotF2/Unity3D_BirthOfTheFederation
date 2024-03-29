@@ -80,7 +80,7 @@ namespace Assets.Core
         //    }
         //}
 
-        new ulong OrbitTimeForDistance() // for planet
+        ulong OrbitTimeForDistance() // for planet
         {
             // Fix this with real orbital math
             return 365 * 24 * 60 * 60;
