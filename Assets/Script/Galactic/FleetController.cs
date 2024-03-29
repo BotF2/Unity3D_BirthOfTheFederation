@@ -15,17 +15,17 @@ namespace Assets.Core
         {
             if (fleetData != null)
             {
-                fleetData.location = transform.position;
+                fleetData.Location = transform.position;
             }
         }
         public void UpdateWarpFactor(int delta)
         {
-            fleetData.warpFactor += delta;
+            fleetData.WarpFactor += delta;
         }
         private void OnEnable()
         {
             if (fleetData != null)
-                fleetData.location = transform.position;
+                fleetData.Location = transform.position;
         }
     }
 }

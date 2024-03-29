@@ -17,7 +17,9 @@ namespace Assets.Core
 
         public GameObject sysPrefab;
 
-        public List<StarSysData> starSysDataList;
+        public List<StarSysData> StarSysDataList = new List<StarSysData>() { new StarSysData()};
+
+        private List<StarSysData> starSysDatas = new List<StarSysData>() { new StarSysData()};
 
         public GameObject galaxyImage;
 
@@ -34,8 +36,8 @@ namespace Assets.Core
         }
         public void CreateGameSystems(List<CivSO> civSOList)
         {
-            List<StarSysData> starSysDatas = new List<StarSysData>();
-            starSysDataList = starSysDatas;
+            //List<StarSysData> starSysDatas = new List<StarSysData>();
+            //starSysDataList = starSysDatas;
             foreach (var civSO in civSOList)
             {
                 StarSysSO starSysSO = GetStarSObyInt(civSO.CivInt);
@@ -43,9 +45,9 @@ namespace Assets.Core
                 SysData.Position = starSysSO.Position;
                 SysData.SysName = starSysSO.SysName;
                 SysData.FirstOwner = starSysSO.FirstOwner;
+                SysData.CurrentOwner = starSysSO.FirstOwner;
                 SysData.StarType = starSysSO.StarType;
                 SysData.StarSprit = starSysSO.StarSprit;
-                SysData.CurrentOwner = starSysSO.FirstOwner;
                 SysData.Population = starSysSO.Population;
                  #region more stuff
                 //public float _sysCredits;
@@ -64,10 +66,11 @@ namespace Assets.Core
                 //public List<GameObject> _fleetsInSystem;
                 #endregion
 
-                if (!starSysDataList.Contains(SysData))
-                    starSysDataList.Add(SysData);
+                //if (!starSysDataList.Contains(SysData))
+                starSysDatas.Add(SysData);
                 InstantiateSystemButton(SysData, civSO);
             }
+            StarSysDataList = StarSysDataList;
             FleetManager.instance.CreatGameStarterFleets(civSOList);
             SolarSystemView view = new SolarSystemView();
         }
@@ -153,7 +156,7 @@ namespace Assets.Core
             StarSysData result = null;
 
 
-            foreach (var sysData in starSysDataList)
+            foreach (var sysData in StarSysDataList)
             {
 
                 if (sysData.SysName.Equals(name))
@@ -177,18 +180,6 @@ namespace Assets.Core
         //    resultInGameStarSysData = GetStarSysDataByName(sysName);
 
         //}
-
-        // Start is called before the first frame update
-        void Start()
-        {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
     }
 }
 

@@ -21,7 +21,15 @@ namespace Assets.Core
         public int Population;
         public int Credits;
         public int TechPoints;
-        //public string Description;
+        public TechLevel CivTechLevel; // ToDo we could define tech level by TechPoints???
+        public bool Playable;
+        public bool HasWarp;
+        public string Decription;
+        public List<StarSysData> StarSysOwned;
+        //public float TaxRate; // universal or variable by civ/sys??
+        //public float GrowthRate; // universal or variable by civ/sys??
+        public float IntelPoints;
+        public List<CivEnum> ContactList;
     }
 }
 

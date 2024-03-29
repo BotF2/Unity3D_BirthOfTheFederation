@@ -7,17 +7,17 @@ namespace Assets.Core
 {
     public class FleetData // : MonoBehaviour
     {
-        public int civIndex;
-        public string fleetName;
-        public string description;
-        public Sprite insign;
-        public CivEnum civOwnerEnum;
-        public Vector3 location;
-        public List<Ship> ships;
-        public float warpFactor;
-        public GameObject destination;
-        public GameObject origin;
-        public float defaultWarp = 0;
+        public int CivIndex;
+        public Sprite Insignia;
+        public CivEnum CivOwnerEnum;
+        public Vector3 Location;
+        public List<Ship> ShipsList;
+        public float WarpFactor;
+        public float DefaultWarpFactor;
+        public string Name;
+        public string Description;
+        public GameObject Destination;
+       // public GameObject origin;
     }
 }
 

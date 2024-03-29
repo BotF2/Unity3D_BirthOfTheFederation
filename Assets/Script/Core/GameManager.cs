@@ -219,16 +219,16 @@ namespace Assets.Core
         ADVANCED,
         SUPREME
     }
-    public enum HomeSystem
-    {
-        SOL,
-        TERRA,
-        ROMULUS,
-        KRONOS,
-        CARDASSIA,
-        OMARIAN_NEBULA,
-        DELTA_PRIME
-    }
+    //public enum HomeSystem
+    //{
+    //    SOL,
+    //    TERRA,
+    //    ROMULUS,
+    //    KRONOS,
+    //    CARDASSIA,
+    //    OMARIAN_NEBULA,
+    //    DELTA_PRIME
+    //}
     public enum SystemData
     {
         Sys_Int,

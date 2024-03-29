@@ -17,7 +17,9 @@ namespace Assets.Core
 
         public GameObject fleetPrefab;
 
-        public List<FleetData> fleetDataList;
+        public List<FleetData> FleetDataList;
+
+        private List<FleetData> fleetDataList = new List<FleetData>() { new FleetData()};
 
         public GameObject galaxyImage;
 
@@ -37,33 +39,39 @@ namespace Assets.Core
         }
         public void CreatGameStarterFleets(List<CivSO> listCivSO)
         {
-            List<FleetData> fleetDatas = new List<FleetData>();
-            fleetDataList = fleetDatas;
+
             foreach (var civSO in listCivSO)
             {
                 FleetSO fleetSO = GetFleetSObyInt(civSO.CivInt);
                 FleetData fleetData = new FleetData();
-                fleetData.civIndex = fleetSO.CivIndex;
-                fleetData.fleetName = fleetSO.Name;
-                fleetData.description = fleetSO.description;
-                fleetData.insign = fleetSO.Insignia;
-                fleetData.civOwnerEnum = fleetSO.CivOwnerEnum;
-                fleetData.location  = fleetSO.location;
-                fleetData.ships = fleetSO.Ships;
-                fleetData.warpFactor = fleetSO.warpFactor;
-                fleetData.destination = fleetSO.destination;
-                fleetData.origin = fleetSO.origin;
-                fleetData.defaultWarp = 0;
-                if (!fleetDataList.Contains(fleetData))
-                    fleetDataList.Add(fleetData);
-                InstantiateStarterFleets(fleetData, fleetSO);
+                fleetData.CivIndex = fleetSO.CivIndex;
+                fleetData.Insignia = fleetSO.Insignia;
+                fleetData.CivOwnerEnum = fleetSO.CivOwnerEnum;
+                //foreach (var starSysData in StarSysManager.instance.StarSysDataList)
+                //{
+                //    if (fleetSO.CivIndex == starSysData.SysInt)
+                //    { 
+                //        fleetData.Location = starSysData.Position;
+                //        break;
+                //    }
+                //}
+                fleetData.ShipsList = fleetSO.ShipsList;
+                fleetData.WarpFactor = fleetSO.WarpFactor;
+                fleetData.DefaultWarpFactor = fleetSO.DefaultWarpFactor;
+                fleetData.Name = fleetSO.Name;
+                fleetData.Description = fleetSO.Description;
+                fleetData.Destination = fleetSO.Destination;
+                fleetDataList.Add(fleetData);
+                InstantiateThisStarterFleet(fleetData, fleetSO);
             }
+            FleetDataList = fleetDataList;
+            TranslateStarterFleetToSystem(FleetDataList);
         }
-        public void InstantiateStarterFleets(FleetData fleetData, FleetSO fleetSO)
+        public void InstantiateThisStarterFleet(FleetData fleetData, FleetSO fleetSO)
         {
             GameObject fleetNewGameOb = (GameObject)Instantiate(fleetPrefab, new Vector3(0, 0, 0),
                     Quaternion.identity);
-            fleetNewGameOb.transform.Translate(new Vector3(fleetSO.location.x, fleetSO.location.y, fleetSO.location.z ));
+            fleetNewGameOb.transform.Translate(new Vector3(fleetSO.Location.x, fleetSO.Location.y, fleetSO.Location.z ));
             //fleetNewGameOb.transform.Translate(new Vector3(sysData.Position.x, sysData.Position.z, sysData.Position.y));
             fleetNewGameOb.transform.SetParent(galaxyCenter.transform, true);
             //fleetNewGameOb.transform.localScale = new Vector3(1, 1, 1);
@@ -74,9 +82,9 @@ namespace Assets.Core
             foreach (var OneTmp in TMPs)
             {
                 if (OneTmp != null && OneTmp.name == "StarName (TMP)")
-                    OneTmp.text = fleetData.fleetName;
+                    OneTmp.text = fleetData.Name;
                 else if (OneTmp != null && OneTmp.name == "Owner (TMP)")
-                    OneTmp.text = fleetData.fleetName.ToString();
+                    OneTmp.text = fleetData.Name.ToString();
             }
             var Renderers = fleetNewGameOb.GetComponentsInChildren<SpriteRenderer>();
             foreach (var oneRenderer in Renderers)
@@ -102,6 +110,21 @@ namespace Assets.Core
 
             fleetNewGameOb.SetActive(true);
         }
+        private void TranslateStarterFleetToSystem(List<FleetData> fleetDatas)
+        {
+            foreach (var sysData in StarSysManager.instance.StarSysDataList)
+            {
+                foreach (var fleetData in fleetDatas)
+                {
+                    if (sysData.SysInt == fleetData.CivIndex)
+                    {
+                        fleetData.Location = sysData.Position;
+                        break;
+                    }
+                }              
+            }
+
+        }
         public FleetData resultFleetData;
 
         public FleetData GetFleetDataByName(string fleetName)
@@ -112,7 +135,7 @@ namespace Assets.Core
             foreach (var fleet in fleetDataList)
             {
 
-                if (fleet.fleetName.Equals(fleetName))
+                if (fleet.Name.Equals(fleetName))
                 {
                     result = fleet;
                 }

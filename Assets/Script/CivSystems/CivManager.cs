@@ -7,6 +7,7 @@ using UnityEngine;
 
 namespace Assets.Core
 {
+
     public class CivManager : MonoBehaviour
     {
         public static CivManager instance;
@@ -19,7 +20,8 @@ namespace Assets.Core
 
         public List<CivSO> civSOListLarge;
 
-        public List<CivData> civDataList;
+        public List<CivData> CivDataInGameList;
+        private List<CivData> civDataList = new List<CivData>() { new CivData()};
 
         //public GameObject civilizationPrefab;
         public CivData localPlayer;
@@ -70,7 +72,6 @@ namespace Assets.Core
 
         public void CreateGameCivs(List<CivSO> civSOList)
         {
-            civDataList = new List<CivData>();
             foreach (var civSO in civSOList)
             {
                 CivData data = new CivData();
@@ -85,9 +86,21 @@ namespace Assets.Core
                 data.Population = civSO.Population;
                 data.Credits = civSO.Credits;
                 data.TechPoints = civSO.TechPoints;
+                data.CivTechLevel = civSO.CivTechLevel;
+                if (civSO.CivInt <= 5 || civSO.CivInt == 158)
+                    data.Playable = true;
+                else data.Playable = false;
+                data.HasWarp = civSO.HasWarp;
+                data.Decription = civSO.Decription;
+                data.StarSysOwned = civSO.StarSysOwned;
+                //data.TaxRate = civSO.TaxRate;
+                //data.GrowthRate = civSO.GrowthRate;
+                data.IntelPoints = civSO.IntelPoints;
+                data.ContactList = civSO.ContactList;
                 civDataList.Add(data);
                 
             }
+            CivDataInGameList = civDataList;
             StarSysManager.instance.CreateGameSystems(civSOList);
 
 
@@ -101,7 +114,7 @@ namespace Assets.Core
             CivData result = null;
 
 
-            foreach (var civ in civDataList)
+            foreach (var civ in CivDataInGameList)
             {
 
                 if (civ.CivShortName.Equals(shortName))

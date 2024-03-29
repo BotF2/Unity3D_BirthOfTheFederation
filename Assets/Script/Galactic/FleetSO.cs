@@ -14,14 +14,14 @@ namespace Assets.Core
         public int CivIndex;
         public Sprite Insignia;
         public CivEnum CivOwnerEnum;
+        public Vector3 Location;
+        public List<Ship> ShipsList;
+        public float WarpFactor = 0f;
         public float DefaultWarpFactor = 0f;
-        public float warpFactor;
         public string Name;
-        public string description;
-        public List<Ship> Ships;
-        public Vector3 location;
-        public GameObject destination;
-        public GameObject origin;
+        public string Description;      
+        public GameObject Destination;
+        //public GameObject origin;
     }
 }
 

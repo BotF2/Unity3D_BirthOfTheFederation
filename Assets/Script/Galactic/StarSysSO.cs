@@ -13,6 +13,7 @@ public class StarSysSO : ScriptableObject
     public Vector3 Position;
     public string SysName;
     public CivEnum FirstOwner;
+    public CivEnum CurrentOwner;
     public StarType StarType;
     public Sprite StarSprit;
     public int Population;
