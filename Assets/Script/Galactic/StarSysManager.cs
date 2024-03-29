@@ -124,8 +124,6 @@ namespace Assets.Core
 
             starSystemNewGameOb.SetActive(true);
             //Undo.MoveGameObjectToScene(starSystemNewGameOb, GalaxyScene)
-
-
             //view.NumbersOfSystemID(NumbersForSystem);
             //ourGalaxy.PopulateCanonSystem();
         }
