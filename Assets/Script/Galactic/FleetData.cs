@@ -18,7 +18,6 @@ namespace Assets.Core
         public GameObject destination;
         public GameObject origin;
         public float defaultWarp = 0;
-
     }
 }
 
