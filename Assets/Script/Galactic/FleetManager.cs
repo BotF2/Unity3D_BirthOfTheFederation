@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data.Common;
+using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
 using TMPro;
 using UnityEngine;
@@ -20,6 +21,8 @@ namespace Assets.Core
         public List<FleetData> FleetDataList;
 
         private List<FleetData> fleetDataList = new List<FleetData>() { new FleetData()};
+
+        private List<int> FleetNumber = new List<int>() { 0 } ;
 
         public GameObject galaxyImage;
 
@@ -83,7 +86,7 @@ namespace Assets.Core
             fleetNewGameOb.transform.SetParent(galaxyCenter.transform, true);
             fleetNewGameOb.transform.localScale = new Vector3(1,1,1);
 
-            fleetNewGameOb.name = "Klingon Fart"; // fleetData.fleetName;
+            fleetNewGameOb.name = fleetData.CivOwnerEnum.ToString() + "Fleet" + FleetNumber; // fleetData.fleetName;
             var ImageRenderers = fleetNewGameOb.GetComponentsInChildren<SpriteRenderer>();
 
             //var TMPs = fleetNewGameOb.GetComponentsInChildren<TextMeshProUGUI>();
