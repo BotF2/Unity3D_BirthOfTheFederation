@@ -37,55 +37,63 @@ namespace Assets.Core
                 DontDestroyOnLoad(gameObject);
             }
         }
-        public void CreatGameStarterFleets(List<CivSO> listCivSO)
+        public void CreatGameStarterFleets(List<CivSO> listCivSO, List<StarSysData> starSysDatas)
         {
-
             foreach (var civSO in listCivSO)
             {
-                FleetSO fleetSO = GetFleetSObyInt(civSO.CivInt);
-                FleetData fleetData = new FleetData();
-                fleetData.CivIndex = fleetSO.CivIndex;
-                fleetData.Insignia = fleetSO.Insignia;
-                fleetData.CivOwnerEnum = fleetSO.CivOwnerEnum;
-                //foreach (var starSysData in StarSysManager.instance.StarSysDataList)
-                //{
-                //    if (fleetSO.CivIndex == starSysData.SysInt)
-                //    { 
-                //        fleetData.Location = starSysData.Position;
-                //        break;
-                //    }
-                //}
-                fleetData.ShipsList = fleetSO.ShipsList;
-                fleetData.WarpFactor = fleetSO.WarpFactor;
-                fleetData.DefaultWarpFactor = fleetSO.DefaultWarpFactor;
-                fleetData.Name = fleetSO.Name;
-                fleetData.Description = fleetSO.Description;
-                fleetData.Destination = fleetSO.Destination;
-                fleetDataList.Add(fleetData);
-                InstantiateThisStarterFleet(fleetData, fleetSO);
+                if (civSO.HasWarp)
+                {
+                    FleetSO fleetSO = GetFleetSObyInt(civSO.CivInt);
+                    if (fleetSO != null)
+                    {
+                        FleetData fleetData = new FleetData();
+                        fleetData.CivIndex = fleetSO.CivIndex;
+                        fleetData.Insignia = fleetSO.Insignia;
+                        fleetData.CivOwnerEnum = fleetSO.CivOwnerEnum;
+
+                        foreach (var sysData in starSysDatas)
+                        {
+                            if (sysData.SysInt == civSO.CivInt)
+                            {
+                                fleetData.Location = sysData.Position;
+                                break;
+                            }
+                        }
+                        fleetData.ShipsList = fleetSO.ShipsList;
+                        fleetData.WarpFactor = fleetSO.WarpFactor;
+                        fleetData.DefaultWarpFactor = fleetSO.DefaultWarpFactor;
+                        fleetData.Name = fleetSO.Name;
+                        fleetData.Description = fleetSO.Description;
+                        fleetData.Destination = fleetSO.Destination;
+                        fleetDataList.Add(fleetData);
+
+                        InstantiateThisStarterFleet(fleetData);
+                    }
+                }
             }
+            fleetDataList.Remove(fleetDataList[0]);
             FleetDataList = fleetDataList;
             TranslateStarterFleetToSystem(FleetDataList);
         }
-        public void InstantiateThisStarterFleet(FleetData fleetData, FleetSO fleetSO)
+        public void InstantiateThisStarterFleet(FleetData fleetData)
         {
             GameObject fleetNewGameOb = (GameObject)Instantiate(fleetPrefab, new Vector3(0, 0, 0),
                     Quaternion.identity);
-            fleetNewGameOb.transform.Translate(new Vector3(fleetSO.Location.x, fleetSO.Location.y, fleetSO.Location.z ));
-            //fleetNewGameOb.transform.Translate(new Vector3(sysData.Position.x, sysData.Position.z, sysData.Position.y));
+            fleetNewGameOb.transform.Translate(new Vector3(fleetData.Location.x +5f, fleetData.Location.y, fleetData.Location.z));
             fleetNewGameOb.transform.SetParent(galaxyCenter.transform, true);
-            //fleetNewGameOb.transform.localScale = new Vector3(1, 1, 1);
+            fleetNewGameOb.transform.localScale = new Vector3(1,1,1);
+
             fleetNewGameOb.name = "Klingon Fart"; // fleetData.fleetName;
             var ImageRenderers = fleetNewGameOb.GetComponentsInChildren<SpriteRenderer>();
 
-            var TMPs = fleetNewGameOb.GetComponentsInChildren<TextMeshProUGUI>();
-            foreach (var OneTmp in TMPs)
-            {
-                if (OneTmp != null && OneTmp.name == "StarName (TMP)")
-                    OneTmp.text = fleetData.Name;
-                else if (OneTmp != null && OneTmp.name == "Owner (TMP)")
-                    OneTmp.text = fleetData.Name.ToString();
-            }
+            //var TMPs = fleetNewGameOb.GetComponentsInChildren<TextMeshProUGUI>();
+            //foreach (var OneTmp in TMPs)
+            //{
+            //    if (OneTmp != null && OneTmp.name == "StarName (TMP)")
+            //        OneTmp.text = fleetData.Name;
+            //    else if (OneTmp != null && OneTmp.name == "Owner (TMP)")
+            //        OneTmp.text = fleetData.Name.ToString();
+            //}
             var Renderers = fleetNewGameOb.GetComponentsInChildren<SpriteRenderer>();
             foreach (var oneRenderer in Renderers)
             {
@@ -93,7 +101,7 @@ namespace Assets.Core
                 {
                     if (oneRenderer.name == "OwnerInsignia")
                     {
-                        oneRenderer.sprite = fleetSO.Insignia;
+                        oneRenderer.sprite = fleetData.Insignia;
                         //oneRenderer.sprite.GetComponent<MeshFilter>().sharedMesh.RecalculateBounds();
                     }
 

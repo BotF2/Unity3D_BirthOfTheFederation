@@ -19,8 +19,14 @@ MonoBehaviour:
   CivHomeSystem: CORIDAN
   TraitOne: Neutral
   TraitTwo: Warlike
-  CivImage: {fileID: 0}
+  CivImage: {fileID: 21300000, guid: 911410ef4b579dc488077b0d7533c12e, type: 3}
   Insignia: {fileID: 0}
   Population: 5
   Credits: 2
   TechPoints: 2
+  CivTechLevel: 0
+  Playable: 0
+  HasWarp: 1
+  Decription: ToDo, connect to libaray of civ descriptions
+  IntelPoints: 0
+  ContactList: 2b000000

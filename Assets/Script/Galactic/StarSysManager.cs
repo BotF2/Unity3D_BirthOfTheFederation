@@ -17,7 +17,7 @@ namespace Assets.Core
 
         public GameObject sysPrefab;
 
-        public List<StarSysData> StarSysDataList = new List<StarSysData>() { new StarSysData()};
+        public List<StarSysData> StarSysDataList; // = new List<StarSysData>() { new StarSysData()};
 
         private List<StarSysData> starSysDatas = new List<StarSysData>() { new StarSysData()};
 
@@ -42,7 +42,8 @@ namespace Assets.Core
             {
                 StarSysSO starSysSO = GetStarSObyInt(civSO.CivInt);
                 StarSysData SysData = new StarSysData();
-                SysData.Position = starSysSO.Position;
+                SysData.SysInt = civSO.CivInt;
+                SysData.Position = new Vector3(starSysSO.Position.x, starSysSO.Position.y, starSysSO.Position.z);
                 SysData.SysName = starSysSO.SysName;
                 SysData.FirstOwner = starSysSO.FirstOwner;
                 SysData.CurrentOwner = starSysSO.FirstOwner;
@@ -65,13 +66,13 @@ namespace Assets.Core
                 //public GameObject _systemSphere;
                 //public List<GameObject> _fleetsInSystem;
                 #endregion
-
-                //if (!starSysDataList.Contains(SysData))
+                
                 starSysDatas.Add(SysData);
                 InstantiateSystemButton(SysData, civSO);
             }
-            StarSysDataList = StarSysDataList;
-            FleetManager.instance.CreatGameStarterFleets(civSOList);
+            starSysDatas.Remove(starSysDatas[0]);
+            StarSysDataList = starSysDatas;
+            FleetManager.instance.CreatGameStarterFleets(civSOList, StarSysDataList);
             SolarSystemView view = new SolarSystemView();
         }
         public void InstantiateSystemButton(StarSysData sysData, CivSO civSO)
@@ -138,9 +139,10 @@ namespace Assets.Core
             foreach (var starSO in starSysSOList)
             {
 
-                if (starSO.StarSysInt.Equals(sysInt))
+                if (starSO.StarSysInt == sysInt)
                 {
                     result = starSO;
+                    break;
                 }
 
 

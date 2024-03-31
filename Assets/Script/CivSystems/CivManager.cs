@@ -100,6 +100,7 @@ namespace Assets.Core
                 civDataList.Add(data);
                 
             }
+            civDataList.Remove(civDataList[0]);
             CivDataInGameList = civDataList;
             StarSysManager.instance.CreateGameSystems(civSOList);
 

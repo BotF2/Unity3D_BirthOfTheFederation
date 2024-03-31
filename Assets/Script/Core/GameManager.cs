@@ -289,7 +289,8 @@ namespace Assets.Core
         Orange,
         Red,
         Nebula,
-        Complex,
+        OmarianNebula,
+        UniComplex,
         BlackHole,
         WormHole,//???
 

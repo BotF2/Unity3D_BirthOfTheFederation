@@ -19,8 +19,14 @@ MonoBehaviour:
   CivHomeSystem: TZENKETHI
   TraitOne: Peaceful
   TraitTwo: Religious
-  CivImage: {fileID: 0}
-  Insignia: {fileID: 0}
+  CivImage: {fileID: 21300000, guid: 87cd3f40472922d408c07937b0ef2d89, type: 3}
+  Insignia: {fileID: 21300000, guid: ebd63201eca4fa8458a000b41ee90229, type: 3}
   Population: 5
   Credits: 2
   TechPoints: 2
+  CivTechLevel: 0
+  Playable: 0
+  HasWarp: 1
+  Decription: ToDo, connect to libaray of civ descriptions
+  IntelPoints: 0
+  ContactList: 89000000

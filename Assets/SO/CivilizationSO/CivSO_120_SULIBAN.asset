@@ -19,8 +19,14 @@ MonoBehaviour:
   CivHomeSystem: SULIBAN
   TraitOne: Compation
   TraitTwo: Peaceful
-  CivImage: {fileID: 0}
-  Insignia: {fileID: 0}
+  CivImage: {fileID: 21300000, guid: abdd7d45edcef0e4ea9e6dd3757b1798, type: 3}
+  Insignia: {fileID: 21300000, guid: 64a86285b36cb434b929e95365212c65, type: 3}
   Population: 5
   Credits: 2
   TechPoints: 2
+  CivTechLevel: 0
+  Playable: 0
+  HasWarp: 1
+  Decription: ToDo, connect to libaray of civ descriptions
+  IntelPoints: 0
+  ContactList: 78000000

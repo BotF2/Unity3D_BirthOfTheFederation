@@ -19,8 +19,14 @@ MonoBehaviour:
   CivHomeSystem: IYAARA
   TraitOne: Intellectual
   TraitTwo: Ruthless
-  CivImage: {fileID: 0}
-  Insignia: {fileID: 0}
+  CivImage: {fileID: 21300000, guid: 8ab0e87e3afdbed4aaec51c3d07d91f5, type: 3}
+  Insignia: {fileID: 21300000, guid: 051bf7f02292ae1449587a0fac11a917, type: 3}
   Population: 5
   Credits: 2
   TechPoints: 2
+  CivTechLevel: 0
+  Playable: 0
+  HasWarp: 1
+  Decription: ToDo, connect to libaray of civ descriptions
+  IntelPoints: 0
+  ContactList: 45000000

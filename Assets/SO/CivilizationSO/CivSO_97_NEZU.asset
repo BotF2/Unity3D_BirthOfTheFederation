@@ -19,8 +19,14 @@ MonoBehaviour:
   CivHomeSystem: NEZU
   TraitOne: Neutral
   TraitTwo: Honorable
-  CivImage: {fileID: 0}
-  Insignia: {fileID: 0}
+  CivImage: {fileID: 21300000, guid: 71b3aab5b823fe54dbdba9b77b7de302, type: 3}
+  Insignia: {fileID: 21300000, guid: e1fd0311cb1f3f546b374b1588b3108b, type: 3}
   Population: 5
   Credits: 2
   TechPoints: 2
+  CivTechLevel: 0
+  Playable: 0
+  HasWarp: 1
+  Decription: ToDo, connect to libaray of civ descriptions
+  IntelPoints: 0
+  ContactList: 61000000

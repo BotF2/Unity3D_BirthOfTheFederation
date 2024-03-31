@@ -207,7 +207,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1187732007}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Assets.Script.GameManager, Assembly-CSharp
         m_MethodName: BackToLobbyClick
         m_Mode: 1
@@ -782,7 +782,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1187732007}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Assets.Script.GameManager, Assembly-CSharp
         m_MethodName: GalaxyMapClicked
         m_Mode: 1
@@ -1305,83 +1305,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 49629551}
   m_CullTransparentMesh: 0
---- !u!1001 &50432109
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4919279783028184138, guid: c57774e263194434d9ca36f268977fbb, type: 3}
-      propertyPath: m_RootOrder
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 4919279783028184138, guid: c57774e263194434d9ca36f268977fbb, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1500.0001
-      objectReference: {fileID: 0}
-    - target: {fileID: 4919279783028184138, guid: c57774e263194434d9ca36f268977fbb, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1500.0001
-      objectReference: {fileID: 0}
-    - target: {fileID: 4919279783028184138, guid: c57774e263194434d9ca36f268977fbb, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 4362
-      objectReference: {fileID: 0}
-    - target: {fileID: 4919279783028184138, guid: c57774e263194434d9ca36f268977fbb, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 3300
-      objectReference: {fileID: 0}
-    - target: {fileID: 4919279783028184138, guid: c57774e263194434d9ca36f268977fbb, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 32807
-      objectReference: {fileID: 0}
-    - target: {fileID: 4919279783028184138, guid: c57774e263194434d9ca36f268977fbb, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.9444705
-      objectReference: {fileID: 0}
-    - target: {fileID: 4919279783028184138, guid: c57774e263194434d9ca36f268977fbb, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.14961948
-      objectReference: {fileID: 0}
-    - target: {fileID: 4919279783028184138, guid: c57774e263194434d9ca36f268977fbb, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.28424072
-      objectReference: {fileID: 0}
-    - target: {fileID: 4919279783028184138, guid: c57774e263194434d9ca36f268977fbb, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.0692582
-      objectReference: {fileID: 0}
-    - target: {fileID: 4919279783028184138, guid: c57774e263194434d9ca36f268977fbb, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -18.784
-      objectReference: {fileID: 0}
-    - target: {fileID: 4919279783028184138, guid: c57774e263194434d9ca36f268977fbb, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 33.04
-      objectReference: {fileID: 0}
-    - target: {fileID: 4919279783028184138, guid: c57774e263194434d9ca36f268977fbb, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 2.771
-      objectReference: {fileID: 0}
-    - target: {fileID: 4919279783028184140, guid: c57774e263194434d9ca36f268977fbb, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4919279783028184146, guid: c57774e263194434d9ca36f268977fbb, type: 3}
-      propertyPath: m_Name
-      value: Borg_Cube
-      objectReference: {fileID: 0}
-    - target: {fileID: 4919279783028184146, guid: c57774e263194434d9ca36f268977fbb, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4919279783028184146, guid: c57774e263194434d9ca36f268977fbb, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c57774e263194434d9ca36f268977fbb, type: 3}
 --- !u!1 &58313681
 GameObject:
   m_ObjectHideFlags: 0
@@ -1617,52 +1540,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   m_IsOn: 0
---- !u!1 &82409784
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 82409786}
-  - component: {fileID: 82409785}
-  m_Layer: 0
-  m_Name: PhotonTorpedo
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &82409785
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 82409784}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f20ac85b5497db4a8e85fed7453ee17, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 100
-  turnRate: 20
---- !u!4 &82409786
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 82409784}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 595.68823, y: 141.91827, z: 406.47705}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 23
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &100831009
 GameObject:
   m_ObjectHideFlags: 0
@@ -1779,7 +1656,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1187732007}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Assets.Script.GameManager, Assembly-CSharp
         m_MethodName: LoadSavedGameClicked
         m_Mode: 1
@@ -1931,7 +1808,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 11.5, y: 0, z: 0}
 --- !u!1 &116710138
 GameObject:
@@ -2192,7 +2069,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &132278017
 GameObject:
@@ -2404,7 +2281,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &136473968
 GameObject:
@@ -3719,7 +3596,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1187732007}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Assets.Script.GameManager, Assembly-CSharp
         m_MethodName: AdvanceTime
         m_Mode: 3
@@ -5473,7 +5350,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1187732007}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Assets.Script.GameManager, Assembly-CSharp
         m_MethodName: ExitClicked
         m_Mode: 1
@@ -5791,7 +5668,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1187732007}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Assets.Script.GameManager, Assembly-CSharp
         m_MethodName: EndGalacticPlayClicked
         m_Mode: 1
@@ -6370,50 +6247,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 318175877}
   m_CullTransparentMesh: 1
---- !u!1 &330116305
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 330116307}
-  - component: {fileID: 330116306}
-  m_Layer: 0
-  m_Name: ActOnCombatOrder
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &330116306
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 330116305}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dee8f86b26ac13b4eaac9dae524b1bad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &330116307
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 330116305}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5507.1426, y: 175, z: -0.026542664}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 30
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &338236304
 GameObject:
   m_ObjectHideFlags: 0
@@ -6615,7 +6448,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 33
+  m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &360870566
 GameObject:
@@ -8203,7 +8036,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1187732007}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Assets.Script.GameManager, Assembly-CSharp
         m_MethodName: BackToLobbyClick
         m_Mode: 1
@@ -8936,7 +8769,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 32
+  m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &563330764
 GameObject:
@@ -9022,7 +8855,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1187732007}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Assets.Script.GameManager, Assembly-CSharp
         m_MethodName: EndGalacticPlayClicked
         m_Mode: 1
@@ -9258,7 +9091,7 @@ RectTransform:
   - {fileID: 216946336}
   - {fileID: 1887259936}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 3.389}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -9746,7 +9579,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 24
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &612174981
 GameObject:
@@ -10071,7 +9904,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &620429828
 GameObject:
@@ -10732,7 +10565,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 26
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &654966028
 GameObject:
@@ -10776,7 +10609,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &655072228
 GameObject:
@@ -11265,62 +11098,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 667057414}
   m_CullTransparentMesh: 1
---- !u!1 &670529372
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 670529374}
-  - component: {fileID: 670529373}
-  m_Layer: 0
-  m_Name: InstantiateCombatShips
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &670529373
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 670529372}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9aa5120211490548a90c5c97fc881b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  combat: {fileID: 697508099}
-  combatShips: []
-  order: 0
-  _isFriend: 0
-  cameraEmpty: {fileID: 0}
-  animFriend1: {fileID: 0}
-  animFriend2: {fileID: 0}
-  animFriend3: {fileID: 0}
-  animEnemy1: {fileID: 0}
-  animEnemy2: {fileID: 0}
-  animEnemy3: {fileID: 0}
-  CameraTargetList: []
---- !u!4 &670529374
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 670529372}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.11111164, z: -1989}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 28
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &686532524
 GameObject:
   m_ObjectHideFlags: 0
@@ -11599,7 +11376,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &698415214
 GameObject:
@@ -12147,7 +11924,7 @@ Transform:
   - {fileID: 1410922697}
   - {fileID: 717740366}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: -216.483, y: -125.66699, z: 0}
 --- !u!114 &705809158
 MonoBehaviour:
@@ -13692,7 +13469,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 29
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &790018167
 GameObject:
@@ -14359,7 +14136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84c7610e9682a2445b1597977baf6093, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 1187732007}
+  gameManager: {fileID: 0}
   solarSystemView: {fileID: 0}
   FEDSysEmpty: {fileID: 0}
   ROMSysEmpty: {fileID: 0}
@@ -14577,7 +14354,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &831330763
 GameObject:
@@ -14987,7 +14764,7 @@ Transform:
   m_Children:
   - {fileID: 963194228}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &889922731
 MonoBehaviour:
@@ -15009,7 +14786,7 @@ MonoBehaviour:
   minX: -600
   maxX: 600
   minZ: -1140
-  maxZ: 190
+  maxZ: 500
 --- !u!1 &902404309
 GameObject:
   m_ObjectHideFlags: 0
@@ -15128,7 +14905,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &928704233
 GameObject:
@@ -15245,7 +15022,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1187732007}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Assets.Script.GameManager, Assembly-CSharp
         m_MethodName: SaveGameClicked
         m_Mode: 1
@@ -15363,7 +15140,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 27
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -16627,7 +16404,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1074826592
 MonoBehaviour:
@@ -17499,7 +17276,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1187732007}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Assets.Script.GameManager, Assembly-CSharp
         m_MethodName: LoadSavedGameClicked
         m_Mode: 1
@@ -17579,7 +17356,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1113968669
 MonoBehaviour:
@@ -17734,7 +17511,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1140094458
 GameObject:
@@ -17820,7 +17597,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1187732007}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Assets.Script.GameManager, Assembly-CSharp
         m_MethodName: GalaxyPlayClicked
         m_Mode: 1
@@ -18415,326 +18192,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1186516627}
   m_CullTransparentMesh: 1
---- !u!1 &1187732006
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1187732008}
-  - component: {fileID: 1187732007}
-  m_Layer: 0
-  m_Name: GameManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1187732007
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1187732006}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3ea4cc63b5115448b2ef4d337cb7b50, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mainMenuUIController: {fileID: 0}
-  galaxyManager: {fileID: 908060955}
-  _weAreFriend: 0
-  _warpingInIsOver: 0
-  _isSinglePlayer: 0
-  _localPlayer: 0
-  CivilizationPrefab: {fileID: 8453821490455499119, guid: b0e0a061944c0d54095a59726a8075aa, type: 3}
-  civManager: {fileID: 1716054212}
-  _galaxySize: 0
-  _galaxyType: 0
-  _techLevel: 0
-  _galaxyStarCount: 0
-  _solarSystemID: 0
-  _combatOrder: 0
-  galaxyMapBackgroundPictureGO: {fileID: 0}
-  galaxyView: {fileID: 807470229}
-  solarSystemView: {fileID: 1538149116}
-  ship: {fileID: 1670698544}
-  cameraMultiTarget: {fileID: 807690122}
-  combat: {fileID: 697508099}
-  instantiateCombatShips: {fileID: 670529373}
-  actOnCombatOrder: {fileID: 330116306}
-  zoomCamera: {fileID: 0}
-  Canvas: {fileID: 572942814}
-  CanvasGalactic: {fileID: 1195700020}
-  PanelSystem_Play: {fileID: 1301631251}
-  _SinglePlayer: {fileID: 2141310086}
-  _MultiPlayer: {fileID: 553410909}
-  _LoadGamePanel: {fileID: 354149417}
-  _SaveGamePanel: {fileID: 2145219097}
-  _SettingsGamePanel: {fileID: 1595721849}
-  _ExitQuit: {fileID: 1398289160}
-  _CreditsGamePanel: {fileID: 1784682053}
-  combatOrderSelection: {fileID: 932392496}
-  shipScale: 2000
-  animFriend1: {fileID: 0}
-  animFriend2: {fileID: 0}
-  animFriend3: {fileID: 0}
-  animEnemy1: {fileID: 0}
-  animEnemy2: {fileID: 0}
-  animEnemy3: {fileID: 0}
-  Friend_0: {fileID: 0}
-  Enemy_0: {fileID: 0}
-  yFactor: 3000
-  zFactor: 3500
-  offsetFriendLeft: -5500
-  offsetFriendRight: 5800
-  offsetEnemyRight: 5500
-  offsetEnemyLeft: -5800
-  Borg_Destroyer_i: {fileID: 0}
-  Borg_Destroyer_ii: {fileID: 0}
-  Borg_Cube_ii: {fileID: 0}
-  Borg_Scout_i: {fileID: 0}
-  Card_Destroyer_i: {fileID: 0}
-  Card_Destroyer_ii: {fileID: 0}
-  Card_Cruiser_ii: {fileID: 0}
-  Card_Scout_i: {fileID: 7708513692413468688, guid: a18c48fd87dbe11449f228484c8a8011, type: 3}
-  Card_Scout_ii: {fileID: 0}
-  Dom_Destroyer_i: {fileID: 0}
-  Dom_Destroyer_ii: {fileID: 0}
-  Dom_Cruiser_ii: {fileID: 0}
-  Dom_Scout_i: {fileID: 0}
-  Dom_Scout_ii: {fileID: 0}
-  Fed_Cruiser_ii: {fileID: 4674614209567743108, guid: f866647dde5655a4da390e0da5d128bf, type: 3}
-  Fed_Cruiser_iii: {fileID: 2056092288315165191, guid: dce5c86a204b9154e83586e133047353, type: 3}
-  Fed_LtCruiser_iv: {fileID: 0}
-  Fed_HvyCruiser_iv: {fileID: 2056092288315165191, guid: dce5c86a204b9154e83586e133047353, type: 3}
-  Fed_Destroyer_i: {fileID: 7546228630321165916, guid: 985e4c6f4988ea5478a233625a03067c, type: 3}
-  Fed_Destroyer_ii: {fileID: 8040235460673620788, guid: 5fd6538063636664eb56f1e72324eb70, type: 3}
-  Fed_Destroyer_iii: {fileID: 0}
-  Fed_Destroyer_iv: {fileID: 0}
-  Fed_Scout_i: {fileID: 0}
-  Fed_Scout_ii: {fileID: 8139663474559741778, guid: 70930d94db43bd54581896088501f697, type: 3}
-  Fed_Scout_iii: {fileID: 0}
-  Fed_Scout_iv: {fileID: 3222463155622924485, guid: fa058069bb29ea941b73117d2b832a85, type: 3}
-  Fed_Colonyship_i: {fileID: 5012787407966965585, guid: de42228b8883f054796cd89579f64a41, type: 3}
-  Fed_Colonyship_ii: {fileID: 0}
-  Kling_Cruiser_ii: {fileID: 1358903930982077462, guid: 3cfdad2c45b391e4a89b77ba0a5a783b, type: 3}
-  Kling_Destroyer_i: {fileID: 4118301941742209220, guid: cc1e4c322ccea574c8846590f5ec0d36, type: 3}
-  Kling_Destroyer_ii: {fileID: 0}
-  Kling_Scout_i: {fileID: 0}
-  Kling_Scout_ii: {fileID: 960271130701890872, guid: a83ec879888398b408291ab09a821cf3, type: 3}
-  Kling_Colonyship_i: {fileID: 1426752258958691384, guid: a5f75a80ac75baa479183a08796fdde7, type: 3}
-  Rom_Destroyer_i: {fileID: 0}
-  Rom_Destroyer_ii: {fileID: 0}
-  Rom_Cruiser_ii: {fileID: 6474706349711357221, guid: 72d8a1154b291bd4890a81ac90939553, type: 3}
-  Rom_Cruiser_iii: {fileID: 8746510773858785526, guid: 239e3692dcfe0994cb53ca66f29c4ef1, type: 3}
-  Rom_Scout_i: {fileID: 0}
-  Rom_Scout_ii: {fileID: 0}
-  Rom_Scout_iii: {fileID: 1132767801056259965, guid: dfc5864bdb2ea05438c51055d1fec6aa, type: 3}
-  FED_StarSystem: {fileID: 3346189262701856372, guid: 8c9ac4dc3817c114cb1f0eca490dc49b, type: 3}
-  ROM_StarSystem: {fileID: 2178242268351434931, guid: 9c33d0079d6e31f42a061ba3c70c4259, type: 3}
-  KLING_StarSystem: {fileID: 4761592045379931411, guid: 625880a2fbbcbe2499317d1dd19d0e19, type: 3}
-  CARD_StarSystem: {fileID: 1408337172147834668, guid: ee762c678b267b24d9ebdf3a7e477dc2, type: 3}
-  DOM_StarSystem: {fileID: 4967571711921835850, guid: f6122529922b7d64589c7f36887e3191, type: 3}
-  BORG_StarSystem: {fileID: 4306060808537133550, guid: 86710a17fb597e047a462cf3de74549d, type: 3}
-  ACAMARIANS_StarSystem: {fileID: 0}
-  AKAALI_StarSystem: {fileID: 0}
-  AKRITIRIANS_StarSystem: {fileID: 0}
-  ALDEANS_StarSystem: {fileID: 0}
-  ALGOLIANS_StarSystem: {fileID: 0}
-  ALSAURIANS_StarSystem: {fileID: 0}
-  ANDORIANS_StarSystem: {fileID: 0}
-  ANGOSIANS_StarSystem: {fileID: 0}
-  ANKARI_StarSystem: {fileID: 0}
-  ANTEDEANS_StarSystem: {fileID: 0}
-  ANTICANS_StarSystem: {fileID: 0}
-  ARBAZAN_StarSystem: {fileID: 0}
-  ARDANANS_StarSystem: {fileID: 0}
-  ARGRATHI_StarSystem: {fileID: 0}
-  ARKARIANS_StarSystem: {fileID: 0}
-  ATREANS_StarSystem: {fileID: 0}
-  AXANAR_StarSystem: {fileID: 0}
-  BAJORANS_StarSystem: {fileID: 0}
-  BAKU_StarSystem: {fileID: 0}
-  BANDI_StarSystem: {fileID: 0}
-  BANEANS_StarSystem: {fileID: 0}
-  BARZANS_StarSystem: {fileID: 0}
-  BENZITES_StarSystem: {fileID: 0}
-  BETAZOIDS_StarSystem: {fileID: 0}
-  BILANAIANS_StarSystem: {fileID: 0}
-  BOLIANS_StarSystem: {fileID: 0}
-  BOMAR_StarSystem: {fileID: 0}
-  BOSLICS_StarSystem: {fileID: 0}
-  BOTHA_StarSystem: {fileID: 0}
-  BREELLIANS_StarSystem: {fileID: 0}
-  BREEN_StarSystem: {fileID: 0}
-  BREKKIANS_StarSystem: {fileID: 0}
-  BYNARS_StarSystem: {fileID: 0}
-  CAIRN_StarSystem: {fileID: 0}
-  CALDONIANS_StarSystem: {fileID: 0}
-  CAPELLANS_StarSystem: {fileID: 0}
-  CHALNOTH_StarSystem: {fileID: 0}
-  CORIDAN_StarSystem: {fileID: 0}
-  CORVALLENS_StarSystem: {fileID: 0}
-  CYTHERIANS_StarSystem: {fileID: 0}
-  DELTANS_StarSystem: {fileID: 0}
-  DENOBULANS_StarSystem: {fileID: 0}
-  DEVORE_StarSystem: {fileID: 0}
-  DOPTERIANS_StarSystem: {fileID: 0}
-  DOSI_StarSystem: {fileID: 0}
-  DRAI_StarSystem: {fileID: 0}
-  DREMANS_StarSystem: {fileID: 0}
-  EDO_StarSystem: {fileID: 0}
-  ELAURIANS_StarSystem: {fileID: 0}
-  ELAYSIANS_StarSystem: {fileID: 0}
-  ENTHARANS_StarSystem: {fileID: 0}
-  EVORA_StarSystem: {fileID: 0}
-  EXCALBIANS_StarSystem: {fileID: 0}
-  FERENGI_StarSystem: {fileID: 0}
-  FLAXIANS_StarSystem: {fileID: 0}
-  GORN_StarSystem: {fileID: 0}
-  GRAZERITES_StarSystem: {fileID: 0}
-  HAAKONIANS_StarSystem: {fileID: 0}
-  HALKANS_StarSystem: {fileID: 0}
-  HAZARI_StarSystem: {fileID: 0}
-  HEKARANS_StarSystem: {fileID: 0}
-  HIROGEN_StarSystem: {fileID: 0}
-  HORTA_StarSystem: {fileID: 0}
-  IYAARANS_StarSystem: {fileID: 0}
-  JNAII_StarSystem: {fileID: 0}
-  KAELON_StarSystem: {fileID: 0}
-  KAREMMA_StarSystem: {fileID: 0}
-  KAZON_StarSystem: {fileID: 0}
-  KELLERUN_StarSystem: {fileID: 0}
-  KESPRYTT_StarSystem: {fileID: 0}
-  KLAESTRONIANS_StarSystem: {fileID: 0}
-  KRADIN_StarSystem: {fileID: 0}
-  KREETASSANS_StarSystem: {fileID: 0}
-  KRIOSIANS_StarSystem: {fileID: 0}
-  KTARIANS_StarSystem: {fileID: 0}
-  LEDOSIANS_StarSystem: {fileID: 0}
-  LISSEPIANS_StarSystem: {fileID: 0}
-  LOKIRRIM_StarSystem: {fileID: 0}
-  LURIANS_StarSystem: {fileID: 0}
-  MALCORIANS_StarSystem: {fileID: 0}
-  MALON_StarSystem: {fileID: 0}
-  MAQUIS_StarSystem: {fileID: 0}
-  MARKALIANS_StarSystem: {fileID: 0}
-  MERIDIANS_StarSystem: {fileID: 0}
-  MINTAKANS_StarSystem: {fileID: 0}
-  MIRADORN_StarSystem: {fileID: 0}
-  MIZARIANS_StarSystem: {fileID: 0}
-  MOKRA_StarSystem: {fileID: 0}
-  MONEANS_StarSystem: {fileID: 0}
-  NAUSICAANS_StarSystem: {fileID: 0}
-  NECHANI_StarSystem: {fileID: 0}
-  NEZU_StarSystem: {fileID: 0}
-  NORCADIANS_StarSystem: {fileID: 0}
-  NUMIRI_StarSystem: {fileID: 0}
-  NUUBARI_StarSystem: {fileID: 0}
-  NYRIANS_StarSystem: {fileID: 0}
-  OCAMPA_StarSystem: {fileID: 0}
-  ORIONS_StarSystem: {fileID: 0}
-  ORNARANS_StarSystem: {fileID: 0}
-  PAKLED_StarSystem: {fileID: 0}
-  PARADANS_StarSystem: {fileID: 0}
-  QUARREN_StarSystem: {fileID: 0}
-  RAKHARI_StarSystem: {fileID: 0}
-  RAKOSANS_StarSystem: {fileID: 0}
-  RAMATIANS_StarSystem: {fileID: 0}
-  REMANS_StarSystem: {fileID: 0}
-  RIGELIANS_StarSystem: {fileID: 0}
-  RISIANS_StarSystem: {fileID: 0}
-  RUTIANS_StarSystem: {fileID: 0}
-  SELAY_StarSystem: {fileID: 0}
-  SHELIAK_StarSystem: {fileID: 0}
-  SIKARIANS_StarSystem: {fileID: 0}
-  SKRREEA_StarSystem: {fileID: 0}
-  SONA_StarSystem: {fileID: 0}
-  SULIBAN_StarSystem: {fileID: 0}
-  TAKARANS_StarSystem: {fileID: 0}
-  TAKARIANS_StarSystem: {fileID: 0}
-  TAKTAK_StarSystem: {fileID: 0}
-  TALARIANS_StarSystem: {fileID: 0}
-  TALAXIANS_StarSystem: {fileID: 0}
-  TALOSIANS_StarSystem: {fileID: 0}
-  TAMARIANS_StarSystem: {fileID: 0}
-  TANUGANS_StarSystem: {fileID: 0}
-  TELLARITES_StarSystem: {fileID: 0}
-  TEPLANS_StarSystem: {fileID: 0}
-  THOLIANS_StarSystem: {fileID: 0}
-  TILONIANS_StarSystem: {fileID: 0}
-  TLANI_StarSystem: {fileID: 0}
-  TRABE_StarSystem: {fileID: 0}
-  TRILL_StarSystem: {fileID: 0}
-  TROGORANS_StarSystem: {fileID: 0}
-  TZENKETHI_StarSystem: {fileID: 0}
-  ULLIANS_StarSystem: {fileID: 0}
-  VAADWAUR_StarSystem: {fileID: 0}
-  VENTAXIANS_StarSystem: {fileID: 0}
-  VHNORI_StarSystem: {fileID: 0}
-  VIDIIANS_StarSystem: {fileID: 0}
-  VISSIANS_StarSystem: {fileID: 0}
-  VORGONS_StarSystem: {fileID: 0}
-  VORI_StarSystem: {fileID: 0}
-  VULCANS_StarSystem: {fileID: 0}
-  WADI_StarSystem: {fileID: 0}
-  XANTHANS_StarSystem: {fileID: 0}
-  XEPOLITES_StarSystem: {fileID: 0}
-  XINDI_StarSystem: {fileID: 0}
-  XYRILLIANS_StarSystem: {fileID: 0}
-  YADERANS_StarSystem: {fileID: 0}
-  YRIDIANS_StarSystem: {fileID: 0}
-  ZAHL_StarSystem: {fileID: 0}
-  ZAKDORN_StarSystem: {fileID: 0}
-  ZALKONIANS_StarSystem: {fileID: 0}
-  ZIBALIANS_StarSystem: {fileID: 0}
-  AllSystemsList: []
-  animationEmpties:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  FriendNameArray: []
-  EnemyNameArray: []
-  friends: 0
-  enemies: 0
-  FriendShips: []
-  EnemyShips: []
-  _state: 0
-  _statePassedLobbyInit: 0
-  _statePassedMain_Init: 0
-  _statePassedCombatMenu_Init: 0
-  _statePassedCombatInit: 0
-  _statePassedCombatPlay: 0
-  UICamera: {fileID: 114930954}
-  GalaxyCamera: {fileID: 2067639435}
---- !u!4 &1187732008
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1187732006}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.056625366, y: 49.334896, z: -56.796936}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1195700020
 GameObject:
   m_ObjectHideFlags: 0
@@ -18833,7 +18290,7 @@ RectTransform:
   - {fileID: 877483075}
   - {fileID: 116710139}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -21176,7 +20633,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1187732007}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Assets.Script.GameManager, Assembly-CSharp
         m_MethodName: CombatPlayClicked
         m_Mode: 1
@@ -21226,64 +20683,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1365085967}
   m_CullTransparentMesh: 1
---- !u!1 &1365853141
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1365853143}
-  - component: {fileID: 1365853142}
-  m_Layer: 0
-  m_Name: FleetManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1365853142
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1365853141}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af897107989d2304baf7e9ac4bbf676e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fleetSOListSmall:
-  - {fileID: 11400000, guid: 8cf4937e1e95cf74ebb798f44cf0a427, type: 2}
-  - {fileID: 11400000, guid: 9531610de35fc36459b1ede2318e6bf7, type: 2}
-  - {fileID: 11400000, guid: 27987d63f553e1e46b424a0beacf5000, type: 2}
-  - {fileID: 11400000, guid: 6a4e512ebba19694b99607b4e3619b4b, type: 2}
-  - {fileID: 11400000, guid: 2a12d2102606fa9458b74f7f63482bd3, type: 2}
-  - {fileID: 11400000, guid: a83ce45f3c86c2c488bc45347c205ad3, type: 2}
-  - {fileID: 11400000, guid: 2101f11e6d2dcf64aa4488ae99524f5c, type: 2}
-  - {fileID: 11400000, guid: 2beecb81388b5f94091d1d7ef8256391, type: 2}
-  - {fileID: 11400000, guid: 735459625269b3c4b8ad9bf958c1b446, type: 2}
-  - {fileID: 11400000, guid: ed7c592b0772fc74e9d8e96a53da0c5b, type: 2}
-  - {fileID: 11400000, guid: d392eb12b68e5714db4bf96420973397, type: 2}
-  fleetSOListMedium: []
-  fleetSOListLarge: []
---- !u!4 &1365853143
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1365853141}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.0765457, y: -0.11111164, z: -1990.8083}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 16
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1375580649
 GameObject:
   m_ObjectHideFlags: 0
@@ -22114,7 +21513,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1187732007}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Assets.Script.GameManager, Assembly-CSharp
         m_MethodName: MultiPlayerLobbyClicked
         m_Mode: 1
@@ -22164,7 +21563,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 37
+  m_RootOrder: 28
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1398289160
 MonoBehaviour:
@@ -22338,7 +21737,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1187732007}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Assets.Script.GameManager, Assembly-CSharp
         m_MethodName: LoadSavedGameClicked
         m_Mode: 1
@@ -23182,54 +22581,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1428395820}
   m_CullTransparentMesh: 1
---- !u!1 &1429315388
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1429315390}
-  - component: {fileID: 1429315389}
-  m_Layer: 0
-  m_Name: StarSysManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1429315389
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1429315388}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fc7e93dfd32658429654adab525a2b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  starSysSOList: []
-  sysPrefab: {fileID: 0}
-  galaxyImage: {fileID: 0}
-  galaxyCenter: {fileID: 0}
---- !u!4 &1429315390
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1429315388}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.0765457, y: -0.11111164, z: -1990.8083}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 15
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1436004939
 GameObject:
   m_ObjectHideFlags: 0
@@ -23528,7 +22879,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1187732007}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Assets.Script.GameManager, Assembly-CSharp
         m_MethodName: ExitClicked
         m_Mode: 1
@@ -23979,7 +23330,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1187732007}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Assets.Script.GameManager, Assembly-CSharp
         m_MethodName: GalaxyPlayClicked
         m_Mode: 1
@@ -26265,7 +25616,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 35
+  m_RootOrder: 26
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1605516652
 GameObject:
@@ -26351,7 +25702,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1187732007}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Assets.Script.GameManager, Assembly-CSharp
         m_MethodName: BackToLobbyClick
         m_Mode: 1
@@ -26707,7 +26058,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1187732007}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Assets.Script.GameManager, Assembly-CSharp
         m_MethodName: BackToLobbyClick
         m_Mode: 1
@@ -27290,7 +26641,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1670698544
 MonoBehaviour:
@@ -27571,7 +26922,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1187732007}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Assets.Script.GameManager, Assembly-CSharp
         m_MethodName: SettingsClicked
         m_Mode: 1
@@ -27871,64 +27222,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1716054211
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1716054213}
-  - component: {fileID: 1716054212}
-  m_Layer: 0
-  m_Name: CivManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1716054212
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1716054211}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c3a978f29c72b44fac0af132120cbcc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  civSOListSmall:
-  - {fileID: 11400000, guid: 5238c4472c64daf499e6c6f016a046ce, type: 2}
-  - {fileID: 11400000, guid: 924aae53484dc544ba56e345dcba4359, type: 2}
-  - {fileID: 11400000, guid: 7866f4a43500afa47ab10a4e7249f451, type: 2}
-  - {fileID: 11400000, guid: 2d519127a20dd4f4fa6b5bc5327d43b4, type: 2}
-  - {fileID: 11400000, guid: 5aae8a1e50ee9fa49a1606295bb346e9, type: 2}
-  - {fileID: 11400000, guid: 39b5df606e3648a4ab84bd9116753b92, type: 2}
-  - {fileID: 11400000, guid: 05d9f91ba7e853b438f58d6a4cb26d48, type: 2}
-  - {fileID: 11400000, guid: c98ae3aae136aca45a0127ab2c3b29c8, type: 2}
-  - {fileID: 11400000, guid: c5bdaaafe60744d4880549b9537e5597, type: 2}
-  - {fileID: 11400000, guid: 550263f9e15528844bc6318eccedc2d4, type: 2}
-  - {fileID: 11400000, guid: 9d027d8cd3fd7a043b181766f1af0f66, type: 2}
-  civSOListMedium: []
-  civSOListLarge: []
---- !u!4 &1716054213
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1716054211}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.0765457, y: -0.11111164, z: -1990.8083}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 18
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1721513322
 GameObject:
   m_ObjectHideFlags: 0
@@ -28089,7 +27382,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1187732007}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Assets.Script.GameManager, Assembly-CSharp
         m_MethodName: LoadSavedGameClicked
         m_Mode: 1
@@ -28543,7 +27836,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1187732007}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Assets.Script.GameManager, Assembly-CSharp
         m_MethodName: BackToLobbyClick
         m_Mode: 1
@@ -29721,7 +29014,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 36
+  m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1784953748
 GameObject:
@@ -30595,7 +29888,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1187732007}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Assets.Core.GameManager, Assembly-CSharp
         m_MethodName: GalaxyMapClicked
         m_Mode: 1
@@ -31145,7 +30438,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1187732007}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Assets.Script.GameManager, Assembly-CSharp
         m_MethodName: BackToLobbyClick
         m_Mode: 1
@@ -33315,7 +32608,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2041360235
 GameObject:
@@ -34073,7 +33366,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 22
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2083323499
 GameObject:
@@ -34190,7 +33483,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1187732007}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Assets.Script.GameManager, Assembly-CSharp
         m_MethodName: CreditsClicked
         m_Mode: 1
@@ -34433,7 +33726,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1187732007}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Assets.Script.GameManager, Assembly-CSharp
         m_MethodName: SinglePlayerLobbyClicked
         m_Mode: 1
@@ -34948,7 +34241,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 31
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2141310086
 MonoBehaviour:
@@ -35005,7 +34298,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 34
+  m_RootOrder: 25
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2145234215
 GameObject:
@@ -35220,60 +34513,3 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2146595362}
   m_CullTransparentMesh: 1
---- !u!1001 &6108544853646102040
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1454284272452349874, guid: b0e0a061944c0d54095a59726a8075aa, type: 3}
-      propertyPath: m_RootOrder
-      value: 17
-      objectReference: {fileID: 0}
-    - target: {fileID: 1454284272452349874, guid: b0e0a061944c0d54095a59726a8075aa, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1454284272452349874, guid: b0e0a061944c0d54095a59726a8075aa, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1454284272452349874, guid: b0e0a061944c0d54095a59726a8075aa, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1454284272452349874, guid: b0e0a061944c0d54095a59726a8075aa, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1454284272452349874, guid: b0e0a061944c0d54095a59726a8075aa, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1454284272452349874, guid: b0e0a061944c0d54095a59726a8075aa, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1454284272452349874, guid: b0e0a061944c0d54095a59726a8075aa, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1454284272452349874, guid: b0e0a061944c0d54095a59726a8075aa, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1454284272452349874, guid: b0e0a061944c0d54095a59726a8075aa, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1454284272452349874, guid: b0e0a061944c0d54095a59726a8075aa, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8453821490455499119, guid: b0e0a061944c0d54095a59726a8075aa, type: 3}
-      propertyPath: m_Name
-      value: CivilizationPrefab
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: b0e0a061944c0d54095a59726a8075aa, type: 3}

@@ -19,8 +19,14 @@ MonoBehaviour:
   CivHomeSystem: KESPRYTT
   TraitOne: Honorable
   TraitTwo: Arrogant
-  CivImage: {fileID: 0}
-  Insignia: {fileID: 0}
+  CivImage: {fileID: 21300000, guid: 0b107de8f7d6a51458b4f576f478b940, type: 3}
+  Insignia: {fileID: 21300000, guid: 7a0ed8ab75073b6429fb0c0b8815c8b2, type: 3}
   Population: 5
   Credits: 2
   TechPoints: 2
+  CivTechLevel: 0
+  Playable: 0
+  HasWarp: 0
+  Decription: ToDo, connect to libaray of civ descriptions
+  IntelPoints: 0
+  ContactList: 4b000000

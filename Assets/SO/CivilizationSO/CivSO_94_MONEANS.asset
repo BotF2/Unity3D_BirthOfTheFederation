@@ -19,8 +19,14 @@ MonoBehaviour:
   CivHomeSystem: MONEA
   TraitOne: Humility
   TraitTwo: Compation
-  CivImage: {fileID: 0}
-  Insignia: {fileID: 0}
+  CivImage: {fileID: 21300000, guid: 3c974b9b4cabd5b4091bb1df6a95e7b0, type: 3}
+  Insignia: {fileID: 21300000, guid: ebe127c05d99ac04797987627847ab0b, type: 3}
   Population: 5
   Credits: 2
   TechPoints: 2
+  CivTechLevel: 0
+  Playable: 0
+  HasWarp: 1
+  Decription: ToDo, connect to libaray of civ descriptions
+  IntelPoints: 0
+  ContactList: 5e000000

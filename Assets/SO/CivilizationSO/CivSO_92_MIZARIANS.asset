@@ -19,8 +19,14 @@ MonoBehaviour:
   CivHomeSystem: MIZARIA
   TraitOne: Religious
   TraitTwo: Peaceful
-  CivImage: {fileID: 0}
+  CivImage: {fileID: 21300000, guid: 4aa4f8dc2f25263409d862a4fae4d5f8, type: 3}
   Insignia: {fileID: 0}
   Population: 5
   Credits: 2
   TechPoints: 2
+  CivTechLevel: 0
+  Playable: 0
+  HasWarp: 1
+  Decription: ToDo, connect to libaray of civ descriptions
+  IntelPoints: 0
+  ContactList: 5c000000

@@ -19,8 +19,14 @@ MonoBehaviour:
   CivHomeSystem: MALCORIA
   TraitOne: Neutral
   TraitTwo: Humility
-  CivImage: {fileID: 0}
-  Insignia: {fileID: 0}
+  CivImage: {fileID: 21300000, guid: 7de045fa038375e47b58b5283fe65cda, type: 3}
+  Insignia: {fileID: 21300000, guid: ffb8b003639eeaa49aabc771e20be4e2, type: 3}
   Population: 5
   Credits: 2
   TechPoints: 2
+  CivTechLevel: 0
+  Playable: 0
+  HasWarp: 1
+  Decription: ToDo, connect to libaray of civ descriptions
+  IntelPoints: 0
+  ContactList: 55000000

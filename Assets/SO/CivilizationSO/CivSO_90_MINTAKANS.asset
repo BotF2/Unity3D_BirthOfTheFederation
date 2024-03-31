@@ -19,8 +19,14 @@ MonoBehaviour:
   CivHomeSystem: MINTAKA
   TraitOne: Peaceful
   TraitTwo: Honorable
-  CivImage: {fileID: 0}
-  Insignia: {fileID: 0}
+  CivImage: {fileID: 21300000, guid: cbc1466ef1c3a0f41b404f7e7a08520e, type: 3}
+  Insignia: {fileID: 21300000, guid: 54487c666d82c3948915065cac60533f, type: 3}
   Population: 5
   Credits: 2
   TechPoints: 2
+  CivTechLevel: 0
+  Playable: 0
+  HasWarp: 0
+  Decription: ToDo, connect to libaray of civ descriptions
+  IntelPoints: 0
+  ContactList: 5a000000

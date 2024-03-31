@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0515b3ee832f6c43bd1a234d8352ac1, type: 3}
   m_Name: New Game Event SO
   m_EditorClassIdentifier: 
-  listeners: []
+  listeners:
+  - {fileID: 0}

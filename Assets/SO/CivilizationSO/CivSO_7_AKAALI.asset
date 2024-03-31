@@ -20,7 +20,13 @@ MonoBehaviour:
   TraitOne: Neutral
   TraitTwo: Hostile
   CivImage: {fileID: 21300000, guid: b4a45498aebde49409b5b909954e0476, type: 3}
-  Insignia: {fileID: 0}
+  Insignia: {fileID: 21300000, guid: 8979a3e53bc975941a6379860833949d, type: 3}
   Population: 5
   Credits: 2
   TechPoints: 2
+  CivTechLevel: 0
+  Playable: 0
+  HasWarp: 0
+  Decription: ToDo, connect to libaray of civ descriptions
+  IntelPoints: 0
+  ContactList: 07000000

@@ -19,8 +19,14 @@ MonoBehaviour:
   CivHomeSystem: VHNORI
   TraitOne: Intellectual
   TraitTwo: Humility
-  CivImage: {fileID: 0}
-  Insignia: {fileID: 0}
+  CivImage: {fileID: 21300000, guid: 3b2ea906c3f9f3e4b991bca806832ef1, type: 3}
+  Insignia: {fileID: 21300000, guid: 8d2a87faecf66a44fbf29971dcf27505, type: 3}
   Population: 5
   Credits: 2
   TechPoints: 2
+  CivTechLevel: 0
+  Playable: 0
+  HasWarp: 0
+  Decription: ToDo, connect to libaray of civ descriptions
+  IntelPoints: 0
+  ContactList: 8d000000

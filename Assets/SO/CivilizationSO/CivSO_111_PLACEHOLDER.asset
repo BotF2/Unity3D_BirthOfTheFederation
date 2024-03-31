@@ -24,3 +24,9 @@ MonoBehaviour:
   Population: 5
   Credits: 0
   TechPoints: 0
+  CivTechLevel: 0
+  Playable: 0
+  HasWarp: 1
+  Decription: ToDo, connect to libaray of civ descriptions
+  IntelPoints: 0
+  ContactList: 00000000

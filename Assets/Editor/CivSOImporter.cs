@@ -44,7 +44,7 @@ public class CivSOImporter : EditorWindow
         {
             string[] fields = line.Split(',');
 
-            if (fields.Length == 12) // Ensure there are enough fields
+            if (fields.Length == 13) // Ensure there are enough fields
             {
                 string imageString = fields[2].ToLower();
                 foreach (string file in Directory.GetFiles($"Assets/Resources/Races/", "*.png"))
@@ -70,12 +70,17 @@ public class CivSOImporter : EditorWindow
                 civ.TraitOne = fields[5];
                 civ.TraitTwo = fields[6];
                 civ.CivImage = Resources.Load<Sprite>(imageString);
-                civ.Insignia = Resources.Load<Sprite>("Insignias/" + fields[2].ToUpper());
+                //if (fields[2].LastIndexOf == "S") { }
+               //civ.Insignia =
+                var name = Resources.Load<Sprite>("Insignias/" + fields[2].ToUpper());
+                if (name == null) { name = Resources.Load<Sprite>("Insignias/" + fields[2].ToUpper() + "S"); }
+                civ.Insignia = name;
                 civ.Population = int.Parse(fields[9]);
                 civ.Credits = int.Parse(fields[10]);
                 civ.TechPoints = int.Parse(fields[11]);
                 civ.CivTechLevel = TechLevel.EARLY;// TechLevel enum
-                civ.Playable = false;
+                if (civ.CivInt <= 5 || civ.CivInt == 158){ civ.Playable = true; }
+                else civ.Playable = false;
                 civ.HasWarp = bool.Parse(fields[12]);
                 civ.Decription = "ToDo, connect to libaray of civ descriptions";
                 civ.StarSysOwned = new System.Collections.Generic.List<StarSysData> { new StarSysData() };

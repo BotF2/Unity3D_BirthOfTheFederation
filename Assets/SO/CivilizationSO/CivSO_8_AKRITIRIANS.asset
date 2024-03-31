@@ -19,8 +19,14 @@ MonoBehaviour:
   CivHomeSystem: AKRITIRI
   TraitOne: Hostile
   TraitTwo: Honorable
-  CivImage: {fileID: 0}
-  Insignia: {fileID: 0}
+  CivImage: {fileID: 21300000, guid: 03db845102b832841ab4d3fbdaa7172c, type: 3}
+  Insignia: {fileID: 21300000, guid: 1bc1767f0729da842bc25424aab056be, type: 3}
   Population: 5
   Credits: 2
   TechPoints: 2
+  CivTechLevel: 0
+  Playable: 0
+  HasWarp: 1
+  Decription: ToDo, connect to libaray of civ descriptions
+  IntelPoints: 0
+  ContactList: 08000000
