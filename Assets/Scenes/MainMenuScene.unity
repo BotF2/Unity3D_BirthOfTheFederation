@@ -4156,7 +4156,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c0c842c86b42cde44b8253aee05232b3, type: 2}
   - {fileID: 11400000, guid: 3d58a270e2f9f3944a713318e7e84efe, type: 2}
   - {fileID: 11400000, guid: d392eb12b68e5714db4bf96420973397, type: 2}
-  fleetPrefab: {fileID: 3941143401435923581, guid: ef3b3036010abf54e8925e887e9010ad, type: 3}
+  fleetPrefab: {fileID: 1419095586929974665, guid: ef3b3036010abf54e8925e887e9010ad, type: 3}
   galaxyImage: {fileID: 568107377}
   galaxyCenter: {fileID: 526710939}
 --- !u!4 &1362581733

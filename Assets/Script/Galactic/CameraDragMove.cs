@@ -89,11 +89,14 @@ public class CameraDragMove : MonoBehaviour
     void ZoomCamera()
     {
         Vector3 pos = transform.position;
+        //consider getting rotation so at max y=400 look at local angle 10 and at min y=5 look at angle 10
+        var rotation = transform.eulerAngles.x;
         float scroll = Input.GetAxis("Mouse ScrollWheel");
-        pos.y -= scroll * scrollSpeed * Time.deltaTime * 300f;
+        pos.y += scroll * scrollSpeed * Time.deltaTime * 300f;
         pos.y = Mathf.Clamp(pos.y, minY, maxY);  
         pos.x = Mathf.Clamp(pos.x, minX, maxX);
         pos.z = Mathf.Clamp(pos.z, minZ, maxZ);
+        transform.eulerAngles = new Vector3((pos.y -250f)*0.06f, transform.eulerAngles.y, transform.eulerAngles.z);
         transform.position = pos;
     }
 

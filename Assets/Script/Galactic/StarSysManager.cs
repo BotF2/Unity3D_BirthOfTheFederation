@@ -6,6 +6,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEditor;
+using UnityEngine.UI;
 
 namespace Assets.Core
 {
@@ -86,31 +87,32 @@ namespace Assets.Core
             starSystemNewGameOb.name = sysData.SysName;
             var ImageRenderers = starSystemNewGameOb.GetComponentsInChildren<SpriteRenderer>();
 
-            var TMPs = starSystemNewGameOb.GetComponentsInChildren<TextMeshProUGUI>();
-            foreach (var OneTmp in TMPs)
+            TextMeshProUGUI[] TheText = starSystemNewGameOb.GetComponentsInChildren<TextMeshProUGUI>(); 
+            foreach (var OneTmp in TheText)
             {
                 if (OneTmp != null && OneTmp.name == "StarName (TMP)")
                     OneTmp.text = sysData.SysName;
-                else if (OneTmp != null && OneTmp.name == "Owner (TMP)")
-                    OneTmp.text = sysData.FirstOwner.ToString();
+                //else if (OneTmp != null && OneTmp.name == "Owner (TMP)")
+                //    OneTmp.text = sysData.FirstOwner.ToString();
+                OneTmp.enabled = true;  
+                
             }
             var Renderers = starSystemNewGameOb.GetComponentsInChildren<SpriteRenderer>();
             foreach (var oneRenderer in Renderers)
             {
                 if (oneRenderer != null)
                 {
-                    if (oneRenderer.name == "CivRaceSprite")
-                    {
-                        oneRenderer.sprite = civSO.CivImage; // ok
-                    }
+                    //if (oneRenderer.name == "CivRaceSprite")
+                    //{
+                    //    oneRenderer.sprite = civSO.CivImage; // ok
+                    //}
 
-
-                    else if (oneRenderer.name == "OwnerInsignia")
+                    if (oneRenderer.name == "OwnerInsignia")
                     {
                         oneRenderer.sprite = civSO.Insignia;
                         //oneRenderer.sprite.GetComponent<MeshFilter>().sharedMesh.RecalculateBounds();
                     }
-                    else if (oneRenderer.name == "ImageStar")
+                    else if (oneRenderer.name == "StarSprite")
                         oneRenderer.sprite = sysData.StarSprit;
                 }
             }

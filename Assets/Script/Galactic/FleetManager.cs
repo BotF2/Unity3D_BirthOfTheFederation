@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 namespace Assets.Core
@@ -22,11 +23,11 @@ namespace Assets.Core
 
         private List<FleetData> fleetDataList = new List<FleetData>() { new FleetData()};
 
-        private List<int> FleetNumber = new List<int>() { 0 } ;
-
         public GameObject galaxyImage;
 
         public GameObject galaxyCenter;
+
+        private string StarName;
 
         private void Awake()
         {
@@ -65,11 +66,10 @@ namespace Assets.Core
                         fleetData.ShipsList = fleetSO.ShipsList;
                         fleetData.WarpFactor = fleetSO.WarpFactor;
                         fleetData.DefaultWarpFactor = fleetSO.DefaultWarpFactor;
-                        fleetData.Name = fleetSO.Name;
+                        fleetData.Name = "Fleet 1";
                         fleetData.Description = fleetSO.Description;
                         fleetData.Destination = fleetSO.Destination;
                         fleetDataList.Add(fleetData);
-
                         InstantiateThisStarterFleet(fleetData);
                     }
                 }
@@ -86,17 +86,17 @@ namespace Assets.Core
             fleetNewGameOb.transform.SetParent(galaxyCenter.transform, true);
             fleetNewGameOb.transform.localScale = new Vector3(1,1,1);
 
-            fleetNewGameOb.name = fleetData.CivOwnerEnum.ToString() + "Fleet" + FleetNumber; // fleetData.fleetName;
+            fleetNewGameOb.name = fleetData.CivOwnerEnum.ToString() + "Fleet"; 
             var ImageRenderers = fleetNewGameOb.GetComponentsInChildren<SpriteRenderer>();
 
-            //var TMPs = fleetNewGameOb.GetComponentsInChildren<TextMeshProUGUI>();
-            //foreach (var OneTmp in TMPs)
-            //{
-            //    if (OneTmp != null && OneTmp.name == "StarName (TMP)")
-            //        OneTmp.text = fleetData.Name;
-            //    else if (OneTmp != null && OneTmp.name == "Owner (TMP)")
-            //        OneTmp.text = fleetData.Name.ToString();
-            //}
+             Text[] TheText = fleetNewGameOb.GetComponentsInChildren<Text>();
+            foreach (var OneTmp in TheText)
+            {
+                //if (OneTmp != null && OneTmp.name == "StarName (TMP)")
+                //    OneTmp.text = fleetData.Name;
+                //else if (OneTmp != null && OneTmp.name == "Owner (TMP)")
+                //    OneTmp.text = fleetData.Name.ToString();
+            }
             var Renderers = fleetNewGameOb.GetComponentsInChildren<SpriteRenderer>();
             foreach (var oneRenderer in Renderers)
             {
