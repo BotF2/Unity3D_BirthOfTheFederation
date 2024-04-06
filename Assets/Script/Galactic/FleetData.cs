@@ -17,6 +17,8 @@ namespace Assets.Core
         public string Name;
         public string Description;
         public GameObject Destination;
+        public List<Ship> ShipList;
+        
        // public GameObject origin;
     }
 }

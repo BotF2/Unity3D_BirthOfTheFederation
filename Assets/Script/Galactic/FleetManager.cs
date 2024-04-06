@@ -82,7 +82,7 @@ namespace Assets.Core
         {
             GameObject fleetNewGameOb = (GameObject)Instantiate(fleetPrefab, new Vector3(0, 0, 0),
                     Quaternion.identity);
-            fleetNewGameOb.transform.Translate(new Vector3(fleetData.Location.x +5f, fleetData.Location.y, fleetData.Location.z));
+            fleetNewGameOb.transform.Translate(new Vector3(fleetData.Location.x +15f, fleetData.Location.y, fleetData.Location.z));
             fleetNewGameOb.transform.SetParent(galaxyCenter.transform, true);
             fleetNewGameOb.transform.localScale = new Vector3(1,1,1);
 

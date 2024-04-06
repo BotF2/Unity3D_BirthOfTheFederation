@@ -700,7 +700,8 @@ namespace Assets.Core
                             SYSTEM_PLAY_INIT, GALACTIC_MAP, GALACTIC_MAP_INIT, SYSTEM_PLAY, GALACTIC_COMPLETED,
                             COMBAT_MENU, COMBAT_INIT, COMBAT_PLAY, COMBAT_COMPLETED, GAMEOVER };
 
-        
+
+        public TimeManager timeManager;
 
 
         public State _state;

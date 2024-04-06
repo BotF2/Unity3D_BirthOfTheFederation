@@ -99,6 +99,7 @@ GameObject:
   - component: {fileID: 1561204029964747387}
   - component: {fileID: 2344388438685899444}
   - component: {fileID: 7393424365812942907}
+  - component: {fileID: 8813810298530732172}
   m_Layer: 6
   m_Name: FleetPrefab
   m_TagString: Untagged
@@ -143,11 +144,11 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1419095586929974665}
   m_Material: {fileID: 13400000, guid: a53b6371ea1de0a47abebc560f0886fc, type: 2}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 1.311277
+  m_Center: {x: 0.000007599592, y: 0, z: 0}
 --- !u!54 &5600448071794763310
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -158,9 +159,9 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -283,6 +284,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16b37a75241e50a48a1472459afc749f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8813810298530732172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1419095586929974665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 375c4de48bdc9b846863cda91b3ffa25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fleetPrefab: {fileID: 0}
 --- !u!1 &7573069550217054186
 GameObject:
   m_ObjectHideFlags: 0

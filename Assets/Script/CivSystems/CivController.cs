@@ -8,6 +8,7 @@ namespace Assets.Core
     {
         //Fields
         public CivData civData;
+        public List<CivData> civsWeKnowList;
 
         public void UpdateCredits()
         {

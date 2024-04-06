@@ -9,10 +9,20 @@ public class TimeManager : MonoBehaviour
 
     // Event to trigger when the current day matches a special event
     public event Action<TrekEventSO> OnSpecialEventReached;
+    // Event as time passes
+    public event Action OnMinuteChanged;
+    // Event delta Stardate
+    public event Action OnStardateChanged;
 
+    private float minuteToRealTime = 2f;
+    private float timer;
+    private bool showTime = false;
+
+    int moveCounter = 5;
     // Current day in the game
-    public int currentDay = 1;
-
+    public int currentDay = 1010;
+    //public static int gameMinute { get; private set; }
+    //public static int starDate { get; private set; }
     // Coroutine for time progression
     private Coroutine timeCoroutine;
 
@@ -34,9 +44,44 @@ public class TimeManager : MonoBehaviour
 
         // Start time progression coroutine
         timeCoroutine = StartCoroutine(TimeProgression());
+        
+    }
+    private void Start()
+    {
+        GameManager.Instance.timeManager = this;
+    }
+    void Update()
+    {
+
+        if (showTime)
+        {
+            timer -= Time.deltaTime;
+            if (moveCounter < 1)
+            {
+                //for (int i = 0; i < GalaxyView._movingGalaxyObjects.Count; i++)
+                //{
+                //    MoveGalacticObjects myMoveGalactic = GalaxyView._movingGalaxyObjects[i].GetComponent<MoveGalacticObjects>();
+                //    myMoveGalactic.ThrustVector(); // move galaxy objects
+                //                                   // myMoveGalactic.MovePlanePoint(); // move objects plane endpoints
+                //}
+                //moveCounter = 5;
+            }
+            else moveCounter--;
+            if (timer <= 0)
+            {
+                //gameMinute++;
+                //OnMinuteChanged?.Invoke();
+                //if (gameMinute >= 99)
+                //{
+                //    stardate++;
+                //    gameMinute = 0;
+                //    OnStardateChanged?.Invoke();
+                //}
+                //timer = minuteToRealTime;
+            }
+        }
     }
 
-    // Coroutine for time progression
     private System.Collections.IEnumerator TimeProgression()
     {
         while (true)
@@ -45,6 +90,7 @@ public class TimeManager : MonoBehaviour
 
             // Increment current day
             currentDay++;
+            OnStardateChanged?.Invoke();
 
             // Check for special events
             CheckSpecialEvents();
@@ -95,5 +141,12 @@ public class TimeManager : MonoBehaviour
     {
         return currentDay;
     }
+    //public void StarClock()
+    //{
+    //    gameMinute = 0;
+    //    starDate = 1010;
+    //    timer = minuteToRealTime;
+    //    showTime = true;
+    //}
 }
 

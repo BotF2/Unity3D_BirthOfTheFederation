@@ -9,6 +9,7 @@ namespace Assets.Core
     {
         //Fields
         public FleetData fleetData;
+        public GameObject fleetPrefab;
 
 
         void Update()
@@ -27,5 +28,17 @@ namespace Assets.Core
             if (fleetData != null)
                 fleetData.Location = transform.position;
         }
+        void OnTriggerEnter(Collider collider)
+        {
+
+            FleetController fleetController = collider.gameObject.GetComponent<FleetController>();
+            if (fleetController != null)
+            {
+                // fleet controller to get civ list we know
+                Debug.Log("fleet Controller collided with " + fleetController.gameObject.name);
+            }
+            
+        }
     }
+
 }

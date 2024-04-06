@@ -4,26 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - GalacticCamera
-  - GalacticCanvas
   - Galatic Camera
-  - CARD_SCOUT_I(CLONE)
-  - FED_CRUISER_II(CLONE)
-  - FED_CRUISER_III(CLONE)
-  - FED_DESTROYER_I(CLONE)
-  - FED_DESTROYER_II(CLONE)
-  - FED_SCOUT_II(CLONE)
-  - FED_SCOUT_IV(CLONE)
-  - FED_COLONYSHIP_I(CLONE)
-  - KLING_CRUISER_II(CLONE)
-  - KLING_DESTROYER_I(CLONE)
-  - KLING_SCOUT_I(CLONE)
-  - KLING_COLONYSHIP_I(CLONE)
-  - ROM_CRUISER_II
-  - ROM_CRUISER_III(CLONE)
-  - ROM_SCOUT_III(CLONE)
-  - SolarSystemViewObject
-  - BORG_CRUISER_II(CLONE)
   layers:
   - Default
   - TransparentFX

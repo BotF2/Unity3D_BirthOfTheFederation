@@ -26,6 +26,8 @@ namespace Assets.Core
 
         public GameObject galaxyCenter;
 
+        //public Camera galaxyEventCamera;
+
         private void Awake()
         {
             if (instance != null) { Destroy(gameObject); }
@@ -35,8 +37,16 @@ namespace Assets.Core
                 DontDestroyOnLoad(gameObject);
             }
         }
+        //public void Start()
+        //{
+        //    if(galaxyEventCamera == null)
+        //    {
+        //        galaxyEventCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>() as Camera;
+        //    }
+        //}
         public void CreateGameSystems(List<CivSO> civSOList)
         {
+            //eventCamera = GetComponent(Canvas).World;
             //List<StarSysData> starSysDatas = new List<StarSysData>();
             //starSysDataList = starSysDatas;
             foreach (var civSO in civSOList)
@@ -90,12 +100,12 @@ namespace Assets.Core
             TextMeshProUGUI[] TheText = starSystemNewGameOb.GetComponentsInChildren<TextMeshProUGUI>(); 
             foreach (var OneTmp in TheText)
             {
+                OneTmp.enabled = true;
                 if (OneTmp != null && OneTmp.name == "StarName (TMP)")
                     OneTmp.text = sysData.SysName;
-                //else if (OneTmp != null && OneTmp.name == "Owner (TMP)")
-                //    OneTmp.text = sysData.FirstOwner.ToString();
-                OneTmp.enabled = true;  
-                
+                else if (OneTmp != null && OneTmp.name == "SysName (TMP)")
+                    OneTmp.text = sysData.SysName;
+   
             }
             var Renderers = starSystemNewGameOb.GetComponentsInChildren<SpriteRenderer>();
             foreach (var oneRenderer in Renderers)
@@ -116,7 +126,7 @@ namespace Assets.Core
                         oneRenderer.sprite = sysData.StarSprit;
                 }
             }
-             DropLineFixed ourDropLine = starSystemNewGameOb.GetComponent<DropLineFixed>();
+             DropLineFixed ourDropLine = starSystemNewGameOb.GetComponentInChildren<DropLineFixed>();
             
             ourDropLine.GetLineRenderer();
 
