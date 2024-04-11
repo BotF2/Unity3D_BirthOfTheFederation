@@ -87,7 +87,7 @@ namespace Assets.Core
 				}
 
 				//Debug.Log($"src = {source},     dst = {destination} ");
-				// Can't read and write to same color target, use a TemporaryRT
+				// Can't read and write to same color destination, use a TemporaryRT
 				if (source == destination || (settings.srcType == settings.dstType && settings.srcType == Target.CameraColor))
 				{
 					cmd.GetTemporaryRT(m_TemporaryColorTexture.id, opaqueDesc, filterMode);
@@ -159,7 +159,7 @@ namespace Assets.Core
 
 			if (settings.Event == RenderPassEvent.AfterRenderingPostProcessing)
 			{
-				Debug.LogWarning("Note that the \"After Rendering Post Processing\"'s Color target doesn't seem to work? (or might work, but doesn't contain the post processing) :( -- Use \"After Rendering\" instead!");
+				Debug.LogWarning("Note that the \"After Rendering Post Processing\"'s Color destination doesn't seem to work? (or might work, but doesn't contain the post processing) :( -- Use \"After Rendering\" instead!");
 			}
 
 			if (settings.graphicsFormat == UnityEngine.Experimental.Rendering.GraphicsFormat.None)

@@ -29,7 +29,7 @@ namespace Assets.Core
         //public float TaxRate; // universal or variable by civ/sys??
         //public float GrowthRate; // universal or variable by civ/sys??
         public float IntelPoints;
-        public List<CivEnum> ContactList;
+        //public List<CivData> ContactList = new List<CivData>();
     }
 }
 

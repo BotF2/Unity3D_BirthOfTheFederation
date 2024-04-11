@@ -85,7 +85,7 @@ public class CivSOImporter : EditorWindow
                 civ.Decription = "ToDo, connect to libaray of civ descriptions";
                 civ.StarSysOwned = new System.Collections.Generic.List<StarSysData> { new StarSysData() };
                 civ.IntelPoints = 0f;
-                civ.ContactList = new System.Collections.Generic.List<CivEnum> { civ.CivEnum }; // we know our self + maybe a 'Vulcans' for each major??
+                //civ.ContactList = new System.Collections.Generic.List<CivData>(); // we know our self + maybe a 'Vulcans' for each major??
 
 
                 string assetPath = $"Assets/SO/CivilizationSO/CivSO_{civ.CivInt}_{civ.CivShortName}.asset";

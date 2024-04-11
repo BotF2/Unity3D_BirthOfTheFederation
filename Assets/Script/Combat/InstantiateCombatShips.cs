@@ -260,7 +260,7 @@ namespace Assets.Core
                         PopulateShipData(shipGameOb); // Ship class script is attached in prefab so fill in the data
                         ShipScaleAndRotation(shipGameOb, rotationOnY);
                         var aCameraTarget = shipGameOb;   
-                        //GameObject aCameraTarget = Instantiate(cameraEmpty, new Vector3(xLocationEnd, yLocation, zLocation), Quaternion.identity); // camera target where ships are
+                        //GameObject aCameraTarget = Instantiate(cameraEmpty, new Vector3(xLocationEnd, yLocation, zLocation), Quaternion.identity); // camera destination where ships are
                         //aCameraTarget.transform.Rotate(0, rotationOnY, 0); // match ship rotation
                         ParentToAnimation(shipGameOb, _isFriend, CombatOrderSelection.order); //aCameraTarget, _isFriend, CombatOrderSelection.order);
                         combatShips.Add(shipGameOb); // list of comabat ships informing GameManager of combat ships
@@ -337,7 +337,7 @@ namespace Assets.Core
                         GameObject shipGameOb = Instantiate(GameManager.PrefabShipDitionary[preCombatShipNames[i]], new Vector3(xLocation, yLocation, zLocation), Quaternion.identity);
                         shipGameOb.name = preCombatShipNames[i];
                         var aCameraTarget = shipGameOb;
-                        //GameObject aCameraTarget = Instantiate(cameraEmpty, new Vector3(xLocation, yLocation, zLocation), Quaternion.identity); // camera target where ships are
+                        //GameObject aCameraTarget = Instantiate(cameraEmpty, new Vector3(xLocation, yLocation, zLocation), Quaternion.identity); // camera destination where ships are
                         //aCameraTarget.transform.Rotate(0, rotationOnY, 0); // match ship rotation
                         ShipScaleAndRotation(shipGameOb, rotationOnY);
                         ParentToAnimation(shipGameOb, _isFriend, CombatOrderSelection.order);//aCameraTarget, _isFriend, CombatOrderSelection.order);
@@ -428,7 +428,7 @@ namespace Assets.Core
                         GameObject shipGameOb = Instantiate(GameManager.PrefabShipDitionary[preCombatShipNames[i]], new Vector3(xLocation, yLocation, zLocation), Quaternion.identity);
                         shipGameOb.name = preCombatShipNames[i];
                         var aCameraTarget = shipGameOb;
-                        //GameObject aCameraTarget = Instantiate(cameraEmpty, new Vector3(xLocation, yLocation, zLocation), Quaternion.identity); // camera target where ships are
+                        //GameObject aCameraTarget = Instantiate(cameraEmpty, new Vector3(xLocation, yLocation, zLocation), Quaternion.identity); // camera destination where ships are
                         //aCameraTarget.transform.Rotate(0, rotationOnY, 0); // match ship rotation
                         ShipScaleAndRotation(shipGameOb, rotationOnY);
                        // ParentToAnimation(shipGameOb, _isFriend, CombatOrderSelection.order); // aCameraTarget, _isFriend, CombatOrderSelection.order);
@@ -500,7 +500,7 @@ namespace Assets.Core
                         GameObject shipGameOb = Instantiate(GameManager.PrefabShipDitionary[preCombatShipNames[i]], new Vector3(xLocation, yLocation, zLocation), Quaternion.identity);
                         shipGameOb.name = preCombatShipNames[i];
                         var aCameraTarget = shipGameOb;
-                        //GameObject aCameraTarget = Instantiate(cameraEmpty, new Vector3(xLocation, yLocation, zLocation), Quaternion.identity); // camera target where ships are
+                        //GameObject aCameraTarget = Instantiate(cameraEmpty, new Vector3(xLocation, yLocation, zLocation), Quaternion.identity); // camera destination where ships are
                         //aCameraTarget.transform.Rotate(0, rotationOnY, 0); // match ship rotation
                         ShipScaleAndRotation(shipGameOb, rotationOnY);
                         ParentToAnimation(shipGameOb, _isFriend, CombatOrderSelection.order); //aCameraTarget, _isFriend, CombatOrderSelection.order);

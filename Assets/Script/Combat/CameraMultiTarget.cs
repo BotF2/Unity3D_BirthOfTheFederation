@@ -83,7 +83,7 @@ namespace Assets.Core
 					}
 				}
 
-				_targets = survivingTargets.ToArray(); // update target to surviving ships
+				_targets = survivingTargets.ToArray(); // update destination to surviving ships
 				
 			}
 

@@ -27,7 +27,7 @@ namespace Assets.Core
 
         public GameObject galaxyCenter;
 
-        private string StarName;
+        //private string StarName;
 
         private void Awake()
         {
@@ -113,11 +113,15 @@ namespace Assets.Core
             DropLineMovable ourDropLine = fleetNewGameOb.GetComponent<DropLineMovable>();
 
             ourDropLine.GetLineRenderer();
-
+            ourDropLine.transform.SetParent(fleetNewGameOb.transform, true);
             Vector3 galaxyPlanePoint = new Vector3(fleetNewGameOb.transform.position.x,
                 galaxyImage.transform.position.y, fleetNewGameOb.transform.position.z);
             Vector3[] points = { fleetNewGameOb.transform.position, galaxyPlanePoint };
             ourDropLine.SetUpLine(points);
+
+            FleetController controller = fleetNewGameOb.GetComponent<FleetController>();
+            controller.fleetData = fleetData;
+            controller.fleetData.deltaYofGalaxyImage = galaxyCenter.transform.position.y - galaxyPlanePoint.y;
 
             fleetNewGameOb.SetActive(true);
         }

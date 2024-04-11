@@ -9,35 +9,39 @@ namespace Assets.Core
 {
     public class MoveGalacticObjects : MonoBehaviour
     {
-        //public GalaxyView galaxyView;
         [SerializeField]
-        public GameObject target;
-        //private GameObject planeEndPoint;
+        public GameObject destination;
+        private GameObject planeEndPoint;
         [SerializeField]
         public float warpSpeed = 5f;
         private float realSpeedFactor = 0.05f;
+        Transform lastTrans;
+        Vector3 myDestinationPosition;
+        //Transform _galaxyPlaneTrans;
 
-        Transform myTrans;
-        //Transform lastTrans;
-        Vector3 myTargetPosition;
-        Transform _galaxyPlaneTrans;
-
+        private void Start()
+        {
+                lastTrans = transform;
+        }
         private void Update()
         {
-            //if (myTrans != null && lastTrans != null)
-            //{
-            //    if (myTrans.transform != lastTrans.transform)
-            //    {
-            //        var fleet = this.GetComponentInParent<Fleet>();
-            //        if (fleet._galaxyPlanePoint != null)
-            //        {
-            //            Vector3 planePint = new Vector3(myTrans.position.x, myTrans.position.inputY, 600f);
-            //            GameObject emptyForFleetPlanePoint = Instantiate(endpointPrefab, planePint, Quaternion.identity);
-            //            Transform[] endFleetPoints = new Transform[2] { myTrans, emptyForFleetPlanePoint.transform };
-            //            galaxyDropLine.SetUpLine(endFleetPoints);
-            //        }
-            //    }
-            //}
+            if (transform != null)
+            {
+                if (transform != lastTrans)
+                {
+                    var controller = this.GetComponentInParent<FleetController>();
+                    if (controller.fleetData.deltaYofGalaxyImage != null)
+                    {
+                        Vector3 planePiont = new Vector3(transform.position.x, controller.fleetData.deltaYofGalaxyImage, transform.position.z);
+                        //GameObject emptyForFleetPlanePoint = Instantiate(endpointPrefab, planePiont, Quaternion.identity);
+                        Vector3[] points = new Vector3[] {transform.position, planePiont };
+                        var ourDropLine = this.GetComponent<DropLineMovable>();
+                        //Transform[] endFleetPoints = new Transform[2] { myTrans, emptyForFleetPlanePoint.transform };
+                        ourDropLine.SetUpLine(points);
+                    }
+                }
+                lastTrans = transform;
+            }
 
         }
         public void BoldlyGoing(FleetData fleet, GameObject myTarget, GameObject newPlaneEndPoint, float myWarpSpeed) //, GalaxyDropLine fleetLine)
@@ -54,7 +58,7 @@ namespace Assets.Core
             //galaxyDropLine = fleetLine;
             //myTrans = fleet.transform;
             ////lastTrans = myTrans;
-            //myTargetPosition = myTarget.transform.position;
+            //myDestinationPosition = myTarget.transform.position;
             //warpSpeed = myWarpSpeed;
             //_galaxyPlaneTrans = newPlaneEndPoint.transform;
 
@@ -63,18 +67,18 @@ namespace Assets.Core
         public void ThrustVector() 
         {
             //myTrans.position += myTrans.forward * warpSpeed; // * Time.deltaTime;
-            if (target != null && myTrans != null)
-            {
-                myTrans.position = Vector3.MoveTowards(myTrans.position, target.transform.position, warpSpeed * realSpeedFactor);
-                _galaxyPlaneTrans.position = new Vector3(myTrans.position.x, myTrans.position.y, _galaxyPlaneTrans.position.z);
+            //if (destination != null && myTrans != null)
+            //{
+            //    myTrans.position = Vector3.MoveTowards(myTrans.position, destination.transform.position, warpSpeed * realSpeedFactor);
+            //    _galaxyPlaneTrans.position = new Vector3(myTrans.position.x, myTrans.position.y, _galaxyPlaneTrans.position.z);
 
-            }
-            else if (myTargetPosition != null && myTrans != null)
-            {
-                myTrans.position = Vector3.MoveTowards(myTrans.position, myTargetPosition, warpSpeed * realSpeedFactor);
-                _galaxyPlaneTrans.position = new Vector3(myTrans.position.x, myTrans.position.y, _galaxyPlaneTrans.position.z);
-                //_galaxyPlaneTrans.Translate(myTrans.localPosition.x, myTrans.localPosition.inputY, 600f);
-            }
+            //}
+            //else if (myDestinationPosition != null && myTrans != null)
+            //{
+            //    myTrans.position = Vector3.MoveTowards(myTrans.position, myDestinationPosition, warpSpeed * realSpeedFactor);
+            //    _galaxyPlaneTrans.position = new Vector3(myTrans.position.x, myTrans.position.y, _galaxyPlaneTrans.position.z);
+            //    //_galaxyPlaneTrans.Translate(myTrans.localPosition.x, myTrans.localPosition.inputY, 600f);
+            //}
         }
     }
 }

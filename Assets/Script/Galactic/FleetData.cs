@@ -18,7 +18,8 @@ namespace Assets.Core
         public string Description;
         public GameObject Destination;
         public List<Ship> ShipList;
-        
+        public float deltaYofGalaxyImage;
+        //public FleetController fleetController;
        // public GameObject origin;
     }
 }

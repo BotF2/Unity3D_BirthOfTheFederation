@@ -22,9 +22,9 @@ public class ExampleGameController : MonoBehaviour
     ////}
 
     //private GameObject CreateTarget() {
-    //    GameObject target = GameObject.Instantiate(targetPrefab);
-    //    target.AddComponent<ExampleTargetBehaviour>();
-    //    return target;
+    //    GameObject destination = GameObject.Instantiate(targetPrefab);
+    //    destination.AddComponent<ExampleTargetBehaviour>();
+    //    return destination;
     //}
 
 }

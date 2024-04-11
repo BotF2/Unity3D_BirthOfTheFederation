@@ -690,7 +690,7 @@ namespace Assets.Core
         //private GameObject[] _enemyFarCapital;
         //private GameObject[] _enemyColony;
         //private GameObject[] _enemyFarColony;
-        public Dictionary<GameObject, GameObject[]> _shipTargetDictionary;  // key ship gameObject, listSONames target gameObject (problem, is loaded inside LoadCombat()
+        public Dictionary<GameObject, GameObject[]> _shipTargetDictionary;  // key ship gameObject, listSONames destination gameObject (problem, is loaded inside LoadCombat()
         #endregion
 
         public static GameManager Instance { get; private set; } // a static singleton, no other script can instatniate a GameManager, must us the singleton

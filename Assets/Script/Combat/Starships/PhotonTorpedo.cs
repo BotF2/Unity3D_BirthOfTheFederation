@@ -22,7 +22,7 @@ namespace Assets.SpaceCombat.AutoBattle.Scripts.Starships
                 return;
             }
 
-            // TODO: Fire in-front first, then home to target, use a co-routine
+            // TODO: Fire in-front first, then home to destination, use a co-routine
 
             //TODO: slow down to battle speed
 

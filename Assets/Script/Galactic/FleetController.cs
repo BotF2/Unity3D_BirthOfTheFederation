@@ -9,7 +9,7 @@ namespace Assets.Core
     {
         //Fields
         public FleetData fleetData;
-        public GameObject fleetPrefab;
+       // public GameObject fleetPrefab;
 
 
         void Update()
@@ -25,6 +25,7 @@ namespace Assets.Core
         }
         private void OnEnable()
         {
+            //fleetData =  
             if (fleetData != null)
                 fleetData.Location = transform.position;
         }

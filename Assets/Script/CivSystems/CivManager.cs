@@ -20,8 +20,9 @@ namespace Assets.Core
 
         public List<CivSO> civSOListLarge;
 
-        public List<CivData> CivDataInGameList;
-        private List<CivData> civDataList = new List<CivData>() { new CivData()};
+        public List<CivData> civDataInGameList = new List<CivData> { new CivData()};
+
+        public List<CivData> contactList = new List<CivData>() { new CivData()};
 
         //public GameObject civilizationPrefab;
         public CivData localPlayer;
@@ -96,12 +97,13 @@ namespace Assets.Core
                 //data.TaxRate = civSO.TaxRate;
                 //data.GrowthRate = civSO.GrowthRate;
                 data.IntelPoints = civSO.IntelPoints;
-                data.ContactList = civSO.ContactList;
-                civDataList.Add(data);
+                data.ContactList = contactList;
+                data.ContactList.Add(data); // add civ as contact for itself
+                data.ContactList.Remove(data.ContactList[0]); // remove the null from above field
+                civDataInGameList.Add(data);
                 
             }
-            civDataList.Remove(civDataList[0]);
-            CivDataInGameList = civDataList;
+            civDataInGameList.Remove(civDataInGameList[0]); // remove the null entered above
             StarSysManager.instance.CreateGameSystems(civSOList);
 
 
@@ -115,7 +117,7 @@ namespace Assets.Core
             CivData result = null;
 
 
-            foreach (var civ in CivDataInGameList)
+            foreach (var civ in civDataInGameList)
             {
 
                 if (civ.CivShortName.Equals(shortName))

@@ -296,7 +296,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 375c4de48bdc9b846863cda91b3ffa25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fleetPrefab: {fileID: 0}
+  fleetPrefab: {fileID: 1419095586929974665}
 --- !u!1 &7573069550217054186
 GameObject:
   m_ObjectHideFlags: 0
