@@ -14,6 +14,8 @@ namespace Assets.Core
         public List<Ship> ShipsList;
         public float WarpFactor;
         public float DefaultWarpFactor;
+        public string CivLongName;
+        public string CivShortName;
         public string Name;
         public string Description;
         public GameObject Destination;

@@ -2,22 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class StardateUIController : MonoBehaviour
 {
     public TextMeshProUGUI stardateText;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     private void OnEnable()
     {
         // Subscribe to the event
@@ -31,6 +21,6 @@ public class StardateUIController : MonoBehaviour
     }
     void UpdateDateText()
     {
-        stardateText.text = TimeManager.instance.currentDay.ToString();
+        stardateText.text = TimeManager.instance.currentStardate.ToString();
     }
 }

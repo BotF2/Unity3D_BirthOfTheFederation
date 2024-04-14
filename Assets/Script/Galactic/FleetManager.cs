@@ -66,6 +66,8 @@ namespace Assets.Core
                         fleetData.ShipsList = fleetSO.ShipsList;
                         fleetData.WarpFactor = fleetSO.WarpFactor;
                         fleetData.DefaultWarpFactor = fleetSO.DefaultWarpFactor;
+                        fleetData.CivLongName = civSO.CivLongName;
+                        fleetData.CivShortName = civSO.CivShortName;
                         fleetData.Name = "Fleet 1";
                         fleetData.Description = fleetSO.Description;
                         fleetData.Destination = fleetSO.Destination;
@@ -87,16 +89,13 @@ namespace Assets.Core
             fleetNewGameOb.transform.localScale = new Vector3(1,1,1);
 
             fleetNewGameOb.name = fleetData.CivOwnerEnum.ToString() + "Fleet"; 
+            
             var ImageRenderers = fleetNewGameOb.GetComponentsInChildren<SpriteRenderer>();
 
-             Text[] TheText = fleetNewGameOb.GetComponentsInChildren<Text>();
-            foreach (var OneTmp in TheText)
-            {
-                //if (OneTmp != null && OneTmp.name == "StarName (TMP)")
-                //    OneTmp.text = fleetData.Name;
-                //else if (OneTmp != null && OneTmp.name == "Owner (TMP)")
-                //    OneTmp.text = fleetData.Name.ToString();
-            }
+             var TheText = fleetNewGameOb.GetComponentsInChildren<TextMeshProUGUI>();
+            TheText[0].text = fleetData.CivShortName + " - " + fleetData.Name;
+            TheText[1].text = TheText[0].text;
+
             var Renderers = fleetNewGameOb.GetComponentsInChildren<SpriteRenderer>();
             foreach (var oneRenderer in Renderers)
             {
@@ -119,8 +118,31 @@ namespace Assets.Core
             Vector3[] points = { fleetNewGameOb.transform.position, galaxyPlanePoint };
             ourDropLine.SetUpLine(points);
 
-            FleetController controller = fleetNewGameOb.GetComponent<FleetController>();
-            controller.fleetData = fleetData;
+            FleetController controller = fleetNewGameOb.GetComponentInChildren<FleetController>();
+            controller.fleetData = fleetData;   
+            // Find the child GameObject by name
+            Transform canvasTrans = fleetNewGameOb.transform.Find("Canvas FleetUI");
+            // Check if the child GameObject exists
+            if (canvasTrans != null)
+            {
+                controller.canvasFleetUI = canvasTrans.gameObject;
+                //var theTMPs = canvasTrans.GetComponentsInChildren<TextMeshProUGUI>();
+                //foreach (var OneTmp in theTMPs)
+                //{
+                //    if (OneTmp != null && OneTmp.name == "Text FleetName (TMP)")
+                //        OneTmp.text = fleetData.Name;
+                //    //else if (OneTmp != null && OneTmp.name == "Owner (TMP)")
+                //    //    OneTmp.text = fleetData.Name.ToString();
+                //}
+
+                controller.canvasFleetUI.SetActive(false);
+            }
+            Transform canvasTransButton = fleetNewGameOb.transform.Find("CanvasButton");
+            // Check if the child GameObject exists
+            if (canvasTransButton != null)
+            {
+                canvasTransButton.SetParent(fleetNewGameOb.transform, false);
+            }
             controller.fleetData.deltaYofGalaxyImage = galaxyCenter.transform.position.y - galaxyPlanePoint.y;
 
             fleetNewGameOb.SetActive(true);

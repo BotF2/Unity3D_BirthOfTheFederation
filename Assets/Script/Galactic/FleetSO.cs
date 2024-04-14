@@ -14,6 +14,8 @@ namespace Assets.Core
         public int CivIndex;
         public Sprite Insignia;
         public CivEnum CivOwnerEnum;
+        //public string CivShortName;
+        //public string CivLongName;
         public Vector3 Location;
         public List<Ship> ShipsList;
         public float WarpFactor = 0f;

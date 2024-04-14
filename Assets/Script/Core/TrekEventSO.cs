@@ -10,7 +10,7 @@ public enum TrekEventType { RaceDiscovered, TechDiscovered, Invasion, GiftReceiv
 public class TrekEventSO : ScriptableObject
 {
     public string eventName;
-    public int day; // Day of the event
+    public int stardate; // stardate of the event
 
     public TrekEventType trekEventType;
 

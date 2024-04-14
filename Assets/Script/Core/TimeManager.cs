@@ -7,20 +7,21 @@ public class TimeManager : MonoBehaviour
 {
     public static TimeManager instance;
 
-    // Event to trigger when the current day matches a special event
+    // Event to trigger when the current stardate matches a special event
     public event Action<TrekEventSO> OnSpecialEventReached;
     // Event as time passes
-    public event Action OnMinuteChanged;
+    //public event Action OnMinuteChanged;
     // Event delta Stardate
     public event Action OnStardateChanged;
-
+   // public event Action<FleetController> OnFleetMoves;
     private float minuteToRealTime = 2f;
     private float timer;
     private bool showTime = false;
 
     int moveCounter = 5;
-    // Current day in the game
-    public int currentDay = 1010;
+    // Current stardate in the game
+    public int currentStardate { get; private set; }
+    public int currentFleetMoves;
     //public static int gameMinute { get; private set; }
     //public static int starDate { get; private set; }
     // Coroutine for time progression
@@ -44,7 +45,8 @@ public class TimeManager : MonoBehaviour
 
         // Start time progression coroutine
         timeCoroutine = StartCoroutine(TimeProgression());
-        
+        currentStardate = 1010;
+        //timer = ;
     }
     private void Start()
     {
@@ -86,11 +88,12 @@ public class TimeManager : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(10f / timeSpeedMultiplier); // 10 seconds in game = 1 day
+            yield return new WaitForSeconds(10f / timeSpeedMultiplier); // 10 seconds in game = 1 stardate
 
-            // Increment current day
-            currentDay++;
+            // Increment current stardate
+            currentStardate++;
             OnStardateChanged?.Invoke();
+            //OnFleetMoves(FleetController)?.Invoke();
 
             // Check for special events
             CheckSpecialEvents();
@@ -102,7 +105,7 @@ public class TimeManager : MonoBehaviour
     {
         foreach (var specialEvent in specialEvents)
         {
-            if (currentDay == specialEvent.day)
+            if (currentStardate == specialEvent.stardate)
             {
                 // Trigger special event
                 OnSpecialEventReached?.Invoke(specialEvent);
@@ -136,17 +139,10 @@ public class TimeManager : MonoBehaviour
         timeCoroutine = StartCoroutine(TimeProgression());
     }
 
-    // Method to get current day
+    // Method to get current stardate
     public int GetCurrentDay()
     {
-        return currentDay;
+        return currentStardate;
     }
-    //public void StarClock()
-    //{
-    //    gameMinute = 0;
-    //    starDate = 1010;
-    //    timer = minuteToRealTime;
-    //    showTime = true;
-    //}
 }
 

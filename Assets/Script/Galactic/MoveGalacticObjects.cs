@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.UIElements;
 using Unity.VisualScripting;
 
@@ -25,23 +26,23 @@ namespace Assets.Core
         }
         private void Update()
         {
-            if (transform != null)
-            {
-                if (transform != lastTrans)
-                {
-                    var controller = this.GetComponentInParent<FleetController>();
-                    if (controller.fleetData.deltaYofGalaxyImage != null)
-                    {
-                        Vector3 planePiont = new Vector3(transform.position.x, controller.fleetData.deltaYofGalaxyImage, transform.position.z);
-                        //GameObject emptyForFleetPlanePoint = Instantiate(endpointPrefab, planePiont, Quaternion.identity);
-                        Vector3[] points = new Vector3[] {transform.position, planePiont };
-                        var ourDropLine = this.GetComponent<DropLineMovable>();
-                        //Transform[] endFleetPoints = new Transform[2] { myTrans, emptyForFleetPlanePoint.transform };
-                        ourDropLine.SetUpLine(points);
-                    }
-                }
-                lastTrans = transform;
-            }
+            //if (transform != null)
+            //{
+            //    if (transform != lastTrans)
+            //    {
+            //        var controller = this.GetComponentInParent<FleetController>();
+            //        if (controller.fleetData.deltaYofGalaxyImage != null)
+            //        {
+            //            Vector3 planePiont = new Vector3(transform.position.x, controller.fleetData.deltaYofGalaxyImage, transform.position.z);
+            //            //GameObject emptyForFleetPlanePoint = Instantiate(endpointPrefab, planePiont, Quaternion.identity);
+            //            Vector3[] points = new Vector3[] {transform.position, planePiont };
+            //            var ourDropLine = this.GetComponent<DropLineMovable>();
+            //            //Transform[] endFleetPoints = new Transform[2] { myTrans, emptyForFleetPlanePoint.transform };
+            //            ourDropLine.SetUpLine(points);
+            //        }
+            //    }
+            //    lastTrans = transform;
+            //}
 
         }
         public void BoldlyGoing(FleetData fleet, GameObject myTarget, GameObject newPlaneEndPoint, float myWarpSpeed) //, GalaxyDropLine fleetLine)

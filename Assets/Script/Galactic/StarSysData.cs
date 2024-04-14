@@ -7,6 +7,7 @@ public class StarSysData // : MonoBehaviour
 {
     public int SysInt;
     public Vector3 Position;
+    public Transform SysTransform;
     public string SysName;
     public CivEnum FirstOwner;
     public CivEnum CurrentOwner;

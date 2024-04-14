@@ -95,6 +95,7 @@ namespace Assets.Core
             starSystemNewGameOb.transform.SetParent(galaxyCenter.transform, true);
             starSystemNewGameOb.transform.localScale = new Vector3(5, 5, 5);
             starSystemNewGameOb.name = sysData.SysName;
+            sysData.SysTransform = starSystemNewGameOb.transform;
             var ImageRenderers = starSystemNewGameOb.GetComponentsInChildren<SpriteRenderer>();
 
             TextMeshProUGUI[] TheText = starSystemNewGameOb.GetComponentsInChildren<TextMeshProUGUI>(); 

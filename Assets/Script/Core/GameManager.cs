@@ -319,7 +319,7 @@ namespace Assets.Core
     public class GameManager : MonoBehaviour
     {
         public MainMenuUIController mainMenuUIController;
-
+        //public FleetController fleetController;
         public GalaxyManager galaxyManager;
 
 
@@ -741,10 +741,6 @@ namespace Assets.Core
 
             //GalaxyPlayClicked();
         }
-
-
-
-
 
         void oldUiInitialization() {
             //PanelLobby_Menu = Canvas.transform.Find("PanelLobby_Menu").gameObject;
