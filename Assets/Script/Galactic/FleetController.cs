@@ -14,16 +14,21 @@ namespace Assets.Core
     public class FleetController : MonoBehaviour
     {
         //Fields
+        [SerializeField]
+        private Camera uiCamera;
         public FleetData fleetData;
         public GameObject canvasFleetUI;
-        public GameObject canvasButton;
+        public GameObject tooltipFleet;
+        public GameObject buttonLoadFleetUI;
+        public GameObject tooltipBackground;
         public List<StarSysData> systemsList;
         public List<ShipData> shipList;
         public Transform targetTrans;
         public float warpSpeed = 0f;
         public bool warpTravel = false;
         // Event to trigger fleet movement
-        public event Action moveFleet;
+        public event Action openFleetUI; // need to close any open fleetUI to make room for the current!!
+        public event Action moveFleet; 
         public GameObject sysDropdownGO;
         public GameObject shipDropdownGO;
         [SerializeField]
@@ -31,10 +36,18 @@ namespace Assets.Core
         [SerializeField]
         private TMP_Text dropdownShipText;
         private TMP_Text sysDestination;
+        [SerializeField]
+        private TMP_Text tooltipText;
+        //[SerializeField]
+        private RectTransform backgroundRecTrans;
 
         private void Start()
         {
+            uiCamera = Camera.main;
+            tooltipText.text = "Testing Tooltip";
+            backgroundRecTrans = tooltipBackground.transform.GetComponent<RectTransform>();
             systemsList = StarSysManager.instance.StarSysDataList;
+            
             var sysDropdown = sysDropdownGO.GetComponent<TMP_Dropdown>();
             sysDropdown.options.Clear();
             List<string> sysList = new List<string>();
@@ -63,6 +76,8 @@ namespace Assets.Core
             }
             DropdownItemSelected(shipDropdown);
             shipDropdown.onValueChanged.AddListener(delegate { DropdownItemSelected(shipDropdown); });
+
+            ShowToolTipFleetName("FLEETNAME");
         }
         void DropdownItemSelected(TMP_Dropdown dropdown)
         {
@@ -75,17 +90,28 @@ namespace Assets.Core
             }
             else if(dropdown.name == "Dropdown Ships")
             {
-               dropdownShipText.text = dropdown.options[index].text;
+                dropdownShipText.text = dropdown.options[index].text;
                 var ship = shipList[index]; // Can we or should we do stuff here??
-                
+
             }
+        }
+        private void OnMouseEnter()
+        {
+            ShowToolTipFleetName(fleetData.Name);
+        }
+        private void OnMouseExit()
+        {
+            HideToolTipFleetName();
         }
         void Update()
         {
             if (fleetData != null)
             {
-                fleetData.Location = transform.position;
+                fleetData.Position = transform.position;
             }
+            Vector2 localPoint;
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(transform.parent.GetComponent<RectTransform>(), Input.mousePosition, uiCamera, out localPoint);
+            transform.localPosition = localPoint;
         }
         public void DropdownSystems(int index)
         {
@@ -124,11 +150,25 @@ namespace Assets.Core
         {
             canvasFleetUI.SetActive(false);
         }
+        private void ShowToolTipFleetName(string tooltipString)
+        {
+            tooltipFleet.SetActive(true);
+            tooltipText.text = tooltipString;
+            float textPaddingSize = 0.5f;
+            Vector2 background = new Vector2(tooltipText.preferredWidth + (textPaddingSize * 2f),
+                tooltipText.preferredHeight + (textPaddingSize * 2f));
+            backgroundRecTrans.sizeDelta = background;
+        }
+        private void HideToolTipFleetName()
+        {
+            tooltipFleet.SetActive(false);
+            tooltipText.text = string.Empty;
+        }
         private void OnEnable()
         {
             //canvasFleetUI.SetActive(true);
             if (fleetData != null)
-                fleetData.Location = transform.position;
+                fleetData.Position = transform.position;
             
         }
         private void OnDisable()

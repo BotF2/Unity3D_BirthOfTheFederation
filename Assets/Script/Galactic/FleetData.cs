@@ -10,7 +10,7 @@ namespace Assets.Core
         public int CivIndex;
         public Sprite Insignia;
         public CivEnum CivOwnerEnum;
-        public Vector3 Location;
+        public Vector3 Position;
         public List<Ship> ShipsList;
         public float WarpFactor;
         public float DefaultWarpFactor;
@@ -23,6 +23,14 @@ namespace Assets.Core
         public float deltaYofGalaxyImage;
         //public FleetController fleetController;
        // public GameObject origin;
+       public FleetData(string name)
+        {
+            Name = name;
+        }
+        public FleetData()
+        {
+
+        }
     }
 }
 

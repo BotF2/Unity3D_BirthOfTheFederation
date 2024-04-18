@@ -80,10 +80,12 @@ namespace Assets.Core
                 
                 starSysDatas.Add(SysData);
                 InstantiateSystemButton(SysData, civSO);
+                if (civSO.HasWarp) 
+                    FleetManager.instance.FirstFleetData(civSO, SysData.Position);
             }
             starSysDatas.Remove(starSysDatas[0]);
             StarSysDataList = starSysDatas;
-            FleetManager.instance.CreatGameStarterFleets(civSOList, StarSysDataList);
+            //FleetManager.instance.FirstFleetData(civSOList);
             SolarSystemView view = new SolarSystemView();
         }
         public void InstantiateSystemButton(StarSysData sysData, CivSO civSO)
@@ -91,7 +93,7 @@ namespace Assets.Core
             GameObject starSystemNewGameOb = (GameObject)Instantiate(sysPrefab, new Vector3(0,0,0),
                  Quaternion.identity);
             starSystemNewGameOb.transform.Translate(new Vector3(sysData.Position.x, sysData.Position.y, sysData.Position.z));
-            //starSystemNewGameOb.transform.Translate(new Vector3(sysData.Position.x, sysData.Position.z, sysData.Position.y));
+
             starSystemNewGameOb.transform.SetParent(galaxyCenter.transform, true);
             starSystemNewGameOb.transform.localScale = new Vector3(5, 5, 5);
             starSystemNewGameOb.name = sysData.SysName;
