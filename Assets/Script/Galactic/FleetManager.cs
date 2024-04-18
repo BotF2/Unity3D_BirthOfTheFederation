@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data.Common;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
+using Assets.Core;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,9 +20,9 @@ namespace Assets.Core
 
         public GameObject fleetPrefab;
 
-        public List<FleetData> fleetDataList = new List<FleetData> { new FleetData("placeHolder")};
+        //public List<FleetData> fleetDataList = new List<FleetData> { new FleetData("999")}; // place holder FeetData named "999"
 
-        public Dictionary<CivEnum, List<FleetData>> FleetDictionary = new Dictionary<CivEnum, List<FleetData>>() { { CivEnum.ZZUNINHABITED9, new List<FleetData>() } };
+        public Dictionary<CivEnum, List<FleetData>> FleetDictionary;
 
         public GameObject galaxyImage;
 
@@ -40,48 +41,61 @@ namespace Assets.Core
                 instance = this;
                 DontDestroyOnLoad(gameObject);
             }
+            var data = new FleetData("999");
+            List<FleetData> list = new List<FleetData>() {data};
+            FleetDictionary = new Dictionary<CivEnum, List<FleetData>>() { { CivEnum.ZZUNINHABITED9, list } };
         }
         public void FirstFleetData(CivSO civSO, Vector3 position) // first fleet
         {
-            //foreach (var civSO in CivSO)
-            //{
-            //    if (civSO.HasWarp)
-            //    {
-                    FleetSO fleetSO = GetFleetSObyInt(civSO.CivInt);
-                    if (fleetSO != null)
-                    {
-                        FleetData fleetData = new FleetData();
-                        fleetData.CivIndex = fleetSO.CivIndex;
-                        fleetData.Insignia = fleetSO.Insignia;
-                        fleetData.CivOwnerEnum = fleetSO.CivOwnerEnum;
-                        fleetData.Position = position;
-                        //foreach (var sysData in StarSysManager.instance.StarSysDataList)
-                        //{
-                        //    if (sysData.SysInt == civSO.CivInt)
-                        //    {
-                        //        fleetData.Position = sysData.Position;
-                        //        break;
-                        //    }
-                        //}
-                        fleetData.ShipsList = fleetSO.ShipsList;
-                        fleetData.WarpFactor = fleetSO.WarpFactor;
-                        fleetData.DefaultWarpFactor = fleetSO.DefaultWarpFactor;
-                        fleetData.CivLongName = civSO.CivLongName;
-                        fleetData.CivShortName = civSO.CivShortName;
-                        fleetData.Description = fleetSO.Description;
-                        fleetData.Destination = fleetSO.Destination;
-                        fleetDataList.Add(fleetData);
-                        if (fleetDataList[0].Name == "placeHolder")
-                            fleetDataList.Remove(fleetDataList[0]);
-                        FleetDictionary.Add(civSO.CivEnum, fleetDataList);
-                        //Vector3 position = StarSysManager.instance.StarSysDataList[civSO.CivInt].Position;
-                        InstantiateFleet(fleetData, position);
-                    }
 
-            //    }
-            //   // TranslateFleetsToSystem(FleetDictionary[civSO.CivEnum]);
-            //}
+            FleetSO fleetSO = GetFleetSObyInt(civSO.CivInt);
+            if (fleetSO != null)
+            {
+                FleetData fleetData = new FleetData();
+                fleetData.CivIndex = fleetSO.CivIndex;
+                fleetData.Insignia = fleetSO.Insignia;
+                fleetData.CivOwnerEnum = fleetSO.CivOwnerEnum;
+                fleetData.Position = position;
 
+
+                fleetData.ShipsList = fleetSO.ShipsList;
+                fleetData.WarpFactor = fleetSO.WarpFactor;
+                fleetData.DefaultWarpFactor = fleetSO.DefaultWarpFactor;
+                fleetData.CivLongName = civSO.CivLongName;
+                fleetData.CivShortName = civSO.CivShortName;
+                fleetData.Description = fleetSO.Description;
+                fleetData.Destination = fleetSO.Destination;
+                if (FleetDictionary[civSO.CivEnum] == null)
+                {
+                    List<FleetData> list = new List<FleetData>() { fleetData };
+                    var list = FleetDictionary[civSO.CivEnum];
+                }
+                FleetDictionary[civSO.CivEnum].Add(fleetData);
+                if (fleetData.Name != "999")
+                { 
+                    // not fully tested until we get more fleets
+                    GetFleetName(civSO.CivEnum);
+                    InstantiateFleet(fleetData, position);
+                }
+            }
+
+        }
+        private void GetFleetName(Assets.Core.CivEnum civEnum)
+        {
+            var listFleetData = FleetDictionary[civEnum];
+            List<int> ints = new List<int>();
+            for (int j = 1; j < listFleetData.Count; j++)
+            {
+                if (listFleetData[j].Name != null)
+                    ints.Add(int.Parse(listFleetData[j].Name));
+            }
+            for (int i = 1; i < listFleetData.Count; i++)
+            {
+                if (!ints.Contains(i))
+                {
+                    listFleetData[i].Name = i.ToString();
+                }
+            }          
         }
         public void InstantiateFleet(FleetData fleetData, Vector3 position)
         {
@@ -96,7 +110,7 @@ namespace Assets.Core
             var ImageRenderers = fleetNewGameOb.GetComponentsInChildren<SpriteRenderer>();
 
             var TheText = fleetNewGameOb.GetComponentsInChildren<TextMeshProUGUI>();
-            TheText[0].text = fleetData.CivShortName + " - " + fleetData.Name;
+            TheText[0].text = fleetData.CivShortName + " - Fleet " + fleetData.Name;
             TheText[1].text = TheText[0].text;
 
             var Renderers = fleetNewGameOb.GetComponentsInChildren<SpriteRenderer>();
@@ -169,22 +183,22 @@ namespace Assets.Core
         }   
         public FleetData resultFleetData;
 
-        public FleetData GetFleetDataByName(string fleetName)
-        {
+        //public FleetData GetFleetDataByName(string fleetName)
+        //{
 
-            FleetData result = null;
+        //    FleetData result = null;
 
-            foreach (var fleet in fleetDataList)
-            {
+        //    foreach (var fleet in fleetDataList)
+        //    {
 
-                if (fleet.Name.Equals(fleetName))
-                {
-                    result = fleet;
-                }
-            }
-            return result;
+        //        if (fleet.Name.Equals(fleetName))
+        //        {
+        //            result = fleet;
+        //        }
+        //    }
+        //    return result;
 
-        }
+        //}
         public FleetSO GetFleetSObyInt(int fleetInt)
         {
 
@@ -203,10 +217,10 @@ namespace Assets.Core
 
         }
 
-        public void GetFleetByName(string fleetName)
-        {
-            resultFleetData = GetFleetDataByName(fleetName);
-        }
+        //public void GetFleetByName(string fleetName)
+        //{
+        //    resultFleetData = GetFleetDataByName(fleetName);
+        //}
 
     }
 }

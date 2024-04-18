@@ -76,8 +76,8 @@ namespace Assets.Core
             }
             DropdownItemSelected(shipDropdown);
             shipDropdown.onValueChanged.AddListener(delegate { DropdownItemSelected(shipDropdown); });
-
-            ShowToolTipFleetName("FLEETNAME");
+            HideToolTipFleetName();
+            //ShowToolTipFleetName("FLEETNAME");
         }
         void DropdownItemSelected(TMP_Dropdown dropdown)
         {
