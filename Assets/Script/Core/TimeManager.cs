@@ -10,7 +10,7 @@ public class TimeManager : MonoBehaviour
     // Event to trigger when the current stardate matches a special event
     public event Action<TrekEventSO> OnSpecialEventReached;
     // Event as time passes
-    //public event Action OnMinuteChanged;
+    //public event Action<TrekEventSO> OpenFleetUI;
     // Event delta Stardate
     public event Action OnStardateChanged;
    // public event Action<FleetController> OnFleetMoves;

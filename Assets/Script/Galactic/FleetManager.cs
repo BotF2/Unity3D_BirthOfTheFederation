@@ -57,7 +57,6 @@ namespace Assets.Core
                 fleetData.CivOwnerEnum = fleetSO.CivOwnerEnum;
                 fleetData.Position = position;
 
-
                 fleetData.ShipsList = fleetSO.ShipsList;
                 fleetData.WarpFactor = fleetSO.WarpFactor;
                 fleetData.DefaultWarpFactor = fleetSO.DefaultWarpFactor;
@@ -65,15 +64,16 @@ namespace Assets.Core
                 fleetData.CivShortName = civSO.CivShortName;
                 fleetData.Description = fleetSO.Description;
                 fleetData.Destination = fleetSO.Destination;
-                if (FleetDictionary[civSO.CivEnum] == null)
+                if (!FleetDictionary.ContainsKey(civSO.CivEnum))
                 {
-                    List<FleetData> list = new List<FleetData>() { fleetData };
-                    var list = FleetDictionary[civSO.CivEnum];
+                    List<FleetData> listA = new List<FleetData>() { fleetData };
+                    FleetDictionary.Add(civSO.CivEnum, listA);
                 }
-                FleetDictionary[civSO.CivEnum].Add(fleetData);
+                else FleetDictionary[civSO.CivEnum].Add(fleetData);
                 if (fleetData.Name != "999")
-                { 
+                {
                     // not fully tested until we get more fleets
+                    fleetData.Name = "998";
                     GetFleetName(civSO.CivEnum);
                     InstantiateFleet(fleetData, position);
                 }
@@ -84,16 +84,20 @@ namespace Assets.Core
         {
             var listFleetData = FleetDictionary[civEnum];
             List<int> ints = new List<int>();
-            for (int j = 1; j < listFleetData.Count; j++)
+            for (int j = 0 ; j < listFleetData.Count; j++)
             {
-                if (listFleetData[j].Name != null)
+               // if (listFleetData[j].Name != "998")
                     ints.Add(int.Parse(listFleetData[j].Name));
             }
-            for (int i = 1; i < listFleetData.Count; i++)
+            for (int i = 0; i < listFleetData.Count; i++)
             {
-                if (!ints.Contains(i))
+                if (!ints.Contains(i +1))
                 {
-                    listFleetData[i].Name = i.ToString();
+                    listFleetData[i].Name = (i+1).ToString();
+                }
+                else if (listFleetData[i].Name == "998")
+                {
+                    listFleetData[i].Name = (i+1).ToString();
                 }
             }          
         }
