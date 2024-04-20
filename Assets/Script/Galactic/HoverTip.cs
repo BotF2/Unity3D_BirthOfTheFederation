@@ -2,11 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class HoverTip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public string tipToShow;
     private float timeToWait = 0.5f;
+    void Awake()
+    {
+       tipToShow = this.GetComponentInChildren<TMP_Text>().text;
+    }
     void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)
     {
         StopAllCoroutines();

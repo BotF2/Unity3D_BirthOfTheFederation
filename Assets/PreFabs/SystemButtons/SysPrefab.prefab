@@ -297,15 +297,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2246989263608196352}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f9ac9cea73963c0439cb8436968c87b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   tipText: {fileID: 8009581022400754639}
   tipWindow: {fileID: 836244980641199784}
-  starNameText: {fileID: 3972858267215956884}
-  starNameWindow: {fileID: 7145107915915512658}
+  starNameText: {fileID: 0}
+  starNameWindow: {fileID: 0}
   galaxyEventCamera: {fileID: 0}
 --- !u!1 &2801370722566721748
 GameObject:
@@ -684,7 +684,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &836244980641199784
 RectTransform:
   m_ObjectHideFlags: 0

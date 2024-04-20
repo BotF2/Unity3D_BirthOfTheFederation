@@ -8,15 +8,16 @@ public class HoverTipManager : MonoBehaviour
 {
     public TextMeshProUGUI tipText;
     public RectTransform tipWindow;
-    public TextMeshProUGUI starNameText;
-    public RectTransform starNameWindow;
+    //public Canvas canvas;
+    //public TextMeshProUGUI starNameText;
+    //public RectTransform starNameWindow;
     public static Action<string, Vector2> OnMouseHover;
     public static Action OnMouseLoseFocus;
     public Camera galaxyEventCamera;
 
     private void OnEnable()
     {
-        tipText.text = this.name;
+        tipText.text = "testing";
         OnMouseHover += ShowTip;
         OnMouseLoseFocus += HideTip;
     }
@@ -28,14 +29,14 @@ public class HoverTipManager : MonoBehaviour
 
     void Start()
     {
-        tipText.text = this.name;// ToDo more info here
-        starNameText.text = this.name;
-        starNameWindow.sizeDelta = new Vector2(starNameText.preferredWidth > 10 ? starNameText.preferredWidth/4 : 10, 15);
+        //tipText.text = this.name;// ToDo more info here
+        //starNameText.text = this.name;
+        //starNameWindow.sizeDelta = new Vector2(starNameText.preferredWidth > 10 ? starNameText.preferredWidth/4 : 10, 15);
         HideTip();
 
         if (galaxyEventCamera == null)
         {
-            galaxyEventCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>() as Camera;
+            galaxyEventCamera = GameObject.FindGameObjectWithTag("Galativc Camera").GetComponent<Camera>() as Camera;
             this.GetComponent<Canvas>().worldCamera = galaxyEventCamera; // world camear also is event camera for world space canvas
         }
 
@@ -51,7 +52,7 @@ public class HoverTipManager : MonoBehaviour
     }
     private void HideTip()
     {
-        tipText.text = default;
+        tipText.text = "";
         tipWindow.gameObject.SetActive(false);
     }
 }
