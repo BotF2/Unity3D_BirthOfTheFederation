@@ -26,7 +26,7 @@ public class CameraDragMove : MonoBehaviour
         ZoomCamera();
     }
 
-    // Take x and z inputs and translate based on camera rotation
+    // Take x and z inputs and translate based on galaxyEventCamera rotation
     private void MoveCamera(float xInput, float zInput)
     {
         float zMove = Mathf.Cos(transform.eulerAngles.y * Mathf.PI / 180) * zInput - Mathf.Sin(transform.eulerAngles.y * Mathf.PI / 180) * xInput;

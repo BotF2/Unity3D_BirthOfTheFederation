@@ -39,7 +39,7 @@ namespace Assets.Core
         }
         private void Start()
         {
-            this.transform.Rotate(-1f, 1f, -1f); // enables activates the camera but I do not know why
+            this.transform.Rotate(-1f, 1f, -1f); // enables activates the galaxyEventCamera but I do not know why
             this.transform.Rotate(1f, -1f, 1f);
         }
         private void OnEnable()

@@ -87,7 +87,6 @@ GameObject:
   - component: {fileID: 906002356755975937}
   - component: {fileID: 6802614364662357337}
   - component: {fileID: 1657765322982733409}
-  - component: {fileID: 6581504169125615798}
   m_Layer: 6
   m_Name: StarSprite
   m_TagString: Untagged
@@ -175,19 +174,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6581504169125615798
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 749449767456453720}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10e6ac8aaaa4ad145be9223955628ca8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tipToShow: 
 --- !u!1 &2246989263608196352
 GameObject:
   m_ObjectHideFlags: 0
@@ -200,7 +186,6 @@ GameObject:
   - component: {fileID: 5852052539830111820}
   - component: {fileID: 1313647732630169960}
   - component: {fileID: 8894566177080194207}
-  - component: {fileID: 7827237013648207032}
   m_Layer: 5
   m_Name: SysPrefab
   m_TagString: Untagged
@@ -290,23 +275,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &7827237013648207032
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2246989263608196352}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9ac9cea73963c0439cb8436968c87b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tipText: {fileID: 8009581022400754639}
-  tipWindow: {fileID: 836244980641199784}
-  starNameText: {fileID: 0}
-  starNameWindow: {fileID: 0}
-  galaxyEventCamera: {fileID: 0}
 --- !u!1 &2801370722566721748
 GameObject:
   m_ObjectHideFlags: 0

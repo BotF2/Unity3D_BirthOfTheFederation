@@ -12,6 +12,10 @@ namespace Assets.Core
     public class MainMenuUIController : MonoBehaviour
     {
         public GameObject mainMenuCanvas;
+        public GameObject TipCanvas;
+        //public GameObject mainMenuPanelSinglePlayer;
+        //public GameObject mainMenuPanelTip;
+        public GameObject mainMenuButton;
         public GameObject uiCameraGO;
         public GameObject eventSystemGO;
         public GameObject galaxyCenter;
@@ -49,6 +53,8 @@ namespace Assets.Core
         public void LoadGalaxyScene()
         {
             mainMenuCanvas.SetActive(false);
+            //mainMenuPanelSinglePlayer.SetActive(false);
+            //mainMenuPanelTip.SetActive(true);
             uiCameraGO.SetActive(false);
             eventSystemGO.SetActive(false);
             galaxyCenter.SetActive(true);

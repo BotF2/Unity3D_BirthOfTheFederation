@@ -115,7 +115,7 @@ namespace Assets.Core
 
             var TheText = fleetNewGameOb.GetComponentsInChildren<TextMeshProUGUI>();
             TheText[0].text = fleetData.CivShortName + " - Fleet " + fleetData.Name;
-            TheText[1].text = TheText[0].text;
+            //TheText[1].text = TheText[0].text;
 
             var Renderers = fleetNewGameOb.GetComponentsInChildren<SpriteRenderer>();
             foreach (var oneRenderer in Renderers)

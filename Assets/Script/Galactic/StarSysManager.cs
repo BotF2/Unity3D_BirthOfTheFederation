@@ -25,6 +25,7 @@ namespace Assets.Core
         public GameObject galaxyImage;
 
         public GameObject galaxyCenter;
+        //public Camera cam;
 
         //public Camera galaxyEventCamera;
 
@@ -37,13 +38,13 @@ namespace Assets.Core
                 DontDestroyOnLoad(gameObject);
             }
         }
-        //public void Start()
-        //{
-        //    if(galaxyEventCamera == null)
-        //    {
-        //        galaxyEventCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>() as Camera;
-        //    }
-        //}
+        public void Start()
+        {
+            //if (cam == null)
+            //{
+            //    cam = GameObject.FindGameObjectWithTag("Galatic Camera").GetComponent<Camera>() as Camera;
+            //}
+        }
         public void CreateGameSystems(List<CivSO> civSOList)
         {
             //eventCamera = GetComponent(Canvas).World;

@@ -556,7 +556,7 @@ namespace GalaxyMap
         //                                                              //spritView.transform.localScale = new Vector3(planetMoonScale, planetMoonScale, planetMoonScale);
         //                                                              //spritView.sprite = Sprites[ss.GraphicID];
 
-        //    //if(galacticCamera != null) // NO LUCK SO FAR BRINGING IN THE GALACTIC CAMERA FOR A LookAt(camera);
+        //    //if(galacticCamera != null) // NO LUCK SO FAR BRINGING IN THE GALACTIC CAMERA FOR A LookAt(galaxyEventCamera);
         //    //    spritView.transform.LookAt(galacticCamera.transform);
         //    //StupidInt += 1;
         //    //for (int i = 0; i < ss.Children.Count; i++)

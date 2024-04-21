@@ -18,15 +18,15 @@ namespace Assets.Core
         //private Camera uiCamera;
         public FleetData fleetData;
         public GameObject canvasFleetUI;
-        public GameObject tooltipFleet;
+        //public GameObject tooltipFleet;
         public GameObject buttonLoadFleetUI;
-        public GameObject tooltipBackground;
+        //public GameObject tooltipBackground;
         public List<StarSysData> systemsList;
         public List<ShipData> shipList;
         public Transform targetTrans;
         public float warpSpeed = 0f;
         public bool warpTravel = false;
-        private float timeToWait = 0.5f;
+        //private float timeToWait = 0.5f;
         //public event Action openFleetUI; // need to close any open fleetUI to make room for the current!!
         //public event Action moveFleet; 
         public GameObject sysDropdownGO;
@@ -36,13 +36,19 @@ namespace Assets.Core
         [SerializeField]
         private TMP_Text dropdownShipText;
         private TMP_Text sysDestination;
+       
+        private Camera galaxyEventCamera;
         [SerializeField]
-        private TMP_Text tooltipText;
+        private Canvas openFleetUIButtonCanvas;
+        
+        //private TMP_Text tooltipText;
         //[SerializeField]
-        private RectTransform backgroundRecTrans;
+        //private RectTransform backgroundRecTrans;
 
         private void Start()
         {
+            galaxyEventCamera = GameObject.FindGameObjectWithTag("Galactic Camera").GetComponent<Camera>() as Camera;
+            openFleetUIButtonCanvas.worldCamera = galaxyEventCamera;
             //uiCamera = Camera.main;
             //tooltipText.text = "Testing Tooltip";
             //backgroundRecTrans = tooltipBackground.transform.GetComponent<RectTransform>();
@@ -76,7 +82,7 @@ namespace Assets.Core
             }
             DropdownItemSelected(shipDropdown);
             shipDropdown.onValueChanged.AddListener(delegate { DropdownItemSelected(shipDropdown); });
-            tooltipBackground.SetActive(false);
+           // tooltipBackground.SetActive(false);
             
             //ShowToolTipFleetName("FLEETNAME");
         }
@@ -165,17 +171,17 @@ namespace Assets.Core
         //    tooltipFleet.SetActive(false);
         //    tooltipText.text = string.Empty;
         //}
-        private void OnEnable()
-        {
-            //canvasFleetUI.SetActive(true);
-            if (fleetData != null)
-                fleetData.Position = transform.position;
+        //private void OnEnable()
+        //{
+        //    //canvasFleetUI.SetActive(true);
+        //    if (fleetData != null)
+        //        fleetData.Position = transform.position;
             
-        }
-        private void OnDisable()
-        {
+        //}
+        //private void OnDisable()
+        //{
            
-        }
+        //}
         void OnTriggerEnter(Collider collider)
         {
 
