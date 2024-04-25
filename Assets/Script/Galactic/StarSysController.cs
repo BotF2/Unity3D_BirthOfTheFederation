@@ -7,6 +7,15 @@ public class StarSysController : MonoBehaviour
 {
     //Fields
     public StarSysData starSysData;
+    private Camera galaxyEventCamera;
+    [SerializeField]
+    private Canvas canvasSysButton;
+
+    private void Start()
+    {
+        galaxyEventCamera = GameObject.FindGameObjectWithTag("Galactic Camera").GetComponent<Camera>() as Camera;
+        canvasSysButton.worldCamera = galaxyEventCamera;
+    }
     public void UpdatePopulation(int delatPopulation)
     {
         if (starSysData.Population + delatPopulation < 0)

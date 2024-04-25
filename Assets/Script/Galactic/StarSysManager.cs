@@ -25,9 +25,6 @@ namespace Assets.Core
         public GameObject galaxyImage;
 
         public GameObject galaxyCenter;
-        //public Camera cam;
-
-        //public Camera galaxyEventCamera;
 
         private void Awake()
         {
@@ -62,6 +59,7 @@ namespace Assets.Core
                 SysData.StarType = starSysSO.StarType;
                 SysData.StarSprit = starSysSO.StarSprit;
                 SysData.Population = starSysSO.Population;
+                SysData.Description = "description here";
                  #region more stuff
                 //public float _sysCredits;
                 //public float _sysTaxRate; Set it at civ level
@@ -96,7 +94,7 @@ namespace Assets.Core
             starSystemNewGameOb.transform.Translate(new Vector3(sysData.Position.x, sysData.Position.y, sysData.Position.z));
 
             starSystemNewGameOb.transform.SetParent(galaxyCenter.transform, true);
-            starSystemNewGameOb.transform.localScale = new Vector3(5, 5, 5);
+            starSystemNewGameOb.transform.localScale = new Vector3(1, 1, 1);
             starSystemNewGameOb.name = sysData.SysName;
             sysData.SysTransform = starSystemNewGameOb.transform;
             var ImageRenderers = starSystemNewGameOb.GetComponentsInChildren<SpriteRenderer>();
@@ -105,10 +103,10 @@ namespace Assets.Core
             foreach (var OneTmp in TheText)
             {
                 OneTmp.enabled = true;
-                if (OneTmp != null && OneTmp.name == "StarName (TMP)")
+                if (OneTmp != null && OneTmp.name == "SysName (TMP)")
                     OneTmp.text = sysData.SysName;
-                else if (OneTmp != null && OneTmp.name == "SysName (TMP)")
-                    OneTmp.text = sysData.SysName;
+                else if (OneTmp != null && OneTmp.name == "SysDescription (TMP)")
+                    OneTmp.text = sysData.Description;
    
             }
             var Renderers = starSystemNewGameOb.GetComponentsInChildren<SpriteRenderer>();
@@ -137,7 +135,24 @@ namespace Assets.Core
             Vector3 galaxyPlanePoint = new Vector3(starSystemNewGameOb.transform.position.x,
                 galaxyImage.transform.position.y, starSystemNewGameOb.transform.position.z);
             Vector3[] points = {starSystemNewGameOb.transform.position, galaxyPlanePoint};
-            ourDropLine.SetUpLine(points);   
+            ourDropLine.SetUpLine(points);
+            StarSysController controller = starSystemNewGameOb.GetComponentInChildren<StarSysController>();
+            controller.starSysData = sysData;
+            // Find the child GameObject by name
+            Transform canvasTrans = starSystemNewGameOb.transform.Find("CanvasSysButton");
+            // Check if the child GameObject exists
+            if (canvasTrans != null)
+            {
+                // Is there a UI game object we need to turn on and off
+                //controller.c = canvasTrans.gameObject;
+                //controller.canvasFleetUI.SetActive(false);
+            }
+            Transform canvasTransButton = starSystemNewGameOb.transform.Find("Canvas Load FleetUI");
+            // Check if the child GameObject exists
+            if (canvasTransButton != null)
+            {
+                canvasTransButton.SetParent(starSystemNewGameOb.transform, true);
+            }
 
             starSystemNewGameOb.SetActive(true);
             //Undo.MoveGameObjectToScene(starSystemNewGameOb, GalaxyScene)

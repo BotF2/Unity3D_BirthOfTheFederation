@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Assets.Core;
 
-public class StarSysData // : MonoBehaviour
+public class StarSysData
 {
     public int SysInt;
     public Vector3 Position;

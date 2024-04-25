@@ -65,6 +65,7 @@ public class StarSysSOImporter : EditorWindow
                     StarSysSO.StarType = GetMyStarTypeEnum(fields[7]);
                     StarSysSO.StarSprit = Resources.Load<Sprite>(imageString);
                     StarSysSO.Population = int.Parse(fields[6]);
+                    StarSysSO.Description = "descrition here...";
 
                     string assetPath = $"Assets/SO/StarSysSO/StarSysSO_{StarSysSO.StarSysInt}_{StarSysSO.SysName}.asset";
                     AssetDatabase.CreateAsset(StarSysSO, assetPath);

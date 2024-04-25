@@ -11,24 +11,21 @@ using UnityEngine.EventSystems;
 
 namespace Assets.Core
 {
-    public class FleetController : MonoBehaviour// IPointerEnterHandler, IPointerExitHandler
+    public class FleetController : MonoBehaviour
     {
         //Fields
-        [SerializeField]
-        //private Camera uiCamera;
+        //[SerializeField]
         public FleetData fleetData;
         public GameObject canvasFleetUI;
-        //public GameObject tooltipFleet;
+
         public GameObject buttonLoadFleetUI;
-        //public GameObject tooltipBackground;
+
         public List<StarSysData> systemsList;
         public List<ShipData> shipList;
         public Transform targetTrans;
         public float warpSpeed = 0f;
         public bool warpTravel = false;
-        //private float timeToWait = 0.5f;
-        //public event Action openFleetUI; // need to close any open fleetUI to make room for the current!!
-        //public event Action moveFleet; 
+
         public GameObject sysDropdownGO;
         public GameObject shipDropdownGO;
         [SerializeField]
@@ -40,18 +37,13 @@ namespace Assets.Core
         private Camera galaxyEventCamera;
         [SerializeField]
         private Canvas openFleetUIButtonCanvas;
-        
-        //private TMP_Text tooltipText;
-        //[SerializeField]
-        //private RectTransform backgroundRecTrans;
+       
 
         private void Start()
         {
             galaxyEventCamera = GameObject.FindGameObjectWithTag("Galactic Camera").GetComponent<Camera>() as Camera;
             openFleetUIButtonCanvas.worldCamera = galaxyEventCamera;
-            //uiCamera = Camera.main;
-            //tooltipText.text = "Testing Tooltip";
-            //backgroundRecTrans = tooltipBackground.transform.GetComponent<RectTransform>();
+
             systemsList = StarSysManager.instance.StarSysDataList;
             
             var sysDropdown = sysDropdownGO.GetComponent<TMP_Dropdown>();
@@ -82,9 +74,6 @@ namespace Assets.Core
             }
             DropdownItemSelected(shipDropdown);
             shipDropdown.onValueChanged.AddListener(delegate { DropdownItemSelected(shipDropdown); });
-           // tooltipBackground.SetActive(false);
-            
-            //ShowToolTipFleetName("FLEETNAME");
         }
         void DropdownItemSelected(TMP_Dropdown dropdown)
         {
@@ -102,23 +91,13 @@ namespace Assets.Core
 
             }
         }
-        //private void OnMouseEnter()
-        //{
-        //    ShowToolTipFleetName(fleetData.Name);
-        //}
-        //private void OnMouseExit()
-        //{
-        //    HideToolTipFleetName();
-        //}
         void Update()
         {
             if (fleetData != null)
             {
                 fleetData.Position = transform.position;
             }
-            //Vector2 localPoint;
-            //RectTransformUtility.ScreenPointToLocalPointInRectangle(transform.parent.GetComponent<RectTransform>(), Input.mousePosition, uiCamera, out localPoint);
-            //transform.localPosition = localPoint;
+ 
         }
         public void DropdownSystems(int index)
         {
@@ -126,8 +105,7 @@ namespace Assets.Core
             {
             
             }
-            //switch (index) 
-            //{ default:break; }
+
         }
         public void MoveFleet()
         {
@@ -157,31 +135,7 @@ namespace Assets.Core
         {
             canvasFleetUI.SetActive(false);
         }
-        //private void ShowToolTipFleetName(string tooltipString)
-        //{
-        //    tooltipFleet.SetActive(true);
-        //    tooltipText.text = tooltipString;
-        //    float textPaddingSize = 0.5f;
-        //    Vector2 background = new Vector2(tooltipText.preferredWidth + (textPaddingSize * 2f),
-        //        tooltipText.preferredHeight + (textPaddingSize * 2f));
-        //    backgroundRecTrans.sizeDelta = background;
-        //}
-        //private void HideToolTipFleetName()
-        //{
-        //    tooltipFleet.SetActive(false);
-        //    tooltipText.text = string.Empty;
-        //}
-        //private void OnEnable()
-        //{
-        //    //canvasFleetUI.SetActive(true);
-        //    if (fleetData != null)
-        //        fleetData.Position = transform.position;
-            
-        //}
-        //private void OnDisable()
-        //{
-           
-        //}
+
         void OnTriggerEnter(Collider collider)
         {
 
@@ -194,22 +148,6 @@ namespace Assets.Core
             
         }
 
-        //void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)
-        //{
-        //    StopAllCoroutines();
-        //    StartCoroutine(StartTimer());
-        //}
-
-        //void IPointerExitHandler.OnPointerExit(PointerEventData eventData)
-        //{
-        //    StopAllCoroutines();
-        //    HoverTipManager.OnMouseLoseFocus();
-        //}
-        //private IEnumerator StartTimer()
-        //{
-        //    yield return new WaitForSeconds(timeToWait);
-        //    tooltipBackground.SetActive(true);
-        //}
     }
 
 }

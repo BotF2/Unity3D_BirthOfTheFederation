@@ -7,12 +7,12 @@ using UnityEngine.UI;
 
 public class ToolTipController : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    public TextMeshProUGUI FleetName;
-    public TextMeshProUGUI FleetDetail;
+    public TextMeshProUGUI Name;
+    public TextMeshProUGUI Detail;
 
     void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)
     {
-        HoverManager.instance.ShowTip(FleetName.text, FleetDetail.text);
+        HoverManager.instance.ShowTip(Name.text, Detail.text);
     }
 
     void IPointerExitHandler.OnPointerExit(PointerEventData eventData)

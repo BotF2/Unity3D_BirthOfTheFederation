@@ -17,4 +17,5 @@ public class StarSysSO : ScriptableObject
     public StarType StarType;
     public Sprite StarSprit;
     public int Population;
+    public string Description;
 }

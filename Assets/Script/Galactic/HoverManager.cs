@@ -9,8 +9,8 @@ public class HoverManager : MonoBehaviour
     public static HoverManager instance;
     public Canvas parentCanvas;
     public Transform ToolTipTrans;
-    public TextMeshProUGUI FleetName;
-    public TextMeshProUGUI FleetDescription;
+    public TextMeshProUGUI Name;
+    public TextMeshProUGUI Description;
 
     private void Awake()
     {    
@@ -25,10 +25,14 @@ public class HoverManager : MonoBehaviour
         }
     }
 
-    public void ShowTip(string fleetName, string fleetDetail) //TextMeshProUGUI mouseOverText, GameObject background)//Vector2 position, GameObject background)
+    public void ShowTip(string name, string description) //TextMeshProUGUI mouseOverText, GameObject background)//Vector2 position, GameObject background)
     {
-        FleetName.text = fleetName;
-        FleetDescription.text = fleetDetail;
+        TextMeshProUGUI aName = new TextMeshProUGUI();
+        aName.text = name;
+        Name = aName;
+        TextMeshProUGUI aDescription = new TextMeshProUGUI();
+        aDescription.text = description;
+        Description = aDescription;
         ToolTipTrans.gameObject.SetActive(true);
 
     }

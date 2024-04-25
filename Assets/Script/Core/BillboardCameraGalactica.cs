@@ -6,14 +6,13 @@ namespace Assets.Core
 {
     public class BillboardCameraGalactica : MonoBehaviour
     {
-        //// use on system sprit
-        public Camera cameraGal;
+        private Camera cameraGal;
 
         void Start()
         {
             foreach (Camera camera in Camera.allCameras)
             {
-                if (camera.tag == "MainCamera")
+                if (camera.tag == "Galactic Camera")
                 {
                     cameraGal = camera;
                 }
