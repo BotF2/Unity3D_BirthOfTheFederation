@@ -10,7 +10,7 @@ public class HoverManager : MonoBehaviour
     public Canvas parentCanvas;
     public Transform ToolTipTrans;
     public TextMeshProUGUI Name;
-    public TextMeshProUGUI Description;
+    //public TextMeshProUGUI Description;
 
     private void Awake()
     {    
@@ -25,19 +25,14 @@ public class HoverManager : MonoBehaviour
         }
     }
 
-    public void ShowTip(string name, string description) //TextMeshProUGUI mouseOverText, GameObject background)//Vector2 position, GameObject background)
+    public void ShowTip( string name) //, string description) 
     {
-        TextMeshProUGUI aName = new TextMeshProUGUI();
-        aName.text = name;
-        Name = aName;
-        TextMeshProUGUI aDescription = new TextMeshProUGUI();
-        aDescription.text = description;
-        Description = aDescription;
         ToolTipTrans.gameObject.SetActive(true);
-
+        Name.text = name;
     }
     public void HidTip() 
     {
+        Name.text = string.Empty;
         ToolTipTrans.gameObject.SetActive(false);
     }
     private void Update()

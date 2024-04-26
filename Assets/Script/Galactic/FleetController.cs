@@ -14,7 +14,7 @@ namespace Assets.Core
     public class FleetController : MonoBehaviour
     {
         //Fields
-        //[SerializeField]
+
         public FleetData fleetData;
         public GameObject canvasFleetUI;
 

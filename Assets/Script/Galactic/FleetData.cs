@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Assets.Core
 {
-    public class FleetData // : MonoBehaviour
+    public class FleetData
     {
         public int CivIndex;
         public Sprite Insignia;

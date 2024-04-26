@@ -15,4 +15,10 @@ MonoBehaviour:
   CivIndex: 21
   Insignia: {fileID: 21300000, guid: bcfbab117900fcd46a3d3cadb1e55d74, type: 3}
   CivOwnerEnum: 21
+  Location: {x: 0, y: 0, z: 0}
+  ShipsList: []
+  WarpFactor: 0
   DefaultWarpFactor: 0
+  Name: 
+  Description: description here
+  Destination: {fileID: 0}

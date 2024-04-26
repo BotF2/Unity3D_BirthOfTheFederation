@@ -41,7 +41,7 @@ public class FleetSOImporter : EditorWindow
         {
             string[] fields = line.Split(',');
 
-            if (fields.Length == 4) // Ensure there are enough fields
+            if (fields.Length == 5) // Ensure there are enough fields
             {
                 string imageString = fields[1];
                 foreach (string file in Directory.GetFiles($"Assets/Resources/Insignias/", "*.png"))
@@ -61,7 +61,7 @@ public class FleetSOImporter : EditorWindow
                 fleet.Insignia = Resources.Load<Sprite>(imageString);
                 fleet.CivOwnerEnum = GetMyCivEnum(fields[2]);
                 fleet.DefaultWarpFactor = float.Parse(fields[3]);
-
+                fleet.Description = fields[4];
                 string assetPath = $"Assets/SO/FleetSO/FleetSO_{fleet.CivIndex}_{fleet.CivOwnerEnum}.asset";
                 AssetDatabase.CreateAsset(fleet, assetPath);
                 AssetDatabase.SaveAssets();
