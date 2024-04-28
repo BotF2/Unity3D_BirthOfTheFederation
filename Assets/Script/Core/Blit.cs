@@ -12,7 +12,7 @@ namespace Assets.Core
 	 * https://github.com/Unity-Technologies/UniversalRenderingExamples/tree/master/Assets/Scripts/Runtime/RenderPasses
 	 * 
 	 * Extended to allow for :
-	 * - Specific access to selecting a source and destination (via current galaxyEventCamera's color / texture id / render texture object
+	 * - Specific access to selecting a source and Destination (via current galaxyEventCamera's color / texture id / render texture object
 	 * - Automatic switching to using _AfterPostProcessTexture for After Rendering event, in order to correctly handle the blit after post processing is applied
 	 * - Setting a _InverseView matrix (cameraToWorldMatrix), for shaders that might need it to handle calculations from screen space to world.
 	 * 		e.g. Reconstruct world pos from depth : https://www.cyanilux.com/tutorials/depth/#blit-perspective 
@@ -86,8 +86,8 @@ namespace Assets.Core
 					cmd.GetTemporaryRT(m_DestinationTexture.id, opaqueDesc, filterMode);
 				}
 
-				//Debug.Log($"src = {source},     dst = {destination} ");
-				// Can't read and write to same color destination, use a TemporaryRT
+				//Debug.Log($"src = {source},     dst = {Destination} ");
+				// Can't read and write to same color Destination, use a TemporaryRT
 				if (source == destination || (settings.srcType == settings.dstType && settings.srcType == Target.CameraColor))
 				{
 					cmd.GetTemporaryRT(m_TemporaryColorTexture.id, opaqueDesc, filterMode);
@@ -159,7 +159,7 @@ namespace Assets.Core
 
 			if (settings.Event == RenderPassEvent.AfterRenderingPostProcessing)
 			{
-				Debug.LogWarning("Note that the \"After Rendering Post Processing\"'s Color destination doesn't seem to work? (or might work, but doesn't contain the post processing) :( -- Use \"After Rendering\" instead!");
+				Debug.LogWarning("Note that the \"After Rendering Post Processing\"'s Color Destination doesn't seem to work? (or might work, but doesn't contain the post processing) :( -- Use \"After Rendering\" instead!");
 			}
 
 			if (settings.graphicsFormat == UnityEngine.Experimental.Rendering.GraphicsFormat.None)

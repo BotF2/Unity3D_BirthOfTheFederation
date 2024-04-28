@@ -12,7 +12,7 @@ namespace Assets.Core
         public CivEnum CivOwnerEnum;
         public Vector3 Position;
         public List<Ship> ShipsList;
-        public float WarpFactor;
+        public float MaxWarpFactor;
         public float DefaultWarpFactor;
         public string CivLongName;
         public string CivShortName;

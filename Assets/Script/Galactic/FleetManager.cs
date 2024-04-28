@@ -59,7 +59,7 @@ namespace Assets.Core
                 fleetData.Position = position;
 
                 fleetData.ShipsList = fleetSO.ShipsList;
-                fleetData.WarpFactor = fleetSO.WarpFactor;
+                fleetData.MaxWarpFactor = fleetSO.WarpFactor;
                 fleetData.DefaultWarpFactor = fleetSO.DefaultWarpFactor;
                 fleetData.CivLongName = civSO.CivLongName;
                 fleetData.CivShortName = civSO.CivShortName;
@@ -115,7 +115,7 @@ namespace Assets.Core
             Vector3[] linePoints = new Vector3[] { fleetNewGameOb.transform.position, 
                 new Vector3(fleetData.Position.x, galaxyImage.transform.position.y, fleetData.Position.z) };
             line.SetPositions(linePoints);
-          
+          //  fleetNewGameOb.GetComponent<FleetController>().lineRenderer = line;
             TextMeshProUGUI[] TheText = fleetNewGameOb.GetComponentsInChildren<TextMeshProUGUI>();
             foreach (var OneTmp in TheText)
             {

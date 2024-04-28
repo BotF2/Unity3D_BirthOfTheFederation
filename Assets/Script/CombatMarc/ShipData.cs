@@ -5,6 +5,7 @@ using UnityEngine;
 public class ShipData : MonoBehaviour
 {
     public string shipName; // Start is called before the first frame update
+    public float maxWarpFactor;
 
     void Start()
     {

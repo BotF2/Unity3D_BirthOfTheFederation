@@ -32,7 +32,7 @@ namespace Assets.Core
             //    {
             //        FindTargetNearTorpedo(theLocalTargetList);
             //    }
-            //    if (destination == null)
+            //    if (Destination == null)
             //    {
             //        Destroy(gameObject, 0.3f);
             //    }
@@ -41,13 +41,13 @@ namespace Assets.Core
 
         private void FixedUpdate()
         {
-            //if (destination != null && homingTorpedo != null)
+            //if (Destination != null && homingTorpedo != null)
             //{
-            //    var targetRotation = Quaternion.LookRotation(destination.position - transform.position);
+            //    var targetRotation = Quaternion.LookRotation(Destination.position - transform.position);
             //    homingTorpedo.MoveRotation(Quaternion.RotateTowards(transform.rotation, targetRotation, turnRate));
             //    transform.Translate(Vector3.forward * speed * Time.deltaTime * 3);
             //}
-            //if (destination == null)
+            //if (Destination == null)
             //{
             //    Destroy(gameObject);
             //}
@@ -70,7 +70,7 @@ namespace Assets.Core
         //            if (diff < distance)
         //            {
         //                distance = diff;
-        //                destination = possibleTarget.transform;
+        //                Destination = possibleTarget.transform;
         //            }
         //        }
         //    }

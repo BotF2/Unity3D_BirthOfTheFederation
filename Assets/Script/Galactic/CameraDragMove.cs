@@ -1,7 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
-public class CameraDragMove : MonoBehaviour
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
+using UnityEngine.UI;
+
+public class CameraDragMove : MonoBehaviour //, IPointerClickHandler
 {
     // Button Input Vars
     public float panSpeed = 400f;
@@ -13,20 +18,34 @@ public class CameraDragMove : MonoBehaviour
     public float maxX = 600f;
     public float minZ = -1140f;
     public float maxZ = 500f;
+    //private bool dragging = true;
+    //private GameObject drag_element;
+    //public GameObject ui_Canvas;
+    //private GraphicRaycaster ui_Raycaster;
+    //PointerEventData click_data;
+    //List<RaycastResult> click_results;
+    //List<GameObject> click_objects;
+
 
     // Mouse Input Vars
     private Vector3 dragOrigin;
     private Vector3 cameraDragOrigin;
     private Vector3 currentPosition;
+    private Vector3 lastMousePosition;
 
+    private void Start()
+    {
+
+    }
     void Update()
     {
+
         ButtonInputs();
         MouseInputs();
         ZoomCamera();
+            
     }
 
-    // Take x and z inputs and translate based on galaxyEventCamera rotation
     private void MoveCamera(float xInput, float zInput)
     {
         float zMove = Mathf.Cos(transform.eulerAngles.y * Mathf.PI / 180) * zInput - Mathf.Sin(transform.eulerAngles.y * Mathf.PI / 180) * xInput;
@@ -34,7 +53,7 @@ public class CameraDragMove : MonoBehaviour
 
         transform.position = transform.position + new Vector3(xMove, 0, zMove);
     }
-    Vector3 lastMousePosition;
+
 
     // Get mouse drag inputs
 
@@ -42,6 +61,10 @@ public class CameraDragMove : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            //if (EventSystem.current.IsPointerOverGameObject())
+            //{
+            //    return; // If it's over a UI element, don't move the camera
+            //}
             lastMousePosition = Input.mousePosition;
         }
         else if (Input.GetMouseButton(0))
@@ -56,7 +79,6 @@ public class CameraDragMove : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
         }
-
     }
 
     // get keyboard inputs
@@ -100,5 +122,24 @@ public class CameraDragMove : MonoBehaviour
         transform.position = pos;
     }
 
+    //public void OnPointerClick(PointerEventData eventData)
+    //{
+    //    if (Input.GetMouseButtonDown(0))
+    //    {
+    //        lastMousePosition = Input.mousePosition;
+    //    }
+    //    else if (Input.GetMouseButton(0))
+    //    {
+    //        Vector3 delta = (Input.mousePosition - lastMousePosition) / mouseSpeed;
+
+    //        MoveCamera(delta.x, delta.y);
+
+    //        lastMousePosition = Input.mousePosition;
+    //    }
+
+    //    if (Input.GetMouseButtonUp(0))
+    //    {
+    //    }
+    //}
 }
 

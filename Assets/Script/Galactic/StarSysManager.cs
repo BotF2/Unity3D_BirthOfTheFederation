@@ -44,9 +44,7 @@ namespace Assets.Core
         }
         public void CreateGameSystems(List<CivSO> civSOList)
         {
-            //eventCamera = GetComponent(Canvas).World;
-            //List<StarSysData> starSysDatas = new List<StarSysData>();
-            //starSysDataList = starSysDatas;
+
             foreach (var civSO in civSOList)
             {
                 StarSysSO starSysSO = GetStarSObyInt(civSO.CivInt);

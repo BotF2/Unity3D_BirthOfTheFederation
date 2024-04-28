@@ -62,7 +62,7 @@ public class TimeManager : MonoBehaviour
             {
                 //for (int i = 0; i < GalaxyView._movingGalaxyObjects.Count; i++)
                 //{
-                //    MoveGalacticObjects myMoveGalactic = GalaxyView._movingGalaxyObjects[i].GetComponent<MoveGalacticObjects>();
+                //    MoveFleets myMoveGalactic = GalaxyView._movingGalaxyObjects[i].GetComponent<MoveFleets>();
                 //    myMoveGalactic.ThrustVector(); // move galaxy objects
                 //                                   // myMoveGalactic.MovePlanePoint(); // move objects plane endpoints
                 //}

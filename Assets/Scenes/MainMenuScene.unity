@@ -2742,8 +2742,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 101, y: -9.379999}
-  m_SizeDelta: {x: 200, y: 16.76}
+  m_AnchoredPosition: {x: 45.795, y: -9.379999}
+  m_SizeDelta: {x: 89.59, y: 16.76}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &888492891
 MonoBehaviour:
@@ -5624,7 +5624,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 18.76}
+  m_SizeDelta: {x: 91.59, y: 18.76}
   m_Pivot: {x: 0, y: 0}
 --- !u!225 &1780655378
 CanvasGroup:
@@ -5650,7 +5650,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HorizontalFit: 0
+  m_HorizontalFit: 2
   m_VerticalFit: 2
 --- !u!114 &1780655380
 MonoBehaviour:
@@ -5673,7 +5673,7 @@ MonoBehaviour:
   m_Spacing: 0
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
-  m_ChildControlWidth: 0
+  m_ChildControlWidth: 1
   m_ChildControlHeight: 1
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
