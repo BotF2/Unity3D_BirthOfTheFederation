@@ -64,7 +64,7 @@ namespace Assets.Core
                 fleetData.CivLongName = civSO.CivLongName;
                 fleetData.CivShortName = civSO.CivShortName;
                 fleetData.Description = fleetSO.Description;
-
+                fleetData.Name = "place holder";
                 if (!FleetDictionary.ContainsKey(civSO.CivEnum))
                 {
                     List<FleetData> listA = new List<FleetData>() { fleetData };
@@ -74,7 +74,7 @@ namespace Assets.Core
                 if (fleetData.Name != "999")
                 {
                     // not fully tested until we get more fleets
-                    fleetData.Name = "998";
+                    //fleetData.Name = "998";
                     GetFleetName(civSO.CivEnum);
                     InstantiateFleet(fleetData, position);
                 }
@@ -84,23 +84,29 @@ namespace Assets.Core
         private void GetFleetName(Assets.Core.CivEnum civEnum)
         {
             var listFleetData = FleetDictionary[civEnum];
-            List<int> ints = new List<int>();
-            for (int j = 0 ; j < listFleetData.Count; j++)
+            List<int> ints = new List<int>() { 999};
+
+            if (listFleetData != null)
             {
-               // if (listFleetData[j].Name != "998")
+                for (int j = 0; j < listFleetData.Count; j++) // build the list of int names
+                {
+                    // if (listFleetData[j].Name != "998")
                     ints.Add(int.Parse(listFleetData[j].Name));
+                }
+                for (int i = 0; i < listFleetData.Count; i++)
+                {
+                    if (!ints.Contains(i + 1))
+                    {
+                        listFleetData[i].Name = (i + 1).ToString();
+                    }
+                    //else if (listFleetData[i].Name == "998")
+                    //{
+                    //    listFleetData[i].Name = (i + 1).ToString();
+                    //}
+                }
+
             }
-            for (int i = 0; i < listFleetData.Count; i++)
-            {
-                if (!ints.Contains(i +1))
-                {
-                    listFleetData[i].Name = (i+1).ToString();
-                }
-                else if (listFleetData[i].Name == "998")
-                {
-                    listFleetData[i].Name = (i+1).ToString();
-                }
-            }          
+          
         }
         public void InstantiateFleet(FleetData fleetData, Vector3 position)
         {
@@ -110,7 +116,8 @@ namespace Assets.Core
             fleetNewGameOb.transform.SetParent(galaxyCenter.transform, true);
             fleetNewGameOb.transform.localScale = new Vector3(1, 1, 1);
 
-            fleetNewGameOb.name = fleetData.CivOwnerEnum.ToString() + "Fleet"; // game object name
+            fleetNewGameOb.name = fleetData.CivOwnerEnum.ToString() + "Fleet" + fleetData.Name; // game object Name
+            
             var line = fleetNewGameOb.GetComponent<LineRenderer>();
             Vector3[] linePoints = new Vector3[] { fleetNewGameOb.transform.position, 
                 new Vector3(fleetData.Position.x, galaxyImage.transform.position.y, fleetData.Position.z) };
@@ -155,7 +162,7 @@ namespace Assets.Core
             //fleetNameText.text = fleetData.Name;
             //fleetDescriptionText.text = fleetData.Description;
 
-            // Find the child GameObject by name
+            // Find the child GameObject by Name
             Transform canvasTransFleetUI = fleetNewGameOb.transform.Find("CanvasFleetUI");
             // Check if the child GameObject exists
             if (canvasTransFleetUI != null)

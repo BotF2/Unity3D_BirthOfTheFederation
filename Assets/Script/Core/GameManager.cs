@@ -1035,7 +1035,7 @@ namespace Assets.Core
         //public void GalaxyPlayClicked() // BOLDLY GO button in Main Menu
         //{
 
-        //    Debug.Log("civManager " + civManager.gameObject.name);
+        //    Debug.Log("civManager " + civManager.gameObject.Name);
 
         //    civManager.CreateNewGame(0); // (int)_galaxySize);
         //    //PanelGalaxy.SetActive(true);
@@ -2218,7 +2218,7 @@ namespace Assets.Core
 
             //    Ship.SetLayerRecursively(animationEmtpy, friendShipLayer);
 
-            //    if (ShipDataDictionary.TryGetValue(_tempPrefabFriend.name.ToUpper(), out int[] _result))
+            //    if (ShipDataDictionary.TryGetValue(_tempPrefabFriend.Name.ToUpper(), out int[] _result))
             //    {
             //        _tempPrefabFriend.GetComponent<Ship>()._shieldsMaxHealth = _result[0];
             //        _tempPrefabFriend.GetComponent<Ship>()._hullMaxHealth = _result[1];
@@ -2264,7 +2264,7 @@ namespace Assets.Core
 
             //    Ship.SetLayerRecursively(animationEmtpy, enemyShipLayer);
 
-            //    if (ShipDataDictionary.TryGetValue(_tempPrefabEnemy.name.ToUpper(), out int[] _result))
+            //    if (ShipDataDictionary.TryGetValue(_tempPrefabEnemy.Name.ToUpper(), out int[] _result))
             //    {
             //        _tempPrefabEnemy.GetComponent<Ship>()._shieldsMaxHealth = _result[0];
             //        _tempPrefabEnemy.GetComponent<Ship>()._hullMaxHealth = _result[1];

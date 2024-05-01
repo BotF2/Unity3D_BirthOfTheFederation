@@ -2525,6 +2525,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 375c4de48bdc9b846863cda91b3ffa25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fleetUIRoot: {fileID: 0}
   canvasFleetUI: {fileID: 1204232854353308018}
   buttonLoadFleetUI: {fileID: 7225562654891661270}
   warpSlider: {fileID: 4400818235207676759}
@@ -2534,10 +2535,12 @@ MonoBehaviour:
   Destination: {fileID: 0}
   sysDropdownGO: {fileID: 559648997233106117}
   shipDropdownGO: {fileID: 3452538722262010369}
+  fleetDropLine: {fileID: 0}
+  lineRenderer: {fileID: 0}
   dropdownSysText: {fileID: 7651716195551521239}
   dropdownShipText: {fileID: 2583217754347498978}
+  sysDestination: {fileID: 0}
   openFleetUIButtonCanvas: {fileID: 1856832514956075702}
-  rootUICanvas: {fileID: 1270089677768189546}
 --- !u!1 &4036601662237491984
 GameObject:
   m_ObjectHideFlags: 0

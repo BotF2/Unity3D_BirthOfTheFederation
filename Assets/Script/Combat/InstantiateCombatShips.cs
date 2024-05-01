@@ -835,9 +835,9 @@ namespace Assets.Core
                 //if (_utilityShips != 0 && _capitalShips != 0) // if so then capital ships come in before utility / colonyships ships
                 //{
 
-                //    if (shipGameOb.name.ToUpper().Contains("CRUISER") || shipGameOb.name.ToUpper().Contains("LTCRUISER")
-                //            || shipGameOb.name.ToUpper().Contains("HVYCRUISER") || shipGameOb.name.ToUpper().Contains("COLONYSHIP")
-                //            || shipGameOb.name.ToUpper().Contains("TRANSPORT") || shipGameOb.name.ToUpper().Contains("CONSTRUCTION"))
+                //    if (shipGameOb.Name.ToUpper().Contains("CRUISER") || shipGameOb.Name.ToUpper().Contains("LTCRUISER")
+                //            || shipGameOb.Name.ToUpper().Contains("HVYCRUISER") || shipGameOb.Name.ToUpper().Contains("COLONYSHIP")
+                //            || shipGameOb.Name.ToUpper().Contains("TRANSPORT") || shipGameOb.Name.ToUpper().Contains("CONSTRUCTION"))
                 //    {
                 //        if (_aFriend)
                 //        {

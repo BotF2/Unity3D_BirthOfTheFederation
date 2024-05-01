@@ -112,7 +112,7 @@ namespace Assets.Core
             {
                 if (oneRenderer != null)
                 {
-                    //if (oneRenderer.name == "CivRaceSprite")
+                    //if (oneRenderer.Name == "CivRaceSprite")
                     //{
                     //    oneRenderer.sprite = civSO.CivImage; // ok
                     //}
@@ -136,7 +136,7 @@ namespace Assets.Core
             ourDropLine.SetUpLine(points);
             StarSysController controller = starSystemNewGameOb.GetComponentInChildren<StarSysController>();
             controller.starSysData = sysData;
-            // Find the child GameObject by name
+            // Find the child GameObject by Name
             Transform canvasTrans = starSystemNewGameOb.transform.Find("CanvasSysButton");
             // Check if the child GameObject exists
             if (canvasTrans != null)

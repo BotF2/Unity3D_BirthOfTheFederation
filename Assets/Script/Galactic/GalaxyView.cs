@@ -394,7 +394,7 @@ namespace GalaxyMap
             foreach (KeyValuePair<int, String[]> elements in SystemDataDictionary)
             {
                 _systemCivData = elements.Value;
-                ourCivNames.Add(_systemCivData[5]); // civ name is element five
+                ourCivNames.Add(_systemCivData[5]); // civ Name is element five
             }
             //switch (GameManager._galaxySize) // do we need this??? NO, it is numStars
             //{

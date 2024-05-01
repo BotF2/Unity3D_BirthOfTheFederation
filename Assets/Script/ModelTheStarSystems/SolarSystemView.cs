@@ -212,7 +212,7 @@ namespace Assets.Core
                         //gameObject.transform.SetParent(transformParent, false);
                         //gameObject.transform.Position = orbitalG.Position / zoomLevels;
                         //gameObject.layer = 5; // UI
-                        //gameObject.name = "Orbital";
+                        //gameObject.Name = "Orbital";
                         //// orbitalGameObjectMap.Add(orbitalG, gameObject);
 
                         //SpriteRenderer moonRenderer = gameObject.AddComponent<SpriteRenderer>();

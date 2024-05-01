@@ -9,7 +9,7 @@ namespace Assets.Core
     public class LobbyOptions : MonoBehaviour
     {
         // Single Player and MultiPalyer buttons wired in Unity editor, not a button click method here like load, save & exit
-        // ToDo: menu for Multiplayer, Saved games with name enter and or Load games and something for the settings and credit button
+        // ToDo: menu for Multiplayer, Saved games with Name enter and or Load games and something for the settings and credit button
 
         public void OnSaveClicked()
         {

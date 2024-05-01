@@ -17,6 +17,7 @@ namespace Assets.Core
 
         //Fields
         public FleetData fleetData;
+        public GameObject fleetUIRoot;
         public GameObject canvasFleetUI;
         public GameObject buttonLoadFleetUI;
         [SerializeField]
@@ -35,7 +36,6 @@ namespace Assets.Core
         private float maxWarpFactor;
        // public bool warpTravel = false;// do we need this warp factor >0
         private Rigidbody rb;
-
         public GameObject sysDropdownGO;
         public GameObject shipDropdownGO;
         public GameObject fleetDropLine;
@@ -44,8 +44,11 @@ namespace Assets.Core
         private TMP_Text dropdownSysText;
         [SerializeField]
         private TMP_Text dropdownShipText;
+        [SerializeField]
         private TMP_Text sysDestination;
-       
+        [SerializeField]
+        private string Name;
+
         private Camera galaxyEventCamera;
         [SerializeField]
         private Canvas openFleetUIButtonCanvas;
@@ -93,8 +96,18 @@ namespace Assets.Core
             }
             DropdownItemSelected(shipDropdown);
             shipDropdown.onValueChanged.AddListener(delegate { DropdownItemSelected(shipDropdown); });
-            
+            Name = fleetData.Name;
         }
+
+        //void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)
+        //{
+        //    FleetUIManager.instance.LoadFleetUI(); //, Description.text);
+        //}
+
+        //void IPointerExitHandler.OnPointerExit(PointerEventData eventData)
+        //{
+        //    FleetUIManager.instance.UnLoadFleetUI();
+        //}
         void DropdownItemSelected(TMP_Dropdown dropdown)
         {
             int index = dropdown.value;
@@ -177,12 +190,12 @@ namespace Assets.Core
         }
         public void LoadFleetUI()
         {
-             canvasFleetUI.SetActive(true);
+            FleetUIManager.instance.LoadFleetUI(Name);
         }
-        public void UnLoadFleetUI()
-        {
-            canvasFleetUI.SetActive(false);
-        }
+        //public void UnLoadFleetUI()
+        //{
+        //    fleetUIRoot.SetActive(false);
+        //}
 
         void OnTriggerEnter(Collider collider)
         {

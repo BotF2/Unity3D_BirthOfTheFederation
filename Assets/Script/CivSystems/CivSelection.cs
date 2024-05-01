@@ -58,7 +58,7 @@ namespace Assets.Core
         //}
         //public void ActiveToggle()
         //{
-        //    switch (_activeToggle.name.ToUpper())
+        //    switch (_activeToggle.Name.ToUpper())
         //    {
         //        //case "TOGGLE_FED":
         //        //    Fed = _activeToggle;

@@ -143,7 +143,7 @@ namespace Assets.Core
         }
         void Start()
         {
-            //_whoIAm = MyCivilization(this.name);
+            //_whoIAm = MyCivilization(this.Name);
             _shieldsCurrentHealth = _shieldsMaxHealth;
             //InvokeRepeating("Regenerate", _shieldsRegeneratRate, _shieldsRegeneratRate); // see Regenerate method below
             shieldsAreUp = true;
