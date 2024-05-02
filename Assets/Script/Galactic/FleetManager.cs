@@ -64,7 +64,7 @@ namespace Assets.Core
                 fleetData.CivLongName = civSO.CivLongName;
                 fleetData.CivShortName = civSO.CivShortName;
                 fleetData.Description = fleetSO.Description;
-                fleetData.Name = "place holder";
+                fleetData.Name = "998";
                 if (!FleetDictionary.ContainsKey(civSO.CivEnum))
                 {
                     List<FleetData> listA = new List<FleetData>() { fleetData };
@@ -99,10 +99,10 @@ namespace Assets.Core
                     {
                         listFleetData[i].Name = (i + 1).ToString();
                     }
-                    //else if (listFleetData[i].Name == "998")
-                    //{
-                    //    listFleetData[i].Name = (i + 1).ToString();
-                    //}
+                    else if (listFleetData[i].Name == "998")
+                    {
+                        listFleetData[i].Name = (i + 1).ToString();
+                    }
                 }
 
             }
@@ -167,9 +167,9 @@ namespace Assets.Core
             // Check if the child GameObject exists
             if (canvasTransFleetUI != null)
             {
-                controller.canvasFleetUI = canvasTransFleetUI.gameObject;
+                controller.canvasFleetUIButton = canvasTransFleetUI.gameObject;
             }
-            controller.canvasFleetUI.SetActive(false);
+            controller.canvasFleetUIButton.SetActive(false);
             Transform canvasTransButton = fleetNewGameOb.transform.Find("CanvasFeetUIButton");
             // Check if the child GameObject exists
             if (canvasTransButton != null)

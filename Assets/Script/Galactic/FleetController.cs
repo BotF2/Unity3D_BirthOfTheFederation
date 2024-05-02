@@ -18,14 +18,14 @@ namespace Assets.Core
         //Fields
         public FleetData fleetData;
         public GameObject fleetUIRoot;
-        public GameObject canvasFleetUI;
+        public GameObject canvasFleetUIButton;
         public GameObject buttonLoadFleetUI;
-        [SerializeField]
-        private Slider warpSlider;
-        [SerializeField]
-        private TextMeshProUGUI warpSliderText;
-        [SerializeField]
-        private float maxSliderValue = 100.0f;
+        //[SerializeField]
+        //private Slider warpSlider;
+        //[SerializeField]
+        //private TextMeshProUGUI warpSliderText;
+        //[SerializeField]
+        //private float maxSliderValue = 100.0f;
         public List<StarSysData> systemsList;
         public List<ShipData> shipList;
         private bool deltaShipList = false; //??? do I need this or the shipdropdown listener
@@ -61,7 +61,14 @@ namespace Assets.Core
         private void Start()
         {
             rb = GetComponentInParent<Rigidbody>();
-            warpSlider = GetComponentInChildren<Slider>();
+            var buttons = GetComponentsInChildren<Button>();
+            foreach (var item in buttons)
+            {
+                if (item.name == "Button Load FleetUI")
+                    buttonLoadFleetUI = item.gameObject;
+            }
+            canvasFleetUIButton = GetComponentInChildren<Canvas>().gameObject;
+            //warpSlider = GetComponentInChildren<Slider>();
             //warpSlider.onValueChanged.AddListener((v) => { warpSliderText.text = v.ToString("0.00"); });
             galaxyEventCamera = GameObject.FindGameObjectWithTag("Galactic Camera").GetComponent<Camera>() as Camera;
             openFleetUIButtonCanvas.worldCamera = galaxyEventCamera;
@@ -97,17 +104,10 @@ namespace Assets.Core
             DropdownItemSelected(shipDropdown);
             shipDropdown.onValueChanged.AddListener(delegate { DropdownItemSelected(shipDropdown); });
             Name = fleetData.Name;
+            sysDestination.text = Destination.gameObject.name;
+
         }
 
-        //void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)
-        //{
-        //    FleetUIManager.instance.LoadFleetUI(); //, Description.text);
-        //}
-
-        //void IPointerExitHandler.OnPointerExit(PointerEventData eventData)
-        //{
-        //    FleetUIManager.instance.UnLoadFleetUI();
-        //}
         void DropdownItemSelected(TMP_Dropdown dropdown)
         {
             int index = dropdown.value;
@@ -160,12 +160,12 @@ namespace Assets.Core
         //{
         //    WarpFactor = warpFactor;
         //}
-        public void WarpSliderChange(float value)
-        {
-            float localValue = value* maxSliderValue;
-            warpSliderText.text = localValue.ToString("0.00");
-            WarpFactor = value;
-        }
+        //public void WarpSliderChange(float value)
+        //{
+        //    float localValue = value* maxSliderValue;
+        //    warpSliderText.text = localValue.ToString("0.00");
+        //    WarpFactor = value;
+        //}
         void AddToShipList(ShipData ship)
         {
             shipList.Add(ship);
@@ -190,7 +190,7 @@ namespace Assets.Core
         }
         public void LoadFleetUI()
         {
-            FleetUIManager.instance.LoadFleetUI(Name);
+            FleetUIManager.instance.LoadFleetUI(fleetData.CivOwnerEnum.ToString() + " Fleet " + Name, sysDestination.text );
         }
         //public void UnLoadFleetUI()
         //{

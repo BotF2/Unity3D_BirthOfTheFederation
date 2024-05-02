@@ -143,7 +143,7 @@ namespace Assets.Core
             {
                 // Is there a UI game object we need to turn on and off
                 //controller.c = canvasTrans.gameObject;
-                //controller.canvasFleetUI.SetActive(false);
+                //controller.canvasFleetUIbutton.SetActive(false);
             }
             Transform canvasTransButton = starSystemNewGameOb.transform.Find("Canvas Load FleetUI");
             // Check if the child GameObject exists

@@ -19,7 +19,8 @@ public class FleetUIManager : MonoBehaviour
     [SerializeField]
     private float maxSliderValue = 100.0f;
     public List<StarSysData> systemsList;
-    public List<ShipData> shipList;
+    [SerializeField]
+    private List<ShipData> shipList;
     private bool deltaShipList = false; //??? do I need this or the shipdropdown listener
     //public Transform Destination;
     private float WarpFactor = 9;
@@ -31,7 +32,7 @@ public class FleetUIManager : MonoBehaviour
     public GameObject sysDropdownGO;
     public GameObject shipDropdownGO;
     [SerializeField]
-    private string Name;
+    private TMP_Text Name;
     [SerializeField]
     private TMP_Text dropdownSysText;
     [SerializeField]
@@ -41,7 +42,7 @@ public class FleetUIManager : MonoBehaviour
 
     private Camera galaxyEventCamera;
     [SerializeField]
-    //private Canvas openFleetUIButtonCanvas;
+
     private void Awake()
     {
         if (instance != null)
@@ -57,11 +58,21 @@ public class FleetUIManager : MonoBehaviour
     private void Start()
     {
         fleetUIRoot.SetActive(false);
+        galaxyEventCamera = GameObject.FindGameObjectWithTag("Galactic Camera").GetComponent<Camera>() as Camera;
+        //Canvas FleetUICanvas = GameObject.FindGameObjectWithTag("CanvasFleetUI").GetComponent<Canvas>() as Canvas;
+        parentCanvas.worldCamera = galaxyEventCamera;
     }
-    public void LoadFleetUI(string name)
+    public void WarpSliderChange(float value)
+    {
+        float localValue = value * maxSliderValue;
+        warpSliderText.text = localValue.ToString("0.00");
+        WarpFactor = value;
+    }
+    public void LoadFleetUI(string name, string destination)
     {
         fleetUIRoot.SetActive(true);
-        FleetUIManager.instance.Name = name;
+        Name.text = name;
+        sysDestination.text = destination;
     }
     public void UnLoadFleetUI()
     {
