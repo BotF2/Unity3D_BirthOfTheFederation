@@ -163,13 +163,13 @@ namespace Assets.Core
             //fleetDescriptionText.text = fleetData.Description;
 
             // Find the child GameObject by Name
-            Transform canvasTransFleetUI = fleetNewGameOb.transform.Find("CanvasFleetUI");
-            // Check if the child GameObject exists
-            if (canvasTransFleetUI != null)
-            {
-                controller.canvasFleetUIButton = canvasTransFleetUI.gameObject;
-            }
-            controller.canvasFleetUIButton.SetActive(false);
+            //Transform canvasTransFleetUI = GameObject.FindGameObjectWithTag("fleetUIRoot").transform;
+            //// Check if the child GameObject exists
+            //if (canvasTransFleetUI != null)
+            //{
+            //    controller.canvasFleetUIButton = canvasTransFleetUI.gameObject;
+            //}
+            //controller.canvasFleetUIButton.SetActive(false);
             Transform canvasTransButton = fleetNewGameOb.transform.Find("CanvasFeetUIButton");
             // Check if the child GameObject exists
             if (canvasTransButton != null)

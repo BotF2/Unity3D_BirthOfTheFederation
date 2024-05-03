@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Galactic Camera
+  - WarpSliderHandle
+  - GalacticCamera
+  - GalacticCanvas
+  - Galatic Camera
+  - fleetUIRoot
   layers:
   - Default
   - TransparentFX

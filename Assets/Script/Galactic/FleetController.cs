@@ -13,12 +13,11 @@ namespace Assets.Core
 {
 
     public class FleetController : MonoBehaviour
-    {
-
+    { 
         //Fields
         public FleetData fleetData;
         public GameObject fleetUIRoot;
-        public GameObject canvasFleetUIButton;
+        //public GameObject canvasFleetUIButton;
         public GameObject buttonLoadFleetUI;
         //[SerializeField]
         //private Slider warpSlider;
@@ -36,7 +35,7 @@ namespace Assets.Core
         private float maxWarpFactor;
        // public bool warpTravel = false;// do we need this warp factor >0
         private Rigidbody rb;
-        public GameObject sysDropdownGO;
+        public GameObject destinationDropdownGO;
         public GameObject shipDropdownGO;
         public GameObject fleetDropLine;
         public LineRenderer lineRenderer;
@@ -67,24 +66,25 @@ namespace Assets.Core
                 if (item.name == "Button Load FleetUI")
                     buttonLoadFleetUI = item.gameObject;
             }
-            canvasFleetUIButton = GetComponentInChildren<Canvas>().gameObject;
+            //canvasFleetUIButton = GetComponentInChildren<Canvas>().gameObject;
             //warpSlider = GetComponentInChildren<Slider>();
             //warpSlider.onValueChanged.AddListener((v) => { warpSliderText.text = v.ToString("0.00"); });
             galaxyEventCamera = GameObject.FindGameObjectWithTag("Galactic Camera").GetComponent<Camera>() as Camera;
             openFleetUIButtonCanvas.worldCamera = galaxyEventCamera;
-
-            systemsList = StarSysManager.instance.StarSysDataList;
+            // ToDo while FleetUIManager will have a list of star system as destination the FleetController will need to 
+            // send a list of fleets it can see as a destination
+            //systemsList = StarSysManager.instance.StarSysDataList;
             
-            var sysDropdown = sysDropdownGO.GetComponent<TMP_Dropdown>();
-            sysDropdown.options.Clear();
-            List<string> sysList = new List<string>();
-            // fill sysDropdown sys sysList
-            foreach ( var item in systemsList )
-            {
-                sysDropdown.options.Add(new TMP_Dropdown.OptionData() { text= item.SysName});
-            }
-            DropdownItemSelected(sysDropdown);
-            sysDropdown.onValueChanged.AddListener(delegate { DropdownItemSelected(sysDropdown); }) ;
+            //var destDropdown = destinationDropdownGO.GetComponent<TMP_Dropdown>();
+            //destDropdown.options.Clear();
+            //List<string> sysList = new List<string>();
+            //// fill destDropdown sys sysList
+            //foreach ( var item in systemsList )
+            //{
+            //    destDropdown.options.Add(new TMP_Dropdown.OptionData() { text= item.SysName});
+            //}
+            //DropdownItemSelected(destDropdown);
+            //destDropdown.onValueChanged.AddListener(delegate { DropdownItemSelected(destDropdown); }) ;
 
             // placeholder ship list
             ShipData shipData1 = new ShipData();
@@ -93,19 +93,17 @@ namespace Assets.Core
             shipData2.shipName = "USS John McCain";
             shipList = new List<ShipData>() { shipData1, shipData2 };
             
-            var shipDropdown = shipDropdownGO.GetComponent<TMP_Dropdown>();
-            shipDropdown.options.Clear();
+            //var shipDropdown = shipDropdownGO.GetComponent<TMP_Dropdown>();
+            //shipDropdown.options.Clear();
             
-            // fill sysDropdown sys sysList
-            foreach (var item in shipList)
-            {
-                shipDropdown.options.Add(new TMP_Dropdown.OptionData() { text = item.shipName });
-            }
-            DropdownItemSelected(shipDropdown);
-            shipDropdown.onValueChanged.AddListener(delegate { DropdownItemSelected(shipDropdown); });
+            //// fill destDropdown sys sysList
+            //foreach (var item in shipList)
+            //{
+            //    shipDropdown.options.Add(new TMP_Dropdown.OptionData() { text = item.shipName });
+            //}
+            //DropdownItemSelected(shipDropdown);
+            //shipDropdown.onValueChanged.AddListener(delegate { DropdownItemSelected(shipDropdown); });
             Name = fleetData.Name;
-            sysDestination.text = Destination.gameObject.name;
-
         }
 
         void DropdownItemSelected(TMP_Dropdown dropdown)
@@ -190,7 +188,7 @@ namespace Assets.Core
         }
         public void LoadFleetUI()
         {
-            FleetUIManager.instance.LoadFleetUI(fleetData.CivOwnerEnum.ToString() + " Fleet " + Name, sysDestination.text );
+            FleetUIManager.instance.LoadFleetUI(fleetData.CivOwnerEnum.ToString() + " Fleet " + Name, destinationDropdownGO, shipList);
         }
         //public void UnLoadFleetUI()
         //{
