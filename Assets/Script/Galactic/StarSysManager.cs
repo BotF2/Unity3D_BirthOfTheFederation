@@ -80,7 +80,7 @@ namespace Assets.Core
                 if (civSO.HasWarp) 
                     FleetManager.instance.FirstFleetData(civSO, SysData.Position);
             }
-            starSysDatas.Remove(starSysDatas[0]);
+            //starSysDatas.Remove(starSysDatas[0]); // This is a place holder, give empty line in FleetUI destination list
             StarSysDataList = starSysDatas;
             //FleetManager.instance.FirstFleetData(civSOList);
             SolarSystemView view = new SolarSystemView();

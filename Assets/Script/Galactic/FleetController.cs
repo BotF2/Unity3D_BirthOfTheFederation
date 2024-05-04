@@ -34,7 +34,7 @@ namespace Assets.Core
         private float dropOutOfWarpDistance = 0.5f;
         private float maxWarpFactor;
        // public bool warpTravel = false;// do we need this warp factor >0
-        private Rigidbody rb;
+        public Rigidbody rb;
         public GameObject destinationDropdownGO;
         public GameObject shipDropdownGO;
         public GameObject fleetDropLine;
@@ -45,8 +45,8 @@ namespace Assets.Core
         private TMP_Text dropdownShipText;
         [SerializeField]
         private TMP_Text sysDestination;
-        [SerializeField]
-        private string Name;
+
+        public string Name;
 
         private Camera galaxyEventCamera;
         [SerializeField]
@@ -71,6 +71,7 @@ namespace Assets.Core
             //warpSlider.onValueChanged.AddListener((v) => { warpSliderText.text = v.ToString("0.00"); });
             galaxyEventCamera = GameObject.FindGameObjectWithTag("Galactic Camera").GetComponent<Camera>() as Camera;
             openFleetUIButtonCanvas.worldCamera = galaxyEventCamera;
+            //lineRenderer = FleetManager.instance.Get
             // ToDo while FleetUIManager will have a list of star system as destination the FleetController will need to 
             // send a list of fleets it can see as a destination
             //systemsList = StarSysManager.instance.StarSysDataList;
@@ -103,7 +104,7 @@ namespace Assets.Core
             //}
             //DropdownItemSelected(shipDropdown);
             //shipDropdown.onValueChanged.AddListener(delegate { DropdownItemSelected(shipDropdown); });
-            Name = fleetData.Name;
+            Name = fleetData.CivShortName + " Fleet " + fleetData.Name;
         }
 
         void DropdownItemSelected(TMP_Dropdown dropdown)
@@ -150,7 +151,7 @@ namespace Assets.Core
                     rb.MovePosition(currentPosition + (travelVector * WarpFactor * fudgeFactor * Time.deltaTime));
                 }
                 Vector3[] linePoints = new Vector3[] { transform.position,
-                new Vector3(transform.position.x, -600f, transform.position.z) };
+                new Vector3(transform.position.x, -6f, transform.position.z) };
                 lineRenderer.SetPositions(linePoints);
             }
         }
@@ -188,7 +189,8 @@ namespace Assets.Core
         }
         public void LoadFleetUI()
         {
-            FleetUIManager.instance.LoadFleetUI(fleetData.CivOwnerEnum.ToString() + " Fleet " + Name, destinationDropdownGO, shipList);
+            FleetUIManager.instance.LoadFleetUI(this);
+                //fleetData.CivOwnerEnum.ToString() + " Fleet " + Name, destinationDropdownGO, shipList);
         }
         //public void UnLoadFleetUI()
         //{

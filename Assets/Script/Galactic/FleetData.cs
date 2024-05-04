@@ -18,7 +18,7 @@ namespace Assets.Core
         public string CivShortName;
         public string Name;
         public string Description;
-        public GameObject Destination;
+       // public GameObject Destination;
         public List<Ship> ShipList;
         public float deltaYofGalaxyImage;
         //public FleetController fleetController;

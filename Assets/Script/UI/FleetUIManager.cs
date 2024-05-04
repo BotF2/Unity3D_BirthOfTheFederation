@@ -4,10 +4,12 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using Assets.Core;
+using Unity.VisualScripting;
 
 public class FleetUIManager : MonoBehaviour
 {
     public static FleetUIManager instance;
+    public FleetController controller;
     public Canvas parentCanvas;
     [SerializeField]
     private GameObject fleetUIRoot;
@@ -89,17 +91,41 @@ public class FleetUIManager : MonoBehaviour
 
 
     }
+    private void FixedUpdate()
+    {
+        if (WarpFactor > 0 && Destination != null)
+        {
+            Vector3 destinationPosition = Destination.transform.position;
+            Vector3 currentPosition = controller.transform.position;
+            float distance = Vector3.Distance(destinationPosition, currentPosition);
+            if (distance > dropOutOfWarpDistance)
+            {
+                Vector3 travelVector = destinationPosition - transform.position;
+                travelVector.Normalize();
+                controller.rb.MovePosition(currentPosition + (travelVector * WarpFactor * fudgeFactor * Time.deltaTime));
+            }
+            Vector3[] linePoints = new Vector3[] { currentPosition,
+                new Vector3(currentPosition.x, -6f, currentPosition.z) };
+            controller.lineRenderer.SetPositions(linePoints);
+        }
+    }
     public void WarpSliderChange(float value)
     {
         float localValue = value * maxSliderValue;
         warpSliderText.text = localValue.ToString("0.00");
         WarpFactor = value;
     }
-    public void LoadFleetUI(string name, GameObject ourDestinationDropdownGO, List<ShipData> curretnShips)
+    public void LoadFleetUI(FleetController theController)
+        //string name, GameObject ourDestinationDropdownGO, List<ShipData> curretnShips)
     {
-        Ships(curretnShips) ;
-        Name.text = name;
-        this.DestinationDropdownGO = ourDestinationDropdownGO;
+        var line = theController.GetComponentInParent<LineRenderer>();    
+        controller = theController;
+        controller.lineRenderer = line;
+
+        //Ships(curretnShips) ;
+        Name.text = theController.Name;
+        //theController.UpdateWarpFactor(0);
+        //this.DestinationDropdownGO = ourDestinationDropdownGO;
         fleetUIRoot.SetActive(true);
 
     }
@@ -110,18 +136,23 @@ public class FleetUIManager : MonoBehaviour
     void DropdownItemSelected(TMP_Dropdown dropdown)
     {
         int index = dropdown.value;
-        if (dropdown.name == "Dropdown Systems")
+        if (dropdown.name == "Dropdown Destination")
         {
             dropdownDestinationText.text = dropdown.options[index].text;
             var sys = systemsList[index];
-            Destination = sys.SysTransform;
+            if (sys.SysTransform != null)
+            {
+                Destination = sys.SysTransform;
+                controller.Destination = Destination;
+            }
+            //dropdownDestinationText.text = dropdown.options[index].text;
         }
-        else if (dropdown.name == "Dropdown Ships")
-        {
-            dropdownShipText.text = dropdown.options[index].text;
-            var ship = shipList[index]; // Can we or should we do stuff here??
+        //else if (dropdown.name == "Dropdown Ships")
+        //{
+        //    dropdownShipText.text = dropdown.options[index].text;
+        //    var ship = shipList[index]; // Can we or should we do stuff here??
 
-        }
+        //}
     }
     private void Ships(List<ShipData> ships)
     {

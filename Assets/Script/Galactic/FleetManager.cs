@@ -122,7 +122,7 @@ namespace Assets.Core
             Vector3[] linePoints = new Vector3[] { fleetNewGameOb.transform.position, 
                 new Vector3(fleetData.Position.x, galaxyImage.transform.position.y, fleetData.Position.z) };
             line.SetPositions(linePoints);
-          //  fleetNewGameOb.GetComponent<FleetController>().lineRenderer = line;
+            //fleetNewGameOb.GetComponent<FleetController>().lineRenderer = line;
             TextMeshProUGUI[] TheText = fleetNewGameOb.GetComponentsInChildren<TextMeshProUGUI>();
             foreach (var OneTmp in TheText)
             {
@@ -150,6 +150,7 @@ namespace Assets.Core
             DropLineMovable ourDropLine = fleetNewGameOb.GetComponent<DropLineMovable>();
 
             ourDropLine.GetLineRenderer();
+            //fleetNewGameOb.
             ourDropLine.transform.SetParent(fleetNewGameOb.transform, true);
             Vector3 galaxyPlanePoint = new Vector3(fleetNewGameOb.transform.position.x,
                 galaxyImage.transform.position.y, fleetNewGameOb.transform.position.z);
