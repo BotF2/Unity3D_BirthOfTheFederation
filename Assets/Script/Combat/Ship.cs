@@ -13,7 +13,7 @@ namespace Assets.Core
     {
 
         public Combat combat;
-        public Civilization _civilization;
+        public CivEnum _civEnum;
         public ShipType _shipType;
         public TechLevel _techLevel;
         public int _shieldsMaxHealth; // set in ShipData.txt
@@ -151,20 +151,20 @@ namespace Assets.Core
         }
         private void Update()
         {
-            if (GameManager.Instance != null && GameManager.Instance._statePassedMain_Init)
-            {
-                if (combat.FriendCivCombatants().Contains(_civilization))
-                {
-                    _isFriend = true;
-                    _notInThisFight = false;
-                }
-                else if (combat.EnemyCivCombatants().Contains(_civilization))
-                {
-                    _isFriend = false;
-                    _notInThisFight = false;
-                }
-                else _notInThisFight = true;
-            }
+            //if (GameManager.Instance != null && GameManager.Instance._statePassedMain_Init)
+            //{
+            //    if (combat.FriendCivCombatants().Contains(_civilization))
+            //    {
+            //        _isFriend = true;
+            //        _notInThisFight = false;
+            //    }
+            //    else if (combat.EnemyCivCombatants().Contains(_civilization))
+            //    {
+            //        _isFriend = false;
+            //        _notInThisFight = false;
+            //    }
+            //    else _notInThisFight = true;
+            //}
             if (!_notInThisFight && gameObject.name.ToUpper() != "SHIP") // GameManager.Instance._statePassedCombatInit) //  || GameManager.Instance._statePassedCombatInitRight)
             {
                 if (GameManager.Instance.FriendShips.Count > 0 && GameManager.Instance.EnemyShips.Count >0 && gameObject.name != "Ship")

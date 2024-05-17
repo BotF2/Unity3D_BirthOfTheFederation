@@ -6,34 +6,20 @@ using Assets.Core;
 public class TimeManager : MonoBehaviour
 {
     public static TimeManager instance;
-
-    // Event to trigger when the current stardate matches a special event
     public event Action<TrekEventSO> OnSpecialEventReached;
-    // Event as time passes
-    //public event Action<TrekEventSO> OpenFleetUI;
-    // Event delta Stardate
     public event Action OnStardateChanged;
-   // public event Action<FleetController> OnFleetMoves;
-    private float minuteToRealTime = 2f;
+    //private float minuteToRealTime = 2f;
     private float timer;
     private bool showTime = false;
 
     int moveCounter = 5;
-    // Current stardate in the game
     public int currentStardate { get; private set; }
     public int currentFleetMoves;
-    //public static int gameMinute { get; private set; }
-    //public static int starDate { get; private set; }
-    // Coroutine for time progression
+
     private Coroutine timeCoroutine;
-
-    // Speed multiplier for time progression
     public float timeSpeedMultiplier = 1f;
-
-    // List of special events
     public List<TrekEventSO> specialEvents;
 
-    // Start is called before the first frame update
     void Awake()
     {
         if (instance == null)
@@ -42,11 +28,10 @@ public class TimeManager : MonoBehaviour
             Destroy(gameObject);
 
         DontDestroyOnLoad(gameObject);
-
         // Start time progression coroutine
         timeCoroutine = StartCoroutine(TimeProgression());
         currentStardate = 1010;
-        //timer = ;
+
     }
     private void Start()
     {

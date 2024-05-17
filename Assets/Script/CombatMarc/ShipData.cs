@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ShipData : MonoBehaviour
 {
-    public string shipName; // Start is called before the first frame update
+    public string shipName;
     public float maxWarpFactor;
 
     void Start()
@@ -12,10 +12,12 @@ public class ShipData : MonoBehaviour
         //little code change :D
         Debug.Log("asdf");
     }
-
-    // Update is called once per frame
-    void Update()
+    public ShipData(string name)
     {
-        
+        shipName = name;
+    }
+    public ShipData()
+    {
+
     }
 }

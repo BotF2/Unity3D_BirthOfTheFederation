@@ -10,6 +10,8 @@ TagManager:
   - GalacticCanvas
   - Galatic Camera
   - fleetUIRoot
+  - fleet
+  - FleetUICanvas
   layers:
   - Default
   - TransparentFX

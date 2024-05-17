@@ -18,7 +18,7 @@ namespace Assets.Core
 
         public GameObject sysPrefab;
 
-        public List<StarSysData> StarSysDataList; // = new List<StarSysData>() { new StarSysData()};
+        public List<StarSysData> StarSysDataList; 
 
         private List<StarSysData> starSysDatas = new List<StarSysData>() { new StarSysData()};
 
@@ -37,10 +37,7 @@ namespace Assets.Core
         }
         public void Start()
         {
-            //if (cam == null)
-            //{
-            //    cam = GameObject.FindGameObjectWithTag("Galatic Camera").GetComponent<Camera>() as Camera;
-            //}
+
         }
         public void CreateGameSystems(List<CivSO> civSOList)
         {
@@ -48,7 +45,7 @@ namespace Assets.Core
             foreach (var civSO in civSOList)
             {
                 StarSysSO starSysSO = GetStarSObyInt(civSO.CivInt);
-                StarSysData SysData = new StarSysData();
+                StarSysData SysData = new StarSysData(); // OK, not monobehavior
                 SysData.SysInt = civSO.CivInt;
                 SysData.Position = new Vector3(starSysSO.Position.x, starSysSO.Position.y, starSysSO.Position.z);
                 SysData.SysName = starSysSO.SysName;
@@ -80,10 +77,8 @@ namespace Assets.Core
                 if (civSO.HasWarp) 
                     FleetManager.instance.FirstFleetData(civSO, SysData.Position);
             }
-            //starSysDatas.Remove(starSysDatas[0]); // This is a place holder, give empty line in FleetUI destination list
             StarSysDataList = starSysDatas;
-            //FleetManager.instance.FirstFleetData(civSOList);
-            SolarSystemView view = new SolarSystemView();
+
         }
         public void InstantiateSystemButton(StarSysData sysData, CivSO civSO)
         { 
@@ -136,7 +131,6 @@ namespace Assets.Core
             ourDropLine.SetUpLine(points);
             StarSysController controller = starSystemNewGameOb.GetComponentInChildren<StarSysController>();
             controller.starSysData = sysData;
-            // Find the child GameObject by Name
             Transform canvasTrans = starSystemNewGameOb.transform.Find("CanvasSysButton");
             // Check if the child GameObject exists
             if (canvasTrans != null)
@@ -153,9 +147,6 @@ namespace Assets.Core
             }
 
             starSystemNewGameOb.SetActive(true);
-            //Undo.MoveGameObjectToScene(starSystemNewGameOb, GalaxyScene)
-            //view.NumbersOfSystemID(NumbersForSystem);
-            //ourGalaxy.PopulateCanonSystem();
         }
         public StarSysData resultInGameStarSysData;
 
@@ -198,17 +189,6 @@ namespace Assets.Core
             return result;
 
         }
-        //public void OnNewGameButtonClicked(int gameSize)
-        //{
-        //    CreateNewGame(gameSize);
-
-        //}
-
-        //public void GetStarSysByName(string sysName)
-        //{
-        //    resultInGameStarSysData = GetStarSysDataByName(sysName);
-
-        //}
     }
 }
 

@@ -10,13 +10,13 @@ public class StardateUIController : MonoBehaviour
 
     private void OnEnable()
     {
-        // Subscribe to the event
+        if (TimeManager.instance != null)
         TimeManager.instance.OnStardateChanged += UpdateDateText;
     }
 
     private void OnDisable()
     {
-        // Unsubscribe to prevent memory leaks or errors when the object is destroyed
+        if (TimeManager.instance != null)
         TimeManager.instance.OnStardateChanged -= UpdateDateText;
     }
     void UpdateDateText()

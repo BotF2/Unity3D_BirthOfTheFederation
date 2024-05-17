@@ -7,6 +7,8 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Serialization;
 using UnityEngine.EventSystems;
+using UnityEngine.Rendering;
+using Unity.VisualScripting;
 
 
 namespace Assets.Core
@@ -16,15 +18,10 @@ namespace Assets.Core
     { 
         //Fields
         public FleetData fleetData;
-        public GameObject fleetUIRoot;
-        //public GameObject canvasFleetUIButton;
+
         public GameObject buttonLoadFleetUI;
-        //[SerializeField]
-        //private Slider warpSlider;
-        //[SerializeField]
-        //private TextMeshProUGUI warpSliderText;
-        //[SerializeField]
-        //private float maxSliderValue = 100.0f;
+        private ShipData shipData1;
+        private ShipData shipData2;
         public List<StarSysData> systemsList;
         public List<ShipData> shipList;
         private bool deltaShipList = false; //??? do I need this or the shipdropdown listener
@@ -37,7 +34,7 @@ namespace Assets.Core
         public Rigidbody rb;
         public GameObject destinationDropdownGO;
         public GameObject shipDropdownGO;
-        public GameObject fleetDropLine;
+        //public GameObject fleetDropLine;
         public LineRenderer lineRenderer;
         [SerializeField]
         private TMP_Text dropdownSysText;
@@ -50,64 +47,37 @@ namespace Assets.Core
 
         private Camera galaxyEventCamera;
         [SerializeField]
-        private Canvas openFleetUIButtonCanvas;
-        //private GameObject FirstCocusItem;
-        //[SerializeField]
-        //private Canvas rootUICanvas;
-        //private Stack<Canvas> stack = new Stack<Canvas>();
+        private Canvas FleetUICanvas;
+
 
 
         private void Start()
         {
-            rb = GetComponentInParent<Rigidbody>();
+            rb = GetComponent<Rigidbody>();
+
             var buttons = GetComponentsInChildren<Button>();
             foreach (var item in buttons)
             {
                 if (item.name == "Button Load FleetUI")
                     buttonLoadFleetUI = item.gameObject;
             }
-            //canvasFleetUIButton = GetComponentInChildren<Canvas>().gameObject;
-            //warpSlider = GetComponentInChildren<Slider>();
-            //warpSlider.onValueChanged.AddListener((v) => { warpSliderText.text = v.ToString("0.00"); });
-            galaxyEventCamera = GameObject.FindGameObjectWithTag("Galactic Camera").GetComponent<Camera>() as Camera;
-            openFleetUIButtonCanvas.worldCamera = galaxyEventCamera;
-            //lineRenderer = FleetManager.instance.Get
-            // ToDo while FleetUIManager will have a list of star system as destination the FleetController will need to 
-            // send a list of fleets it can see as a destination
-            //systemsList = StarSysManager.instance.StarSysDataList;
-            
-            //var destDropdown = destinationDropdownGO.GetComponent<TMP_Dropdown>();
-            //destDropdown.options.Clear();
-            //List<string> sysList = new List<string>();
-            //// fill destDropdown sys sysList
-            //foreach ( var item in systemsList )
-            //{
-            //    destDropdown.options.Add(new TMP_Dropdown.OptionData() { text= item.SysName});
-            //}
-            //DropdownItemSelected(destDropdown);
-            //destDropdown.onValueChanged.AddListener(delegate { DropdownItemSelected(destDropdown); }) ;
 
-            // placeholder ship list
-            ShipData shipData1 = new ShipData();
+            galaxyEventCamera = GameObject.FindGameObjectWithTag("Galactic Camera").GetComponent<Camera>();
+            var CanvasGO = GameObject.Find("Canvas FleetUI");
+            FleetUICanvas = CanvasGO.GetComponent<Canvas>();
+            FleetUICanvas.worldCamera = galaxyEventCamera;
+
+            shipData1 = gameObject.AddComponent<ShipData>();
             shipData1.shipName = "USS Trump";
-            ShipData shipData2 = new ShipData();
+
+            shipData2 = gameObject.AddComponent<ShipData>();
             shipData2.shipName = "USS John McCain";
             shipList = new List<ShipData>() { shipData1, shipData2 };
             
-            //var shipDropdown = shipDropdownGO.GetComponent<TMP_Dropdown>();
-            //shipDropdown.options.Clear();
-            
-            //// fill destDropdown sys sysList
-            //foreach (var item in shipList)
-            //{
-            //    shipDropdown.options.Add(new TMP_Dropdown.OptionData() { text = item.shipName });
-            //}
-            //DropdownItemSelected(shipDropdown);
-            //shipDropdown.onValueChanged.AddListener(delegate { DropdownItemSelected(shipDropdown); });
             Name = fleetData.CivShortName + " Fleet " + fleetData.Name;
         }
 
-        void DropdownItemSelected(TMP_Dropdown dropdown)
+        public void DropdownItemSelected(TMP_Dropdown dropdown)
         {
             int index = dropdown.value;
             if (dropdown.name == "Dropdown Systems")
@@ -123,48 +93,26 @@ namespace Assets.Core
 
             }
         }
-        void Update()
-        {
-            if (shipList != null && deltaShipList) // && check for change in the ship list or )
-            {
-                maxWarpFactor = 10;
-                for (int i = 0; i < shipList.Count; i++)
-                {
-                    if (shipList[i].maxWarpFactor < maxWarpFactor)
-                        maxWarpFactor = shipList[i].maxWarpFactor;
-                }
-                deltaShipList = false;
-            }
- 
-        }
+
         private void FixedUpdate()
         {
-            if (WarpFactor > 0 && Destination != null)
-            {
-                Vector3 destinationPosition = Destination.transform.position;
-                Vector3 currentPosition = transform.position;
-                float distance = Vector3.Distance(destinationPosition, currentPosition);
-                if (distance > dropOutOfWarpDistance)
-                {
-                    Vector3 travelVector = destinationPosition - transform.position;
-                    travelVector.Normalize();
-                    rb.MovePosition(currentPosition + (travelVector * WarpFactor * fudgeFactor * Time.deltaTime));
-                }
-                Vector3[] linePoints = new Vector3[] { transform.position,
-                new Vector3(transform.position.x, -6f, transform.position.z) };
-                lineRenderer.SetPositions(linePoints);
-            }
+            //if (WarpFactor > 0 && Destination != null)
+            //{
+            //    Vector3 destinationPosition = Destination.transform.position;
+            //    Vector3 currentPosition = transform.position;
+            //    float distance = Vector3.Distance(destinationPosition, currentPosition);
+            //    if (distance > dropOutOfWarpDistance)
+            //    {
+            //        Vector3 travelVector = destinationPosition - transform.position;
+            //        travelVector.Normalize();
+            //        rb.MovePosition(currentPosition + (travelVector * WarpFactor * fudgeFactor * Time.deltaTime));
+            //    }
+            //    Vector3[] linePoints = new Vector3[] { transform.position,
+            //    new Vector3(transform.position.x, -6f, transform.position.z) };
+            //    lineRenderer.SetPositions(linePoints);
+            //}
         }
-        //public void DeltaFleetWarpFactor(float warpFactor)
-        //{
-        //    WarpFactor = warpFactor;
-        //}
-        //public void WarpSliderChange(float value)
-        //{
-        //    float localValue = value* maxSliderValue;
-        //    warpSliderText.text = localValue.ToString("0.00");
-        //    WarpFactor = value;
-        //}
+
         void AddToShipList(ShipData ship)
         {
             shipList.Add(ship);
@@ -189,13 +137,13 @@ namespace Assets.Core
         }
         public void LoadFleetUI()
         {
-            FleetUIManager.instance.LoadFleetUI(this);
-                //fleetData.CivOwnerEnum.ToString() + " Fleet " + Name, destinationDropdownGO, shipList);
+            //FleetUIManager.instance.LoadFleetUI(fleetData.CivShortName + " Fleet " + fleetData.Name);
         }
-        //public void UnLoadFleetUI()
-        //{
-        //    fleetUIRoot.SetActive(false);
-        //}
+        private void OnMouseDown()
+        {
+            FleetUIManager.instance.LoadFleetUI(fleetData.CivShortName + " Fleet " + fleetData.Name);
+        }
+
 
         void OnTriggerEnter(Collider collider)
         {

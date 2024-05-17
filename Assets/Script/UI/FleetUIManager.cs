@@ -5,11 +5,18 @@ using TMPro;
 using UnityEngine.UI;
 using Assets.Core;
 using Unity.VisualScripting;
+using System.Diagnostics;
+using UnityEngine.Rendering;
 
+[DebuggerDisplay("{" + nameof(GetDebuggerDisplay) + "(),nq}")]
 public class FleetUIManager : MonoBehaviour
 {
     public static FleetUIManager instance;
     public FleetController controller;
+    public GameObject fcGO;
+    //public GameObject lineRender;
+    public Rigidbody fleetRB;
+    //public LineRenderer lineR;
     public Canvas parentCanvas;
     [SerializeField]
     private GameObject fleetUIRoot;
@@ -66,17 +73,17 @@ public class FleetUIManager : MonoBehaviour
         //Canvas FleetUICanvas = GameObject.FindGameObjectWithTag("CanvasFleetUI").GetComponent<Canvas>() as Canvas;
         parentCanvas.worldCamera = galaxyEventCamera;
         systemsList = StarSysManager.instance.StarSysDataList;
-
+        //MyGameManager.Instance.OnGameObjectInstantiated += HandleGameObjectInstantiated;
         var destDropdown = DestinationDropdownGO.GetComponent<TMP_Dropdown>();
         destDropdown.options.Clear();
-        List<string> sysList = new List<string>();
+
         // fill destDropdown sys sysList
         foreach (var item in systemsList)
         {
             destDropdown.options.Add(new TMP_Dropdown.OptionData() { text = item.SysName });
         }
-        DropdownItemSelected(destDropdown);
-        destDropdown.onValueChanged.AddListener(delegate { DropdownItemSelected(destDropdown); });
+        //controller.DropdownItemSelected(destDropdown);
+        //destDropdown.onValueChanged.AddListener(delegate { controller.DropdownItemSelected(destDropdown); });
 
         //var shipDropdown = ShipDropdownGO.GetComponent<TMP_Dropdown>();
         //shipDropdown.options.Clear();
@@ -93,16 +100,16 @@ public class FleetUIManager : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (WarpFactor > 0 && Destination != null)
+        if (WarpFactor > 0 && controller != null && controller.Destination != null && controller.lineRenderer != null)
         {
-            Vector3 destinationPosition = Destination.transform.position;
-            Vector3 currentPosition = controller.transform.position;
+            Vector3 destinationPosition = controller.Destination.transform.position;
+            Vector3 currentPosition = fcGO.transform.position;
             float distance = Vector3.Distance(destinationPosition, currentPosition);
             if (distance > dropOutOfWarpDistance)
             {
-                Vector3 travelVector = destinationPosition - transform.position;
+                Vector3 travelVector = destinationPosition - currentPosition;
                 travelVector.Normalize();
-                controller.rb.MovePosition(currentPosition + (travelVector * WarpFactor * fudgeFactor * Time.deltaTime));
+                fleetRB.MovePosition(currentPosition + (travelVector * WarpFactor * fudgeFactor * Time.deltaTime));
             }
             Vector3[] linePoints = new Vector3[] { currentPosition,
                 new Vector3(currentPosition.x, -6f, currentPosition.z) };
@@ -115,16 +122,32 @@ public class FleetUIManager : MonoBehaviour
         warpSliderText.text = localValue.ToString("0.00");
         WarpFactor = value;
     }
-    public void LoadFleetUI(FleetController theController)
+    public void LoadFleetUI(string name) //, LineRenderer lineR)
         //string name, GameObject ourDestinationDropdownGO, List<ShipData> curretnShips)
     {
-        var line = theController.GetComponentInParent<LineRenderer>();    
-        controller = theController;
-        controller.lineRenderer = line;
+        var go = GameObject.Find(name);
+        ////lineR = go.GetComponentInChildren<LineRenderer>();
+        controller = go.GetComponent<FleetController>();
+        Name.text = controller.Name;
+        ////GameObject newLine = (GameObject)Instantiate(lineRender, new Vector3(0, 0, 0),
+        ////            Quaternion.identity);
+        //controller.lineRenderer = newLine.GetComponent<LineRenderer>();
+        controller.rb = go.GetComponent<Rigidbody>();
+        fcGO = go;
+        fleetRB = go.GetComponentInParent<Rigidbody>();
 
-        //Ships(curretnShips) ;
-        Name.text = theController.Name;
-        //theController.UpdateWarpFactor(0);
+        //var destDropdown = DestinationDropdownGO.GetComponent<TMP_Dropdown>();
+        //destDropdown.options.Clear();
+
+        //// fill destDropdown sys sysList
+        //foreach (var item in systemsList)
+        //{
+        //    destDropdown.options.Add(new TMP_Dropdown.OptionData() { text = item.SysName });
+        //}
+        //controller.DropdownItemSelected(destDropdown);
+        //destDropdown.onValueChanged.AddListener(delegate { controller.DropdownItemSelected(destDropdown); });
+   
+        //go.UpdateWarpFactor(0);
         //this.DestinationDropdownGO = ourDestinationDropdownGO;
         fleetUIRoot.SetActive(true);
 
@@ -142,8 +165,8 @@ public class FleetUIManager : MonoBehaviour
             var sys = systemsList[index];
             if (sys.SysTransform != null)
             {
+                controller.Destination = sys.SysTransform;
                 Destination = sys.SysTransform;
-                controller.Destination = Destination;
             }
             //dropdownDestinationText.text = dropdown.options[index].text;
         }
@@ -166,5 +189,10 @@ public class FleetUIManager : MonoBehaviour
         }
         DropdownItemSelected(shipDropdown);
         shipDropdown.onValueChanged.AddListener(delegate { DropdownItemSelected(shipDropdown); });
+    }
+
+    private string GetDebuggerDisplay()
+    {
+        return ToString();
     }
 }

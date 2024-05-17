@@ -1,6 +1,9 @@
 using UnityEngine;
 using UnityEditor;
 using System.IO;
+using Assets.Core;
+using System;
+
 
 public class ShipSOImporter : EditorWindow
 {
@@ -10,7 +13,7 @@ public class ShipSOImporter : EditorWindow
         GetWindow<ShipSOImporter>("ShipSO CSV Importer");
     }
 
-    private string filePath = "shipROM.csv";
+    private string filePath = $"Assets/Resources/Data/ShipSO.csv";
 
     void OnGUI()
     {
@@ -19,8 +22,6 @@ public class ShipSOImporter : EditorWindow
 
         if (GUILayout.Button("Import CSV"))
         {
-           
-
             //Output the Game data path to the console
             Debug.Log("dataPath : " + Application.dataPath);
             ImportCSV(filePath);
@@ -41,24 +42,61 @@ public class ShipSOImporter : EditorWindow
         {
             string[] fields = line.Split(',');
 
-            if (fields.Length == 8) // Ensure there are enough fields
+            if (fields.Length == 11) // Ensure there are enough fields
             {
                 ShipSO ship = CreateInstance<ShipSO>();
-                ship.Tech = fields[0];
-                ship.Class = fields[1];
-                ship.Key = fields[2];
-                ship.ShieldMaxHealth = int.Parse(fields[3]);
+                ship.ShipName = fields[0];
+                string[] data = ship.ShipName.Split("_");
+                ship.CivEnum = GetMyCivEnum(data[0]);
+                ship.Tech = GetMyTechLevel(data[2], out TechLevel st);
+                ship.Class = GetMyShipClass(data[1]);
+                ship.ShieldMaxHealth = int.Parse(fields[2]);
                 ship.HullMaxHealth = int.Parse(fields[4]);
-                ship.TorpedoDamage = int.Parse(fields[5]);
-                ship.BeamDamage = int.Parse(fields[6]);
-                ship.Cost = int.Parse(fields[7]);
-
-                string assetPath = $"Assets/ShipSO_{ship.Tech}_{ship.Key}.asset";
+                ship.TorpedoDamage = int.Parse(fields[6]);
+                ship.BeamDamage = int.Parse(fields[8]);
+                ship.Cost = int.Parse(fields[10]);
+                string assetPath = $"Assets/SO/ShipSO/ShipSO_{ship.ShipName}.asset";
                 AssetDatabase.CreateAsset(ship, assetPath);
                 AssetDatabase.SaveAssets();
             }
         }
 
         Debug.Log("ShipSO Import Complete");
+    }
+    public static CivEnum GetMyCivEnum(string title)
+    {
+        CivEnum st;
+        Enum.TryParse(title, out st);
+        return st;
+    }
+    public static TechLevel GetMyTechLevel(string title, out TechLevel st)
+    {
+        title = title.Replace("(CLONE)", "");
+
+        switch (title)
+        {
+            case "I":
+                st = TechLevel.EARLY;
+                break;
+            case "II":
+                st = TechLevel.DEVELOPED;
+                break;
+            case "III":
+                st = TechLevel.ADVANCED;
+                break;
+            case "IV":
+                st = TechLevel.SUPREME;
+                break;
+            default:
+                st = TechLevel.EARLY;
+                break;
+        }
+        return st;
+    }
+    public static ShipType GetMyShipClass(string title)
+    {
+        ShipType st;
+        Enum.TryParse(title, out st);
+        return st;
     }
 }

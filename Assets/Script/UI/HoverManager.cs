@@ -25,7 +25,7 @@ public class HoverManager : MonoBehaviour
         }
     }
 
-    public void ShowTip(string name) //, string description) 
+    public void ShowTip(string name) 
     {
         ToolTipTrans.gameObject.SetActive(true);
         Name.text = name;

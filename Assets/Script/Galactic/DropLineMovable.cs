@@ -13,13 +13,9 @@ namespace Assets.Core
         private LineRenderer lineRenderer;
         private Vector3[] points;
 
-        //private void Awake()
-        //{
-        //    lineRenderer = GetComponent<LineRenderer>();
-        //}
         public void GetLineRenderer()
         {
-            lineRenderer = GetComponent<LineRenderer>();
+            lineRenderer = GetComponentInChildren<LineRenderer>();
         }
 
         public void SetUpLine(Vector3[] points)
@@ -34,20 +30,16 @@ namespace Assets.Core
                 }
             }
         }
-        //public void SetUpLine(Vector3[] points)
+
+        //private void Update()
         //{
-        //    lineRenderer.positionCount = points.Length;
-        //    this.points = points;
+        //    if (lineRenderer != null && points != null)
+        //    {
+        //        for (int i = 0; i < points.Length; i++)
+        //        {
+        //            lineRenderer.SetPosition(i, points[i]);
+        //        }
+        //    }
         //}
-        private void Update()
-        {
-            if (lineRenderer != null && points != null)
-            {
-                for (int i = 0; i < points.Length; i++)
-                {
-                    lineRenderer.SetPosition(i, points[i]);
-                }
-            }
-        }
     }
 }
