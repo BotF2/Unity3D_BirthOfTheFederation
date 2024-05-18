@@ -8,7 +8,7 @@ namespace Assets.Core
    
     public class F_Animator1 : MonoBehaviour
     {
-        // must Name class and file the same
+        // must FleetName class and file the same
         public Animator anim;
         public AudioSource warpAudioSource_0;
         //private SetShipLayerByAnimaStat shipLayerSetup;

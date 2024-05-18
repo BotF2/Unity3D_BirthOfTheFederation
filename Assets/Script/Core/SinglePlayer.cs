@@ -56,11 +56,11 @@ namespace Assets.Core
         //{
         //    //GameManager.Instance.localPlayer = _
         //    Toggle toggle = _activeToggle;
-        //    Debug.Log(toggle.Name + " _ ");
+        //    Debug.Log(toggle.FleetName + " _ ");
         //}
         //public void ActiveToggle()
         //{
-        //    //switch (_activeToggle.Name.ToUpper())
+        //    //switch (_activeToggle.FleetName.ToUpper())
         //    //{
         //    //    case "TOGGLE_FED":
         //    //        Fed = _activeToggle;

@@ -177,7 +177,7 @@ namespace Assets.Core
             //string holdInsigniaName = CivStringsDictionary[systemInt][8];
             //string pathInsignia = "Insignias/" + holdInsigniaName.ToUpper();
             //GameObject go = GameObject.CreatePrimitive(PrimitiveType.Plane); // (nameInsginia);
-            //go.Name = newCivData.Name + "PlaneForInsignia";
+            //go.FleetName = newCivData.FleetName + "PlaneForInsignia";
             //var rend = go.GetComponent<Renderer>();
             //rend.material.mainTexture = Resources.Load(pathInsignia) as Texture;
             //newCivData._civInsign = Sprite.InitializStarSystem((Texture2D)rend.material.mainTexture, new Rect(0, 0, rend.material.mainTexture.width, rend.material.mainTexture.height), new Vector2(0.5f, 0.5f));
@@ -389,9 +389,9 @@ namespace Assets.Core
         //        }
         //    return null;
         //}
-        //public CivEnum CivEnumFromName(string Name)
+        //public CivEnum CivEnumFromName(string FleetName)
         //{
-        //    var file = new FileStream(Name, FileMode.Open, FileAccess.Read);
+        //    var file = new FileStream(FleetName, FileMode.Open, FileAccess.Read);
 
         //    var _dataPoints = new List<string>();
         //    using (var reader = new StreamReader(file))

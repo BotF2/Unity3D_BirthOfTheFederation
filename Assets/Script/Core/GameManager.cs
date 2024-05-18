@@ -594,7 +594,7 @@ namespace Assets.Core
         //public void GalaxyPlayClicked() // BOLDLY GO button in Main Menu
         //{
 
-        //    Debug.Log("civManager " + civManager.gameObject.Name);
+        //    Debug.Log("civManager " + civManager.gameObject.FleetName);
 
         //    civManager.CreateNewGame(0); // (int)_galaxySize);
         //    //PanelGalaxy.SetActive(true);
@@ -1024,24 +1024,24 @@ namespace Assets.Core
 
         public void SetCameraTargets()
          {
-            List<GameObject> _cameraTargets = new List<GameObject>() { Friend_0, Enemy_0}; // dummies
+            //List<GameObject> _cameraTargets = new List<GameObject>() { Friend_0, Enemy_0}; // dummies
            
-            List<GameObject> multiTargets = instantiateCombatShips.GetCameraTargets(); // get list - array for CameraMultiTarget
-            List<GameObject> survivingTargets = new List<GameObject>();
-            if (multiTargets.Count() > 0)
-            {
-                for (int i = 0; i < multiTargets.Count; i++)
-                {
-                    if (multiTargets[i] != null)
-                    {
-                        survivingTargets.Add(multiTargets[i]);
-                    }
-                }
+            //List<GameObject> multiTargets = instantiateCombatShips.GetCameraTargets(); // get list - array for CameraMultiTarget
+            //List<GameObject> survivingTargets = new List<GameObject>();
+            //if (multiTargets.Count() > 0)
+            //{
+            //    for (int i = 0; i < multiTargets.Count; i++)
+            //    {
+            //        if (multiTargets[i] != null)
+            //        {
+            //            survivingTargets.Add(multiTargets[i]);
+            //        }
+            //    }
                 
-                _cameraTargets.AddRange(survivingTargets);
-            }
+            //    _cameraTargets.AddRange(survivingTargets);
+            //}
           
-            cameraMultiTarget.SetTargets(_cameraTargets.ToArray()); // start multiCamera - main camers before warp in of ships
+            //cameraMultiTarget.SetTargets(_cameraTargets.ToArray()); // start multiCamera - main camers before warp in of ships
         }
         public void ProvideFriendCombatShips(int numIndex, GameObject daObject)
         {

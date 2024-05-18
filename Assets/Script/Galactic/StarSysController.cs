@@ -9,12 +9,12 @@ public class StarSysController : MonoBehaviour
     public StarSysData starSysData;
     private Camera galaxyEventCamera;
     [SerializeField]
-    private Canvas canvasSysButton;
+    private Canvas canvasToolTip;
 
     private void Start()
     {
         galaxyEventCamera = GameObject.FindGameObjectWithTag("Galactic Camera").GetComponent<Camera>() as Camera;
-        canvasSysButton.worldCamera = galaxyEventCamera;
+        canvasToolTip.worldCamera = galaxyEventCamera;
     }
     public void UpdatePopulation(int delatPopulation)
     {

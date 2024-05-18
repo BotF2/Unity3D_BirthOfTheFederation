@@ -21,7 +21,7 @@ namespace Assets.Core
            
             //if (GameManager.Instance._statePassedMain_Init) // ToDo: how do we know if combat is over? && GameManager.Instance.FriendShips.Count > 0)
             //{
-            //    string whoTorpedo = gameObject.Name.Substring(0, 3);
+            //    string whoTorpedo = gameObject.FleetName.Substring(0, 3);
             //  //  string friendShips = GameManager.Instance.FriendNameArray[0].Substring(0, 3); 
             //    if (whoTorpedo == friendShips)
             //        theLocalTargetList = GameManager.Instance.EnemyShips;
@@ -56,7 +56,7 @@ namespace Assets.Core
 
         //public void OnCollisionEnter(Collision collision)
         //{
-        //    if (this.gameObject.tag != collision.gameObject.Name) // do not blow up the torpedo if it hits the ship collider on launching
+        //    if (this.gameObject.tag != collision.gameObject.FleetName) // do not blow up the torpedo if it hits the ship collider on launching
         //        Destroy(this.gameObject, 0.3f); // kill weapon gameobject holding speed script
         //}
         //public void FindTargetNearTorpedo(List<GameObject> theTargets)

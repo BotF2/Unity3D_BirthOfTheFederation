@@ -49,7 +49,6 @@ namespace Assets.Core
         }
         public void FirstFleetData(CivSO civSO, Vector3 position) // first fleet
         {
-
             FleetSO fleetSO = GetFleetSObyInt(civSO.CivInt);
             if (fleetSO != null)
             {
@@ -89,7 +88,7 @@ namespace Assets.Core
             {
                 for (int j = 0; j < listFleetData.Count; j++) // build the list of int names
                 {
-                    // if (listFleetData[j].Name != "998")
+                    // if (listFleetData[j].FleetName != "998")
                     ints.Add(int.Parse(listFleetData[j].Name));
                 }
                 for (int i = 0; i < listFleetData.Count; i++)
@@ -115,7 +114,7 @@ namespace Assets.Core
             fleetNewGameOb.transform.SetParent(galaxyCenter.transform, true);
             fleetNewGameOb.transform.localScale = new Vector3(1, 1, 1);
 
-            fleetNewGameOb.name = fleetData.CivOwnerEnum.ToString() + " Fleet " + fleetData.Name; // game object Name
+            fleetNewGameOb.name = fleetData.CivOwnerEnum.ToString() + " Fleet " + fleetData.Name; // game object FleetName
             //var canvas = fleetNewGameOb.GetComponent<Canvas>();
             //var fleet = FindGameObjectInChildrenWithTag(fleetNewGameOb,"Fleet");
             //fleet.transform.SetParent(canvas.transform, true);
@@ -147,19 +146,17 @@ namespace Assets.Core
             
             controller.fleetData = fleetData;
 
-            Transform canvasTransButton = fleetNewGameOb.transform.Find("CanvasFeetUIButton");
-            // Check if the child GameObject exists
-            if (canvasTransButton != null)
-            {
-                canvasTransButton.SetParent(fleetNewGameOb.transform, true);
-            }
+            //Transform canvasTransButton = fleetNewGameOb.transform.Find("CanvasFeetUIButton");
+            //// Check if the child GameObject exists
+            //if (canvasTransButton != null)
+            //{
+            //    canvasTransButton.SetParent(fleetNewGameOb.transform, true);
+            //}
             controller.fleetData.deltaYofGalaxyImage = galaxyCenter.transform.position.y - galaxyPlanePoint.y;
 
             fleetNewGameOb.SetActive(true);
    
         }
-
-        public FleetData resultFleetData;
 
         public FleetSO GetFleetSObyInt(int fleetInt)
         {

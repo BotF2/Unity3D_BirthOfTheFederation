@@ -18,8 +18,6 @@ namespace Assets.Core
     { 
         //Fields
         public FleetData fleetData;
-
-        public GameObject buttonLoadFleetUI;
         private ShipData shipData1;
         private ShipData shipData2;
         public List<StarSysData> systemsList;
@@ -41,31 +39,24 @@ namespace Assets.Core
         [SerializeField]
         private TMP_Text dropdownShipText;
         [SerializeField]
-        private TMP_Text sysDestination;
+        private TMP_Text ourDestination;
 
         public string Name;
 
         private Camera galaxyEventCamera;
         [SerializeField]
         private Canvas FleetUICanvas;
-
-
+        [SerializeField]
+        private Canvas CanvasToolTip;
 
         private void Start()
         {
             rb = GetComponent<Rigidbody>();
-
-            var buttons = GetComponentsInChildren<Button>();
-            foreach (var item in buttons)
-            {
-                if (item.name == "Button Load FleetUI")
-                    buttonLoadFleetUI = item.gameObject;
-            }
-
             galaxyEventCamera = GameObject.FindGameObjectWithTag("Galactic Camera").GetComponent<Camera>();
-            var CanvasGO = GameObject.Find("Canvas FleetUI");
+            var CanvasGO = GameObject.Find("CanvasFleetUI");
             FleetUICanvas = CanvasGO.GetComponent<Canvas>();
             FleetUICanvas.worldCamera = galaxyEventCamera;
+            CanvasToolTip.worldCamera = galaxyEventCamera;
 
             shipData1 = gameObject.AddComponent<ShipData>();
             shipData1.shipName = "USS Trump";
@@ -96,6 +87,7 @@ namespace Assets.Core
 
         private void FixedUpdate()
         {
+            //ToDo **** need physics movement such that fleet pass around colliders that are not the destination
             //if (WarpFactor > 0 && Destination != null)
             //{
             //    Vector3 destinationPosition = Destination.transform.position;
@@ -137,11 +129,19 @@ namespace Assets.Core
         }
         public void LoadFleetUI()
         {
-            //FleetUIManager.instance.LoadFleetUI(fleetData.CivShortName + " Fleet " + fleetData.Name);
+            //FleetUIManager.instance.LoadFleetUI(fleetData.CivShortName + " Fleet " + fleetData.FleetName);
         }
         private void OnMouseDown()
         {
-            FleetUIManager.instance.LoadFleetUI(fleetData.CivShortName + " Fleet " + fleetData.Name);
+            string goName;
+            Ray ray = galaxyEventCamera.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit))
+            {
+                GameObject hitObject = hit.collider.gameObject;
+                goName = hitObject.name;
+            }
+            FleetUIManager.instance.LoadFleetUI(gameObject);
         }
 
 

@@ -24,7 +24,7 @@ namespace Assets.Core
                 PlayWarp();
                 //if (once == 0 && anim.GetCurrentAnimatorStateInfo(0).IsName("E1_allGoodThings"))
                 //{
-                //    shipLayerSetup.OnStateEnter(anim, anim.GetCurrentAnimatorStateInfo(anim.GetLayerIndex(anim.Name)), anim.GetLayerIndex(anim.Name));
+                //    shipLayerSetup.OnStateEnter(anim, anim.GetCurrentAnimatorStateInfo(anim.GetLayerIndex(anim.FleetName)), anim.GetLayerIndex(anim.FleetName));
                 //    once = 1;
                 //}
             }

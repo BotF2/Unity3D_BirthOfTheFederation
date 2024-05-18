@@ -7,6 +7,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEditor;
 using UnityEngine.UI;
+using UnityEngine.Rendering.VirtualTexturing;
 
 namespace Assets.Core
 {
@@ -25,6 +26,8 @@ namespace Assets.Core
         public GameObject galaxyImage;
 
         public GameObject galaxyCenter;
+        private Camera galaxyEventCamera;
+        private Canvas systemUICanvas; //ToDo system ui
 
         private void Awake()
         {
@@ -37,7 +40,11 @@ namespace Assets.Core
         }
         public void Start()
         {
-
+            galaxyEventCamera = GameObject.FindGameObjectWithTag("Galactic Camera").GetComponent<Camera>() as Camera;
+            // *** ToDo system UI
+            //var CanvasGO = GameObject.Find("CanvasSytemUI"); 
+            //systemUICanvas = CanvasGO.GetComponent<Canvas>();
+            //systemUICanvas.worldCamera = galaxyEventCamera;
         }
         public void CreateGameSystems(List<CivSO> civSOList)
         {
@@ -78,6 +85,7 @@ namespace Assets.Core
                     FleetManager.instance.FirstFleetData(civSO, SysData.Position);
             }
             StarSysDataList = starSysDatas;
+            FleetUIManager.instance.LoadDestinations(StarSysDataList);
 
         }
         public void InstantiateSystemButton(StarSysData sysData, CivSO civSO)
@@ -107,7 +115,7 @@ namespace Assets.Core
             {
                 if (oneRenderer != null)
                 {
-                    //if (oneRenderer.Name == "CivRaceSprite")
+                    //if (oneRenderer.FleetName == "CivRaceSprite")
                     //{
                     //    oneRenderer.sprite = civSO.CivImage; // ok
                     //}
@@ -131,20 +139,20 @@ namespace Assets.Core
             ourDropLine.SetUpLine(points);
             StarSysController controller = starSystemNewGameOb.GetComponentInChildren<StarSysController>();
             controller.starSysData = sysData;
-            Transform canvasTrans = starSystemNewGameOb.transform.Find("CanvasSysButton");
-            // Check if the child GameObject exists
-            if (canvasTrans != null)
-            {
-                // Is there a UI game object we need to turn on and off
-                //controller.c = canvasTrans.gameObject;
-                //controller.canvasFleetUIbutton.SetActive(false);
-            }
-            Transform canvasTransButton = starSystemNewGameOb.transform.Find("Canvas Load FleetUI");
-            // Check if the child GameObject exists
-            if (canvasTransButton != null)
-            {
-                canvasTransButton.SetParent(starSystemNewGameOb.transform, true);
-            }
+            //Transform canvasTrans = starSystemNewGameOb.transform.Find("CanvasSysButton");
+            //// Check if the child GameObject exists
+            //if (canvasTrans != null)
+            //{
+            //    // Is there a UI game object we need to turn on and off
+            //    //controller.c = canvasTrans.gameObject;
+            //    //controller.canvasFleetUIbutton.SetActive(false);
+            //}
+            //Transform canvasTransButton = starSystemNewGameOb.transform.Find("Canvas Load FleetUI");
+            //// Check if the child GameObject exists
+            //if (canvasTransButton != null)
+            //{
+            //    canvasTransButton.SetParent(starSystemNewGameOb.transform, true);
+            //}
 
             starSystemNewGameOb.SetActive(true);
         }
