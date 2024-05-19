@@ -13,7 +13,6 @@ public class FleetUIManager : MonoBehaviour
 {
     public static FleetUIManager instance;
     public FleetController controller;
-    //public Rigidbody fleetRB;
     public Canvas parentCanvas;
     [SerializeField]
     private GameObject fleetUIRoot;
@@ -24,16 +23,19 @@ public class FleetUIManager : MonoBehaviour
     [SerializeField]
     private float maxSliderValue = 9.8f;
     public List<StarSysData> systemsList;
+
     [SerializeField]
     private List<ShipData> shipList;
     private bool deltaShipList = false; //??? do I need this or the shipdropdown listener
-    //public Transform Destination;
+
     private float WarpFactor = 9;
     private float fudgeFactor = 0.05f; // so we see warp factor as in Star Trek but move in game space
     private float dropOutOfWarpDistance = 0.5f;
     private float maxWarpFactor;
     public GameObject DestinationDropdownGO;
     public GameObject ShipDropdownGO;
+    private TMP_Dropdown sysDropdown;
+    private TMP_Dropdown shipDropdown;
     public Transform Destination;
     [SerializeField]
     private TMP_Text FleetName;
@@ -64,6 +66,10 @@ public class FleetUIManager : MonoBehaviour
         fleetUIRoot.SetActive(false);
         galaxyEventCamera = GameObject.FindGameObjectWithTag("Galactic Camera").GetComponent<Camera>() as Camera;
         parentCanvas.worldCamera = galaxyEventCamera;
+        sysDropdown = DestinationDropdownGO.GetComponent<TMP_Dropdown>();
+        sysDropdown.value = 0;
+        //shipDropdown = ShipDropdownGO.GetComponent<Dropdown>();
+        //shipDropdown.value = 0;
     }
 
     public void WarpSliderChange(float value)
@@ -74,12 +80,12 @@ public class FleetUIManager : MonoBehaviour
     }
     public void LoadFleetUI(GameObject go) 
     {
+        fleetUIRoot.SetActive(true);
+        sysDropdown.value = 0;
         FleetName.text = go.name;
         controller = go.GetComponent<FleetController>();
         Ships(controller.shipList);
 
-        fleetUIRoot.SetActive(true);
-        //if ()
         if (controller.Destination == null)
         {
             Destination = null;
@@ -121,6 +127,7 @@ public class FleetUIManager : MonoBehaviour
     public void LoadDestinations(List<StarSysData> starSysDataList)
     {
         systemsList = starSysDataList;
+
         var destDropdown = DestinationDropdownGO.GetComponent<TMP_Dropdown>();
         destDropdown.options.Clear();
 
@@ -131,6 +138,8 @@ public class FleetUIManager : MonoBehaviour
             {
                 destDropdown.options.Add(new TMP_Dropdown.OptionData() { text = item.SysName });
             }
+            //systemsList.Add()
+            //destDropdown.options.Add( new TMP_Dropdown.OptionData()) { t}
         }
         destDropdown.onValueChanged.AddListener(delegate { DropdownItemSelected(destDropdown); });
     }

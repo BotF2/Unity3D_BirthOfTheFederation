@@ -541,7 +541,7 @@ namespace GalaxyMap
         //    }
         //    #endregion
         //}
-        //// Now we Instanitate buttons in InstantiateSystemButton
+        //// Now we Instanitate buttons in InstantiateSystem
         ////private void MakeButtonsForSolarSystems(Transform transformParent, SolarSystem ss)
         ////{
         ////    //CameraManagerGalactica cameraManagerGalactic = new CameraManagerGalactica();

@@ -191,16 +191,6 @@ namespace Assets.Core
         ZZUNINHABITED10,
         #endregion
     }
-    //public enum Civilization
-    //{
-    //    FED,
-    //    TERRAN,
-    //    ROM,
-    //    KLING,
-    //    CARD,
-    //    DOM,
-    //    BORG
-    //}
     public enum GalaxyType
     {
         CANON,
@@ -219,16 +209,7 @@ namespace Assets.Core
         ADVANCED,
         SUPREME
     }
-    //public enum HomeSystem
-    //{
-    //    SOL,
-    //    TERRA,
-    //    ROMULUS,
-    //    KRONOS,
-    //    CARDASSIA,
-    //    OMARIAN_NEBULA,
-    //    DELTA_PRIME
-    //}
+
     public enum SystemData
     {
         Sys_Int,
@@ -256,11 +237,6 @@ namespace Assets.Core
         Planet_8,
         Moons_8
     }
-    public enum FriendOrFoe
-    {
-        friend,
-        enemy
-    }
 
     public enum ShipType
     {
@@ -274,14 +250,8 @@ namespace Assets.Core
         Construction,
         OneMore
     }
-    public enum SystemType
-    {
-        SolarSystem,
-        NebulaSystem,
-        ComplexSystem,
-        BlackHoleSystem,
-    }
-    public enum StarType
+
+    public enum StarSystemType
     {
         Blue,
         White,
@@ -290,6 +260,7 @@ namespace Assets.Core
         Red,
         Nebula,
         OmarianNebula,
+        Station,
         UniComplex,
         BlackHole,
         WormHole,//???

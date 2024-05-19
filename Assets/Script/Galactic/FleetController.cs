@@ -16,7 +16,6 @@ namespace Assets.Core
         public FleetData fleetData;
         private ShipData shipData1;
         private ShipData shipData2;
-        public List<StarSysData> systemsList;
         public List<ShipData> shipList;
         private bool deltaShipList = false; //??? do I need this or the shipdropdown listener
         public Transform Destination;
@@ -63,26 +62,10 @@ namespace Assets.Core
             Name = fleetData.CivShortName + " Fleet " + fleetData.Name;
         }
 
-        public void DropdownItemSelected(TMP_Dropdown dropdown)
-        {
-            int index = dropdown.value;
-            if (dropdown.name == "Dropdown Systems")
-            {
-                dropdownSysText.text = dropdown.options[index].text;
-                var sys = systemsList[index];
-                Destination = sys.SysTransform;
-            }
-            else if(dropdown.name == "Dropdown Ships")
-            {
-                dropdownShipText.text = dropdown.options[index].text;
-                var ship = shipList[index]; // Can we or should we do stuff here??
-
-            }
-        }
-
         private void FixedUpdate()
         {
             //ToDo **** need physics movement such that fleet pass around colliders that are not the destination
+            // pending time manager timing, Marc is working on this.
         }
 
         void AddToShipList(ShipData ship)
@@ -94,13 +77,6 @@ namespace Assets.Core
         {
             shipList.Remove(ship);
             deltaShipList = true;
-        }
-        public void DropdownSystems(int index)
-        {
-            foreach (var system in systemsList) 
-            {
-            
-            }
         }
 
         public void UpdateWarpFactor(int delta)

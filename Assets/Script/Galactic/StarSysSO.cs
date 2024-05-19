@@ -14,7 +14,7 @@ public class StarSysSO : ScriptableObject
     public string SysName;
     public CivEnum FirstOwner;
     public CivEnum CurrentOwner;
-    public StarType StarType;
+    public StarSystemType StarType;
     public Sprite StarSprit;
     public int Population;
     public string Description;

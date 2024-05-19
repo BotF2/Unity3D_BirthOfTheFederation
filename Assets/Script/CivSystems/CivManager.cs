@@ -12,19 +12,12 @@ namespace Assets.Core
     {
         public static CivManager instance;
 
-        //public StarSysManager starSysManager;
-
         public List<CivSO> civSOListSmall;
-
         public List<CivSO> civSOListMedium;
-
         public List<CivSO> civSOListLarge;
-
         public List<CivData> civDataInGameList = new List<CivData> { new CivData()};
-
         public List<CivData> contactList = new List<CivData>() { new CivData()};
-
-        //public GameObject civilizationPrefab;
+        public List<CivController> civControllerList;
         public CivData localPlayer;
 
         private void Awake()
@@ -101,14 +94,15 @@ namespace Assets.Core
                 data.ContactList.Add(data); // add civ as contact for itself
                 data.ContactList.Remove(data.ContactList[0]); // remove the null from above field
                 civDataInGameList.Add(data);
-                
+                InstantiateCivControllers(data);
             }
             civDataInGameList.Remove(civDataInGameList[0]); // remove the null entered above
             StarSysManager.instance.CreateGameSystems(civSOList);
-
-
         }
-
+        public void InstantiateCivControllers(CivData civData)
+        {
+            //civControllerList.Add(civController);
+        }
         public CivData resultInGameCivData;
 
         public CivData GetCivDataByName(string shortName)

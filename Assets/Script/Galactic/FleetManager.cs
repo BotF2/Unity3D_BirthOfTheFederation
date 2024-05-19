@@ -18,14 +18,11 @@ namespace Assets.Core
         public static FleetManager instance;
 
         public List<FleetSO> fleetSOList;// all possible fleetSO(s), one list for each civ
-
         public GameObject fleetPrefab;
-
         public Dictionary<CivEnum, List<FleetData>> FleetDictionary; //all the fleets of that civ
-
         public GameObject galaxyImage;
-
         public GameObject galaxyCenter;
+        public List<FleetController> fleetControllerList;
 
         //public TextMeshProUGUI fleetNameText;
 
@@ -77,7 +74,6 @@ namespace Assets.Core
                     InstantiateFleet(fleetData, position);
                 }
             }
-
         }
         private void GetFleetName(Assets.Core.CivEnum civEnum)
         {
@@ -88,7 +84,6 @@ namespace Assets.Core
             {
                 for (int j = 0; j < listFleetData.Count; j++) // build the list of int names
                 {
-                    // if (listFleetData[j].FleetName != "998")
                     ints.Add(int.Parse(listFleetData[j].Name));
                 }
                 for (int i = 0; i < listFleetData.Count; i++)
@@ -102,12 +97,11 @@ namespace Assets.Core
                         listFleetData[i].Name = (i + 1).ToString();
                     }
                 }
-
-            }
-          
+            }         
         }
         public void InstantiateFleet(FleetData fleetData, Vector3 position)
         {
+            
             GameObject fleetNewGameOb = (GameObject)Instantiate(fleetPrefab, new Vector3(0,0,0),
                     Quaternion.identity);
             fleetNewGameOb.transform.Translate(new Vector3(fleetData.Position.x + 40f, fleetData.Position.y, fleetData.Position.z + 10f));
@@ -135,7 +129,6 @@ namespace Assets.Core
             DropLineMovable ourLineScript = fleetNewGameOb.GetComponentInChildren<DropLineMovable>();
 
             ourLineScript.GetLineRenderer();
-            //fleetNewGameOb.
             ourLineScript.transform.SetParent(fleetNewGameOb.transform, false);
             Vector3 galaxyPlanePoint = new Vector3(fleetNewGameOb.transform.position.x,
                 galaxyImage.transform.position.y, fleetNewGameOb.transform.position.z);
@@ -146,15 +139,10 @@ namespace Assets.Core
             
             controller.fleetData = fleetData;
 
-            //Transform canvasTransButton = fleetNewGameOb.transform.Find("CanvasFeetUIButton");
-            //// Check if the child GameObject exists
-            //if (canvasTransButton != null)
-            //{
-            //    canvasTransButton.SetParent(fleetNewGameOb.transform, true);
-            //}
             controller.fleetData.deltaYofGalaxyImage = galaxyCenter.transform.position.y - galaxyPlanePoint.y;
 
             fleetNewGameOb.SetActive(true);
+            fleetControllerList.Add(controller);
    
         }
 

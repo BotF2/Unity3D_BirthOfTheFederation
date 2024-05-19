@@ -11,9 +11,19 @@ public class StarSysData
     public string SysName;
     public CivEnum FirstOwner;
     public CivEnum CurrentOwner;
-    public StarType StarType;
+    public StarSystemType StarType;
     public Sprite StarSprit;
     public string Description;
     public int Population;
+    private string v;
 
+    public StarSysData()
+    {
+
+    }
+    public StarSysData(string v)
+    {
+        this.v = v;
+        this.SysName = v;
+    }
 }

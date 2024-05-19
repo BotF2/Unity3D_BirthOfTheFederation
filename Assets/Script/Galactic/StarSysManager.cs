@@ -16,15 +16,11 @@ namespace Assets.Core
         public static StarSysManager instance;
 
         public List<StarSysSO> starSysSOList;
-
         public GameObject sysPrefab;
-
-        public List<StarSysData> StarSysDataList; 
-
-        private List<StarSysData> starSysDatas = new List<StarSysData>() { new StarSysData()};
-
+        public List<StarSysData> StarSysDataList;
+        public List<StarSysController> StarSysControllerList;
+        private List<StarSysData> starSysDatas = new List<StarSysData>(); // { new StarSysData("Not Selected") };
         public GameObject galaxyImage;
-
         public GameObject galaxyCenter;
         private Camera galaxyEventCamera;
         private Canvas systemUICanvas; //ToDo system ui
@@ -48,11 +44,14 @@ namespace Assets.Core
         }
         public void CreateGameSystems(List<CivSO> civSOList)
         {
-
+            StarSysData SysData = new StarSysData("Not Selected");
+            starSysDatas.Add(SysData);
             foreach (var civSO in civSOList)
             {
                 StarSysSO starSysSO = GetStarSObyInt(civSO.CivInt);
-                StarSysData SysData = new StarSysData(); // OK, not monobehavior
+
+                //StarSysData 
+                SysData = new StarSysData("Not Selected");               
                 SysData.SysInt = civSO.CivInt;
                 SysData.Position = new Vector3(starSysSO.Position.x, starSysSO.Position.y, starSysSO.Position.z);
                 SysData.SysName = starSysSO.SysName;
@@ -80,7 +79,7 @@ namespace Assets.Core
                 #endregion
                 
                 starSysDatas.Add(SysData);
-                InstantiateSystemButton(SysData, civSO);
+                InstantiateSystem(SysData, civSO);
                 if (civSO.HasWarp) 
                     FleetManager.instance.FirstFleetData(civSO, SysData.Position);
             }
@@ -88,7 +87,7 @@ namespace Assets.Core
             FleetUIManager.instance.LoadDestinations(StarSysDataList);
 
         }
-        public void InstantiateSystemButton(StarSysData sysData, CivSO civSO)
+        public void InstantiateSystem(StarSysData sysData, CivSO civSO)
         { 
             GameObject starSystemNewGameOb = (GameObject)Instantiate(sysPrefab, new Vector3(0,0,0),
                  Quaternion.identity);
@@ -155,6 +154,7 @@ namespace Assets.Core
             //}
 
             starSystemNewGameOb.SetActive(true);
+            StarSysControllerList.Add(controller);  
         }
         public StarSysData resultInGameStarSysData;
 
