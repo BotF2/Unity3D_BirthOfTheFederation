@@ -5238,8 +5238,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 16777215
-  m_fontColor: {r: 1, g: 1, b: 1, a: 0}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -5317,8 +5317,8 @@ GameObject:
   - component: {fileID: 933850022}
   - component: {fileID: 933850026}
   - component: {fileID: 933850025}
-  - component: {fileID: 933850024}
   - component: {fileID: 933850023}
+  - component: {fileID: 933850027}
   m_Layer: 0
   m_Name: BlackHoleSagA
   m_TagString: Untagged
@@ -5355,19 +5355,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfd9330479ce7844995d6188ebcce402, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &933850024
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 933850021}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d116b78ae9cd6b84c8714da7db2c4686, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canvasToolTip: {fileID: 2112011886}
 --- !u!54 &933850025
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5397,6 +5384,20 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 1.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &933850027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 933850021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df05954b19cd18840b2b8aa421b56467, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CanvasToolTip: {fileID: 2112011886}
+  galaxyEventCamera: {fileID: 963194234}
 --- !u!1 &960133462
 GameObject:
   m_ObjectHideFlags: 0
@@ -11660,7 +11661,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2112011882}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

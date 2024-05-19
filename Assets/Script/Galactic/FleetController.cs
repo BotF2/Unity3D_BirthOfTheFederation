@@ -5,10 +5,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
-using UnityEngine.Serialization;
-using UnityEngine.EventSystems;
-using UnityEngine.Rendering;
-using Unity.VisualScripting;
 
 
 namespace Assets.Core
@@ -28,11 +24,10 @@ namespace Assets.Core
         private float fudgeFactor = 0.05f; // so we see warp factor as in Star Trek but move in game space
         private float dropOutOfWarpDistance = 0.5f;
         private float maxWarpFactor;
-       // public bool warpTravel = false;// do we need this warp factor >0
         public Rigidbody rb;
         public GameObject destinationDropdownGO;
         public GameObject shipDropdownGO;
-        //public GameObject fleetDropLine;
+
         public LineRenderer lineRenderer;
         [SerializeField]
         private TMP_Text dropdownSysText;
@@ -88,21 +83,6 @@ namespace Assets.Core
         private void FixedUpdate()
         {
             //ToDo **** need physics movement such that fleet pass around colliders that are not the destination
-            //if (WarpFactor > 0 && Destination != null)
-            //{
-            //    Vector3 destinationPosition = Destination.transform.position;
-            //    Vector3 currentPosition = transform.position;
-            //    float distance = Vector3.Distance(destinationPosition, currentPosition);
-            //    if (distance > dropOutOfWarpDistance)
-            //    {
-            //        Vector3 travelVector = destinationPosition - transform.position;
-            //        travelVector.Normalize();
-            //        rb.MovePosition(currentPosition + (travelVector * WarpFactor * fudgeFactor * Time.deltaTime));
-            //    }
-            //    Vector3[] linePoints = new Vector3[] { transform.position,
-            //    new Vector3(transform.position.x, -6f, transform.position.z) };
-            //    lineRenderer.SetPositions(linePoints);
-            //}
         }
 
         void AddToShipList(ShipData ship)
