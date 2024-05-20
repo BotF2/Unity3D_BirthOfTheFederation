@@ -58,38 +58,34 @@ public class CivSOImporter : EditorWindow
                         imageString = "Races/" + imageString+ "s"; 
                     }
                 }
-
-
-                CivSO civ = CreateInstance<CivSO>();
+                CivSO civSO = CreateInstance<CivSO>();
                 //CivInt	,	Civ Enum	,	Civ Short Name	,	Civ Long Name	,	Home System	,	Triat One	,	Trait Two	,	Civ Image	,	Insginia	,	Population	,	Credits	,	Tech Points
-                civ.CivInt = int.Parse(fields[0]);
-                civ.CivEnum = GetMyCivEnum(fields[1]);
-                civ.CivShortName= fields[2];
-                civ.CivLongName = fields[3];
-                civ.CivHomeSystem = fields[4];
-                civ.TraitOne = fields[5];
-                civ.TraitTwo = fields[6];
-                civ.CivImage = Resources.Load<Sprite>(imageString);
+                civSO.CivInt = int.Parse(fields[0]);
+                civSO.CivEnum = GetMyCivEnum(fields[1]);
+                civSO.CivShortName= fields[2];
+                civSO.CivLongName = fields[3];
+                civSO.CivHomeSystem = fields[4];
+                civSO.TraitOne = fields[5];
+                civSO.TraitTwo = fields[6];
+                civSO.CivImage = Resources.Load<Sprite>(imageString);
                 //if (fields[2].LastIndexOf == "S") { }
-               //civ.Insignia =
+               //civSO.Insignia =
                 var name = Resources.Load<Sprite>("Insignias/" + fields[2].ToUpper());
                 if (name == null) { name = Resources.Load<Sprite>("Insignias/" + fields[2].ToUpper() + "S"); }
-                civ.Insignia = name;
-                civ.Population = int.Parse(fields[9]);
-                civ.Credits = int.Parse(fields[10]);
-                civ.TechPoints = int.Parse(fields[11]);
-                civ.CivTechLevel = TechLevel.EARLY;// TechLevel enum
-                if (civ.CivInt <= 5 || civ.CivInt == 158){ civ.Playable = true; }
-                else civ.Playable = false;
-                civ.HasWarp = bool.Parse(fields[12]);
-                civ.Decription = "ToDo, connect to libaray of civ descriptions";
-                civ.StarSysOwned = new System.Collections.Generic.List<StarSysData> { new StarSysData() };
-                civ.IntelPoints = 0f;
-                //civ.ContactList = new System.Collections.Generic.List<CivData>(); // we know our self + maybe a 'Vulcans' for each major??
-
-
-                string assetPath = $"Assets/SO/CivilizationSO/CivSO_{civ.CivInt}_{civ.CivShortName}.asset";
-                AssetDatabase.CreateAsset(civ, assetPath);
+                civSO.Insignia = name;
+                civSO.Population = int.Parse(fields[9]);
+                civSO.Credits = int.Parse(fields[10]);
+                civSO.TechPoints = int.Parse(fields[11]);
+                civSO.CivTechLevel = TechLevel.EARLY;// TechLevel enum
+                if (civSO.CivInt <= 5 || civSO.CivInt == 158){ civSO.Playable = true; }
+                else civSO.Playable = false;
+                civSO.HasWarp = bool.Parse(fields[12]);
+                civSO.Decription = "ToDo, connect to libaray of civSO descriptions";
+                civSO.StarSysOwned = new System.Collections.Generic.List<StarSysData> { new StarSysData() };
+                civSO.IntelPoints = 0f;
+                //civSO.ContactList = new System.Collections.Generic.List<CivData>(); // we know our self + maybe a 'Vulcans' for each major??
+                string assetPath = $"Assets/SO/CivilizationSO/CivSO_{civSO.CivInt}_{civSO.CivShortName}.asset";
+                AssetDatabase.CreateAsset(civSO, assetPath);
                 AssetDatabase.SaveAssets();
             }
         }

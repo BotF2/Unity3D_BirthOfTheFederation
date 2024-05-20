@@ -7,7 +7,6 @@ namespace Assets.Core
 
     public class CivData// : MonoBehaviour // has list of civsInGame, starSytemData and civs data dictionaries?
     {
-        #region Fields
         public int CivInt;
         public CivEnum CivEnum;
         public string CivShortName;
@@ -70,7 +69,7 @@ namespace Assets.Core
 
         //public ProductionSliders proSliders;
         //private int count = 0;
-        #endregion
+        
     }
 }
 

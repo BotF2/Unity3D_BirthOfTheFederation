@@ -23,9 +23,7 @@ namespace Assets.Core
         public GameObject galaxyImage;
         public GameObject galaxyCenter;
         public List<FleetController> fleetControllerList;
-
         //public TextMeshProUGUI fleetNameText;
-
         //public TextMeshProUGUI fleetDescriptionText;
 
 
@@ -44,8 +42,9 @@ namespace Assets.Core
             List<FleetData> list = new List<FleetData>() {data};
             FleetDictionary = new Dictionary<CivEnum, List<FleetData>>() { { CivEnum.ZZUNINHABITED9, list } };
         }
-        public void FirstFleetData(CivSO civSO, Vector3 position) // first fleet
+        public void FleetDataFromSO(CivSO civSO, Vector3 position) // first fleet
         {
+
             FleetSO fleetSO = GetFleetSObyInt(civSO.CivInt);
             if (fleetSO != null)
             {
@@ -74,6 +73,7 @@ namespace Assets.Core
                     InstantiateFleet(fleetData, position);
                 }
             }
+            
         }
         private void GetFleetName(Assets.Core.CivEnum civEnum)
         {

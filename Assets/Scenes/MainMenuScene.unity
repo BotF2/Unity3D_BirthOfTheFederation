@@ -2468,6 +2468,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e3e4c2f8f4f278d4f881948437a1e784, type: 2}
   - {fileID: 11400000, guid: 21b205784914842479c80d1122b03397, type: 2}
   - {fileID: 11400000, guid: 926cedd27624d6b44bb97b7480e308eb, type: 2}
+  ShipControllerList: []
 --- !u!4 &465746041
 Transform:
   m_ObjectHideFlags: 0

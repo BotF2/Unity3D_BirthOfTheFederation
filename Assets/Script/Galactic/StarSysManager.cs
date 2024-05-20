@@ -22,6 +22,7 @@ namespace Assets.Core
         private List<StarSysData> starSysDatas = new List<StarSysData>(); // { new StarSysData("Not Selected") };
         public GameObject galaxyImage;
         public GameObject galaxyCenter;
+        public StarSysData resultInGameStarSysData;
         private Camera galaxyEventCamera;
         private Canvas systemUICanvas; //ToDo system ui
 
@@ -42,7 +43,7 @@ namespace Assets.Core
             //systemUICanvas = CanvasGO.GetComponent<Canvas>();
             //systemUICanvas.worldCamera = galaxyEventCamera;
         }
-        public void CreateGameSystems(List<CivSO> civSOList)
+        public void SysDataFromSO(List<CivSO> civSOList)
         {
             StarSysData SysData = new StarSysData("Not Selected");
             starSysDatas.Add(SysData);
@@ -81,7 +82,7 @@ namespace Assets.Core
                 starSysDatas.Add(SysData);
                 InstantiateSystem(SysData, civSO);
                 if (civSO.HasWarp) 
-                    FleetManager.instance.FirstFleetData(civSO, SysData.Position);
+                    FleetManager.instance.FleetDataFromSO(civSO, SysData.Position);
             }
             StarSysDataList = starSysDatas;
             FleetUIManager.instance.LoadDestinations(StarSysDataList);
@@ -156,7 +157,6 @@ namespace Assets.Core
             starSystemNewGameOb.SetActive(true);
             StarSysControllerList.Add(controller);  
         }
-        public StarSysData resultInGameStarSysData;
 
         public StarSysSO GetStarSObyInt(int sysInt)
         {

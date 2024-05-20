@@ -11,6 +11,7 @@ namespace Assets.Core
 
     public class MainMenuUIController : MonoBehaviour
     {
+        public static MainMenuUIController instance;
         public GameObject mainMenuCanvas;
         public GameObject TipCanvas;
         //public GameObject mainMenuPanelSinglePlayer;
@@ -28,7 +29,20 @@ namespace Assets.Core
         //private AsyncOperation _SceneAsync;
         //private bool _bGalaxyShow = false;
         //private Scene PrevScene;
-        public void SetGalaxySize(int index)
+        private void Awake()
+        {
+            if (instance != null)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                instance = this;
+                DontDestroyOnLoad(gameObject);
+            }
+        }
+
+            public void SetGalaxySize(int index)
         {
             selectedGalaxySize = (GalaxySize)index;
             //GalaxyContro
