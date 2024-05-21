@@ -8,7 +8,6 @@ using UnityEngine.EventSystems;
 
 namespace Assets.Core
 {
-
     public class MainMenuUIController : MonoBehaviour
     {
         public static MainMenuUIController instance;
@@ -42,7 +41,7 @@ namespace Assets.Core
             }
         }
 
-            public void SetGalaxySize(int index)
+        public void SetGalaxySize(int index)
         {
             selectedGalaxySize = (GalaxySize)index;
             //GalaxyContro
@@ -74,7 +73,7 @@ namespace Assets.Core
             galaxyCenter.SetActive(true);
 
             SceneManager.LoadScene("GalaxyScene", LoadSceneMode.Additive);
-            CivManager.instance.OnNewGameButtonClicked((int)selectedGalaxySize);
+            CivManager.instance.OnNewGameButtonClicked((int)selectedGalaxySize, (int)selectedTechLevel);
         }
 
         //IEnumerator loadScene(string SceneName)

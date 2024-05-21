@@ -32,7 +32,7 @@ namespace Assets.Core
         //public static Civilization CARD;
         //public static Civilization DOM;
         //public static Civilization BORG;
-        //public static Civilization TERRAN;
+        //public static Civilization TER;
         //public Race race -- try to leave this off, too complicated
         //public StarSystemManager _homeSystem;
         public bool _weAreMajorCiv;
@@ -91,7 +91,7 @@ namespace Assets.Core
             //CARD = new CivData(3);
             //DOM = new CivData(4);
             //BORG = new CivData(5);
-            //TERRAN = new CivData(300);
+            //TER = new CivData(300);
             GameObject tempObject = GameObject.Find("CanvasGalactic");
             if (tempObject != null)
             {
@@ -281,7 +281,7 @@ namespace Assets.Core
                         {
                             if (aCiv.CivEnum == CivEnum.FED || aCiv.CivEnum == CivEnum.ROM ||
                                 aCiv.CivEnum == CivEnum.KLING || aCiv.CivEnum == CivEnum.CARD ||
-                                aCiv.CivEnum == CivEnum.DOM || aCiv.CivEnum == CivEnum.BORG || aCiv.CivEnum == CivEnum.TERRAN)
+                                aCiv.CivEnum == CivEnum.DOM || aCiv.CivEnum == CivEnum.BORG || aCiv.CivEnum == CivEnum.TER)
                             {
                                 foreach (CivData thisCiv in civsInGame)
                                 {

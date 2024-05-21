@@ -6545,6 +6545,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 63cc253fde40ab84b9b444beb069f121, type: 2}
   civSOListMedium: []
   civSOListLarge: []
+  shipSOListTech0: []
+  shipSOListTech1: []
+  shipSOListTech2: []
+  shipSOListTech3: []
   civControllerList: []
 --- !u!4 &1091640995
 Transform:

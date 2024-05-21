@@ -128,8 +128,8 @@ namespace Assets.Core
         //        //    case "FED":
         //        //        _civ = Civilization.FED;
         //        //        break;
-        //        //    case "TERRAN":
-        //        //        _civ = Civilization.TERRAN;
+        //        //    case "TER":
+        //        //        _civ = Civilization.TER;
         //        //        break;
         //        //    case "ROM":
         //        //        _civ = Civilization.ROM;

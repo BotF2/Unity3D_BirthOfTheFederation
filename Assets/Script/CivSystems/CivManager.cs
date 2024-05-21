@@ -15,6 +15,10 @@ namespace Assets.Core
         public List<CivSO> civSOListSmall;
         public List<CivSO> civSOListMedium;
         public List<CivSO> civSOListLarge;
+        public List<ShipSO> shipSOListTech0;
+        public List<ShipSO> shipSOListTech1;
+        public List<ShipSO> shipSOListTech2;
+        public List<ShipSO> shipSOListTech3;
         public List<CivData> civDataInGameList = new List<CivData> { new CivData()};
         public List<CivData> contactList = new List<CivData>() { new CivData()};
         public List<CivController> civControllerList;
@@ -64,7 +68,6 @@ namespace Assets.Core
                 //FleetManager.CreateNewGameFleets(3);
             }
         }
-
         public void CivDataFromSO(List<CivSO> civSOList)
         {
             foreach (var civSO in civSOList)
@@ -99,6 +102,63 @@ namespace Assets.Core
             }
             civDataInGameList.Remove(civDataInGameList[0]); // remove the null entered above
             StarSysManager.instance.SysDataFromSO(civSOList);
+        }
+        public void CreateNewGameTechLevel(int techLevel)
+        {
+            if (techLevel == 0)
+            {
+                ShipDataFromSO(shipSOListTech0);
+                //FleetManager.CreateNewGameFleets(1);
+            }
+            if (techLevel == 1)
+            {
+                ShipDataFromSO(shipSOListTech1);
+                //FleetManager.CreateNewGameFleets(2);
+            }
+            if (techLevel == 2)
+            {
+                ShipDataFromSO(shipSOListTech2);
+                //FleetManager.CreateNewGameFleets(3);
+            }
+            if (techLevel == 2)
+            {
+                ShipDataFromSO(shipSOListTech3);
+                //FleetManager.CreateNewGameFleets(3);
+            }
+        }
+        public void ShipDataFromSO(List<ShipSO> shipSOList)
+        {
+            foreach (var shipSO in shipSOList)
+            {
+                ShipData shipData = new ShipData();
+                shipData.ShipName = shipSO.ShipName;
+                shipData.CivEnum = shipSO.CivEnum;
+                shipData.TechLevel = shipSO.TechLevel;
+                //civData.TraitOne = civSO.TraitOne;
+                //civData.TraitTwo = civSO.TraitTwo;
+                //civData.CivImage = civSO.CivImage;
+                //civData.Insignia = civSO.Insignia;
+                //civData.Population = civSO.Population;
+                //civData.Credits = civSO.Credits;
+                //civData.TechPoints = civSO.TechPoints;
+                //civData.CivTechLevel = civSO.CivTechLevel;
+                //if (civSO.CivInt <= 5 || civSO.CivInt == 158)
+                //    civData.Playable = true;
+                //else civData.Playable = false;
+                //civData.HasWarp = civSO.HasWarp;
+                //civData.Decription = civSO.Decription;
+                //civData.StarSysOwned = civSO.StarSysOwned;
+                ////civData.TaxRate = civSO.TaxRate;
+                ////civData.GrowthRate = civSO.GrowthRate;
+                //civData.IntelPoints = civSO.IntelPoints;
+                //civData.ContactList = contactList;
+                //civData.ContactList.Add(civData); // add civ as contact for itself
+                //civData.ContactList.Remove(civData.ContactList[0]); // remove the null from above field
+                //civDataInGameList.Add(civData);
+                ShipManager.instance.InstantiateShip(shipData);
+            }
+            //civDataInGameList.Remove(civDataInGameList[0]); // remove the null entered above
+            //StarSysManager.instance.SysDataFromSO(civSOList);
         }
         public void InstantiateCiv(CivData civData) //??????? is Civ a game object
         {
@@ -191,10 +251,10 @@ namespace Assets.Core
             return result;
 
         }
-        public void OnNewGameButtonClicked(int gameSize)
+        public void OnNewGameButtonClicked(int gameSize, int gameTechLevel)
         {
             CreateNewGameBySize(gameSize);
-
+            CreateNewGameTechLevel(gameTechLevel);
         }
 
         public void GetCivByName(string civname)

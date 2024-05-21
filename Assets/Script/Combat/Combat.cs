@@ -29,8 +29,8 @@ namespace Assets.Core
             //    case "FED":
             //        daCiv = Civilization.FED;
             //        break;
-            //    case "TERRAN":
-            //        daCiv = Civilization.TERRAN;
+            //    case "TER":
+            //        daCiv = Civilization.TER;
             //        break;
             //    case "ROM":
             //        daCiv = Civilization.ROM;

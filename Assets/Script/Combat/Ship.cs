@@ -119,8 +119,8 @@ namespace Assets.Core
             //    case "FED":
             //        _civilization = Civilization.FED;
             //        break;
-            //    case "TERRAN":
-            //        _civilization = Civilization.TERRAN;
+            //    case "TER":
+            //        _civilization = Civilization.TER;
             //        break;
             //    case "ROM":
             //        _civilization = Civilization.ROM;
@@ -487,7 +487,7 @@ namespace Assets.Core
         //    //                enemyShipLayer = 10;
         //    //            break;
         //    //        }
-        //    //    case "TERRAN":
+        //    //    case "TER":
         //    //        {
         //    //            if (who == FriendOrFoe.friend)
         //    //                friendShipLayer = 11;

@@ -59,7 +59,7 @@ public class CivSOImporter : EditorWindow
                     }
                 }
                 CivSO civSO = CreateInstance<CivSO>();
-                //CivInt	,	Civ Enum	,	Civ Short Name	,	Civ Long Name	,	Home System	,	Triat One	,	Trait Two	,	Civ Image	,	Insginia	,	Population	,	Credits	,	Tech Points
+                //CivInt	,	Civ Enum	,	Civ Short Name	,	Civ Long Name	,	Home System	,	Triat One	,	Trait Two	,	Civ Image	,	Insginia	,	Population	,	Credits	,	TechLevel Points
                 civSO.CivInt = int.Parse(fields[0]);
                 civSO.CivEnum = GetMyCivEnum(fields[1]);
                 civSO.CivShortName= fields[2];

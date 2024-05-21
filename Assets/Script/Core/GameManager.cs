@@ -177,7 +177,7 @@ namespace Assets.Core
         ZALKONIANS,
         ZIBALIANS,
         #endregion
-        TERRAN,
+        TER,
         ZZUNINHABITED1,
         #region More Uninhabited
         ZZUNINHABITED2,
@@ -745,7 +745,7 @@ namespace Assets.Core
                         //case Civilization.FED: // we already know local player from CivSelection.cs so do we change to a race UI/ ship/ economy here??
                         //    // set 
                         //    break;
-                        //case Civilization.TERRAN:
+                        //case Civilization.TER:
                         //    break;
                         //case Civilization.ROM:
                         //    break;
@@ -1052,7 +1052,7 @@ namespace Assets.Core
                         return 10;
 
                     }
-                case "TERRAN":
+                case "TER":
                     {
                         return 11;
 

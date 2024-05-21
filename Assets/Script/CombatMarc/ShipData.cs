@@ -1,11 +1,21 @@
+using Assets.Core;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ShipData : MonoBehaviour
 {
-    public string shipName;
+    public string ShipName;
+    public CivEnum CivEnum;
+    public TechLevel TechLevel;
+    public ShipType ShipType;
     public float maxWarpFactor;
+    public int ShieldMaxHealth;
+    public int HullMaxHealth;
+    public int TorpedoDamage;
+    public int BeamDamage;
+    public int Cost;
+    public GameObject Mesh;
 
     void Start()
     {
@@ -14,7 +24,7 @@ public class ShipData : MonoBehaviour
     }
     public ShipData(string name)
     {
-        shipName = name;
+        ShipName = name;
     }
     public ShipData()
     {

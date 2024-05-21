@@ -46,7 +46,7 @@ namespace Assets.Core
         //        case Civilization.FED:
         //            return FightWithFed.ToArray();
         //            break;
-        //        case Civilization.TERRAN:
+        //        case Civilization.TER:
         //            return FightWithTerran.ToArray();
         //            break;
         //        case Civilization.ROM:
@@ -76,7 +76,7 @@ namespace Assets.Core
         //        case Civilization.FED:
         //            return FightFed.ToArray();
         //            break;
-        //        case Civilization.TERRAN:
+        //        case Civilization.TER:
         //            return FightTerran.ToArray();
         //            break;
         //        case Civilization.ROM:

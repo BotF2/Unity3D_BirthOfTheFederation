@@ -24,7 +24,7 @@ public class ShipManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
         shipData = gameObject.AddComponent<ShipData>();
-        shipData.shipName = "999";
+        shipData.ShipName = "999";
         List <ShipData> list = new List<ShipData>() { shipData };
         //ShipDictionary = new Dictionary<CivEnum, List<ShipData>>() { { CivEnum.ZZUNINHABITED9, list } };
     }

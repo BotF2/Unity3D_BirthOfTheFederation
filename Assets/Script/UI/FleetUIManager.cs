@@ -118,7 +118,7 @@ public class FleetUIManager : MonoBehaviour
 
         foreach (var item in ships)
         {
-            shipDropdown.options.Add(new TMP_Dropdown.OptionData() { text = item.shipName });
+            shipDropdown.options.Add(new TMP_Dropdown.OptionData() { text = item.ShipName });
         }
         //DropdownItemSelected(shipDropdown);
         shipDropdown.onValueChanged.AddListener(delegate { DropdownItemSelected(shipDropdown); });

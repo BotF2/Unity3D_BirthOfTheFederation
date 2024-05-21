@@ -53,10 +53,10 @@ namespace Assets.Core
             CanvasToolTip.worldCamera = galaxyEventCamera;
 
             shipData1 = gameObject.AddComponent<ShipData>();
-            shipData1.shipName = "USS Trump";
+            shipData1.ShipName = "USS Trump";
 
             shipData2 = gameObject.AddComponent<ShipData>();
-            shipData2.shipName = "USS John McCain";
+            shipData2.ShipName = "USS John McCain";
             shipList = new List<ShipData>() { shipData1, shipData2 };
             
             Name = fleetData.CivShortName + " Fleet " + fleetData.Name;

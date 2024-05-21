@@ -41,6 +41,7 @@ public class ShipSOImporter : EditorWindow
         foreach (string line in lines)
         {
             string[] fields = line.Split(',');
+            string assetPath = " ";
 
             if (fields.Length == 11) // Ensure there are enough fields
             {
@@ -48,14 +49,22 @@ public class ShipSOImporter : EditorWindow
                 ship.ShipName = fields[0];
                 string[] data = ship.ShipName.Split("_");
                 ship.CivEnum = GetMyCivEnum(data[0]);
-                ship.Tech = GetMyTechLevel(data[2], out TechLevel st);
+                ship.TechLevel = GetMyTechLevel(data[2], out TechLevel st);
                 ship.Class = GetMyShipClass(data[1]);
                 ship.ShieldMaxHealth = int.Parse(fields[2]);
                 ship.HullMaxHealth = int.Parse(fields[4]);
                 ship.TorpedoDamage = int.Parse(fields[6]);
                 ship.BeamDamage = int.Parse(fields[8]);
                 ship.Cost = int.Parse(fields[10]);
-                string assetPath = $"Assets/SO/ShipSO/ShipSO_{ship.ShipName}.asset";
+                ship.maxWarpFactor = float.Parse(fields[11]);
+                if (ship.TechLevel == TechLevel.EARLY)
+                    assetPath = $"Assets/SO/ShipSO_Level_0/ShipSO_{ship.ShipName}.asset";
+                else if (ship.TechLevel == TechLevel.DEVELOPED)
+                    assetPath = $"Assets/SO/ShipSO_Level_1/ShipSO_{ship.ShipName}.asset";
+                else if (ship.TechLevel == TechLevel.ADVANCED)
+                    assetPath = $"Assets/SO/ShipSO_Level_2/ShipSO_{ship.ShipName}.asset";
+                else if (ship.TechLevel == TechLevel.SUPREME)
+                    assetPath = $"Assets/SO/ShipSO_Level_3/ShipSO_{ship.ShipName}.asset";
                 AssetDatabase.CreateAsset(ship, assetPath);
                 AssetDatabase.SaveAssets();
             }

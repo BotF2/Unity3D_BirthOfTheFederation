@@ -93,7 +93,7 @@ namespace Assets.Core
         //        //case "TOGGLE_TERRAN":
         //        //    Debug.Log("Active Borg.");
         //        //    Terran = _activeToggle;
-        //        //    GameManager.Instance.localPlayer = Civilization.TERRAN;
+        //        //    GameManager.Instance.localPlayer = Civilization.TER;
         //        //    break;
         //        //default:
         //        //    break;
