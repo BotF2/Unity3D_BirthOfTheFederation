@@ -53,7 +53,6 @@ namespace Assets.Core
                 fleetData.Insignia = fleetSO.Insignia;
                 fleetData.CivOwnerEnum = fleetSO.CivOwnerEnum;
                 fleetData.Position = position;
-
                 fleetData.ShipsList = fleetSO.ShipsList;
                 fleetData.MaxWarpFactor = fleetSO.WarpFactor;
                 fleetData.DefaultWarpFactor = fleetSO.DefaultWarpFactor;

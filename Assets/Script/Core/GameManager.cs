@@ -567,7 +567,7 @@ namespace Assets.Core
 
         //    Debug.Log("civManager " + civManager.gameObject.FleetName);
 
-        //    civManager.CreateNewGameBySize(0); // (int)_galaxySize);
+        //    civManager.CreateNewGameBySelections(0); // (int)_galaxySize);
         //    //PanelGalaxy.SetActive(true);
         //  ///  _localPlayer = civManager.CreateLocalPlayer();
         //    // turned off Galaxys here: SwitchtState(State.MAIN_INIT);

@@ -10,6 +10,10 @@ public class ShipManager : MonoBehaviour
     public GameObject ShipPrefab;
     public List<ShipSO> ShipSOList;// all possible ShipSO(s), one list for each civ
     public List<ShipController> ShipControllerList;
+    public List<ShipSO> shipSOListTech0;
+    public List<ShipSO> shipSOListTech1;
+    public List<ShipSO> shipSOListTech2;
+    public List<ShipSO> shipSOListTech3;
     //public Dictionary<CivEnum, List<ShipData>> ShipDictionary; //all the fleets of that civ
 
     private void Awake()
@@ -28,37 +32,51 @@ public class ShipManager : MonoBehaviour
         List <ShipData> list = new List<ShipData>() { shipData };
         //ShipDictionary = new Dictionary<CivEnum, List<ShipData>>() { { CivEnum.ZZUNINHABITED9, list } };
     }
-    public void ShipDataFromSO(CivSO civSO) 
+    public void CreateShipsForGame(int techLevel)
     {
-        //ShipSO ShipSO = GetShipSObyInt();//(civSO.CivInt);
-        //if (ShipSO != null)
-        //{
-        //    ShipData ShipData = new ShipData();
-        //    ShipData.CivIndex = ShipSO.CivIndex;
-        //    ShipData.Insignia = ShipSO.Insignia;
-        //    ShipData.CivOwnerEnum = ShipSO.CivOwnerEnum;
-        //    ShipData.Position = position;
-
-        //    ShipData.ShipsList = ShipSO.ShipsList;
-        //    ShipData.MaxWarpFactor = ShipSO.WarpFactor;
-        //    ShipData.DefaultWarpFactor = ShipSO.DefaultWarpFactor;
-        //    ShipData.CivLongName = civSO.CivLongName;
-        //    ShipData.CivShortName = civSO.CivShortName;
-        //    ShipData.Description = ShipSO.Description;
-        //    ShipData.Name = "998";
-        //    // List not Dictionary
-        //    //if (!FleetDictionary.ContainsKey(civSO.CivEnum))
-        //    //{
-        //    //    List<FleetData> listA = new List<FleetData>() { ShipData };
-        //    //    FleetDictionary.Add(civSO.CivEnum, listA);
-        //    //}
-        //    //else FleetDictionary[civSO.CivEnum].Add(ShipData);
-        //    //if (ShipData.Name != "999")
-        //    //{
-        //    //    GetFleetName(civSO.CivEnum);
-        //    //    InstantiateShip(ShipData, position);
-        //    //}
+        if (techLevel == 0)
+        {
+            ShipDataFromSO(shipSOListTech0);
+        }
+        if (techLevel == 1)
+        {
+            ShipDataFromSO(shipSOListTech1);
+        }
+        if (techLevel == 2)
+        {
+            ShipDataFromSO(shipSOListTech2);
+        }
+        if (techLevel == 2)
+        {
+            ShipDataFromSO(shipSOListTech3);
+        }
     }
+    public void ShipDataFromSO(List<ShipSO> shipSOList)
+    {
+        List<CivEnum> listOfCivEnum = CivManager.instance.CivSOInGame;
+        foreach (var shipSO in shipSOList)
+        {
+            if (listOfCivEnum != null && listOfCivEnum.Contains(shipSO.CivEnum))
+            {
+                ShipData shipData = new ShipData();
+                shipData.ShipName = shipSO.ShipName;
+                shipData.CivEnum = shipSO.CivEnum;
+                shipData.TechLevel = shipSO.TechLevel;
+                // shipData.ShipType = shipSO.s;
+                shipData.maxWarpFactor = shipSO.maxWarpFactor;
+                shipData.ShieldMaxHealth = shipSO.ShieldMaxHealth;
+                shipData.HullMaxHealth = shipSO.HullMaxHealth;
+
+                //public int TorpedoDamage;
+                //public int BeamDamage;
+                //public int Cost;
+                // InstantiateShip(shipData);
+            }
+        }
+        //civDataInGameList.Remove(civDataInGameList[0]); // remove the null entered above
+        //StarSysManager.instance.SysDataFromSO(civSOList);
+    }
+
     public void InstantiateShip(ShipData fleetData)
     {
 

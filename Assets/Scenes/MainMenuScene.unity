@@ -6545,10 +6545,101 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 63cc253fde40ab84b9b444beb069f121, type: 2}
   civSOListMedium: []
   civSOListLarge: []
-  shipSOListTech0: []
-  shipSOListTech1: []
-  shipSOListTech2: []
-  shipSOListTech3: []
+  shipSOListTech0:
+  - {fileID: 11400000, guid: 9a6e53646f4b63b4a8be9e412fa47787, type: 2}
+  - {fileID: 11400000, guid: 7dc7202d5f8a4df48bc10e1d6ea32845, type: 2}
+  - {fileID: 11400000, guid: 9b4e6d7e61a42e04d84f3bfe6cd632fc, type: 2}
+  - {fileID: 11400000, guid: 399004998b19bee46a30eaacd1d1249e, type: 2}
+  - {fileID: 11400000, guid: 6455245c867fc5e4eadf37dca94971d6, type: 2}
+  - {fileID: 11400000, guid: 7c9d9a7dee1c0634a932e062e135107d, type: 2}
+  - {fileID: 11400000, guid: c599f47c62da00e4fa29c820a13e757b, type: 2}
+  - {fileID: 11400000, guid: b7f9a66be7fc4fa46804480cab93029a, type: 2}
+  - {fileID: 11400000, guid: 6b6410d486fb3994798284cf4bc5a8b0, type: 2}
+  - {fileID: 11400000, guid: 0abb0ae76f5ca1a4fb16526faa13b65f, type: 2}
+  - {fileID: 11400000, guid: a824ca265bdd62a4dbd659a53dbe3d3c, type: 2}
+  - {fileID: 11400000, guid: 6b12b2cc73b93504eaa1e5a77d1f07ce, type: 2}
+  - {fileID: 11400000, guid: e597dca6e45134f428cc6218d08eed03, type: 2}
+  - {fileID: 11400000, guid: 4bfec89bc0924354193cb2d31a013eed, type: 2}
+  - {fileID: 11400000, guid: d6748289178c8754d90a5c7e1edfba70, type: 2}
+  - {fileID: 11400000, guid: 568fa1573d0598541885f0ddcdd82169, type: 2}
+  - {fileID: 11400000, guid: bd4626865215f884f8af645c33af8410, type: 2}
+  - {fileID: 11400000, guid: bf2ba6226fb1c8a4caefc9e481fd51f7, type: 2}
+  - {fileID: 11400000, guid: 7bb57eaa82a8ae3458aa5a44bf43b162, type: 2}
+  - {fileID: 11400000, guid: 6a0a799fdf85f104aa563b9df6cc7c18, type: 2}
+  - {fileID: 11400000, guid: e40ac566f2e713146babe87d451527e9, type: 2}
+  shipSOListTech1:
+  - {fileID: 11400000, guid: dea86143468360e44bf9cd0fe86d5627, type: 2}
+  - {fileID: 11400000, guid: 94daa8518a586c042b0ede4bf7a4882c, type: 2}
+  - {fileID: 11400000, guid: 7f1edc4b06ff01044aea0f6092eabf69, type: 2}
+  - {fileID: 11400000, guid: aca3aa3ae1b1e52438b4c8217127ab4e, type: 2}
+  - {fileID: 11400000, guid: f3aac8b021ccb0648b3a1f37166773b9, type: 2}
+  - {fileID: 11400000, guid: b2858e32ea608e340a0d6990259e8379, type: 2}
+  - {fileID: 11400000, guid: 967cb6dc59d825840b906111dc849dd3, type: 2}
+  - {fileID: 11400000, guid: aa8819119dc88034c86d85f6d7064b5b, type: 2}
+  - {fileID: 11400000, guid: 6f69d09c740621242b91b61cf07613fa, type: 2}
+  - {fileID: 11400000, guid: 519d2cf45f971d84dace42b52a38497a, type: 2}
+  - {fileID: 11400000, guid: dbb829f4f5868d349a5223614b8eea7f, type: 2}
+  - {fileID: 11400000, guid: 0ab527f3d3154be4c9c0d932ebb4483c, type: 2}
+  - {fileID: 11400000, guid: 67ecc5101fc2ab94c85a8344f58e8e44, type: 2}
+  - {fileID: 11400000, guid: e71bdd5150ee680439f815dc0b73b5b1, type: 2}
+  - {fileID: 11400000, guid: 10b233a2c11df194c93c6eaed42ecdd5, type: 2}
+  - {fileID: 11400000, guid: 2425eb2fe1fb63b40b49065328f62f92, type: 2}
+  - {fileID: 11400000, guid: 0e93c7f70b63c2248802bd17a513bc06, type: 2}
+  - {fileID: 11400000, guid: c5031e9bf8ae92b46b21145083a5de4d, type: 2}
+  - {fileID: 11400000, guid: ec03f28847e7dcd42af0c6d778eaab7f, type: 2}
+  - {fileID: 11400000, guid: c8c3ee6a13353aa4382e99aa422f53fb, type: 2}
+  - {fileID: 11400000, guid: 4bbf6ac60206b344db2db9d15f04245c, type: 2}
+  shipSOListTech2:
+  - {fileID: 11400000, guid: 69ac1b2343eee0149a83fc93063034a4, type: 2}
+  - {fileID: 11400000, guid: 8e94e3b9e5015fe419c0e4a1dc516696, type: 2}
+  - {fileID: 11400000, guid: 9cca744ce143bea4d831086c365e7b59, type: 2}
+  - {fileID: 11400000, guid: 87ecd84657c2ea845b04bd582c5777f9, type: 2}
+  - {fileID: 11400000, guid: 0540bd984d8cec0428bd6c5c6e3e6b57, type: 2}
+  - {fileID: 11400000, guid: 5d3913be700621048946751b8e99b5eb, type: 2}
+  - {fileID: 11400000, guid: bc49f678ffd1ede47930dc4f0091b76e, type: 2}
+  - {fileID: 11400000, guid: 1dec960ec5698e14fa7e784c6375d2e8, type: 2}
+  - {fileID: 11400000, guid: ccfc47217a8268d4b9e7213b9d783119, type: 2}
+  - {fileID: 11400000, guid: 83ee47436dd694e489eaa45c6560762f, type: 2}
+  - {fileID: 11400000, guid: 4c9a96fd2aa06e942bfa712feb3998df, type: 2}
+  - {fileID: 11400000, guid: bfc6f443d5d2a3d45a829cb52eb9430d, type: 2}
+  - {fileID: 11400000, guid: db3416053780bb84a9b7a9ccb130aacc, type: 2}
+  - {fileID: 11400000, guid: b8e1ffc18c42fdc4e8e745bc4f01239d, type: 2}
+  - {fileID: 11400000, guid: b219533dd5e1b58428fb1c2480655688, type: 2}
+  - {fileID: 11400000, guid: db2709c47f148844fa04528bba38cb8b, type: 2}
+  - {fileID: 11400000, guid: f32073d419ac1c341aade23d4411b7e1, type: 2}
+  - {fileID: 11400000, guid: 3802a23e9513a164ba3852f9000345ec, type: 2}
+  - {fileID: 11400000, guid: a7b085ff42b447640916e4121aa54537, type: 2}
+  - {fileID: 11400000, guid: 183a15583dbd0864cb0ac56d83422db0, type: 2}
+  - {fileID: 11400000, guid: a7e36967205ab03468c9d9703302e4b2, type: 2}
+  shipSOListTech3:
+  - {fileID: 11400000, guid: da754c737f26ad84a89951c1f5045096, type: 2}
+  - {fileID: 11400000, guid: a7c9f1c1a96d69a4ebe9f81c8a35c06c, type: 2}
+  - {fileID: 11400000, guid: 59a9606119c0126439c17bf47bc79954, type: 2}
+  - {fileID: 11400000, guid: b659e96e4a586ed45b4101a1c8afdec3, type: 2}
+  - {fileID: 11400000, guid: bb45e3c8da6ebe74aafcc4af55553725, type: 2}
+  - {fileID: 11400000, guid: 4a1200783deb2d14c924e8b0191f5330, type: 2}
+  - {fileID: 11400000, guid: 4d20c5619ada10a4d8a2c9253e1122fd, type: 2}
+  - {fileID: 11400000, guid: 85041ec970ffeb94da1171a42051d96a, type: 2}
+  - {fileID: 11400000, guid: ad0e4b00dbc9348449dffbd54db8ea16, type: 2}
+  - {fileID: 11400000, guid: 69dec90b949f436448353f48db17578e, type: 2}
+  - {fileID: 11400000, guid: ab1c0f32c9c6e244b9a7222a58d6fe85, type: 2}
+  - {fileID: 11400000, guid: 88e1dc2529d7cf240832b70b2753f143, type: 2}
+  - {fileID: 11400000, guid: 5c4e05f76e680d0428fbd5224692ff09, type: 2}
+  - {fileID: 11400000, guid: 778c71e1f9f624241b9ce49f65580765, type: 2}
+  - {fileID: 11400000, guid: 6375b76f17567794ea3b8857237f77fb, type: 2}
+  - {fileID: 11400000, guid: 49e67e27349ff4d41b1ac28adc2fbc5d, type: 2}
+  - {fileID: 11400000, guid: 0db549457f8be90468a4349de03e64c4, type: 2}
+  - {fileID: 11400000, guid: a7f262aff33f9ad47a3428b6a58225a0, type: 2}
+  - {fileID: 11400000, guid: 5897042fcba1440459e2578bcde81175, type: 2}
+  - {fileID: 11400000, guid: 665badec2df62d24e9a3175c9bb10684, type: 2}
+  - {fileID: 11400000, guid: 7283d9d3674fba747a77a9d249fe79d8, type: 2}
+  - {fileID: 11400000, guid: 0ea1805e5b1d74b479f2e63bae492044, type: 2}
+  - {fileID: 11400000, guid: 6dd8408b13ef23e46a794341f6a6f6a0, type: 2}
+  - {fileID: 11400000, guid: 077271e3673ce454f81de376e2962c4a, type: 2}
+  - {fileID: 11400000, guid: 79f07708ec5ff8a4a919af1b467b2abe, type: 2}
+  - {fileID: 11400000, guid: 5522bd7f90ea33a498f96036a912f711, type: 2}
+  - {fileID: 11400000, guid: 2fbf9eeb7fb32e54695b5d04950acb8e, type: 2}
+  - {fileID: 11400000, guid: 7e8289cd9469e1d48bc4a3571394b8bd, type: 2}
   civControllerList: []
 --- !u!4 &1091640995
 Transform:
