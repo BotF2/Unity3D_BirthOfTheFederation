@@ -22,7 +22,7 @@ namespace Assets.Core
         public Dictionary<CivEnum, List<FleetData>> FleetDictionary; //all the fleets of that civ
         public GameObject galaxyImage;
         public GameObject galaxyCenter;
-        public List<FleetController> fleetControllerList;
+        public List<FleetController> ManagersFleetControllerList;
         //public TextMeshProUGUI fleetNameText;
         //public TextMeshProUGUI fleetDescriptionText;
 
@@ -141,10 +141,26 @@ namespace Assets.Core
             controller.fleetData.deltaYofGalaxyImage = galaxyCenter.transform.position.y - galaxyPlanePoint.y;
 
             fleetNewGameOb.SetActive(true);
-            fleetControllerList.Add(controller);
+            AddFleetConrollerToAllControllers(controller);
+            StarSysManager.instance.GetYourFirstStarSystem(fleetData.CivOwnerEnum);
    
         }
-
+        void AddFleetConrollerToAllControllers(FleetController controller)
+        {
+            ManagersFleetControllerList.Add(controller);
+            foreach (FleetController fleetCon in ManagersFleetControllerList)
+            {
+                fleetCon.AddFleetController(controller);
+            }
+        }
+        void RemoveFleetConrollerToAllControllers(FleetController controller)
+        {
+            ManagersFleetControllerList.Remove(controller);
+            foreach (FleetController fleetCon in ManagersFleetControllerList)
+            {
+                fleetCon.RemoveFleetController(controller);
+            }
+        }
         public FleetSO GetFleetSObyInt(int fleetInt)
         {
 

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using TMPro;
+using Assets.Core;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEditor;
@@ -25,6 +26,7 @@ namespace Assets.Core
         public StarSysData resultInGameStarSysData;
         private Camera galaxyEventCamera;
         private Canvas systemUICanvas; //ToDo system ui
+        public StarSysController starSystemPrefabPlaceHolder;
 
         private void Awake()
         {
@@ -196,6 +198,18 @@ namespace Assets.Core
             }
             return result;
 
+        }
+        public StarSysController GetYourFirstStarSystem(CivEnum civEnum)
+        {
+            StarSysController controller = starSystemPrefabPlaceHolder;
+            foreach (var starSysController in StarSysControllerList)
+            {
+                if (starSysController.starSysData.CurrentOwner == civEnum)
+                {
+                    controller = starSysController;
+                }
+            }
+            return controller;
         }
     }
 }

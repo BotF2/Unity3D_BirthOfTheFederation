@@ -62,19 +62,16 @@ public class ShipManager : MonoBehaviour
                 shipData.ShipName = shipSO.ShipName;
                 shipData.CivEnum = shipSO.CivEnum;
                 shipData.TechLevel = shipSO.TechLevel;
-                // shipData.ShipType = shipSO.s;
+                shipData.ShipType = shipSO.ShipType;
                 shipData.maxWarpFactor = shipSO.maxWarpFactor;
                 shipData.ShieldMaxHealth = shipSO.ShieldMaxHealth;
                 shipData.HullMaxHealth = shipSO.HullMaxHealth;
-
-                //public int TorpedoDamage;
-                //public int BeamDamage;
-                //public int Cost;
-                // InstantiateShip(shipData);
+                shipData.TorpedoDamage = shipSO.TorpedoDamage;
+                shipData.BeamDamage = shipSO.BeamDamage;
+                shipData.Cost = shipSO.Cost;
+                InstantiateShip(shipData);
             }
         }
-        //civDataInGameList.Remove(civDataInGameList[0]); // remove the null entered above
-        //StarSysManager.instance.SysDataFromSO(civSOList);
     }
 
     public void InstantiateShip(ShipData fleetData)

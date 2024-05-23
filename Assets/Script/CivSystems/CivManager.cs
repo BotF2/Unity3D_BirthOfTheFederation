@@ -16,13 +16,8 @@ namespace Assets.Core
         public List<CivSO> civSOListMedium;
         public List<CivSO> civSOListLarge;
         public List<CivEnum> CivSOInGame;
-        //public List<ShipSO> shipSOListTech0;
-        //public List<ShipSO> shipSOListTech1;
-        //public List<ShipSO> shipSOListTech2;
-        //public List<ShipSO> shipSOListTech3;
         public List<CivData> civDataInGameList = new List<CivData> { new CivData()};
-        public List<CivData> contactList = new List<CivData>() { new CivData()};
-        public List<CivController> civControllerList;
+        public Dictionary<CivEnum,List<CivController>> CivsThatACivKnows = new Dictionary<CivEnum,List<CivController>>();
         public CivData localPlayer;
         public CivData resultInGameCivData;
 
@@ -38,10 +33,6 @@ namespace Assets.Core
         public CivData CreateLocalPlayer()
         {
             localPlayer = GetCivDataByName("FEDERATION");
-
-            //localPlayer = Instantiate(civilizationPrefab).GetComponent<CivData>();
-            //CivDataFromCivSO(localPlayer, civSOListSmall[0]); // local player first in list ****
-            //civilizationPrefab.GetComponent<CivData>(); 
             return localPlayer;
             
         }
@@ -98,85 +89,11 @@ namespace Assets.Core
                 //civData.TaxRate = civSO.TaxRate;
                 //civData.GrowthRate = civSO.GrowthRate;
                 civData.IntelPoints = civSO.IntelPoints;
-                civData.ContactList = contactList;
-                civData.ContactList.Add(civData); // add civ as contact for itself
-                civData.ContactList.Remove(civData.ContactList[0]); // remove the null from above field
+                CivsThatACivKnows.Add(civData.CivEnum, civData.ContactList);
                 civDataInGameList.Add(civData);
-                InstantiateCiv(civData);
             }
             civDataInGameList.Remove(civDataInGameList[0]); // remove the null entered above
             StarSysManager.instance.SysDataFromSO(civSOList);
-        }
-
-        public void InstantiateCiv(CivData civData) //??????? is Civ a game object
-        {
-            //GameObject civNewGameOb = (GameObject)Instantiate(civPrefab, new Vector3(0, 0, 0),
-            //     Quaternion.identity);
-            //civNewGameOb.transform.Translate(new Vector3(sysData.Position.x, sysData.Position.y, sysData.Position.z));
-
-            //civNewGameOb.transform.SetParent(galaxyCenter.transform, true);
-            //civNewGameOb.transform.localScale = new Vector3(1, 1, 1);
-            //civNewGameOb.name = sysData.SysName;
-            //sysData.SysTransform = civNewGameOb.transform;
-            //var ImageRenderers = civNewGameOb.GetComponentsInChildren<SpriteRenderer>();
-
-            //TextMeshProUGUI[] TheText = civNewGameOb.GetComponentsInChildren<TextMeshProUGUI>();
-            //foreach (var OneTmp in TheText)
-            //{
-            //    OneTmp.enabled = true;
-            //    if (OneTmp != null && OneTmp.name == "SysName (TMP)")
-            //        OneTmp.text = sysData.SysName;
-            //    else if (OneTmp != null && OneTmp.name == "SysDescription (TMP)")
-            //        OneTmp.text = sysData.Description;
-
-            //}
-            //var Renderers = civNewGameOb.GetComponentsInChildren<SpriteRenderer>();
-            //foreach (var oneRenderer in Renderers)
-            //{
-            //    if (oneRenderer != null)
-            //    {
-            //        //if (oneRenderer.FleetName == "CivRaceSprite")
-            //        //{
-            //        //    oneRenderer.sprite = civSO.CivImage; // ok
-            //        //}
-
-            //        if (oneRenderer.name == "OwnerInsignia")
-            //        {
-            //            oneRenderer.sprite = civSO.Insignia;
-            //            //oneRenderer.sprite.GetComponent<MeshFilter>().sharedMesh.RecalculateBounds();
-            //        }
-            //        else if (oneRenderer.name == "StarSprite")
-            //            oneRenderer.sprite = sysData.StarSprit;
-            //    }
-            //}
-            //DropLineFixed ourDropLine = civNewGameOb.GetComponentInChildren<DropLineFixed>();
-
-            //ourDropLine.GetLineRenderer();
-
-            //Vector3 galaxyPlanePoint = new Vector3(civNewGameOb.transform.position.x,
-            //    galaxyImage.transform.position.y, civNewGameOb.transform.position.z);
-            //Vector3[] points = { civNewGameOb.transform.position, galaxyPlanePoint };
-            //ourDropLine.SetUpLine(points);
-            //StarSysController controller = civNewGameOb.GetComponentInChildren<StarSysController>();
-            //controller.starSysData = sysData;
-            ////Transform canvasTrans = civNewGameOb.transform.Find("CanvasSysButton");
-            ////// Check if the child GameObject exists
-            ////if (canvasTrans != null)
-            ////{
-            ////    // Is there a UI game object we need to turn on and off
-            ////    //controller.c = canvasTrans.gameObject;
-            ////    //controller.canvasFleetUIbutton.SetActive(false);
-            ////}
-            ////Transform canvasTransButton = civNewGameOb.transform.Find("Canvas Load FleetUI");
-            ////// Check if the child GameObject exists
-            ////if (canvasTransButton != null)
-            ////{
-            ////    canvasTransButton.SetParent(civNewGameOb.transform, true);
-            ////}
-
-            //civNewGameOb.SetActive(true);
-            //StarSysControllerList.Add(controller);
-            ////civControllerList.Add(civController);
         }
 
         void CreateCivEnumList(List<CivSO> listOfCivSO)

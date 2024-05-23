@@ -45,27 +45,27 @@ public class ShipSOImporter : EditorWindow
 
             if (fields.Length == 11) // Ensure there are enough fields
             {
-                ShipSO ship = CreateInstance<ShipSO>();
-                ship.ShipName = fields[0];
-                string[] data = ship.ShipName.Split("_");
-                ship.CivEnum = GetMyCivEnum(data[0]);
-                ship.TechLevel = GetMyTechLevel(data[2], out TechLevel st);
-                ship.Class = GetMyShipClass(data[1]);
-                ship.ShieldMaxHealth = int.Parse(fields[2]);
-                ship.HullMaxHealth = int.Parse(fields[4]);
-                ship.TorpedoDamage = int.Parse(fields[6]);
-                ship.BeamDamage = int.Parse(fields[8]);
-                ship.Cost = int.Parse(fields[10]);
-                ship.maxWarpFactor = float.Parse(fields[11]);
-                if (ship.TechLevel == TechLevel.EARLY)
-                    assetPath = $"Assets/SO/ShipSO_Level_0/ShipSO_{ship.ShipName}.asset";
-                else if (ship.TechLevel == TechLevel.DEVELOPED)
-                    assetPath = $"Assets/SO/ShipSO_Level_1/ShipSO_{ship.ShipName}.asset";
-                else if (ship.TechLevel == TechLevel.ADVANCED)
-                    assetPath = $"Assets/SO/ShipSO_Level_2/ShipSO_{ship.ShipName}.asset";
-                else if (ship.TechLevel == TechLevel.SUPREME)
-                    assetPath = $"Assets/SO/ShipSO_Level_3/ShipSO_{ship.ShipName}.asset";
-                AssetDatabase.CreateAsset(ship, assetPath);
+                ShipSO shipSO = CreateInstance<ShipSO>();
+                shipSO.ShipName = fields[0];
+                string[] data = shipSO.ShipName.Split("_");
+                shipSO.CivEnum = GetMyCivEnum(data[0]);
+                shipSO.TechLevel = GetMyTechLevel(data[2], out TechLevel st);
+                shipSO.ShipType = GetMyShipClass(data[1]);
+                shipSO.ShieldMaxHealth = int.Parse(fields[2]);
+                shipSO.HullMaxHealth = int.Parse(fields[4]);
+                shipSO.TorpedoDamage = int.Parse(fields[6]);
+                shipSO.BeamDamage = int.Parse(fields[8]);
+                shipSO.Cost = int.Parse(fields[10]);
+                shipSO.maxWarpFactor = float.Parse(fields[11]);
+                if (shipSO.TechLevel == TechLevel.EARLY)
+                    assetPath = $"Assets/SO/ShipSO_Level_0/ShipSO_{shipSO.ShipName}.asset";
+                else if (shipSO.TechLevel == TechLevel.DEVELOPED)
+                    assetPath = $"Assets/SO/ShipSO_Level_1/ShipSO_{shipSO.ShipName}.asset";
+                else if (shipSO.TechLevel == TechLevel.ADVANCED)
+                    assetPath = $"Assets/SO/ShipSO_Level_2/ShipSO_{shipSO.ShipName}.asset";
+                else if (shipSO.TechLevel == TechLevel.SUPREME)
+                    assetPath = $"Assets/SO/ShipSO_Level_3/ShipSO_{shipSO.ShipName}.asset";
+                AssetDatabase.CreateAsset(shipSO, assetPath);
                 AssetDatabase.SaveAssets();
             }
         }

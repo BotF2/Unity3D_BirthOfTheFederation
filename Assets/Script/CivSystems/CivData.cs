@@ -24,10 +24,11 @@ namespace Assets.Core
         public bool HasWarp;
         public string Decription;
         public List<StarSysData> StarSysOwned;
+        public List<CivController> ContactList;
         //public float TaxRate; // universal or variable by civ/sys??
         //public float GrowthRate; // universal or variable by civ/sys??
         public float IntelPoints;
-        public List<CivData> ContactList; // = new List<CivData>() { new CivData()};
+        
 
         // end of SOs
         //public int _civID;

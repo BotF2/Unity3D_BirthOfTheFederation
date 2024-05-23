@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Networking.Types;
 
 
 namespace Assets.Core
@@ -14,9 +15,12 @@ namespace Assets.Core
     { 
         //Fields
         public FleetData fleetData;
+        public string Name;
         private ShipData shipData1;
         private ShipData shipData2;
         public List<ShipData> shipList;
+        public List<FleetController> FleetConsWeHave;
+        public List<StarSysController> StarSystemsWeHave;
         private bool deltaShipList = false; //??? do I need this or the shipdropdown listener
         public Transform Destination;
         private float WarpFactor = 9;
@@ -34,9 +38,6 @@ namespace Assets.Core
         private TMP_Text dropdownShipText;
         [SerializeField]
         private TMP_Text ourDestination;
-
-        public string Name;
-
         private Camera galaxyEventCamera;
         [SerializeField]
         private Canvas FleetUICanvas;
@@ -51,14 +52,11 @@ namespace Assets.Core
             FleetUICanvas = CanvasGO.GetComponent<Canvas>();
             FleetUICanvas.worldCamera = galaxyEventCamera;
             CanvasToolTip.worldCamera = galaxyEventCamera;
-
             shipData1 = gameObject.AddComponent<ShipData>();
             shipData1.ShipName = "USS Trump";
-
             shipData2 = gameObject.AddComponent<ShipData>();
             shipData2.ShipName = "USS John McCain";
-            shipList = new List<ShipData>() { shipData1, shipData2 };
-            
+            shipList = new List<ShipData>() { shipData1, shipData2 };           
             Name = fleetData.CivShortName + " Fleet " + fleetData.Name;
         }
 
@@ -67,7 +65,24 @@ namespace Assets.Core
             //ToDo **** need physics movement such that fleet pass around colliders that are not the destination
             // pending time manager timing, Marc is working on this.
         }
+        void OnTriggerEnter(Collider collider)
+        {
 
+            FleetController fleetController = collider.gameObject.GetComponent<FleetController>();
+            if (fleetController != null)
+            {
+                // fleet controller to get civ sysList we know
+                Debug.Log("fleet Controller collided with " + fleetController.gameObject.name);
+            }
+
+        }
+        public void OnFleetEncountered()
+        {
+            //FleetManager.instance.
+            //1) you get the FleetController of the new fleet GO
+            //2) you ask your factionOwner (CivManager) if you already know the faction of the new fleet
+            //3) you will need to apply different logics depending of the answer
+        }
         void AddToShipList(ShipData ship)
         {
             shipList.Add(ship);
@@ -100,19 +115,14 @@ namespace Assets.Core
             FleetUIManager.instance.LoadFleetUI(gameObject);
         }
 
-
-        void OnTriggerEnter(Collider collider)
+        public void AddFleetController(FleetController controller)
         {
-
-            FleetController fleetController = collider.gameObject.GetComponent<FleetController>();
-            if (fleetController != null)
-            {
-                // fleet controller to get civ sysList we know
-                Debug.Log("fleet Controller collided with " + fleetController.gameObject.name);
-            }
-            
+            FleetConsWeHave.Add(controller);
         }
-
+        public void RemoveFleetController(FleetController controller)
+        {
+            FleetConsWeHave.Remove(controller);
+        }
     }
 
 }

@@ -7,7 +7,7 @@ public class ShipSO : ScriptableObject
     public string ShipName;
     public CivEnum CivEnum;
     public TechLevel TechLevel;
-    public ShipType Class;
+    public ShipType ShipType;
     public float maxWarpFactor;
     public int ShieldMaxHealth;
     public int HullMaxHealth;
