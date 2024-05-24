@@ -19,10 +19,11 @@ namespace Assets.Core
 
         public List<FleetSO> fleetSOList;// all possible fleetSO(s), one list for each civ
         public GameObject fleetPrefab;
-        public Dictionary<CivEnum, List<FleetData>> FleetDictionary; //all the fleets of that civ
         public GameObject galaxyImage;
         public GameObject galaxyCenter;
         public List<FleetController> ManagersFleetControllerList;
+        public List<GameObject> FleetGOList = new List<GameObject>(); // all fleetGO GOs made
+        public Dictionary<CivEnum, List<FleetData>> FleetDictionary; //all the fleetGO datas of that civ
         //public TextMeshProUGUI fleetNameText;
         //public TextMeshProUGUI fleetDescriptionText;
 
@@ -42,7 +43,7 @@ namespace Assets.Core
             List<FleetData> list = new List<FleetData>() {data};
             FleetDictionary = new Dictionary<CivEnum, List<FleetData>>() { { CivEnum.ZZUNINHABITED9, list } };
         }
-        public void FleetDataFromSO(CivSO civSO, Vector3 position) // first fleet
+        public void FleetDataFromSO(CivSO civSO, Vector3 position) // first fleetGO
         {
 
             FleetSO fleetSO = GetFleetSObyInt(civSO.CivInt);
@@ -109,8 +110,8 @@ namespace Assets.Core
 
             fleetNewGameOb.name = fleetData.CivOwnerEnum.ToString() + " Fleet " + fleetData.Name; // game object FleetName
             //var canvas = fleetNewGameOb.GetComponent<Canvas>();
-            //var fleet = FindGameObjectInChildrenWithTag(fleetNewGameOb,"Fleet");
-            //fleet.transform.SetParent(canvas.transform, true);
+            //var fleetGO = FindGameObjectInChildrenWithTag(fleetNewGameOb,"Fleet");
+            //fleetGO.transform.SetParent(canvas.transform, true);
             TextMeshProUGUI TheText = fleetNewGameOb.GetComponentInChildren<TextMeshProUGUI>();
 
             TheText.text = fleetData.CivShortName + " - Fleet " + fleetData.Name;
@@ -134,32 +135,45 @@ namespace Assets.Core
             Vector3[] points = { fleetNewGameOb.transform.position, galaxyPlanePoint };
             ourLineScript.SetUpLine(points);
 
-            var controller = fleetNewGameOb.GetComponentInChildren<FleetController>();
+            var fleetController = fleetNewGameOb.GetComponentInChildren<FleetController>();
             
-            controller.fleetData = fleetData;
+            fleetController.fleetData = fleetData;
 
-            controller.fleetData.deltaYofGalaxyImage = galaxyCenter.transform.position.y - galaxyPlanePoint.y;
+            fleetController.fleetData.deltaYofGalaxyImage = galaxyCenter.transform.position.y - galaxyPlanePoint.y;
 
             fleetNewGameOb.SetActive(true);
-            AddFleetConrollerToAllControllers(controller);
+            FleetGOList.Add(fleetNewGameOb);
+            AddFleetConrollerToAllControllers(fleetController);
             StarSysManager.instance.GetYourFirstStarSystem(fleetData.CivOwnerEnum);
    
         }
-        void AddFleetConrollerToAllControllers(FleetController controller)
+        void AddFleetConrollerToAllControllers(FleetController fleetController)
         {
-            ManagersFleetControllerList.Add(controller);
+            ManagersFleetControllerList.Add(fleetController);
             foreach (FleetController fleetCon in ManagersFleetControllerList)
             {
-                fleetCon.AddFleetController(controller);
+                fleetCon.AddFleetController(fleetController);
             }
         }
-        void RemoveFleetConrollerToAllControllers(FleetController controller)
+        void RemoveFleetConrollerToAllControllers(FleetController fleetController)
         {
-            ManagersFleetControllerList.Remove(controller);
+            ManagersFleetControllerList.Remove(fleetController);
             foreach (FleetController fleetCon in ManagersFleetControllerList)
             {
-                fleetCon.RemoveFleetController(controller);
+                fleetCon.RemoveFleetController(fleetController);
             }
+        }
+        public GameObject FindFleetGO(FleetController fleetController)
+        {
+            GameObject ourFleetGO = fleetPrefab;
+            foreach (GameObject fleetGO in FleetGOList)
+            {
+                if (fleetGO.GetComponentInChildren<FleetController>() == fleetController)
+                {
+                    ourFleetGO = fleetGO;
+                }
+            }
+            return ourFleetGO;
         }
         public FleetSO GetFleetSObyInt(int fleetInt)
         {

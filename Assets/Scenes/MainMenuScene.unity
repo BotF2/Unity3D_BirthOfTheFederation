@@ -6550,7 +6550,6 @@ MonoBehaviour:
   civSOListMedium: []
   civSOListLarge: []
   CivSOInGame: 
-  civControllerList: []
 --- !u!4 &1091640995
 Transform:
   m_ObjectHideFlags: 0
@@ -8387,7 +8386,8 @@ MonoBehaviour:
   fleetPrefab: {fileID: 7014110171060802293, guid: ef3b3036010abf54e8925e887e9010ad, type: 3}
   galaxyImage: {fileID: 568107377}
   galaxyCenter: {fileID: 564492290}
-  fleetControllerList: []
+  ManagersFleetControllerList: []
+  FleetGOList: []
 --- !u!4 &1362581733
 Transform:
   m_ObjectHideFlags: 0
@@ -11156,6 +11156,7 @@ MonoBehaviour:
   StarSysControllerList: []
   galaxyImage: {fileID: 568107377}
   galaxyCenter: {fileID: 564492290}
+  starSystemPrefabPlaceHolder: {fileID: 0}
 --- !u!224 &1965346450
 RectTransform:
   m_ObjectHideFlags: 0

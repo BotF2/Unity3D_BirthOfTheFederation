@@ -29,7 +29,7 @@ namespace Assets.Core
         private float maxWarpFactor;
         public Rigidbody rb;
         public GameObject destinationDropdownGO;
-        public GameObject shipDropdownGO;
+        public GameObject fleetDropdownGO;
 
         public LineRenderer lineRenderer;
         [SerializeField]
@@ -62,26 +62,42 @@ namespace Assets.Core
 
         private void FixedUpdate()
         {
+            //MoveToDestinationGO; 
             //ToDo **** need physics movement such that fleet pass around colliders that are not the destination
             // pending time manager timing, Marc is working on this.
+            
         }
         void OnTriggerEnter(Collider collider)
         {
 
             FleetController fleetController = collider.gameObject.GetComponent<FleetController>();
-            if (fleetController != null)
+            if (fleetController != null) // it is a FleetController and not a StarSystem or other fleetController
             {
-                // fleet controller to get civ sysList we know
+                OnFleetEncounteredFleet(fleetController);
                 Debug.Log("fleet Controller collided with " + fleetController.gameObject.name);
             }
-
+            StarSysController starSysController = collider.gameObject.GetComponent<StarSysController>();
+            if (starSysController != null)             {
+                OnFleetEncounteredStarSys(starSysController);
+            }
         }
-        public void OnFleetEncountered()
+        public void OnFleetEncounteredFleet(FleetController fleetController)
         {
             //FleetManager.instance.
             //1) you get the FleetController of the new fleet GO
             //2) you ask your factionOwner (CivManager) if you already know the faction of the new fleet
             //3) you will need to apply different logics depending of the answer
+        }
+        public void OnFleetEncounteredStarSys(StarSysController starSysController)
+        {
+            //FleetManager.instance.
+            //1) you get the FleetController of the new fleet GO
+            //2) you ask your factionOwner (CivManager) if you already know the faction of the new fleet
+            //3) you will need to apply different logics depending of the answer
+        }
+        void MoveToDesitinationGO()
+        {
+
         }
         void AddToShipList(ShipData ship)
         {
