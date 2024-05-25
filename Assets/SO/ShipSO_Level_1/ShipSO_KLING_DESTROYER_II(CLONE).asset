@@ -15,7 +15,7 @@ MonoBehaviour:
   ShipName: KLING_DESTROYER_II(CLONE)
   CivEnum: 2
   TechLevel: 1
-  Class: 0
+  ShipType: 1
   maxWarpFactor: 7
   ShieldMaxHealth: 40
   HullMaxHealth: 20

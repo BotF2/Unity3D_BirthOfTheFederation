@@ -15,7 +15,7 @@ MonoBehaviour:
   ShipName: FED_DESTROYER_IV(CLONE)
   CivEnum: 0
   TechLevel: 3
-  Class: 0
+  ShipType: 1
   maxWarpFactor: 9
   ShieldMaxHealth: 66
   HullMaxHealth: 44

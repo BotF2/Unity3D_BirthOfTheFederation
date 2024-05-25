@@ -15,7 +15,7 @@ MonoBehaviour:
   ShipName: KLING_SCOUT_II(CLONE)
   CivEnum: 2
   TechLevel: 1
-  Class: 0
+  ShipType: 0
   maxWarpFactor: 8
   ShieldMaxHealth: 30
   HullMaxHealth: 14

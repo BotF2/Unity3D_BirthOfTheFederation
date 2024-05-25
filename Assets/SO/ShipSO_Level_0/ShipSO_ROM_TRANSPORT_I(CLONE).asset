@@ -15,7 +15,7 @@ MonoBehaviour:
   ShipName: ROM_TRANSPORT_I(CLONE)
   CivEnum: 1
   TechLevel: 0
-  Class: 0
+  ShipType: 5
   maxWarpFactor: 1
   ShieldMaxHealth: 33
   HullMaxHealth: 15

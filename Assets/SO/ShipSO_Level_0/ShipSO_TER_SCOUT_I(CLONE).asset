@@ -15,7 +15,7 @@ MonoBehaviour:
   ShipName: TER_SCOUT_I(CLONE)
   CivEnum: 158
   TechLevel: 0
-  Class: 0
+  ShipType: 0
   maxWarpFactor: 3
   ShieldMaxHealth: 22
   HullMaxHealth: 11

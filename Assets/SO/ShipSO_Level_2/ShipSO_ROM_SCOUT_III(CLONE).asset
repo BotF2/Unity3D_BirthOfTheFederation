@@ -15,7 +15,7 @@ MonoBehaviour:
   ShipName: ROM_SCOUT_III(CLONE)
   CivEnum: 1
   TechLevel: 2
-  Class: 0
+  ShipType: 0
   maxWarpFactor: 9
   ShieldMaxHealth: 44
   HullMaxHealth: 22

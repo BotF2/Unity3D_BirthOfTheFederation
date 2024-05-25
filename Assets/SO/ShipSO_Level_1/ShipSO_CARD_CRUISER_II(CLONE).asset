@@ -15,7 +15,7 @@ MonoBehaviour:
   ShipName: CARD_CRUISER_II(CLONE)
   CivEnum: 3
   TechLevel: 1
-  Class: 0
+  ShipType: 2
   maxWarpFactor: 7
   ShieldMaxHealth: 45
   HullMaxHealth: 26

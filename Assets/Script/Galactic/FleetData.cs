@@ -13,7 +13,7 @@ namespace Assets.Core
         public Vector3 Position;
         public List<Ship> ShipsList;
         public float MaxWarpFactor;
-        public float DefaultWarpFactor;
+        public float CurrentWarpFactor;
         public string CivLongName;
         public string CivShortName;
         public string Name;

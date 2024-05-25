@@ -246,8 +246,6 @@ namespace Assets.Core
         LtCruiser,
         HvyCruiser,
         Transport,
-        Colonyship,
-        Construction,
         OneMore
     }
 

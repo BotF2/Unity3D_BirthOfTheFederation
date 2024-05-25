@@ -8,7 +8,6 @@ public class ShipManager : MonoBehaviour
     public static ShipManager instance;
     public ShipData shipData;
     public GameObject ShipPrefab;
-    public List<ShipSO> ShipSOList;// all possible ShipSO(s), one list for each civ
     public List<ShipController> ShipControllerList;
     public List<ShipSO> shipSOListTech0;
     public List<ShipSO> shipSOListTech1;
@@ -64,6 +63,7 @@ public class ShipManager : MonoBehaviour
                 shipData.TechLevel = shipSO.TechLevel;
                 shipData.ShipType = shipSO.ShipType;
                 shipData.maxWarpFactor = shipSO.maxWarpFactor;
+                shipData.currentWarpFactor = 0f;
                 shipData.ShieldMaxHealth = shipSO.ShieldMaxHealth;
                 shipData.HullMaxHealth = shipSO.HullMaxHealth;
                 shipData.TorpedoDamage = shipSO.TorpedoDamage;

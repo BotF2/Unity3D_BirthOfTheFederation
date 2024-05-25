@@ -15,7 +15,7 @@ MonoBehaviour:
   ShipName: CARD_HVYCRUISER_IV(CLONE)
   CivEnum: 3
   TechLevel: 3
-  Class: 0
+  ShipType: 5
   maxWarpFactor: 9
   ShieldMaxHealth: 75
   HullMaxHealth: 56

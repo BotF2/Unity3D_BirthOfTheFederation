@@ -15,7 +15,7 @@ MonoBehaviour:
   ShipName: KLING_CRUISER_III(CLONE)
   CivEnum: 2
   TechLevel: 2
-  Class: 0
+  ShipType: 2
   maxWarpFactor: 8
   ShieldMaxHealth: 60
   HullMaxHealth: 40

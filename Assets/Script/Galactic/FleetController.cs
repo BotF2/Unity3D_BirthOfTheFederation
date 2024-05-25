@@ -21,12 +21,13 @@ namespace Assets.Core
         public List<ShipData> shipList;
         public List<FleetController> FleetConsWeHave;
         public List<StarSysController> StarSystemsWeHave;
+        public List<PlayerDefinedTargetController> PlayerDefinedTargetControllersWeHave;
         private bool deltaShipList = false; //??? do I need this or the shipdropdown listener
         public Transform Destination;
-        private float WarpFactor = 9;
-        private float fudgeFactor = 0.05f; // so we see warp factor as in Star Trek but move in game space
-        private float dropOutOfWarpDistance = 0.5f;
         private float maxWarpFactor;
+        private float currentWarpFactor = 9;
+        private float fudgeFactor = 0.05f; // so we see warp factor as in Star Trek but move in game space
+        private float dropOutOfWarpDistance = 0.5f;  
         public Rigidbody rb;
         public GameObject destinationDropdownGO;
         public GameObject fleetDropdownGO;
@@ -80,6 +81,12 @@ namespace Assets.Core
             if (starSysController != null)             {
                 OnFleetEncounteredStarSys(starSysController);
             }
+            PlayerDefinedTargetController playerTargetController = collider.gameObject.GetComponent<PlayerDefinedTargetController>();
+            if (playerTargetController != null)
+            {
+                OnFleetEncounteredPlayerDefinedTarget(playerTargetController);
+            }
+            
         }
         public void OnFleetEncounteredFleet(FleetController fleetController)
         {
@@ -89,6 +96,13 @@ namespace Assets.Core
             //3) you will need to apply different logics depending of the answer
         }
         public void OnFleetEncounteredStarSys(StarSysController starSysController)
+        {
+            //FleetManager.instance.
+            //1) you get the FleetController of the new fleet GO
+            //2) you ask your factionOwner (CivManager) if you already know the faction of the new fleet
+            //3) you will need to apply different logics depending of the answer
+        }
+        public void OnFleetEncounteredPlayerDefinedTarget(PlayerDefinedTargetController playerTargetController)
         {
             //FleetManager.instance.
             //1) you get the FleetController of the new fleet GO
@@ -113,10 +127,6 @@ namespace Assets.Core
         public void UpdateWarpFactor(int delta)
         {
             fleetData.MaxWarpFactor += delta;
-        }
-        public void LoadFleetUI()
-        {
-            //FleetUIManager.instance.LoadFleetUI(fleetData.CivShortName + " Fleet " + fleetData.FleetName);
         }
         private void OnMouseDown()
         {

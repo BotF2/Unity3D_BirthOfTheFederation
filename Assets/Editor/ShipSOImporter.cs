@@ -43,7 +43,7 @@ public class ShipSOImporter : EditorWindow
             string[] fields = line.Split(',');
             string assetPath = " ";
 
-            if (fields.Length == 11) // Ensure there are enough fields
+            if (fields.Length == 12) // Ensure there are enough fields
             {
                 ShipSO shipSO = CreateInstance<ShipSO>();
                 shipSO.ShipName = fields[0];
@@ -104,8 +104,24 @@ public class ShipSOImporter : EditorWindow
     }
     public static ShipType GetMyShipClass(string title)
     {
-        ShipType st;
-        Enum.TryParse(title, out st);
-        return st;
+        switch (title)
+        {
+            case "TRANSPORT":
+                return ShipType.Transport;
+            case "SCOUT":
+                return ShipType.Scout;
+            case "DESTROYER":
+                return ShipType.Destroyer;    
+            case "CRUISER":
+                return ShipType.Cruiser;        
+            case "LTCRUISER":
+                return ShipType.LtCruiser;          
+            case "HVYCRUISER":
+                return ShipType.Transport; 
+            case "ONEMORE":
+                return ShipType.OneMore; 
+            default:
+                return ShipType.Scout;  
+        }
     }
 }

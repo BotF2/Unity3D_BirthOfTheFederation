@@ -15,7 +15,7 @@ MonoBehaviour:
   ShipName: ROM_CRUISER_II(CLONE)
   CivEnum: 1
   TechLevel: 1
-  Class: 0
+  ShipType: 2
   maxWarpFactor: 7
   ShieldMaxHealth: 55
   HullMaxHealth: 33

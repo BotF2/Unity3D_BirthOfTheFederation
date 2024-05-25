@@ -10,6 +10,7 @@ public class ShipData : MonoBehaviour
     public TechLevel TechLevel;
     public ShipType ShipType;
     public float maxWarpFactor;
+    public float currentWarpFactor;
     public int ShieldMaxHealth;
     public int HullMaxHealth;
     public int TorpedoDamage;

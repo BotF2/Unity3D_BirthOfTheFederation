@@ -15,7 +15,7 @@ MonoBehaviour:
   ShipName: CARD_LTCRUISER_IV(CLONE)
   CivEnum: 3
   TechLevel: 3
-  Class: 0
+  ShipType: 3
   maxWarpFactor: 9
   ShieldMaxHealth: 65
   HullMaxHealth: 46

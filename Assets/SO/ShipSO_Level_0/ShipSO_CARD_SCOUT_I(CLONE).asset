@@ -15,7 +15,7 @@ MonoBehaviour:
   ShipName: CARD_SCOUT_I(CLONE)
   CivEnum: 3
   TechLevel: 0
-  Class: 0
+  ShipType: 0
   maxWarpFactor: 3
   ShieldMaxHealth: 15
   HullMaxHealth: 8

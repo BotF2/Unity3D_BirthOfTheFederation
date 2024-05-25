@@ -15,7 +15,7 @@ MonoBehaviour:
   ShipName: TER_HVYCRUISER_IV(CLONE)
   CivEnum: 158
   TechLevel: 3
-  Class: 0
+  ShipType: 5
   maxWarpFactor: 9
   ShieldMaxHealth: 88
   HullMaxHealth: 66

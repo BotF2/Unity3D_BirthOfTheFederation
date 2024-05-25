@@ -15,7 +15,7 @@ MonoBehaviour:
   ShipName: ROM_DESTROYER_I(CLONE)
   CivEnum: 1
   TechLevel: 0
-  Class: 0
+  ShipType: 1
   maxWarpFactor: 2
   ShieldMaxHealth: 33
   HullMaxHealth: 15
