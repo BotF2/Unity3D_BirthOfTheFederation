@@ -69,7 +69,7 @@ public class PlayerDefinedTargetManager : MonoBehaviour
 
         playerTargetController.playerTargetData = playerDefinedTargetData;
 
-       // playerTargetController.playerTargetData.deltaYofGalaxyImage = galaxyCenter.transform.position.y - galaxyPlanePoint.y;
+       // playerTargetController.playerTargetData.yAboveGalaxyImage = galaxyCenter.transform.position.y - galaxyPlanePoint.y;
 
         playerDefinedTargetGO.SetActive(true);
         PlayerTargetGOList.Add(playerDefinedTargetGO);

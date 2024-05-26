@@ -11,15 +11,15 @@ namespace Assets.Core
         public Sprite Insignia;
         public CivEnum CivOwnerEnum;
         public Vector3 Position;
-        public List<Ship> ShipsList;
+        public List<ShipController> ShipsList;
         public float MaxWarpFactor;
         public float CurrentWarpFactor;
+       // private string civLongName { get { return CivLongName; } }
         public string CivLongName;
         public string CivShortName;
         public string Name;
         public string Description;
-        public List<Ship> ShipList;
-        public float deltaYofGalaxyImage;
+        public float yAboveGalaxyImage;
 
        public FleetData(string name)
         {
@@ -29,6 +29,7 @@ namespace Assets.Core
         {
 
         }
+
     }
 }
 

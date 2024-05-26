@@ -114,7 +114,7 @@ public class ShipManager : MonoBehaviour
 
         //controller.fleetData = fleetData;
 
-        //controller.fleetData.deltaYofGalaxyImage = galaxyCenter.transform.position.y - galaxyPlanePoint.y;
+        //controller.fleetData.yAboveGalaxyImage = galaxyCenter.transform.position.y - galaxyPlanePoint.y;
 
         //shipNewGameOb.SetActive(true);
         //ShipControllerList.Add(controller);

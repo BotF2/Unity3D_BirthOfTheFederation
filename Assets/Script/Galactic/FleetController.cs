@@ -20,19 +20,19 @@ namespace Assets.Core
         private ShipData shipData2;
         public List<ShipData> shipList;
         public List<FleetController> FleetConsWeHave;
-        public List<StarSysController> StarSystemsWeHave;
-        public List<PlayerDefinedTargetController> PlayerDefinedTargetControllersWeHave;
+        List<StarSysController> StarSystemsWeHave;
+        List<PlayerDefinedTargetController> PlayerDefinedTargetControllersWeHave;
         private bool deltaShipList = false; //??? do I need this or the shipdropdown listener
         public Transform Destination;
         private float maxWarpFactor;
         private float currentWarpFactor = 9;
         private float fudgeFactor = 0.05f; // so we see warp factor as in Star Trek but move in game space
         private float dropOutOfWarpDistance = 0.5f;  
-        public Rigidbody rb;
+        Rigidbody rb;
         public GameObject destinationDropdownGO;
-        public GameObject fleetDropdownGO;
+        GameObject fleetDropdownGO;
 
-        public LineRenderer lineRenderer;
+        private LineRenderer lineRenderer;
         [SerializeField]
         private TMP_Text dropdownSysText;
         [SerializeField]
@@ -61,16 +61,20 @@ namespace Assets.Core
             Name = fleetData.CivShortName + " Fleet " + fleetData.Name;
         }
 
-        private void FixedUpdate()
+        private void OnMouseDown()
         {
-            //MoveToDestinationGO; 
-            //ToDo **** need physics movement such that fleet pass around colliders that are not the destination
-            // pending time manager timing, Marc is working on this.
-            
+            string goName;
+            Ray ray = galaxyEventCamera.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit))
+            {
+                GameObject hitObject = hit.collider.gameObject;
+                goName = hitObject.name;
+            }
+            FleetUIManager.instance.LoadFleetUI(gameObject);
         }
         void OnTriggerEnter(Collider collider)
         {
-
             FleetController fleetController = collider.gameObject.GetComponent<FleetController>();
             if (fleetController != null) // it is a FleetController and not a StarSystem or other fleetController
             {
@@ -86,28 +90,30 @@ namespace Assets.Core
             {
                 OnFleetEncounteredPlayerDefinedTarget(playerTargetController);
             }
-            
         }
         public void OnFleetEncounteredFleet(FleetController fleetController)
         {
             //FleetManager.instance.
             //1) you get the FleetController of the new fleet GO
             //2) you ask your factionOwner (CivManager) if you already know the faction of the new fleet
-            //3) you will need to apply different logics depending of the answer
+            //3) ?first contatact > what kind of hail?
+            //4) ?combat
+            //5) ?move ships in and out of fleets
         }
         public void OnFleetEncounteredStarSys(StarSysController starSysController)
         {
             //FleetManager.instance.
             //1) you get the FleetController of the new fleet GO
             //2) you ask your factionOwner (CivManager) if you already know the faction of the new fleet
-            //3) you will need to apply different logics depending of the answer
+            //3) ?first contatact > what kind of hail, diplomacy vs uninhabited ?colonize vs terraform a rock vs do fleet busness in our system
+            //4) ?combat vs diplomacy and or traid...
         }
         public void OnFleetEncounteredPlayerDefinedTarget(PlayerDefinedTargetController playerTargetController)
         {
             //FleetManager.instance.
             //1) you get the FleetController of the new fleet GO
-            //2) you ask your factionOwner (CivManager) if you already know the faction of the new fleet
-            //3) you will need to apply different logics depending of the answer
+            //2) ?build a deep space starbase vs a partol point for travel
+            
         }
         void MoveToDesitinationGO()
         {
@@ -128,18 +134,7 @@ namespace Assets.Core
         {
             fleetData.MaxWarpFactor += delta;
         }
-        private void OnMouseDown()
-        {
-            string goName;
-            Ray ray = galaxyEventCamera.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit))
-            {
-                GameObject hitObject = hit.collider.gameObject;
-                goName = hitObject.name;
-            }
-            FleetUIManager.instance.LoadFleetUI(gameObject);
-        }
+
 
         public void AddFleetController(FleetController controller)
         {

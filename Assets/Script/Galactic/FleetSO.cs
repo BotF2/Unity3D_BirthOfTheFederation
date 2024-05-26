@@ -15,13 +15,12 @@ namespace Assets.Core
         public Sprite Insignia;
         public CivEnum CivOwnerEnum;
         public Vector3 Location;
-        public List<Ship> ShipsList;
+        public List<ShipController> ShipsList;
         public float maxWarpFactor = 0f;
         public float currentWarpFactor = 0f;
         public string Name;
         public string Description;      
         public GameObject Destination;
-        //public GameObject origin;
     }
 }
 

@@ -6,7 +6,7 @@ using Assets.Core;
 public class TimeManager : MonoBehaviour
 {
     public static TimeManager instance;
-    public event Action<TrekEventSO> OnSpecialEventReached;
+    public event Action<TrekEventSO> OnSpecialEventReached; // EventListener.cs
     public event Action OnStardateChanged;
     //private float minuteToRealTime = 2f;
     private float timer;
@@ -77,8 +77,8 @@ public class TimeManager : MonoBehaviour
 
             // Increment current stardate
             currentStardate++;
-            OnStardateChanged?.Invoke();
-            //OnFleetMoves(FleetController)?.Invoke();
+            OnStardateChanged?.Invoke(); // StardateUIController.OnEnabled() called
+            // OnFleetMoves(FleetController)?.Invoke();
 
             // Check for special events
             CheckSpecialEvents();

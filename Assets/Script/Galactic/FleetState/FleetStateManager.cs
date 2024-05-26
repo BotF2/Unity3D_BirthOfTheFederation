@@ -8,7 +8,7 @@ public class FleetStateManager : MonoBehaviour
     public FleetInSystemState inSystemState = new FleetInSystemState();
     public FleetAllStopState allStopState = new FleetAllStopState();
     public FleetWarpState warpState = new FleetWarpState();
-    public FleetWholeState wholeState = new FleetWholeState();
+    public FleetCombatState combatState = new FleetCombatState();
 
     void Start()
     {
@@ -24,9 +24,9 @@ public class FleetStateManager : MonoBehaviour
     {
         currentState.UpdateState(this); 
     }
-    void SwitchState(FleetBaseState state)
+    void SwitchState(FleetBaseState baseState)
     {
-        currentState = state;
-        state.EnterState(this);
+        currentState = baseState;
+        baseState.EnterState(this);
     }
 }

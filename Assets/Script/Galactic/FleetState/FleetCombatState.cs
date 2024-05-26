@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FleetInSystemState : FleetBaseState
+public class FleetCombatState : FleetBaseState
 {
     public override void EnterState(FleetStateManager fleetStateMan)
     {

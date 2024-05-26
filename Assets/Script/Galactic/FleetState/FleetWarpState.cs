@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class FleetWarpState : FleetBaseState
 {
-    public override void EnterState(FleetStateManager fleet)
+    public override void EnterState(FleetStateManager fleetStateMan)
     {
 
     }
-    public override void UpdateState(FleetStateManager fleet)
+    public override void UpdateState(FleetStateManager fleetStateMan)
     {
-        //ToDo: move the fleet called here
+
     }
-    public override void OnCollisionEnter(FleetStateManager fleet, Collision collision)
+    public override void OnCollisionEnter(FleetStateManager fleetStateMan, Collision collision)
     {
 
     }

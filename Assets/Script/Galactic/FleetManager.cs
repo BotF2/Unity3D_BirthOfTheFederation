@@ -139,7 +139,7 @@ namespace Assets.Core
             
             fleetController.fleetData = fleetData;
 
-            fleetController.fleetData.deltaYofGalaxyImage = galaxyCenter.transform.position.y - galaxyPlanePoint.y;
+            fleetController.fleetData.yAboveGalaxyImage = galaxyCenter.transform.position.y - galaxyPlanePoint.y;
 
             fleetNewGameOb.SetActive(true);
             FleetGOList.Add(fleetNewGameOb);
