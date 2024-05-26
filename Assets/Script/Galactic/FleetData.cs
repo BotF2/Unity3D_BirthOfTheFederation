@@ -14,7 +14,6 @@ namespace Assets.Core
         public List<ShipController> ShipsList;
         public float MaxWarpFactor;
         public float CurrentWarpFactor;
-       // private string civLongName { get { return CivLongName; } }
         public string CivLongName;
         public string CivShortName;
         public string Name;
