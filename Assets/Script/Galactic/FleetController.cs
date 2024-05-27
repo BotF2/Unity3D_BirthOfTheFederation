@@ -7,7 +7,6 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Networking.Types;
 
-
 namespace Assets.Core
 {
 
@@ -25,9 +24,9 @@ namespace Assets.Core
         private bool deltaShipList = false; //??? do I need this or the shipdropdown listener
         public Transform Destination;
         private float maxWarpFactor;
-        private float currentWarpFactor = 9;
+        private float currentWarpFactor = 4;
         private float fudgeFactor = 0.05f; // so we see warp factor as in Star Trek but move in game space
-        private float dropOutOfWarpDistance = 0.5f;  
+        //private float dropOutOfWarpDistance = 0.5f;  
         Rigidbody rb;
         public GameObject destinationDropdownGO;
         GameObject fleetDropdownGO;
@@ -44,7 +43,7 @@ namespace Assets.Core
         private Canvas FleetUICanvas;
         [SerializeField]
         private Canvas CanvasToolTip;
-
+        
         private void Start()
         {
             rb = GetComponent<Rigidbody>();
@@ -59,8 +58,19 @@ namespace Assets.Core
             shipData2.ShipName = "USS John McCain";
             shipList = new List<ShipData>() { shipData1, shipData2 };           
             Name = fleetData.CivShortName + " Fleet " + fleetData.Name;
+            GameObject Target = new GameObject("MyGameObject");
+            Transform TheTarget = Target.transform;
+            TheTarget.position = new Vector3(0, 0, 0);
+            Destination = Target.transform;
         }
-
+        private void FixedUpdate()
+        {
+            if (Destination != null)
+            {
+                Vector3 nextPosition = Vector3.MoveTowards(rb.position, Destination.position, currentWarpFactor * Time.fixedDeltaTime);
+                rb.MovePosition(nextPosition);
+            }
+        }
         private void OnMouseDown()
         {
             string goName;
@@ -132,7 +142,7 @@ namespace Assets.Core
 
         public void UpdateWarpFactor(int delta)
         {
-            fleetData.MaxWarpFactor += delta;
+            fleetData.CurrentWarpFactor += delta;
         }
 
 

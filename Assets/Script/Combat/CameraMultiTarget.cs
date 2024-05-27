@@ -59,7 +59,7 @@ namespace Assets.Core
 
 		private void Awake()
 		{
-			_camera = Camera.main; // give gameObject(galaxyEventCamera) and unity Camera.main the same Position and rotation at end of LateUpdate		
+			_camera = Camera.main; // give gameObject(galaxyEventCamera) and unity Camera.main the same position and rotation at end of LateUpdate		
 			_debugProjection = DebugProjection.ROTATED;
 			_shipCameraFieldOfView = _shipCamera.fieldOfView;
 		}
@@ -120,9 +120,9 @@ namespace Assets.Core
                     }
 
                     _cameraOffSet = gameObject.transform.position - _cameraTarget;
-					//gameObject.transform.Position = Vector3.SmoothDamp(gameObject.transform.Position, targetPositionAndRotation.Position, ref velocity, MoveSmoothTime);
+					//gameObject.transform.position = Vector3.SmoothDamp(gameObject.transform.position, targetPositionAndRotation.position, ref velocity, MoveSmoothTime);
 					
-					var target_rot = Quaternion.LookRotation(_cameraTarget - gameObject.transform.position); //_cameraTarget.transform.Position
+					var target_rot = Quaternion.LookRotation(_cameraTarget - gameObject.transform.position); //_cameraTarget.transform.position
 					var delta = Quaternion.Angle(gameObject.transform.rotation, target_rot);
 					if (delta > 0.0f)
 					{

@@ -53,12 +53,7 @@ namespace Assets.Core
             {
                 StarSysSO starSysSO = GetStarSObyInt(civSO.CivInt);
 
-                //StarSysData 
-                SysData = new StarSysData("Not Selected");               
-                SysData.SysInt = civSO.CivInt;
-                SysData.Position = new Vector3(starSysSO.Position.x, starSysSO.Position.y, starSysSO.Position.z);
-                SysData.SysName = starSysSO.SysName;
-                SysData.FirstOwner = starSysSO.FirstOwner;
+                SysData = new StarSysData(starSysSO);               
                 SysData.CurrentOwner = starSysSO.FirstOwner;
                 SysData.StarType = starSysSO.StarType;
                 SysData.StarSprit = starSysSO.StarSprit;
@@ -83,8 +78,8 @@ namespace Assets.Core
                 
                 starSysDatas.Add(SysData);
                 InstantiateSystem(SysData, civSO);
-                if (civSO.HasWarp) 
-                    FleetManager.instance.FleetDataFromSO(civSO, SysData.Position);
+                if (civSO.HasWarp)
+                    FleetManager.instance.FleetDataFromSO(civSO, SysData.GetPosition()); 
             }
             StarSysDataList = starSysDatas;
             FleetUIManager.instance.LoadDestinations(StarSysDataList);
@@ -94,11 +89,11 @@ namespace Assets.Core
         { 
             GameObject starSystemNewGameOb = (GameObject)Instantiate(sysPrefab, new Vector3(0,0,0),
                  Quaternion.identity);
-            starSystemNewGameOb.transform.Translate(new Vector3(sysData.Position.x, sysData.Position.y, sysData.Position.z));
+            starSystemNewGameOb.transform.Translate(new Vector3(sysData.GetPosition().x, sysData.GetPosition().y, sysData.GetPosition().z));
 
             starSystemNewGameOb.transform.SetParent(galaxyCenter.transform, true);
             starSystemNewGameOb.transform.localScale = new Vector3(1, 1, 1);
-            starSystemNewGameOb.name = sysData.SysName;
+            starSystemNewGameOb.name = sysData.GetSysName();
             sysData.SysTransform = starSystemNewGameOb.transform;
             var ImageRenderers = starSystemNewGameOb.GetComponentsInChildren<SpriteRenderer>();
 
@@ -106,8 +101,8 @@ namespace Assets.Core
             foreach (var OneTmp in TheText)
             {
                 OneTmp.enabled = true;
-                if (OneTmp != null && OneTmp.name == "SysName (TMP)")
-                    OneTmp.text = sysData.SysName;
+                if (OneTmp != null && OneTmp.name == "sysName (TMP)")
+                    OneTmp.text = sysData.GetSysName();
                 else if (OneTmp != null && OneTmp.name == "SysDescription (TMP)")
                     OneTmp.text = sysData.Description;
    
@@ -189,7 +184,7 @@ namespace Assets.Core
             foreach (var sysData in StarSysDataList)
             {
 
-                if (sysData.SysName.Equals(name))
+                if (sysData.GetSysName().Equals(name))
                 {
                     result = sysData;
                 }

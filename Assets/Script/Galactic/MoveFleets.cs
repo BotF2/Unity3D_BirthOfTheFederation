@@ -15,7 +15,7 @@ namespace Assets.Core
         //public GameObject Destination;
         //private Transform droplineEndPoint; //ToDo
         //public float dropOutOfWarpDistance = 0.1f;
-        //public float maxWarpFactor;
+        //public float MaxWarpFactor;
         //private float fudgeFactor = 0.05f;
         //private Rigidbody rb;
         ////public FleetData fleetData; 
@@ -24,16 +24,16 @@ namespace Assets.Core
         //{
         //    rb = GetComponent<Rigidbody>();
         //    //fleetData = GetComponent<FleetData>();
-        //    //maxWarpFactor = fleetData.currentWarpFactor;
+        //    //MaxWarpFactor = fleetData.CurrentWarpFactor;
         //}
         //public void DeltaFleetWarpFactor(float warpFactor)
         //{
-        //    maxWarpFactor = warpFactor;
+        //    MaxWarpFactor = warpFactor;
         //}
         //private void FixedUpdate()
         //{
-        //    //maxWarpFactor = fleetData.MaxWarpFactor;
-        //    if (maxWarpFactor > 0)
+        //    //MaxWarpFactor = fleetData.MaxWarpFactor;
+        //    if (MaxWarpFactor > 0)
         //    {
         //        Vector3 destinationPosition = Destination.transform.position;
         //        Vector3 currentPosition = transform.position;
@@ -42,7 +42,7 @@ namespace Assets.Core
         //        {
         //            Vector3 travelVector = destinationPosition - transform.position;
         //            travelVector.Normalize();
-        //            rb.MovePosition(currentPosition + (travelVector * maxWarpFactor * fudgeFactor * Time.deltaTime));
+        //            rb.MovePosition(currentPosition + (travelVector * MaxWarpFactor * fudgeFactor * Time.deltaTime));
         //        }
         //    }
         //}

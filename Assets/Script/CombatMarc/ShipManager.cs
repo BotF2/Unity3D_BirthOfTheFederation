@@ -79,7 +79,7 @@ public class ShipManager : MonoBehaviour
 
         //GameObject shipNewGameOb = (GameObject)Instantiate(shipPrefab, new Vector3(0, 0, 0),
         //        Quaternion.identity);
-        //shipNewGameOb.transform.Translate(new Vector3(fleetData.Position.x + 40f, fleetData.Position.y, fleetData.Position.z + 10f));
+        //shipNewGameOb.transform.Translate(new Vector3(fleetData.position.x + 40f, fleetData.position.y, fleetData.position.z + 10f));
         //shipNewGameOb.transform.SetParent(galaxyCenter.transform, true);
         //shipNewGameOb.transform.localScale = new Vector3(1, 1, 1);
 

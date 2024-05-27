@@ -4993,18 +4993,11 @@ MonoBehaviour:
   _galaxyStarCount: 0
   _solarSystemID: 0
   _combatOrder: 0
-  galaxyMapBackgroundPictureGO: {fileID: 0}
-  galaxyView: {fileID: 0}
   solarSystemView: {fileID: 0}
-  ship: {fileID: 0}
   cameraMultiTarget: {fileID: 0}
-  combat: {fileID: 0}
-  instantiateCombatShips: {fileID: 0}
-  actOnCombatOrder: {fileID: 0}
   zoomCamera: {fileID: 0}
   Canvas: {fileID: 0}
   CanvasGalactic: {fileID: 0}
-  PanelSystem_Play: {fileID: 0}
   _SinglePlayer: {fileID: 0}
   _MultiPlayer: {fileID: 0}
   _LoadGamePanel: {fileID: 0}
@@ -5028,7 +5021,6 @@ MonoBehaviour:
   offsetFriendRight: 5800
   offsetEnemyRight: 5500
   offsetEnemyLeft: -5800
-  AllSystemsList: []
   animationEmpties:
   - {fileID: 0}
   - {fileID: 0}
@@ -5049,7 +5041,6 @@ MonoBehaviour:
   FriendShips: []
   EnemyShips: []
   timeManager: {fileID: 0}
-  _state: 0
   _statePassedLobbyInit: 0
   _statePassedMain_Init: 0
   _statePassedCombatMenu_Init: 0

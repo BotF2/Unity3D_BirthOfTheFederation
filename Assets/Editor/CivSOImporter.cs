@@ -81,7 +81,7 @@ public class CivSOImporter : EditorWindow
                 else civSO.Playable = false;
                 civSO.HasWarp = bool.Parse(fields[12]);
                 civSO.Decription = "ToDo, connect to libaray of civSO descriptions";
-                civSO.StarSysOwned = new System.Collections.Generic.List<StarSysData> { new StarSysData() };
+                civSO.StarSysOwned = new System.Collections.Generic.List<StarSysData> { new StarSysData("Place Holder") };
                 civSO.IntelPoints = 0f;
                 //civSO.ContactList = new System.Collections.Generic.List<CivData>(); // we know our self + maybe a 'Vulcans' for each major??
                 string assetPath = $"Assets/SO/CivilizationSO/CivSO_{civSO.CivInt}_{civSO.CivShortName}.asset";

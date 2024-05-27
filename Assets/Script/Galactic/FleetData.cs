@@ -11,15 +11,22 @@ namespace Assets.Core
         public Sprite Insignia;
         public CivEnum CivOwnerEnum;
         public Vector3 Position;
-        public List<ShipController> ShipsList;
-        public float MaxWarpFactor;
+        private List<ShipController> shipsList;
+        private float maxWarpFactor;
         public float CurrentWarpFactor;
         public string CivLongName;
         public string CivShortName;
         public string Name;
-        public string Description;
+        private string description;
         public float yAboveGalaxyImage;
 
+        public FleetData(FleetSO fleetSO)
+        {
+            Insignia = fleetSO.Insignia;
+            shipsList = fleetSO.ShipsList;
+            maxWarpFactor = fleetSO.MaxWarpFactor;
+            description = fleetSO.Description;
+        }
        public FleetData(string name)
         {
             Name = name;
@@ -28,7 +35,18 @@ namespace Assets.Core
         {
 
         }
-
+        public List<ShipController> GetShipList()
+        {
+            return shipsList;
+        }
+        public float GetMaxWarpFactor()
+        {
+            return maxWarpFactor;
+        }
+        public string GetDescription()
+        {
+            return description;
+        }
     }
 }
 

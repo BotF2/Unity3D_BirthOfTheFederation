@@ -95,7 +95,7 @@ namespace Assets.Core
         //        orbitalGameObjectMap.Add(orbitalG, orbitalSO);
         //    GameObject emptyGO = orbitalSO.GetComponent<GameObject>();
         //    emptyGO.transform.SetParent(transformParent, false);
-        //    emptyGO.transform.position = orbitalG.Position / zoomLevels;
+        //    emptyGO.transform.position = orbitalG.position / zoomLevels;
         //    emptyGO.layer = 3; // Star System layer
         //    emptyGO.name = "Orbital";
         //    SpriteRenderer renderer = emptyGO.AddComponent<SpriteRenderer>();
@@ -229,8 +229,8 @@ namespace Assets.Core
         //    //orbitalGameObjectMap[orbitalG] = gameObject; // update map
         //    //gameObject.layer = 30; // galactic
         //    gameObject.transform.SetParent(transformParent, false);
-        //    // set Position in 3D
-        //    gameObject.transform.position = orbitalG.Position / zoomLevels; // cut down scale of system to view
+        //    // set position in 3D
+        //    gameObject.transform.position = orbitalG.position / zoomLevels; // cut down scale of system to view
         //    SpriteRenderer spritView = gameObject.AddComponent<SpriteRenderer>();
         //    spritView.transform.localScale = new Vector3(planetMoonScale, planetMoonScale, planetMoonScale);
         //    spritView.sprite = planetMoonSprites[orbitalG.GraphicID];
@@ -245,7 +245,7 @@ namespace Assets.Core
         //void UpdateSprites(OrbitalGalactic orbital) //, float time)
         //{
         //    OrbitalSO _orbitalSO = orbitalGameObjectMap[orbital];
-        //    _orbitalSO.GetComponent<GameObject>().transform.position = orbital.Position / zoomLevels;
+        //    _orbitalSO.GetComponent<GameObject>().transform.position = orbital.position / zoomLevels;
         //    for (int i = 0; i < orbital.Children.Count; i++)
         //    {
         //        UpdateSprites(orbital.Children[i]);

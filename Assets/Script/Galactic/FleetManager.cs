@@ -23,10 +23,7 @@ namespace Assets.Core
         public GameObject galaxyCenter;
         public List<FleetController> ManagersFleetControllerList;
         public List<GameObject> FleetGOList = new List<GameObject>(); // all fleetGO GOs made
-        public Dictionary<CivEnum, List<FleetData>> FleetDictionary; //all the fleetGO datas of that civ
-        //public TextMeshProUGUI fleetNameText;
-        //public TextMeshProUGUI fleetDescriptionText;
-
+        public Dictionary<CivEnum, List<FleetData>> FleetDictionary; // all the fleetGO datas of that civ
 
         private void Awake()
         {
@@ -49,17 +46,14 @@ namespace Assets.Core
             FleetSO fleetSO = GetFleetSObyInt(civSO.CivInt);
             if (fleetSO != null)
             {
-                FleetData fleetData = new FleetData();
+                FleetData fleetData = new FleetData(fleetSO);
                 fleetData.CivIndex = fleetSO.CivIndex;
                 fleetData.Insignia = fleetSO.Insignia;
                 fleetData.CivOwnerEnum = fleetSO.CivOwnerEnum;
                 fleetData.Position = position;
-                fleetData.ShipsList = fleetSO.ShipsList;
-                fleetData.MaxWarpFactor = fleetSO.maxWarpFactor;
-                fleetData.CurrentWarpFactor = fleetSO.currentWarpFactor;
+                fleetData.CurrentWarpFactor = fleetSO.CurrentWarpFactor;
                 fleetData.CivLongName = civSO.CivLongName;
                 fleetData.CivShortName = civSO.CivShortName;
-                fleetData.Description = fleetSO.Description;
                 fleetData.Name = "998";
                 if (!FleetDictionary.ContainsKey(civSO.CivEnum))
                 {
@@ -109,9 +103,6 @@ namespace Assets.Core
             fleetNewGameOb.transform.localScale = new Vector3(1, 1, 1);
 
             fleetNewGameOb.name = fleetData.CivOwnerEnum.ToString() + " Fleet " + fleetData.Name; // game object FleetName
-            //var canvas = fleetNewGameOb.GetComponent<Canvas>();
-            //var fleetGO = FindGameObjectInChildrenWithTag(fleetNewGameOb,"Fleet");
-            //fleetGO.transform.SetParent(canvas.transform, true);
             TextMeshProUGUI TheText = fleetNewGameOb.GetComponentInChildren<TextMeshProUGUI>();
 
             TheText.text = fleetData.CivShortName + " - Fleet " + fleetData.Name;

@@ -92,12 +92,12 @@ namespace TMPro.Examples
                     switch (linkInfo.GetLinkID())
                     {
                         case "id_01": // 100041637: // id_01
-                                      //m_TextPopup_RectTransform.Position = worldPointInRectangle;
+                                      //m_TextPopup_RectTransform.position = worldPointInRectangle;
                                       //m_TextPopup_RectTransform.gameObject.SetActive(true);
                                       //m_TextPopup_TMPComponent.text = k_LinkText + " ID 01";
                             break;
                         case "id_02": // 100041638: // id_02
-                                      //m_TextPopup_RectTransform.Position = worldPointInRectangle;
+                                      //m_TextPopup_RectTransform.position = worldPointInRectangle;
                                       //m_TextPopup_RectTransform.gameObject.SetActive(true);
                                       //m_TextPopup_TMPComponent.text = k_LinkText + " ID 02";
                             break;
@@ -118,7 +118,7 @@ namespace TMPro.Examples
                     Vector3 wordPOS = m_TextMeshPro.transform.TransformPoint(m_TextMeshPro.textInfo.characterInfo[wInfo.firstCharacterIndex].bottomLeft);
                     wordPOS = Camera.main.WorldToScreenPoint(wordPOS);
 
-                    //Debug.Log("Mouse Position: " + Input.mousePosition.ToString("f3") + "  Word Position: " + wordPOS.ToString("f3"));
+                    //Debug.Log("Mouse position: " + Input.mousePosition.ToString("f3") + "  Word position: " + wordPOS.ToString("f3"));
 
                     Color32[] vertexColors = m_TextMeshPro.textInfo.meshInfo[0].colors32;
 

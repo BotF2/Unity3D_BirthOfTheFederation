@@ -46,7 +46,7 @@ namespace Assets.SpaceCombat.AutoBattle.Scripts.Starships
                 //{
                 //    while (photonTorpedoHardPoint.LoadedTorpedos != 0)
                 //    {
-                //        var gameObject = Instantiate(photonTorpedoHardPoint.WeaponPrefab, photonTorpedoHardPoint.HardPoint.transform.Position, Quaternion.identity);
+                //        var gameObject = Instantiate(photonTorpedoHardPoint.WeaponPrefab, photonTorpedoHardPoint.HardPoint.transform.position, Quaternion.identity);
 
                 //        var photonTorpedoScript = gameObject.GetComponent<PhotonTorpedo>();
                 //        photonTorpedoScript.SetCurrentTarget(Destination);
@@ -58,7 +58,7 @@ namespace Assets.SpaceCombat.AutoBattle.Scripts.Starships
 
                 //if (photonTorpedoHardPoint.WeaponRecharge >= photonTorpedoHardPoint.FireRate)
                 //{
-                //    var gameObject = Instantiate(photonTorpedoHardPoint.WeaponPrefab, photonTorpedoHardPoint.HardPoint.transform.Position, Quaternion.identity);
+                //    var gameObject = Instantiate(photonTorpedoHardPoint.WeaponPrefab, photonTorpedoHardPoint.HardPoint.transform.position, Quaternion.identity);
 
                 //    //var photonTorpedoAudioSource = gameObject.AddComponent<AudioSource>();
                 //    //photonTorpedoAudioSource.playOnAwake = false;

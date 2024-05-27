@@ -16,8 +16,8 @@ namespace Assets.Core
         public CivEnum CivOwnerEnum;
         public Vector3 Location;
         public List<ShipController> ShipsList;
-        public float maxWarpFactor = 0f;
-        public float currentWarpFactor = 0f;
+        public float MaxWarpFactor = 0f;
+        public float CurrentWarpFactor = 0f;
         public string Name;
         public string Description;      
         public GameObject Destination;

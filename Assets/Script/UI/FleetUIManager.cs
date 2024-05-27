@@ -134,9 +134,9 @@ public class FleetUIManager : MonoBehaviour
         // fill destDropdown sys sysList
         if (systemsList != null)
         {
-            foreach (var item in systemsList)
+            foreach (var sysData in systemsList)
             {
-                destDropdown.options.Add(new TMP_Dropdown.OptionData() { text = item.SysName });
+                destDropdown.options.Add(new TMP_Dropdown.OptionData() { text = sysData.GetSysName() });
             }
             //systemsList.Add()
             //destDropdown.options.Add( new TMP_Dropdown.OptionData()) { t}

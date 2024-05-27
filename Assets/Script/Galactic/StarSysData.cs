@@ -5,11 +5,11 @@ using Assets.Core;
 
 public class StarSysData
 {
-    public int SysInt;
-    public Vector3 Position;
+    private int starSysInt;
+    private Vector3 position;
     public Transform SysTransform;
-    public string SysName;
-    public CivEnum FirstOwner;
+    private string sysName;
+    private CivEnum firstOwner;
     public CivEnum CurrentOwner;
     public StarSystemType StarType;
     public Sprite StarSprit;
@@ -21,9 +21,26 @@ public class StarSysData
     {
 
     }
+    public StarSysData(StarSysSO starSysSO)
+    {
+        starSysInt = starSysSO.StarSysInt;
+        position = new Vector3(starSysSO.Position.x, starSysSO.Position.y, starSysSO.Position.z);
+        sysName = starSysSO.SysName;
+        firstOwner = starSysSO.FirstOwner;
+    }
     public StarSysData(string v)
     {
         this.v = v;
-        this.SysName = v;
+        this.sysName = v;
     }
+    public int GetStarSysInt()
+    {
+        return this.starSysInt;
+    }
+    public Vector3 GetPosition()
+    {
+        return this.position;
+    }
+    public string GetSysName() { return this.sysName; }
+    public CivEnum GetFirstOwner() { return this.firstOwner; }
 }

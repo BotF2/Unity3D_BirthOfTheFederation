@@ -36,7 +36,7 @@ public class PlayerDefinedTargetManager : MonoBehaviour
         GameObject playerDefinedTargetGO = (GameObject)Instantiate(playerDefinedTargetPrefab, new Vector3(0, 0, 0),
                 Quaternion.identity);
         // ***** ToDo: Get position defined by player
-        //playerDefinedTargetGO.transform.Translate(new Vector3(playerDefinedTargetData.Position.x + 40f, playerDefinedTargetData.Position.y, playerDefinedTargetData.Position.z + 10f));
+        //playerDefinedTargetGO.transform.Translate(new Vector3(playerDefinedTargetData.position.x + 40f, playerDefinedTargetData.position.y, playerDefinedTargetData.position.z + 10f));
         playerDefinedTargetGO.transform.SetParent(galaxyCenter.transform, true);
         playerDefinedTargetGO.transform.localScale = new Vector3(1, 1, 1);
 
