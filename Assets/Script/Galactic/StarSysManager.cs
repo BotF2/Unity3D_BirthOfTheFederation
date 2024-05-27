@@ -94,6 +94,7 @@ namespace Assets.Core
             starSystemNewGameOb.transform.SetParent(galaxyCenter.transform, true);
             starSystemNewGameOb.transform.localScale = new Vector3(1, 1, 1);
             starSystemNewGameOb.name = sysData.GetSysName();
+            //starSystemNewGameOb.
             sysData.SysTransform = starSystemNewGameOb.transform;
             var ImageRenderers = starSystemNewGameOb.GetComponentsInChildren<SpriteRenderer>();
 
@@ -101,7 +102,7 @@ namespace Assets.Core
             foreach (var OneTmp in TheText)
             {
                 OneTmp.enabled = true;
-                if (OneTmp != null && OneTmp.name == "sysName (TMP)")
+                if (OneTmp != null && OneTmp.name == "SysName (TMP)")
                     OneTmp.text = sysData.GetSysName();
                 else if (OneTmp != null && OneTmp.name == "SysDescription (TMP)")
                     OneTmp.text = sysData.Description;
@@ -126,7 +127,7 @@ namespace Assets.Core
                         oneRenderer.sprite = sysData.StarSprit;
                 }
             }
-             DropLineFixed ourDropLine = starSystemNewGameOb.GetComponentInChildren<DropLineFixed>();
+            DropLineFixed ourDropLine = starSystemNewGameOb.GetComponentInChildren<DropLineFixed>();
             
             ourDropLine.GetLineRenderer();
 
@@ -135,21 +136,8 @@ namespace Assets.Core
             Vector3[] points = {starSystemNewGameOb.transform.position, galaxyPlanePoint};
             ourDropLine.SetUpLine(points);
             StarSysController controller = starSystemNewGameOb.GetComponentInChildren<StarSysController>();
-            controller.starSysData = sysData;
-            //Transform canvasTrans = starSystemNewGameOb.transform.Find("CanvasSysButton");
-            //// Check if the child GameObject exists
-            //if (canvasTrans != null)
-            //{
-            //    // Is there a UI game object we need to turn on and off
-            //    //controller.c = canvasTrans.gameObject;
-            //    //controller.canvasFleetUIbutton.SetActive(false);
-            //}
-            //Transform canvasTransButton = starSystemNewGameOb.transform.Find("Canvas Load FleetUI");
-            //// Check if the child GameObject exists
-            //if (canvasTransButton != null)
-            //{
-            //    canvasTransButton.SetParent(starSystemNewGameOb.transform, true);
-            //}
+            controller.name = sysData.GetSysName();
+            controller.StarSysData = sysData;
 
             starSystemNewGameOb.SetActive(true);
             StarSysControllerList.Add(controller);  
@@ -199,7 +187,7 @@ namespace Assets.Core
             StarSysController controller = starSystemPrefabPlaceHolder;
             foreach (var starSysController in StarSysControllerList)
             {
-                if (starSysController.starSysData.CurrentOwner == civEnum)
+                if (starSysController.StarSysData.CurrentOwner == civEnum)
                 {
                     controller = starSysController;
                 }

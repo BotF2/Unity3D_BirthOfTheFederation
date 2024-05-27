@@ -31,7 +31,7 @@ public class ShipManager : MonoBehaviour
         List <ShipData> list = new List<ShipData>() { shipData };
         //ShipDictionary = new Dictionary<CivEnum, List<ShipData>>() { { CivEnum.ZZUNINHABITED9, list } };
     }
-    public void CreateShipsForGame(int techLevel)
+    public void ShipDateByTechlevelForGame(int techLevel)
     {
         if (techLevel == 0)
         {
@@ -45,7 +45,7 @@ public class ShipManager : MonoBehaviour
         {
             ShipDataFromSO(shipSOListTech2);
         }
-        if (techLevel == 2)
+        if (techLevel == 3)
         {
             ShipDataFromSO(shipSOListTech3);
         }
@@ -69,11 +69,20 @@ public class ShipManager : MonoBehaviour
                 shipData.TorpedoDamage = shipSO.TorpedoDamage;
                 shipData.BeamDamage = shipSO.BeamDamage;
                 shipData.Cost = shipSO.Cost;
-                InstantiateShip(shipData);
+                //InstantiateShip(shipData); // ???? Save this for combat?
+                GetShipListOfShipNames(shipSOList);
             }
         }
     }
-
+    private List<string> GetShipListOfShipNames(List<ShipSO> shipSOList)
+    {
+        List<string> names = new List<string>();
+        foreach (ShipSO item in shipSOList)
+        {
+            names.Add(item.ShipName);
+        }
+        return names;
+    }
     public void InstantiateShip(ShipData fleetData)
     {
 

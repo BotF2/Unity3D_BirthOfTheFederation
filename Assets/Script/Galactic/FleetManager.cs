@@ -17,13 +17,12 @@ namespace Assets.Core
     {
         public static FleetManager instance;
 
-        public List<FleetSO> fleetSOList;// all possible fleetSO(s), one list for each civ
+        public List<FleetSO> fleetSOList;// ? all possible fleetSO(s), ? one list for each civ
         public GameObject fleetPrefab;
         public GameObject galaxyImage;
         public GameObject galaxyCenter;
         public List<FleetController> ManagersFleetControllerList;
         public List<GameObject> FleetGOList = new List<GameObject>(); // all fleetGO GOs made
-        public Dictionary<CivEnum, List<FleetData>> FleetDictionary; // all the fleetGO datas of that civ
 
         private void Awake()
         {
@@ -36,13 +35,20 @@ namespace Assets.Core
                 instance = this;
                 DontDestroyOnLoad(gameObject);
             }
-            var data = new FleetData("999");
-            List<FleetData> list = new List<FleetData>() {data};
-            FleetDictionary = new Dictionary<CivEnum, List<FleetData>>() { { CivEnum.ZZUNINHABITED9, list } };
+            GameObject fleetPlaceHolder = (GameObject)Instantiate(fleetPrefab, new Vector3(0, 0, 0),
+                Quaternion.identity);
+            fleetPlaceHolder.name = "999";
+            var fleetController = fleetPlaceHolder.GetComponentInChildren<FleetController>();
+            fleetController.Name = "999";
+            FleetData placeHolderData = new FleetData("999");
+            fleetController.FleetData = placeHolderData;
+            fleetController.FleetData.CivOwnerEnum = CivEnum.ZZUNINHABITED10;
+            fleetController.FleetData.Name =fleetController.Name;
+            FleetGOList.Add(fleetPlaceHolder);
+            AddFleetConrollerToAllControllers(fleetController);
         }
         public void FleetDataFromSO(CivSO civSO, Vector3 position) // first fleetGO
         {
-
             FleetSO fleetSO = GetFleetSObyInt(civSO.CivInt);
             if (fleetSO != null)
             {
@@ -55,98 +61,105 @@ namespace Assets.Core
                 fleetData.CivLongName = civSO.CivLongName;
                 fleetData.CivShortName = civSO.CivShortName;
                 fleetData.Name = "998";
-                if (!FleetDictionary.ContainsKey(civSO.CivEnum))
+                InstantiateFleet(fleetData, position);
+            }           
+        }
+        private void GetUniqueFleetName(CivEnum civEnum, FleetController newFleetController)
+        {
+            List<int> ints = new List<int>() { 999 };
+            if (ManagersFleetControllerList != null)
+            {
+                var controllersByCivEnum = new List<FleetController>() { newFleetController };
+                foreach (var controller in ManagersFleetControllerList)
                 {
-                    List<FleetData> listA = new List<FleetData>() { fleetData };
-                    FleetDictionary.Add(civSO.CivEnum, listA);
+                    if (controller.FleetData.CivOwnerEnum == newFleetController.FleetData.CivOwnerEnum)
+                    {
+                        if (controller != newFleetController)
+                            controllersByCivEnum.Add(controller);
+                    }
                 }
-                else FleetDictionary[civSO.CivEnum].Add(fleetData);
-                if (fleetData.Name != "999")
+                for (int j = 0; j < controllersByCivEnum.Count; j++) // Build ints list
                 {
-                    GetFleetName(civSO.CivEnum);
-                    InstantiateFleet(fleetData, position);
+                    ints.Add(int.Parse(controllersByCivEnum[j].Name));
+                }
+                for (int i = 0; i < controllersByCivEnum.Count; i++)
+                {
+                    if (controllersByCivEnum[i].Name == "998")
+                    {
+                        if (!ints.Contains(i + 1))
+                        {
+                            controllersByCivEnum[i].Name = (i + 1).ToString();
+                            controllersByCivEnum[i].FleetData.Name = (i + 1).ToString();
+                        }  
+                    }
                 }
             }
-            
-        }
-        private void GetFleetName(Assets.Core.CivEnum civEnum)
-        {
-            var listFleetData = FleetDictionary[civEnum];
-            List<int> ints = new List<int>() { 999};
-
-            if (listFleetData != null)
-            {
-                for (int j = 0; j < listFleetData.Count; j++) // build the list of int names
-                {
-                    ints.Add(int.Parse(listFleetData[j].Name));
-                }
-                for (int i = 0; i < listFleetData.Count; i++)
-                {
-                    if (!ints.Contains(i + 1))
-                    {
-                        listFleetData[i].Name = (i + 1).ToString();
-                    }
-                    else if (listFleetData[i].Name == "998")
-                    {
-                        listFleetData[i].Name = (i + 1).ToString();
-                    }
-                }
-            }         
         }
         public void InstantiateFleet(FleetData fleetData, Vector3 position)
         {
-            
-            GameObject fleetNewGameOb = (GameObject)Instantiate(fleetPrefab, new Vector3(0,0,0),
-                    Quaternion.identity);
-            fleetNewGameOb.transform.Translate(new Vector3(fleetData.Position.x + 40f, fleetData.Position.y, fleetData.Position.z + 10f));
-            fleetNewGameOb.transform.SetParent(galaxyCenter.transform, true);
-            fleetNewGameOb.transform.localScale = new Vector3(1, 1, 1);
-
-            fleetNewGameOb.name = fleetData.CivOwnerEnum.ToString() + " Fleet " + fleetData.Name; // game object FleetName
-            TextMeshProUGUI TheText = fleetNewGameOb.GetComponentInChildren<TextMeshProUGUI>();
-
-            TheText.text = fleetData.CivShortName + " - Fleet " + fleetData.Name;
-            var Renderers = fleetNewGameOb.GetComponentsInChildren<SpriteRenderer>();
-            foreach (var oneRenderer in Renderers)
+            if (fleetData.CivOwnerEnum != CivEnum.ZZUNINHABITED10)
             {
-                if (oneRenderer != null)
+                GameObject fleetNewGameOb = (GameObject)Instantiate(fleetPrefab, new Vector3(0, 0, 0),
+                        Quaternion.identity);
+                var fleetController = fleetNewGameOb.GetComponentInChildren<FleetController>();
+                fleetController.FleetData = fleetData;
+                fleetController.Name = fleetData.Name;
+                AddFleetConrollerToAllControllers(fleetController);
+                GetUniqueFleetName(fleetData.CivOwnerEnum, fleetController);
+                fleetNewGameOb.transform.Translate(new Vector3(fleetData.Position.x + 40f, fleetData.Position.y, fleetData.Position.z + 10f));
+                fleetNewGameOb.transform.SetParent(galaxyCenter.transform, true);
+                fleetNewGameOb.transform.localScale = new Vector3(1, 1, 1);
+
+                fleetNewGameOb.name = fleetData.CivOwnerEnum.ToString() + " Fleet " + fleetData.Name; // game object FleetName
+                TextMeshProUGUI TheText = fleetNewGameOb.GetComponentInChildren<TextMeshProUGUI>();
+
+                TheText.text = fleetData.CivShortName + " - Fleet " + fleetData.Name;
+                var Renderers = fleetNewGameOb.GetComponentsInChildren<SpriteRenderer>();
+                foreach (var oneRenderer in Renderers)
                 {
-                    if (oneRenderer.name == "Insignia")
+                    if (oneRenderer != null)
                     {
-                        oneRenderer.sprite = fleetData.Insignia;
+                        if (oneRenderer.name == "Insignia")
+                        {
+                            oneRenderer.sprite = fleetData.Insignia;
+                        }
                     }
                 }
+                DropLineMovable ourLineScript = fleetNewGameOb.GetComponentInChildren<DropLineMovable>();
+
+                ourLineScript.GetLineRenderer();
+                ourLineScript.transform.SetParent(fleetNewGameOb.transform, false);
+                Vector3 galaxyPlanePoint = new Vector3(fleetNewGameOb.transform.position.x,
+                    galaxyImage.transform.position.y, fleetNewGameOb.transform.position.z);
+                Vector3[] points = { fleetNewGameOb.transform.position, galaxyPlanePoint };
+                ourLineScript.SetUpLine(points);
+
+                //var newFleetController = fleetNewGameOb.GetComponentInChildren<FleetController>();
+
+                //fleetController.fleetData = fleetData;
+
+                fleetController.FleetData.yAboveGalaxyImage = galaxyCenter.transform.position.y - galaxyPlanePoint.y;
+
+                fleetNewGameOb.SetActive(true);
+                FleetGOList.Add(fleetNewGameOb);
+                //AddFleetConrollerToAllControllers(newFleetController);
+                StarSysManager.instance.GetYourFirstStarSystem(fleetData.CivOwnerEnum);
             }
-            DropLineMovable ourLineScript = fleetNewGameOb.GetComponentInChildren<DropLineMovable>();
+            else if(fleetData.CivOwnerEnum == CivEnum.ZZUNINHABITED10)
+            {
+                //RemoveFleetConrollerFromAllControllers(? controller)
+            }
 
-            ourLineScript.GetLineRenderer();
-            ourLineScript.transform.SetParent(fleetNewGameOb.transform, false);
-            Vector3 galaxyPlanePoint = new Vector3(fleetNewGameOb.transform.position.x,
-                galaxyImage.transform.position.y, fleetNewGameOb.transform.position.z);
-            Vector3[] points = { fleetNewGameOb.transform.position, galaxyPlanePoint };
-            ourLineScript.SetUpLine(points);
-
-            var fleetController = fleetNewGameOb.GetComponentInChildren<FleetController>();
-            
-            fleetController.fleetData = fleetData;
-
-            fleetController.fleetData.yAboveGalaxyImage = galaxyCenter.transform.position.y - galaxyPlanePoint.y;
-
-            fleetNewGameOb.SetActive(true);
-            FleetGOList.Add(fleetNewGameOb);
-            AddFleetConrollerToAllControllers(fleetController);
-            StarSysManager.instance.GetYourFirstStarSystem(fleetData.CivOwnerEnum);
-   
         }
         void AddFleetConrollerToAllControllers(FleetController fleetController)
         {
-            ManagersFleetControllerList.Add(fleetController);
+            ManagersFleetControllerList.Add(fleetController); // add for Manager
             foreach (FleetController fleetCon in ManagersFleetControllerList)
             {
-                fleetCon.AddFleetController(fleetController);
+                fleetCon.AddFleetController(fleetController); // add for Controller
             }
         }
-        void RemoveFleetConrollerToAllControllers(FleetController fleetController)
+        void RemoveFleetConrollerFromAllControllers(FleetController fleetController)
         {
             ManagersFleetControllerList.Remove(fleetController);
             foreach (FleetController fleetCon in ManagersFleetControllerList)

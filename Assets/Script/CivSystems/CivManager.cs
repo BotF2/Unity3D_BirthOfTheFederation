@@ -61,7 +61,7 @@ namespace Assets.Core
                 CivDataFromSO(civSOListLarge);
                 CreateCivEnumList(civSOListLarge);
             }
-            ShipManager.instance.CreateShipsForGame(gameTechLevel);
+            ShipManager.instance.ShipDateByTechlevelForGame(gameTechLevel);
         }
         public void CivDataFromSO(List<CivSO> civSOList)
         {

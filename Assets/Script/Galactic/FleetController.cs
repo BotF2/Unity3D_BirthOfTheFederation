@@ -13,7 +13,8 @@ namespace Assets.Core
     public class FleetController : MonoBehaviour
     { 
         //Fields
-        public FleetData fleetData;
+        private FleetData fleetData;
+        public FleetData FleetData { get { return fleetData; } set { fleetData = value; } }
         public string Name;
         private ShipData shipData1;
         private ShipData shipData2;
@@ -26,7 +27,6 @@ namespace Assets.Core
         private float maxWarpFactor;
         private float currentWarpFactor = 4;
         private float fudgeFactor = 0.05f; // so we see warp factor as in Star Trek but move in game space
-        //private float dropOutOfWarpDistance = 0.5f;  
         Rigidbody rb;
         public GameObject destinationDropdownGO;
         GameObject fleetDropdownGO;
@@ -52,11 +52,13 @@ namespace Assets.Core
             FleetUICanvas = CanvasGO.GetComponent<Canvas>();
             FleetUICanvas.worldCamera = galaxyEventCamera;
             CanvasToolTip.worldCamera = galaxyEventCamera;
+            // temp just to see list in UI
             shipData1 = gameObject.AddComponent<ShipData>();
             shipData1.ShipName = "USS Trump";
             shipData2 = gameObject.AddComponent<ShipData>();
             shipData2.ShipName = "USS John McCain";
-            shipList = new List<ShipData>() { shipData1, shipData2 };           
+            shipList = new List<ShipData>() { shipData1, shipData2 }; 
+            
             Name = fleetData.CivShortName + " Fleet " + fleetData.Name;
             GameObject Target = new GameObject("MyGameObject");
             Transform TheTarget = Target.transform;

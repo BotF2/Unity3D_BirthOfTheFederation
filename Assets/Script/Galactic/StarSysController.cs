@@ -6,7 +6,8 @@ using Assets.Core;
 public class StarSysController : MonoBehaviour
 {
     //Fields
-    public StarSysData starSysData;
+    private StarSysData starSysData;
+    public StarSysData StarSysData { get { return starSysData; } set { starSysData = value; } }
     private Camera galaxyEventCamera;
     [SerializeField]
     private Canvas canvasToolTip;
