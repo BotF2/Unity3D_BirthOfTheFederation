@@ -50,6 +50,7 @@ namespace Assets.Core
             {
                 CivDataFromSO(civSOListSmall);
                 CreateCivEnumList(civSOListSmall);
+                ShipManager.instance.FirstShipDateByTechlevel(gameTechLevel);
             }
             if (sizeGame == 1)
             {
@@ -61,7 +62,7 @@ namespace Assets.Core
                 CivDataFromSO(civSOListLarge);
                 CreateCivEnumList(civSOListLarge);
             }
-            ShipManager.instance.ShipDateByTechlevelForGame(gameTechLevel);
+            /*ShipManager.instance.ShipDateByTechlevelForGame(gameTechLevel)*/;
         }
         public void CivDataFromSO(List<CivSO> civSOList)
         {

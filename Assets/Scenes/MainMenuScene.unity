@@ -2418,7 +2418,7 @@ MonoBehaviour:
   shipData: {fileID: 5414955361618080704, guid: 0a61d1f3939e6314490e6cdee5b95a3f, type: 3}
   ShipPrefab: {fileID: 715278435198542187, guid: 0a61d1f3939e6314490e6cdee5b95a3f, type: 3}
   ShipControllerList: []
-  shipSOListTech0:
+  ShipSOListTech0:
   - {fileID: 11400000, guid: 9a6e53646f4b63b4a8be9e412fa47787, type: 2}
   - {fileID: 11400000, guid: 7dc7202d5f8a4df48bc10e1d6ea32845, type: 2}
   - {fileID: 11400000, guid: 9b4e6d7e61a42e04d84f3bfe6cd632fc, type: 2}
@@ -2440,7 +2440,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7bb57eaa82a8ae3458aa5a44bf43b162, type: 2}
   - {fileID: 11400000, guid: 6a0a799fdf85f104aa563b9df6cc7c18, type: 2}
   - {fileID: 11400000, guid: e40ac566f2e713146babe87d451527e9, type: 2}
-  shipSOListTech1:
+  ShipSOListTech1:
   - {fileID: 11400000, guid: dea86143468360e44bf9cd0fe86d5627, type: 2}
   - {fileID: 11400000, guid: 94daa8518a586c042b0ede4bf7a4882c, type: 2}
   - {fileID: 11400000, guid: 7f1edc4b06ff01044aea0f6092eabf69, type: 2}
@@ -2469,7 +2469,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c8c3ee6a13353aa4382e99aa422f53fb, type: 2}
   - {fileID: 11400000, guid: 4bbf6ac60206b344db2db9d15f04245c, type: 2}
   - {fileID: 11400000, guid: 9e49a921c7750d84e9bd70ccc67bffe8, type: 2}
-  shipSOListTech2:
+  ShipSOListTech2:
   - {fileID: 11400000, guid: 69ac1b2343eee0149a83fc93063034a4, type: 2}
   - {fileID: 11400000, guid: 8e94e3b9e5015fe419c0e4a1dc516696, type: 2}
   - {fileID: 11400000, guid: 9cca744ce143bea4d831086c365e7b59, type: 2}
@@ -2498,7 +2498,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 183a15583dbd0864cb0ac56d83422db0, type: 2}
   - {fileID: 11400000, guid: a7e36967205ab03468c9d9703302e4b2, type: 2}
   - {fileID: 11400000, guid: b7afe2b2f29ce4043825a41f2690defe, type: 2}
-  shipSOListTech3:
+  ShipSOListTech3:
   - {fileID: 11400000, guid: da754c737f26ad84a89951c1f5045096, type: 2}
   - {fileID: 11400000, guid: a7c9f1c1a96d69a4ebe9f81c8a35c06c, type: 2}
   - {fileID: 11400000, guid: 59a9606119c0126439c17bf47bc79954, type: 2}
@@ -9361,7 +9361,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1550331327}
   - component: {fileID: 1550331326}
-  - component: {fileID: 1550331325}
+  - component: {fileID: 1550331328}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -9369,26 +9369,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1550331325
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1550331324}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SendPointerHoverToParent: 1
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
-  m_SubmitButton: Submit
-  m_CancelButton: Cancel
-  m_InputActionsPerSecond: 10
-  m_RepeatDelay: 0.5
-  m_ForceModuleActive: 0
 --- !u!114 &1550331326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9419,6 +9399,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1550331328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1550331324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
+  m_MoveRepeatDelay: 0.5
+  m_MoveRepeatRate: 0.1
+  m_XRTrackingOrigin: {fileID: 0}
+  m_ActionsAsset: {fileID: -944628639613478452, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_PointAction: {fileID: -1654692200621890270, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_MoveAction: {fileID: -8784545083839296357, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_SubmitAction: {fileID: 392368643174621059, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_CancelAction: {fileID: 7727032971491509709, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_LeftClickAction: {fileID: 3001919216989983466, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_MiddleClickAction: {fileID: -2185481485913320682, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_RightClickAction: {fileID: -4090225696740746782, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_ScrollWheelAction: {fileID: 6240969308177333660, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_TrackedDevicePositionAction: {fileID: 6564999863303420839, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_TrackedDeviceOrientationAction: {fileID: 7970375526676320489, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_DeselectOnBackgroundClick: 1
+  m_PointerBehavior: 0
+  m_CursorLockBehavior: 0
 --- !u!1 &1574061237
 GameObject:
   m_ObjectHideFlags: 0

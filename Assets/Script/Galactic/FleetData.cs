@@ -39,6 +39,18 @@ namespace Assets.Core
         {
             return shipsList;
         }
+        public void SetShipList(List<ShipController> newShipList)
+        {
+            shipsList = newShipList;
+        }
+        public void AddToShipList(ShipController shipController)
+        {
+            shipsList.Add(shipController);
+        }
+        public void RemoveFromShipList(ShipController shipController)
+        {
+            shipsList.Remove(shipController);
+        }
         public float GetMaxWarpFactor()
         {
             return maxWarpFactor;

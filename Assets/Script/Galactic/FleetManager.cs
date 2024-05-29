@@ -17,12 +17,13 @@ namespace Assets.Core
     {
         public static FleetManager instance;
 
-        public List<FleetSO> fleetSOList;// ? all possible fleetSO(s), ? one list for each civ
+        public List<FleetSO> fleetSOList;// all possible fleetSO(s)
         public GameObject fleetPrefab;
         public GameObject galaxyImage;
         public GameObject galaxyCenter;
         public List<FleetController> ManagersFleetControllerList;
         public List<GameObject> FleetGOList = new List<GameObject>(); // all fleetGO GOs made
+        private List<ShipData> shipsOfFirstFleets;
 
         private void Awake()
         {
@@ -46,6 +47,13 @@ namespace Assets.Core
             fleetController.FleetData.Name =fleetController.Name;
             FleetGOList.Add(fleetPlaceHolder);
             AddFleetConrollerToAllControllers(fleetController);
+        }
+        public void SendFirstFleetShipData(List<ShipData> listShipData)
+        {
+            foreach (var shipData in listShipData)
+            {
+                listShipData.Add(shipData);
+            }
         }
         public void FleetDataFromSO(CivSO civSO, Vector3 position) // first fleetGO
         {
@@ -133,16 +141,17 @@ namespace Assets.Core
                     galaxyImage.transform.position.y, fleetNewGameOb.transform.position.z);
                 Vector3[] points = { fleetNewGameOb.transform.position, galaxyPlanePoint };
                 ourLineScript.SetUpLine(points);
-
-                //var newFleetController = fleetNewGameOb.GetComponentInChildren<FleetController>();
-
-                //fleetController.fleetData = fleetData;
-
                 fleetController.FleetData.yAboveGalaxyImage = galaxyCenter.transform.position.y - galaxyPlanePoint.y;
-
+                if (shipsOfFirstFleets.Count > 0)
+                {
+                    foreach (var shipData in shipsOfFirstFleets)
+                    {
+                        if (shipData.CivEnum == fleetData.CivOwnerEnum)
+                            fleetController.shipList.Add(shipData);
+                    }
+                }
                 fleetNewGameOb.SetActive(true);
                 FleetGOList.Add(fleetNewGameOb);
-                //AddFleetConrollerToAllControllers(newFleetController);
                 StarSysManager.instance.GetYourFirstStarSystem(fleetData.CivOwnerEnum);
             }
             else if(fleetData.CivOwnerEnum == CivEnum.ZZUNINHABITED10)

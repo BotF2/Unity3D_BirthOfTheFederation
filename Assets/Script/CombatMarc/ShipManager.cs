@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Assets.Core;
+using System.Diagnostics.CodeAnalysis;
 
 public class ShipManager : MonoBehaviour
 {
@@ -9,10 +10,13 @@ public class ShipManager : MonoBehaviour
     public ShipData shipData;
     public GameObject ShipPrefab;
     public List<ShipController> ShipControllerList;
-    public List<ShipSO> shipSOListTech0;
-    public List<ShipSO> shipSOListTech1;
-    public List<ShipSO> shipSOListTech2;
-    public List<ShipSO> shipSOListTech3;
+    public List<ShipSO> ShipSOListTech0;
+    private List<ShipData> shipsOfFirstFleet;
+    public List<ShipSO> ShipSOListTech1;
+    public List<ShipSO> ShipSOListTech2;
+    public List<ShipSO> ShipSOListTech3;
+    private bool firstFleet= false;
+
     //public Dictionary<CivEnum, List<ShipData>> ShipDictionary; //all the fleets of that civ
 
     private void Awake()
@@ -26,33 +30,38 @@ public class ShipManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
-        shipData = gameObject.AddComponent<ShipData>();
-        shipData.ShipName = "999";
-        List <ShipData> list = new List<ShipData>() { shipData };
+        //shipData = gameObject.AddComponent<ShipData>();
+        //shipData.ShipName = "999";
+        //List <ShipData> list = new List<ShipData>() { shipData };
         //ShipDictionary = new Dictionary<CivEnum, List<ShipData>>() { { CivEnum.ZZUNINHABITED9, list } };
     }
-    public void ShipDateByTechlevelForGame(int techLevel)
+    public void FirstShipDateByTechlevel(int techLevel)
     {
         if (techLevel == 0)
         {
-            ShipDataFromSO(shipSOListTech0);
+            ShipDataFromSO(ShipSOListTech0);
+            firstFleet = true;
         }
         if (techLevel == 1)
         {
-            ShipDataFromSO(shipSOListTech1);
+            ShipDataFromSO(ShipSOListTech1);
+            firstFleet = true;
         }
         if (techLevel == 2)
         {
-            ShipDataFromSO(shipSOListTech2);
+            ShipDataFromSO(ShipSOListTech2);
+            firstFleet = true;
         }
         if (techLevel == 3)
         {
-            ShipDataFromSO(shipSOListTech3);
+            ShipDataFromSO(ShipSOListTech3);
+            firstFleet = true;
         }
     }
     public void ShipDataFromSO(List<ShipSO> shipSOList)
     {
         List<CivEnum> listOfCivEnum = CivManager.instance.CivSOInGame;
+
         foreach (var shipSO in shipSOList)
         {
             if (listOfCivEnum != null && listOfCivEnum.Contains(shipSO.CivEnum))
@@ -69,19 +78,23 @@ public class ShipManager : MonoBehaviour
                 shipData.TorpedoDamage = shipSO.TorpedoDamage;
                 shipData.BeamDamage = shipSO.BeamDamage;
                 shipData.Cost = shipSO.Cost;
-                //InstantiateShip(shipData); // ???? Save this for combat?
-                GetShipListOfShipNames(shipSOList);
+                if (firstFleet)
+                {
+                    shipsOfFirstFleet.Add(shipData);
+                }
             }
+            if (firstFleet)
+                FleetManager.instance.SendFirstFleetShipData(shipsOfFirstFleet);
+            firstFleet = false;
         }
     }
-    private List<string> GetShipListOfShipNames(List<ShipSO> shipSOList)
+
+    public void GetFirstFleetShips(List<ShipSO> shipSOList)
     {
-        List<string> names = new List<string>();
-        foreach (ShipSO item in shipSOList)
+        for (int i = 0; i < shipSOList.Count; i++)
         {
-            names.Add(item.ShipName);
+
         }
-        return names;
     }
     public void InstantiateShip(ShipData fleetData)
     {

@@ -84,7 +84,7 @@ public class FleetUIManager : MonoBehaviour
         sysDropdown.value = 0;
         FleetName.text = go.name;
         controller = go.GetComponent<FleetController>();
-        Ships(controller.shipList);
+        Ships(controller.FleetData.shipList);
 
         if (controller.Destination == null)
         {

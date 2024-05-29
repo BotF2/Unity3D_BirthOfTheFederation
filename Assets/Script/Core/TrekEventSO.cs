@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Assets.Core;
 
-public enum TrekEventType { RaceDiscovered, TechDiscovered, Invasion, GiftReceived, DisasterEvent }
+public enum TrekEventType { RaceDiscovered, TechDiscovered, Invasion, GiftReceived, DisasterEvent } //LoadFirstFleets,
 
 
 [CreateAssetMenu(fileName = "New Trek Event", menuName = "Star Trek/Trek Event")]
