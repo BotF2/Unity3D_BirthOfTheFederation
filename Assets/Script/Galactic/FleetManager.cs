@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
 using Assets.Core;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.UI;
@@ -23,7 +24,7 @@ namespace Assets.Core
         public GameObject galaxyCenter;
         public List<FleetController> ManagersFleetControllerList;
         public List<GameObject> FleetGOList = new List<GameObject>(); // all fleetGO GOs made
-        private List<ShipData> shipsOfFirstFleets;
+        private List<ShipController> shipsOfFirstFleets;
 
         private void Awake()
         {
@@ -47,13 +48,29 @@ namespace Assets.Core
             fleetController.FleetData.Name =fleetController.Name;
             FleetGOList.Add(fleetPlaceHolder);
             AddFleetConrollerToAllControllers(fleetController);
+            shipsOfFirstFleets = ShipManager.instance.GetShipControllersOfFirstFleet();
         }
-        public void SendFirstFleetShipData(List<ShipData> listShipData)
+        //public void SendShipControllerForFleet(List<ShipController> shipControllerList)
+        //{
+        //    shipsOfFirstFleets.AddRange(shipControllerList);
+        //}
+
+        public void UpdateFleetShipControllers(ShipController shipController)
         {
-            foreach (var shipData in listShipData)
+
+            shipsOfFirstFleets.Add(shipController);
+            
+            foreach (var fleetController in ManagersFleetControllerList)
             {
-                listShipData.Add(shipData);
+                //if (fleetController.FleetData.Name == "999")
+                //{
+                //    RemoveFleetConrollerFromAllControllers(fleetController);
+                //    //Destroy(fleetController);
+                //}
+                if (fleetController.FleetData.CivOwnerEnum == shipController.ShipData.CivEnum)
+                    shipController.gameObject.transform.SetParent(fleetController.gameObject.transform);  
             }
+
         }
         public void FleetDataFromSO(CivSO civSO, Vector3 position) // first fleetGO
         {
@@ -142,16 +159,30 @@ namespace Assets.Core
                 Vector3[] points = { fleetNewGameOb.transform.position, galaxyPlanePoint };
                 ourLineScript.SetUpLine(points);
                 fleetController.FleetData.yAboveGalaxyImage = galaxyCenter.transform.position.y - galaxyPlanePoint.y;
-                if (shipsOfFirstFleets.Count > 0)
-                {
-                    foreach (var shipData in shipsOfFirstFleets)
-                    {
-                        if (shipData.CivEnum == fleetData.CivOwnerEnum)
-                            fleetController.shipList.Add(shipData);
-                    }
-                }
+                //if (shipsOfFirstFleets.Count > 0)
+                //{
+                //    foreach (var shipController in shipsOfFirstFleets)
+                //    {
+                //        if (shipController.ShipData != null)
+                //        {
+                //            if (shipController.ShipData.CivEnum == fleetData.CivOwnerEnum && !shipController.gameObject.name.Contains("First Ship"))
+                //                fleetController.FleetData.ShipsList.Add(shipController);
+
+                //        }
+                //        else { Destroy(shipController.gameObject); }
+                //    }
+                //}
                 fleetNewGameOb.SetActive(true);
                 FleetGOList.Add(fleetNewGameOb);
+
+                //foreach (var fleetControl in ManagersFleetControllerList)
+                //{
+                //    foreach (ShipController shipControllerList in shipsOfFirstFleets)
+                //    {
+                //        if (shipControllerList.ShipData != null && fleetControl.FleetData.CivOwnerEnum == shipControllerList.ShipData.CivEnum)
+                //            shipControllerList.gameObject.transform.SetParent(fleetControl.gameObject.transform);
+                //    }
+                //}
                 StarSysManager.instance.GetYourFirstStarSystem(fleetData.CivOwnerEnum);
             }
             else if(fleetData.CivOwnerEnum == CivEnum.ZZUNINHABITED10)

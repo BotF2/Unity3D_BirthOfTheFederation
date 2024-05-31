@@ -84,7 +84,7 @@ public class FleetUIManager : MonoBehaviour
         sysDropdown.value = 0;
         FleetName.text = go.name;
         controller = go.GetComponent<FleetController>();
-        Ships(controller.FleetData.shipList);
+        NamesToShipDropdown(controller.FleetData.ShipsList);
 
         if (controller.Destination == null)
         {
@@ -111,14 +111,14 @@ public class FleetUIManager : MonoBehaviour
             //dropdownDestinationText.text = dropdown.options[index].text;
         }
     }
-    private void Ships(List<ShipData> ships)
+    private void NamesToShipDropdown(List<ShipController> shipControllers)
     {
         var shipDropdown = ShipDropdownGO.GetComponent<TMP_Dropdown>();
         shipDropdown.options.Clear();
 
-        foreach (var item in ships)
+        foreach (var shipCon in shipControllers)
         {
-            shipDropdown.options.Add(new TMP_Dropdown.OptionData() { text = item.ShipName });
+            shipDropdown.options.Add(new TMP_Dropdown.OptionData() { text = shipCon.ShipData.ShipName });
         }
         //DropdownItemSelected(shipDropdown);
         shipDropdown.onValueChanged.AddListener(delegate { DropdownItemSelected(shipDropdown); });

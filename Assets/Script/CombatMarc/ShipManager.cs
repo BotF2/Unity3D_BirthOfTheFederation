@@ -7,17 +7,13 @@ using System.Diagnostics.CodeAnalysis;
 public class ShipManager : MonoBehaviour
 {
     public static ShipManager instance;
-    public ShipData shipData;
     public GameObject ShipPrefab;
     public List<ShipController> ShipControllerList;
+    public List<ShipController> firstFleetShipControllerList;
     public List<ShipSO> ShipSOListTech0;
-    private List<ShipData> shipsOfFirstFleet;
     public List<ShipSO> ShipSOListTech1;
     public List<ShipSO> ShipSOListTech2;
     public List<ShipSO> ShipSOListTech3;
-    private bool firstFleet= false;
-
-    //public Dictionary<CivEnum, List<ShipData>> ShipDictionary; //all the fleets of that civ
 
     private void Awake()
     {
@@ -29,33 +25,25 @@ public class ShipManager : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
-        }
-        //shipData = gameObject.AddComponent<ShipData>();
-        //shipData.ShipName = "999";
-        //List <ShipData> list = new List<ShipData>() { shipData };
-        //ShipDictionary = new Dictionary<CivEnum, List<ShipData>>() { { CivEnum.ZZUNINHABITED9, list } };
+        }     
     }
     public void FirstShipDateByTechlevel(int techLevel)
     {
         if (techLevel == 0)
         {
             ShipDataFromSO(ShipSOListTech0);
-            firstFleet = true;
         }
         if (techLevel == 1)
         {
             ShipDataFromSO(ShipSOListTech1);
-            firstFleet = true;
         }
         if (techLevel == 2)
         {
             ShipDataFromSO(ShipSOListTech2);
-            firstFleet = true;
         }
-        if (techLevel == 3)
+        if (techLevel == 3)  
         {
             ShipDataFromSO(ShipSOListTech3);
-            firstFleet = true;
         }
     }
     public void ShipDataFromSO(List<ShipSO> shipSOList)
@@ -78,29 +66,38 @@ public class ShipManager : MonoBehaviour
                 shipData.TorpedoDamage = shipSO.TorpedoDamage;
                 shipData.BeamDamage = shipSO.BeamDamage;
                 shipData.Cost = shipSO.Cost;
-                if (firstFleet)
-                {
-                    shipsOfFirstFleet.Add(shipData);
-                }
+                GameObject shipNewGameOb = (GameObject)Instantiate(ShipPrefab, new Vector3(0, 0, 0),
+                                Quaternion.identity);
+                shipNewGameOb.name = shipData.ShipName;
+                ShipController shipController = shipNewGameOb.GetComponent<ShipController>();
+                shipController.ShipData = shipData;
+                ShipControllerList.Add(shipController);
+                FleetManager.instance.UpdateFleetShipControllers(shipController);
             }
-            if (firstFleet)
-                FleetManager.instance.SendFirstFleetShipData(shipsOfFirstFleet);
-            firstFleet = false;
+            //FleetManager.instance.UpdateFleetShipControllers(ShipControllerList);
         }
     }
-
-    public void GetFirstFleetShips(List<ShipSO> shipSOList)
+    public void SendEarlyCivSOListForFistShips(List<CivSO> listCivSO)
     {
-        for (int i = 0; i < shipSOList.Count; i++)
+        for (int i = 0; i < listCivSO.Count; i++)
         {
-
+            GameObject shipNewGameOb = (GameObject)Instantiate(ShipPrefab, new Vector3(0, 0, 0),
+                Quaternion.identity);
+            shipNewGameOb.name = "First Ship" + i.ToString();
+            ShipController shipController = shipNewGameOb.GetComponent<ShipController>();
+            firstFleetShipControllerList.Add(shipController);
+            //FleetManager.instance.SendShipControllerForFleet(shipController);
         }
+       // FleetManager.instance.SendShipControllerForFleet(firstFleetShipControllerList);
+    }
+    public List<ShipController> GetShipControllersOfFirstFleet()
+    {
+        return firstFleetShipControllerList;
     }
     public void InstantiateShip(ShipData fleetData)
     {
 
-        //GameObject shipNewGameOb = (GameObject)Instantiate(shipPrefab, new Vector3(0, 0, 0),
-        //        Quaternion.identity);
+
         //shipNewGameOb.transform.Translate(new Vector3(fleetData.position.x + 40f, fleetData.position.y, fleetData.position.z + 10f));
         //shipNewGameOb.transform.SetParent(galaxyCenter.transform, true);
         //shipNewGameOb.transform.localScale = new Vector3(1, 1, 1);

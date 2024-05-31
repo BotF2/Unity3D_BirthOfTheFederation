@@ -11,7 +11,7 @@ namespace Assets.Core
         public Sprite Insignia;
         public CivEnum CivOwnerEnum;
         public Vector3 Position;
-        private List<ShipController> shipsList;
+        public List<ShipController> ShipsList;
         private float maxWarpFactor;
         public float CurrentWarpFactor;
         public string CivLongName;
@@ -23,7 +23,7 @@ namespace Assets.Core
         public FleetData(FleetSO fleetSO)
         {
             Insignia = fleetSO.Insignia;
-            shipsList = fleetSO.ShipsList;
+            ShipsList = fleetSO.ShipsList;
             maxWarpFactor = fleetSO.MaxWarpFactor;
             description = fleetSO.Description;
         }
@@ -37,19 +37,19 @@ namespace Assets.Core
         }
         public List<ShipController> GetShipList()
         {
-            return shipsList;
+            return ShipsList;
         }
         public void SetShipList(List<ShipController> newShipList)
         {
-            shipsList = newShipList;
+            ShipsList = newShipList;
         }
         public void AddToShipList(ShipController shipController)
         {
-            shipsList.Add(shipController);
+            ShipsList.Add(shipController);
         }
         public void RemoveFromShipList(ShipController shipController)
         {
-            shipsList.Remove(shipController);
+            ShipsList.Remove(shipController);
         }
         public float GetMaxWarpFactor()
         {

@@ -2415,9 +2415,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3689b3e544fa624d92c0de97ee7fe74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shipData: {fileID: 5414955361618080704, guid: 0a61d1f3939e6314490e6cdee5b95a3f, type: 3}
-  ShipPrefab: {fileID: 715278435198542187, guid: 0a61d1f3939e6314490e6cdee5b95a3f, type: 3}
+  ShipPrefab: {fileID: 2997765887977151139, guid: e6ed809b39a20d54388b036703098391, type: 3}
   ShipControllerList: []
+  firstFleetShipControllerList: []
   ShipSOListTech0:
   - {fileID: 11400000, guid: 9a6e53646f4b63b4a8be9e412fa47787, type: 2}
   - {fileID: 11400000, guid: 7dc7202d5f8a4df48bc10e1d6ea32845, type: 2}
@@ -5097,8 +5097,8 @@ MonoBehaviour:
   _warpingInIsOver: 0
   _isSinglePlayer: 0
   _localPlayer: 0
-  CivilizationPrefab: {fileID: 0}
-  civManager: {fileID: 0}
+  CivilizationPrefab: {fileID: 8453821490455499119, guid: b0e0a061944c0d54095a59726a8075aa, type: 3}
+  civManager: {fileID: 1091640994}
   _galaxySize: 0
   _galaxyType: 0
   _techLevel: 0

@@ -18,7 +18,7 @@ namespace Assets.Core
         public string Name;
         //private ShipData shipData1;
         //private ShipData shipData2;
-        public List<ShipData> shipList;
+        //public List<ShipData> shipList;
         public List<FleetController> FleetConsWeHave;
         List<StarSysController> StarSystemsWeHave;
         List<PlayerDefinedTargetController> PlayerDefinedTargetControllersWeHave;

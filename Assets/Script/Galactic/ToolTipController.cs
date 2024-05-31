@@ -11,7 +11,8 @@ public class ToolTipController : MonoBehaviour, IPointerEnterHandler, IPointerEx
 
     void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)
     {
-        HoverManager.instance.ShowTip(Name.text); 
+        if (Name != null)
+            HoverManager.instance.ShowTip(Name.text); 
     }
 
     void IPointerExitHandler.OnPointerExit(PointerEventData eventData)

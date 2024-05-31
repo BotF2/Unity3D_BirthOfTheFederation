@@ -29,6 +29,7 @@ namespace Assets.Core
                 instance = this;
                 DontDestroyOnLoad(gameObject);
             }
+            ShipManager.instance.SendEarlyCivSOListForFistShips(civSOListSmall);
         }
         public CivData CreateLocalPlayer()
         {
@@ -50,19 +51,21 @@ namespace Assets.Core
             {
                 CivDataFromSO(civSOListSmall);
                 CreateCivEnumList(civSOListSmall);
-                ShipManager.instance.FirstShipDateByTechlevel(gameTechLevel);
+
             }
             if (sizeGame == 1)
             {
                 CivDataFromSO(civSOListMedium);
                 CreateCivEnumList(civSOListMedium);
+
             }
             if (sizeGame == 2)
             {
                 CivDataFromSO(civSOListLarge);
                 CreateCivEnumList(civSOListLarge);
+
             }
-            /*ShipManager.instance.ShipDateByTechlevelForGame(gameTechLevel)*/;
+            ShipManager.instance.FirstShipDateByTechlevel(gameTechLevel);
         }
         public void CivDataFromSO(List<CivSO> civSOList)
         {
