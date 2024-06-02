@@ -15,11 +15,14 @@ namespace Assets.Core
         public List<CivSO> civSOListSmall;
         public List<CivSO> civSOListMedium;
         public List<CivSO> civSOListLarge;
+        public List<CivSO> civSOListAllPossible;
         public List<CivEnum> CivSOInGame;
         public List<CivData> civDataInGameList = new List<CivData> { new CivData()};
+        public List<CivController> allController;
         public Dictionary<CivEnum,List<CivController>> CivsThatACivKnows = new Dictionary<CivEnum,List<CivController>>();
         public CivData localPlayer;
         public CivData resultInGameCivData;
+       
 
         private void Awake()
         {
@@ -29,7 +32,8 @@ namespace Assets.Core
                 instance = this;
                 DontDestroyOnLoad(gameObject);
             }
-            ShipManager.instance.SendEarlyCivSOListForFistShips(civSOListSmall);
+            //ToDo: early random minor races set before menu selects size and tech
+            ShipManager.instance.SendEarlyCivSOListForFistShips(civSOListSmall); 
         }
         public CivData CreateLocalPlayer()
         {
@@ -96,7 +100,7 @@ namespace Assets.Core
                 CivsThatACivKnows.Add(civData.CivEnum, civData.ContactList);
                 civDataInGameList.Add(civData);
             }
-            civDataInGameList.Remove(civDataInGameList[0]); // remove the null entered above
+            civDataInGameList.Remove(civDataInGameList[0]); // remove the null entered by field
             StarSysManager.instance.SysDataFromSO(civSOList);
         }
 

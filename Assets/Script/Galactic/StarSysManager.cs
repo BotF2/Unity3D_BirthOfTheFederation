@@ -15,9 +15,10 @@ namespace Assets.Core
     public class StarSysManager : MonoBehaviour
     {
         public static StarSysManager instance;
-
-        public List<StarSysSO> starSysSOList;
-        public GameObject sysPrefab;
+        [SerializeField]
+        private List<StarSysSO> starSysSOList; // get StarSysSO for civ by int
+        [SerializeField]
+        private GameObject sysPrefab;
         public List<StarSysData> StarSysDataList;
         public List<StarSysController> StarSysControllerList;
         private List<StarSysData> starSysDatas = new List<StarSysData>(); // { new StarSysData("Not Selected") };

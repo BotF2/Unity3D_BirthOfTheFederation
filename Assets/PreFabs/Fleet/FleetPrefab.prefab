@@ -775,7 +775,6 @@ GameObject:
   - component: {fileID: 6283069913672873509}
   - component: {fileID: 3269779185275217678}
   - component: {fileID: 627293757274004532}
-  - component: {fileID: 7310334498853971305}
   - component: {fileID: 7916365240640617820}
   m_Layer: 0
   m_Name: FleetPrefab
@@ -847,23 +846,17 @@ MonoBehaviour:
   FleetConsWeHave: []
   Destination: {fileID: 0}
   destinationDropdownGO: {fileID: 0}
+  sysDropdownGO: {fileID: 0}
+  sysDropdown: {fileID: 0}
+  sysDropdownOptions: []
+  shipDropdownGO: {fileID: 0}
+  shipDropdown: {fileID: 0}
+  shipDropdownOptions: []
   dropdownSysText: {fileID: 0}
   dropdownShipText: {fileID: 0}
   ourDestination: {fileID: 0}
   FleetUICanvas: {fileID: 0}
   CanvasToolTip: {fileID: 3085341754437070401}
---- !u!114 &7310334498853971305
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7014110171060802293}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0f479146701f1245ad76b854cffdd09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &7916365240640617820
 MonoBehaviour:
   m_ObjectHideFlags: 0

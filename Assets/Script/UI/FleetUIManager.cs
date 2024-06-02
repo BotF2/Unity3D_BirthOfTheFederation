@@ -68,8 +68,6 @@ public class FleetUIManager : MonoBehaviour
         parentCanvas.worldCamera = galaxyEventCamera;
         sysDropdown = DestinationDropdownGO.GetComponent<TMP_Dropdown>();
         sysDropdown.value = 0;
-        //shipDropdown = ShipDropdownGO.GetComponent<Dropdown>();
-        //shipDropdown.value = 0;
     }
 
     public void WarpSliderChange(float value)
@@ -118,7 +116,13 @@ public class FleetUIManager : MonoBehaviour
 
         foreach (var shipCon in shipControllers)
         {
-            shipDropdown.options.Add(new TMP_Dropdown.OptionData() { text = shipCon.ShipData.ShipName });
+            if (shipCon != null)
+            {
+                string text = shipCon.ShipData.ShipName;
+                text.Replace("(CLONE)", string.Empty);
+                shipDropdown.options.Add(new TMP_Dropdown.OptionData(text));
+            }
+        
         }
         //DropdownItemSelected(shipDropdown);
         shipDropdown.onValueChanged.AddListener(delegate { DropdownItemSelected(shipDropdown); });
@@ -138,7 +142,7 @@ public class FleetUIManager : MonoBehaviour
             {
                 destDropdown.options.Add(new TMP_Dropdown.OptionData() { text = sysData.GetSysName() });
             }
-            //systemsList.Add()
+            //SystemsList.Add()
             //destDropdown.options.Add( new TMP_Dropdown.OptionData()) { t}
         }
         destDropdown.onValueChanged.AddListener(delegate { DropdownItemSelected(destDropdown); });

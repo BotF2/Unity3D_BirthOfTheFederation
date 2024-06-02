@@ -7,9 +7,10 @@ using System.Diagnostics.CodeAnalysis;
 public class ShipManager : MonoBehaviour
 {
     public static ShipManager instance;
-    public GameObject ShipPrefab;
+    public GameObject ShipControllerPrefab;
+    public GameObject ShipDataPrefab;
     public List<ShipController> ShipControllerList;
-    public List<ShipController> firstFleetShipControllerList;
+    public List<ShipController> allFirstFleetShipControllerList;
     public List<ShipSO> ShipSOListTech0;
     public List<ShipSO> ShipSOListTech1;
     public List<ShipSO> ShipSOListTech2;
@@ -54,7 +55,9 @@ public class ShipManager : MonoBehaviour
         {
             if (listOfCivEnum != null && listOfCivEnum.Contains(shipSO.CivEnum))
             {
-                ShipData shipData = new ShipData();
+                GameObject shipDataGO = (GameObject)Instantiate(ShipDataPrefab, new Vector3(0, 0, 0),
+                Quaternion.identity);
+                var shipData = shipDataGO.GetComponent<ShipData>();
                 shipData.ShipName = shipSO.ShipName;
                 shipData.CivEnum = shipSO.CivEnum;
                 shipData.TechLevel = shipSO.TechLevel;
@@ -66,33 +69,34 @@ public class ShipManager : MonoBehaviour
                 shipData.TorpedoDamage = shipSO.TorpedoDamage;
                 shipData.BeamDamage = shipSO.BeamDamage;
                 shipData.Cost = shipSO.Cost;
-                GameObject shipNewGameOb = (GameObject)Instantiate(ShipPrefab, new Vector3(0, 0, 0),
+                GameObject shipNewGameOb = (GameObject)Instantiate(ShipControllerPrefab, new Vector3(0, 0, 0),
                                 Quaternion.identity);
+                shipDataGO.transform.SetParent(shipNewGameOb.transform);
+
                 shipNewGameOb.name = shipData.ShipName;
+                //shipNewGameOb.name = "Feddy";
                 ShipController shipController = shipNewGameOb.GetComponent<ShipController>();
                 shipController.ShipData = shipData;
                 ShipControllerList.Add(shipController);
                 FleetManager.instance.UpdateFleetShipControllers(shipController);
             }
-            //FleetManager.instance.UpdateFleetShipControllers(ShipControllerList);
         }
     }
-    public void SendEarlyCivSOListForFistShips(List<CivSO> listCivSO)
-    {
+    public void SendEarlyCivSOListForFistShips(List<CivSO> listCivSO)// current is small list, ToDo random and large list
+    { //This is before Menu selection of size, tech...
         for (int i = 0; i < listCivSO.Count; i++)
         {
-            GameObject shipNewGameOb = (GameObject)Instantiate(ShipPrefab, new Vector3(0, 0, 0),
+            GameObject shipNewGameOb = (GameObject)Instantiate(ShipControllerPrefab, new Vector3(0, 0, 0),
                 Quaternion.identity);
             shipNewGameOb.name = "First Ship" + i.ToString();
-            ShipController shipController = shipNewGameOb.GetComponent<ShipController>();
-            firstFleetShipControllerList.Add(shipController);
-            //FleetManager.instance.SendShipControllerForFleet(shipController);
+            shipNewGameOb.gameObject.tag = "ShipPlaceHolder";
+            ShipController shipController = shipNewGameOb.GetComponent<ShipController>(); 
+            allFirstFleetShipControllerList.Add(shipController);
         }
-       // FleetManager.instance.SendShipControllerForFleet(firstFleetShipControllerList);
     }
     public List<ShipController> GetShipControllersOfFirstFleet()
     {
-        return firstFleetShipControllerList;
+        return allFirstFleetShipControllerList;// not to early
     }
     public void InstantiateShip(ShipData fleetData)
     {
@@ -138,10 +142,5 @@ public class ShipManager : MonoBehaviour
         //shipNewGameOb.SetActive(true);
         //ShipControllerList.Add(controller);
 
-    }
-
-    public void GetShipSObyInt()//civSO.CivInt)
-    {
-     
     }
 }

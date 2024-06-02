@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data.Common;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
 using Assets.Core;
@@ -24,7 +25,9 @@ namespace Assets.Core
         public GameObject galaxyCenter;
         public List<FleetController> ManagersFleetControllerList;
         public List<GameObject> FleetGOList = new List<GameObject>(); // all fleetGO GOs made
-        private List<ShipController> shipsOfFirstFleets;
+        private List<ShipController> shipsOfAllFirstFleets;
+        private bool PlaceHolderIsDestroyed = false;
+
 
         private void Awake()
         {
@@ -37,40 +40,48 @@ namespace Assets.Core
                 instance = this;
                 DontDestroyOnLoad(gameObject);
             }
-            GameObject fleetPlaceHolder = (GameObject)Instantiate(fleetPrefab, new Vector3(0, 0, 0),
+            GameObject fleetGOPlaceHolder = (GameObject)Instantiate(fleetPrefab, new Vector3(0, 0, 0),
                 Quaternion.identity);
-            fleetPlaceHolder.name = "999";
-            var fleetController = fleetPlaceHolder.GetComponentInChildren<FleetController>();
+            fleetGOPlaceHolder.gameObject.tag = "FleetPlaceHolder";
+            fleetGOPlaceHolder.name = "999";
+            var fleetController = fleetGOPlaceHolder.GetComponentInChildren<FleetController>();
             fleetController.Name = "999";
-            FleetData placeHolderData = new FleetData("999");
-            fleetController.FleetData = placeHolderData;
+            FleetData fleetPlaceHolderData = new FleetData("999");
+            fleetController.FleetData = fleetPlaceHolderData;
             fleetController.FleetData.CivOwnerEnum = CivEnum.ZZUNINHABITED10;
             fleetController.FleetData.Name =fleetController.Name;
-            FleetGOList.Add(fleetPlaceHolder);
+            FleetGOList.Add(fleetGOPlaceHolder);
             AddFleetConrollerToAllControllers(fleetController);
-            shipsOfFirstFleets = ShipManager.instance.GetShipControllersOfFirstFleet();
+            shipsOfAllFirstFleets = ShipManager.instance.GetShipControllersOfFirstFleet();
         }
-        //public void SendShipControllerForFleet(List<ShipController> shipControllerList)
-        //{
-        //    shipsOfFirstFleets.AddRange(shipControllerList);
-        //}
 
-        public void UpdateFleetShipControllers(ShipController shipController)
+        public void UpdateFleetShipControllers(ShipController shipController) // one at a time, as ShipManager makes ships by Menu civ
         {
-
-            shipsOfFirstFleets.Add(shipController);
+            shipsOfAllFirstFleets.Add(shipController);
             
             foreach (var fleetController in ManagersFleetControllerList)
             {
-                //if (fleetController.FleetData.Name == "999")
-                //{
-                //    RemoveFleetConrollerFromAllControllers(fleetController);
-                //    //Destroy(fleetController);
-                //}
                 if (fleetController.FleetData.CivOwnerEnum == shipController.ShipData.CivEnum)
-                    shipController.gameObject.transform.SetParent(fleetController.gameObject.transform);  
+                {
+                    if (!fleetController.FleetData.ShipsList.Contains(shipController))
+                    {
+                        shipController.gameObject.transform.SetParent(fleetController.gameObject.transform);
+                        fleetController.ShipControllerList.Add(shipController);
+                        fleetController.FleetData.AddToShipList(shipController);
+                    }
+                }
             }
-
+            if (!PlaceHolderIsDestroyed)
+            {
+                GameObject[] shipObjects = GameObject.FindGameObjectsWithTag("ShipPlaceHolder");
+                for (int i = 0; i < shipObjects.Count(); i++)
+                {
+                    Destroy(shipObjects[i]);
+                } 
+                GameObject[] fleetObjects = GameObject.FindGameObjectsWithTag("FleetPlaceHolder");
+                Destroy(fleetObjects[0]);
+                PlaceHolderIsDestroyed = true;
+            }
         }
         public void FleetDataFromSO(CivSO civSO, Vector3 position) // first fleetGO
         {
@@ -129,6 +140,7 @@ namespace Assets.Core
                 var fleetController = fleetNewGameOb.GetComponentInChildren<FleetController>();
                 fleetController.FleetData = fleetData;
                 fleetController.Name = fleetData.Name;
+
                 AddFleetConrollerToAllControllers(fleetController);
                 GetUniqueFleetName(fleetData.CivOwnerEnum, fleetController);
                 fleetNewGameOb.transform.Translate(new Vector3(fleetData.Position.x + 40f, fleetData.Position.y, fleetData.Position.z + 10f));
@@ -159,9 +171,9 @@ namespace Assets.Core
                 Vector3[] points = { fleetNewGameOb.transform.position, galaxyPlanePoint };
                 ourLineScript.SetUpLine(points);
                 fleetController.FleetData.yAboveGalaxyImage = galaxyCenter.transform.position.y - galaxyPlanePoint.y;
-                //if (shipsOfFirstFleets.Count > 0)
+                //if (shipsOfAllFirstFleets.Count > 0)
                 //{
-                //    foreach (var shipController in shipsOfFirstFleets)
+                //    foreach (var shipController in shipsOfAllFirstFleets)
                 //    {
                 //        if (shipController.ShipData != null)
                 //        {
@@ -177,10 +189,10 @@ namespace Assets.Core
 
                 //foreach (var fleetControl in ManagersFleetControllerList)
                 //{
-                //    foreach (ShipController shipControllerList in shipsOfFirstFleets)
+                //    foreach (ShipController ShipControllerList in shipsOfAllFirstFleets)
                 //    {
-                //        if (shipControllerList.ShipData != null && fleetControl.FleetData.CivOwnerEnum == shipControllerList.ShipData.CivEnum)
-                //            shipControllerList.gameObject.transform.SetParent(fleetControl.gameObject.transform);
+                //        if (ShipControllerList.ShipData != null && fleetControl.FleetData.CivOwnerEnum == ShipControllerList.ShipData.CivEnum)
+                //            ShipControllerList.gameObject.transform.SetParent(fleetControl.gameObject.transform);
                 //    }
                 //}
                 StarSysManager.instance.GetYourFirstStarSystem(fleetData.CivOwnerEnum);
@@ -193,7 +205,7 @@ namespace Assets.Core
         }
         void AddFleetConrollerToAllControllers(FleetController fleetController)
         {
-            ManagersFleetControllerList.Add(fleetController); // add for Manager
+            ManagersFleetControllerList.Add(fleetController); // add add for Manager
             foreach (FleetController fleetCon in ManagersFleetControllerList)
             {
                 fleetCon.AddFleetController(fleetController); // add for Controller

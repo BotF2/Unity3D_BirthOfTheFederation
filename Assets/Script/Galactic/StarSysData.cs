@@ -9,6 +9,7 @@ public class StarSysData
     private Vector3 position;
     public Transform SysTransform;
     private string sysName;
+    public string SysName { get { return sysName; } }
     private CivEnum firstOwner;
     public CivEnum CurrentOwner;
     public StarSystemType StarType;

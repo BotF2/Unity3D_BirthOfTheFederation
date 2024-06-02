@@ -12,6 +12,10 @@ TagManager:
   - fleetUIRoot
   - fleet
   - FleetUICanvas
+  - DropdownShipsGO
+  - DropdownDestinationsGO
+  - FleetPlaceHolder
+  - ShipPlaceHolder
   layers:
   - Default
   - TransparentFX

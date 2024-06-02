@@ -10,19 +10,7 @@ public class ShipController : MonoBehaviour
     public ShipData ShipData { get { return shipData; } set { shipData = value; } }
     public string Name;
     //private bool deltaShipList = false; //??? do I need this or the shipdropdown listener
-    //Rigidbody rb;
 
-    //[SerializeField]
-    //private TMP_Text dropdownText;
-    //[SerializeField]
-    //private TMP_Text andMoreShipText;
-    //[SerializeField]
-    //private TMP_Text evenMoreText;
-    ////private Camera combatEventCamera;
-    //[SerializeField]
-    //private Canvas CombatUICanvas;
-    //[SerializeField]
-    //private Canvas CanvasToolTip;
 
     private void Start()
     {

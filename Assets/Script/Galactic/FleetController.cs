@@ -6,19 +6,19 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Networking.Types;
+using UnityEngine.UIElements;
 
 namespace Assets.Core
 {
 
     public class FleetController : MonoBehaviour
-    { 
+    {
         //Fields
         private FleetData fleetData;
         public FleetData FleetData { get { return fleetData; } set { fleetData = value; } }
         public string Name;
-        //private ShipData shipData1;
-        //private ShipData shipData2;
-        //public List<ShipData> shipList;
+        public List<StarSysData> SystemsList;
+        public List<ShipController> ShipControllerList;
         public List<FleetController> FleetConsWeHave;
         List<StarSysController> StarSystemsWeHave;
         List<PlayerDefinedTargetController> PlayerDefinedTargetControllersWeHave;
@@ -28,8 +28,14 @@ namespace Assets.Core
         private float currentWarpFactor = 4;
         private float fudgeFactor = 0.05f; // so we see warp factor as in Star Trek but move in game space
         Rigidbody rb;
+        //GameObject fleetDropdownGO;
         public GameObject destinationDropdownGO;
-        GameObject fleetDropdownGO;
+        public GameObject sysDropdownGO;
+        public TMP_Dropdown sysDropdown;
+        public List<string> sysDropdownOptions;
+        public GameObject shipDropdownGO;
+        public TMP_Dropdown shipDropdown;
+        public List<string> shipDropdownOptions;
 
         private LineRenderer lineRenderer;
         [SerializeField]
@@ -46,6 +52,7 @@ namespace Assets.Core
         
         private void Start()
         {
+
             rb = GetComponent<Rigidbody>();
             galaxyEventCamera = GameObject.FindGameObjectWithTag("Galactic Camera").GetComponent<Camera>();
             var CanvasGO = GameObject.Find("CanvasFleetUI");
@@ -53,18 +60,13 @@ namespace Assets.Core
             FleetUICanvas.worldCamera = galaxyEventCamera;
             CanvasToolTip.worldCamera = galaxyEventCamera;
 
-            // temp just to see list in UI
-            //shipData1 = gameObject.AddComponent<ShipData>();
-            //shipData1.ShipName = "USS Trump";
-            //shipData2 = gameObject.AddComponent<ShipData>();
-            //shipData2.ShipName = "USS John McCain";
-            //fleetData.shipList = new List<ShipData>() { shipData1, shipData2 }; 
-            
             Name = fleetData.CivShortName + " Fleet " + fleetData.Name;
             GameObject Target = new GameObject("MyGameObject");
             Transform TheTarget = Target.transform;
             TheTarget.position = new Vector3(0, 0, 0);
             Destination = Target.transform;
+
+            SystemsList = StarSysManager.instance.StarSysDataList;
         }
         private void FixedUpdate()
         {
@@ -72,6 +74,65 @@ namespace Assets.Core
             {
                 Vector3 nextPosition = Vector3.MoveTowards(rb.position, Destination.position, currentWarpFactor * Time.fixedDeltaTime);
                 rb.MovePosition(nextPosition);
+            }
+        }
+        void PopulateDestinationDropdown()
+        {
+            sysDropdownGO = GameObject.FindGameObjectWithTag("DropdownDestinationsGO");
+            sysDropdown = sysDropdownGO.GetComponent<TMP_Dropdown>();
+            if (sysDropdown == null || sysDropdownOptions == null)
+            {
+                return;
+            }
+            sysDropdown.options.Clear();
+            // fill sysDropdown sys sysList
+            foreach (var item in SystemsList)
+            {
+                sysDropdown.options.Add(new TMP_Dropdown.OptionData() { text = item.SysName });
+            }
+            //DropdownItemSelected(sysDropdown);
+            //sysDropdown.onValueChanged.AddListener(delegate { DropdownItemSelected(sysDropdown); });
+
+        }
+        void PopulateShipDropdown()
+        {
+            shipDropdownGO = GameObject.FindGameObjectWithTag("DropdownShipsGO");
+            shipDropdown = shipDropdownGO.GetComponent<TMP_Dropdown>();
+            if (shipDropdown == null || shipDropdownOptions == null)
+            {
+                return;
+            }
+
+            shipDropdown.options.Clear();
+            for (int i = 0; i < ShipControllerList.Count; i++)
+            {
+                if (ShipControllerList[i] == null)
+                {
+                    ShipControllerList.RemoveAt(i);
+                }
+            }
+
+            foreach (var item in ShipControllerList)
+            {
+                shipDropdown.options.Add(new TMP_Dropdown.OptionData() { text = item.ShipData.ShipName.Replace("(CLONE)", string.Empty) });
+            }
+            DropdownItemSelected(shipDropdown);// not working, null ref
+            shipDropdown.onValueChanged.AddListener(delegate { DropdownItemSelected(shipDropdown); });
+        }
+        void DropdownItemSelected(TMP_Dropdown dropdown)
+        {
+            int index = dropdown.value;
+            if (dropdown.name == "Dropdown Destination")
+            {
+                dropdownSysText.text = dropdown.options[index].text;
+                var sys = SystemsList[index];
+                Destination = sys.SysTransform;
+            }
+            else if (dropdown.name == "Dropdown Ships")
+            {
+                //dropdownShipText.text = dropdown.options[index].text;
+                //var ship = ShipControllerList[index]; // Can we or should we do stuff here??
+
             }
         }
         private void OnMouseDown()
@@ -85,6 +146,9 @@ namespace Assets.Core
                 goName = hitObject.name;
             }
             FleetUIManager.instance.LoadFleetUI(gameObject);
+            PopulateShipDropdown();
+            PopulateDestinationDropdown();
+
         }
         void OnTriggerEnter(Collider collider)
         {
@@ -152,11 +216,13 @@ namespace Assets.Core
 
         public void AddFleetController(FleetController controller)
         {
-            FleetConsWeHave.Add(controller);
+            if (controller.FleetData.CivOwnerEnum == this.FleetData.CivOwnerEnum) 
+                FleetConsWeHave.Add(controller);
         }
         public void RemoveFleetController(FleetController controller)
         {
-            FleetConsWeHave.Remove(controller);
+            if (controller.FleetData.CivOwnerEnum == this.FleetData.CivOwnerEnum && FleetConsWeHave.Contains(controller))
+                FleetConsWeHave.Remove(controller);
         }
     }
 
