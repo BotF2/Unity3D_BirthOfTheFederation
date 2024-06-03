@@ -49,17 +49,24 @@ namespace Assets.Core
         private Canvas FleetUICanvas;
         [SerializeField]
         private Canvas CanvasToolTip;
-        
+
+        protected FleetBaseState currentState;
+        public FleetInSystemState inSystemState = new FleetInSystemState();
+        public FleetAllStopState allStopState = new FleetAllStopState();
+        public FleetWarpState warpState = new FleetWarpState();
+        public FleetCombatState combatState = new FleetCombatState();
+        public FleetDiplomacyState diplomacyState = new FleetDiplomacyState();
+        public FleetManagingState managingState = new FleetManagingState();
+
         private void Start()
         {
-
             rb = GetComponent<Rigidbody>();
             galaxyEventCamera = GameObject.FindGameObjectWithTag("Galactic Camera").GetComponent<Camera>();
             var CanvasGO = GameObject.Find("CanvasFleetUI");
             FleetUICanvas = CanvasGO.GetComponent<Canvas>();
             FleetUICanvas.worldCamera = galaxyEventCamera;
             CanvasToolTip.worldCamera = galaxyEventCamera;
-
+            currentWarpFactor = 0f;
             Name = fleetData.CivShortName + " Fleet " + fleetData.Name;
             GameObject Target = new GameObject("MyGameObject");
             Transform TheTarget = Target.transform;
@@ -67,6 +74,12 @@ namespace Assets.Core
             Destination = Target.transform;
 
             SystemsList = StarSysManager.instance.StarSysDataList;
+            currentState = allStopState;
+            currentState.EnterState(this);
+        }
+        void Update()
+        {
+            currentState.UpdateState(this);
         }
         private void FixedUpdate()
         {
@@ -75,6 +88,18 @@ namespace Assets.Core
                 Vector3 nextPosition = Vector3.MoveTowards(rb.position, Destination.position, currentWarpFactor * Time.fixedDeltaTime);
                 rb.MovePosition(nextPosition);
             }
+        }
+        private void OnCollisionEnter(Collision collision)
+        {
+            currentState.OnCollisionEnter(this, collision);
+
+        }
+  
+
+        void SwitchState(FleetBaseState baseState)
+        {
+            currentState = baseState;
+            baseState.EnterState(this);
         }
         void PopulateDestinationDropdown()
         {

@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using Assets.Core;
 
-public class FleetInSystemState : FleetBaseState
+public class FleetDiplomacyState : FleetBaseState
 {
     public override void EnterState(FleetController fleetController)
     {
@@ -22,8 +20,8 @@ public class FleetInSystemState : FleetBaseState
 
     }
 
-    //public override void OnTriggerEnter(FleetController fleetController)
-    //{
-    //    throw new System.NotImplementedException();
-    //}
+    public override void OnTriggerEnter(FleetController fleetController)
+    {
+        throw new System.NotImplementedException();
+    }
 }

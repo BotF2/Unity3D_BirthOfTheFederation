@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using Assets.Core;
 
-public class FleetInSystemState : FleetBaseState
+public class FleetManagingState : FleetBaseState
 {
+    //public void DestroyFleet(GameObject thisFleet)
+    //{
+    //    if (thisFleet == null) 
+    //    DestroyFleet(thisFleet);
+    //} 
     public override void EnterState(FleetController fleetController)
-    {
-
-    }
-    public override void ExitState(FleetController fleetController)
     {
 
     }
@@ -21,9 +22,4 @@ public class FleetInSystemState : FleetBaseState
     {
 
     }
-
-    //public override void OnTriggerEnter(FleetController fleetController)
-    //{
-    //    throw new System.NotImplementedException();
-    //}
 }
