@@ -6,7 +6,19 @@ using Assets.Core;
 public class FleetWarpState : FleetBaseState
 {
     public float currentWarpFactor;
-    
+    private readonly GameObject _gameObject;
+    private readonly Vector3 _destinationPosition;
+
+    public FleetWarpState(GameObject fleetGO, Vector3 destinationPosition)
+    {
+        _gameObject = fleetGO;
+        _destinationPosition = destinationPosition;
+    }
+
+    public FleetWarpState()
+    {
+    }
+
     public void WarpFactor(float newWarpFactor)
     {
         currentWarpFactor = newWarpFactor;
@@ -21,7 +33,13 @@ public class FleetWarpState : FleetBaseState
     }
     public override void UpdateState(FleetController fleetController)
     {
-        
+        _gameObject.transform.position = 
+            Vector3.MoveTowards(_gameObject.transform.position, _destinationPosition, currentWarpFactor);
+        if (Vector3.Distance(_gameObject.transform.position, _destinationPosition) > 0.1f ) // ToDo: hit collider of...
+        {
+            if(_gameObject.GetComponent<FleetController>() != null)
+                _gameObject.GetComponent<FleetController>().SwitchState(new FleetAllStopState(_gameObject));
+        }
     }
     public override void OnCollisionEnter(FleetController fleetController, Collision collision)
     {

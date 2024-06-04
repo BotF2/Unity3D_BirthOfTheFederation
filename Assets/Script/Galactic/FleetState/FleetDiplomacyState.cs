@@ -3,6 +3,15 @@ using Assets.Core;
 
 public class FleetDiplomacyState : FleetBaseState
 {
+    private readonly GameObject _gameObject;
+    public FleetDiplomacyState(GameObject fleetGO)
+    {
+        _gameObject = fleetGO;
+    }
+    public FleetDiplomacyState()
+    {
+
+    }
     public override void EnterState(FleetController fleetController)
     {
 

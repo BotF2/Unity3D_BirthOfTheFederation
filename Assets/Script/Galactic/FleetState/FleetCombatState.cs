@@ -5,6 +5,16 @@ using Assets.Core;
 
 public class FleetCombatState : FleetBaseState
 {
+    private readonly GameObject _gameObject;
+    public FleetCombatState(GameObject fleetGO)
+    {
+        _gameObject = fleetGO;
+    }
+
+    public FleetCombatState()
+    {
+    }
+
     public override void EnterState(FleetController fleetController)
     {
 

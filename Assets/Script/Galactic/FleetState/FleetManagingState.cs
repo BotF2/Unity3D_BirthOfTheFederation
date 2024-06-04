@@ -5,11 +5,12 @@ using Assets.Core;
 
 public class FleetManagingState : FleetBaseState
 {
-    //public void DestroyFleet(GameObject thisFleet)
-    //{
-    //    if (thisFleet == null) 
-    //    DestroyFleet(thisFleet);
-    //} 
+    private readonly GameObject _gameObject;
+    public FleetManagingState(GameObject fleetGO)
+    {
+        _gameObject = fleetGO;
+    }
+    public FleetManagingState() { }
     public override void EnterState(FleetController fleetController)
     {
 
@@ -21,5 +22,10 @@ public class FleetManagingState : FleetBaseState
     public override void OnCollisionEnter(FleetController fleetController, Collision collision)
     {
 
+    }
+
+    public override void ExitState(FleetController fleetController)
+    {
+        throw new System.NotImplementedException();
     }
 }

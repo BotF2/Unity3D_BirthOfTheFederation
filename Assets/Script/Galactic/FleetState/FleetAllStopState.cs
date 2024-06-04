@@ -5,9 +5,20 @@ using Assets.Core;
 
 public class FleetAllStopState : FleetBaseState
 {
+    private readonly GameObject _gameObject;
+
+    public FleetAllStopState(GameObject fleetGO)
+    {
+        _gameObject = fleetGO;
+    }
+
+    public FleetAllStopState()
+    {
+    }
+
     public override void EnterState(FleetController fleetController)
     {
-        Debug.Log("all stop");
+        _gameObject.GetComponent<FleetController>().FleetData.CurrentWarpFactor = 0;
     }
     public override void ExitState(FleetController fleetController)
     {

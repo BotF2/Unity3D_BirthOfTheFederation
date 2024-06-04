@@ -96,7 +96,7 @@ namespace Assets.Core
         }
   
 
-        void SwitchState(FleetBaseState baseState)
+        public void SwitchState(FleetBaseState baseState)
         {
             currentState = baseState;
             baseState.EnterState(this);
