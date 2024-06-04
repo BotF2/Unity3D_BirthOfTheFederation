@@ -97,7 +97,7 @@ public class FleetUIManager : MonoBehaviour
     void DropdownItemSelected(TMP_Dropdown dropdown)
     {
         int index = dropdown.value;
-        if (dropdown.name == "Dropdown Destination")
+        if (dropdown.name == "Dropdown _destination")
         {
             dropdownDestinationText.text = dropdown.options[index].text;
             var sys = systemsList[index];

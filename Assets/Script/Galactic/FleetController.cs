@@ -25,7 +25,7 @@ namespace Assets.Core
         private bool deltaShipList = false; //??? do I need this or the shipdropdown listener
         public Transform Destination;
         private float maxWarpFactor;
-        private float currentWarpFactor = 4;
+        private float currentWarpFactor = 0;
         private float fudgeFactor = 0.05f; // so we see warp factor as in Star Trek but move in game space
         Rigidbody rb;
         //GameObject fleetDropdownGO;
@@ -80,16 +80,25 @@ namespace Assets.Core
         void Update()
         {
             currentState.UpdateState(this);
+            ButtonInputs();
         }
         private void FixedUpdate()
         {
-            if (Destination != null)
+            if (Destination != null && currentWarpFactor > 0)
             {
                 Vector3 nextPosition = Vector3.MoveTowards(rb.position, Destination.position, currentWarpFactor * Time.fixedDeltaTime);
                 rb.MovePosition(nextPosition);
             }
         }
-        private void OnCollisionEnter(Collision collision)
+        public Rigidbody GetRigidbody() { return rb; }
+        void ButtonInputs()
+        {
+            if (Input.GetKey("m"))
+            {
+                this.SwitchState(warpState);
+            }
+        }
+            private void OnCollisionEnter(Collision collision)
         {
             currentState.OnCollisionEnter(this, collision);
 
@@ -147,7 +156,7 @@ namespace Assets.Core
         void DropdownItemSelected(TMP_Dropdown dropdown)
         {
             int index = dropdown.value;
-            if (dropdown.name == "Dropdown Destination")
+            if (dropdown.name == "Dropdown _destination")
             {
                 dropdownSysText.text = dropdown.options[index].text;
                 var sys = SystemsList[index];
@@ -233,9 +242,10 @@ namespace Assets.Core
             deltaShipList = true;
         }
 
-        public void UpdateWarpFactor(int delta)
+        public void UpdateWarpFactor(float delta)
         {
             fleetData.CurrentWarpFactor += delta;
+            this.currentWarpFactor += delta;
         }
 
 

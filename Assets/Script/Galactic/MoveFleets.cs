@@ -12,7 +12,7 @@ namespace Assets.Core
     {
         // NOW USING FLEETCONTROLLER........
 
-        //public GameObject Destination;
+        //public GameObject _destination;
         //private Transform droplineEndPoint; //ToDo
         //public float dropOutOfWarpDistance = 0.1f;
         //public float MaxWarpFactor;
@@ -35,7 +35,7 @@ namespace Assets.Core
         //    //MaxWarpFactor = fleetData.MaxWarpFactor;
         //    if (MaxWarpFactor > 0)
         //    {
-        //        Vector3 destinationPosition = Destination.transform.position;
+        //        Vector3 destinationPosition = _destination.transform.position;
         //        Vector3 currentPosition = transform.position;
         //        float distance = Vector3.Distance(destinationPosition, currentPosition);
         //        if (distance < dropOutOfWarpDistance)

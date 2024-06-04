@@ -18,7 +18,7 @@ public class FleetAllStopState : FleetBaseState
 
     public override void EnterState(FleetController fleetController)
     {
-        _gameObject.GetComponent<FleetController>().FleetData.CurrentWarpFactor = 0;
+        fleetController.FleetData.CurrentWarpFactor = 0;
     }
     public override void ExitState(FleetController fleetController)
     {

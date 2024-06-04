@@ -39,7 +39,7 @@ namespace Assets.Core
         //int leftRight = 1;
         //if (_currentTarget.position.x < 0)
         //    leftRight = -1;
-        //if ((this._currentTarget.position.x * leftRight) - (leftRight * shipGameObject.transform.position.x) < 100 && !lockTurn) // when near the Destination turn
+        //if ((this._currentTarget.position.x * leftRight) - (leftRight * shipGameObject.transform.position.x) < 100 && !lockTurn) // when near the _destination turn
         //{
         //    if (_currentTarget == _farTarget)
         //    {
@@ -53,7 +53,7 @@ namespace Assets.Core
         //    }
         //}
         #endregion
-        //#region turn to Destination
+        //#region turn to _destination
         //var targetRotation = Quaternion.LookRotation(this._currentTarget.position - transform.position);
         //rigidbody.MoveRotation(Quaternion.RotateTowards(shipGameObject.transform.rotation, targetRotation, turnRate));
         // transform.Translate(Vector3.forward * 100 * Time.deltaTime * 3);
