@@ -26,11 +26,9 @@ public class FleetUIManager : MonoBehaviour
 
     [SerializeField]
     private List<ShipData> shipList;
-    private bool deltaShipList = false; //??? do I need this or the shipdropdown listener
+    private bool deltaShipList = false; 
 
-    private float WarpFactor = 9;
-    private float fudgeFactor = 0.05f; // so we see warp factor as in Star Trek but move in game space
-    private float dropOutOfWarpDistance = 0.5f;
+    private float WarpFactor = 0;
     private float maxWarpFactor;
     public GameObject DestinationDropdownGO;
     public GameObject ShipDropdownGO;
@@ -45,7 +43,6 @@ public class FleetUIManager : MonoBehaviour
     private TMP_Text dropdownShipText;
     [SerializeField]
     private TMP_Text sysDestination;
-
     private Camera galaxyEventCamera;
     [SerializeField]
 
@@ -75,6 +72,7 @@ public class FleetUIManager : MonoBehaviour
         float localValue = value * maxSliderValue;
         warpSliderText.text = localValue.ToString("0.0");
         WarpFactor = value;
+        controller.FleetData.CurrentWarpFactor = WarpFactor;
     }
     public void LoadFleetUI(GameObject go) 
     {
@@ -83,7 +81,7 @@ public class FleetUIManager : MonoBehaviour
         FleetName.text = go.name;
         controller = go.GetComponent<FleetController>();
         NamesToShipDropdown(controller.FleetData.ShipsList);
-
+        warpSlider.value = controller.FleetData.CurrentWarpFactor;
         if (controller.Destination == null)
         {
             Destination = null;

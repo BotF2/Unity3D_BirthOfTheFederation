@@ -25,8 +25,7 @@ namespace Assets.Core
         private bool deltaShipList = false; //??? do I need this or the shipdropdown listener
         public Transform Destination;
         private float maxWarpFactor;
-        private float currentWarpFactor = 0;
-        private float fudgeFactor = 0.05f; // so we see warp factor as in Star Trek but move in game space
+        private float fudgeFactor = 0.04f; // so we see warp factor as in Star Trek but move in game space
         Rigidbody rb;
         //GameObject fleetDropdownGO;
         public GameObject destinationDropdownGO;
@@ -66,7 +65,7 @@ namespace Assets.Core
             FleetUICanvas = CanvasGO.GetComponent<Canvas>();
             FleetUICanvas.worldCamera = galaxyEventCamera;
             CanvasToolTip.worldCamera = galaxyEventCamera;
-            currentWarpFactor = 0f;
+            FleetData.CurrentWarpFactor = 0f;
             Name = fleetData.CivShortName + " Fleet " + fleetData.Name;
             GameObject Target = new GameObject("MyGameObject");
             Transform TheTarget = Target.transform;
@@ -84,13 +83,14 @@ namespace Assets.Core
         }
         private void FixedUpdate()
         {
-            if (Destination != null && currentWarpFactor > 0)
+            if (Destination != null && fleetData.CurrentWarpFactor > 0)
             {
-                Vector3 nextPosition = Vector3.MoveTowards(rb.position, Destination.position, currentWarpFactor * Time.fixedDeltaTime);
+                Vector3 nextPosition = Vector3.MoveTowards(rb.position, Destination.position, fleetData.CurrentWarpFactor * fudgeFactor * Time.fixedDeltaTime);
                 rb.MovePosition(nextPosition);
             }
         }
         public Rigidbody GetRigidbody() { return rb; }
+       // public float CurrentWarpFactor { get { return currentWarpFactor; } set { currentWarpFactor = value; } }
         void ButtonInputs()
         {
             if (Input.GetKey("m"))
@@ -245,10 +245,8 @@ namespace Assets.Core
         public void UpdateWarpFactor(float delta)
         {
             fleetData.CurrentWarpFactor += delta;
-            this.currentWarpFactor += delta;
+            fleetData.CurrentWarpFactor += delta;
         }
-
-
         public void AddFleetController(FleetController controller)
         {
             if (controller.FleetData.CivOwnerEnum == this.FleetData.CivOwnerEnum) 
