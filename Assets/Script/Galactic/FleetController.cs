@@ -23,13 +23,13 @@ namespace Assets.Core
         List<StarSysController> StarSystemsWeHave;
         List<PlayerDefinedTargetController> PlayerDefinedTargetControllersWeHave;
         private bool deltaShipList = false; //??? do I need this or the shipdropdown listener
-        public Transform Destination;
-        private float maxWarpFactor;
-        private float fudgeFactor = 0.04f; // so we see warp factor as in Star Trek but move in game space
+        //public Transform Destination;
+        //private float maxWarpFactor;
+        //private float fudgeFactor = 0.04f; // so we see warp factor as in Star Trek but move in game space
         Rigidbody rb;
-        //GameObject fleetDropdownGO;
-        public GameObject destinationDropdownGO;
-        public GameObject sysDropdownGO;
+        GameObject fleetDropdownGO;
+        public GameObject destinationDropdownGO; // UI dropdown
+        public GameObject sysDropdownGO; // UI dropdown
         public TMP_Dropdown sysDropdown;
         public List<string> sysDropdownOptions;
         public GameObject shipDropdownGO;
@@ -70,7 +70,7 @@ namespace Assets.Core
             GameObject Target = new GameObject("MyGameObject");
             Transform TheTarget = Target.transform;
             TheTarget.position = new Vector3(0, 0, 0);
-            Destination = Target.transform;
+            fleetData.Destination = Target.transform;
 
             SystemsList = StarSysManager.instance.StarSysDataList;
             currentState = allStopState;
@@ -83,9 +83,10 @@ namespace Assets.Core
         }
         private void FixedUpdate()
         {
-            if (Destination != null && fleetData.CurrentWarpFactor > 0)
+            if (fleetData.Destination != null && fleetData.CurrentWarpFactor > 0f)
             {
-                Vector3 nextPosition = Vector3.MoveTowards(rb.position, Destination.position, fleetData.CurrentWarpFactor * fudgeFactor * Time.fixedDeltaTime);
+                Vector3 nextPosition = Vector3.MoveTowards(rb.position, fleetData.Destination.position, 
+                    fleetData.CurrentWarpFactor * fleetData.fudgeFactor * Time.fixedDeltaTime);
                 rb.MovePosition(nextPosition);
             }
         }
@@ -124,8 +125,8 @@ namespace Assets.Core
             {
                 sysDropdown.options.Add(new TMP_Dropdown.OptionData() { text = item.SysName });
             }
-            //DropdownItemSelected(sysDropdown);
-            //sysDropdown.onValueChanged.AddListener(delegate { DropdownItemSelected(sysDropdown); });
+            DropdownItemSelected(sysDropdown);
+            sysDropdown.onValueChanged.AddListener(delegate { DropdownItemSelected(sysDropdown); });
 
         }
         void PopulateShipDropdown()
@@ -160,7 +161,7 @@ namespace Assets.Core
             {
                 dropdownSysText.text = dropdown.options[index].text;
                 var sys = SystemsList[index];
-                Destination = sys.SysTransform;
+                fleetData.Destination = sys.SysTransform;
             }
             else if (dropdown.name == "Dropdown Ships")
             {
@@ -171,17 +172,20 @@ namespace Assets.Core
         }
         private void OnMouseDown()
         {
-            string goName;
+            //string goName;
             Ray ray = galaxyEventCamera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
                 GameObject hitObject = hit.collider.gameObject;
-                goName = hitObject.name;
+                //goName = hitObject.name;
+                if (hitObject == gameObject)
+                {
+                    FleetUIManager.instance.LoadFleetUI(gameObject);
+                    PopulateShipDropdown();
+                    PopulateDestinationDropdown();
+                }
             }
-            FleetUIManager.instance.LoadFleetUI(gameObject);
-            PopulateShipDropdown();
-            PopulateDestinationDropdown();
 
         }
         void OnTriggerEnter(Collider collider)

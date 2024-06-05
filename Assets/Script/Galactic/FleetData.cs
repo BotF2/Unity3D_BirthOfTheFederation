@@ -14,6 +14,8 @@ namespace Assets.Core
         public List<ShipController> ShipsList;
         private float maxWarpFactor;
         public float CurrentWarpFactor;
+        public float fudgeFactor = 0.09f;
+        public Transform Destination;
         public string CivLongName;
         public string CivShortName;
         public string Name;

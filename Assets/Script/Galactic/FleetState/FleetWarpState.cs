@@ -29,7 +29,7 @@ public class FleetWarpState : FleetBaseState
     }
     public override void EnterState(FleetController fleetController)
     {
-        fleetController.UpdateWarpFactor(1f);
+        fleetController.UpdateWarpFactor(0f);
         //_destination = fleetController.Destination;
         //_rb = fleetController.GetRigidbody();
     }
@@ -41,7 +41,7 @@ public class FleetWarpState : FleetBaseState
 
     public override void UpdateState(FleetController fleetController)
     {
-        //currentWarpFactor = 4f;
+        
         //if (_destination != null)
         //{
         //    Vector3 nextPosition = Vector3.MoveTowards(_rb.position, _destination.position, currentWarpFactor * Time.fixedDeltaTime);

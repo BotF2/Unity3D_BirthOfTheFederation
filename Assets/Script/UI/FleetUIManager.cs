@@ -28,8 +28,8 @@ public class FleetUIManager : MonoBehaviour
     private List<ShipData> shipList;
     private bool deltaShipList = false; 
 
-    private float WarpFactor = 0;
-    private float maxWarpFactor;
+    //private float WarpFactor = 0;
+    //private float maxWarpFactor;
     public GameObject DestinationDropdownGO;
     public GameObject ShipDropdownGO;
     private TMP_Dropdown sysDropdown;
@@ -71,8 +71,7 @@ public class FleetUIManager : MonoBehaviour
     {
         float localValue = value * maxSliderValue;
         warpSliderText.text = localValue.ToString("0.0");
-        WarpFactor = value;
-        controller.FleetData.CurrentWarpFactor = WarpFactor;
+        controller.FleetData.CurrentWarpFactor = value;
     }
     public void LoadFleetUI(GameObject go) 
     {
@@ -81,8 +80,8 @@ public class FleetUIManager : MonoBehaviour
         FleetName.text = go.name;
         controller = go.GetComponent<FleetController>();
         NamesToShipDropdown(controller.FleetData.ShipsList);
-        warpSlider.value = controller.FleetData.CurrentWarpFactor;
-        if (controller.Destination == null)
+        //warpSlider.value = controller.FleetData.CurrentWarpFactor;
+        if (controller.FleetData.Destination == null)
         {
             Destination = null;
             dropdownDestinationText.text = "";
@@ -101,10 +100,9 @@ public class FleetUIManager : MonoBehaviour
             var sys = systemsList[index];
             if (sys.SysTransform != null)
             {
-                controller.Destination = sys.SysTransform;
-                Destination = sys.SysTransform;
+                controller.FleetData.Destination = sys.SysTransform;
             }
-            //dropdownDestinationText.text = dropdown.options[index].text;
+            dropdownDestinationText.text = dropdown.options[index].text;
         }
     }
     private void NamesToShipDropdown(List<ShipController> shipControllers)
