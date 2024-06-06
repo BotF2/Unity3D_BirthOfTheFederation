@@ -80,7 +80,7 @@ public class FleetUIManager : MonoBehaviour
         FleetName.text = go.name;
         controller = go.GetComponent<FleetController>();
         NamesToShipDropdown(controller.FleetData.ShipsList);
-        //warpSlider.value = controller.FleetData.CurrentWarpFactor;
+
         if (controller.FleetData.Destination == null)
         {
             Destination = null;
@@ -94,7 +94,7 @@ public class FleetUIManager : MonoBehaviour
     void DropdownItemSelected(TMP_Dropdown dropdown)
     {
         int index = dropdown.value;
-        if (dropdown.name == "Dropdown _destination")
+        if (dropdown.name == "Dropdown Destination")
         {
             dropdownDestinationText.text = dropdown.options[index].text;
             var sys = systemsList[index];

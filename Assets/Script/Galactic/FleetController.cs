@@ -23,9 +23,7 @@ namespace Assets.Core
         List<StarSysController> StarSystemsWeHave;
         List<PlayerDefinedTargetController> PlayerDefinedTargetControllersWeHave;
         private bool deltaShipList = false; //??? do I need this or the shipdropdown listener
-        //public Transform Destination;
-        //private float maxWarpFactor;
-        //private float fudgeFactor = 0.04f; // so we see warp factor as in Star Trek but move in game space
+
         Rigidbody rb;
         GameObject fleetDropdownGO;
         public GameObject destinationDropdownGO; // UI dropdown
@@ -66,11 +64,11 @@ namespace Assets.Core
             FleetUICanvas.worldCamera = galaxyEventCamera;
             CanvasToolTip.worldCamera = galaxyEventCamera;
             FleetData.CurrentWarpFactor = 0f;
-            Name = fleetData.CivShortName + " Fleet " + fleetData.Name;
+            Name = FleetData.CivShortName + " Fleet " + FleetData.Name;
             GameObject Target = new GameObject("MyGameObject");
             Transform TheTarget = Target.transform;
             TheTarget.position = new Vector3(0, 0, 0);
-            fleetData.Destination = Target.transform;
+            FleetData.Destination = Target.transform;
 
             SystemsList = StarSysManager.instance.StarSysDataList;
             currentState = allStopState;
@@ -83,10 +81,10 @@ namespace Assets.Core
         }
         private void FixedUpdate()
         {
-            if (fleetData.Destination != null && fleetData.CurrentWarpFactor > 0f)
+            if (FleetData.Destination != null && FleetData.CurrentWarpFactor > 0f)
             {
-                Vector3 nextPosition = Vector3.MoveTowards(rb.position, fleetData.Destination.position, 
-                    fleetData.CurrentWarpFactor * fleetData.fudgeFactor * Time.fixedDeltaTime);
+                Vector3 nextPosition = Vector3.MoveTowards(rb.position, FleetData.Destination.position, 
+                    FleetData.CurrentWarpFactor * FleetData.fudgeFactor * Time.fixedDeltaTime);
                 rb.MovePosition(nextPosition);
             }
         }
@@ -94,10 +92,10 @@ namespace Assets.Core
        // public float CurrentWarpFactor { get { return currentWarpFactor; } set { currentWarpFactor = value; } }
         void ButtonInputs()
         {
-            if (Input.GetKey("m"))
-            {
-                this.SwitchState(warpState);
-            }
+            //if (Input.GetKey("m"))
+            //{
+            //    this.SwitchState(warpState);
+            //}
         }
             private void OnCollisionEnter(Collision collision)
         {
@@ -151,17 +149,17 @@ namespace Assets.Core
             {
                 shipDropdown.options.Add(new TMP_Dropdown.OptionData() { text = item.ShipData.ShipName.Replace("(CLONE)", string.Empty) });
             }
-            DropdownItemSelected(shipDropdown);// not working, null ref
-            shipDropdown.onValueChanged.AddListener(delegate { DropdownItemSelected(shipDropdown); });
+            //DropdownItemSelected(shipDropdown);// not working, null ref
+            //shipDropdown.onValueChanged.AddListener(delegate { DropdownItemSelected(shipDropdown); });
         }
         void DropdownItemSelected(TMP_Dropdown dropdown)
         {
             int index = dropdown.value;
-            if (dropdown.name == "Dropdown _destination")
+            if (dropdown.name == "Dropdown Destination")
             {
                 dropdownSysText.text = dropdown.options[index].text;
                 var sys = SystemsList[index];
-                fleetData.Destination = sys.SysTransform;
+                FleetData.Destination = sys.SysTransform;
             }
             else if (dropdown.name == "Dropdown Ships")
             {
@@ -236,20 +234,20 @@ namespace Assets.Core
         }
         void AddToShipList(ShipController shipController)
         {
-            foreach (var ShipData in this.fleetData.GetShipList())
-                fleetData.AddToShipList(shipController);
+            foreach (var ShipData in this.FleetData.GetShipList())
+                FleetData.AddToShipList(shipController);
             deltaShipList = true;
         }
         void RemoveFromShipList(ShipController shipController)
         {
-            this.fleetData.RemoveFromShipList(shipController);
+            this.FleetData.RemoveFromShipList(shipController);
             deltaShipList = true;
         }
 
         public void UpdateWarpFactor(float delta)
         {
-            fleetData.CurrentWarpFactor += delta;
-            fleetData.CurrentWarpFactor += delta;
+            FleetData.CurrentWarpFactor += delta;
+            FleetData.CurrentWarpFactor += delta;
         }
         public void AddFleetController(FleetController controller)
         {
