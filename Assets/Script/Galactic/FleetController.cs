@@ -77,7 +77,7 @@ namespace Assets.Core
         void Update()
         {
             currentState.UpdateState(this);
-            ButtonInputs();
+            //ButtonInputs();
         }
         private void FixedUpdate()
         {

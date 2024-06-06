@@ -63,7 +63,14 @@ public class FleetUIManager : MonoBehaviour
         fleetUIRoot.SetActive(false);
         galaxyEventCamera = GameObject.FindGameObjectWithTag("Galactic Camera").GetComponent<Camera>() as Camera;
         parentCanvas.worldCamera = galaxyEventCamera;
-        sysDropdown = DestinationDropdownGO.GetComponent<TMP_Dropdown>();
+        var TMPs = DestinationDropdownGO.GetComponentsInChildren<TMP_Dropdown>();
+        foreach ( TMP_Dropdown dropdown in TMPs)
+        {
+            if (dropdown.name == "Dropdown Destination")
+            {
+                sysDropdown = dropdown;
+            }
+        }
         sysDropdown.value = 0;
     }
 
@@ -79,6 +86,12 @@ public class FleetUIManager : MonoBehaviour
         sysDropdown.value = 0;
         FleetName.text = go.name;
         controller = go.GetComponent<FleetController>();
+        controller.sysDropdownGO = DestinationDropdownGO;
+        controller.sysDropdown = sysDropdown;
+        //dropdownDestinationText = controller.sysDropdown.itemText;
+        controller.shipDropdownGO = ShipDropdownGO;
+        controller.shipDropdown = ShipDropdownGO.GetComponent<TMP_Dropdown>();
+        //dropdownShipText = controller.shipDropdown.itemText;
         NamesToShipDropdown(controller.FleetData.ShipsList);
 
         if (controller.FleetData.Destination == null)
