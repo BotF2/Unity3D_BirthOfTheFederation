@@ -26,13 +26,13 @@ public class FleetUIManager : MonoBehaviour
 
     [SerializeField]
     private List<ShipData> shipList;
-    private bool deltaShipList = false; 
+    private bool deltaShipList = false;
 
-    //private float WarpFactor = 0;
-    //private float maxWarpFactor;
-    public GameObject DestinationDropdownGO;
+    [SerializeField]
+    //private GameObject DestinationDropdownGO;
     public GameObject ShipDropdownGO;
-    private TMP_Dropdown sysDropdown;
+    [SerializeField]
+    private TMP_Dropdown destinationDropdown;
     private TMP_Dropdown shipDropdown;
     public Transform Destination;
     [SerializeField]
@@ -63,15 +63,7 @@ public class FleetUIManager : MonoBehaviour
         fleetUIRoot.SetActive(false);
         galaxyEventCamera = GameObject.FindGameObjectWithTag("Galactic Camera").GetComponent<Camera>() as Camera;
         parentCanvas.worldCamera = galaxyEventCamera;
-        var TMPs = DestinationDropdownGO.GetComponentsInChildren<TMP_Dropdown>();
-        foreach ( TMP_Dropdown dropdown in TMPs)
-        {
-            if (dropdown.name == "Dropdown Destination")
-            {
-                sysDropdown = dropdown;
-            }
-        }
-        sysDropdown.value = 0;
+        destinationDropdown.value = 0;
     }
 
     public void WarpSliderChange(float value)
@@ -83,22 +75,39 @@ public class FleetUIManager : MonoBehaviour
     public void LoadFleetUI(GameObject go) 
     {
         fleetUIRoot.SetActive(true);
-        sysDropdown.value = 0;
+        destinationDropdown.value = 0;
         FleetName.text = go.name;
         controller = go.GetComponent<FleetController>();
-        controller.sysDropdownGO = DestinationDropdownGO;
-        controller.sysDropdown = sysDropdown;
-        //dropdownDestinationText = controller.sysDropdown.itemText;
+        
+        //DestinationDropdown.options.Clear();
+        destinationDropdown = GameManager.Instance.DestinationDropdown;
+        if (destinationDropdown.options[0].text != "Select Destination")
+        {
+            destinationDropdown.options.Insert(0, new TMP_Dropdown.OptionData("Select Destination"));
+            destinationDropdown.value = 0;
+            destinationDropdown.RefreshShownValue();
+        }
+        var listing = destinationDropdown.options;
+        int index =0;
+        if (controller.SelectedDestination != "")
+        {
+            foreach (var option in listing)
+            {
+                if (option.text == controller.SelectedDestination)
+                {
+                    index = destinationDropdown.options.IndexOf(option);
+                }
+            }
+        }
+        destinationDropdown.value = index;
+
+        DropdownItemSelected(destinationDropdown);
+        destinationDropdown.onValueChanged.AddListener(delegate { DropdownItemSelected(destinationDropdown); });
+
         controller.shipDropdownGO = ShipDropdownGO;
         controller.shipDropdown = ShipDropdownGO.GetComponent<TMP_Dropdown>();
-        //dropdownShipText = controller.shipDropdown.itemText;
+        //controller.shipDropdown 
         NamesToShipDropdown(controller.FleetData.ShipsList);
-
-        if (controller.FleetData.Destination == null)
-        {
-            Destination = null;
-            dropdownDestinationText.text = "";
-        }
     }
     public void UnLoadFleetUI()
     {
@@ -109,13 +118,12 @@ public class FleetUIManager : MonoBehaviour
         int index = dropdown.value;
         if (dropdown.name == "Dropdown Destination")
         {
-            dropdownDestinationText.text = dropdown.options[index].text;
-            var sys = systemsList[index];
-            if (sys.SysTransform != null)
+            if (dropdown.options[index].text != "Select Destination" && GameManager.Instance.DestinationDictionary[dropdown.options[index].text] != null)
             {
-                controller.FleetData.Destination = sys.SysTransform;
+                controller.FleetData.Destination = GameManager.Instance.DestinationDictionary[dropdown.options[index].text];
+                controller.SelectedDestination = dropdown.options[index].text;
+                dropdownDestinationText.text = dropdown.options[index].text;
             }
-            dropdownDestinationText.text = dropdown.options[index].text;
         }
     }
     private void NamesToShipDropdown(List<ShipController> shipControllers)
@@ -134,28 +142,9 @@ public class FleetUIManager : MonoBehaviour
         
         }
         //DropdownItemSelected(shipDropdown);
-        shipDropdown.onValueChanged.AddListener(delegate { DropdownItemSelected(shipDropdown); });
+        //shipDropdown.onValueChanged.AddListener(delegate { DropdownItemSelected(shipDropdown); });
     }
 
-    public void LoadDestinations(List<StarSysData> starSysDataList)
-    {
-        systemsList = starSysDataList;
-
-        var destDropdown = DestinationDropdownGO.GetComponent<TMP_Dropdown>();
-        destDropdown.options.Clear();
-
-        // fill destDropdown sys sysList
-        if (systemsList != null)
-        {
-            foreach (var sysData in systemsList)
-            {
-                destDropdown.options.Add(new TMP_Dropdown.OptionData() { text = sysData.GetSysName() });
-            }
-            //SystemsList.Add()
-            //destDropdown.options.Add( new TMP_Dropdown.OptionData()) { t}
-        }
-        destDropdown.onValueChanged.AddListener(delegate { DropdownItemSelected(destDropdown); });
-    }
     private string GetDebuggerDisplay()
     {
         return ToString();

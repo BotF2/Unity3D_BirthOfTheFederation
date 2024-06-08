@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Unity.VisualScripting;
+using TMPro;
 
 
 //using MLAPI;
@@ -287,6 +288,8 @@ namespace Assets.Core
 
     public class GameManager : MonoBehaviour
     {
+        public static GameManager Instance { get; private set; } // a static singleton, no other script can instatniate a GameManager, must us the singleton
+        public TimeManager timeManager;
         public MainMenuUIController mainMenuUIController;
         public GalaxyManager galaxyManager;
         List<AsyncOperation> scenesToLoad = new List<AsyncOperation>();
@@ -296,39 +299,21 @@ namespace Assets.Core
         public CivEnum _localPlayer;
         public GameObject CivilizationPrefab;
         public CivManager civManager;
-
+        public GameObject DestinationDropdownGO; // UI dropdown
+        private bool foundDestinationDropdown = false;
+        public TMP_Dropdown DestinationDropdown;
+        public Dictionary<string, Transform> DestinationDictionary = new Dictionary<string, Transform>();
         public GalaxySize _galaxySize;
         public GalaxyType _galaxyType;
         public TechLevel _techLevel;
-        public int _galaxyStarCount; 
-        public int _solarSystemID;
-        public Orders _combatOrder;
 
         public Galaxy galaxy; // = new Galaxy(GameManager.Instance, GalaxyType.ELLIPTICAL, 20);
         public SolarSystemView solarSystemView;
         public CameraMultiTarget cameraMultiTarget;
-        // public CameraManagerGalactica cameraManagerGalactica;
-        //public Camera galacticCamera; 
         public ZoomCamera zoomCamera;
         public GameObject Canvas;
         public GameObject CanvasGalactic;
-        //private GameObject PanelLobby_Menu;
-        //private GameObject PanelLoadGame_Menu;
-        //private GameObject PanelSaveGame_Menu;
-        //private GameObject PanelSettings_Menu;
-        //private GameObject PanelCredits_Menu;
-        //private GameObject PanelMain_Menu;
-        //private GameObject PanelMultiplayerLobby_Menu;
-        ////private GameObject PanelGalaxy;
-        ////private GameObject PanelGalactic_Map; 
-        //public GameObject PanelSystem_Play;
-        //private GameObject PanelGalactic_Completed;
-        //private GameObject PanelCombat_Menu;
-        //private GameObject PanelCombat_Play;
-        //private GameObject PanelCombat_Completed;
-        //private GameObject PanelGameOver;
-
-            
+         
         public SinglePlayer _SinglePlayer;
         public MultiPlayer _MultiPlayer;
         public LoadGamePanel _LoadGamePanel;
@@ -336,11 +321,6 @@ namespace Assets.Core
         public SettingsGamePanel _SettingsGamePanel;
         public ExitQuit _ExitQuit;
         public CreditsGamePanel _CreditsGamePanel;
-        public CombatOrderSelection combatOrderSelection;
-
-        public float shipScale = 2000f; // old LoadCombatData Combat
-        private char separator = ',';
-        public static Dictionary<string, int[]> ShipDataDictionary = new Dictionary<string, int[]>();
         public GameObject animFriend1;
         public GameObject animFriend2;
         public GameObject animFriend3;
@@ -389,13 +369,6 @@ namespace Assets.Core
 
         private int friendShipLayer;
         private int enemyShipLayer;
-
-        public static GameManager Instance { get; private set; } // a static singleton, no other script can instatniate a GameManager, must us the singleton
-        public TimeManager timeManager;
-
-
-        public State _state;
-
         private int _level;
 
         public int Level
@@ -411,7 +384,7 @@ namespace Assets.Core
         public bool _statePassedCombatMenu_Init = false;
         public bool _statePassedCombatInit = false; // COMBAT INIT
         public bool _statePassedCombatPlay = false;
-        
+
 
         public void InitializeGameManagerWithMainMenuUIController() {
             mainMenuUIController = GameObject.Find("MainMenuUIController").GetComponent<MainMenuUIController>();
@@ -426,524 +399,68 @@ namespace Assets.Core
             Instance = this; // static reference to single GameManager
             Canvas = GameObject.Find("Canvas"); 
             CanvasGalactic = GameObject.Find("CanvasGalactic");
-
             InitializeGameManagerWithMainMenuUIController();
         }
         void Start()
         {
-           ///* SwitchtState(State.LOBBY_MENU);
-           // if (SaveLoadManager.hasLoaded)
-           // {
-           //     // get respons with locations... SaveManager.activeSave.(somethings here from save data)
-           // }
-           //*/
-
-
-           // LoadShipData(Environment.CurrentDirectory + "\\Assets\\" + "ShipData.txt"); // populate prefabs
-           // //LoadSystemData(Environment.CurrentDirectory + "\\Assets\\" + "SystemData.txt");                                                                            // ToDo: LoadSystemData(Environment.CurrentDirectory + "\\Assets\\" + "SystemData.txt");
-           // LoadStartGameObjectNames(Environment.CurrentDirectory + "\\Assets\\" + "Temp_GameObjectData.txt"); //"EarlyGameObjectData.txt");
-           // LoadPrefabs();
-
-           // //_galaxySize = GalaxySize.SMALL;
-           // //_localPlayer = civManager.CreateLocalPlayer();
-
-           // if (_isSinglePlayer)
-           //     _weAreFriend = true; // ToDo: Need to sort out friend and enemy in multiplayer civilizations local player host and clients 
-           //                          //galacticCamera = cameraManagerGalactica.LoadGalacticCamera();
-           //                          // Galaxy galaxy = new Galaxy();
-           //                          // Galaxy = galaxy;
-            
-
+    
         }
-
-        //public void BackToLobbyClick()  // from Main Menu
-        //{
-        //    _statePassedLobbyInit = false;
-        //    SwitchtState(State.LOBBY_MENU);
-        //    _LoadGamePanel.ClosePanel();
-        //}
-
-        //public void SinglePlayerLobbyClicked() // go to main menu through LOBBY_INIT
-        //{
-        //    SwitchtState(State.LOBBY_INIT); // start process to open main menu
-        //    _isSinglePlayer = true;
-        //}
-        //public void MultiPlayerLobbyClicked()
-        //{
-        //    SwitchtState(State.MULTIPLAYER_MENU);
-        //    _isSinglePlayer = false;
-        //    //ToDo: network manager here IsHost IsLocalPlayer or in BeginState??
-        //}
-        //public void LoadSavedGameClicked()
-        //{
-        //    SwitchtState(State.LOAD_MENU);
-        //    _LoadGamePanel.OpenPanel();
-        //}
-        //public void SaveGameClicked()
-        //{
-        //    SwitchtState(State.SAVE_MENU);
-        //    _SaveGamePanel.OpenPanel();
-        //}
-        //public void SettingsClicked()
-        //{
-        //    SwitchtState(State.SETTINGS_MENU);
-        //    _SettingsGamePanel.OpenPanel();
-        //}
-        //public void CreditsClicked()
-        //{
-        //    SwitchtState(State.CREDITS_MENU);
-        //    _CreditsGamePanel.OpenPanel();
-        //}
-        //public void ExitClicked()
-        //{
-        //    _ExitQuit.ExitTheGame();
-
-        //}
-        //public void ChangeSystemClicked(int systemID, SolarSystemView ssView) //(SolarSystemView ssView)
-        //{
-        //    PanelLobby_Menu.SetActive(false);
-        //    _solarSystemID = systemID;
-        //    solarSystemView = ssView;
-        //    SwitchtState(State.SYSTEM_PLAY);
-        //    for (int i = 0; i < AllSystemsList.Count; i++)
-        //    {
-        //        if (systemID != i & AllSystemsList[i] != null)
-        //        AllSystemsList[i].SetActive(false);
-        //    }
-
-        //    // ToDo: get Empire and techlevel from MainMenu
-        //}
-        //public void GalaxyPlayClicked() // BOLDLY GO button in Main Menu
-        //{
-
-        //    Debug.Log("civManager " + civManager.gameObject.FleetName);
-
-        //    civManager.CreateNewGameBySelections(0); // (int)_galaxySize);
-        //    //PanelGalaxy.SetActive(true);
-        //  ///  _localPlayer = civManager.CreateLocalPlayer();
-        //    // turned off Galaxys here: SwitchtState(State.MAIN_INIT);
-        //    // open Combat for now
-        //    SwitchtState(State.GALACTIC_MAP_INIT);
-
-
-        //}
-
-        //public void GalaxyMapClicked() // in system going back to galactic map
-        //{
-
-        //   // PanelGalactic_Map = CanvasGalactic.transform.Find("PanelGalactic_Map").gameObject;
-        //    SwitchtState(State.SYSTEM_PLAY_INIT); // end systeme, then load galaxy map
-        //    //PanelGalactic_Map.SetActive(true);
-        //}
-        public void TurnOnGalacticSystems(bool offOn)
+        public void LoadDestinationDropdown()
         {
-            // a loop here through all systems setting them active = true
-            //for (int i = 0; i < _galaxyStarCount; i++)
-            //{
-            //    AllSystemsList[i].SetActive(true);
-            //    if (i != 0)
-            //     ActiveSystemList.Add(AllSystemsList[i]);
-            //}
-            //System_FEDERATION.SetActive(offOn);
-            //System_ROMULANS.SetActive(offOn);
-            // System_KLINGONS.SetActive(offOn);
+            if (foundDestinationDropdown == false)
+            {
+                DestinationDropdownGO = GameObject.FindGameObjectWithTag("DropdownDestinationsGO");
+                if (DestinationDropdownGO != null)
+                {
+                    DestinationDropdown = DestinationDropdownGO.GetComponent<TMP_Dropdown>();
+                    //DestinationDropdown.options.Clear();
+                    foundDestinationDropdown = true;
+                }
+            }
         }
-        //public void SetGalaxyMapSize() // 
-        //{
-        //    switch (_galaxySize)
-        //    {
-        //        case GalaxySize.SMALL:
-        //            _galaxyStarCount = 6; // 30;
-        //           // LoadGalacticMapButtons("SMALL"); // system buttons are loaded in GalaxyView.cs
-        //            break;
-        //        case GalaxySize.MEDIUM:
-        //            _galaxyStarCount = 40;
-        //            //LoadGalacticMapButtons("MEDIUM");
-        //            break;
-        //        case GalaxySize.LARGE:
-        //            _galaxyStarCount = 50;
-        //            //LoadGalacticMapButtons("LARGE");
-        //            break;
-        //        default:
-        //            break;
-        //    }
-        //}
-        public void LoadGalacticMapButtons(string mapsize)
+        public void LoadGalacticDestinations(List<StarSysData> starSysDataList)
         {
-            //switch (mapsize)
-            //{
-            //    case "SMALL":                   
-            //        break;
-
-            //    case "MEDIUM":
-            //        break;
-
-            //    case "LARGE":
-            //        break;
-
-            //    default:
-            //        break;
-            //}
+            foreach (var sysData in starSysDataList)
+            {
+                DestinationDropdown.options.Add(new TMP_Dropdown.OptionData() { text = sysData.SysName });
+                DestinationDictionary.Add(sysData.SysName, sysData.SysTransform);
+            }
         }
-
-        //public void EndGalacticPlayClicked()
-        //{
-        //    SwitchtState(State.GALACTIC_COMPLETED);
-        //}
-
-        //public void CombatPlayClicked()
-        //{
-        //    SwitchtState(State.COMBAT_INIT);
-        //}
-        //public void ResetFriendAndEnemyDictionaries()
-        //{
-        //    FriendShips.Clear();
-        //    EnemyShips.Clear();
-        //}
-        public void SwitchtState(State newState, float delay = 0)
+        public void LoadGalacticDestinations(FleetData fleetData, Transform fleetTransform)
         {
-            StartCoroutine(SwitchDelay(newState, delay));
-            Instance = this;
-            //EndState();
-            //BeginState(newState);
-            _isSwitchingState = false;
+            DestinationDropdown.options.Add(new TMP_Dropdown.OptionData() { text = fleetData.Name });
+            DestinationDictionary.Add(fleetData.Name, fleetTransform); 
         }
-        IEnumerator SwitchDelay(State newState, float delay)
+        public void RemoveFleetFromGalaxyDestiations(FleetData fleetData, Transform fleetTransform)
         {
-            _isSwitchingState = true;
-            yield return new WaitForSeconds(delay);
-            //EndState();
-            _state = newState;
-            //BeginState(newState);
-            _isSwitchingState = false;
+            for (int i =0; i < DestinationDropdown.options.Count; i++)
+            {
+                if (DestinationDropdown.options[i].text == fleetData.Name)
+                { DestinationDropdown.options.Remove(DestinationDropdown.options[i]); }
+                DestinationDictionary.Remove(fleetData.Name);
+            }
         }
-        // Unity Inspector only sees non static public void methodes with no parameter or paramater float, int, string, bool or UnityEntine.Object
-
+        public void LoadPlayerGalacticDestinations(PlayerDefinedTargetData playerTargetData, Transform playerTargetTransfomr)
+        {
+            DestinationDropdown.options.Add(new TMP_Dropdown.OptionData() { text = playerTargetData.Name });
+            DestinationDictionary.Add(playerTargetData.Name, playerTargetTransfomr);
+        }
+        public void RemovePlayerTargetFromGalaxyDestiations(PlayerDefinedTargetData playerTargetData)
+        {
+            for (int i = 0; i < DestinationDropdown.options.Count; i++)
+            {
+                if (DestinationDropdown.options[i].text == playerTargetData.Name)
+                {
+                    DestinationDropdown.options.Remove(DestinationDropdown.options[i]);
+                }
+                DestinationDictionary.Remove(playerTargetData.Name);
+            }
+        }
 
         //  MARC CODE
         public GameObject UICamera;
         public GameObject GalaxyCamera;
-        //void BeginState(State newState)
-        //{
-
-        //    switch (newState)
-        //    {
-        //        case State.LOBBY_MENU:
-        //            //PanelMain_Menu.SetActive(false); // turn off if returning to lobby
-        //            //PanelLoadGame_Menu.SetActive(false);
-        //            //PanelSaveGame_Menu.SetActive(false);
-        //            //PanelSettings_Menu.SetActive(false);
-        //            //PanelCredits_Menu.SetActive(false);
-        //            //PanelLobby_Menu.SetActive(true); // Lobby first             
-        //            break;
-
-        //        case State.LOBBY_INIT:
-        //            SwitchtState(State.MAIN_MENU);
-        //            _statePassedLobbyInit = true;
-        //            switch (_isSinglePlayer) // Do we need this? Methods, SinglePlayerLobbyClicked() MultipPalyerLobbyClicked(), already set bool and called LobbyInit
-        //            {
-        //                case true:
-        //                    break;
-        //                case false: //Do something here, start multiplayer?
-        //                    break;
-        //                default:
-        //                    //break;
-        //            }
-        //            break;
-        //        case State.LOAD_MENU:
-        //            //PanelLobby_Menu.SetActive(false);
-        //            //PanelMain_Menu.SetActive(false);
-        //            ////PanelSaveGame_Menu.SetActive(false);
-        //            //PanelLoadGame_Menu.SetActive(true);
-        //            break;
-        //        case State.SAVE_MENU:
-        //            PanelLobby_Menu.SetActive(false);
-        //            PanelMain_Menu.SetActive(false);
-        //            PanelSaveGame_Menu.SetActive(true);
-        //            break;
-        //        case State.SETTINGS_MENU:
-        //            PanelLobby_Menu.SetActive(false);
-        //            PanelMain_Menu.SetActive(false);
-        //            PanelSettings_Menu.SetActive(true);
-        //            break;
-        //        case State.CREDITS_MENU:
-        //            PanelLobby_Menu.SetActive(false);
-        //            PanelMain_Menu.SetActive(false);
-        //            PanelCredits_Menu.SetActive(true);
-        //            break;
-        //        case State.MAIN_MENU:
-        //            PanelLoadGame_Menu.SetActive(false);
-        //            PanelMain_Menu.SetActive(true);
-        //            break;
-        //        case State.MULTIPLAYER_MENU:
-        //            PanelLobby_Menu.SetActive(false);
-        //            PanelMultiplayerLobby_Menu.SetActive(true);
-        //            break;
-        //        case State.MAIN_INIT:
-        //            switch (_galaxyType) // ToDo: get input from Main Menu
-        //            {
-        //                case GalaxyType.CANON:
-        //                    // canon type galaxy.cs SolarSystemsMap dictionary
-        //                    SetGalaxyMapSize(); // set number of stars this._galaxyStarCount int
-        //                    break;
-        //                case GalaxyType.RANDOM:
-        //                    SetGalaxyMapSize();                   
-        //                    break;
-        //            }
-                   
-        //            switch (_localPlayer) // is set in CivSelection.cs for GameManager.localPlayer
-        //            {
-        //                //case Civilization.FED: // we already know local player from CivSelection.cs so do we change to a race UI/ ship/ economy here??
-        //                //    // set 
-        //                //    break;
-        //                //case Civilization.TER:
-        //                //    break;
-        //                //case Civilization.ROM:
-        //                //    break;
-        //                //case Civilization.KLING:
-        //                //    break;
-        //                //case Civilization.CARD:
-        //                //    break;
-        //                //case Civilization.DOM:
-        //                //    break;
-        //                //case Civilization.BORG:
-        //                //    break;
-        //                default:
-        //                    break;
-        //            }
-        //            PanelMain_Menu.SetActive(false);
-        //            PanelLobby_Menu.SetActive(false);
-        //            PanelLoadGame_Menu.SetActive(false);
-        //            PanelSaveGame_Menu.SetActive(false);
-        //            _statePassedMain_Init = true;
-        //            SwitchtState(State.GALACTIC_MAP);
-        //            break;
-        //        case State.GALACTIC_MAP:
-        //            PanelMain_Menu.SetActive(false);
-        //            PanelMultiplayerLobby_Menu.SetActive(false);
-        //            _statePassedMain_Init = true;
-        //            PanelSystem_Play.SetActive(false);
-        //            break;
-        //        case State.GALACTIC_MAP_INIT:
-        //            SwitchtState(State.SYSTEM_PLAY);
-        //            break;
-        //        case State.SYSTEM_PLAY:
-        //            galaxyMapBackgroundPictureGO.SetActive(true);
-        //            UICamera.SetActive(false);
-        //            GalaxyCamera.SetActive(true);
-        //            PanelLobby_Menu.SetActive(false);
-        //            PanelMain_Menu.SetActive(false);
-        //            PanelMultiplayerLobby_Menu.SetActive(false);
-        //            _statePassedMain_Init = true;
-        //            break;
-        //        case State.SYSTEM_PLAY_INIT:
-        //            PanelSystem_Play.SetActive(false);
-        //            PanelLobby_Menu.SetActive(false);
-        //            PanelMain_Menu.SetActive(false);
-        //            PanelMultiplayerLobby_Menu.SetActive(false);
-        //            _statePassedMain_Init = true;
-
-        //            break;
-        //        case State.GALACTIC_COMPLETED:
-        //            PanelSystem_Play.SetActive(false);
-        //            PanelLobby_Menu.SetActive(false);
-        //            PanelSystem_Play.SetActive(false);
-        //            SwitchtState(State.COMBAT_MENU);
-        //            break;
-        //        case State.COMBAT_MENU:
-        //            //PanelLobby_Menu.SetActive(false);
-        //            //PanelCombat_Menu.SetActive(true);
-        //            //PanelSystem_Play.SetActive(false);                    
-        //            LoadFriendAndEnemyNames(); // for combat
-        //            break;
-        //        case State.COMBAT_INIT:
-        //            //PanelLobby_Menu.SetActive(false);
-        //            //_statePassedCombatMenu_Init = true;
-        //            //FriendShips = combat.UpdateFriendCombatants().ToList();
-        //            //EnemyShips = combat.UpdateEnemyCombatants().ToList();
-        //            //actOnCombatOrder.CombatOrderAction(_combatOrder, FriendShips, EnemyShips);
-        //            //instantiateCombatShips.SetCombatOrder(_combatOrder);
-        //            //instantiateCombatShips.PreCombatSetup(FriendNameArray, true);
-        //            //instantiateCombatShips.PreCombatSetup(EnemyNameArray, false);
-        //            //_statePassedCombatInit = true;
-        //            //SetCameraTargets();
-        //            //zoomCamera.ZoomIn();
-        //            //PanelCombat_Menu.SetActive(false);
-        //            //PanelCombat_Play.SetActive(true);
-        //            //SwitchtState(State.COMBAT_PLAY);
-        //            break;
-        //        case State.COMBAT_PLAY:
-        //            //PanelLobby_Menu.SetActive(false);
-        //            //_statePassedCombatPlay = true;
-        //            break;
-        //        case State.COMBAT_COMPLETED:
-        //            //PanelLobby_Menu.SetActive(false);
-        //            //_warpingInIsOver = false;
-        //            //PanelCombat_Completed.SetActive(true);
-        //            //if (false)// requirments for game over here
-        //            //    SwitchtState(State.GAMEOVER);
-        //            //else
-        //            //{
-        //            //    SwitchtState(State.SYSTEM_PLAY);
-        //            //    _statePassedCombatInit = true;
-        //            //    _statePassedCombatMenu_Init = false;
-        //            //    zoomCamera.TurnOfZoomerUpdate();
-        //            //}
-        //            //break;
-        //        case State.GAMEOVER:
-        //            PanelGameOver.SetActive(true);
-        //            break;
-        //        default:
-        //            break;
-        //    }
-        //}
-
-        //// Update is called once per frame
-        //void Update()
-        //{
-        //    //zoomCamera.CheckUpdateZoom();
-        //    switch (_state)
-        //    {
-        //        case State.LOBBY_MENU:
-        //            break;
-        //        case State.LOBBY_INIT:
-        //            break;
-        //        case State.LOAD_MENU:
-        //            break;
-        //        case State.SAVE_MENU:
-        //            break;
-        //        case State.SETTINGS_MENU:
-        //            break;
-        //        case State.CREDITS_MENU:
-        //            break;
-        //        case State.MAIN_MENU:
-        //            break;
-        //        case State.MAIN_INIT:
-        //            _statePassedMain_Init = true;
-        //            break;
-        //        case State.MULTIPLAYER_MENU:
-        //            break;
-        //        case State.GALACTIC_MAP:
-        //            PanelLobby_Menu.SetActive(false);
-        //            _statePassedMain_Init = true;
-        //            break;
-        //        case State.GALACTIC_MAP_INIT:
-        //            PanelLobby_Menu.SetActive(false);
-        //            //PanelGalactic_Map.SetActive(false);
-        //            _statePassedMain_Init = true;
-        //            break;
-        //        case State.SYSTEM_PLAY:
-        //            PanelLobby_Menu.SetActive(false);
-        //            //PanelGalactic_Map.SetActive(false);
-        //            _statePassedMain_Init = true;
-        //            break;
-        //        case State.SYSTEM_PLAY_INIT:
-        //            //PanelGalactic_Map.SetActive(false);
-        //            _statePassedMain_Init = true;
-        //            break;
-        //        case State.GALACTIC_COMPLETED:
-        //            PanelLobby_Menu.SetActive(false);
-        //            break;
-        //        case State.COMBAT_MENU:
-        //            PanelLobby_Menu.SetActive(false);
-        //            // ToDo: end combat
-        //            //if (enemies are == 0 || friends are == 0)
-        //            //    {
-        //            //    End Combat
-        //            //}
-        //            break;
-        //        case State.COMBAT_INIT:
-        //            //if (F_Animator3.)
-        //            //instantiateCombatShips.PreCombatSetup(EnemyNameArray, false);
-        //            //_statePassedCombatInitRight = true;
-        //            break;
-        //        case State.COMBAT_PLAY:
-        //            // _statePassedInit = true;
-        //            break;
-        //        case State.COMBAT_COMPLETED:
-        //            break;
-        //        //case State.LOADNEXT:
-        //        //    break;
-        //        case State.GAMEOVER:
-        //            // _statePassedInit = false;
-        //            break;
-        //        default:
-        //            break;
-        //    }
-        //}
-        //void EndState()
-        //{
-        //    switch (_state)
-        //    {
-        //        case State.LOBBY_MENU:
-        //         //   PanelLobby_Menu.SetActive(false);
-        //            break;
-        //        case State.LOAD_MENU:
-        //          //  PanelLoadGame_Menu.SetActive(false);
-        //            break;
-        //        case State.SAVE_MENU:
-        //         //   PanelSaveGame_Menu.SetActive(false);
-        //            break;
-        //        case State.SETTINGS_MENU:
-        //        //    PanelSettings_Menu.SetActive(false);
-        //            break;
-        //        case State.CREDITS_MENU:
-        //         //   PanelCredits_Menu.SetActive(false);
-        //            break;
-        //        case State.LOBBY_INIT: // no init panles to turn off
-        //            break;
-        //        case State.MAIN_MENU:
-        //        //    PanelMain_Menu.SetActive(false);
-        //            break;
-        //        case State.MAIN_INIT:
-
-        //            break;
-        //        case State.MULTIPLAYER_MENU:
-        //        //    PanelMultiplayerLobby_Menu.SetActive(false);
-        //            break;
-        //        case State.GALACTIC_MAP:
-        //      //      PanelLobby_Menu.SetActive(false);
-        //            //PanelGalactic_Map.SetActive(false);
-        //            break;
-        //        case State.GALACTIC_MAP_INIT:
-        //     //       PanelLobby_Menu.SetActive(false);
-        //            //PanelGalactic_Map.SetActive(false);
-        //            break;
-        //        case State.SYSTEM_PLAY:
-        //            PanelSystem_Play.SetActive(false);
-        //            break;
-        //        case State.SYSTEM_PLAY_INIT:
-        //        //    PanelLobby_Menu.SetActive(false);
-        //            break;
-        //        case State.GALACTIC_COMPLETED:
-        //            PanelSystem_Play.SetActive(false);
-        //            PanelGalactic_Completed.SetActive(false);
-        //            break;
-        //        case State.COMBAT_MENU:
-        //            //panelGalactic_Play.SetActive(false);
-        //            PanelCombat_Menu.SetActive(false);
-        //            break;
-        //        case State.COMBAT_INIT:
-        //            PanelCombat_Menu.SetActive(false);
-        //            // panelGalactic_Completed.SetActive(false);
-        //            break;
-        //        case State.COMBAT_PLAY:
-        //            PanelCombat_Play.SetActive(false);
-        //            break;
-        //        case State.COMBAT_COMPLETED:
-        //            PanelCombat_Completed.SetActive(false);
-        //            break;
-        //        //case State.LOADNEXT:
-        //        //    break;
-        //        case State.GAMEOVER:
-        //            // panelCombat_Play.SetActive(false); // ToDo: get Combat to return to Galactic on Combat_Completed
-        //            PanelGameOver.SetActive(false);
-        //            break;
-        //        default:
-        //            break;
-        //    }
-        //}
-
+        
         public void SetCameraTargets()
          {
             //List<GameObject> _cameraTargets = new List<GameObject>() { Friend_0, Enemy_0}; // dummies
@@ -1037,56 +554,6 @@ namespace Assets.Core
                     return 10;
 
             }
-        }
-        public Transform GetShipTravelTarget(GameObject aShip)
-        {
-            return aShip.transform;
-        }
-        public void LoadFriendAndEnemyNames()
-        {
-            //string[] _friendNameArray = new string[] { "FED_CRUISER_II", "FED_CRUISER_III", "FED_DESTROYER_II", "FED_DESTROYER_II",
-            //    "FED_DESTROYER_I", "FED_SCOUT_II", "FED_SCOUT_IV" , "FED_COLONYSHIP_I" };
-            //FriendNameArray = _friendNameArray;
-            //string[] _enemyNameArray = new string[] {"KLING_DESTROYER_I", "KLING_DESTROYER_I", "KLING_CRUISER_II", "KLING_SCOUT_II", "KLING_COLONYSHIP_I","CARD_SCOUT_I",
-            //    "ROM_CRUISER_III", "ROM_CRUISER_II", "ROM_SCOUT_III"}; //"KLING_DESTROYER_I",
-            
-            //EnemyNameArray = _enemyNameArray;
-        }
-
-        //#region Read Tech era in TechSelection.cs (Ship)GameObjectData.txt
-        //public void LoadStartGameObjectNames(string filename) //****  from TechSelection.cs ToDo: read for selected tech level
-        //{
-        //    List<string> _startGameObjectNames = new List<string>();
-        //    var file = new FileStream(filename, FileMode.Open, FileAccess.Read);
-
-        //    var _dataPoints = new List<string>();
-        //    using (var reader = new StreamReader(file))
-        //    {
-
-        //        while (!reader.EndOfStream)
-        //        {
-        //            var line = reader.ReadLine();
-        //            if (line == null)
-        //                continue;
-        //            _dataPoints.Add(line.Trim());
-        //            if (line.Length > 0)
-        //            {
-        //                var coll = line.Split(separator);
-
-        //                string currentValueZero = coll[0];
-
-        //                string[] shipDataArray = new string[] { currentValueZero };
-
-        //                _startGameObjectNames.Add(coll[0].ToString().ToUpper());
-        //            }
-        //        }
-
-        //        reader.Close();
-        //        StartGameObjectNames = _startGameObjectNames;
-        //    }
-        //}
-        
-
-        
+        }    
     }
 }

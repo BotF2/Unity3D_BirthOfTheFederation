@@ -45,6 +45,7 @@ public class PlayerDefinedTargetManager : MonoBehaviour
         TextMeshProUGUI TheText = playerDefinedTargetGO.GetComponentInChildren<TextMeshProUGUI>();
 
         TheText.text = playerDefinedTargetData.CivShortName + " - Player Target " + playerDefinedTargetData.Name;
+        playerDefinedTargetData.Name = TheText.text;
         var Renderers = playerDefinedTargetGO.GetComponentsInChildren<SpriteRenderer>();
         foreach (var oneRenderer in Renderers)
         {
@@ -74,6 +75,7 @@ public class PlayerDefinedTargetManager : MonoBehaviour
         playerDefinedTargetGO.SetActive(true);
         PlayerTargetGOList.Add(playerDefinedTargetGO);
         AddPlayerConrollerToAllControllers(playerTargetController);
+        GameManager.Instance.LoadPlayerGalacticDestinations(playerDefinedTargetData, playerDefinedTargetGO.transform);
     }
     void AddPlayerConrollerToAllControllers(PlayerDefinedTargetController playerTargetController)
     {

@@ -16,6 +16,22 @@ TagManager:
   - DropdownDestinationsGO
   - FleetPlaceHolder
   - ShipPlaceHolder
+  - FED_SCOUT_II(CLONE)
+  - CARD_SCOUT_I(CLONE)
+  - ROM_CRUISER_II
+  - ROM_CRUISER_III(CLONE)
+  - KLING_COLONYSHIP_I(CLONE)
+  - FED_DESTROYER_I(CLONE)
+  - KLING_SCOUT_I(CLONE)
+  - FED_CRUISER_II(CLONE)
+  - FED_SCOUT_IV(CLONE)
+  - KLING_CRUISER_II(CLONE)
+  - KLING_DESTROYER_I(CLONE)
+  - FED_CRUISER_III(CLONE)
+  - FED_COLONYSHIP_I(CLONE)
+  - FED_DESTROYER_II(CLONE)
+  - ROM_SCOUT_III(CLONE)
+  - PreFabGalaxyDestinationDropdown
   layers:
   - Default
   - TransparentFX

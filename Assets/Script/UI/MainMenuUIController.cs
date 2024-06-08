@@ -74,6 +74,7 @@ namespace Assets.Core
 
             SceneManager.LoadScene("GalaxyScene", LoadSceneMode.Additive);
             CivManager.instance.OnNewGameButtonClicked((int)selectedGalaxySize, (int)selectedTechLevel);
+           
         }
 
         //IEnumerator loadScene(string SceneName)

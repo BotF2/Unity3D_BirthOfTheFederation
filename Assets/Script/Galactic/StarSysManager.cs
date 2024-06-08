@@ -83,7 +83,9 @@ namespace Assets.Core
                     FleetManager.instance.FleetDataFromSO(civSO, SysData.GetPosition()); 
             }
             StarSysDataList = starSysDatas;
-            FleetUIManager.instance.LoadDestinations(StarSysDataList);
+            StarSysDataList.Remove(StarSysDataList[0]);
+            GameManager.Instance.LoadGalacticDestinations(StarSysDataList);
+
 
         }
         public void InstantiateSystem(StarSysData sysData, CivSO civSO)
@@ -141,7 +143,8 @@ namespace Assets.Core
             controller.StarSysData = sysData;
 
             starSystemNewGameOb.SetActive(true);
-            StarSysControllerList.Add(controller);  
+            StarSysControllerList.Add(controller);
+            GameManager.Instance.LoadDestinationDropdown();
         }
 
         public StarSysSO GetStarSObyInt(int sysInt)

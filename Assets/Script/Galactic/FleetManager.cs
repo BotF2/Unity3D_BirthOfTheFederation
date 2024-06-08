@@ -140,7 +140,6 @@ namespace Assets.Core
                 var fleetController = fleetNewGameOb.GetComponentInChildren<FleetController>();
                 fleetController.FleetData = fleetData;
                 fleetController.Name = fleetData.Name;
-
                 AddFleetConrollerToAllControllers(fleetController);
                 GetUniqueFleetName(fleetData.CivOwnerEnum, fleetController);
                 fleetNewGameOb.transform.Translate(new Vector3(fleetData.Position.x + 40f, fleetData.Position.y, fleetData.Position.z + 10f));
@@ -151,6 +150,7 @@ namespace Assets.Core
                 TextMeshProUGUI TheText = fleetNewGameOb.GetComponentInChildren<TextMeshProUGUI>();
 
                 TheText.text = fleetData.CivShortName + " - Fleet " + fleetData.Name;
+                fleetData.Name = TheText.text;
                 var Renderers = fleetNewGameOb.GetComponentsInChildren<SpriteRenderer>();
                 foreach (var oneRenderer in Renderers)
                 {
@@ -171,31 +171,12 @@ namespace Assets.Core
                 Vector3[] points = { fleetNewGameOb.transform.position, galaxyPlanePoint };
                 ourLineScript.SetUpLine(points);
                 fleetController.FleetData.yAboveGalaxyImage = galaxyCenter.transform.position.y - galaxyPlanePoint.y;
-                //if (shipsOfAllFirstFleets.Count > 0)
-                //{
-                //    foreach (var shipController in shipsOfAllFirstFleets)
-                //    {
-                //        if (shipController.ShipData != null)
-                //        {
-                //            if (shipController.ShipData.CivEnum == fleetData.CivOwnerEnum && !shipController.gameObject.name.Contains("First Ship"))
-                //                fleetController.FleetData.ShipsList.Add(shipController);
 
-                //        }
-                //        else { Destroy(shipController.gameObject); }
-                //    }
-                //}
                 fleetNewGameOb.SetActive(true);
                 FleetGOList.Add(fleetNewGameOb);
-
-                //foreach (var fleetControl in ManagersFleetControllerList)
-                //{
-                //    foreach (ShipController ShipControllerList in shipsOfAllFirstFleets)
-                //    {
-                //        if (ShipControllerList.ShipData != null && fleetControl.FleetData.CivOwnerEnum == ShipControllerList.ShipData.CivEnum)
-                //            ShipControllerList.gameObject.transform.SetParent(fleetControl.gameObject.transform);
-                //    }
-                //}
                 StarSysManager.instance.GetYourFirstStarSystem(fleetData.CivOwnerEnum);
+
+                GameManager.Instance.LoadGalacticDestinations(fleetData, fleetNewGameOb.transform);
             }
             else if(fleetData.CivOwnerEnum == CivEnum.ZZUNINHABITED10)
             {

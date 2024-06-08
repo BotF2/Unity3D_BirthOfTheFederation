@@ -17,7 +17,7 @@ namespace Assets.Core
         private FleetData fleetData;
         public FleetData FleetData { get { return fleetData; } set { fleetData = value; } }
         public string Name;
-        public List<StarSysData> SystemsList;
+        //public List<StarSysData> SystemsList;
         public List<ShipController> ShipControllerList;
         public List<FleetController> FleetConsWeHave;
         List<StarSysController> StarSystemsWeHave;
@@ -27,9 +27,9 @@ namespace Assets.Core
         Rigidbody rb;
         GameObject fleetDropdownGO;
         public GameObject destinationDropdownGO; // UI dropdown
-        public GameObject sysDropdownGO; // UI dropdown
-        public TMP_Dropdown sysDropdown;
-        public List<string> sysDropdownOptions;
+        public TMP_Dropdown destinationDropdown;
+        public string SelectedDestination; // save destination name for FleetUI
+       // public List<string> sysDropdownOptions;
         public GameObject shipDropdownGO;
         public TMP_Dropdown shipDropdown;
         public List<string> shipDropdownOptions;
@@ -70,7 +70,7 @@ namespace Assets.Core
             TheTarget.position = new Vector3(0, 0, 0);
             FleetData.Destination = Target.transform;
 
-            SystemsList = StarSysManager.instance.StarSysDataList;
+            //SystemsList = StarSysManager.instance.StarSysDataList;
             currentState = allStopState;
             currentState.EnterState(this);
         }
@@ -89,7 +89,7 @@ namespace Assets.Core
             }
         }
         public Rigidbody GetRigidbody() { return rb; }
-       // public float CurrentWarpFactor { get { return currentWarpFactor; } set { currentWarpFactor = value; } }
+
         void ButtonInputs()
         {
             //if (Input.GetKey("m"))
@@ -109,22 +109,15 @@ namespace Assets.Core
             currentState = baseState;
             baseState.EnterState(this);
         }
-        void PopulateDestinationDropdown()
+        void GetDestinationDropdown()
         {
-            sysDropdownGO = GameObject.FindGameObjectWithTag("DropdownDestinationsGO");
-            sysDropdown = sysDropdownGO.GetComponent<TMP_Dropdown>();
-            if (sysDropdown == null || sysDropdownOptions == null)
+            destinationDropdown = destinationDropdownGO.GetComponent<TMP_Dropdown>(); // fleetUI destination dropdown
+            if (destinationDropdown == null) 
             {
                 return;
             }
-            sysDropdown.options.Clear();
-            // fill sysDropdown sys sysList
-            foreach (var item in SystemsList)
-            {
-                sysDropdown.options.Add(new TMP_Dropdown.OptionData() { text = item.SysName });
-            }
-            DropdownItemSelected(sysDropdown);
-            sysDropdown.onValueChanged.AddListener(delegate { DropdownItemSelected(sysDropdown); });
+            //DropdownItemSelected(destinationDropdown);
+            //destinationDropdown.onValueChanged.AddListener(delegate { DropdownItemSelected(destinationDropdown); });
 
         }
         void PopulateShipDropdown()
@@ -149,25 +142,8 @@ namespace Assets.Core
             {
                 shipDropdown.options.Add(new TMP_Dropdown.OptionData() { text = item.ShipData.ShipName.Replace("(CLONE)", string.Empty) });
             }
-            //DropdownItemSelected(shipDropdown);// not working, null ref
-            //shipDropdown.onValueChanged.AddListener(delegate { DropdownItemSelected(shipDropdown); });
         }
-        void DropdownItemSelected(TMP_Dropdown dropdown)
-        {
-            int index = dropdown.value;
-            if (dropdown.name == "Dropdown Destination")
-            {
-                dropdownSysText.text = dropdown.options[index].text;
-                var sys = SystemsList[index];
-                FleetData.Destination = sys.SysTransform;
-            }
-            else if (dropdown.name == "Dropdown Ships")
-            {
-                //dropdownShipText.text = dropdown.options[index].text;
-                //var ship = ShipControllerList[index]; // Can we or should we do stuff here??
 
-            }
-        }
         private void OnMouseDown()
         {
             //string goName;
@@ -181,7 +157,7 @@ namespace Assets.Core
                 {
                     FleetUIManager.instance.LoadFleetUI(gameObject);
                     PopulateShipDropdown();
-                    PopulateDestinationDropdown();
+                    //GetDestinationDropdown();
                 }
             }
 
