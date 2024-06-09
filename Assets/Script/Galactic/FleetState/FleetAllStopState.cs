@@ -18,7 +18,7 @@ public class FleetAllStopState : FleetBaseState
 
     public override void EnterState(FleetController fleetController)
     {
-        fleetController.FleetData.CurrentWarpFactor = 0;
+
     }
     public override void ExitState(FleetController fleetController)
     {
@@ -26,7 +26,10 @@ public class FleetAllStopState : FleetBaseState
     }
     public override void UpdateState(FleetController fleetController)
     {
-
+        if (fleetController.FleetData.CurrentWarpFactor > 0 && fleetController.FleetData.Destination != null)
+        {
+            fleetController.SwitchState(fleetController.warpState);
+        }
     }
     public override void OnCollisionEnter(FleetController fleetController, Collision collision)
     {

@@ -17,7 +17,6 @@ namespace Assets.Core
         private FleetData fleetData;
         public FleetData FleetData { get { return fleetData; } set { fleetData = value; } }
         public string Name;
-        //public List<StarSysData> SystemsList;
         public List<ShipController> ShipControllerList;
         public List<FleetController> FleetConsWeHave;
         List<StarSysController> StarSystemsWeHave;
@@ -25,11 +24,11 @@ namespace Assets.Core
         private bool deltaShipList = false; //??? do I need this or the shipdropdown listener
 
         Rigidbody rb;
+        public DropLineMovable dropLine;
         GameObject fleetDropdownGO;
         public GameObject destinationDropdownGO; // UI dropdown
         public TMP_Dropdown destinationDropdown;
         public string SelectedDestination; // save destination name for FleetUI
-       // public List<string> sysDropdownOptions;
         public GameObject shipDropdownGO;
         public TMP_Dropdown shipDropdown;
         public List<string> shipDropdownOptions;
@@ -70,42 +69,62 @@ namespace Assets.Core
             TheTarget.position = new Vector3(0, 0, 0);
             FleetData.Destination = Target.transform;
 
-            //SystemsList = StarSysManager.instance.StarSysDataList;
             currentState = allStopState;
             currentState.EnterState(this);
         }
         void Update()
         {
-            currentState.UpdateState(this);
-            //ButtonInputs();
+            currentState.UpdateState(this); // not working
         }
         private void FixedUpdate()
         {
+            //currentState.UpdateState(this);
             if (FleetData.Destination != null && FleetData.CurrentWarpFactor > 0f)
             {
-                Vector3 nextPosition = Vector3.MoveTowards(rb.position, FleetData.Destination.position, 
+                currentState = warpState;
+                Vector3 nextPosition = Vector3.MoveTowards(rb.position, FleetData.Destination.position,
                     FleetData.CurrentWarpFactor * FleetData.fudgeFactor * Time.fixedDeltaTime);
                 rb.MovePosition(nextPosition);
+                Vector3 galaxyPlanePoint = new Vector3(rb.position.x, -60f, rb.position.z);
+                Vector3[] points = { rb.position, galaxyPlanePoint };
+                dropLine.SetUpLine(points);
             }
         }
+
         public Rigidbody GetRigidbody() { return rb; }
 
-        void ButtonInputs()
-        {
-            //if (Input.GetKey("m"))
-            //{
-            //    this.SwitchState(warpState);
-            //}
-        }
-            private void OnCollisionEnter(Collision collision)
+        private void OnCollisionEnter(Collision collision)
         {
             currentState.OnCollisionEnter(this, collision);
-
+            collision.gameObject.SetActive(true);
+            var controllerTypeFleet = collision.gameObject.GetComponent<FleetController>();
+            if (controllerTypeFleet != null)
+            {
+                // is it our fleet or not? Diplomacy or manage fleets or keep going?
+            }
+            var controllerTypeStarSys = collision.gameObject.GetComponent<StarSysController>();
+            if (controllerTypeStarSys != null) 
+            {
+                // if not destination no change, keep going
+                // if destination change to InSystem state, current warp factor = 0, destination = null
+                if (controllerTypeStarSys.StarSysData.SysTransform == this.FleetData.Destination)
+                {
+                    this.FleetData.Destination = null;
+                    this.FleetData.CurrentWarpFactor = 0;
+                    currentState = inSystemState;
+                }
+            }
+            var controllerTypePlayerTarget = collision.gameObject.GetComponent<PlayerDefinedTargetController>();
+            if (controllerTypePlayerTarget != null)
+            {
+                // current warp factor = 0, destination = null, ?build something here? or patrol here?
+            }
         }
   
 
         public void SwitchState(FleetBaseState baseState)
         {
+            currentState.ExitState(this);
             currentState = baseState;
             baseState.EnterState(this);
         }
@@ -157,7 +176,8 @@ namespace Assets.Core
                 {
                     FleetUIManager.instance.LoadFleetUI(gameObject);
                     PopulateShipDropdown();
-                    //GetDestinationDropdown();
+                    //allStopState = new FleetAllStopState(hitObject);
+                    //warpState = new FleetWarpState(hitObject, this.FleetData.Destination, rb, this.FleetData.CurrentWarpFactor);
                 }
             }
 

@@ -93,7 +93,7 @@ namespace Assets.Core
                 fleetData.Insignia = fleetSO.Insignia;
                 fleetData.CivOwnerEnum = fleetSO.CivOwnerEnum;
                 fleetData.Position = position;
-                fleetData.CurrentWarpFactor = fleetSO.CurrentWarpFactor;
+                fleetData.CurrentWarpFactor = 0f;
                 fleetData.CivLongName = civSO.CivLongName;
                 fleetData.CivShortName = civSO.CivShortName;
                 fleetData.Name = "998";
@@ -163,7 +163,7 @@ namespace Assets.Core
                     }
                 }
                 DropLineMovable ourLineScript = fleetNewGameOb.GetComponentInChildren<DropLineMovable>();
-
+                
                 ourLineScript.GetLineRenderer();
                 ourLineScript.transform.SetParent(fleetNewGameOb.transform, false);
                 Vector3 galaxyPlanePoint = new Vector3(fleetNewGameOb.transform.position.x,
@@ -171,7 +171,7 @@ namespace Assets.Core
                 Vector3[] points = { fleetNewGameOb.transform.position, galaxyPlanePoint };
                 ourLineScript.SetUpLine(points);
                 fleetController.FleetData.yAboveGalaxyImage = galaxyCenter.transform.position.y - galaxyPlanePoint.y;
-
+                fleetController.dropLine = ourLineScript;
                 fleetNewGameOb.SetActive(true);
                 FleetGOList.Add(fleetNewGameOb);
                 StarSysManager.instance.GetYourFirstStarSystem(fleetData.CivOwnerEnum);

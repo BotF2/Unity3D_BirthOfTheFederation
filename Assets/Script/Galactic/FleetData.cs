@@ -13,8 +13,8 @@ namespace Assets.Core
         public Vector3 Position;
         public List<ShipController> ShipsList;
         private float maxWarpFactor;
-        public float CurrentWarpFactor;
-        public float fudgeFactor = 0.09f;
+        public float CurrentWarpFactor = 0f;
+        public float fudgeFactor = 1f;
         public Transform Destination;
         public string CivLongName;
         public string CivShortName;

@@ -7,16 +7,18 @@ public class FleetWarpState : FleetBaseState
 {
     public float currentWarpFactor;
     private readonly GameObject _gameObject;
-    //private readonly Vector3 _destinationPosition;
     private Rigidbody _rb;
     private Transform _destination;
+    private float _currentWarpFactor;
     private float maxWarpFactor;
 
 
-    public FleetWarpState(GameObject fleetGO, Transform destinationTransfrom)
+    public FleetWarpState(GameObject fleetGO) //, Transform destinationTransfrom, Rigidbody rb, float warpFactor)
     {
         _gameObject = fleetGO;
-        _destination = destinationTransfrom;
+        //_destination = destinationTransfrom;
+        //_rb = rb;
+        //_currentWarpFactor = warpFactor;
     }
 
     public FleetWarpState()
@@ -29,31 +31,34 @@ public class FleetWarpState : FleetBaseState
     }
     public override void EnterState(FleetController fleetController)
     {
-        fleetController.UpdateWarpFactor(0f);
-        //_destination = fleetController.Destination;
+        //_destination = fleetController.FleetData.Destination;
         //_rb = fleetController.GetRigidbody();
+        //maxWarpFactor = fleetController.FleetData.GetMaxWarpFactor();
     }
     public override void ExitState(FleetController fleetController)
     {
         _destination = null;
         _rb = null;
+        maxWarpFactor = 9.8f;
     }
 
     public override void UpdateState(FleetController fleetController)
     {
-        
-        //if (_destination != null)
-        //{
-        //    Vector3 nextPosition = Vector3.MoveTowards(_rb.position, _destination.position, currentWarpFactor * Time.fixedDeltaTime);
-        //    _rb.MovePosition(nextPosition);
-        //}
-        //_gameObject.transform.position = 
-        //    Vector3.MoveTowards(_gameObject.transform.position, _destinationPosition, currentWarpFactor);
-        //if (Vector3.Distance(_gameObject.transform.position, _destinationPosition) > 0.1f ) // ToDo: hit collider of...
-        //{
-        //    if(_gameObject.GetComponent<FleetController>() != null)
-        //        _gameObject.GetComponent<FleetController>().SwitchState(new FleetAllStopState(_gameObject));
-        //}
+        if (_rb != null)
+        {
+            fleetController.SwitchState(fleetController.warpState);
+            Vector3 nextPosition = Vector3.MoveTowards(_rb.position, _destination.position,
+                _currentWarpFactor * fleetController.FleetData.fudgeFactor * Time.fixedDeltaTime);
+            _rb.MovePosition(nextPosition);
+            Vector3 galaxyPlanePoint = new Vector3(_rb.position.x, -60f, _rb.position.z);
+            Vector3[] points = { _rb.position, galaxyPlanePoint };
+            fleetController.dropLine.SetUpLine(points);
+        }
+
+        if (fleetController.FleetData.CurrentWarpFactor == 0 || fleetController.FleetData.Destination == null)
+        {
+            fleetController.SwitchState(fleetController.allStopState);
+        }
     }
     public override void OnCollisionEnter(FleetController fleetController, Collision collision)
     {

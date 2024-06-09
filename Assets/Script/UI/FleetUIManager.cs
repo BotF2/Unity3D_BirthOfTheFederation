@@ -28,8 +28,6 @@ public class FleetUIManager : MonoBehaviour
     private List<ShipData> shipList;
     private bool deltaShipList = false;
 
-    [SerializeField]
-    //private GameObject DestinationDropdownGO;
     public GameObject ShipDropdownGO;
     [SerializeField]
     private TMP_Dropdown destinationDropdown;
@@ -67,19 +65,24 @@ public class FleetUIManager : MonoBehaviour
     }
 
     public void WarpSliderChange(float value)
-    {
+     {
         float localValue = value * maxSliderValue;
         warpSliderText.text = localValue.ToString("0.0");
-        controller.FleetData.CurrentWarpFactor = value;
+        controller.FleetData.CurrentWarpFactor = localValue;
+    }
+    public void ResetWarpSlider(float value)
+    {
+        warpSlider.value = value/maxSliderValue;
+        warpSliderText.text = value.ToString("0.0");
     }
     public void LoadFleetUI(GameObject go) 
     {
+        
         fleetUIRoot.SetActive(true);
         destinationDropdown.value = 0;
         FleetName.text = go.name;
         controller = go.GetComponent<FleetController>();
-        
-        //DestinationDropdown.options.Clear();
+        ResetWarpSlider(controller.FleetData.CurrentWarpFactor);
         destinationDropdown = GameManager.Instance.DestinationDropdown;
         if (destinationDropdown.options[0].text != "Select Destination")
         {
@@ -103,10 +106,8 @@ public class FleetUIManager : MonoBehaviour
 
         DropdownItemSelected(destinationDropdown);
         destinationDropdown.onValueChanged.AddListener(delegate { DropdownItemSelected(destinationDropdown); });
-
         controller.shipDropdownGO = ShipDropdownGO;
         controller.shipDropdown = ShipDropdownGO.GetComponent<TMP_Dropdown>();
-        //controller.shipDropdown 
         NamesToShipDropdown(controller.FleetData.ShipsList);
     }
     public void UnLoadFleetUI()
