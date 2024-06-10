@@ -30,7 +30,7 @@ public class PlayerDefinedTargetManager : MonoBehaviour
         List<PlayerDefinedTargetData> list = new List<PlayerDefinedTargetData>() { data };
         //PlayerTargetDictionary = new Dictionary<CivEnum, List<PlayerDefinedTargetData>>() { { CivEnum.ZZUNINHABITED9, list } };
     }
-    public void InstantiateFleet(PlayerDefinedTargetData playerDefinedTargetData, Vector3 position)
+    public void InstantiatePlayerTarget(PlayerDefinedTargetData playerDefinedTargetData, Vector3 position)
     {
 
         GameObject playerDefinedTargetGO = (GameObject)Instantiate(playerDefinedTargetPrefab, new Vector3(0, 0, 0),
