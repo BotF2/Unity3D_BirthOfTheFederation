@@ -130,6 +130,25 @@ namespace Assets.Core
             return result;
 
         }
+        public CivData GetCivDataByCivEnum(CivEnum civEnum)
+        {
+
+            CivData result = null;
+
+
+            foreach (var civ in civDataInGameList)
+            {
+
+                if (civ.CivEnum.Equals(civEnum))
+                {
+                    result = civ;
+                }
+
+
+            }
+            return result;
+
+        }
         public void OnNewGameButtonClicked(int gameSize, int gameTechLevel)
         {
             CreateNewGameBySelections(gameSize, gameTechLevel);

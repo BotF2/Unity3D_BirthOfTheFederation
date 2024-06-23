@@ -44,20 +44,10 @@ public class FleetWarpState : FleetBaseState
 
     public override void UpdateState(FleetController fleetController)
     {
-        if (_rb != null)
-        {
-            fleetController.SwitchState(fleetController.warpState);
-            Vector3 nextPosition = Vector3.MoveTowards(_rb.position, _destination.position,
-                _currentWarpFactor * fleetController.FleetData.fudgeFactor * Time.fixedDeltaTime);
-            _rb.MovePosition(nextPosition);
-            Vector3 galaxyPlanePoint = new Vector3(_rb.position.x, -60f, _rb.position.z);
-            Vector3[] points = { _rb.position, galaxyPlanePoint };
-            fleetController.dropLine.SetUpLine(points);
-        }
 
         if (fleetController.FleetData.CurrentWarpFactor == 0 || fleetController.FleetData.Destination == null)
         {
-            fleetController.SwitchState(fleetController.allStopState);
+            fleetController.SwitchState(fleetController.stationaryState);
         }
     }
     public override void OnCollisionEnter(FleetController fleetController, Collision collision)
@@ -65,8 +55,4 @@ public class FleetWarpState : FleetBaseState
 
     }
 
-    //public override void OnTriggerEnter(FleetController fleetController)
-    //{
-    //    throw new System.NotImplementedException();
-    //}
 }

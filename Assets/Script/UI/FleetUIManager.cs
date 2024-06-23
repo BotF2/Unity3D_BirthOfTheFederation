@@ -77,11 +77,12 @@ public class FleetUIManager : MonoBehaviour
     }
     public void LoadFleetUI(GameObject go) 
     {
-        
+        StarSysUIManager.instance.UnLoadStarSysUI();
         fleetUIRoot.SetActive(true);
         destinationDropdown.value = 0;
-        FleetName.text = go.name;
+        //FleetName.text = go.name;
         controller = go.GetComponent<FleetController>();
+        FleetName.text = controller.FleetData.Name;
         ResetWarpSlider(controller.FleetData.CurrentWarpFactor);
         destinationDropdown = GameManager.Instance.DestinationDropdown;
         if (destinationDropdown.options[0].text != "Select Destination")

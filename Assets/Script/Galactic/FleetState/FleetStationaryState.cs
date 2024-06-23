@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using Assets.Core;
 
-public class FleetAllStopState : FleetBaseState
+public class FleetStationaryState : FleetBaseState
 {
     private readonly GameObject _gameObject;
 
-    public FleetAllStopState(GameObject fleetGO)
+    public FleetStationaryState(GameObject fleetGO)
     {
         _gameObject = fleetGO;
     }
 
-    public FleetAllStopState()
+    public FleetStationaryState()
     {
     }
 
@@ -36,8 +36,4 @@ public class FleetAllStopState : FleetBaseState
 
     }
 
-    //public override void OnTriggerEnter(FleetController fleetController)
-    //{
-    //    throw new System.NotImplementedException();
-    //}
 }

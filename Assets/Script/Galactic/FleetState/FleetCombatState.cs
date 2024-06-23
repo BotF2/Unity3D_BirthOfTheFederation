@@ -32,8 +32,4 @@ public class FleetCombatState : FleetBaseState
 
     }
 
-    //public override void OnTriggerEnter(FleetController fleetController)
-    //{
-    //    throw new System.NotImplementedException();
-    //}
 }

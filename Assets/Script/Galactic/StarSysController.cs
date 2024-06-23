@@ -28,5 +28,23 @@ public class StarSysController : MonoBehaviour
     {
         starSysData.CurrentOwner = newOwner;
     }
+    private void OnMouseDown()
+    {
+        //string goName;
+        Ray ray = galaxyEventCamera.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit))
+        {
+            GameObject hitObject = hit.collider.gameObject;
+            //goName = hitObject.name;
+            if (hitObject == gameObject)
+            {
+                StarSysUIManager.instance.LoadStarSysUI(gameObject);
+                //PopulateShipDropdown();
+                //stationaryState = new FleetStationaryState(hitObject);
+                //warpState = new FleetWarpState(hitObject, this.FleetData.Destination, rb, this.FleetData.CurrentWarpFactor);
+            }
+        }
 
+    }
 }

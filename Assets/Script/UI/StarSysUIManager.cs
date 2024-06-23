@@ -33,8 +33,8 @@ public class StarSysUIManager : MonoBehaviour
     //private TMP_Dropdown destinationDropdown;
     //private TMP_Dropdown shipDropdown;
     //public Transform Destination;
-    //[SerializeField]
-    //private TMP_Text FleetName;
+    [SerializeField]
+    private TMP_Text CivName;
     //[SerializeField]
     //private TMP_Text dropdownDestinationText;
     //[SerializeField]
@@ -58,8 +58,8 @@ public class StarSysUIManager : MonoBehaviour
     }
     private void Start()
     {
-        //fleetUIRoot.SetActive(false);
-        //galaxyEventCamera = GameObject.FindGameObjectWithTag("Galactic Camera").GetComponent<Camera>() as Camera;
+        starSysUIRoot.SetActive(false);
+        galaxyEventCamera = GameObject.FindGameObjectWithTag("Galactic Camera").GetComponent<Camera>() as Camera;
         //parentCanvas.worldCamera = galaxyEventCamera;
         //destinationDropdown.value = 0;
     }
@@ -77,42 +77,16 @@ public class StarSysUIManager : MonoBehaviour
     }
     public void LoadStarSysUI(GameObject go) 
     {
-        
-        //fleetUIRoot.SetActive(true);
-        //destinationDropdown.value = 0;
-        //FleetName.text = go.name;
-        //controller = go.GetComponent<FleetController>();
-        //ResetWarpSlider(controller.FleetData.CurrentWarpFactor);
-        //destinationDropdown = GameManager.Instance.DestinationDropdown;
-        //if (destinationDropdown.options[0].text != "Select Destination")
-        //{
-        //    destinationDropdown.options.Insert(0, new TMP_Dropdown.OptionData("Select Destination"));
-        //    destinationDropdown.value = 0;
-        //    destinationDropdown.RefreshShownValue();
-        //}
-        //var listing = destinationDropdown.options;
-        //int index =0;
-        //if (controller.SelectedDestination != "")
-        //{
-        //    foreach (var option in listing)
-        //    {
-        //        if (option.text == controller.SelectedDestination)
-        //        {
-        //            index = destinationDropdown.options.IndexOf(option);
-        //        }
-        //    }
-        //}
-        //destinationDropdown.value = index;
-
-        //DropdownItemSelected(destinationDropdown);
-        //destinationDropdown.onValueChanged.AddListener(delegate { DropdownItemSelected(destinationDropdown); });
-        //controller.shipDropdownGO = ShipDropdownGO;
-        //controller.shipDropdown = ShipDropdownGO.GetComponent<TMP_Dropdown>();
-        //NamesToShipDropdown(controller.FleetData.ShipsList);
+        FleetUIManager.instance.UnLoadFleetUI();
+        starSysUIRoot.SetActive(true);
+        controller = go.GetComponent<StarSysController>();
+        var civEnum = controller.StarSysData.CurrentOwner;
+        var civData = CivManager.instance.GetCivDataByCivEnum(civEnum);
+        CivName.text = civData.CivLongName;
     }
     public void UnLoadStarSysUI()
     {
-        //fleetUIRoot.SetActive(false);
+        starSysUIRoot.SetActive(false);
     }
     void DropdownItemSelected(TMP_Dropdown dropdown)
     {

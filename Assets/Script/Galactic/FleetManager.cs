@@ -146,10 +146,10 @@ namespace Assets.Core
                 fleetNewGameOb.transform.SetParent(galaxyCenter.transform, true);
                 fleetNewGameOb.transform.localScale = new Vector3(1, 1, 1);
 
-                fleetNewGameOb.name = fleetData.CivOwnerEnum.ToString() + " Fleet " + fleetData.Name; // game object FleetName
+                fleetNewGameOb.name = fleetData.CivShortName.ToString() + " Fleet " + fleetData.Name; // name game object
                 TextMeshProUGUI TheText = fleetNewGameOb.GetComponentInChildren<TextMeshProUGUI>();
 
-                TheText.text = fleetData.CivShortName + " - Fleet " + fleetData.Name;
+                TheText.text = fleetNewGameOb.name;
                 fleetData.Name = TheText.text;
                 var Renderers = fleetNewGameOb.GetComponentsInChildren<SpriteRenderer>();
                 foreach (var oneRenderer in Renderers)

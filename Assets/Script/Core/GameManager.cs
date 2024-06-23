@@ -423,12 +423,14 @@ namespace Assets.Core
             foreach (var sysData in starSysDataList)
             {
                 DestinationDropdown.options.Add(new TMP_Dropdown.OptionData() { text = sysData.SysName });
-                DestinationDictionary.Add(sysData.SysName, sysData.SysTransform);
+                if(!DestinationDictionary.ContainsKey(sysData.SysName))
+                        DestinationDictionary.Add(sysData.SysName, sysData.SysTransform);
             }
         }
         public void LoadGalacticDestinations(FleetData fleetData, Transform fleetTransform)
         {
             DestinationDropdown.options.Add(new TMP_Dropdown.OptionData() { text = fleetData.Name });
+           // if (!DestinationDictionary.ContainsKey(fleetData.Name))
             DestinationDictionary.Add(fleetData.Name, fleetTransform); 
         }
         public void RemoveFleetFromGalaxyDestiations(FleetData fleetData, Transform fleetTransform)

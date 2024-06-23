@@ -48,7 +48,7 @@ namespace Assets.Core
 
         protected FleetBaseState currentState;
         public FleetInSystemState inSystemState = new FleetInSystemState();
-        public FleetAllStopState allStopState = new FleetAllStopState();
+        public FleetStationaryState stationaryState = new FleetStationaryState();
         public FleetWarpState warpState = new FleetWarpState();
         public FleetCombatState combatState = new FleetCombatState();
         public FleetDiplomacyState diplomacyState = new FleetDiplomacyState();
@@ -69,7 +69,7 @@ namespace Assets.Core
             TheTarget.position = new Vector3(0, 0, 0);
             FleetData.Destination = Target.transform;
 
-            currentState = allStopState;
+            currentState = stationaryState;
             currentState.EnterState(this);
         }
         void Update()
@@ -176,7 +176,7 @@ namespace Assets.Core
                 {
                     FleetUIManager.instance.LoadFleetUI(gameObject);
                     PopulateShipDropdown();
-                    //allStopState = new FleetAllStopState(hitObject);
+                    //stationaryState = new FleetStationaryState(hitObject);
                     //warpState = new FleetWarpState(hitObject, this.FleetData.Destination, rb, this.FleetData.CurrentWarpFactor);
                 }
             }
