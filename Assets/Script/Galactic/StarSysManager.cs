@@ -19,7 +19,6 @@ namespace Assets.Core
         private List<StarSysSO> starSysSOList; // get StarSysSO for civ by int
         [SerializeField]
         private GameObject sysPrefab;
-        public List<StarSysData> StarSysDataList;
         public List<StarSysController> StarSysControllerList;
         private List<StarSysData> starSysDatas = new List<StarSysData>(); // { new StarSysData("Not Selected") };
         public GameObject galaxyImage;
@@ -82,11 +81,8 @@ namespace Assets.Core
                 if (civSO.HasWarp)
                     FleetManager.instance.FleetDataFromSO(civSO, SysData.GetPosition()); 
             }
-            StarSysDataList = starSysDatas;
-            StarSysDataList.Remove(StarSysDataList[0]);
-            GameManager.Instance.LoadGalacticDestinations(StarSysDataList);
-
-
+            starSysDatas.Remove(starSysDatas[0]);
+            GameManager.Instance.LoadGalacticDestinations(starSysDatas);
         }
         public void InstantiateSystem(StarSysData sysData, CivSO civSO)
         { 
@@ -173,15 +169,13 @@ namespace Assets.Core
             StarSysData result = null;
 
 
-            foreach (var sysData in StarSysDataList)
+            foreach (var sysCon in StarSysControllerList)
             {
 
-                if (sysData.GetSysName().Equals(name))
+                if (sysCon.StarSysData.GetSysName().Equals(name))
                 {
-                    result = sysData;
+                    result = sysCon.StarSysData;
                 }
-
-
             }
             return result;
 
