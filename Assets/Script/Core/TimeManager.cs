@@ -6,7 +6,7 @@ using Assets.Core;
 public class TimeManager : MonoBehaviour
 {
     public static TimeManager instance;
-    public event Action<TrekEventSO> OnSpecialEventReached; // EventListener.cs
+    public event Action<TrekEventSO> OnSpecialEventReached; // EventListener.cs  
     public event Action OnStardateChanged;
     //private float minuteToRealTime = 2f;
     private float timer;
