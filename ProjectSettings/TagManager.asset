@@ -32,6 +32,7 @@ TagManager:
   - FED_DESTROYER_II(CLONE)
   - ROM_SCOUT_III(CLONE)
   - PreFabGalaxyDestinationDropdown
+  - DestroyTemp
   layers:
   - Default
   - TransparentFX

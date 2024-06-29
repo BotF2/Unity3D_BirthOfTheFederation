@@ -13,7 +13,7 @@ public class GameObjectMenuDragTarget : Editor
         FleetController objectMover = (FleetController)target;
 
         // Display a field to drag a GameObject reference
-        objectMover.FleetData.Destination = (Transform)EditorGUILayout.ObjectField("Target Object", objectMover.FleetData.Destination, typeof(Transform), true);
+        objectMover.FleetData.Destination = (GameObject)EditorGUILayout.ObjectField("Target Object", objectMover.FleetData.Destination, typeof(GameObject), true);
     }
 
 

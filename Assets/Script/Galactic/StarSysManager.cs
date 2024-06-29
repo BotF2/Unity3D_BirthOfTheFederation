@@ -94,7 +94,7 @@ namespace Assets.Core
             starSystemNewGameOb.transform.localScale = new Vector3(1, 1, 1);
             starSystemNewGameOb.name = sysData.GetSysName();
             //starSystemNewGameOb.
-            sysData.SysTransform = starSystemNewGameOb.transform;
+            sysData.SysGameObject = starSystemNewGameOb;
             var ImageRenderers = starSystemNewGameOb.GetComponentsInChildren<SpriteRenderer>();
 
             TextMeshProUGUI[] TheText = starSystemNewGameOb.GetComponentsInChildren<TextMeshProUGUI>(); 

@@ -82,6 +82,7 @@ namespace Assets.Core
                 Destroy(fleetObjects[0]);
                 PlaceHolderIsDestroyed = true;
             }
+
         }
         public void FleetDataFromSO(CivSO civSO, Vector3 position) // first fleetGO
         {
@@ -176,7 +177,7 @@ namespace Assets.Core
                 FleetGOList.Add(fleetNewGameOb);
                 StarSysManager.instance.GetYourFirstStarSystem(fleetData.CivOwnerEnum);
 
-                GameManager.Instance.LoadGalacticDestinations(fleetData, fleetNewGameOb.transform);
+                GameManager.Instance.LoadGalacticDestinations(fleetData, fleetNewGameOb);
             }
             else if(fleetData.CivOwnerEnum == CivEnum.ZZUNINHABITED10)
             {

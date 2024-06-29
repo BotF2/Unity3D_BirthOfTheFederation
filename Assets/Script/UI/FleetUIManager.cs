@@ -32,7 +32,7 @@ public class FleetUIManager : MonoBehaviour
     [SerializeField]
     private TMP_Dropdown destinationDropdown;
     private TMP_Dropdown shipDropdown;
-    public Transform Destination;
+    public GameObject Destination;
     [SerializeField]
     private TMP_Text FleetName;
     [SerializeField]
@@ -79,8 +79,9 @@ public class FleetUIManager : MonoBehaviour
     {
         StarSysUIManager.instance.UnLoadStarSysUI();
         fleetUIRoot.SetActive(true);
+        // destination dropdown
         destinationDropdown.value = 0;
-        //FleetName.text = go.name;
+
         controller = go.GetComponent<FleetController>();
         FleetName.text = controller.FleetData.Name;
         ResetWarpSlider(controller.FleetData.CurrentWarpFactor);
@@ -107,6 +108,7 @@ public class FleetUIManager : MonoBehaviour
 
         DropdownItemSelected(destinationDropdown);
         destinationDropdown.onValueChanged.AddListener(delegate { DropdownItemSelected(destinationDropdown); });
+        //ship dropdown
         controller.shipDropdownGO = ShipDropdownGO;
         controller.shipDropdown = ShipDropdownGO.GetComponent<TMP_Dropdown>();
         NamesToShipDropdown(controller.FleetData.ShipsList);

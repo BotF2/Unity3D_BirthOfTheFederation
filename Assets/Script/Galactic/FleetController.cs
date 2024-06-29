@@ -10,7 +10,7 @@ using UnityEngine.UIElements;
 
 namespace Assets.Core
 {
-
+    public enum FleetState { FleetCombat, FleetDipolmacy, FleetInSystem, FleetStationay, FleetWarp}
     public class FleetController : MonoBehaviour
     {
         //Fields
@@ -18,26 +18,26 @@ namespace Assets.Core
         public FleetData FleetData { get { return fleetData; } set { fleetData = value; } }
         public string Name;
         public List<ShipController> ShipControllerList;
-        public List<FleetController> FleetConsWeHave;
+        public List<FleetController> FleetContollersWeHave;
         List<StarSysController> StarSystemsWeHave;
         List<PlayerDefinedTargetController> PlayerDefinedTargetControllersWeHave;
         private bool deltaShipList = false; //??? do I need this or the shipdropdown listener
-
-        Rigidbody rb;
+        private FleetState fleetState;
+        public bool isArrived =false;
+        [SerializeField]
+        private float maxWarpFactor = 9.8f;
+        private float fudgeFactor = 1f;
+        private float dropOutOfWarpDistance = 0.5f; // stop, but should be destination collider?
+        private Rigidbody rb;
         public DropLineMovable dropLine;
         GameObject fleetDropdownGO;
         public GameObject destinationDropdownGO; // UI dropdown
         public TMP_Dropdown destinationDropdown;
-        public string SelectedDestination; // save destination name for FleetUI
+        public string SelectedDestination; // save destination name for FleetUI, start null
         public GameObject shipDropdownGO;
         public TMP_Dropdown shipDropdown;
         public List<string> shipDropdownOptions;
 
-        private LineRenderer lineRenderer;
-        [SerializeField]
-        private TMP_Text dropdownSysText;
-        [SerializeField]
-        private TMP_Text dropdownShipText;
         [SerializeField]
         private TMP_Text ourDestination;
         private Camera galaxyEventCamera;
@@ -46,17 +46,10 @@ namespace Assets.Core
         [SerializeField]
         private Canvas CanvasToolTip;
 
-        protected FleetBaseState currentState;
-        public FleetInSystemState inSystemState = new FleetInSystemState();
-        public FleetStationaryState stationaryState = new FleetStationaryState();
-        public FleetWarpState warpState = new FleetWarpState();
-        public FleetCombatState combatState = new FleetCombatState();
-        public FleetDiplomacyState diplomacyState = new FleetDiplomacyState();
-        public FleetManagingState managingState = new FleetManagingState();
-
         private void Start()
         {
             rb = GetComponent<Rigidbody>();
+            rb.isKinematic = true;
             galaxyEventCamera = GameObject.FindGameObjectWithTag("Galactic Camera").GetComponent<Camera>();
             var CanvasGO = GameObject.Find("CanvasFleetUI");
             FleetUICanvas = CanvasGO.GetComponent<Canvas>();
@@ -64,30 +57,25 @@ namespace Assets.Core
             CanvasToolTip.worldCamera = galaxyEventCamera;
             FleetData.CurrentWarpFactor = 0f;
             Name = FleetData.CivShortName + " Fleet " + FleetData.Name;
-            GameObject Target = new GameObject("MyGameObject");
+            GameObject Target = new GameObject("FirstDestination4FleetController");
+            Target.tag = "DestroyTemp";
             Transform TheTarget = Target.transform;
             TheTarget.position = new Vector3(0, 0, 0);
-            FleetData.Destination = Target.transform;
+            FleetData.Destination = Target;
 
-            currentState = stationaryState;
-            currentState.EnterState(this);
+            fleetState = FleetState.FleetStationay;
         }
         void Update()
         {
-            currentState.UpdateState(this); // not working
+
         }
         private void FixedUpdate()
         {
-            //currentState.UpdateState(this);
+             
             if (FleetData.Destination != null && FleetData.CurrentWarpFactor > 0f)
             {
-                currentState = warpState;
-                Vector3 nextPosition = Vector3.MoveTowards(rb.position, FleetData.Destination.position,
-                    FleetData.CurrentWarpFactor * FleetData.fudgeFactor * Time.fixedDeltaTime);
-                rb.MovePosition(nextPosition);
-                Vector3 galaxyPlanePoint = new Vector3(rb.position.x, -60f, rb.position.z);
-                Vector3[] points = { rb.position, galaxyPlanePoint };
-                dropLine.SetUpLine(points);
+                fleetState = FleetState.FleetWarp;
+                MoveToDesitinationGO();
             }
         }
 
@@ -95,7 +83,7 @@ namespace Assets.Core
 
         private void OnCollisionEnter(Collision collision)
         {
-            currentState.OnCollisionEnter(this, collision);
+            //currentState.OnCollisionEnter(this, collision);
             collision.gameObject.SetActive(true);
             var controllerTypeFleet = collision.gameObject.GetComponent<FleetController>();
             if (controllerTypeFleet != null)
@@ -107,11 +95,11 @@ namespace Assets.Core
             {
                 // if not destination no change, keep going
                 // if destination change to InSystem state, current warp factor = 0, destination = null
-                if (controllerTypeStarSys.StarSysData.SysTransform == this.FleetData.Destination)
+                if (controllerTypeStarSys.StarSysData.SysGameObject == this.FleetData.Destination)
                 {
                     this.FleetData.Destination = null;
                     this.FleetData.CurrentWarpFactor = 0;
-                    currentState = inSystemState;
+                    fleetState = FleetState.FleetInSystem;
                 }
             }
             var controllerTypePlayerTarget = collision.gameObject.GetComponent<PlayerDefinedTargetController>();
@@ -121,24 +109,6 @@ namespace Assets.Core
             }
         }
   
-
-        public void SwitchState(FleetBaseState baseState)
-        {
-            currentState.ExitState(this);
-            currentState = baseState;
-            baseState.EnterState(this);
-        }
-        void GetDestinationDropdown()
-        {
-            destinationDropdown = destinationDropdownGO.GetComponent<TMP_Dropdown>(); // fleetUI destination dropdown
-            if (destinationDropdown == null) 
-            {
-                return;
-            }
-            //DropdownItemSelected(destinationDropdown);
-            //destinationDropdown.onValueChanged.AddListener(delegate { DropdownItemSelected(destinationDropdown); });
-
-        }
         void PopulateShipDropdown()
         {
             shipDropdownGO = GameObject.FindGameObjectWithTag("DropdownShipsGO");
@@ -176,8 +146,6 @@ namespace Assets.Core
                 {
                     FleetUIManager.instance.LoadFleetUI(gameObject);
                     PopulateShipDropdown();
-                    //stationaryState = new FleetStationaryState(hitObject);
-                    //warpState = new FleetWarpState(hitObject, this.FleetData.Destination, rb, this.FleetData.CurrentWarpFactor);
                 }
             }
 
@@ -224,9 +192,47 @@ namespace Assets.Core
             //2) ?build a deep space starbase vs a partol point for travel
             
         }
+        public void SetWarpSpeed(float newSpeed)
+        {
+            if (newSpeed <= maxWarpFactor)
+            {
+                FleetData.CurrentWarpFactor = newSpeed;
+            }
+        }
+        public void SetDestination(GameObject newDestination)
+        {
+            this.FleetData.Destination = newDestination;
+        }
         void MoveToDesitinationGO()
         {
+            Vector3 direction = (this.FleetData.Destination.transform.position - transform.position).normalized;
+            float distance = Vector3.Distance(transform.position, this.FleetData.Destination.transform.position);
 
+            if (distance > dropOutOfWarpDistance)
+            {
+                Vector3 nextPosition = Vector3.MoveTowards(rb.position, FleetData.Destination.transform.position,
+                    FleetData.CurrentWarpFactor * fudgeFactor * Time.fixedDeltaTime);
+                rb.MovePosition(nextPosition); // kinematic with physics movement
+                //rb.velocity = direction * FleetData.CurrentWarpFactor * fudgeFactor;
+            }
+            else
+            {
+                rb.velocity = Vector3.zero;
+                OnArrivedAtDestination();
+            }
+            Vector3 galaxyPlanePoint = new Vector3(rb.position.x, -60f, rb.position.z);
+            Vector3[] points = { rb.position, galaxyPlanePoint };
+            dropLine.SetUpLine(points);
+        }
+        void OnArrivedAtDestination()
+        {
+            if (isArrived == false)
+            {
+                isArrived = true;
+                // Logic to handle what happens when the fleet arrives at the destination
+                Debug.Log("Arrived at destination: " + this.FleetData.Destination.name);
+                // Example: Stop the fleet, update UI, trigger events, etc.
+            }
         }
         void AddToShipList(ShipController shipController)
         {
@@ -240,20 +246,20 @@ namespace Assets.Core
             deltaShipList = true;
         }
 
-        public void UpdateWarpFactor(float delta)
-        {
-            FleetData.CurrentWarpFactor += delta;
-            FleetData.CurrentWarpFactor += delta;
-        }
+        //public void UpdateWarpFactor(float delta)
+        //{
+        //    FleetData.CurrentWarpFactor += delta;
+        //    FleetData.CurrentWarpFactor += delta;
+        //}
         public void AddFleetController(FleetController controller)
         {
             if (controller.FleetData.CivOwnerEnum == this.FleetData.CivOwnerEnum) 
-                FleetConsWeHave.Add(controller);
+                FleetContollersWeHave.Add(controller);
         }
         public void RemoveFleetController(FleetController controller)
         {
-            if (controller.FleetData.CivOwnerEnum == this.FleetData.CivOwnerEnum && FleetConsWeHave.Contains(controller))
-                FleetConsWeHave.Remove(controller);
+            if (controller.FleetData.CivOwnerEnum == this.FleetData.CivOwnerEnum && FleetContollersWeHave.Contains(controller))
+                FleetContollersWeHave.Remove(controller);
         }
     }
 

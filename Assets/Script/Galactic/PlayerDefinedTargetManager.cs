@@ -75,7 +75,7 @@ public class PlayerDefinedTargetManager : MonoBehaviour
         playerDefinedTargetGO.SetActive(true);
         PlayerTargetGOList.Add(playerDefinedTargetGO);
         AddPlayerConrollerToAllControllers(playerTargetController);
-        GameManager.Instance.LoadPlayerGalacticDestinations(playerDefinedTargetData, playerDefinedTargetGO.transform);
+        GameManager.Instance.LoadPlayerGalacticDestinations(playerDefinedTargetData, playerDefinedTargetGO);
     }
     void AddPlayerConrollerToAllControllers(PlayerDefinedTargetController playerTargetController)
     {

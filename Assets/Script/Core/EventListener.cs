@@ -16,12 +16,15 @@ public class EventListener : MonoBehaviour
     {
         if (specialEvent != null)
         {
-            Debug.Log("Special event reached: " + specialEvent.eventName + " on stardate " + specialEvent.stardate + " TrekEventType: " + specialEvent.trekEventType + " parameter: " + specialEvent.eventParameter);
+            Debug.Log("Special event reached: " + specialEvent.eventName + " on stardate " + 
+                specialEvent.stardate + " TrekEventType: " + specialEvent.trekEventType + 
+                " parameter: " + specialEvent.eventParameter);
             // Add your logic to handle the special event here
             switch (specialEvent.trekEventType)
             {
                 case TrekEventType.RaceDiscovered:
                     {
+                        //RaceDsicovered.Diplomacy();
                         break;
                     }
                 case TrekEventType.TechDiscovered:
@@ -37,6 +40,10 @@ public class EventListener : MonoBehaviour
                         break;
                     }
                 case TrekEventType.DisasterEvent:
+                    {
+                        break;
+                    }
+                case TrekEventType.CombatEvent:
                     {
                         break;
                     }

@@ -302,7 +302,7 @@ namespace Assets.Core
         public GameObject DestinationDropdownGO; // UI dropdown
         private bool foundDestinationDropdown = false;
         public TMP_Dropdown DestinationDropdown;
-        public Dictionary<string, Transform> DestinationDictionary = new Dictionary<string, Transform>();
+        public Dictionary<string, GameObject> DestinationDictionary = new Dictionary<string, GameObject>();
         public GalaxySize _galaxySize;
         public GalaxyType _galaxyType;
         public TechLevel _techLevel;
@@ -424,16 +424,27 @@ namespace Assets.Core
             {
                 DestinationDropdown.options.Add(new TMP_Dropdown.OptionData() { text = sysData.SysName });
                 if(!DestinationDictionary.ContainsKey(sysData.SysName))
-                        DestinationDictionary.Add(sysData.SysName, sysData.SysTransform);
+                        DestinationDictionary.Add(sysData.SysName, sysData.SysGameObject);
             }
+            //GameObject[] fleetObjs = GameObject.FindGameObjectsWithTag("DestroyTemp");
+            //for (int i = 0; i < fleetObjs.Length; i++)
+            //{
+            //    Destroy(fleetObjs[i]);
+            //}
         }
-        public void LoadGalacticDestinations(FleetData fleetData, Transform fleetTransform)
+        public void LoadGalacticDestinations(FleetData fleetData, GameObject fleetGO)
         {
             DestinationDropdown.options.Add(new TMP_Dropdown.OptionData() { text = fleetData.Name });
            // if (!DestinationDictionary.ContainsKey(fleetData.Name))
-            DestinationDictionary.Add(fleetData.Name, fleetTransform); 
+            DestinationDictionary.Add(fleetData.Name, fleetGO);
+            //GameObject[] fleetObjs = GameObject.FindGameObjectsWithTag("DestroyTemp");
+            //for (int i = 0; i < fleetObjs.Length; i++)
+            //{
+            //    Destroy(fleetObjs[i]);
+            //}
+
         }
-        public void RemoveFleetFromGalaxyDestiations(FleetData fleetData, Transform fleetTransform)
+        public void RemoveFleetFromGalaxyDestiations(FleetData fleetData, GameObject fleetGO)
         {
             for (int i =0; i < DestinationDropdown.options.Count; i++)
             {
@@ -442,10 +453,10 @@ namespace Assets.Core
                 DestinationDictionary.Remove(fleetData.Name);
             }
         }
-        public void LoadPlayerGalacticDestinations(PlayerDefinedTargetData playerTargetData, Transform playerTargetTransfomr)
+        public void LoadPlayerGalacticDestinations(PlayerDefinedTargetData playerTargetData, GameObject playerTargetGO)
         {
             DestinationDropdown.options.Add(new TMP_Dropdown.OptionData() { text = playerTargetData.Name });
-            DestinationDictionary.Add(playerTargetData.Name, playerTargetTransfomr);
+            DestinationDictionary.Add(playerTargetData.Name, playerTargetGO);
         }
         public void RemovePlayerTargetFromGalaxyDestiations(PlayerDefinedTargetData playerTargetData)
         {

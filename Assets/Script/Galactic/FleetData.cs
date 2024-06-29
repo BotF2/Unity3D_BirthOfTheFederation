@@ -14,13 +14,12 @@ namespace Assets.Core
         public List<ShipController> ShipsList;
         private float maxWarpFactor;
         public float CurrentWarpFactor = 0f;
-        public float fudgeFactor = 1f;
-        public Transform Destination;
+        public GameObject Destination;
         public string CivLongName;
         public string CivShortName;
         public string Name;
         private string description;
-        public float yAboveGalaxyImage;
+        public float yAboveGalaxyImage; // used in FleetManager
 
         public FleetData(FleetSO fleetSO)
         {

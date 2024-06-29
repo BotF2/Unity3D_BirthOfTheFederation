@@ -7,7 +7,7 @@ public class StarSysData
 {
     private int starSysInt;
     private Vector3 position;
-    public Transform SysTransform;
+    public GameObject SysGameObject;
     private string sysName;
     public string SysName { get { return sysName; } }
     private CivEnum firstOwner;

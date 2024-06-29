@@ -13,17 +13,17 @@ namespace Assets.Core
     }
     public class GameEventListener : MonoBehaviour
     {
-        public GameEventSO gameEventSO;
+        public TrekEventSO trekEventSO;
 
-        public UnityEvent response;
+        public UnityEvent response; // link method calls in editor
 
         private void OnEnable()
         {
-            gameEventSO.RegisterListener(this);
+            trekEventSO.RegisterListener(this);
         }
         private void OnDisable()
         {
-            gameEventSO.UnRegisterListener(this);
+            trekEventSO.UnregisterListener(this);
         }
 
         public void OnEventRaised(Component sender, object data)
