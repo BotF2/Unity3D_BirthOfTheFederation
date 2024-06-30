@@ -42,7 +42,7 @@ public class FleetUIManager : MonoBehaviour
     [SerializeField]
     private TMP_Text sysDestination;
     private Camera galaxyEventCamera;
-    [SerializeField]
+
 
     private void Awake()
     {
@@ -78,6 +78,7 @@ public class FleetUIManager : MonoBehaviour
     public void LoadFleetUI(GameObject go) 
     {
         StarSysUIManager.instance.UnLoadStarSysUI();
+        ShipUIManager.instance.UnLoadShipManagerUI();
         fleetUIRoot.SetActive(true);
         // destination dropdown
         destinationDropdown.value = 0;
@@ -85,14 +86,26 @@ public class FleetUIManager : MonoBehaviour
         controller = go.GetComponent<FleetController>();
         FleetName.text = controller.FleetData.Name;
         ResetWarpSlider(controller.FleetData.CurrentWarpFactor);
+        //destinationDropdown.options.Clear();
         destinationDropdown = GameManager.Instance.DestinationDropdown;
+        var listing = destinationDropdown.options;
+        for (int i = 0; i < destinationDropdown.options.Count; i++)
+        {
+            if (controller.FleetData.Name.Contains(destinationDropdown.options[i].text + "Fleet"));
+            {
+                destinationDropdown.options.Remove(destinationDropdown.options[i]);
+            }
+        }
+        ReorderDropdownOptions(destinationDropdown);
+        //listing = destinationDropdown.options;
         if (destinationDropdown.options[0].text != "Select Destination")
         {
+
             destinationDropdown.options.Insert(0, new TMP_Dropdown.OptionData("Select Destination"));
             destinationDropdown.value = 0;
             destinationDropdown.RefreshShownValue();
         }
-        var listing = destinationDropdown.options;
+        //var listing = destinationDropdown.options;
         int index =0;
         if (controller.SelectedDestination != "")
         {
@@ -112,6 +125,13 @@ public class FleetUIManager : MonoBehaviour
         controller.shipDropdownGO = ShipDropdownGO;
         controller.shipDropdown = ShipDropdownGO.GetComponent<TMP_Dropdown>();
         NamesToShipDropdown(controller.FleetData.ShipsList);
+    }
+    private void ReorderDropdownOptions(TMP_Dropdown dropdown)
+    {
+        List<TMP_Dropdown.OptionData> options = dropdown.options;
+        options.Reverse();
+        // Update the UI
+        dropdown.RefreshShownValue();
     }
     public void UnLoadFleetUI()
     {

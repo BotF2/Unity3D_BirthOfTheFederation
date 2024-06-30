@@ -426,23 +426,11 @@ namespace Assets.Core
                 if(!DestinationDictionary.ContainsKey(sysData.SysName))
                         DestinationDictionary.Add(sysData.SysName, sysData.SysGameObject);
             }
-            //GameObject[] fleetObjs = GameObject.FindGameObjectsWithTag("DestroyTemp");
-            //for (int i = 0; i < fleetObjs.Length; i++)
-            //{
-            //    Destroy(fleetObjs[i]);
-            //}
         }
         public void LoadGalacticDestinations(FleetData fleetData, GameObject fleetGO)
         {
             DestinationDropdown.options.Add(new TMP_Dropdown.OptionData() { text = fleetData.Name });
-           // if (!DestinationDictionary.ContainsKey(fleetData.Name))
             DestinationDictionary.Add(fleetData.Name, fleetGO);
-            //GameObject[] fleetObjs = GameObject.FindGameObjectsWithTag("DestroyTemp");
-            //for (int i = 0; i < fleetObjs.Length; i++)
-            //{
-            //    Destroy(fleetObjs[i]);
-            //}
-
         }
         public void RemoveFleetFromGalaxyDestiations(FleetData fleetData, GameObject fleetGO)
         {

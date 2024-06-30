@@ -4,17 +4,17 @@ using UnityEngine;
 using UnityEditor;
 using Assets.Core;
 
-public class GameObjectMenuDragTarget : Editor
+public class GameObjectMenuDragTarget // : Editor
 {
-    public override void OnInspectorGUI()
-    {
-        base.OnInspectorGUI();
+    //public override void OnInspectorGUI()
+    //{
+    //    base.OnInspectorGUI();
 
-        FleetController objectMover = (FleetController)target;
+    //    FleetController objectMover = (FleetController)target;
 
-        // Display a field to drag a GameObject reference
-        objectMover.FleetData.Destination = (GameObject)EditorGUILayout.ObjectField("Target Object", objectMover.FleetData.Destination, typeof(GameObject), true);
-    }
+    //    // Display a field to drag a GameObject reference
+    //    objectMover.FleetData.Destination = (GameObject)EditorGUILayout.ObjectField("Target Object", objectMover.FleetData.Destination, typeof(GameObject), true);
+    //}
 
 
 }

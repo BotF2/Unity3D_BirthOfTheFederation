@@ -213,7 +213,6 @@ namespace Assets.Core
                 Vector3 nextPosition = Vector3.MoveTowards(rb.position, FleetData.Destination.transform.position,
                     FleetData.CurrentWarpFactor * fudgeFactor * Time.fixedDeltaTime);
                 rb.MovePosition(nextPosition); // kinematic with physics movement
-                //rb.velocity = direction * FleetData.CurrentWarpFactor * fudgeFactor;
             }
             else
             {

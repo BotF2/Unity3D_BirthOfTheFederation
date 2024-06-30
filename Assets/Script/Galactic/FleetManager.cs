@@ -175,7 +175,7 @@ namespace Assets.Core
                 fleetController.dropLine = ourLineScript;
                 fleetNewGameOb.SetActive(true);
                 FleetGOList.Add(fleetNewGameOb);
-                StarSysManager.instance.GetYourFirstStarSystem(fleetData.CivOwnerEnum);
+               // StarSysManager.instance.GetYourFirstStarSystem(fleetData.CivOwnerEnum);
 
                 GameManager.Instance.LoadGalacticDestinations(fleetData, fleetNewGameOb);
             }
