@@ -81,45 +81,51 @@ public class FleetUIManager : MonoBehaviour
         ShipUIManager.instance.UnLoadShipManagerUI();
         fleetUIRoot.SetActive(true);
         // destination dropdown
-        destinationDropdown.value = 0;
-
+        //destinationDropdown.options.Clear();
+        var listings = GameManager.Instance.DestinationDropdown.options;
+        //destinationDropdown.value = 0;
+        //destinationDropdown.RefreshShownValue();
         controller = go.GetComponent<FleetController>();
         FleetName.text = controller.FleetData.Name;
         ResetWarpSlider(controller.FleetData.CurrentWarpFactor);
-        //destinationDropdown.options.Clear();
-        destinationDropdown = GameManager.Instance.DestinationDropdown;
-        var listing = destinationDropdown.options;
-        for (int i = 0; i < destinationDropdown.options.Count; i++)
+
+        //var listing = newDropdown.options;
+        for (int i = 0; i < listings.Count; i++)
         {
-            if (controller.FleetData.Name.Contains(destinationDropdown.options[i].text + "Fleet"));
+            //string name = destinationDropdown.options[i].text;
+            if (listings[i].text.Contains(controller.FleetData.Name));
             {
-                destinationDropdown.options.Remove(destinationDropdown.options[i]);
+                listings.Remove(listings[i]);
+                //newDropdown.RefreshShownValue();
+                break;
             }
         }
         ReorderDropdownOptions(destinationDropdown);
         //listing = destinationDropdown.options;
-        if (destinationDropdown.options[0].text != "Select Destination")
+        if (listings[0].text != "Select Destination")
         {
 
-            destinationDropdown.options.Insert(0, new TMP_Dropdown.OptionData("Select Destination"));
-            destinationDropdown.value = 0;
-            destinationDropdown.RefreshShownValue();
+            listings.Insert(0, new TMP_Dropdown.OptionData("Select Destination"));
+            //newDropdown.value = 0;
+            //newDropdown.RefreshShownValue();
         }
         //var listing = destinationDropdown.options;
         int index =0;
         if (controller.SelectedDestination != "")
         {
-            foreach (var option in listing)
+            foreach (var option in listings)
             {
                 if (option.text == controller.SelectedDestination)
                 {
-                    index = destinationDropdown.options.IndexOf(option);
+                    index = listings.IndexOf(option);
                 }
             }
         }
+        destinationDropdown.options = listings;
         destinationDropdown.value = index;
 
         DropdownItemSelected(destinationDropdown);
+        destinationDropdown.RefreshShownValue();
         destinationDropdown.onValueChanged.AddListener(delegate { DropdownItemSelected(destinationDropdown); });
         //ship dropdown
         controller.shipDropdownGO = ShipDropdownGO;
