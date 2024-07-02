@@ -11544,7 +11544,6 @@ MonoBehaviour:
   shipList: []
   ShipDropdownGO: {fileID: 1841860120}
   destinationDropdown: {fileID: 1046361530}
-  Destination: {fileID: 352381087}
   FleetName: {fileID: 473136351}
   dropdownDestinationText: {fileID: 1252500423}
   dropdownShipText: {fileID: 1045958678}
@@ -12423,7 +12422,6 @@ MonoBehaviour:
   CivilizationPrefab: {fileID: 8453821490455499119, guid: b0e0a061944c0d54095a59726a8075aa, type: 3}
   civManager: {fileID: 1091640994}
   DestinationDropdownGO: {fileID: 0}
-  DestinationDropdown: {fileID: 0}
   _galaxySize: 0
   _galaxyType: 0
   _techLevel: 0
@@ -15301,7 +15299,6 @@ MonoBehaviour:
   CivilizationPrefab: {fileID: 0}
   civManager: {fileID: 0}
   DestinationDropdownGO: {fileID: 1046361529}
-  DestinationDropdown: {fileID: 1046361530}
   _galaxySize: 0
   _galaxyType: 0
   _techLevel: 0

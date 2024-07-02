@@ -22,7 +22,7 @@ public class FleetUIManager : MonoBehaviour
     private TextMeshProUGUI warpSliderText;
     [SerializeField]
     private float maxSliderValue = 9.8f;
-    public List<StarSysData> systemsList;
+    //public List<StarSysData> systemsList;
 
     [SerializeField]
     private List<ShipData> shipList;
@@ -32,7 +32,7 @@ public class FleetUIManager : MonoBehaviour
     [SerializeField]
     private TMP_Dropdown destinationDropdown;
     private TMP_Dropdown shipDropdown;
-    public GameObject Destination;
+   // public GameObject Destination;
     [SerializeField]
     private TMP_Text FleetName;
     [SerializeField]
@@ -80,51 +80,81 @@ public class FleetUIManager : MonoBehaviour
         StarSysUIManager.instance.UnLoadStarSysUI();
         ShipUIManager.instance.UnLoadShipManagerUI();
         fleetUIRoot.SetActive(true);
-        // destination dropdown
-        //destinationDropdown.options.Clear();
-        var listings = GameManager.Instance.DestinationDropdown.options;
-        //destinationDropdown.value = 0;
-        //destinationDropdown.RefreshShownValue();
+        destinationDropdown.options.Clear();
+        List<string> listings = new List<string>();
+        foreach (string location in GameManager.Instance.DestinationNames)
+        {
+            listings.Add(location);
+        }
         controller = go.GetComponent<FleetController>();
         FleetName.text = controller.FleetData.Name;
         ResetWarpSlider(controller.FleetData.CurrentWarpFactor);
-
-        //var listing = newDropdown.options;
-        for (int i = 0; i < listings.Count; i++)
+        int ourFleet = -1;
+        // customize the list of destinations
+        // Remove the current fleet name 
+        
+        if (listings.Contains(controller.FleetData.Name));
         {
-            //string name = destinationDropdown.options[i].text;
-            if (listings[i].text.Contains(controller.FleetData.Name));
+            for (int i = 0; i < listings.Count; i++)
             {
-                listings.Remove(listings[i]);
-                //newDropdown.RefreshShownValue();
-                break;
-            }
-        }
-        ReorderDropdownOptions(destinationDropdown);
-        //listing = destinationDropdown.options;
-        if (listings[0].text != "Select Destination")
-        {
-
-            listings.Insert(0, new TMP_Dropdown.OptionData("Select Destination"));
-            //newDropdown.value = 0;
-            //newDropdown.RefreshShownValue();
-        }
-        //var listing = destinationDropdown.options;
-        int index =0;
-        if (controller.SelectedDestination != "")
-        {
-            foreach (var option in listings)
-            {
-                if (option.text == controller.SelectedDestination)
+                if (listings[i] == controller.FleetData.Name)
                 {
-                    index = listings.IndexOf(option);
+                    ourFleet = i;
+                    break;
                 }
             }
+            if (ourFleet > -1)
+            listings.Remove(listings[ourFleet]);           
         }
-        destinationDropdown.options = listings;
-        destinationDropdown.value = index;
+        listings.Reverse();
+        int indexOfSelected = 0; 
+        int indexForRemove = -1;
+        if (controller.SelectedDestination != "" && listings.Contains("Select Destination"))
+        {
+            for (int i = 0; i < listings.Count; i++)
+            {
+                if (listings[i] == "Select Destination")
+                {
+                    indexForRemove = i;
+                    break;
+                }
+                //if (listings[i] == controller.SelectedDestination)
+                //{
+                //    indexOfSelected = i; // will set dropdown to show this selected
+                //}
+            }
+            if (indexForRemove > -1) 
+                listings.RemoveAt(indexForRemove);
+        }
+        else // if (listings[0] != "Select Destination")
+        {
+            for (int i = 0; i < listings.Count; i++)
+            {
+                if (listings[i] == "Select Destination")
+                {
+                    indexOfSelected = i;
+                    break;
+                }
 
-        DropdownItemSelected(destinationDropdown);
+            }
+        }
+        //if (position != 0)
+        //{
+        //    string item = listings[position];
+        //    listings.RemoveAt(position);
+        //    listings.Insert(0, item);
+        //}
+
+        List<TMP_Dropdown.OptionData> dataItems = new List<TMP_Dropdown.OptionData>();
+        for (int i = 0; i < listings.Count; i++)
+        {
+            TMP_Dropdown.OptionData newDataItem = new TMP_Dropdown.OptionData();
+            newDataItem.text = listings[i];
+            dataItems.Add(newDataItem);    
+        }
+        destinationDropdown.AddOptions(dataItems);
+        destinationDropdown.value = indexOfSelected;
+        DropdownItemSelected(destinationDropdown); // provide the destination as GameObject
         destinationDropdown.RefreshShownValue();
         destinationDropdown.onValueChanged.AddListener(delegate { DropdownItemSelected(destinationDropdown); });
         //ship dropdown
