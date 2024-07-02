@@ -301,7 +301,7 @@ namespace Assets.Core
         public CivManager civManager;
         public GameObject DestinationDropdownGO; // UI dropdown
         private bool foundDestinationDropdown = false;
-        private List<string> destinationNames = new List<string>() { "Select Destination"};
+        private List<string> destinationNames = new List<string>() { "No Destination Selected"};
         public List<string> DestinationNames { get { return destinationNames; } }
         //public TMP_Dropdown DestinationDropdown;
         public Dictionary<string, GameObject> DestinationDictionary = new Dictionary<string, GameObject>();

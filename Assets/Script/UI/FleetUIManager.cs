@@ -81,6 +81,7 @@ public class FleetUIManager : MonoBehaviour
         ShipUIManager.instance.UnLoadShipManagerUI();
         fleetUIRoot.SetActive(true);
         destinationDropdown.options.Clear();
+        string NotSelected = "No Destination Selected";
         List<string> listings = new List<string>();
         foreach (string location in GameManager.Instance.DestinationNames)
         {
@@ -92,7 +93,7 @@ public class FleetUIManager : MonoBehaviour
         int ourFleet = -1;
         // customize the list of destinations
         // Remove the current fleet name 
-        
+       
         if (listings.Contains(controller.FleetData.Name));
         {
             for (int i = 0; i < listings.Count; i++)
@@ -107,43 +108,36 @@ public class FleetUIManager : MonoBehaviour
             listings.Remove(listings[ourFleet]);           
         }
         listings.Reverse();
-        int indexOfSelected = 0; 
-        int indexForRemove = -1;
-        if (controller.SelectedDestination != "" && listings.Contains("Select Destination"))
+        int indexOfSelected = -1;
+        if (controller.SelectedDestination != "" && controller.SelectedDestination != NotSelected)
         {
             for (int i = 0; i < listings.Count; i++)
             {
-                if (listings[i] == "Select Destination")
+
+                if (controller.SelectedDestination == listings[i] && GameManager.Instance.DestinationDictionary[listings[i]] != null)
                 {
-                    indexForRemove = i;
+                    controller.FleetData.Destination = GameManager.Instance.DestinationDictionary[listings[i]];
+                    controller.SelectedDestination = listings[i];
+                    dropdownDestinationText.text = listings[i];
+                    indexOfSelected = i;
                     break;
                 }
-                //if (listings[i] == controller.SelectedDestination)
-                //{
-                //    indexOfSelected = i; // will set dropdown to show this selected
-                //}
             }
-            if (indexForRemove > -1) 
-                listings.RemoveAt(indexForRemove);
         }
-        else // if (listings[0] != "Select Destination")
+        if (controller.SelectedDestination == "" || controller.SelectedDestination == NotSelected)
         {
+            controller.FleetData.Destination = null;
+            controller.SelectedDestination = NotSelected;
+            dropdownDestinationText.text = NotSelected;
             for (int i = 0; i < listings.Count; i++)
             {
-                if (listings[i] == "Select Destination")
+                if (listings[i] == NotSelected)
                 {
                     indexOfSelected = i;
                     break;
                 }
-
             }
         }
-        //if (position != 0)
-        //{
-        //    string item = listings[position];
-        //    listings.RemoveAt(position);
-        //    listings.Insert(0, item);
-        //}
 
         List<TMP_Dropdown.OptionData> dataItems = new List<TMP_Dropdown.OptionData>();
         for (int i = 0; i < listings.Count; i++)
@@ -153,8 +147,9 @@ public class FleetUIManager : MonoBehaviour
             dataItems.Add(newDataItem);    
         }
         destinationDropdown.AddOptions(dataItems);
+        if (indexOfSelected > -1) 
         destinationDropdown.value = indexOfSelected;
-        DropdownItemSelected(destinationDropdown); // provide the destination as GameObject
+        //DropdownItemSelected(destinationDropdown); // provide the destination as GameObject
         destinationDropdown.RefreshShownValue();
         destinationDropdown.onValueChanged.AddListener(delegate { DropdownItemSelected(destinationDropdown); });
         //ship dropdown
@@ -178,11 +173,19 @@ public class FleetUIManager : MonoBehaviour
         int index = dropdown.value;
         if (dropdown.name == "Dropdown Destination")
         {
-            if (dropdown.options[index].text != "Select Destination" && GameManager.Instance.DestinationDictionary[dropdown.options[index].text] != null)
+            if (dropdown.options[index].text != "No Destination Selected" && GameManager.Instance.DestinationDictionary[dropdown.options[index].text] != null)
             {
                 controller.FleetData.Destination = GameManager.Instance.DestinationDictionary[dropdown.options[index].text];
                 controller.SelectedDestination = dropdown.options[index].text;
                 dropdownDestinationText.text = dropdown.options[index].text;
+                destinationDropdown.value = index;
+                destinationDropdown.RefreshShownValue();
+            }
+            else if(dropdown.options[index].text == "No Destination Selected")
+            {
+                controller.FleetData.Destination = null;
+                controller.SelectedDestination = "No Destination Selected";
+                dropdownDestinationText.text = "No Destination Selected";
             }
         }
     }
