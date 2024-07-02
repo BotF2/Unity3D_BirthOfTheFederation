@@ -416,8 +416,6 @@ namespace Assets.Core
                     //DestinationDropdown.options.Clear();
                     foundDestinationDropdown = true;
                 }
-            }
-        }
         public void LoadGalacticDestinations(List<StarSysData> starSysDataList)
         {
             foreach (var sysData in starSysDataList)
