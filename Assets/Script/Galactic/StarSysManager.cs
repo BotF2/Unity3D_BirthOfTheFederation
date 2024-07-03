@@ -140,7 +140,6 @@ namespace Assets.Core
 
             starSystemNewGameOb.SetActive(true);
             StarSysControllerList.Add(controller);
-            GameManager.Instance.LoadDestinationDropdown();
         }
 
         public StarSysSO GetStarSObyInt(int sysInt)

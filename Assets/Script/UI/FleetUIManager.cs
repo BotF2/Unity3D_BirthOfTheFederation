@@ -22,7 +22,7 @@ public class FleetUIManager : MonoBehaviour
     private TextMeshProUGUI warpSliderText;
     [SerializeField]
     private float maxSliderValue = 9.8f;
-    //public List<StarSysData> systemsList;
+    public string noDestination;
 
     [SerializeField]
     private List<ShipData> shipList;
@@ -81,7 +81,7 @@ public class FleetUIManager : MonoBehaviour
         ShipUIManager.instance.UnLoadShipManagerUI();
         fleetUIRoot.SetActive(true);
         destinationDropdown.options.Clear();
-        string NotSelected = "No Destination Selected";
+        noDestination = GameManager.Instance.NoDestination;
         List<string> listings = new List<string>();
         foreach (string location in GameManager.Instance.DestinationNames)
         {
@@ -91,8 +91,8 @@ public class FleetUIManager : MonoBehaviour
         FleetName.text = controller.FleetData.Name;
         ResetWarpSlider(controller.FleetData.CurrentWarpFactor);
         int ourFleet = -1;
-        // customize the list of destinations
-        // Remove the current fleet name 
+        /* customize the list of destinations
+         Remove the current fleet name */
        
         if (listings.Contains(controller.FleetData.Name));
         {
@@ -109,7 +109,7 @@ public class FleetUIManager : MonoBehaviour
         }
         listings.Reverse();
         int indexOfSelected = -1;
-        if (controller.SelectedDestination != "" && controller.SelectedDestination != NotSelected)
+        if (controller.SelectedDestination != "" && controller.SelectedDestination != noDestination)
         {
             for (int i = 0; i < listings.Count; i++)
             {
@@ -124,14 +124,14 @@ public class FleetUIManager : MonoBehaviour
                 }
             }
         }
-        if (controller.SelectedDestination == "" || controller.SelectedDestination == NotSelected)
+        if (controller.SelectedDestination == "" || controller.SelectedDestination == noDestination)
         {
             controller.FleetData.Destination = null;
-            controller.SelectedDestination = NotSelected;
-            dropdownDestinationText.text = NotSelected;
+            controller.SelectedDestination = noDestination;
+            dropdownDestinationText.text = noDestination;
             for (int i = 0; i < listings.Count; i++)
             {
-                if (listings[i] == NotSelected)
+                if (listings[i] == noDestination)
                 {
                     indexOfSelected = i;
                     break;
@@ -149,7 +149,6 @@ public class FleetUIManager : MonoBehaviour
         destinationDropdown.AddOptions(dataItems);
         if (indexOfSelected > -1) 
         destinationDropdown.value = indexOfSelected;
-        //DropdownItemSelected(destinationDropdown); // provide the destination as GameObject
         destinationDropdown.RefreshShownValue();
         destinationDropdown.onValueChanged.AddListener(delegate { DropdownItemSelected(destinationDropdown); });
         //ship dropdown

@@ -301,7 +301,8 @@ namespace Assets.Core
         public CivManager civManager;
         public GameObject DestinationDropdownGO; // UI dropdown
         private bool foundDestinationDropdown = false;
-        private List<string> destinationNames = new List<string>() { "No Destination Selected"};
+        public string NoDestination;
+        private List<string> destinationNames = new List<string>() { "No Destination Selected" };
         public List<string> DestinationNames { get { return destinationNames; } }
         //public TMP_Dropdown DestinationDropdown;
         public Dictionary<string, GameObject> DestinationDictionary = new Dictionary<string, GameObject>();
@@ -405,27 +406,13 @@ namespace Assets.Core
         }
         void Start()
         {
-    
-        }
-        public void LoadDestinationDropdown()
-        {
-            //if (foundDestinationDropdown == false)
-            //{
-            //    //DestinationDropdownGO = GameObject.FindGameObjectWithTag("DropdownDestinationsGO");
-            //    //if (DestinationDropdownGO != null)
-            //    //{
-            //    //    DestinationDropdown = DestinationDropdownGO.GetComponent<TMP_Dropdown>();
-            //    //    //DestinationDropdown.options.Clear();
-            //    //    foundDestinationDropdown = true;
-            //    //}
-            //}
+            NoDestination = DestinationNames[0];
         }
         public void LoadGalacticDestinations(List<StarSysData> starSysDataList)
         {
             foreach (var sysData in starSysDataList)
             {
                 destinationNames.Add(sysData.SysName);
-                //DestinationDropdown.options.Add(new TMP_Dropdown.OptionData() { text = sysData.SysName });
                 if (!DestinationDictionary.ContainsKey(sysData.SysName))
                     DestinationDictionary.Add(sysData.SysName, sysData.SysGameObject);
             }
@@ -433,36 +420,23 @@ namespace Assets.Core
         public void LoadGalacticDestinations(FleetData fleetData, GameObject fleetGO)
         {
             destinationNames.Add(fleetData.Name);
-            //DestinationDropdown.options.Add(new TMP_Dropdown.OptionData() { text = fleetData.Name });
             DestinationDictionary.Add(fleetData.Name, fleetGO);
         }
         public void RemoveFleetFromGalaxyDestiations(FleetData fleetData, GameObject fleetGO)
         {
             destinationNames.Remove(fleetData.Name);
-            //for (int i =0; i < DestinationDropdown.options.Count; i++)
-            //{
-            //    if (DestinationDropdown.options[i].text == fleetData.Name)
-            //    { DestinationDropdown.options.Remove(DestinationDropdown.options[i]); }
-                DestinationDictionary.Remove(fleetData.Name);
-            //}
+            DestinationDictionary.Remove(fleetData.Name);
+  
         }
         public void LoadPlayerGalacticDestinations(PlayerDefinedTargetData playerTargetData, GameObject playerTargetGO)
         {
             destinationNames.Add(playerTargetData.Name);
-            //DestinationDropdown.options.Add(new TMP_Dropdown.OptionData() { text = playerTargetData.Name });
             DestinationDictionary.Add(playerTargetData.Name, playerTargetGO);
         }
         public void RemovePlayerTargetFromGalaxyDestiations(PlayerDefinedTargetData playerTargetData)
         {
             destinationNames.Remove(playerTargetData.Name);
-            //for (int i = 0; i < DestinationDropdown.options.Count; i++)
-            //{
-            //    if (DestinationDropdown.options[i].text == playerTargetData.Name)
-            //    {
-            //        DestinationDropdown.options.Remove(DestinationDropdown.options[i]);
-            //    }
-                DestinationDictionary.Remove(playerTargetData.Name);
-            //}
+            DestinationDictionary.Remove(playerTargetData.Name);
         }
 
         //  MARC CODE
