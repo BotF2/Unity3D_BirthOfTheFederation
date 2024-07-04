@@ -13,9 +13,16 @@ MonoBehaviour:
   m_Name: StarSysSO_54_ELAURIA
   m_EditorClassIdentifier: 
   StarSysInt: 54
-  Position: {x: 400, y: -27, z: -280}
+  Position: {x: 400, y: -280, z: -27}
   SysName: ELAURIA
-  FirstOwner: 54
+  FirstOwner: 55
+  CurrentOwner: 55
   StarType: 3
   StarSprit: {fileID: 21300000, guid: f46fc7ae4eec69d40aa8026ba9da085d, type: 3}
-  Population: 5
+  Population: 10
+  PopulationLimit: 20
+  Farms: 5
+  PowerStations: 5
+  Factories: 5
+  Research: 5
+  Description: descrition here...

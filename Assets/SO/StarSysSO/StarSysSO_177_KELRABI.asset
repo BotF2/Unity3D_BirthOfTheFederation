@@ -13,9 +13,16 @@ MonoBehaviour:
   m_Name: StarSysSO_177_KELRABI
   m_EditorClassIdentifier: 
   StarSysInt: 177
-  Position: {x: -420, y: 6, z: -520}
+  Position: {x: -420, y: -520, z: 6}
   SysName: KELRABI
-  FirstOwner: 0
+  FirstOwner: 177
+  CurrentOwner: 177
   StarType: 2
   StarSprit: {fileID: 21300000, guid: a71196654f476ea4db890e76192307fa, type: 3}
   Population: 0
+  PopulationLimit: 10
+  Farms: 0
+  PowerStations: 0
+  Factories: 0
+  Research: 0
+  Description: descrition here...

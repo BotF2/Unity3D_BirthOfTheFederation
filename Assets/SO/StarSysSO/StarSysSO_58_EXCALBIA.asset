@@ -13,9 +13,16 @@ MonoBehaviour:
   m_Name: StarSysSO_58_EXCALBIA
   m_EditorClassIdentifier: 
   StarSysInt: 58
-  Position: {x: 290, y: -7, z: -1260}
+  Position: {x: 290, y: -1260, z: -7}
   SysName: EXCALBIA
-  FirstOwner: 58
+  FirstOwner: 59
+  CurrentOwner: 59
   StarType: 4
   StarSprit: {fileID: 21300000, guid: 782d452083d14404d83e94f7ce7ee92e, type: 3}
-  Population: 5
+  Population: 10
+  PopulationLimit: 20
+  Farms: 5
+  PowerStations: 5
+  Factories: 5
+  Research: 5
+  Description: descrition here...

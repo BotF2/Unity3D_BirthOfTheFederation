@@ -17,5 +17,11 @@ public class StarSysSO : ScriptableObject
     public StarSystemType StarType;
     public Sprite StarSprit;
     public int Population;
+    public int PopulationLimit;
+    public int Farms;
+    public int PowerStations;
+    public int Factories;
+    public int Research;
     public string Description;
+    private string v;
 }

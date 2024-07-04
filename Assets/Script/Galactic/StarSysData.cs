@@ -14,8 +14,17 @@ public class StarSysData
     public CivEnum CurrentOwner;
     public StarSystemType StarType;
     public Sprite StarSprit;
-    public string Description;
     public int Population;
+    public int PopulationLimit; 
+    public int Farms;
+    public int PowerStations;
+    public int Factories;
+    public int Research;
+    public int food;
+    public int power;
+    public int production;
+    public float tech;
+    public string Description;
     private string v;
 
     public StarSysData()

@@ -13,9 +13,16 @@ MonoBehaviour:
   m_Name: StarSysSO_11_ALSAURI
   m_EditorClassIdentifier: 
   StarSysInt: 11
-  Position: {x: 360, y: -5, z: 580}
+  Position: {x: 360, y: 580, z: -5}
   SysName: ALSAURI
-  FirstOwner: 11
+  FirstOwner: 12
+  CurrentOwner: 12
   StarType: 3
   StarSprit: {fileID: 21300000, guid: f46fc7ae4eec69d40aa8026ba9da085d, type: 3}
-  Population: 5
+  Population: 10
+  PopulationLimit: 20
+  Farms: 5
+  PowerStations: 5
+  Factories: 5
+  Research: 5
+  Description: descrition here...

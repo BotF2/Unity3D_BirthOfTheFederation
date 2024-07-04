@@ -13,9 +13,16 @@ MonoBehaviour:
   m_Name: StarSysSO_103_ORION
   m_EditorClassIdentifier: 
   StarSysInt: 103
-  Position: {x: 20, y: 25, z: -730}
+  Position: {x: 20, y: -730, z: 25}
   SysName: ORION
-  FirstOwner: 103
+  FirstOwner: 104
+  CurrentOwner: 104
   StarType: 5
   StarSprit: {fileID: 0}
-  Population: 5
+  Population: 10
+  PopulationLimit: 20
+  Farms: 5
+  PowerStations: 5
+  Factories: 5
+  Research: 5
+  Description: descrition here...

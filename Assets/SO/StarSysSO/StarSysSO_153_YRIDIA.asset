@@ -13,9 +13,16 @@ MonoBehaviour:
   m_Name: StarSysSO_153_YRIDIA
   m_EditorClassIdentifier: 
   StarSysInt: 153
-  Position: {x: -700, y: 2, z: -1360}
+  Position: {x: -700, y: -1360, z: 2}
   SysName: YRIDIA
-  FirstOwner: 153
+  FirstOwner: 154
+  CurrentOwner: 154
   StarType: 2
   StarSprit: {fileID: 21300000, guid: a71196654f476ea4db890e76192307fa, type: 3}
-  Population: 5
+  Population: 10
+  PopulationLimit: 20
+  Farms: 5
+  PowerStations: 5
+  Factories: 5
+  Research: 5
+  Description: descrition here...

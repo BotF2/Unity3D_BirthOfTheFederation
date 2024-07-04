@@ -13,9 +13,16 @@ MonoBehaviour:
   m_Name: StarSysSO_53_EDO
   m_EditorClassIdentifier: 
   StarSysInt: 53
-  Position: {x: -310, y: 28, z: -1000}
+  Position: {x: -310, y: -1000, z: 28}
   SysName: EDO
-  FirstOwner: 53
+  FirstOwner: 54
+  CurrentOwner: 54
   StarType: 2
   StarSprit: {fileID: 21300000, guid: a71196654f476ea4db890e76192307fa, type: 3}
-  Population: 5
+  Population: 10
+  PopulationLimit: 20
+  Farms: 5
+  PowerStations: 5
+  Factories: 5
+  Research: 5
+  Description: descrition here...

@@ -13,9 +13,16 @@ MonoBehaviour:
   m_Name: StarSysSO_8_AKRITIRI
   m_EditorClassIdentifier: 
   StarSysInt: 8
-  Position: {x: 550, y: -21, z: 670}
+  Position: {x: 550, y: 670, z: -21}
   SysName: AKRITIRI
-  FirstOwner: 8
+  FirstOwner: 9
+  CurrentOwner: 9
   StarType: 4
   StarSprit: {fileID: 21300000, guid: 782d452083d14404d83e94f7ce7ee92e, type: 3}
-  Population: 5
+  Population: 10
+  PopulationLimit: 20
+  Farms: 5
+  PowerStations: 5
+  Factories: 5
+  Research: 5
+  Description: descrition here...

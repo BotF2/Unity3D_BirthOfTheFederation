@@ -42,9 +42,9 @@ public class StarSysSOImporter : EditorWindow
         {
             string[] fields = line.Split(',');
 
-            if (fields.Length == 8) // Ensure there are enough fields
+             if (fields.Length > 8) // Ensure there are enough fields
             {
-                string imageString = fields[7];
+                string imageString = fields[6];
                 foreach (string file in Directory.GetFiles($"Assets/Resources/Stars/", "*.png"))
                 {
                     if (file == "Assets/Resources/Stars/" + imageString + ".png")
@@ -54,7 +54,7 @@ public class StarSysSOImporter : EditorWindow
                 }
 
 
-                if (fields.Length == 8) // Ensure there are enough fields
+                if (fields.Length > 8) // Ensure there are enough fields
                 {
                     StarSysSO StarSysSO = CreateInstance<StarSysSO>();
                     ////StarSysInt	,	StarSysSO Enum	,	StarSysSO Short Name	,	StarSysSO Long Name	,	Home System	,	Triat One	,	Trait Two	,	StarSysSO Image	,	Insginia	,	Population	,	Credits	,	TechLevel Points
@@ -62,11 +62,16 @@ public class StarSysSOImporter : EditorWindow
                     StarSysSO.Position = new Vector3((int.Parse(fields[1]))/10, (int.Parse(fields[2]))/10, (int.Parse(fields[3]))/10);
                     StarSysSO.SysName = fields[4];
                     StarSysSO.FirstOwner = GetMyCivEnum(fields[5]);
-                    StarSysSO.StarType = GetMyStarTypeEnum(fields[7]);
+                    StarSysSO.CurrentOwner = GetMyCivEnum(fields[5]);
+                    StarSysSO.StarType = GetMyStarTypeEnum(fields[6]);
                     StarSysSO.StarSprit = Resources.Load<Sprite>(imageString);
-                    StarSysSO.Population = int.Parse(fields[6]);
+                    StarSysSO.Population = int.Parse(fields[7]);                    
+                    StarSysSO.PopulationLimit = int.Parse(fields[8]);
+                    StarSysSO.Farms = int.Parse(fields[9]);
+                    StarSysSO.PowerStations = int.Parse(fields[10]);
+                    StarSysSO.Factories = int.Parse(fields[11]);
+                    StarSysSO.Research = int.Parse(fields[12]);
                     StarSysSO.Description = "descrition here...";
-
                     string assetPath = $"Assets/SO/StarSysSO/StarSysSO_{StarSysSO.StarSysInt}_{StarSysSO.SysName}.asset";
                     AssetDatabase.CreateAsset(StarSysSO, assetPath);
                     AssetDatabase.SaveAssets();

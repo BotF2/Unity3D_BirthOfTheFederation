@@ -13,9 +13,16 @@ MonoBehaviour:
   m_Name: StarSysSO_121_TAKARA
   m_EditorClassIdentifier: 
   StarSysInt: 121
-  Position: {x: -480, y: 1, z: -1350}
+  Position: {x: -480, y: -1350, z: 1}
   SysName: TAKARA
-  FirstOwner: 121
+  FirstOwner: 122
+  CurrentOwner: 122
   StarType: 4
   StarSprit: {fileID: 21300000, guid: 782d452083d14404d83e94f7ce7ee92e, type: 3}
-  Population: 5
+  Population: 10
+  PopulationLimit: 20
+  Farms: 5
+  PowerStations: 5
+  Factories: 5
+  Research: 5
+  Description: descrition here...

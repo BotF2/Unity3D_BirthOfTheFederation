@@ -13,9 +13,16 @@ MonoBehaviour:
   m_Name: StarSysSO_43_CORIDAN
   m_EditorClassIdentifier: 
   StarSysInt: 43
-  Position: {x: -30, y: 23, z: -720}
+  Position: {x: -30, y: -720, z: 23}
   SysName: CORIDAN
-  FirstOwner: 43
+  FirstOwner: 44
+  CurrentOwner: 44
   StarType: 3
   StarSprit: {fileID: 21300000, guid: f46fc7ae4eec69d40aa8026ba9da085d, type: 3}
-  Population: 5
+  Population: 10
+  PopulationLimit: 20
+  Farms: 5
+  PowerStations: 5
+  Factories: 5
+  Research: 5
+  Description: descrition here...

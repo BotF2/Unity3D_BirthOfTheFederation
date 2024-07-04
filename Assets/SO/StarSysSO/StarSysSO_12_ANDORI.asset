@@ -13,9 +13,16 @@ MonoBehaviour:
   m_Name: StarSysSO_12_ANDORI
   m_EditorClassIdentifier: 
   StarSysInt: 12
-  Position: {x: -90, y: 11, z: -700}
+  Position: {x: -90, y: -700, z: 11}
   SysName: ANDORI
-  FirstOwner: 12
+  FirstOwner: 13
+  CurrentOwner: 13
   StarType: 4
   StarSprit: {fileID: 21300000, guid: 782d452083d14404d83e94f7ce7ee92e, type: 3}
-  Population: 5
+  Population: 10
+  PopulationLimit: 20
+  Farms: 5
+  PowerStations: 5
+  Factories: 5
+  Research: 5
+  Description: descrition here...

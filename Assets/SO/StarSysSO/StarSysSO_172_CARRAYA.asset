@@ -13,9 +13,16 @@ MonoBehaviour:
   m_Name: StarSysSO_172_CARRAYA
   m_EditorClassIdentifier: 
   StarSysInt: 172
-  Position: {x: 180, y: -27, z: -720}
+  Position: {x: 180, y: -720, z: -27}
   SysName: CARRAYA
-  FirstOwner: 0
+  FirstOwner: 172
+  CurrentOwner: 172
   StarType: 4
   StarSprit: {fileID: 21300000, guid: 782d452083d14404d83e94f7ce7ee92e, type: 3}
   Population: 0
+  PopulationLimit: 10
+  Farms: 0
+  PowerStations: 0
+  Factories: 0
+  Research: 0
+  Description: descrition here...

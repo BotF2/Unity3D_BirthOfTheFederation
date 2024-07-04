@@ -13,9 +13,16 @@ MonoBehaviour:
   m_Name: StarSysSO_44_CORVALLE
   m_EditorClassIdentifier: 
   StarSysInt: 44
-  Position: {x: -90, y: 0, z: -1420}
+  Position: {x: -90, y: -1420, z: 0}
   SysName: CORVALLE
-  FirstOwner: 44
+  FirstOwner: 45
+  CurrentOwner: 45
   StarType: 4
   StarSprit: {fileID: 21300000, guid: 782d452083d14404d83e94f7ce7ee92e, type: 3}
-  Population: 5
+  Population: 10
+  PopulationLimit: 20
+  Farms: 5
+  PowerStations: 5
+  Factories: 5
+  Research: 5
+  Description: descrition here...

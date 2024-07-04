@@ -13,9 +13,16 @@ MonoBehaviour:
   m_Name: StarSysSO_35_BREEL
   m_EditorClassIdentifier: 
   StarSysInt: 35
-  Position: {x: -280, y: -24, z: -650}
+  Position: {x: -280, y: -650, z: -24}
   SysName: BREEL
-  FirstOwner: 35
+  FirstOwner: 36
+  CurrentOwner: 36
   StarType: 3
   StarSprit: {fileID: 21300000, guid: f46fc7ae4eec69d40aa8026ba9da085d, type: 3}
-  Population: 5
+  Population: 10
+  PopulationLimit: 20
+  Farms: 5
+  PowerStations: 5
+  Factories: 5
+  Research: 5
+  Description: descrition here...

@@ -13,9 +13,16 @@ MonoBehaviour:
   m_Name: StarSysSO_166_ACHERNAR
   m_EditorClassIdentifier: 
   StarSysInt: 166
-  Position: {x: 340, y: -16, z: -320}
+  Position: {x: 340, y: -320, z: -16}
   SysName: ACHERNAR
   FirstOwner: 166
+  CurrentOwner: 166
   StarType: 2
   StarSprit: {fileID: 21300000, guid: a71196654f476ea4db890e76192307fa, type: 3}
   Population: 0
+  PopulationLimit: 10
+  Farms: 0
+  PowerStations: 0
+  Factories: 0
+  Research: 0
+  Description: descrition here...

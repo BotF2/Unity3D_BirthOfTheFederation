@@ -13,9 +13,16 @@ MonoBehaviour:
   m_Name: StarSysSO_62_GRAZERITES
   m_EditorClassIdentifier: 
   StarSysInt: 62
-  Position: {x: -310, y: -3, z: -1090}
+  Position: {x: -310, y: -1090, z: -3}
   SysName: GRAZERITES
-  FirstOwner: 62
+  FirstOwner: 63
+  CurrentOwner: 63
   StarType: 3
   StarSprit: {fileID: 21300000, guid: f46fc7ae4eec69d40aa8026ba9da085d, type: 3}
-  Population: 5
+  Population: 10
+  PopulationLimit: 20
+  Farms: 5
+  PowerStations: 5
+  Factories: 5
+  Research: 5
+  Description: descrition here...

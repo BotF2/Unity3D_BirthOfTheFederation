@@ -13,9 +13,16 @@ MonoBehaviour:
   m_Name: StarSysSO_6_ACAMA
   m_EditorClassIdentifier: 
   StarSysInt: 6
-  Position: {x: -80, y: 0, z: -849}
+  Position: {x: -80, y: -849, z: 0}
   SysName: ACAMA
-  FirstOwner: 6
+  FirstOwner: 7
+  CurrentOwner: 7
   StarType: 3
   StarSprit: {fileID: 21300000, guid: f46fc7ae4eec69d40aa8026ba9da085d, type: 3}
-  Population: 5
+  Population: 10
+  PopulationLimit: 20
+  Farms: 5
+  PowerStations: 5
+  Factories: 5
+  Research: 5
+  Description: descrition here...

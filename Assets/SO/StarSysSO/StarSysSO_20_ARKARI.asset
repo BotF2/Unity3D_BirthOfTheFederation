@@ -13,9 +13,16 @@ MonoBehaviour:
   m_Name: StarSysSO_20_ARKARI
   m_EditorClassIdentifier: 
   StarSysInt: 20
-  Position: {x: 130, y: 0, z: -1300}
+  Position: {x: 130, y: -1300, z: 0}
   SysName: ARKARI
-  FirstOwner: 20
+  FirstOwner: 21
+  CurrentOwner: 21
   StarType: 2
   StarSprit: {fileID: 21300000, guid: a71196654f476ea4db890e76192307fa, type: 3}
-  Population: 5
+  Population: 10
+  PopulationLimit: 20
+  Farms: 5
+  PowerStations: 5
+  Factories: 5
+  Research: 5
+  Description: descrition here...

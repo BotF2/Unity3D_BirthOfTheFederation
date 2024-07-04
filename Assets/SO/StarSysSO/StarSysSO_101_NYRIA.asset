@@ -13,9 +13,16 @@ MonoBehaviour:
   m_Name: StarSysSO_101_NYRIA
   m_EditorClassIdentifier: 
   StarSysInt: 101
-  Position: {x: 690, y: 2, z: 680}
+  Position: {x: 690, y: 680, z: 2}
   SysName: NYRIA
-  FirstOwner: 101
+  FirstOwner: 102
+  CurrentOwner: 102
   StarType: 0
   StarSprit: {fileID: 21300000, guid: e4a5fe77159a4474faeb4032f0274153, type: 3}
-  Population: 5
+  Population: 10
+  PopulationLimit: 20
+  Farms: 5
+  PowerStations: 5
+  Factories: 5
+  Research: 5
+  Description: descrition here...

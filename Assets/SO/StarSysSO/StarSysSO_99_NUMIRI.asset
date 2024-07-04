@@ -13,9 +13,16 @@ MonoBehaviour:
   m_Name: StarSysSO_99_NUMIRI
   m_EditorClassIdentifier: 
   StarSysInt: 99
-  Position: {x: 270, y: 13, z: 680}
+  Position: {x: 270, y: 680, z: 13}
   SysName: NUMIRI
-  FirstOwner: 99
+  FirstOwner: 100
+  CurrentOwner: 100
   StarType: 4
   StarSprit: {fileID: 21300000, guid: 782d452083d14404d83e94f7ce7ee92e, type: 3}
-  Population: 5
+  Population: 10
+  PopulationLimit: 20
+  Farms: 5
+  PowerStations: 5
+  Factories: 5
+  Research: 5
+  Description: descrition here...

@@ -13,9 +13,16 @@ MonoBehaviour:
   m_Name: StarSysSO_31_BOLIA
   m_EditorClassIdentifier: 
   StarSysInt: 31
-  Position: {x: -320, y: 21, z: -1160}
+  Position: {x: -320, y: -1160, z: 21}
   SysName: BOLIA
-  FirstOwner: 31
+  FirstOwner: 32
+  CurrentOwner: 32
   StarType: 4
   StarSprit: {fileID: 21300000, guid: 782d452083d14404d83e94f7ce7ee92e, type: 3}
-  Population: 5
+  Population: 10
+  PopulationLimit: 20
+  Farms: 5
+  PowerStations: 5
+  Factories: 5
+  Research: 5
+  Description: descrition here...

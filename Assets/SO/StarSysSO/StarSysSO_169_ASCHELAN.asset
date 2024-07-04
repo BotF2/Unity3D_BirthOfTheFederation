@@ -13,9 +13,16 @@ MonoBehaviour:
   m_Name: StarSysSO_169_ASCHELAN
   m_EditorClassIdentifier: 
   StarSysInt: 169
-  Position: {x: -400, y: 11, z: -570}
+  Position: {x: -400, y: -570, z: 11}
   SysName: ASCHELAN
-  FirstOwner: 0
+  FirstOwner: 169
+  CurrentOwner: 169
   StarType: 4
   StarSprit: {fileID: 21300000, guid: 782d452083d14404d83e94f7ce7ee92e, type: 3}
   Population: 0
+  PopulationLimit: 10
+  Farms: 0
+  PowerStations: 0
+  Factories: 0
+  Research: 0
+  Description: descrition here...

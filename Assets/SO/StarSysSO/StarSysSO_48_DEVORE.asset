@@ -13,9 +13,16 @@ MonoBehaviour:
   m_Name: StarSysSO_48_DEVORE
   m_EditorClassIdentifier: 
   StarSysInt: 48
-  Position: {x: 320, y: -7, z: 360}
+  Position: {x: 320, y: 360, z: -7}
   SysName: DEVORE
-  FirstOwner: 48
+  FirstOwner: 49
+  CurrentOwner: 49
   StarType: 3
   StarSprit: {fileID: 21300000, guid: f46fc7ae4eec69d40aa8026ba9da085d, type: 3}
-  Population: 5
+  Population: 10
+  PopulationLimit: 20
+  Farms: 5
+  PowerStations: 5
+  Factories: 5
+  Research: 5
+  Description: descrition here...

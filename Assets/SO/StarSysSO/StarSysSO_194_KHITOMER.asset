@@ -13,9 +13,16 @@ MonoBehaviour:
   m_Name: StarSysSO_194_KHITOMER
   m_EditorClassIdentifier: 
   StarSysInt: 194
-  Position: {x: 150, y: 11, z: -820}
+  Position: {x: 150, y: -820, z: 11}
   SysName: KHITOMER
-  FirstOwner: 0
+  FirstOwner: 194
+  CurrentOwner: 194
   StarType: 0
   StarSprit: {fileID: 21300000, guid: e4a5fe77159a4474faeb4032f0274153, type: 3}
   Population: 0
+  PopulationLimit: 10
+  Farms: 0
+  PowerStations: 0
+  Factories: 0
+  Research: 0
+  Description: descrition here...

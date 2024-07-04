@@ -13,9 +13,16 @@ MonoBehaviour:
   m_Name: StarSysSO_45_CYTHERIA
   m_EditorClassIdentifier: 
   StarSysInt: 45
-  Position: {x: -100, y: -5, z: 100}
+  Position: {x: -100, y: 100, z: -5}
   SysName: CYTHERIA
-  FirstOwner: 45
+  FirstOwner: 46
+  CurrentOwner: 46
   StarType: 2
   StarSprit: {fileID: 21300000, guid: a71196654f476ea4db890e76192307fa, type: 3}
-  Population: 5
+  Population: 10
+  PopulationLimit: 20
+  Farms: 5
+  PowerStations: 5
+  Factories: 5
+  Research: 5
+  Description: descrition here...

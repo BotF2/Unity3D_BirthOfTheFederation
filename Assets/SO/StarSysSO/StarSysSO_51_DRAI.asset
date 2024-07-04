@@ -13,9 +13,16 @@ MonoBehaviour:
   m_Name: StarSysSO_51_DRAI
   m_EditorClassIdentifier: 
   StarSysInt: 51
-  Position: {x: -430, y: -23, z: 730}
+  Position: {x: -430, y: 730, z: -23}
   SysName: DRAI
-  FirstOwner: 51
+  FirstOwner: 52
+  CurrentOwner: 52
   StarType: 3
   StarSprit: {fileID: 21300000, guid: f46fc7ae4eec69d40aa8026ba9da085d, type: 3}
-  Population: 5
+  Population: 10
+  PopulationLimit: 20
+  Farms: 5
+  PowerStations: 5
+  Factories: 5
+  Research: 5
+  Description: descrition here...

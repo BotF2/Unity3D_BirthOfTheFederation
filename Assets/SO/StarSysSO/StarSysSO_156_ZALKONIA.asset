@@ -13,9 +13,16 @@ MonoBehaviour:
   m_Name: StarSysSO_156_ZALKONIA
   m_EditorClassIdentifier: 
   StarSysInt: 156
-  Position: {x: 170, y: 21, z: -1370}
+  Position: {x: 170, y: -1370, z: 21}
   SysName: ZALKONIA
-  FirstOwner: 156
+  FirstOwner: 157
+  CurrentOwner: 157
   StarType: 3
   StarSprit: {fileID: 21300000, guid: f46fc7ae4eec69d40aa8026ba9da085d, type: 3}
-  Population: 5
+  Population: 10
+  PopulationLimit: 20
+  Farms: 5
+  PowerStations: 5
+  Factories: 5
+  Research: 5
+  Description: descrition here...

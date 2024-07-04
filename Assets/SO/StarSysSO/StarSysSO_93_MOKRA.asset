@@ -13,9 +13,16 @@ MonoBehaviour:
   m_Name: StarSysSO_93_MOKRA
   m_EditorClassIdentifier: 
   StarSysInt: 93
-  Position: {x: 380, y: 11, z: 610}
+  Position: {x: 380, y: 610, z: 11}
   SysName: MOKRA
-  FirstOwner: 93
+  FirstOwner: 94
+  CurrentOwner: 94
   StarType: 3
   StarSprit: {fileID: 21300000, guid: f46fc7ae4eec69d40aa8026ba9da085d, type: 3}
-  Population: 5
+  Population: 10
+  PopulationLimit: 20
+  Farms: 5
+  PowerStations: 5
+  Factories: 5
+  Research: 5
+  Description: descrition here...

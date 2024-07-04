@@ -13,9 +13,16 @@ MonoBehaviour:
   m_Name: StarSysSO_57_EVORA
   m_EditorClassIdentifier: 
   StarSysInt: 57
-  Position: {x: 270, y: 18, z: -1380}
+  Position: {x: 270, y: -1380, z: 18}
   SysName: EVORA
-  FirstOwner: 57
+  FirstOwner: 58
+  CurrentOwner: 58
   StarType: 3
   StarSprit: {fileID: 21300000, guid: f46fc7ae4eec69d40aa8026ba9da085d, type: 3}
-  Population: 5
+  Population: 10
+  PopulationLimit: 20
+  Farms: 5
+  PowerStations: 5
+  Factories: 5
+  Research: 5
+  Description: descrition here...

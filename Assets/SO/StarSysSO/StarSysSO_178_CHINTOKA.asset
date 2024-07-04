@@ -13,9 +13,16 @@ MonoBehaviour:
   m_Name: StarSysSO_178_CHINTOKA
   m_EditorClassIdentifier: 
   StarSysInt: 178
-  Position: {x: -520, y: -20, z: -930}
+  Position: {x: -520, y: -930, z: -20}
   SysName: CHINTOKA
-  FirstOwner: 0
+  FirstOwner: 178
+  CurrentOwner: 178
   StarType: 3
   StarSprit: {fileID: 21300000, guid: f46fc7ae4eec69d40aa8026ba9da085d, type: 3}
   Population: 0
+  PopulationLimit: 10
+  Farms: 0
+  PowerStations: 0
+  Factories: 0
+  Research: 0
+  Description: descrition here...

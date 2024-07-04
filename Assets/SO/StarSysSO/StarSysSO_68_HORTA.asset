@@ -13,9 +13,16 @@ MonoBehaviour:
   m_Name: StarSysSO_68_HORTA
   m_EditorClassIdentifier: 
   StarSysInt: 68
-  Position: {x: -80, y: 3, z: -790}
+  Position: {x: -80, y: -790, z: 3}
   SysName: HORTA
-  FirstOwner: 68
+  FirstOwner: 69
+  CurrentOwner: 69
   StarType: 0
   StarSprit: {fileID: 21300000, guid: e4a5fe77159a4474faeb4032f0274153, type: 3}
-  Population: 5
+  Population: 10
+  PopulationLimit: 20
+  Farms: 5
+  PowerStations: 5
+  Factories: 5
+  Research: 5
+  Description: descrition here...

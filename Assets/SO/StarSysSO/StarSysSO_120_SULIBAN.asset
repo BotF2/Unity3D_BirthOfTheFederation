@@ -13,9 +13,16 @@ MonoBehaviour:
   m_Name: StarSysSO_120_SULIBAN
   m_EditorClassIdentifier: 
   StarSysInt: 120
-  Position: {x: 40, y: 28, z: -800}
+  Position: {x: 40, y: -800, z: 28}
   SysName: SULIBAN
-  FirstOwner: 120
+  FirstOwner: 121
+  CurrentOwner: 121
   StarType: 3
   StarSprit: {fileID: 21300000, guid: f46fc7ae4eec69d40aa8026ba9da085d, type: 3}
-  Population: 5
+  Population: 10
+  PopulationLimit: 20
+  Farms: 5
+  PowerStations: 5
+  Factories: 5
+  Research: 5
+  Description: descrition here...

@@ -13,9 +13,16 @@ MonoBehaviour:
   m_Name: StarSysSO_132_TILONIA
   m_EditorClassIdentifier: 
   StarSysInt: 132
-  Position: {x: 110, y: -23, z: -1440}
+  Position: {x: 110, y: -1440, z: -23}
   SysName: TILONIA
-  FirstOwner: 132
+  FirstOwner: 133
+  CurrentOwner: 133
   StarType: 0
   StarSprit: {fileID: 21300000, guid: e4a5fe77159a4474faeb4032f0274153, type: 3}
-  Population: 5
+  Population: 10
+  PopulationLimit: 20
+  Farms: 5
+  PowerStations: 5
+  Factories: 5
+  Research: 5
+  Description: descrition here...

@@ -13,9 +13,16 @@ MonoBehaviour:
   m_Name: StarSysSO_50_DOSI
   m_EditorClassIdentifier: 
   StarSysInt: 50
-  Position: {x: -440, y: -27, z: 173}
+  Position: {x: -440, y: 173, z: -27}
   SysName: DOSI
-  FirstOwner: 50
+  FirstOwner: 51
+  CurrentOwner: 51
   StarType: 2
   StarSprit: {fileID: 21300000, guid: a71196654f476ea4db890e76192307fa, type: 3}
-  Population: 5
+  Population: 10
+  PopulationLimit: 20
+  Farms: 5
+  PowerStations: 5
+  Factories: 5
+  Research: 5
+  Description: descrition here...

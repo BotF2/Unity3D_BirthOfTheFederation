@@ -13,9 +13,16 @@ MonoBehaviour:
   m_Name: StarSysSO_205_B
   m_EditorClassIdentifier: 
   StarSysInt: 205
-  Position: {x: 40, y: 17, z: -680}
+  Position: {x: 40, y: -680, z: 17}
   SysName: B
-  FirstOwner: 0
+  FirstOwner: 205
+  CurrentOwner: 205
   StarType: 4
   StarSprit: {fileID: 21300000, guid: 782d452083d14404d83e94f7ce7ee92e, type: 3}
   Population: 0
+  PopulationLimit: 10
+  Farms: 0
+  PowerStations: 0
+  Factories: 0
+  Research: 0
+  Description: descrition here...

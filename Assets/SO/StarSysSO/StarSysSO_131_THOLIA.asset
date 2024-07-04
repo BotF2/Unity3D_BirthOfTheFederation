@@ -13,9 +13,16 @@ MonoBehaviour:
   m_Name: StarSysSO_131_THOLIA
   m_EditorClassIdentifier: 
   StarSysInt: 131
-  Position: {x: 131, y: 9, z: -925}
+  Position: {x: 131, y: -925, z: 9}
   SysName: THOLIA
-  FirstOwner: 131
+  FirstOwner: 132
+  CurrentOwner: 132
   StarType: 2
   StarSprit: {fileID: 21300000, guid: a71196654f476ea4db890e76192307fa, type: 3}
-  Population: 5
+  Population: 10
+  PopulationLimit: 20
+  Farms: 5
+  PowerStations: 5
+  Factories: 5
+  Research: 5
+  Description: descrition here...

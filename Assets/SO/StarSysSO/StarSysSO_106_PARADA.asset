@@ -13,9 +13,16 @@ MonoBehaviour:
   m_Name: StarSysSO_106_PARADA
   m_EditorClassIdentifier: 
   StarSysInt: 106
-  Position: {x: -500, y: 7, z: 660}
+  Position: {x: -500, y: 660, z: 7}
   SysName: PARADA
-  FirstOwner: 106
+  FirstOwner: 107
+  CurrentOwner: 107
   StarType: 3
   StarSprit: {fileID: 21300000, guid: f46fc7ae4eec69d40aa8026ba9da085d, type: 3}
-  Population: 5
+  Population: 10
+  PopulationLimit: 20
+  Farms: 5
+  PowerStations: 5
+  Factories: 5
+  Research: 5
+  Description: descrition here...

@@ -13,9 +13,16 @@ MonoBehaviour:
   m_Name: StarSysSO_22_AXANAR
   m_EditorClassIdentifier: 
   StarSysInt: 22
-  Position: {x: -140, y: 11, z: -540}
+  Position: {x: -140, y: -540, z: 11}
   SysName: AXANAR
-  FirstOwner: 22
+  FirstOwner: 23
+  CurrentOwner: 23
   StarType: 4
   StarSprit: {fileID: 21300000, guid: 782d452083d14404d83e94f7ce7ee92e, type: 3}
-  Population: 5
+  Population: 10
+  PopulationLimit: 20
+  Farms: 5
+  PowerStations: 5
+  Factories: 5
+  Research: 5
+  Description: descrition here...

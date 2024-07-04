@@ -13,9 +13,16 @@ MonoBehaviour:
   m_Name: StarSysSO_25_BANDI
   m_EditorClassIdentifier: 
   StarSysInt: 25
-  Position: {x: 30, y: -21, z: -890}
+  Position: {x: 30, y: -890, z: -21}
   SysName: BANDI
-  FirstOwner: 25
+  FirstOwner: 26
+  CurrentOwner: 26
   StarType: 3
   StarSprit: {fileID: 21300000, guid: f46fc7ae4eec69d40aa8026ba9da085d, type: 3}
-  Population: 5
+  Population: 10
+  PopulationLimit: 20
+  Farms: 5
+  PowerStations: 5
+  Factories: 5
+  Research: 5
+  Description: descrition here...

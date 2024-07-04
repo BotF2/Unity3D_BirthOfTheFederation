@@ -13,9 +13,16 @@ MonoBehaviour:
   m_Name: StarSysSO_95_NAUSICAA
   m_EditorClassIdentifier: 
   StarSysInt: 95
-  Position: {x: -80, y: -24, z: -1081}
+  Position: {x: -80, y: -1081, z: -24}
   SysName: NAUSICAA
-  FirstOwner: 95
+  FirstOwner: 96
+  CurrentOwner: 96
   StarType: 2
   StarSprit: {fileID: 21300000, guid: a71196654f476ea4db890e76192307fa, type: 3}
-  Population: 5
+  Population: 10
+  PopulationLimit: 20
+  Farms: 5
+  PowerStations: 5
+  Factories: 5
+  Research: 5
+  Description: descrition here...

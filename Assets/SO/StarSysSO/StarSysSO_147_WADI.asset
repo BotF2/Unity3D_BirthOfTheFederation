@@ -13,9 +13,16 @@ MonoBehaviour:
   m_Name: StarSysSO_147_WADI
   m_EditorClassIdentifier: 
   StarSysInt: 147
-  Position: {x: -720, y: -14, z: 670}
+  Position: {x: -720, y: 670, z: -14}
   SysName: WADI
-  FirstOwner: 147
+  FirstOwner: 148
+  CurrentOwner: 148
   StarType: 3
   StarSprit: {fileID: 21300000, guid: f46fc7ae4eec69d40aa8026ba9da085d, type: 3}
-  Population: 5
+  Population: 10
+  PopulationLimit: 20
+  Farms: 5
+  PowerStations: 5
+  Factories: 5
+  Research: 5
+  Description: descrition here...

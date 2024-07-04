@@ -13,9 +13,16 @@ MonoBehaviour:
   m_Name: StarSysSO_87_MAQUIS
   m_EditorClassIdentifier: 
   StarSysInt: 87
-  Position: {x: -340, y: 3, z: -550}
+  Position: {x: -340, y: -550, z: 3}
   SysName: MAQUIS
-  FirstOwner: 87
+  FirstOwner: 88
+  CurrentOwner: 88
   StarType: 2
   StarSprit: {fileID: 21300000, guid: a71196654f476ea4db890e76192307fa, type: 3}
-  Population: 5
+  Population: 10
+  PopulationLimit: 20
+  Farms: 5
+  PowerStations: 5
+  Factories: 5
+  Research: 5
+  Description: descrition here...

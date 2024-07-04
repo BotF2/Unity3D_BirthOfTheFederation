@@ -13,9 +13,16 @@ MonoBehaviour:
   m_Name: StarSysSO_56_ENTHARA
   m_EditorClassIdentifier: 
   StarSysInt: 56
-  Position: {x: 390, y: -29, z: 480}
+  Position: {x: 390, y: 480, z: -29}
   SysName: ENTHARA
-  FirstOwner: 56
+  FirstOwner: 57
+  CurrentOwner: 57
   StarType: 2
   StarSprit: {fileID: 21300000, guid: a71196654f476ea4db890e76192307fa, type: 3}
-  Population: 5
+  Population: 10
+  PopulationLimit: 20
+  Farms: 5
+  PowerStations: 5
+  Factories: 5
+  Research: 5
+  Description: descrition here...

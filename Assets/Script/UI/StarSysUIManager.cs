@@ -35,6 +35,8 @@ public class StarSysUIManager : MonoBehaviour
     //public Transform Destination;
     [SerializeField]
     private TMP_Text CivName;
+    [SerializeField]
+    private TMP_Text SysName;
     //[SerializeField]
     //private TMP_Text dropdownDestinationText;
     //[SerializeField]
@@ -83,6 +85,7 @@ public class StarSysUIManager : MonoBehaviour
         var civEnum = controller.StarSysData.CurrentOwner;
         var civData = CivManager.instance.GetCivDataByCivEnum(civEnum);
         CivName.text = civData.CivLongName;
+        SysName.text = controller.StarSysData.SysName;
     }
     public void UnLoadStarSysUI()
     {
