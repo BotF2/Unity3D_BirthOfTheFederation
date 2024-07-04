@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_193_KARUSH
   m_EditorClassIdentifier: 
   StarSysInt: 193
-  Position: {x: 180, y: -380, z: -5}
+  Position: {x: 180, y: -5, z: -380}
   SysName: KARUSH
   FirstOwner: 193
   CurrentOwner: 193

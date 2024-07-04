@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_76_KLAESTRON
   m_EditorClassIdentifier: 
   StarSysInt: 76
-  Position: {x: -410, y: -860, z: 30}
+  Position: {x: -410, y: 30, z: -860}
   SysName: KLAESTRON
   FirstOwner: 0
   CurrentOwner: 0

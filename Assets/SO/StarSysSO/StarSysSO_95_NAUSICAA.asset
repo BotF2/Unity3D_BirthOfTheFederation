@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_95_NAUSICAA
   m_EditorClassIdentifier: 
   StarSysInt: 95
-  Position: {x: -80, y: -1081, z: -24}
+  Position: {x: -80, y: -24, z: -1081}
   SysName: NAUSICAA
   FirstOwner: 96
   CurrentOwner: 96

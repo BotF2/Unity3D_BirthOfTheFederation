@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_191_BOKARA
   m_EditorClassIdentifier: 
   StarSysInt: 191
-  Position: {x: 40, y: -680, z: 17}
+  Position: {x: 40, y: 17, z: -680}
   SysName: BOKARA
   FirstOwner: 191
   CurrentOwner: 191

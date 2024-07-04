@@ -40,10 +40,9 @@ namespace Assets.Core
         public void Start()
         {
             galaxyEventCamera = GameObject.FindGameObjectWithTag("Galactic Camera").GetComponent<Camera>() as Camera;
-            // *** ToDo system UI
-            //var CanvasGO = GameObject.Find("CanvasSytemUI"); 
-            //systemUICanvas = CanvasGO.GetComponent<Canvas>();
-            //systemUICanvas.worldCamera = galaxyEventCamera;
+            var CanvasGO = GameObject.Find("CanvasStarSysUI");
+            systemUICanvas = CanvasGO.GetComponent<Canvas>();
+            systemUICanvas.worldCamera = galaxyEventCamera;
         }
         public void SysDataFromSO(List<CivSO> civSOList)
         {
@@ -59,24 +58,21 @@ namespace Assets.Core
                 SysData.StarSprit = starSysSO.StarSprit;
                 SysData.Population = starSysSO.Population;
                 SysData.Description = "description here";
-                 #region more stuff
-                //public float _sysCredits;
-                //public float _sysTaxRate; Set it at civ level
-                //public float _sysPopLimit;
-                //public float _currentSysPop;
-                //public float _systemFactoryLimit; Do it all with pop limit??
-                //public float _currentSysFactories;
-                //public float _production;
-                //private int _maintenanceCostLastTurn;
-                //private int _rankCredits;
-                //public List<CivHistory> _civHist_List = new List<CivHistory>();
-                // public bool _homeColony;
-                //public string _text;
-                //public GameObject _systemSphere;
+                SysData.PopulationLimit = starSysSO.PopulationLimit;
+                SysData.Farms = starSysSO.Farms;
+                SysData.PowerStations = starSysSO.PowerStations;
+                SysData.Factories = starSysSO.Factories;
+                SysData.Research = starSysSO.Research;
+                //SysData.food;
+                //SysData.power;
+                //SysData.production;
+                //SysData.tech;
+                //SysData.Description;
+                //SysData.v;
                 //public List<GameObject> _fleetsInSystem;
-                #endregion
-                
-                starSysDatas.Add(SysData);
+
+
+        starSysDatas.Add(SysData);
                 InstantiateSystem(SysData, civSO);
                 if (civSO.HasWarp)
                     FleetManager.instance.FleetDataFromSO(civSO, SysData.GetPosition()); 

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_139_VAADWAUR
   m_EditorClassIdentifier: 
   StarSysInt: 139
-  Position: {x: 340, y: 280, z: -26}
+  Position: {x: 340, y: -26, z: 280}
   SysName: VAADWAUR
   FirstOwner: 140
   CurrentOwner: 140

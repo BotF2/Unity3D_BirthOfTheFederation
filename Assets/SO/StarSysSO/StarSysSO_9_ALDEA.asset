@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_9_ALDEA
   m_EditorClassIdentifier: 
   StarSysInt: 9
-  Position: {x: -30, y: -1270, z: 23}
+  Position: {x: -30, y: 23, z: -1270}
   SysName: ALDEA
   FirstOwner: 10
   CurrentOwner: 10

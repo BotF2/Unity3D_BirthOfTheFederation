@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_119_SONA
   m_EditorClassIdentifier: 
   StarSysInt: 119
-  Position: {x: 55, y: 840, z: -23}
+  Position: {x: 55, y: -23, z: 840}
   SysName: SONA
   FirstOwner: 120
   CurrentOwner: 120

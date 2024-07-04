@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_75_KESPRYTT
   m_EditorClassIdentifier: 
   StarSysInt: 75
-  Position: {x: 180, y: -1390, z: 4}
+  Position: {x: 180, y: 4, z: -1390}
   SysName: KESPRYTT
   FirstOwner: 76
   CurrentOwner: 76

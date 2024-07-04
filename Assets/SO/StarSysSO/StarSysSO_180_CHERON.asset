@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_180_CHERON
   m_EditorClassIdentifier: 
   StarSysInt: 180
-  Position: {x: 190, y: -420, z: -22}
+  Position: {x: 190, y: -22, z: -420}
   SysName: CHERON
   FirstOwner: 180
   CurrentOwner: 180

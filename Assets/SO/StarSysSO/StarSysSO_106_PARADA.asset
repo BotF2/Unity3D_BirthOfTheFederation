@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_106_PARADA
   m_EditorClassIdentifier: 
   StarSysInt: 106
-  Position: {x: -500, y: 660, z: 7}
+  Position: {x: -500, y: 7, z: 660}
   SysName: PARADA
   FirstOwner: 107
   CurrentOwner: 107

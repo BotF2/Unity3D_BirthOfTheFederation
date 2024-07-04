@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_42_CHALNOTH
   m_EditorClassIdentifier: 
   StarSysInt: 42
-  Position: {x: 20, y: -1320, z: -21}
+  Position: {x: 20, y: -21, z: -1320}
   SysName: CHALNOTH
   FirstOwner: 43
   CurrentOwner: 43

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_111_HELIOS
   m_EditorClassIdentifier: 
   StarSysInt: 111
-  Position: {x: 400, y: 300, z: -14}
+  Position: {x: 400, y: -14, z: 300}
   SysName: HELIOS
   FirstOwner: 0
   CurrentOwner: 0

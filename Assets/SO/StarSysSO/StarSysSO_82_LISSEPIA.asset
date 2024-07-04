@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_82_LISSEPIA
   m_EditorClassIdentifier: 
   StarSysInt: 82
-  Position: {x: -310, y: -430, z: 29}
+  Position: {x: -310, y: 29, z: -430}
   SysName: LISSEPIA
   FirstOwner: 83
   CurrentOwner: 83

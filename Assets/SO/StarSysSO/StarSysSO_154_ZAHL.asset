@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_154_ZAHL
   m_EditorClassIdentifier: 
   StarSysInt: 154
-  Position: {x: 480, y: 530, z: -4}
+  Position: {x: 480, y: -4, z: 530}
   SysName: ZAHL
   FirstOwner: 155
   CurrentOwner: 155

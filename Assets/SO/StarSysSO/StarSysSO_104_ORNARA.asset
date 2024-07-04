@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_104_ORNARA
   m_EditorClassIdentifier: 
   StarSysInt: 104
-  Position: {x: -50, y: -1140, z: -2}
+  Position: {x: -50, y: -2, z: -1140}
   SysName: ORNARA
   FirstOwner: 105
   CurrentOwner: 105

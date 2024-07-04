@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_143_VISSIA
   m_EditorClassIdentifier: 
   StarSysInt: 143
-  Position: {x: 40, y: -510, z: -13}
+  Position: {x: 40, y: -13, z: -510}
   SysName: VISSIA
   FirstOwner: 144
   CurrentOwner: 144

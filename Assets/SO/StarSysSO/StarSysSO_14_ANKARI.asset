@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_14_ANKARI
   m_EditorClassIdentifier: 
   StarSysInt: 14
-  Position: {x: 450, y: 300, z: 23}
+  Position: {x: 450, y: 23, z: 300}
   SysName: ANKARI
   FirstOwner: 15
   CurrentOwner: 15

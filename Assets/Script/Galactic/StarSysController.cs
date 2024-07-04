@@ -24,7 +24,7 @@ public class StarSysController : MonoBehaviour
         else 
         starSysData.Population += delatPopulation;// population delta code, starSysData += xyz things happen;
     }
-    public void UpdateOwner(CivEnum newOwner) 
+    public void UpdateOwner(CivEnum newOwner) // system captured or colonized
     {
         starSysData.CurrentOwner = newOwner;
     }

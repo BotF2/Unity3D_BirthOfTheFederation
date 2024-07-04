@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_136_TROGORA
   m_EditorClassIdentifier: 
   StarSysInt: 136
-  Position: {x: -700, y: 480, z: 25}
+  Position: {x: -700, y: 25, z: 480}
   SysName: TROGORA
   FirstOwner: 137
   CurrentOwner: 137

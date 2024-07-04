@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_102_OCAMPA
   m_EditorClassIdentifier: 
   StarSysInt: 102
-  Position: {x: 100, y: 710, z: 23}
+  Position: {x: 100, y: 23, z: 710}
   SysName: OCAMPA
   FirstOwner: 103
   CurrentOwner: 103

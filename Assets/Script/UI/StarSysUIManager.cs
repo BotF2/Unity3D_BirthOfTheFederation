@@ -22,7 +22,7 @@ public class StarSysUIManager : MonoBehaviour
     //private TextMeshProUGUI warpSliderText;
     //[SerializeField]
     //private float maxSliderValue = 9.8f;
-    public List<StarSysData> systemsList;
+    public List<StarSysController> sysControllerList;
 
     //[SerializeField]
     //private List<ShipData> shipList;
@@ -62,7 +62,7 @@ public class StarSysUIManager : MonoBehaviour
     {
         starSysUIRoot.SetActive(false);
         galaxyEventCamera = GameObject.FindGameObjectWithTag("Galactic Camera").GetComponent<Camera>() as Camera;
-        parentCanvas.worldCamera = galaxyEventCamera;
+        //parentCanvas.worldCamera = galaxyEventCamera; not working
         //destinationDropdown.value = 0;
     }
 
@@ -81,11 +81,23 @@ public class StarSysUIManager : MonoBehaviour
     {
         FleetUIManager.instance.UnLoadFleetUI();
         starSysUIRoot.SetActive(true);
+
         controller = go.GetComponent<StarSysController>();
         var civEnum = controller.StarSysData.CurrentOwner;
         var civData = CivManager.instance.GetCivDataByCivEnum(civEnum);
         CivName.text = civData.CivLongName;
+        LoadSystemsList(civData.CivEnum);
         SysName.text = controller.StarSysData.SysName;
+    }
+    private void LoadSystemsList(CivEnum civEnum)
+    {
+        foreach (var sysController in StarSysManager.instance.StarSysControllerList)
+        {
+            if (sysController.StarSysData.CurrentOwner == civEnum)
+            {
+                sysControllerList.Add(sysController);
+            }
+        }
     }
     public void UnLoadStarSysUI()
     {

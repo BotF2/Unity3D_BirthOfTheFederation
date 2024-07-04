@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_123_TAKTAK
   m_EditorClassIdentifier: 
   StarSysInt: 123
-  Position: {x: 630, y: 690, z: -28}
+  Position: {x: 630, y: -28, z: 690}
   SysName: TAKTAK
   FirstOwner: 124
   CurrentOwner: 124

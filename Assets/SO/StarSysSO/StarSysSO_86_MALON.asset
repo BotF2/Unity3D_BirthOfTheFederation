@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_86_MALON
   m_EditorClassIdentifier: 
   StarSysInt: 86
-  Position: {x: 440, y: 420, z: 6}
+  Position: {x: 440, y: 6, z: 420}
   SysName: MALON
   FirstOwner: 87
   CurrentOwner: 87

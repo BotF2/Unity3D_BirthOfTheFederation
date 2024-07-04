@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_79_KRIOSIA
   m_EditorClassIdentifier: 
   StarSysInt: 79
-  Position: {x: -190, y: -780, z: 12}
+  Position: {x: -190, y: 12, z: -780}
   SysName: KRIOSIA
   FirstOwner: 80
   CurrentOwner: 80

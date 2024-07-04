@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_128_TANUGA
   m_EditorClassIdentifier: 
   StarSysInt: 128
-  Position: {x: -140, y: -1220, z: -22}
+  Position: {x: -140, y: -22, z: -1220}
   SysName: TANUGA
   FirstOwner: 129
   CurrentOwner: 129

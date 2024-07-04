@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_183_KELVAS
   m_EditorClassIdentifier: 
   StarSysInt: 183
-  Position: {x: -590, y: -760, z: 11}
+  Position: {x: -590, y: 11, z: -760}
   SysName: KELVAS
   FirstOwner: 183
   CurrentOwner: 183

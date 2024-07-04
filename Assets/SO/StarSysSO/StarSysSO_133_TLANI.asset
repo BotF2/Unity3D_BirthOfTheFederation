@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_133_TLANI
   m_EditorClassIdentifier: 
   StarSysInt: 133
-  Position: {x: -750, y: -960, z: -28}
+  Position: {x: -750, y: -28, z: -960}
   SysName: TLANI
   FirstOwner: 134
   CurrentOwner: 134

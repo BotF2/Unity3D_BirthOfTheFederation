@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_87_MAQUIS
   m_EditorClassIdentifier: 
   StarSysInt: 87
-  Position: {x: -340, y: -550, z: 3}
+  Position: {x: -340, y: 3, z: -550}
   SysName: MAQUIS
   FirstOwner: 88
   CurrentOwner: 88

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_49_DOPTERIA
   m_EditorClassIdentifier: 
   StarSysInt: 49
-  Position: {x: -440, y: -430, z: 26}
+  Position: {x: -440, y: 26, z: -430}
   SysName: DOPTERIA
   FirstOwner: 50
   CurrentOwner: 50

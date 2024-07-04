@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_12_ANDORI
   m_EditorClassIdentifier: 
   StarSysInt: 12
-  Position: {x: -90, y: -700, z: 11}
+  Position: {x: -90, y: 11, z: -700}
   SysName: ANDORI
   FirstOwner: 13
   CurrentOwner: 13

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_120_SULIBAN
   m_EditorClassIdentifier: 
   StarSysInt: 120
-  Position: {x: 40, y: -800, z: 28}
+  Position: {x: 40, y: 28, z: -800}
   SysName: SULIBAN
   FirstOwner: 121
   CurrentOwner: 121

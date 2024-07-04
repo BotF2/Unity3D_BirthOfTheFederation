@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_74_KELLERUN
   m_EditorClassIdentifier: 
   StarSysInt: 74
-  Position: {x: -730, y: -980, z: -16}
+  Position: {x: -730, y: -16, z: -980}
   SysName: KELLERUN
   FirstOwner: 75
   CurrentOwner: 75

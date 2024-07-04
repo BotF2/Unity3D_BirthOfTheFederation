@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_83_LOKIRRIM
   m_EditorClassIdentifier: 
   StarSysInt: 83
-  Position: {x: 180, y: 180, z: -22}
+  Position: {x: 180, y: -22, z: 180}
   SysName: LOKIRRIM
   FirstOwner: 84
   CurrentOwner: 84

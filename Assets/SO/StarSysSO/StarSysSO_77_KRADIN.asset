@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_77_KRADIN
   m_EditorClassIdentifier: 
   StarSysInt: 77
-  Position: {x: 600, y: 560, z: -27}
+  Position: {x: 600, y: -27, z: 560}
   SysName: KRADIN
   FirstOwner: 78
   CurrentOwner: 78

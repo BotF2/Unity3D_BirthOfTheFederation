@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_81_LEDOSIA
   m_EditorClassIdentifier: 
   StarSysInt: 81
-  Position: {x: 170, y: 60, z: 29}
+  Position: {x: 170, y: 29, z: 60}
   SysName: LEDOSIA
   FirstOwner: 82
   CurrentOwner: 82

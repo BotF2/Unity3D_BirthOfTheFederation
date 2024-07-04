@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_145_VORI
   m_EditorClassIdentifier: 
   StarSysInt: 145
-  Position: {x: 560, y: 580, z: 23}
+  Position: {x: 560, y: 23, z: 580}
   SysName: VORI
   FirstOwner: 146
   CurrentOwner: 146

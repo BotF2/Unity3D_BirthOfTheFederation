@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_117_SIKARIA
   m_EditorClassIdentifier: 
   StarSysInt: 117
-  Position: {x: 400, y: 710, z: -2}
+  Position: {x: 400, y: -2, z: 710}
   SysName: SIKARIA
   FirstOwner: 118
   CurrentOwner: 118

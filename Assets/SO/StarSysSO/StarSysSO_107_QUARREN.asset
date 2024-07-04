@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_107_QUARREN
   m_EditorClassIdentifier: 
   StarSysInt: 107
-  Position: {x: 40, y: 80, z: -9}
+  Position: {x: 40, y: -9, z: 80}
   SysName: QUARREN
   FirstOwner: 108
   CurrentOwner: 108

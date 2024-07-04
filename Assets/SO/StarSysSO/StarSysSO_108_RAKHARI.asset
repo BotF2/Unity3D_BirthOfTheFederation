@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_108_RAKHARI
   m_EditorClassIdentifier: 
   StarSysInt: 108
-  Position: {x: -470, y: 750, z: 9}
+  Position: {x: -470, y: 9, z: 750}
   SysName: RAKHARI
   FirstOwner: 109
   CurrentOwner: 109

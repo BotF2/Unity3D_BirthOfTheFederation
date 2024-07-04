@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_137_TZENKETHI
   m_EditorClassIdentifier: 
   StarSysInt: 137
-  Position: {x: -240, y: -720, z: 3}
+  Position: {x: -240, y: 3, z: -720}
   SysName: TZENKETHI
   FirstOwner: 138
   CurrentOwner: 138

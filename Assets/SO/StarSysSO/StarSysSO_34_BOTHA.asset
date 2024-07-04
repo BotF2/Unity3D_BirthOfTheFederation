@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_34_BOTHA
   m_EditorClassIdentifier: 
   StarSysInt: 34
-  Position: {x: 440, y: 650, z: -27}
+  Position: {x: 440, y: -27, z: 650}
   SysName: BOTHA
   FirstOwner: 35
   CurrentOwner: 35

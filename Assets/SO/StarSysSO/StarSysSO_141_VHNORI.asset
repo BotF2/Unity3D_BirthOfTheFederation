@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_141_VHNORI
   m_EditorClassIdentifier: 
   StarSysInt: 141
-  Position: {x: 350, y: 670, z: 24}
+  Position: {x: 350, y: 24, z: 670}
   SysName: VHNORI
   FirstOwner: 142
   CurrentOwner: 142

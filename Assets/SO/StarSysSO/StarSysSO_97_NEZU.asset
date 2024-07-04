@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_97_NEZU
   m_EditorClassIdentifier: 
   StarSysInt: 97
-  Position: {x: 680, y: 730, z: -20}
+  Position: {x: 680, y: -20, z: 730}
   SysName: NEZU
   FirstOwner: 98
   CurrentOwner: 98

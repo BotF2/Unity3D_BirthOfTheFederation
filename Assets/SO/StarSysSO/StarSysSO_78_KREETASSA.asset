@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_78_KREETASSA
   m_EditorClassIdentifier: 
   StarSysInt: 78
-  Position: {x: -100, y: -650, z: 0}
+  Position: {x: -100, y: 0, z: -650}
   SysName: KREETASSA
   FirstOwner: 79
   CurrentOwner: 79

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_19_ARGRATHI
   m_EditorClassIdentifier: 
   StarSysInt: 19
-  Position: {x: -300, y: 650, z: 23}
+  Position: {x: -300, y: 23, z: 650}
   SysName: ARGRATHI
   FirstOwner: 20
   CurrentOwner: 20

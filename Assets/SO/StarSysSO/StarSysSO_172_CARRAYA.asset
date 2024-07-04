@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_172_CARRAYA
   m_EditorClassIdentifier: 
   StarSysInt: 172
-  Position: {x: 180, y: -720, z: -27}
+  Position: {x: 180, y: -27, z: -720}
   SysName: CARRAYA
   FirstOwner: 172
   CurrentOwner: 172

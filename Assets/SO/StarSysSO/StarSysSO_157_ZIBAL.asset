@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_157_ZIBAL
   m_EditorClassIdentifier: 
   StarSysInt: 157
-  Position: {x: 350, y: -1230, z: 18}
+  Position: {x: 350, y: 18, z: -1230}
   SysName: ZIBAL
   FirstOwner: 158
   CurrentOwner: 158

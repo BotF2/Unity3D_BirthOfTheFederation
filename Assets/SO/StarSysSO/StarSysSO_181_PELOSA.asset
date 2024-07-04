@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_181_PELOSA
   m_EditorClassIdentifier: 
   StarSysInt: 181
-  Position: {x: -490, y: -780, z: 24}
+  Position: {x: -490, y: 24, z: -780}
   SysName: PELOSA
   FirstOwner: 181
   CurrentOwner: 181

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_68_HORTA
   m_EditorClassIdentifier: 
   StarSysInt: 68
-  Position: {x: -80, y: -790, z: 3}
+  Position: {x: -80, y: 3, z: -790}
   SysName: HORTA
   FirstOwner: 69
   CurrentOwner: 69

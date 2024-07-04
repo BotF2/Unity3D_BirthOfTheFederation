@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_109_RAKOSA
   m_EditorClassIdentifier: 
   StarSysInt: 109
-  Position: {x: 510, y: 630, z: -9}
+  Position: {x: 510, y: -9, z: 630}
   SysName: RAKOSA
   FirstOwner: 110
   CurrentOwner: 110

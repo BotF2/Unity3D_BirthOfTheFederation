@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_194_KHITOMER
   m_EditorClassIdentifier: 
   StarSysInt: 194
-  Position: {x: 150, y: -820, z: 11}
+  Position: {x: 150, y: 11, z: -820}
   SysName: KHITOMER
   FirstOwner: 194
   CurrentOwner: 194

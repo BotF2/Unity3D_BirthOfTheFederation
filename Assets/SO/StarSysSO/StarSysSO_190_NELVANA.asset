@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_190_NELVANA
   m_EditorClassIdentifier: 
   StarSysInt: 190
-  Position: {x: 70, y: -640, z: 18}
+  Position: {x: 70, y: 18, z: -640}
   SysName: NELVANA
   FirstOwner: 190
   CurrentOwner: 190

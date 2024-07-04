@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_94_MONEA
   m_EditorClassIdentifier: 
   StarSysInt: 94
-  Position: {x: 410, y: 380, z: 22}
+  Position: {x: 410, y: 22, z: 380}
   SysName: MONEA
   FirstOwner: 95
   CurrentOwner: 95

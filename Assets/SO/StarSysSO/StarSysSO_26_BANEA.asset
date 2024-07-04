@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_26_BANEA
   m_EditorClassIdentifier: 
   StarSysInt: 26
-  Position: {x: 290, y: 720, z: 23}
+  Position: {x: 290, y: 23, z: 720}
   SysName: BANEA
   FirstOwner: 27
   CurrentOwner: 27

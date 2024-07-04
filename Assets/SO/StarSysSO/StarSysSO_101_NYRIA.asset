@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_101_NYRIA
   m_EditorClassIdentifier: 
   StarSysInt: 101
-  Position: {x: 690, y: 680, z: 2}
+  Position: {x: 690, y: 2, z: 680}
   SysName: NYRIA
   FirstOwner: 102
   CurrentOwner: 102

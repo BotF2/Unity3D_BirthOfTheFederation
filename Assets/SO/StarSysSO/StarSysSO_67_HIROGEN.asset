@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_67_HIROGEN
   m_EditorClassIdentifier: 
   StarSysInt: 67
-  Position: {x: 520, y: 460, z: -11}
+  Position: {x: 520, y: -11, z: 460}
   SysName: HIROGEN
   FirstOwner: 68
   CurrentOwner: 68

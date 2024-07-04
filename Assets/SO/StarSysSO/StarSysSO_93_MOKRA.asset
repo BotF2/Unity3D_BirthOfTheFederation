@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_93_MOKRA
   m_EditorClassIdentifier: 
   StarSysInt: 93
-  Position: {x: 380, y: 610, z: 11}
+  Position: {x: 380, y: 11, z: 610}
   SysName: MOKRA
   FirstOwner: 94
   CurrentOwner: 94

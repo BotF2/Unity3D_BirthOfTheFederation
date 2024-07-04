@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_186_RURA PENTHE
   m_EditorClassIdentifier: 
   StarSysInt: 186
-  Position: {x: 240, y: -860, z: -2}
+  Position: {x: 240, y: -2, z: -860}
   SysName: RURA PENTHE
   FirstOwner: 186
   CurrentOwner: 186

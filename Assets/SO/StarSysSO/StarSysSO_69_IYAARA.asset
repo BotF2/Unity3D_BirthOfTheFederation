@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_69_IYAARA
   m_EditorClassIdentifier: 
   StarSysInt: 69
-  Position: {x: -60, y: -1350, z: -25}
+  Position: {x: -60, y: -25, z: -1350}
   SysName: IYAARA
   FirstOwner: 70
   CurrentOwner: 70

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_30_BILANA
   m_EditorClassIdentifier: 
   StarSysInt: 30
-  Position: {x: -240, y: -1260, z: 17}
+  Position: {x: -240, y: 17, z: -1260}
   SysName: BILANA
   FirstOwner: 31
   CurrentOwner: 31

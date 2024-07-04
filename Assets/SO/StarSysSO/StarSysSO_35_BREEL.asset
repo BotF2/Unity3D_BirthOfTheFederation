@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_35_BREEL
   m_EditorClassIdentifier: 
   StarSysInt: 35
-  Position: {x: -280, y: -650, z: -24}
+  Position: {x: -280, y: -24, z: -650}
   SysName: BREEL
   FirstOwner: 36
   CurrentOwner: 36

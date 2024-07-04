@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_152_YADERA
   m_EditorClassIdentifier: 
   StarSysInt: 152
-  Position: {x: -600, y: 400, z: -24}
+  Position: {x: -600, y: -24, z: 400}
   SysName: YADERA
   FirstOwner: 153
   CurrentOwner: 153

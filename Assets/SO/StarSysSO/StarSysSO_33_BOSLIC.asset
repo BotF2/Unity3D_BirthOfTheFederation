@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_33_BOSLIC
   m_EditorClassIdentifier: 
   StarSysInt: 33
-  Position: {x: -220, y: -460, z: 4}
+  Position: {x: -220, y: 4, z: -460}
   SysName: BOSLIC
   FirstOwner: 34
   CurrentOwner: 34
