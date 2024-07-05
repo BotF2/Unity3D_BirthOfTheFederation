@@ -15,8 +15,8 @@ MonoBehaviour:
   StarSysInt: 2
   Position: {x: 140, y: -25, z: -867}
   SysName: KRONOS
-  FirstOwner: 0
-  CurrentOwner: 0
+  FirstOwner: 2
+  CurrentOwner: 2
   StarType: 4
   StarSprit: {fileID: 21300000, guid: 782d452083d14404d83e94f7ce7ee92e, type: 3}
   Population: 20

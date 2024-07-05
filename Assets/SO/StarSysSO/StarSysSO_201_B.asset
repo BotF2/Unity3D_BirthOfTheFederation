@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StarSysInt: 201
   Position: {x: 50, y: 9, z: -540}
-  SysName: B
+  SysName: SCHULL
   FirstOwner: 201
   CurrentOwner: 201
   StarType: 3

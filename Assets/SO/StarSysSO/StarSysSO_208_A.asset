@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StarSysInt: 208
   Position: {x: 150, y: 11, z: -820}
-  SysName: A
+  SysName: KNOCK
   FirstOwner: 208
   CurrentOwner: 208
   StarType: 0

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StarSysInt: 209
   Position: {x: 60, y: 28, z: -930}
-  SysName: B
+  SysName: CONG
   FirstOwner: 209
   CurrentOwner: 209
   StarType: 3

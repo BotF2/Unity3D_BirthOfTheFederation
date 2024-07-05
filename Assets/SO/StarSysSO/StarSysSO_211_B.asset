@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StarSysInt: 211
   Position: {x: -90, y: 25, z: -980}
-  SysName: B
+  SysName: ATHENNY
   FirstOwner: 211
   CurrentOwner: 211
   StarType: 2

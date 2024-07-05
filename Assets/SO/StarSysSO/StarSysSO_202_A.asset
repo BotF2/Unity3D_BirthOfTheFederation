@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StarSysInt: 202
   Position: {x: 70, y: 26, z: -580}
-  SysName: A
+  SysName: KILRUSH
   FirstOwner: 202
   CurrentOwner: 202
   StarType: 4

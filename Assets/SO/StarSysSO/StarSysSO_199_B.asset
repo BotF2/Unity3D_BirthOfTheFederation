@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StarSysInt: 199
   Position: {x: 550, y: -2, z: 640}
-  SysName: B
+  SysName: CAHERSIVEEN
   FirstOwner: 199
   CurrentOwner: 199
   StarType: 4

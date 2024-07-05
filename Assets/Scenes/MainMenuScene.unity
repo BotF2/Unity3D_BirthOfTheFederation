@@ -2164,17 +2164,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 199577151}
   m_CullTransparentMesh: 1
---- !u!114 &204167784 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9042168810756268837, guid: 26c525ae50331f346a8a611f49b4bfe2, type: 3}
-  m_PrefabInstance: {fileID: 9042168810552244557}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &206574035
 GameObject:
   m_ObjectHideFlags: 0
@@ -19749,9 +19738,10 @@ MonoBehaviour:
   controller: {fileID: 0}
   parentCanvas: {fileID: 0}
   starSysUIRoot: {fileID: 1401885898}
+  starSysPanelPrefab: {fileID: 9042168811146900399, guid: 26c525ae50331f346a8a611f49b4bfe2, type: 3}
+  starSysListGO: {fileID: 1530623272}
   sysControllerList: []
   CivName: {fileID: 377124291}
-  SysName: {fileID: 204167784}
 --- !u!1 &1243922962
 GameObject:
   m_ObjectHideFlags: 0
@@ -24154,7 +24144,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -53.29363}
-  m_SizeDelta: {x: 1920, y: 30}
+  m_SizeDelta: {x: 1920, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1530623274
 MonoBehaviour:
@@ -32285,7 +32275,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 9042168809958507780, guid: 26c525ae50331f346a8a611f49b4bfe2, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9042168810208091750, guid: 26c525ae50331f346a8a611f49b4bfe2, type: 3}
       propertyPath: m_RootOrder
@@ -32293,11 +32283,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9042168810422593639, guid: 26c525ae50331f346a8a611f49b4bfe2, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9042168810797543398, guid: 26c525ae50331f346a8a611f49b4bfe2, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9042168811146900398, guid: 26c525ae50331f346a8a611f49b4bfe2, type: 3}
       propertyPath: m_Pivot.x
@@ -32387,6 +32377,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: StarSysUI_Template
       objectReference: {fileID: 0}
+    - target: {fileID: 9042168811146900399, guid: 26c525ae50331f346a8a611f49b4bfe2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9042168811276118595, guid: 26c525ae50331f346a8a611f49b4bfe2, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -32397,7 +32391,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9042168811845944486, guid: 26c525ae50331f346a8a611f49b4bfe2, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26c525ae50331f346a8a611f49b4bfe2, type: 3}

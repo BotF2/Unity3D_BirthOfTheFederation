@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StarSysInt: 200
   Position: {x: 240, y: -2, z: -860}
-  SysName: A
+  SysName: CLONAKITTY
   FirstOwner: 200
   CurrentOwner: 200
   StarType: 2

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StarSysInt: 203
   Position: {x: 100, y: 27, z: -670}
-  SysName: B
+  SysName: ENNIS
   FirstOwner: 203
   CurrentOwner: 203
   StarType: 2

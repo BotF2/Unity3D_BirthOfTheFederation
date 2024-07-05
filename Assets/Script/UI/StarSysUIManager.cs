@@ -7,6 +7,7 @@ using Assets.Core;
 using Unity.VisualScripting;
 using System.Diagnostics;
 using UnityEngine.Rendering;
+using System.Linq;
 
 [DebuggerDisplay("{" + nameof(GetDebuggerDisplay) + "(),nq}")]
 public class StarSysUIManager : MonoBehaviour
@@ -16,33 +17,20 @@ public class StarSysUIManager : MonoBehaviour
     public Canvas parentCanvas;
     [SerializeField]
     private GameObject starSysUIRoot;
-    //[SerializeField]
-    //private Slider warpSlider;
-    //[SerializeField]
-    //private TextMeshProUGUI warpSliderText;
-    //[SerializeField]
-    //private float maxSliderValue = 9.8f;
+    [SerializeField]
+    private GameObject starSysPanelPrefab;
+    [SerializeField]
+    private GameObject starSysListGO;
+
     public List<StarSysController> sysControllerList;
 
     //[SerializeField]
     //private List<ShipData> shipList;
     private bool deltaShipList = false;
 
-    //public GameObject ShipDropdownGO;
-    //[SerializeField]
-    //private TMP_Dropdown destinationDropdown;
-    //private TMP_Dropdown shipDropdown;
-    //public Transform Destination;
     [SerializeField]
     private TMP_Text CivName;
-    [SerializeField]
-    private TMP_Text SysName;
-    //[SerializeField]
-    //private TMP_Text dropdownDestinationText;
-    //[SerializeField]
-    //private TMP_Text dropdownShipText;
-    //[SerializeField]
-    //private TMP_Text sysDestination;
+
     private Camera galaxyEventCamera;
 
 
@@ -66,17 +54,6 @@ public class StarSysUIManager : MonoBehaviour
         //destinationDropdown.value = 0;
     }
 
-    public void WarpSliderChange(float value)
-     {
-        //float localValue = value * maxSliderValue;
-        //warpSliderText.text = localValue.ToString("0.0");
-        //controller.FleetData.CurrentWarpFactor = localValue;
-    }
-    public void ResetWarpSlider(float value)
-    {
-        //warpSlider.value = value/maxSliderValue;
-        //warpSliderText.text = value.ToString("0.0");
-    }
     public void LoadStarSysUI(GameObject go) 
     {
         FleetUIManager.instance.UnLoadFleetUI();
@@ -85,12 +62,14 @@ public class StarSysUIManager : MonoBehaviour
         controller = go.GetComponent<StarSysController>();
         var civEnum = controller.StarSysData.CurrentOwner;
         var civData = CivManager.instance.GetCivDataByCivEnum(civEnum);
+
+        //????save last civ and its menu list or clear and start over each time
         CivName.text = civData.CivLongName;
         LoadSystemsList(civData.CivEnum);
-        SysName.text = controller.StarSysData.SysName;
     }
     private void LoadSystemsList(CivEnum civEnum)
     {
+        sysControllerList.Clear(); 
         foreach (var sysController in StarSysManager.instance.StarSysControllerList)
         {
             if (sysController.StarSysData.CurrentOwner == civEnum)
@@ -98,24 +77,30 @@ public class StarSysUIManager : MonoBehaviour
                 sysControllerList.Add(sysController);
             }
         }
+        List<string> nameOfSys = new List<string>();
+        foreach(var tmp in starSysListGO.GetComponentsInChildren<TextMeshProUGUI>())
+        {
+            nameOfSys.Add(tmp.text);
+        }
+        
+        for (var i = 0; i < sysControllerList.Count; i++)
+        {
+            if (!nameOfSys.Contains(sysControllerList[i].StarSysData.SysName))
+            { 
+                var sysController = sysControllerList[i];
+                GameObject starSysPanel = (GameObject)Instantiate(starSysPanelPrefab, new Vector3(0, 0, 0),
+                    Quaternion.identity);
+                starSysPanel.transform.SetParent(starSysListGO.transform, true);
+                var sysNames = starSysPanel.GetComponentsInChildren<TextMeshProUGUI>();
+                sysNames[0].text = sysController.StarSysData.SysName;
+            }
+        }
     }
     public void UnLoadStarSysUI()
     {
         starSysUIRoot.SetActive(false);
     }
-    void DropdownItemSelected(TMP_Dropdown dropdown)
-    {
-        //int index = dropdown.value;
-        //if (dropdown.name == "Dropdown Destination")
-        //{
-        //    if (dropdown.options[index].text != "Select Destination" && GameManager.Instance.DestinationDictionary[dropdown.options[index].text] != null)
-        //    {
-        //        controller.FleetData.Destination = GameManager.Instance.DestinationDictionary[dropdown.options[index].text];
-        //        controller.SelectedDestination = dropdown.options[index].text;
-        //        dropdownDestinationText.text = dropdown.options[index].text;
-        //    }
-        //}
-    }
+
     private void NamesToShipDropdown(List<ShipController> shipControllers)
     {
         //var shipDropdown = ShipDropdownGO.GetComponent<TMP_Dropdown>();
