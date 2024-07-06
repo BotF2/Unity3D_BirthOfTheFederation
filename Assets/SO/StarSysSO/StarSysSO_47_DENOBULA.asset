@@ -15,8 +15,8 @@ MonoBehaviour:
   StarSysInt: 47
   Position: {x: -30, y: 9, z: -530}
   SysName: DENOBULA
-  FirstOwner: 48
-  CurrentOwner: 48
+  FirstOwner: 47
+  CurrentOwner: 47
   StarType: 0
   StarSprit: {fileID: 21300000, guid: e4a5fe77159a4474faeb4032f0274153, type: 3}
   Population: 10

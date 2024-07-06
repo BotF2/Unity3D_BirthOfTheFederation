@@ -15,8 +15,8 @@ MonoBehaviour:
   StarSysInt: 70
   Position: {x: -280, y: 23, z: -1180}
   SysName: JNAII
-  FirstOwner: 71
-  CurrentOwner: 71
+  FirstOwner: 70
+  CurrentOwner: 70
   StarType: 3
   StarSprit: {fileID: 21300000, guid: f46fc7ae4eec69d40aa8026ba9da085d, type: 3}
   Population: 10

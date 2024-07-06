@@ -15,8 +15,8 @@ MonoBehaviour:
   StarSysInt: 92
   Position: {x: 120, y: -11, z: -1080}
   SysName: MIZARIA
-  FirstOwner: 93
-  CurrentOwner: 93
+  FirstOwner: 92
+  CurrentOwner: 92
   StarType: 2
   StarSprit: {fileID: 21300000, guid: a71196654f476ea4db890e76192307fa, type: 3}
   Population: 10

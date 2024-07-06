@@ -15,8 +15,8 @@ MonoBehaviour:
   StarSysInt: 102
   Position: {x: 100, y: 23, z: 710}
   SysName: OCAMPA
-  FirstOwner: 103
-  CurrentOwner: 103
+  FirstOwner: 102
+  CurrentOwner: 102
   StarType: 2
   StarSprit: {fileID: 21300000, guid: a71196654f476ea4db890e76192307fa, type: 3}
   Population: 10

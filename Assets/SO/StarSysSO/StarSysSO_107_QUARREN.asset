@@ -15,8 +15,8 @@ MonoBehaviour:
   StarSysInt: 107
   Position: {x: 40, y: -9, z: 80}
   SysName: QUARREN
-  FirstOwner: 108
-  CurrentOwner: 108
+  FirstOwner: 107
+  CurrentOwner: 107
   StarType: 4
   StarSprit: {fileID: 21300000, guid: 782d452083d14404d83e94f7ce7ee92e, type: 3}
   Population: 10

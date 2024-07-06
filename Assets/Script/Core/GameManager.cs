@@ -23,8 +23,7 @@ namespace Assets.Core
         KLING,
         CARD,
         DOM,
-        BORG,
-        TERRAN,
+        BORG, // **SEE TERRANS AT 158
         #region minors
         ACAMARIANS,
         AKAALI,
@@ -178,6 +177,7 @@ namespace Assets.Core
         ZAKDORN,
         ZALKONIANS,
         ZIBALIANS,
+        TERRAN,
         #endregion
         ZZUNINHABITED1,
         #region More Uninhabited

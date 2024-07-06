@@ -15,8 +15,8 @@ MonoBehaviour:
   StarSysInt: 23
   Position: {x: -400, y: -21, z: -630}
   SysName: BAJOR
-  FirstOwner: 24
-  CurrentOwner: 24
+  FirstOwner: 23
+  CurrentOwner: 23
   StarType: 3
   StarSprit: {fileID: 21300000, guid: f46fc7ae4eec69d40aa8026ba9da085d, type: 3}
   Population: 10

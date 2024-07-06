@@ -21,11 +21,11 @@ MonoBehaviour:
   TraitTwo: Ruthless
   CivImage: {fileID: 21300000, guid: 33b8fdf85b3d05c48877bacf71fd418b, type: 3}
   Insignia: {fileID: 21300000, guid: a774d364d7ff7a04c957990c7c412b29, type: 3}
-  Population: 5
-  Credits: 2
-  TechPoints: 2
+  Population: 0
+  Credits: 0
+  TechPoints: 0
   CivTechLevel: 0
   Playable: 0
   HasWarp: 1
-  Decription: ToDo, connect to libaray of civ descriptions
+  Decription: ToDo, connect to libaray of civSO descriptions
   IntelPoints: 0

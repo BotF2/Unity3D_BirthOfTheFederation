@@ -15,8 +15,8 @@ MonoBehaviour:
   StarSysInt: 74
   Position: {x: -730, y: -16, z: -980}
   SysName: KELLERUN
-  FirstOwner: 75
-  CurrentOwner: 75
+  FirstOwner: 74
+  CurrentOwner: 74
   StarType: 3
   StarSprit: {fileID: 21300000, guid: f46fc7ae4eec69d40aa8026ba9da085d, type: 3}
   Population: 10

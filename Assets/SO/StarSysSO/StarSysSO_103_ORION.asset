@@ -15,8 +15,8 @@ MonoBehaviour:
   StarSysInt: 103
   Position: {x: 20, y: 25, z: -730}
   SysName: ORION
-  FirstOwner: 104
-  CurrentOwner: 104
+  FirstOwner: 103
+  CurrentOwner: 103
   StarType: 5
   StarSprit: {fileID: 0}
   Population: 10

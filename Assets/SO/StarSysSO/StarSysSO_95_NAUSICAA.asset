@@ -15,8 +15,8 @@ MonoBehaviour:
   StarSysInt: 95
   Position: {x: -80, y: -24, z: -1081}
   SysName: NAUSICAA
-  FirstOwner: 96
-  CurrentOwner: 96
+  FirstOwner: 95
+  CurrentOwner: 95
   StarType: 2
   StarSprit: {fileID: 21300000, guid: a71196654f476ea4db890e76192307fa, type: 3}
   Population: 10

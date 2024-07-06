@@ -15,8 +15,8 @@ MonoBehaviour:
   StarSysInt: 22
   Position: {x: -140, y: 11, z: -540}
   SysName: AXANAR
-  FirstOwner: 23
-  CurrentOwner: 23
+  FirstOwner: 22
+  CurrentOwner: 22
   StarType: 4
   StarSprit: {fileID: 21300000, guid: 782d452083d14404d83e94f7ce7ee92e, type: 3}
   Population: 10

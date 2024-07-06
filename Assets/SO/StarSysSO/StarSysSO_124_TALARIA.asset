@@ -15,8 +15,8 @@ MonoBehaviour:
   StarSysInt: 124
   Position: {x: -290, y: -15, z: -800}
   SysName: TALARIA
-  FirstOwner: 125
-  CurrentOwner: 125
+  FirstOwner: 124
+  CurrentOwner: 124
   StarType: 0
   StarSprit: {fileID: 21300000, guid: e4a5fe77159a4474faeb4032f0274153, type: 3}
   Population: 10

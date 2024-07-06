@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StarSysInt: 207
   Position: {x: 180, y: -5, z: -380}
-  SysName: KILLALA
+  SysName: B
   FirstOwner: 207
   CurrentOwner: 207
   StarType: 2

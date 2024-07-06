@@ -15,8 +15,8 @@ MonoBehaviour:
   StarSysInt: 79
   Position: {x: -190, y: 12, z: -780}
   SysName: KRIOSIA
-  FirstOwner: 80
-  CurrentOwner: 80
+  FirstOwner: 79
+  CurrentOwner: 79
   StarType: 2
   StarSprit: {fileID: 21300000, guid: a71196654f476ea4db890e76192307fa, type: 3}
   Population: 10

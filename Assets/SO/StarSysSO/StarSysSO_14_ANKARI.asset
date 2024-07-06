@@ -15,8 +15,8 @@ MonoBehaviour:
   StarSysInt: 14
   Position: {x: 450, y: 23, z: 300}
   SysName: ANKARI
-  FirstOwner: 15
-  CurrentOwner: 15
+  FirstOwner: 14
+  CurrentOwner: 14
   StarType: 3
   StarSprit: {fileID: 21300000, guid: f46fc7ae4eec69d40aa8026ba9da085d, type: 3}
   Population: 10

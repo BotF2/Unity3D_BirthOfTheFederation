@@ -15,8 +15,8 @@ MonoBehaviour:
   StarSysInt: 94
   Position: {x: 410, y: 22, z: 380}
   SysName: MONEA
-  FirstOwner: 95
-  CurrentOwner: 95
+  FirstOwner: 94
+  CurrentOwner: 94
   StarType: 4
   StarSprit: {fileID: 21300000, guid: 782d452083d14404d83e94f7ce7ee92e, type: 3}
   Population: 10

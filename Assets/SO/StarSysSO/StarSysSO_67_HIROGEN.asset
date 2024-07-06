@@ -15,8 +15,8 @@ MonoBehaviour:
   StarSysInt: 67
   Position: {x: 520, y: -11, z: 460}
   SysName: HIROGEN
-  FirstOwner: 68
-  CurrentOwner: 68
+  FirstOwner: 67
+  CurrentOwner: 67
   StarType: 2
   StarSprit: {fileID: 21300000, guid: a71196654f476ea4db890e76192307fa, type: 3}
   Population: 10

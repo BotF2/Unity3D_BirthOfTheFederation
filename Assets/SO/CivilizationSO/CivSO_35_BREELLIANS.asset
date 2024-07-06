@@ -21,11 +21,11 @@ MonoBehaviour:
   TraitTwo: Religious
   CivImage: {fileID: 21300000, guid: 6b7a32343b7793c42950c97be0cfe2ea, type: 3}
   Insignia: {fileID: 21300000, guid: 213e35080e9e5604d9322032891d8e73, type: 3}
-  Population: 5
-  Credits: 2
-  TechPoints: 2
+  Population: 0
+  Credits: 0
+  TechPoints: 0
   CivTechLevel: 0
   Playable: 0
   HasWarp: 0
-  Decription: ToDo, connect to libaray of civ descriptions
+  Decription: ToDo, connect to libaray of civSO descriptions
   IntelPoints: 0

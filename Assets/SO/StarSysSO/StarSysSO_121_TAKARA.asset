@@ -15,8 +15,8 @@ MonoBehaviour:
   StarSysInt: 121
   Position: {x: -480, y: 1, z: -1350}
   SysName: TAKARA
-  FirstOwner: 122
-  CurrentOwner: 122
+  FirstOwner: 121
+  CurrentOwner: 121
   StarType: 4
   StarSprit: {fileID: 21300000, guid: 782d452083d14404d83e94f7ce7ee92e, type: 3}
   Population: 10

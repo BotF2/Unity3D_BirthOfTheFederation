@@ -15,8 +15,8 @@ MonoBehaviour:
   StarSysInt: 58
   Position: {x: 290, y: -7, z: -1260}
   SysName: EXCALBIA
-  FirstOwner: 59
-  CurrentOwner: 59
+  FirstOwner: 58
+  CurrentOwner: 58
   StarType: 4
   StarSprit: {fileID: 21300000, guid: 782d452083d14404d83e94f7ce7ee92e, type: 3}
   Population: 10

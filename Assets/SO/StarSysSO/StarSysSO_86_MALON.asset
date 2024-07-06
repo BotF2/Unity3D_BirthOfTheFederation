@@ -15,8 +15,8 @@ MonoBehaviour:
   StarSysInt: 86
   Position: {x: 440, y: 6, z: 420}
   SysName: MALON
-  FirstOwner: 87
-  CurrentOwner: 87
+  FirstOwner: 86
+  CurrentOwner: 86
   StarType: 2
   StarSprit: {fileID: 21300000, guid: a71196654f476ea4db890e76192307fa, type: 3}
   Population: 10

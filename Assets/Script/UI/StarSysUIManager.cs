@@ -13,7 +13,7 @@ using System.Linq;
 public class StarSysUIManager : MonoBehaviour
 {
     public static StarSysUIManager instance;
-    public StarSysController controller;
+    public StarSysController controller; // system we clicked
     public Canvas parentCanvas;
     [SerializeField]
     private GameObject starSysUIRoot;
@@ -29,7 +29,8 @@ public class StarSysUIManager : MonoBehaviour
     private bool deltaShipList = false;
 
     [SerializeField]
-    private TMP_Text CivName;
+    public TMP_Text CivName;
+    private string lastCivUser;
 
     private Camera galaxyEventCamera;
 
@@ -63,7 +64,6 @@ public class StarSysUIManager : MonoBehaviour
         var civEnum = controller.StarSysData.CurrentOwner;
         var civData = CivManager.instance.GetCivDataByCivEnum(civEnum);
 
-        //????save last civ and its menu list or clear and start over each time
         CivName.text = civData.CivLongName;
         LoadSystemsList(civData.CivEnum);
     }
@@ -77,6 +77,13 @@ public class StarSysUIManager : MonoBehaviour
                 sysControllerList.Add(sysController);
             }
         }
+        if (lastCivUser != CivName.text)
+        {
+            for (int i = 0; i < starSysListGO.transform.childCount; i++)
+            {
+                UnityEngine.Object.Destroy(starSysListGO.transform.GetChild(i).gameObject); 
+            }
+        }
         List<string> nameOfSys = new List<string>();
         foreach(var tmp in starSysListGO.GetComponentsInChildren<TextMeshProUGUI>())
         {
@@ -88,13 +95,24 @@ public class StarSysUIManager : MonoBehaviour
             if (!nameOfSys.Contains(sysControllerList[i].StarSysData.SysName))
             { 
                 var sysController = sysControllerList[i];
-                GameObject starSysPanel = (GameObject)Instantiate(starSysPanelPrefab, new Vector3(0, 0, 0),
-                    Quaternion.identity);
+                GameObject starSysPanel = (GameObject)Instantiate(starSysPanelPrefab, starSysListGO.transform);
                 starSysPanel.transform.SetParent(starSysListGO.transform, true);
-                var sysNames = starSysPanel.GetComponentsInChildren<TextMeshProUGUI>();
-                sysNames[0].text = sysController.StarSysData.SysName;
+                var sysTMPs = starSysPanel.GetComponentsInChildren<TextMeshProUGUI>();
+                sysTMPs[0].text = sysController.StarSysData.SysName;
+                sysTMPs[1].text = sysController.StarSysData.Population.ToString();
+                sysTMPs[2].text = sysController.StarSysData.Farms.ToString();
+                sysTMPs[3].text = sysController.StarSysData.power.ToString();
+                sysTMPs[4].text = sysController.StarSysData.PowerStations.ToString();               
+                sysTMPs[5].text = sysController.StarSysData.production.ToString();
+                sysTMPs[6].text = sysController.StarSysData.Factories.ToString();
+                sysTMPs[7].text = sysController.StarSysData.tech.ToString();
+                sysTMPs[8].text = sysController.StarSysData.Research.ToString();
+                
+                
+                //sysTMPs[10].text = sysController.StarSysData. ToDo: ship dropdown here
             }
         }
+        lastCivUser = CivName.text;
     }
     public void UnLoadStarSysUI()
     {

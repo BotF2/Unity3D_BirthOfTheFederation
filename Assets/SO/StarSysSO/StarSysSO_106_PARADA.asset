@@ -15,8 +15,8 @@ MonoBehaviour:
   StarSysInt: 106
   Position: {x: -500, y: 7, z: 660}
   SysName: PARADA
-  FirstOwner: 107
-  CurrentOwner: 107
+  FirstOwner: 106
+  CurrentOwner: 106
   StarType: 3
   StarSprit: {fileID: 21300000, guid: f46fc7ae4eec69d40aa8026ba9da085d, type: 3}
   Population: 10

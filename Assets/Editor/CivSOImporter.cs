@@ -44,7 +44,7 @@ public class CivSOImporter : EditorWindow
         {
             string[] fields = line.Split(',');
 
-            if (fields.Length == 13) // Ensure there are enough fields
+            if (fields.Length >8) // Ensure there are enough fields
             {
                 string imageString = fields[2].ToLower();
                 foreach (string file in Directory.GetFiles($"Assets/Resources/Races/", "*.png"))
@@ -73,16 +73,11 @@ public class CivSOImporter : EditorWindow
                 var name = Resources.Load<Sprite>("Insignias/" + fields[2].ToUpper());
                 if (name == null) { name = Resources.Load<Sprite>("Insignias/" + fields[2].ToUpper() + "S"); }
                 civSO.Insignia = name;
-                civSO.Population = int.Parse(fields[9]);
-                civSO.Credits = int.Parse(fields[10]);
-                civSO.TechPoints = int.Parse(fields[11]);
                 civSO.CivTechLevel = TechLevel.EARLY;// TechLevel enum
-                if (civSO.CivInt <= 5 || civSO.CivInt == 158){ civSO.Playable = true; }
-                else civSO.Playable = false;
-                civSO.HasWarp = bool.Parse(fields[12]);
+                civSO.HasWarp = bool.Parse(fields[9]);
+                civSO.Playable = bool.Parse(fields[10]);
                 civSO.Decription = "ToDo, connect to libaray of civSO descriptions";
-                civSO.StarSysOwned = new System.Collections.Generic.List<StarSysData> { new StarSysData("Place Holder") };
-                civSO.IntelPoints = 0f;
+                //civSO.StarSysOwned = new System.Collections.Generic.List<StarSysController> { new StarSysController("Place Holder") };
                 //civSO.ContactList = new System.Collections.Generic.List<CivData>(); // we know our self + maybe a 'Vulcans' for each major??
                 string assetPath = $"Assets/SO/CivilizationSO/CivSO_{civSO.CivInt}_{civSO.CivShortName}.asset";
                 AssetDatabase.CreateAsset(civSO, assetPath);

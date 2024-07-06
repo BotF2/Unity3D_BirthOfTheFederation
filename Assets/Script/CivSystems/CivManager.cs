@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data.Common;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Assets.Core
@@ -88,22 +89,26 @@ namespace Assets.Core
                 civData.Credits = civSO.Credits;
                 civData.TechPoints = civSO.TechPoints;
                 civData.CivTechLevel = civSO.CivTechLevel;
-                if (civSO.CivInt <= 5 || civSO.CivInt == 158)
-                    civData.Playable = true;
-                else civData.Playable = false;
+                civData.Playable = civSO.Playable;
                 civData.HasWarp = civSO.HasWarp;
                 civData.Decription = civSO.Decription;
-                civData.StarSysOwned = civSO.StarSysOwned;
-                //civData.TaxRate = civSO.TaxRate;
-                //civData.GrowthRate = civSO.GrowthRate;
+                //civData.StarSysOwned = civSO.StarSysOwned;
+                //civData.ContactList = new List<CivController>() { }
                 civData.IntelPoints = civSO.IntelPoints;
-                CivsThatACivKnows.Add(civData.CivEnum, civData.ContactList);
+                //CivsThatACivKnows.Add(civData.CivEnum, civData.ContactList);
                 civDataInGameList.Add(civData);
+               
             }
-            civDataInGameList.Remove(civDataInGameList[0]); // remove the null entered by field
+            if (civDataInGameList[0].CivHomeSystem != null) {  }
+            else
+                civDataInGameList.Remove(civDataInGameList[0]); // remove the null entered by field
             StarSysManager.instance.SysDataFromSO(civSOList);
+            InstantiateCivilizations(civDataInGameList);
         }
-
+        private void InstantiateCivilizations(List<CivData> civDataList)
+        {
+            // Not doing this for now. We do not need a Civ gameObject but just the civData and a 
+        }
         void CreateCivEnumList(List<CivSO> listOfCivSO)
         {
             foreach (var civSO in listOfCivSO)

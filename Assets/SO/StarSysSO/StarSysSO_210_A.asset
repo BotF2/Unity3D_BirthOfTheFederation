@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StarSysInt: 210
   Position: {x: 190, y: -14, z: -780}
-  SysName: TUAM
+  SysName: A
   FirstOwner: 210
   CurrentOwner: 210
   StarType: 4

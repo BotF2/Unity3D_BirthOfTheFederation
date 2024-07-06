@@ -15,8 +15,8 @@ MonoBehaviour:
   StarSysInt: 10
   Position: {x: -90, y: 0, z: -670}
   SysName: ALGOL
-  FirstOwner: 11
-  CurrentOwner: 11
+  FirstOwner: 10
+  CurrentOwner: 10
   StarType: 0
   StarSprit: {fileID: 21300000, guid: e4a5fe77159a4474faeb4032f0274153, type: 3}
   Population: 10

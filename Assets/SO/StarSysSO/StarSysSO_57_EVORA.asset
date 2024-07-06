@@ -15,8 +15,8 @@ MonoBehaviour:
   StarSysInt: 57
   Position: {x: 270, y: 18, z: -1380}
   SysName: EVORA
-  FirstOwner: 58
-  CurrentOwner: 58
+  FirstOwner: 57
+  CurrentOwner: 57
   StarType: 3
   StarSprit: {fileID: 21300000, guid: f46fc7ae4eec69d40aa8026ba9da085d, type: 3}
   Population: 10

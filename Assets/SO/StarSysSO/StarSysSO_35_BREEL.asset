@@ -15,8 +15,8 @@ MonoBehaviour:
   StarSysInt: 35
   Position: {x: -280, y: -24, z: -650}
   SysName: BREEL
-  FirstOwner: 36
-  CurrentOwner: 36
+  FirstOwner: 35
+  CurrentOwner: 35
   StarType: 3
   StarSprit: {fileID: 21300000, guid: f46fc7ae4eec69d40aa8026ba9da085d, type: 3}
   Population: 10

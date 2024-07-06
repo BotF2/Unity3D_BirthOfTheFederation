@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_4_OMARIAN_NEBULA
   m_EditorClassIdentifier: 
   StarSysInt: 4
-  Position: {x: -420, y: -30, z: 536}
+  Position: {x: -420, y: -30, z: 336}
   SysName: OMARIAN_NEBULA
   FirstOwner: 4
   CurrentOwner: 4

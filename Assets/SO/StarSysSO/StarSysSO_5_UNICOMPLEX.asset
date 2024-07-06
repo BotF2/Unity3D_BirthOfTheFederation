@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_5_UNICOMPLEX
   m_EditorClassIdentifier: 
   StarSysInt: 5
-  Position: {x: 200, y: -10, z: 611}
+  Position: {x: 200, y: -10, z: 411}
   SysName: UNICOMPLEX
   FirstOwner: 5
   CurrentOwner: 5

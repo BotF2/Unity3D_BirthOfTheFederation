@@ -15,8 +15,8 @@ MonoBehaviour:
   StarSysInt: 39
   Position: {x: -10, y: 5, z: -320}
   SysName: CAIRN
-  FirstOwner: 40
-  CurrentOwner: 40
+  FirstOwner: 39
+  CurrentOwner: 39
   StarType: 0
   StarSprit: {fileID: 21300000, guid: e4a5fe77159a4474faeb4032f0274153, type: 3}
   Population: 10

@@ -15,8 +15,8 @@ MonoBehaviour:
   StarSysInt: 152
   Position: {x: -600, y: -24, z: 400}
   SysName: YADERA
-  FirstOwner: 153
-  CurrentOwner: 153
+  FirstOwner: 152
+  CurrentOwner: 152
   StarType: 4
   StarSprit: {fileID: 21300000, guid: 782d452083d14404d83e94f7ce7ee92e, type: 3}
   Population: 10

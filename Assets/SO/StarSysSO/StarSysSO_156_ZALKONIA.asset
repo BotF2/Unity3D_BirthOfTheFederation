@@ -15,8 +15,8 @@ MonoBehaviour:
   StarSysInt: 156
   Position: {x: 170, y: 21, z: -1370}
   SysName: ZALKONIA
-  FirstOwner: 157
-  CurrentOwner: 157
+  FirstOwner: 156
+  CurrentOwner: 156
   StarType: 3
   StarSprit: {fileID: 21300000, guid: f46fc7ae4eec69d40aa8026ba9da085d, type: 3}
   Population: 10

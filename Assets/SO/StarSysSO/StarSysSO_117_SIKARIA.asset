@@ -15,8 +15,8 @@ MonoBehaviour:
   StarSysInt: 117
   Position: {x: 400, y: -2, z: 710}
   SysName: SIKARIA
-  FirstOwner: 118
-  CurrentOwner: 118
+  FirstOwner: 117
+  CurrentOwner: 117
   StarType: 3
   StarSprit: {fileID: 21300000, guid: f46fc7ae4eec69d40aa8026ba9da085d, type: 3}
   Population: 10

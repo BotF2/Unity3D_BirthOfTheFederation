@@ -15,8 +15,8 @@ MonoBehaviour:
   StarSysInt: 36
   Position: {x: -360, y: -19, z: -350}
   SysName: BREEN
-  FirstOwner: 37
-  CurrentOwner: 37
+  FirstOwner: 36
+  CurrentOwner: 36
   StarType: 4
   StarSprit: {fileID: 21300000, guid: 782d452083d14404d83e94f7ce7ee92e, type: 3}
   Population: 10

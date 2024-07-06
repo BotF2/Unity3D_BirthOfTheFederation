@@ -15,8 +15,8 @@ MonoBehaviour:
   StarSysInt: 89
   Position: {x: -700, y: -22, z: 750}
   SysName: MERIDIA
-  FirstOwner: 90
-  CurrentOwner: 90
+  FirstOwner: 89
+  CurrentOwner: 89
   StarType: 4
   StarSprit: {fileID: 21300000, guid: 782d452083d14404d83e94f7ce7ee92e, type: 3}
   Population: 10

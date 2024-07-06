@@ -21,11 +21,11 @@ MonoBehaviour:
   TraitTwo: Humility
   CivImage: {fileID: 21300000, guid: 2207fd8c604698d4ba4ac400883e90d4, type: 3}
   Insignia: {fileID: 21300000, guid: 8b6c150289e584e45adc403e9413bd78, type: 3}
-  Population: 5
-  Credits: 2
-  TechPoints: 2
+  Population: 0
+  Credits: 0
+  TechPoints: 0
   CivTechLevel: 0
   Playable: 0
   HasWarp: 0
-  Decription: ToDo, connect to libaray of civ descriptions
+  Decription: ToDo, connect to libaray of civSO descriptions
   IntelPoints: 0

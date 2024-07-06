@@ -15,8 +15,8 @@ MonoBehaviour:
   StarSysInt: 82
   Position: {x: -310, y: 29, z: -430}
   SysName: LISSEPIA
-  FirstOwner: 83
-  CurrentOwner: 83
+  FirstOwner: 82
+  CurrentOwner: 82
   StarType: 4
   StarSprit: {fileID: 21300000, guid: 782d452083d14404d83e94f7ce7ee92e, type: 3}
   Population: 10

@@ -11,6 +11,10 @@ namespace Assets.Core
         
         public List<CivController> civsWeKnowList;
 
+        public void Start()
+        {
+        
+        }
         public void UpdateCredits()
         {
             civData.Credits += 50;

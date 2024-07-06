@@ -15,8 +15,8 @@ MonoBehaviour:
   StarSysInt: 62
   Position: {x: -310, y: -3, z: -1090}
   SysName: GRAZERITES
-  FirstOwner: 63
-  CurrentOwner: 63
+  FirstOwner: 62
+  CurrentOwner: 62
   StarType: 3
   StarSprit: {fileID: 21300000, guid: f46fc7ae4eec69d40aa8026ba9da085d, type: 3}
   Population: 10

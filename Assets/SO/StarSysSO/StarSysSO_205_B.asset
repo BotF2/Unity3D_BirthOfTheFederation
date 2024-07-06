@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StarSysInt: 205
   Position: {x: 40, y: 17, z: -680}
-  SysName: CLIFDEN
+  SysName: B
   FirstOwner: 205
   CurrentOwner: 205
   StarType: 4

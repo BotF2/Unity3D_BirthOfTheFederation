@@ -15,8 +15,8 @@ MonoBehaviour:
   StarSysInt: 147
   Position: {x: -720, y: -14, z: 670}
   SysName: WADI
-  FirstOwner: 148
-  CurrentOwner: 148
+  FirstOwner: 147
+  CurrentOwner: 147
   StarType: 3
   StarSprit: {fileID: 21300000, guid: f46fc7ae4eec69d40aa8026ba9da085d, type: 3}
   Population: 10

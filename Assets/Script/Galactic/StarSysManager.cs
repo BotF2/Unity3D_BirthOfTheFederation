@@ -61,8 +61,11 @@ namespace Assets.Core
                 SysData.PopulationLimit = starSysSO.PopulationLimit;
                 SysData.Farms = starSysSO.Farms;
                 SysData.PowerStations = starSysSO.PowerStations;
+                SysData.power = starSysSO.PowerStations;
                 SysData.Factories = starSysSO.Factories;
+                SysData.production = starSysSO.Factories;
                 SysData.Research = starSysSO.Research;
+                SysData.tech = 0f;
                 //SysData.food;
                 //SysData.power;
                 //SysData.production;

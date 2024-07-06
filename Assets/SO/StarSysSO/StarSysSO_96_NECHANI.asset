@@ -15,8 +15,8 @@ MonoBehaviour:
   StarSysInt: 96
   Position: {x: 600, y: 8, z: 650}
   SysName: NECHANI
-  FirstOwner: 97
-  CurrentOwner: 97
+  FirstOwner: 96
+  CurrentOwner: 96
   StarType: 4
   StarSprit: {fileID: 21300000, guid: 782d452083d14404d83e94f7ce7ee92e, type: 3}
   Population: 10

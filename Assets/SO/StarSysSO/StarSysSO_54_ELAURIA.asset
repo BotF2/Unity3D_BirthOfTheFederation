@@ -15,8 +15,8 @@ MonoBehaviour:
   StarSysInt: 54
   Position: {x: 400, y: -27, z: -280}
   SysName: ELAURIA
-  FirstOwner: 55
-  CurrentOwner: 55
+  FirstOwner: 54
+  CurrentOwner: 54
   StarType: 3
   StarSprit: {fileID: 21300000, guid: f46fc7ae4eec69d40aa8026ba9da085d, type: 3}
   Population: 10

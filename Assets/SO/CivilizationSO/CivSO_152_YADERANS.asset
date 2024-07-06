@@ -21,11 +21,11 @@ MonoBehaviour:
   TraitTwo: Arrogant
   CivImage: {fileID: 21300000, guid: 21a55c90face716438bce670beef1ef6, type: 3}
   Insignia: {fileID: 21300000, guid: 8e207ae7107678140845948d509152b9, type: 3}
-  Population: 5
-  Credits: 2
-  TechPoints: 2
+  Population: 0
+  Credits: 0
+  TechPoints: 0
   CivTechLevel: 0
   Playable: 0
   HasWarp: 0
-  Decription: ToDo, connect to libaray of civ descriptions
+  Decription: ToDo, connect to libaray of civSO descriptions
   IntelPoints: 0

@@ -15,8 +15,8 @@ MonoBehaviour:
   StarSysInt: 21
   Position: {x: -90, y: -5, z: -1150}
   SysName: ATREA
-  FirstOwner: 22
-  CurrentOwner: 22
+  FirstOwner: 21
+  CurrentOwner: 21
   StarType: 3
   StarSprit: {fileID: 21300000, guid: f46fc7ae4eec69d40aa8026ba9da085d, type: 3}
   Population: 10

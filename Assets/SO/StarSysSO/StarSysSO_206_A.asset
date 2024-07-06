@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StarSysInt: 206
   Position: {x: 60, y: 1, z: -340}
-  SysName: BELMULLET
+  SysName: A
   FirstOwner: 206
   CurrentOwner: 206
   StarType: 2

@@ -21,11 +21,11 @@ MonoBehaviour:
   TraitTwo: Neutral
   CivImage: {fileID: 21300000, guid: a11e3ef4966f2944faff94a7faa827dd, type: 3}
   Insignia: {fileID: 21300000, guid: 74c67a4c6be620f4684e29a3dfd39a18, type: 3}
-  Population: 5
-  Credits: 2
-  TechPoints: 2
+  Population: 0
+  Credits: 0
+  TechPoints: 0
   CivTechLevel: 0
   Playable: 0
   HasWarp: 1
-  Decription: ToDo, connect to libaray of civ descriptions
+  Decription: ToDo, connect to libaray of civSO descriptions
   IntelPoints: 0
