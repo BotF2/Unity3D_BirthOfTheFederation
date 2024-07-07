@@ -23,7 +23,8 @@ public class StarSysData
     public int food;
     public int power;
     public int production;
-    public float tech;
+    public int tech;
+
     public string Description;
     private string v;
 

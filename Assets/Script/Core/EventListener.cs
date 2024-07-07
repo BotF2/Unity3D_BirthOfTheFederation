@@ -47,12 +47,23 @@ public class EventListener : MonoBehaviour
                     {
                         break;
                     }
+                case TrekEventType.RemoveTempTargets:
+                    {
+                        RemoveTempTargets();
+                        break;
+                    }
                 default:
                     break;
             }
         }
     }
-
+    void RemoveTempTargets()
+    {
+        //foreach(var gameObj in GameObject.FindGameObjectsWithTag("DestroyTemp"))
+        //{
+        //    Destroy(gameObj);
+        //}
+    }
     // OnDestroy is called when the GameObject is destroyed
     private void OnDestroy()
     {

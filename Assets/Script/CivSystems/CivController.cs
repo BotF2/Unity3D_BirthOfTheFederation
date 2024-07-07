@@ -7,9 +7,10 @@ namespace Assets.Core
     public class CivController : MonoBehaviour
     {
         //Fields
-        public CivData civData;
-        
-        public List<CivController> civsWeKnowList;
+        public CivData CivData;
+        public string CivShortName;
+        public List<CivController> CivContollersWeHave;
+        private List<CivController> civsWeKnowList;
 
         public void Start()
         {
@@ -17,7 +18,7 @@ namespace Assets.Core
         }
         public void UpdateCredits()
         {
-            civData.Credits += 50;
+            CivData.Credits += 50;
         }
     }
 }

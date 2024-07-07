@@ -65,7 +65,7 @@ namespace Assets.Core
                 SysData.Factories = starSysSO.Factories;
                 SysData.production = starSysSO.Factories;
                 SysData.Research = starSysSO.Research;
-                SysData.tech = 0f;
+                SysData.tech = 0;
                 //SysData.food;
                 //SysData.power;
                 //SysData.production;

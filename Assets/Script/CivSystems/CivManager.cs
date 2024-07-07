@@ -23,6 +23,10 @@ namespace Assets.Core
         public Dictionary<CivEnum,List<CivController>> CivsThatACivKnows = new Dictionary<CivEnum,List<CivController>>();
         public CivData localPlayer;
         public CivData resultInGameCivData;
+        [SerializeField]
+        private GameObject civFolder;
+        [SerializeField]
+        private GameObject civPrefab;
        
 
         private void Awake()
@@ -107,7 +111,17 @@ namespace Assets.Core
         }
         private void InstantiateCivilizations(List<CivData> civDataList)
         {
-            // Not doing this for now. We do not need a Civ gameObject but just the civData and a 
+            foreach (CivData civData in civDataList)
+            {
+                GameObject civNewGameOb = (GameObject)Instantiate(civPrefab, new Vector3(0, 0, 0),
+                        Quaternion.identity);
+                var civController = civNewGameOb.GetComponentInChildren<CivController>();
+                civController.CivData = civData;
+                civController.CivShortName = civData.CivShortName;
+                civController.CivContollersWeHave.Add(civController);
+                civNewGameOb.transform.SetParent(civFolder.transform, true);
+                civNewGameOb.name = civData.CivShortName.ToString();
+            }
         }
         void CreateCivEnumList(List<CivSO> listOfCivSO)
         {

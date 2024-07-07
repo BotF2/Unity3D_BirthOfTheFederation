@@ -31,6 +31,22 @@ public class StarSysUIManager : MonoBehaviour
     [SerializeField]
     public TMP_Text CivName;
     private string lastCivUser;
+    [SerializeField]
+    private TMP_Text tPopulation;
+    [SerializeField]
+    private TMP_Text tForms;
+    [SerializeField]
+    private TMP_Text tPower;
+    [SerializeField]
+    private TMP_Text tStations;
+    [SerializeField]
+    private TMP_Text tProduction;
+    [SerializeField]
+    private TMP_Text tFactories;
+    [SerializeField]
+    private TMP_Text tTech;
+    [SerializeField]
+    private TMP_Text tResearch;
 
     private Camera galaxyEventCamera;
 
@@ -89,6 +105,14 @@ public class StarSysUIManager : MonoBehaviour
         {
             nameOfSys.Add(tmp.text);
         }
+        int t_Pop = 0;
+        int t_Farms = 0;
+        int t_Power = 0;
+        int t_Stations = 0;
+        int t_Production = 0;
+        int t_Factories = 0;
+        int t_Tech = 0;
+        int t_Research = 0;
         
         for (var i = 0; i < sysControllerList.Count; i++)
         {
@@ -107,11 +131,26 @@ public class StarSysUIManager : MonoBehaviour
                 sysTMPs[6].text = sysController.StarSysData.Factories.ToString();
                 sysTMPs[7].text = sysController.StarSysData.tech.ToString();
                 sysTMPs[8].text = sysController.StarSysData.Research.ToString();
-                
-                
-                //sysTMPs[10].text = sysController.StarSysData. ToDo: ship dropdown here
+                // ToDo: ship lists, bunkers, orbital batteries
+                t_Pop += sysController.StarSysData.Population;
+                t_Farms += sysController.StarSysData.Farms;
+                t_Power += sysController.StarSysData.power;
+                t_Stations += sysController.StarSysData.PowerStations;
+                t_Production += sysController.StarSysData.production;
+                t_Factories += sysController.StarSysData.Factories;
+                t_Tech += sysController.StarSysData.tech;
+                t_Research += sysController.StarSysData.Research; 
             }
+            tPopulation.text = t_Pop.ToString();
+            tForms.text = t_Farms.ToString();
+            tPower.text = t_Power.ToString();
+            tStations.text = t_Stations.ToString();
+            tProduction.text = t_Production.ToString();
+            tFactories.text = t_Factories.ToString();
+            tTech.text = t_Tech.ToString();
+            tResearch.text = t_Research.ToString();
         }
+
         lastCivUser = CivName.text;
     }
     public void UnLoadStarSysUI()
