@@ -10,7 +10,7 @@ using UnityEngine.UIElements;
 
 namespace Assets.Core
 {
-    public enum FleetState { FleetCombat, FleetDipolmacy, FleetInSystem, FleetStationay, FleetWarp}
+    public enum FleetState { FleetCombat, FleetDipolmacy, FleetInSystem, FleetsTogether, FleetStationary, FleetWarp}
     public class FleetController : MonoBehaviour
     {
         //Fields
@@ -18,9 +18,9 @@ namespace Assets.Core
         public FleetData FleetData { get { return fleetData; } set { fleetData = value; } }
         public string Name;
         public List<ShipController> ShipControllerList;
-        public List<FleetController> FleetContollersWeHave;
-        List<StarSysController> StarSystemsWeHave;
-        List<PlayerDefinedTargetController> PlayerDefinedTargetControllersWeHave;
+        //public List<FleetController> FleetContollersWeHave;
+        //List<StarSysController> StarSystemsWeHave;
+        //List<PlayerDefinedTargetController> PlayerDefinedTargetControllersWeHave;
         private bool deltaShipList = false; //??? do I need this or the shipdropdown listener
         private FleetState fleetState;
         public bool isArrived =false;
@@ -63,11 +63,49 @@ namespace Assets.Core
             TheTarget.position = new Vector3(0, 0, 0);
             FleetData.Destination = Target;
 
-            fleetState = FleetState.FleetStationay;
+            fleetState = FleetState.FleetStationary;
         }
         void Update()
         {
-
+            switch (fleetState) 
+            {
+                case FleetState.FleetInSystem:
+                    {
+                        // add to system fleet list
+                        AllStop();
+                        break;
+                    }
+                case FleetState.FleetCombat:
+                    {
+                        AllStop();
+                        break;
+                    }
+                case FleetState.FleetDipolmacy:
+                    {
+                        AllStop();
+                        break;
+                    }
+                case FleetState.FleetStationary:
+                    {
+                        AllStop();
+                        break; 
+                    }
+                case FleetState.FleetWarp:
+                    { 
+                        break;
+                    }
+                case FleetState.FleetsTogether:
+                    {
+                        //if(this.FleetData.Destination == )
+                        AllStop();
+                        break;
+                    }
+            }
+        }
+        private void AllStop()
+        {
+            this.FleetData.Destination = null;
+            this.FleetData.CurrentWarpFactor = 0f;
         }
         private void FixedUpdate()
         {
@@ -85,25 +123,36 @@ namespace Assets.Core
         {
             //currentState.OnCollisionEnter(this, collision);
             collision.gameObject.SetActive(true);
-            var controllerTypeFleet = collision.gameObject.GetComponent<FleetController>();
-            if (controllerTypeFleet != null)
+            var controllerFleet = collision.gameObject.GetComponent<FleetController>();
+            if (controllerFleet != null)
             {
+                CivManager.instance.Diplomacy(this.fleetData.OurCivController, controllerFleet.fleetData.OurCivController);
                 // is it our fleet or not? Diplomacy or manage fleets or keep going?
-            }
-            var controllerTypeStarSys = collision.gameObject.GetComponent<StarSysController>();
-            if (controllerTypeStarSys != null) 
-            {
-                // if not destination no change, keep going
-                // if destination change to InSystem state, current warp factor = 0, destination = null
-                if (controllerTypeStarSys.StarSysData.SysGameObject == this.FleetData.Destination)
+                if (controllerFleet.gameObject == this.FleetData.Destination)
                 {
+                    /// use fleet enum state
+                    //this.FleetData.Destination = null;
+                    //this.FleetData.war
+                    //fleetState = FleetState.FleetInSystem;
+                }
+
+            }
+            var controllerStarSys = collision.gameObject.GetComponent<StarSysController>();
+            if (controllerStarSys != null) 
+            {
+                CivManager.instance.Diplomacy(this.fleetData.OurCivController,
+                    CivManager.instance.GetCivControllerByEnum(controllerStarSys.StarSysData.CurrentOwner));
+                // if not destination no change, keep going
+                if (controllerStarSys.StarSysData.SysGameObject == this.FleetData.Destination)
+                {
+                    /// use fleet enum state
                     this.FleetData.Destination = null;
                     this.FleetData.CurrentWarpFactor = 0;
                     fleetState = FleetState.FleetInSystem;
                 }
             }
-            var controllerTypePlayerTarget = collision.gameObject.GetComponent<PlayerDefinedTargetController>();
-            if (controllerTypePlayerTarget != null)
+            var controllerPlayerTarget = collision.gameObject.GetComponent<PlayerDefinedTargetController>();
+            if (controllerPlayerTarget != null)
             {
                 // current warp factor = 0, destination = null, ?build something here? or patrol here?
             }
@@ -252,13 +301,13 @@ namespace Assets.Core
         //}
         public void AddFleetController(FleetController controller)
         {
-            if (controller.FleetData.CivOwnerEnum == this.FleetData.CivOwnerEnum) 
-                FleetContollersWeHave.Add(controller);
+            if (!FleetManager.instance.ManagersFleetControllerList.Contains(controller)) 
+                FleetManager.instance.ManagersFleetControllerList.Add(controller);
         }
         public void RemoveFleetController(FleetController controller)
         {
-            if (controller.FleetData.CivOwnerEnum == this.FleetData.CivOwnerEnum && FleetContollersWeHave.Contains(controller))
-                FleetContollersWeHave.Remove(controller);
+            if (FleetManager.instance.ManagersFleetControllerList.Contains(controller))
+                FleetManager.instance.ManagersFleetControllerList.Remove(controller);
         }
     }
 

@@ -28,7 +28,6 @@ namespace Assets.Core
         private List<ShipController> shipsOfAllFirstFleets;
         private bool PlaceHolderIsDestroyed = false;
 
-
         private void Awake()
         {
             if (instance != null)
@@ -48,7 +47,7 @@ namespace Assets.Core
             fleetController.Name = "999";
             FleetData fleetPlaceHolderData = new FleetData("999");
             fleetController.FleetData = fleetPlaceHolderData;
-            fleetController.FleetData.CivOwnerEnum = CivEnum.ZZUNINHABITED10;
+            fleetController.FleetData.CivEnum = CivEnum.ZZUNINHABITED10;
             fleetController.FleetData.Name =fleetController.Name;
             FleetGOList.Add(fleetGOPlaceHolder);
             AddFleetConrollerToAllControllers(fleetController);
@@ -61,7 +60,7 @@ namespace Assets.Core
             
             foreach (var fleetController in ManagersFleetControllerList)
             {
-                if (fleetController.FleetData.CivOwnerEnum == shipController.ShipData.CivEnum)
+                if (fleetController.FleetData.CivEnum == shipController.ShipData.CivEnum)
                 {
                     if (!fleetController.FleetData.ShipsList.Contains(shipController))
                     {
@@ -92,7 +91,7 @@ namespace Assets.Core
                 FleetData fleetData = new FleetData(fleetSO);
                 fleetData.CivIndex = fleetSO.CivIndex;
                 fleetData.Insignia = fleetSO.Insignia;
-                fleetData.CivOwnerEnum = fleetSO.CivOwnerEnum;
+                fleetData.CivEnum = fleetSO.CivOwnerEnum;
                 fleetData.Position = position;
                 fleetData.CurrentWarpFactor = 0f;
                 fleetData.CivLongName = civSO.CivLongName;
@@ -109,7 +108,7 @@ namespace Assets.Core
                 var controllersByCivEnum = new List<FleetController>() { newFleetController };
                 foreach (var controller in ManagersFleetControllerList)
                 {
-                    if (controller.FleetData.CivOwnerEnum == newFleetController.FleetData.CivOwnerEnum)
+                    if (controller.FleetData.CivEnum == newFleetController.FleetData.CivEnum)
                     {
                         if (controller != newFleetController)
                             controllersByCivEnum.Add(controller);
@@ -134,7 +133,7 @@ namespace Assets.Core
         }
         public void InstantiateFleet(FleetData fleetData, Vector3 position)
         {
-            if (fleetData.CivOwnerEnum != CivEnum.ZZUNINHABITED10)
+            if (fleetData.CivEnum != CivEnum.ZZUNINHABITED10)
             {
                 GameObject fleetNewGameOb = (GameObject)Instantiate(fleetPrefab, new Vector3(0, 0, 0),
                         Quaternion.identity);
@@ -142,7 +141,7 @@ namespace Assets.Core
                 fleetController.FleetData = fleetData;
                 fleetController.Name = fleetData.Name;
                 AddFleetConrollerToAllControllers(fleetController);
-                GetUniqueFleetName(fleetData.CivOwnerEnum, fleetController);
+                GetUniqueFleetName(fleetData.CivEnum, fleetController);
                 fleetNewGameOb.transform.Translate(new Vector3(fleetData.Position.x + 40f, fleetData.Position.y, fleetData.Position.z + 10f));
                 fleetNewGameOb.transform.SetParent(galaxyCenter.transform, true);
                 fleetNewGameOb.transform.localScale = new Vector3(1, 1, 1);
@@ -173,16 +172,21 @@ namespace Assets.Core
                 ourLineScript.SetUpLine(points);
                 fleetController.FleetData.yAboveGalaxyImage = galaxyCenter.transform.position.y - galaxyPlanePoint.y;
                 fleetController.dropLine = ourLineScript;
+                foreach (var civCon in CivManager.instance.allCivControllersList) 
+                {
+                    if (civCon.CivShortName == fleetData.CivShortName) 
+                        fleetData.OurCivController = civCon;
+                }
                 fleetNewGameOb.SetActive(true);
                 FleetGOList.Add(fleetNewGameOb);
                // StarSysManager.instance.GetYourFirstStarSystem(fleetData.CivOwnerEnum);
 
                 GameManager.Instance.LoadGalacticDestinations(fleetData, fleetNewGameOb);
             }
-            else if(fleetData.CivOwnerEnum == CivEnum.ZZUNINHABITED10)
-            {
-                //RemoveFleetConrollerFromAllControllers(? controller)
-            }
+            //else if(fleetData.CivOwnerEnum == CivEnum.ZZUNINHABITED10)
+            //{
+            //    //RemoveFleetConrollerFromAllControllers(? controller)
+            //}
 
         }
         void AddFleetConrollerToAllControllers(FleetController fleetController)

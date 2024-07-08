@@ -9,7 +9,8 @@ namespace Assets.Core
     {
         public int CivIndex;
         public Sprite Insignia;
-        public CivEnum CivOwnerEnum;
+        public CivController OurCivController;
+        public CivEnum CivEnum;
         public Vector3 Position;
         public List<ShipController> ShipsList;
         private float maxWarpFactor;

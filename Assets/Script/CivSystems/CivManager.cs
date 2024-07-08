@@ -18,33 +18,33 @@ namespace Assets.Core
         public List<CivSO> civSOListLarge;
         public List<CivSO> civSOListAllPossible;
         public List<CivEnum> CivSOInGame;
-        public List<CivData> civDataInGameList = new List<CivData> { new CivData()};
-        public List<CivController> allController;
-        public Dictionary<CivEnum,List<CivController>> CivsThatACivKnows = new Dictionary<CivEnum,List<CivController>>();
+        public List<CivData> civDataInGameList = new List<CivData> { new CivData() };
+        public List<CivController> allCivControllersList;
+        public Dictionary<CivController, List<CivController>> CivsThatACivKnows = new Dictionary<CivController, List<CivController>>();
         public CivData localPlayer;
         public CivData resultInGameCivData;
         [SerializeField]
         private GameObject civFolder;
         [SerializeField]
         private GameObject civPrefab;
-       
+
 
         private void Awake()
         {
             if (instance != null) { Destroy(gameObject); }
             else
-            { 
+            {
                 instance = this;
                 DontDestroyOnLoad(gameObject);
             }
             //ToDo: early random minor races set before menu selects size and tech
-            ShipManager.instance.SendEarlyCivSOListForFistShips(civSOListSmall); 
+            ShipManager.instance.SendEarlyCivSOListForFistShips(civSOListSmall);
         }
         public CivData CreateLocalPlayer()
         {
             localPlayer = GetCivDataByName("FEDERATION");
             return localPlayer;
-            
+
         }
         public void CivDataFromCivSO(CivData civData, CivSO civSO)
         {
@@ -54,7 +54,7 @@ namespace Assets.Core
 
         public void CreateNewGameBySelections(int sizeGame, int gameTechLevel)
         {
-            
+
 
             if (sizeGame == 0)
             {
@@ -101,9 +101,9 @@ namespace Assets.Core
                 civData.IntelPoints = civSO.IntelPoints;
                 //CivsThatACivKnows.Add(civData.CivEnum, civData.ContactList);
                 civDataInGameList.Add(civData);
-               
+
             }
-            if (civDataInGameList[0].CivHomeSystem != null) {  }
+            if (civDataInGameList[0].CivHomeSystem != null) { }
             else
                 civDataInGameList.Remove(civDataInGameList[0]); // remove the null entered by field
             StarSysManager.instance.SysDataFromSO(civSOList);
@@ -118,10 +118,22 @@ namespace Assets.Core
                 var civController = civNewGameOb.GetComponentInChildren<CivController>();
                 civController.CivData = civData;
                 civController.CivShortName = civData.CivShortName;
-                civController.CivContollersWeHave.Add(civController);
+                allCivControllersList.Add(civController);
                 civNewGameOb.transform.SetParent(civFolder.transform, true);
                 civNewGameOb.name = civData.CivShortName.ToString();
             }
+        }
+        public void Diplomacy(CivController civPartyOne, CivController civPartyTwo)
+        {
+            if (CivsThatACivKnows[civPartyOne].Contains(civPartyTwo))
+            {
+                FirstContact(civPartyOne, civPartyTwo);
+            }
+        }
+        private void FirstContact(CivController civPartyOne, CivController civPartyTwo)
+        {
+            CivsThatACivKnows[civPartyOne].Add(civPartyTwo);
+            CivsThatACivKnows[civPartyTwo].Add(civPartyOne);
         }
         void CreateCivEnumList(List<CivSO> listOfCivSO)
         {
@@ -174,10 +186,17 @@ namespace Assets.Core
             
         }
 
-        public void GetCivByName(string civname)
+        public CivController GetCivControllerByEnum(CivEnum civEnum)
         {
-            resultInGameCivData = GetCivDataByName(civname);
-
+            CivController aCiv = new CivController("placeholder");
+            foreach(var civ in allCivControllersList)
+            {
+                if(civEnum == civ.CivData.CivEnum)
+                {
+                   aCiv = civ;
+                }
+            }
+            return aCiv;
         }
     }
 }
