@@ -14972,7 +14972,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   CivSOInGame: 
-  allController: []
+  allCivControllersList: []
   civFolder: {fileID: 6170489}
   civPrefab: {fileID: 621890460709148161, guid: 39c5565398a6fb847b05c461ce03dfa6, type: 3}
 --- !u!4 &1091640995
