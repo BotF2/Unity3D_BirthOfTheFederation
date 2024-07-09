@@ -8,6 +8,8 @@ public class ShipSO : ScriptableObject
     public CivEnum CivEnum;
     public TechLevel TechLevel;
     public ShipType ShipType;
+    public Sprite shipSprite;
+    public Color shipColor;
     public float maxWarpFactor;
     public int ShieldMaxHealth;
     public int HullMaxHealth;
