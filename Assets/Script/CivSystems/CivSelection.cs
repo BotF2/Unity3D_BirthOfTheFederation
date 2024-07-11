@@ -58,7 +58,7 @@ namespace Assets.Core
         //}
         //public void ActiveToggle()
         //{
-        //    switch (_activeToggle.FleetName.ToUpper())
+        //    switch (_activeToggle.CivName.ToUpper())
         //    {
         //        //case "TOGGLE_FED":
         //        //    Fed = _activeToggle;

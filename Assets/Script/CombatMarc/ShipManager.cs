@@ -106,7 +106,7 @@ public class ShipManager : MonoBehaviour
         //shipNewGameOb.transform.SetParent(galaxyCenter.transform, true);
         //shipNewGameOb.transform.localScale = new Vector3(1, 1, 1);
 
-        //shipNewGameOb.name = fleetData.CivOwnerEnum.ToString() + " Fleet " + fleetData.Name; // game object FleetName
+        //shipNewGameOb.name = fleetData.CivOwnerEnum.ToString() + " Fleet " + fleetData.Name; // game object CivName
         //                                                                                      //var canvas = shipNewGameOb.GetComponent<Canvas>();
         //                                                                                      //var fleet = FindGameObjectInChildrenWithTag(shipNewGameOb,"Fleet");
         //                                                                                      //fleet.transform.SetParent(canvas.transform, true);
@@ -133,14 +133,14 @@ public class ShipManager : MonoBehaviour
         //Vector3[] points = { shipNewGameOb.transform.position, galaxyPlanePoint };
         //ourLineScript.SetUpLine(points);
 
-        //var controller = shipNewGameOb.GetComponentInChildren<FleetController>();
+        //var clickedController = shipNewGameOb.GetComponentInChildren<FleetController>();
 
-        //controller.fleetData = fleetData;
+        //clickedController.fleetData = fleetData;
 
-        //controller.fleetData.yAboveGalaxyImage = galaxyCenter.transform.position.y - galaxyPlanePoint.y;
+        //clickedController.fleetData.yAboveGalaxyImage = galaxyCenter.transform.position.y - galaxyPlanePoint.y;
 
         //shipNewGameOb.SetActive(true);
-        //ShipControllerList.Add(controller);
+        //ShipControllerList.Add(clickedController);
 
     }
 }

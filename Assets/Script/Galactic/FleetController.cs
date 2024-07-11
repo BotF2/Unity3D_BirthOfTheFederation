@@ -82,12 +82,11 @@ namespace Assets.Core
                     }
                 case FleetState.FleetDipolmacy:
                     {
-                        AllStop();
+                        //AllStop();
                         break;
                     }
                 case FleetState.FleetStationary:
                     {
-                        AllStop();
                         break; 
                     }
                 case FleetState.FleetWarp:

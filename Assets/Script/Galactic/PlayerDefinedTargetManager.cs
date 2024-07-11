@@ -40,7 +40,7 @@ public class PlayerDefinedTargetManager : MonoBehaviour
         playerDefinedTargetGO.transform.SetParent(galaxyCenter.transform, true);
         playerDefinedTargetGO.transform.localScale = new Vector3(1, 1, 1);
 
-        playerDefinedTargetGO.name = playerDefinedTargetData.CivOwnerEnum.ToString() + " PlayerTarget " + playerDefinedTargetData.Name; // game object FleetName
+        playerDefinedTargetGO.name = playerDefinedTargetData.CivOwnerEnum.ToString() + " PlayerTarget " + playerDefinedTargetData.Name; // game object CivName
                                                                      
         TextMeshProUGUI TheText = playerDefinedTargetGO.GetComponentInChildren<TextMeshProUGUI>();
 

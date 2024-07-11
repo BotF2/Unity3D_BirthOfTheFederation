@@ -27,7 +27,7 @@ namespace Assets.Core
                 PlayWarp();
                 //if (once == 0 && anim.GetCurrentAnimatorStateInfo(0).IsName("F3_allGoodThings"))
                 //{
-                //    shipLayerSetup.OnStateEnter(anim, anim.GetCurrentAnimatorStateInfo(anim.GetLayerIndex(anim.FleetName)), anim.GetLayerIndex(anim.FleetName));
+                //    shipLayerSetup.OnStateEnter(anim, anim.GetCurrentAnimatorStateInfo(anim.GetLayerIndex(anim.CivName)), anim.GetLayerIndex(anim.CivName));
                 //    once++;
                 //}
             }

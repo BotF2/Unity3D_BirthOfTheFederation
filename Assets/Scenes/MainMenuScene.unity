@@ -2734,10 +2734,10 @@ RectTransform:
   m_Father: {fileID: 1348523097}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -15}
+  m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &334428935
 MonoBehaviour:
@@ -2759,7 +2759,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ENGAGE
+  m_text: ' Manage Ships'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
@@ -2822,7 +2822,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0.036499023, y: 0.060180664, z: 0.009521484, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -7181,7 +7181,7 @@ GameObject:
   - component: {fileID: 732295837}
   - component: {fileID: 732295836}
   m_Layer: 6
-  m_Name: Panel Manage Ships
+  m_Name: Panel ShipManagerUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7749,7 +7749,7 @@ RectTransform:
   m_Children:
   - {fileID: 132425061}
   m_Father: {fileID: 1512066707}
-  m_RootOrder: 5
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -8687,7 +8687,7 @@ GameObject:
   - component: {fileID: 862439785}
   - component: {fileID: 862439784}
   m_Layer: 6
-  m_Name: Header Text (TMP)
+  m_Name: Text (TMP) Header
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12724,15 +12724,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5a19414b52a7b049a9c0242c10f7852, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 0}
+  clickedController: {fileID: 0}
   parentCanvas: {fileID: 580266235}
   ShipManagerUIRoot: {fileID: 2065411579}
   shipControllerList: []
   ShipDropdownGO: {fileID: 0}
   shipDropdown: {fileID: 0}
-  FleetName: {fileID: 0}
-  dropdownShipText: {fileID: 0}
-  sysDestination: {fileID: 0}
+  CivName: {fileID: 1406563318}
 --- !u!1 &1295497450
 GameObject:
   m_ObjectHideFlags: 0
@@ -13106,12 +13104,12 @@ GameObject:
   - component: {fileID: 1348523099}
   - component: {fileID: 1348523098}
   m_Layer: 6
-  m_Name: Button Engage Warp
+  m_Name: Button Manage Ships
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1348523097
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13126,12 +13124,12 @@ RectTransform:
   m_Children:
   - {fileID: 334428934}
   m_Father: {fileID: 1512066707}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 40, y: -24}
-  m_SizeDelta: {x: 120, y: 30}
+  m_AnchoredPosition: {x: 610, y: 0}
+  m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1348523098
 MonoBehaviour:
@@ -13176,7 +13174,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1348523099}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1259102686}
+        m_TargetAssemblyTypeName: ShipUIManager, Assembly-CSharp
+        m_MethodName: LoadShipUIManager
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1348523099
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14015,7 +14025,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Civilzation Name blabalbal Whatever
+  m_text: 'Civilzation Name
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
@@ -14924,9 +14936,9 @@ RectTransform:
   - {fileID: 1046361533}
   - {fileID: 411588300}
   - {fileID: 1534032024}
-  - {fileID: 787825615}
   - {fileID: 1348523097}
   - {fileID: 1841860121}
+  - {fileID: 787825615}
   m_Father: {fileID: 796247010}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -15232,7 +15244,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 9.5595, y: 0}
   m_SizeDelta: {x: -14.5241, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -16799,7 +16811,7 @@ RectTransform:
   - {fileID: 1045958677}
   - {fileID: 288786708}
   m_Father: {fileID: 1512066707}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -18618,12 +18630,12 @@ GameObject:
   - component: {fileID: 2065411582}
   - component: {fileID: 2065411581}
   m_Layer: 6
-  m_Name: ShipManagerUIRoot
+  m_Name: ShipUIManagerRoot
   m_TagString: fleetUIRoot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2065411580
 RectTransform:
   m_ObjectHideFlags: 0

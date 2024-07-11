@@ -111,7 +111,7 @@ namespace Assets.Core
             {
                 if (oneRenderer != null)
                 {
-                    //if (oneRenderer.FleetName == "CivRaceSprite")
+                    //if (oneRenderer.CivName == "CivRaceSprite")
                     //{
                     //    oneRenderer.sprite = civSO.CivImage; // ok
                     //}

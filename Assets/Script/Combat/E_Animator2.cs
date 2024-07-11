@@ -25,9 +25,9 @@ namespace Assets.Core
                 anim.SetBool("EnemyWarp2", true); // code state turns on warp animation
                 PlayWarp();
                 // how to get animation done to inform code of state????
-                //if (once == 0 && anim.GetCurrentAnimatorStateInfo(anim.GetLayerIndex(anim.FleetName)).IsName("E2_allGoodThings"))
+                //if (once == 0 && anim.GetCurrentAnimatorStateInfo(anim.GetLayerIndex(anim.CivName)).IsName("E2_allGoodThings"))
                 //{
-                //    shipLayerSetup.OnStateEnter(anim, anim.GetCurrentAnimatorStateInfo(anim.GetLayerIndex(anim.FleetName)), anim.GetLayerIndex(anim.FleetName));
+                //    shipLayerSetup.OnStateEnter(anim, anim.GetCurrentAnimatorStateInfo(anim.GetLayerIndex(anim.CivName)), anim.GetLayerIndex(anim.CivName));
                 //    once = 1;
                 //}
             } 

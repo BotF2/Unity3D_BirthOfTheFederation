@@ -8,7 +8,7 @@ namespace Assets.Core
    
     public class F_Animator2 : MonoBehaviour
     {
-        // must FleetName class and file the same
+        // must CivName class and file the same
         public Animator anim;
         public AudioSource warpAudioSource_0;
        // private SetShipLayerByAnimaStat shipLayerSetup;
@@ -28,7 +28,7 @@ namespace Assets.Core
                 PlayWarp();
                 //if (once == 0 && anim.GetCurrentAnimatorStateInfo(0).IsName("F2_allGoodThings"))
                 //{
-                //    shipLayerSetup.OnStateEnter(anim, anim.GetCurrentAnimatorStateInfo(anim.GetLayerIndex(anim.FleetName)), anim.GetLayerIndex(anim.FleetName));
+                //    shipLayerSetup.OnStateEnter(anim, anim.GetCurrentAnimatorStateInfo(anim.GetLayerIndex(anim.CivName)), anim.GetLayerIndex(anim.CivName));
                 //    once = 1;
                 //}
             }
