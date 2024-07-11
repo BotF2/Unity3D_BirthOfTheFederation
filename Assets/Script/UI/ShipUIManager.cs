@@ -47,7 +47,7 @@ public class ShipUIManager : MonoBehaviour
     }
 
 
-    public void LoadShipUIManager(GameObject go) 
+    public void LoadShipUIManager(FleetController fleetController) 
     {
         StarSysUIManager.instance.UnLoadStarSysUI();
         FleetUIManager.instance.UnLoadFleetUI();
@@ -55,14 +55,14 @@ public class ShipUIManager : MonoBehaviour
         /* destination dropdown */
        // destinationDropdown.value = 0;
 
-        clickedController = go.GetComponent<FleetController>();
+        clickedController = fleetController;
         CivName.text = clickedController.FleetData.CivLongName;
         //destinationDropdown.value = index;
         //DropdownItemSelected(destinationDropdown);
         //destinationDropdown.onValueChanged.AddListener(delegate { DropdownItemSelected(destinationDropdown); });
         //ship dropdown
-        clickedController.shipDropdownGO = ShipDropdownGO;
-        clickedController.shipDropdown = ShipDropdownGO.GetComponent<TMP_Dropdown>();
+        //clickedController.shipDropdownGO = ShipDropdownGO;
+        //clickedController.shipDropdown = ShipDropdownGO.GetComponent<TMP_Dropdown>();
         NamesToShipDropdown(clickedController.FleetData.ShipsList);
     }
     //private void ReorderDropdownOptions(TMP_Dropdown dropdown)
@@ -78,19 +78,19 @@ public class ShipUIManager : MonoBehaviour
     }
     private void NamesToShipDropdown(List<ShipController> shipControllers)
     {
-        var shipDropdown = ShipDropdownGO.GetComponent<TMP_Dropdown>();
-        shipDropdown.options.Clear();
+        //var shipDropdown = ShipDropdownGO.GetComponent<TMP_Dropdown>();
+        //shipDropdown.options.Clear();
 
-        foreach (var shipCon in shipControllers)
-        {
-            if (shipCon != null)
-            {
-                string text = shipCon.ShipData.ShipName;
-                text.Replace("(CLONE)", string.Empty);
-                shipDropdown.options.Add(new TMP_Dropdown.OptionData(text));
-            }
+        //foreach (var shipCon in shipControllers)
+        //{
+        //    if (shipCon != null)
+        //    {
+        //        string text = shipCon.ShipData.ShipName;
+        //        text.Replace("(CLONE)", string.Empty);
+        //        shipDropdown.options.Add(new TMP_Dropdown.OptionData(text));
+        //    }
         
-        }
+        //}
         //DropdownItemSelected(shipDropdown);
         //shipDropdown.onValueChanged.AddListener(delegate { DropdownItemSelected(shipDropdown); });
     }

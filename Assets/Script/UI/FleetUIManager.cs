@@ -65,7 +65,7 @@ public class FleetUIManager : MonoBehaviour
     }
 
     public void WarpSliderChange(float value)
-     {
+    {
         float localValue = value * maxSliderValue;
         warpSliderText.text = localValue.ToString("0.0");
         controller.FleetData.CurrentWarpFactor = localValue;
@@ -74,6 +74,10 @@ public class FleetUIManager : MonoBehaviour
     {
         warpSlider.value = value/maxSliderValue;
         warpSliderText.text = value.ToString("0.0");
+    }
+    public void OnClickShipManager()
+    {
+        ShipUIManager.instance.LoadShipUIManager(controller);
     }
     public void LoadFleetUI(GameObject go) 
     {
