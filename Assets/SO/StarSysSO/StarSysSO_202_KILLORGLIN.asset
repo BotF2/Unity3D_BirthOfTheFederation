@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 413d21328479c6a43b56205ac7b8ebcc, type: 3}
-  m_Name: StarSysSO_202_A
+  m_Name: StarSysSO_202_KILLORGLIN
   m_EditorClassIdentifier: 
   StarSysInt: 202
   Position: {x: 70, y: 26, z: -580}
-  SysName: A
+  SysName: KILLORGLIN
   FirstOwner: 202
   CurrentOwner: 202
   StarType: 4

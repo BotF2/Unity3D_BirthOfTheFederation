@@ -74,6 +74,7 @@ public class StarSysUIManager : MonoBehaviour
     public void LoadStarSysUI(GameObject go) 
     {
         FleetUIManager.instance.UnLoadFleetUI();
+        ShipUIManager.instance.UnLoadShipManagerUI();
         starSysUIRoot.SetActive(true);
 
         controller = go.GetComponent<StarSysController>();

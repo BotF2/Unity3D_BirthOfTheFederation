@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data.Common;
+using System.Net.Http.Headers;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -23,6 +24,8 @@ namespace Assets.Core
         public Dictionary<CivController, List<CivController>> CivsThatACivKnows = new Dictionary<CivController, List<CivController>>();
         public CivData localPlayer;
         public CivData resultInGameCivData;
+        public bool nowCivsCanJoinTheFederation = true;
+        private int HoldCivSize = 0;
         [SerializeField]
         private GameObject civFolder;
         [SerializeField]
@@ -40,6 +43,38 @@ namespace Assets.Core
             //ToDo: early random minor races set before menu selects size and tech
             ShipManager.instance.SendEarlyCivSOListForFistShips(civSOListSmall);
         }
+        private void Update()
+        {
+            //***** This is temporary so we can test a multi-starsystem civ
+            //******* before diplomacy will alow civs/systems to join another civ
+            
+            if (nowCivsCanJoinTheFederation && HoldCivSize == 1)
+            {
+                foreach (var civ in allCivControllersList)
+                {
+                    if(civ.CivData.CivEnum == CivEnum.ANDORIANS || civ.CivData.CivEnum == CivEnum.VULCANS || civ.CivData.CivEnum == CivEnum.TELLARITES)
+                    {
+                        civ.CivData.CivInt = allCivControllersList[0].CivData.CivInt;
+                        civ.CivData.CivEnum = allCivControllersList[0].CivData.CivEnum;
+                        civ.CivData.CivShortName = allCivControllersList[0].CivData.CivShortName;
+                        civ.CivData.CivLongName = allCivControllersList[0].CivData.CivLongName;
+                        civ.CivData.CivHomeSystem = allCivControllersList[0].CivData.CivHomeSystem;
+                        civ.CivData.TraitOne = allCivControllersList[0].CivData.TraitOne;
+                        civ.CivData.TraitTwo = allCivControllersList[0].CivData.TraitTwo;
+                        civ.CivData.CivImage = allCivControllersList[0].CivData.CivImage;
+                        civ.CivData.Insignia = allCivControllersList[0].CivData.Insignia;
+                        civ.CivData.Playable = true;
+                        civ.CivData.PlayedByAI = true;
+                        civ.CivData.HasWarp =true;
+                        civ.CivData.Decription = "temp civ member of Federation";
+                    }
+                }
+                StarSysManager.instance.UpdateStarSystemOwner(CivEnum.ANDORIANS, CivEnum.FED);
+                StarSysManager.instance.UpdateStarSystemOwner(CivEnum.VULCANS, CivEnum.FED);
+                StarSysManager.instance.UpdateStarSystemOwner(CivEnum.TELLARITES, CivEnum.FED);
+            }
+            nowCivsCanJoinTheFederation = false;
+        }
         public CivData CreateLocalPlayer()
         {
             localPlayer = GetCivDataByName("FEDERATION");
@@ -56,24 +91,29 @@ namespace Assets.Core
         {
 
 
-            if (sizeGame == 0)
-            {
+            switch (sizeGame)
+            { case 0:
                 CivDataFromSO(civSOListSmall);
                 CreateCivEnumList(civSOListSmall);
+                break;
+              case 1:
 
-            }
-            if (sizeGame == 1)
-            {
                 CivDataFromSO(civSOListMedium);
                 CreateCivEnumList(civSOListMedium);
 
-            }
-            if (sizeGame == 2)
-            {
+                //CreateStarSystemsWeOwnList(civSOListMedium); 
+                HoldCivSize = sizeGame;
+                break;
+              case 2:
                 CivDataFromSO(civSOListLarge);
                 CreateCivEnumList(civSOListLarge);
-
+                break;
+              default:
+                CivDataFromSO(civSOListSmall);
+                CreateCivEnumList(civSOListSmall);
+                break;
             }
+
             ShipManager.instance.FirstShipDateByTechlevel(gameTechLevel);
         }
         public void CivDataFromSO(List<CivSO> civSOList)
@@ -134,6 +174,13 @@ namespace Assets.Core
         {
             CivsThatACivKnows[civPartyOne].Add(civPartyTwo);
             CivsThatACivKnows[civPartyTwo].Add(civPartyOne);
+        }
+        void CreateStarSystemsWeOwnList(List<CivSO> list)
+        {
+            //for (int i = 0; i < .Count; i++)
+            //{
+            
+            //}
         }
         void CreateCivEnumList(List<CivSO> listOfCivSO)
         {

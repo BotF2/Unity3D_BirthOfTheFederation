@@ -27,6 +27,7 @@ namespace Assets.Core
         private Camera galaxyEventCamera;
         private Canvas systemUICanvas; //ToDo system ui
         public StarSysController starSystemPrefabPlaceHolder;
+        private int systemCount = -1;
 
         private void Awake()
         {
@@ -85,6 +86,7 @@ namespace Assets.Core
         }
         public void InstantiateSystem(StarSysData sysData, CivSO civSO)
         { 
+           
             GameObject starSystemNewGameOb = (GameObject)Instantiate(sysPrefab, new Vector3(0,0,0),
                  Quaternion.identity);
             starSystemNewGameOb.transform.Translate(new Vector3(sysData.GetPosition().x, sysData.GetPosition().y, sysData.GetPosition().z));
@@ -139,6 +141,13 @@ namespace Assets.Core
 
             starSystemNewGameOb.SetActive(true);
             StarSysControllerList.Add(controller);
+            systemCount++;
+            //***** This is temporary so we can test a multi-starsystem civ
+            //******* before diplomacy will alow civs/systems to join another civ
+            if (systemCount == 8)
+            {
+                CivManager.instance.nowCivsCanJoinTheFederation = true;
+            }
         }
 
         public StarSysSO GetStarSObyInt(int sysInt)
@@ -189,6 +198,14 @@ namespace Assets.Core
                 }
             }
             return controller;
+        }
+        public void UpdateStarSystemOwner(CivEnum civCurrent, CivEnum civNew)
+        {
+            foreach (var sysCon in StarSysControllerList) 
+            {
+              if(sysCon.StarSysData.GetFirstOwner() == civCurrent)
+                    sysCon.StarSysData.CurrentOwner = civNew;
+            }
         }
     }
 }

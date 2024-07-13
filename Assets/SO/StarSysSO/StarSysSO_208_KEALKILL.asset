@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 413d21328479c6a43b56205ac7b8ebcc, type: 3}
-  m_Name: StarSysSO_207_B
+  m_Name: StarSysSO_208_KEALKILL
   m_EditorClassIdentifier: 
-  StarSysInt: 207
-  Position: {x: 180, y: -5, z: -380}
-  SysName: B
-  FirstOwner: 207
-  CurrentOwner: 207
-  StarType: 2
-  StarSprit: {fileID: 21300000, guid: a71196654f476ea4db890e76192307fa, type: 3}
+  StarSysInt: 208
+  Position: {x: 150, y: 11, z: -820}
+  SysName: KEALKILL
+  FirstOwner: 208
+  CurrentOwner: 208
+  StarType: 0
+  StarSprit: {fileID: 21300000, guid: e4a5fe77159a4474faeb4032f0274153, type: 3}
   Population: 0
   PopulationLimit: 10
   Farms: 0

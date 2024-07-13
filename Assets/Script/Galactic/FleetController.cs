@@ -10,7 +10,7 @@ using UnityEngine.UIElements;
 
 namespace Assets.Core
 {
-    public enum FleetState { FleetCombat, FleetDipolmacy, FleetInSystem, FleetsTogether, FleetStationary, FleetWarp}
+    public enum FleetState { FleetCombat, FleetDipolmacy, FleetInSystem, FleetsInRendezvous, FleetStationary, FleetAtWarp}
     public class FleetController : MonoBehaviour
     {
         //Fields
@@ -89,11 +89,11 @@ namespace Assets.Core
                     {
                         break; 
                     }
-                case FleetState.FleetWarp:
+                case FleetState.FleetAtWarp:
                     { 
                         break;
                     }
-                case FleetState.FleetsTogether:
+                case FleetState.FleetsInRendezvous:
                     {
                         //if(this.FleetData.Destination == )
                         AllStop();
@@ -111,7 +111,7 @@ namespace Assets.Core
              
             if (FleetData.Destination != null && FleetData.CurrentWarpFactor > 0f)
             {
-                fleetState = FleetState.FleetWarp;
+                fleetState = FleetState.FleetAtWarp;
                 MoveToDesitinationGO();
             }
         }

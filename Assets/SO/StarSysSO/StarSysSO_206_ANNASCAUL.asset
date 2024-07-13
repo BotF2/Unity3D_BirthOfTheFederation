@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 413d21328479c6a43b56205ac7b8ebcc, type: 3}
-  m_Name: StarSysSO_201_B
+  m_Name: StarSysSO_206_ANNASCAUL
   m_EditorClassIdentifier: 
-  StarSysInt: 201
-  Position: {x: 50, y: 9, z: -540}
-  SysName: B
-  FirstOwner: 201
-  CurrentOwner: 201
-  StarType: 3
-  StarSprit: {fileID: 21300000, guid: f46fc7ae4eec69d40aa8026ba9da085d, type: 3}
+  StarSysInt: 206
+  Position: {x: 60, y: 1, z: -340}
+  SysName: ANNASCAUL
+  FirstOwner: 206
+  CurrentOwner: 206
+  StarType: 2
+  StarSprit: {fileID: 21300000, guid: a71196654f476ea4db890e76192307fa, type: 3}
   Population: 0
   PopulationLimit: 10
   Farms: 0
