@@ -298,7 +298,7 @@ namespace Assets.Core
         //    FleetData.CurrentWarpFactor += delta;
         //    FleetData.CurrentWarpFactor += delta;
         //}
-        public void AddFleetController(FleetController controller)
+        public void AddFleetController(FleetController controller) // do we need this?
         {
             if (!FleetManager.instance.ManagersFleetControllerList.Contains(controller)) 
                 FleetManager.instance.ManagersFleetControllerList.Add(controller);

@@ -87,9 +87,11 @@ namespace Assets.Core
             civData.CivShortName = civSO.CivShortName;
         }
 
-        public void CreateNewGameBySelections(int sizeGame, int gameTechLevel)
+        public void CreateNewGameBySelections(int sizeGame, int gameTechLevel, int galaxyType)
         {
-
+            GameManager.Instance._techLevel = (TechLevel)gameTechLevel;
+            GameManager.Instance._galaxySize = (GalaxySize)sizeGame;
+            GameManager.Instance._galaxyType = (GalaxyType)galaxyType;
 
             switch (sizeGame)
             { case 0:
@@ -100,7 +102,6 @@ namespace Assets.Core
 
                 CivDataFromSO(civSOListMedium);
                 CreateCivEnumList(civSOListMedium);
-
                 //CreateStarSystemsWeOwnList(civSOListMedium); 
                 HoldCivSize = sizeGame;
                 break;
@@ -227,9 +228,9 @@ namespace Assets.Core
             return result;
 
         }
-        public void OnNewGameButtonClicked(int gameSize, int gameTechLevel)
+        public void OnNewGameButtonClicked(int gameSize, int gameTechLevel, int galaxyType)
         {
-            CreateNewGameBySelections(gameSize, gameTechLevel);
+            CreateNewGameBySelections(gameSize, gameTechLevel, galaxyType);
             
         }
 

@@ -73,7 +73,7 @@ namespace Assets.Core
             galaxyCenter.SetActive(true);
 
             SceneManager.LoadScene("GalaxyScene", LoadSceneMode.Additive);
-            CivManager.instance.OnNewGameButtonClicked((int)selectedGalaxySize, (int)selectedTechLevel);
+            CivManager.instance.OnNewGameButtonClicked((int)selectedGalaxySize, (int)selectedTechLevel, (int)selectedGalaxyType);
            
         }
 
