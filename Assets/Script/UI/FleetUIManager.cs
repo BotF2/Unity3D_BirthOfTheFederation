@@ -7,6 +7,7 @@ using Assets.Core;
 using Unity.VisualScripting;
 using System.Diagnostics;
 using UnityEngine.Rendering;
+using static System.Net.Mime.MediaTypeNames;
 
 [DebuggerDisplay("{" + nameof(GetDebuggerDisplay) + "(),nq}")]
 public class FleetUIManager : MonoBehaviour
@@ -155,10 +156,37 @@ public class FleetUIManager : MonoBehaviour
         destinationDropdown.value = indexOfSelected;
         destinationDropdown.RefreshShownValue();
         destinationDropdown.onValueChanged.AddListener(delegate { DropdownItemSelected(destinationDropdown); });
+
         //ship dropdown
-        controller.shipDropdownGO = ShipDropdownGO;
-        controller.shipDropdown = ShipDropdownGO.GetComponent<TMP_Dropdown>();
-        NamesToShipDropdown(controller.FleetData.ShipsList);
+        var shipDropdown = ShipDropdownGO.GetComponent<TMP_Dropdown>();
+        shipDropdown.options.Clear();
+        List<TMP_Dropdown.OptionData> newShipItems = new List<TMP_Dropdown.OptionData>();
+        for (int i = 0; i < controller.FleetData.ShipsList.Count; i++)
+        {
+            if (controller.FleetData.ShipsList[i] != null)
+            {
+                TMP_Dropdown.OptionData newDataItem = new TMP_Dropdown.OptionData();
+                newDataItem.text = controller.FleetData.ShipsList[i].name;
+                newDataItem.text.Replace("(CLONE)", string.Empty);
+                newShipItems.Add(newDataItem);
+            }
+        }
+        shipDropdown.AddOptions(newShipItems);
+        shipDropdown.RefreshShownValue();
+
+        //foreach (var shipCon in controller.FleetData.ShipsList)
+        //{
+        //    if (shipCon != null)
+        //    {
+        //        string text = shipCon.ShipData.ShipName;
+        //        text.Replace("(CLONE)", string.Empty);
+        //        shipDropdown.options.Add(new TMP_Dropdown.OptionData(text));
+        //    }
+
+        //}
+        //controller.shipDropdownGO = ShipDropdownGO;
+        //controller.shipDropdown = ShipDropdownGO.GetComponent<TMP_Dropdown>();
+        //NamesToShipDropdown(controller.FleetData.ShipsList);
     }
     private void ReorderDropdownOptions(TMP_Dropdown dropdown)
     {

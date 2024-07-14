@@ -50,11 +50,14 @@ public class CameraDragMove : MonoBehaviour //, IPointerClickHandler
         }
         else if (Input.GetMouseButton(0))
         {
-            if (!EventSystem.current.IsPointerOverGameObject()) // do not drage camera when over UI
+            if (EventSystem.current != null)
             {
-                Vector3 delta = (Input.mousePosition - lastMousePosition) / mouseSpeed;
-                MoveCamera(delta.x, delta.y);
-                lastMousePosition = Input.mousePosition;
+                if (!EventSystem.current.IsPointerOverGameObject()) // do not drage camera when over UI
+                {
+                    Vector3 delta = (Input.mousePosition - lastMousePosition) / mouseSpeed;
+                    MoveCamera(delta.x, delta.y);
+                    lastMousePosition = Input.mousePosition;
+                }
             }
         }
 
@@ -101,6 +104,11 @@ public class CameraDragMove : MonoBehaviour //, IPointerClickHandler
         pos.z = Mathf.Clamp(pos.z, minZ, maxZ);
         transform.eulerAngles = new Vector3((pos.y - 250f) * 0.06f, transform.eulerAngles.y, transform.eulerAngles.z);
         transform.position = pos;
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        throw new NotImplementedException();
     }
 }
 

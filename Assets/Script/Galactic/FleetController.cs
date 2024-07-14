@@ -108,11 +108,13 @@ namespace Assets.Core
         }
         private void FixedUpdate()
         {
-             
-            if (FleetData.Destination != null && FleetData.CurrentWarpFactor > 0f)
+            if (FleetData.CivEnum != CivEnum.ZZUNINHABITED10)
             {
-                fleetState = FleetState.FleetAtWarp;
-                MoveToDesitinationGO();
+                if (FleetData.Destination != null && FleetData.CurrentWarpFactor > 0f)
+                {
+                    fleetState = FleetState.FleetAtWarp;
+                    MoveToDesitinationGO();
+                }
             }
         }
 
@@ -137,7 +139,7 @@ namespace Assets.Core
 
             }
             var controllerStarSys = collision.gameObject.GetComponent<StarSysController>();
-            if (controllerStarSys != null) 
+            if (controllerStarSys != null && CivManager.instance.allCivControllersList.Count > 0) 
             {
                 CivManager.instance.Diplomacy(this.fleetData.OurCivController,
                     CivManager.instance.GetCivControllerByEnum(controllerStarSys.StarSysData.CurrentOwner));

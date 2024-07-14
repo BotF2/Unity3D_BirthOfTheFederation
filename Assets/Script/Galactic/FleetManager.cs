@@ -27,6 +27,7 @@ namespace Assets.Core
         public List<GameObject> FleetGOList = new List<GameObject>(); // all fleetGO GOs made
         private List<ShipController> shipsOfAllFirstFleets;
         private bool PlaceHolderIsDestroyed = false;
+        private bool runCivList = true;
 
         private void Awake()
         {
@@ -53,8 +54,18 @@ namespace Assets.Core
             AddFleetConrollerToAllControllers(fleetController);
             shipsOfAllFirstFleets = ShipManager.instance.GetShipControllersOfFirstFleet();
         }
-
-        public void UpdateFleetShipControllers(ShipController shipController) // one at a time, as ShipManager makes ships by Menu civ
+        private void Update()
+        { 
+            if (CivManager.instance.allCivControllersList.Count > 0 && runCivList) 
+            {
+                foreach (var fleetController in ManagersFleetControllerList)
+                {
+                    fleetController.FleetData.OurCivController = CivManager.instance.GetCivControllerByEnum(fleetController.FleetData.CivEnum);
+                }
+                runCivList = false;
+            }
+        }
+        public void UpdateFleetShipControllers(ShipController shipController) // one at a time, as ShipManager makes ships by civs
         {
             shipsOfAllFirstFleets.Add(shipController);
             
@@ -99,6 +110,7 @@ namespace Assets.Core
                     fleetData.CivLongName = civSO.CivLongName;
                     fleetData.CivShortName = civSO.CivShortName;
                     fleetData.Name = "1";
+                    //fleetData.OurCivController = CivManager.instance.GetCivControllerByEnum(fleetData.CivEnum); // Too early
                     InstantiateFleet(fleetData, position);
                 }
                 else if (GameManager.Instance._galaxySize == GalaxySize.MEDIUM)
@@ -114,6 +126,7 @@ namespace Assets.Core
                         fleetData.CivLongName = civSO.CivLongName;
                         fleetData.CivShortName = civSO.CivShortName;
                         fleetData.Name = (i+1).ToString();
+                        //fleetData.OurCivController = CivManager.instance.GetCivControllerByEnum(fleetData.CivEnum); //too early
                         InstantiateFleet(fleetData, position);
                     }
                 }
@@ -159,12 +172,13 @@ namespace Assets.Core
                 ourLineScript.SetUpLine(points);
                 fleetController.FleetData.yAboveGalaxyImage = galaxyCenter.transform.position.y - galaxyPlanePoint.y;
                 fleetController.dropLine = ourLineScript;
-                foreach (var civCon in CivManager.instance.allCivControllersList) 
-                {
-                    if (civCon.CivShortName == fleetData.CivShortName) 
-                        fleetData.OurCivController = civCon;
-                }
+                //foreach (var civCon in CivManager.instance.allCivControllersList) 
+                //{
+                //    if (civCon.CivShortName == fleetData.CivShortName) 
+                //        fleetData.OurCivController = civCon;
+                //}
                 fleetNewGameOb.SetActive(true);
+                ShipManager.instance.BuildShipsOfFirstFleet(fleetNewGameOb);
                 FleetGOList.Add(fleetNewGameOb);
                // StarSysManager.instance.GetYourFirstStarSystem(fleetData.CivOwnerEnum);
 
@@ -175,18 +189,17 @@ namespace Assets.Core
         {
             foreach (var fleetCon in ManagersFleetControllerList)
             {
-                //int howMany = 0;
-                List<FleetController> list = new List<FleetController>() { ManagersFleetControllerList[0] };
+                List<FleetController> listByCiv = new List<FleetController>() { ManagersFleetControllerList[0] };
                 if (fleetCon.FleetData.CivEnum == fleetController.FleetData.CivEnum)
                 {
-                    list.Add(fleetCon);
-                    foreach (var item in list)
+                    listByCiv.Add(fleetCon);
+                    foreach (var item in listByCiv)
                     {
                         if (item.FleetData.CivEnum != fleetController.FleetData.CivEnum)
-                            list.Remove(item);
+                            listByCiv.Remove(item);
                     }
                 }
-                list.Last().FleetData.Name = (Int32.Parse(fleetController.FleetData.Name)+1).ToString();
+                listByCiv.Last().FleetData.Name = (Int32.Parse(fleetController.FleetData.Name)+1).ToString();
             }
         }
         void RemoveFleetConrollerFromAllControllers(FleetController fleetController)

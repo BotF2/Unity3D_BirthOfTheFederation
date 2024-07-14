@@ -115,7 +115,7 @@ namespace Assets.Core
                 break;
             }
 
-            ShipManager.instance.FirstShipDateByTechlevel(gameTechLevel);
+            //ShipManager.instance.FirstShipDateByTechlevel(gameTechLevel);
         }
         public void CivDataFromSO(List<CivSO> civSOList)
         {
