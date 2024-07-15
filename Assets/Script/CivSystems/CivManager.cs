@@ -41,7 +41,7 @@ namespace Assets.Core
                 DontDestroyOnLoad(gameObject);
             }
             //ToDo: early random minor races set before menu selects size and tech
-            ShipManager.instance.SendEarlyCivSOListForFistShips(civSOListSmall);
+            //ShipManager.instance.SendEarlyCivSOListForFirstShips(civSOListSmall);
         }
         private void Update()
         {
@@ -97,21 +97,24 @@ namespace Assets.Core
             { case 0:
                 CivDataFromSO(civSOListSmall);
                 CreateCivEnumList(civSOListSmall);
+                ShipManager.instance.SendEarlyCivSOListForFirstShips(civSOListSmall);
                 break;
               case 1:
 
                 CivDataFromSO(civSOListMedium);
                 CreateCivEnumList(civSOListMedium);
-                //CreateStarSystemsWeOwnList(civSOListMedium); 
+                ShipManager.instance.SendEarlyCivSOListForFirstShips(civSOListMedium);
                 HoldCivSize = sizeGame;
                 break;
               case 2:
                 CivDataFromSO(civSOListLarge);
                 CreateCivEnumList(civSOListLarge);
+                ShipManager.instance.SendEarlyCivSOListForFirstShips(civSOListLarge);
                 break;
               default:
                 CivDataFromSO(civSOListSmall);
                 CreateCivEnumList(civSOListSmall);
+                ShipManager.instance.SendEarlyCivSOListForFirstShips(civSOListSmall);
                 break;
             }
 

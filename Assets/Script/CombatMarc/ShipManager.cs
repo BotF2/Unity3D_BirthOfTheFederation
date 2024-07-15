@@ -10,7 +10,7 @@ public class ShipManager : MonoBehaviour
     public static ShipManager instance;
     public GameObject ShipControllerPrefab;
     public GameObject ShipDataPrefab;
-    public List<ShipController> ShipControllerList;
+    public List<ShipController> ShipControllerGameList;
     public List<ShipController> allFirstFleetShipControllerList;// has place holders
     public List<ShipSO> ShipSOListTech0;
     public List<ShipSO> ShipSOListTech1;
@@ -56,22 +56,29 @@ public class ShipManager : MonoBehaviour
             shipNewGameOb.name = shipData.ShipName;
             ShipController shipController = shipNewGameOb.GetComponent<ShipController>();
             shipController.ShipData = shipData;
-            ShipControllerList.Add(shipController);
+            ShipControllerGameList.Add(shipController);
             listShipGO.Add(shipNewGameOb);
         }
         return listShipGO;
     }
-    public void SendEarlyCivSOListForFistShips(List<CivSO> listCivSO)// current is small list, ToDo random and large list
-    { //This is before Menu selection of size, tech...
+    public void SendEarlyCivSOListForFirstShips(List<CivSO> listCivSO) // ToDo random minors, not all majors, Terran Empire
+    {
+        GameObject shipNewGameOb = (GameObject)Instantiate(ShipControllerPrefab, new Vector3(0, 0, 0),
+                Quaternion.identity);
+        shipNewGameOb.name = "First Ship";
+        shipNewGameOb.gameObject.tag = "ShipPlaceHolder";
+        ShipController shipController = shipNewGameOb.GetComponent<ShipController>();
+        List<ShipController> listShipCons = new List<ShipController>() { shipController };
         for (int i = 0; i < listCivSO.Count; i++)
         {
-            GameObject shipNewGameOb = (GameObject)Instantiate(ShipControllerPrefab, new Vector3(0, 0, 0),
-                Quaternion.identity);
-            shipNewGameOb.name = "First Ship" + i.ToString();
-            shipNewGameOb.gameObject.tag = "ShipPlaceHolder";
-            ShipController shipController = shipNewGameOb.GetComponent<ShipController>(); 
-            allFirstFleetShipControllerList.Add(shipController);
+            GameObject shipGameOb = (GameObject)Instantiate(ShipControllerPrefab, new Vector3(0, 0, 0),
+                    Quaternion.identity);
+            shipGameOb.name = "First Ship" + (i+1).ToString();
+            shipGameOb.gameObject.tag = "ShipPlaceHolder";
+            ShipController shipCon = shipGameOb.GetComponent<ShipController>();
+            listShipCons.Add( shipCon);
         }
+        allFirstFleetShipControllerList = listShipCons;
     }
     public List<ShipController> GetShipControllersOfFirstFleet()
     {
