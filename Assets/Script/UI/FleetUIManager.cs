@@ -220,24 +220,24 @@ public class FleetUIManager : MonoBehaviour
             }
         }
     }
-    private void NamesToShipDropdown(List<ShipController> shipControllers)
-    {
-        var shipDropdown = ShipDropdownGO.GetComponent<TMP_Dropdown>();
-        shipDropdown.options.Clear();
+    //private void NamesToShipDropdown(List<ShipController> shipControllers)
+    //{
+    //    var shipDropdown = ShipDropdownGO.GetComponent<TMP_Dropdown>();
+    //    shipDropdown.options.Clear();
 
-        foreach (var shipCon in shipControllers)
-        {
-            if (shipCon != null)
-            {
-                string text = shipCon.ShipData.ShipName;
-                text.Replace("(CLONE)", string.Empty);
-                shipDropdown.options.Add(new TMP_Dropdown.OptionData(text));
-            }
+    //    foreach (var shipCon in shipControllers)
+    //    {
+    //        if (shipCon != null)
+    //        {
+    //            string text = shipCon.ShipData.ShipName;
+    //            text.Replace("(CLONE)", string.Empty);
+    //            shipDropdown.options.Add(new TMP_Dropdown.OptionData(text));
+    //        }
         
-        }
-        //DropdownItemSelected(shipDropdown);
-        //shipDropdown.onValueChanged.AddListener(delegate { DropdownItemSelected(shipDropdown); });
-    }
+    //    }
+    //    //DropdownItemSelected(shipDropdown);
+    //    //shipDropdown.onValueChanged.AddListener(delegate { DropdownItemSelected(shipDropdown); });
+    //}
 
     private string GetDebuggerDisplay()
     {

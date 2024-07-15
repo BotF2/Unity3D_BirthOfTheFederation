@@ -20,7 +20,7 @@ namespace Assets.Core
         public List<CivSO> civSOListAllPossible;
         public List<CivEnum> CivSOInGame;
         public List<CivData> civDataInGameList = new List<CivData> { new CivData() };
-        public List<CivController> allCivControllersList;
+        public List<CivController> CivControllersInGame;
         public Dictionary<CivController, List<CivController>> CivsThatACivKnows = new Dictionary<CivController, List<CivController>>();
         public CivData localPlayer;
         public CivData resultInGameCivData;
@@ -50,19 +50,19 @@ namespace Assets.Core
             
             //if (nowCivsCanJoinTheFederation && HoldCivSize == 1)
             //{
-            //    foreach (var civ in allCivControllersList)
+            //    foreach (var civ in CivControllersInGame)
             //    {
             //        if(civ.CivData.CivEnum == CivEnum.ANDORIANS || civ.CivData.CivEnum == CivEnum.VULCANS || civ.CivData.CivEnum == CivEnum.TELLARITES)
             //        {
-            //            civ.CivData.CivInt = allCivControllersList[0].CivData.CivInt;
-            //            civ.CivData.CivEnum = allCivControllersList[0].CivData.CivEnum;
-            //            civ.CivData.CivShortName = allCivControllersList[0].CivData.CivShortName;
-            //            civ.CivData.CivLongName = allCivControllersList[0].CivData.CivLongName;
-            //            civ.CivData.CivHomeSystem = allCivControllersList[0].CivData.CivHomeSystem;
-            //            civ.CivData.TraitOne = allCivControllersList[0].CivData.TraitOne;
-            //            civ.CivData.TraitTwo = allCivControllersList[0].CivData.TraitTwo;
-            //            civ.CivData.CivImage = allCivControllersList[0].CivData.CivImage;
-            //            civ.CivData.Insignia = allCivControllersList[0].CivData.Insignia;
+            //            civ.CivData.CivInt = CivControllersInGame[0].CivData.CivInt;
+            //            civ.CivData.CivEnum = CivControllersInGame[0].CivData.CivEnum;
+            //            civ.CivData.CivShortName = CivControllersInGame[0].CivData.CivShortName;
+            //            civ.CivData.CivLongName = CivControllersInGame[0].CivData.CivLongName;
+            //            civ.CivData.CivHomeSystem = CivControllersInGame[0].CivData.CivHomeSystem;
+            //            civ.CivData.TraitOne = CivControllersInGame[0].CivData.TraitOne;
+            //            civ.CivData.TraitTwo = CivControllersInGame[0].CivData.TraitTwo;
+            //            civ.CivData.CivImage = CivControllersInGame[0].CivData.CivImage;
+            //            civ.CivData.Insignia = CivControllersInGame[0].CivData.Insignia;
             //            civ.CivData.Playable = true;
             //            civ.CivData.PlayedByAI = true;
             //            civ.CivData.HasWarp =true;
@@ -97,24 +97,24 @@ namespace Assets.Core
             { case 0:
                 CivDataFromSO(civSOListSmall);
                 CreateCivEnumList(civSOListSmall);
-                ShipManager.instance.SendEarlyCivSOListForFirstShips(civSOListSmall);
+                //ShipManager.instance.SendEarlyCivSOListForFirstShips(civSOListSmall);
                 break;
               case 1:
 
                 CivDataFromSO(civSOListMedium);
                 CreateCivEnumList(civSOListMedium);
-                ShipManager.instance.SendEarlyCivSOListForFirstShips(civSOListMedium);
+                //ShipManager.instance.SendEarlyCivSOListForFirstShips(civSOListMedium);
                 HoldCivSize = sizeGame;
                 break;
               case 2:
                 CivDataFromSO(civSOListLarge);
                 CreateCivEnumList(civSOListLarge);
-                ShipManager.instance.SendEarlyCivSOListForFirstShips(civSOListLarge);
+                //ShipManager.instance.SendEarlyCivSOListForFirstShips(civSOListLarge);
                 break;
               default:
                 CivDataFromSO(civSOListSmall);
                 CreateCivEnumList(civSOListSmall);
-                ShipManager.instance.SendEarlyCivSOListForFirstShips(civSOListSmall);
+                //ShipManager.instance.SendEarlyCivSOListForFirstShips(civSOListSmall);
                 break;
             }
 
@@ -162,7 +162,7 @@ namespace Assets.Core
                 var civController = civNewGameOb.GetComponentInChildren<CivController>();
                 civController.CivData = civData;
                 civController.CivShortName = civData.CivShortName;
-                allCivControllersList.Add(civController);
+                CivControllersInGame.Add(civController);
                 civNewGameOb.transform.SetParent(civFolder.transform, true);
                 civNewGameOb.name = civData.CivShortName.ToString();
             }
@@ -240,7 +240,7 @@ namespace Assets.Core
         public CivController GetCivControllerByEnum(CivEnum civEnum)
         {
             CivController aCiv = new CivController("placeholder");
-            foreach(var civ in allCivControllersList)
+            foreach(var civ in CivControllersInGame)
             {
                 if(civEnum == civ.CivData.CivEnum)
                 {

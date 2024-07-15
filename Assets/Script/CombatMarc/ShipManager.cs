@@ -61,25 +61,25 @@ public class ShipManager : MonoBehaviour
         }
         return listShipGO;
     }
-    public void SendEarlyCivSOListForFirstShips(List<CivSO> listCivSO) // ToDo random minors, not all majors, Terran Empire
-    {
-        GameObject shipNewGameOb = (GameObject)Instantiate(ShipControllerPrefab, new Vector3(0, 0, 0),
-                Quaternion.identity);
-        shipNewGameOb.name = "First Ship";
-        shipNewGameOb.gameObject.tag = "ShipPlaceHolder";
-        ShipController shipController = shipNewGameOb.GetComponent<ShipController>();
-        List<ShipController> listShipCons = new List<ShipController>() { shipController };
-        for (int i = 0; i < listCivSO.Count; i++)
-        {
-            GameObject shipGameOb = (GameObject)Instantiate(ShipControllerPrefab, new Vector3(0, 0, 0),
-                    Quaternion.identity);
-            shipGameOb.name = "First Ship" + (i+1).ToString();
-            shipGameOb.gameObject.tag = "ShipPlaceHolder";
-            ShipController shipCon = shipGameOb.GetComponent<ShipController>();
-            listShipCons.Add( shipCon);
-        }
-        allFirstFleetShipControllerList = listShipCons;
-    }
+    //public void SendEarlyCivSOListForFirstShips(List<CivSO> listCivSO) // ToDo random minors, not all majors, Terran Empire
+    //{
+    //    GameObject shipNewGameOb = (GameObject)Instantiate(ShipControllerPrefab, new Vector3(0, 0, 0),
+    //            Quaternion.identity);
+    //    shipNewGameOb.name = "First Ship";
+    //    shipNewGameOb.gameObject.tag = "ShipPlaceHolder";
+    //    ShipController shipController = shipNewGameOb.GetComponent<ShipController>();
+    //    List<ShipController> listShipCons = new List<ShipController>() { shipController };
+    //    for (int i = 0; i < listCivSO.Count; i++)
+    //    {
+    //        GameObject shipGameOb = (GameObject)Instantiate(ShipControllerPrefab, new Vector3(0, 0, 0),
+    //                Quaternion.identity);
+    //        shipGameOb.name = "First Ship" + (i+1).ToString();
+    //        shipGameOb.gameObject.tag = "ShipPlaceHolder";
+    //        ShipController shipCon = shipGameOb.GetComponent<ShipController>();
+    //        listShipCons.Add( shipCon);
+    //    }
+    //    allFirstFleetShipControllerList = listShipCons;
+    //}
     public List<ShipController> GetShipControllersOfFirstFleet()
     {
         return allFirstFleetShipControllerList;// not to early

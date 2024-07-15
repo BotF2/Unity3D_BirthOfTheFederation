@@ -139,7 +139,7 @@ namespace Assets.Core
 
             }
             var controllerStarSys = collision.gameObject.GetComponent<StarSysController>();
-            if (controllerStarSys != null && CivManager.instance.allCivControllersList.Count > 0) 
+            if (controllerStarSys != null && CivManager.instance.CivControllersInGame.Count > 0) 
             {
                 CivManager.instance.Diplomacy(this.fleetData.OurCivController,
                     CivManager.instance.GetCivControllerByEnum(controllerStarSys.StarSysData.CurrentOwner));

@@ -56,7 +56,7 @@ namespace Assets.Core
         }
         private void Update()
         { 
-            //if (CivManager.instance.allCivControllersList.Count > 0 && runCivList) 
+            //if (CivManager.instance.CivControllersInGame.Count > 0 && runCivList) 
             //{
             //    foreach (var fleetController in ManagersFleetControllerList)
             //    {
@@ -172,7 +172,7 @@ namespace Assets.Core
                 ourLineScript.SetUpLine(points);
                 fleetController.FleetData.yAboveGalaxyImage = galaxyCenter.transform.position.y - galaxyPlanePoint.y;
                 fleetController.dropLine = ourLineScript;
-                foreach (var civCon in CivManager.instance.allCivControllersList)
+                foreach (var civCon in CivManager.instance.CivControllersInGame)
                 {
                     if (civCon.CivShortName == fleetData.CivShortName)
                         fleetData.OurCivController = civCon;
