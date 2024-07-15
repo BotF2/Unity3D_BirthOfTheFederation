@@ -144,10 +144,10 @@ namespace Assets.Core
             systemCount++;
             //***** This is temporary so we can test a multi-starsystem civ
             //******* before diplomacy will alow civs/systems to join another civ
-            if (systemCount == 8)
-            {
-                CivManager.instance.nowCivsCanJoinTheFederation = true;
-            }
+            //if (systemCount == 8)
+            //{
+            //    CivManager.instance.nowCivsCanJoinTheFederation = true;
+            //}
         }
 
         public StarSysSO GetStarSObyInt(int sysInt)

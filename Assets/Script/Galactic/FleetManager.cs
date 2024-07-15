@@ -56,14 +56,14 @@ namespace Assets.Core
         }
         private void Update()
         { 
-            if (CivManager.instance.allCivControllersList.Count > 0 && runCivList) 
-            {
-                foreach (var fleetController in ManagersFleetControllerList)
-                {
-                    fleetController.FleetData.OurCivController = CivManager.instance.GetCivControllerByEnum(fleetController.FleetData.CivEnum);
-                }
-                runCivList = false;
-            }
+            //if (CivManager.instance.allCivControllersList.Count > 0 && runCivList) 
+            //{
+            //    foreach (var fleetController in ManagersFleetControllerList)
+            //    {
+            //        fleetController.FleetData.OurCivController = CivManager.instance.GetCivControllerByEnum(fleetController.FleetData.CivEnum);
+            //    }
+            //    runCivList = false;
+            //}
         }
         public void UpdateFleetShipControllers(ShipController shipController) // one at a time, as ShipManager makes ships by civs
         {
@@ -172,11 +172,11 @@ namespace Assets.Core
                 ourLineScript.SetUpLine(points);
                 fleetController.FleetData.yAboveGalaxyImage = galaxyCenter.transform.position.y - galaxyPlanePoint.y;
                 fleetController.dropLine = ourLineScript;
-                //foreach (var civCon in CivManager.instance.allCivControllersList) 
-                //{
-                //    if (civCon.CivShortName == fleetData.CivShortName) 
-                //        fleetData.OurCivController = civCon;
-                //}
+                foreach (var civCon in CivManager.instance.allCivControllersList)
+                {
+                    if (civCon.CivShortName == fleetData.CivShortName)
+                        fleetData.OurCivController = civCon;
+                }
                 fleetNewGameOb.SetActive(true);
                 ShipManager.instance.BuildShipsOfFirstFleet(fleetNewGameOb);
                 FleetGOList.Add(fleetNewGameOb);
