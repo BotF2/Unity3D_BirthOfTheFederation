@@ -334,7 +334,6 @@ namespace Assets.Core
         public static GameManager Instance { get; private set; } // a static singleton, no other script can instatniate a GameManager, must us the singleton
         public TimeManager timeManager;
         public MainMenuUIController mainMenuUIController;
-        public GalaxyManager galaxyManager;
         List<AsyncOperation> scenesToLoad = new List<AsyncOperation>();
         public bool _weAreFriend = false;
         public bool _warpingInIsOver = false; // WarpingInCompleted() called from E_Animator3 sets true and set false again in CombatCompleted state in BeginState

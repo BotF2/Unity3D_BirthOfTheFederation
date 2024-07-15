@@ -8111,7 +8111,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeManager: {fileID: 0}
   mainMenuUIController: {fileID: 0}
-  galaxyManager: {fileID: 0}
   _weAreFriend: 0
   _warpingInIsOver: 0
   _isSinglePlayer: 0
@@ -10222,7 +10221,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeManager: {fileID: 0}
   mainMenuUIController: {fileID: 0}
-  galaxyManager: {fileID: 0}
   _weAreFriend: 0
   _warpingInIsOver: 0
   _isSinglePlayer: 0
