@@ -8121,7 +8121,7 @@ MonoBehaviour:
   NoDestination: 
   _galaxySize: 0
   _galaxyType: 0
-  _techLevel: 0
+  _techLevelOnLoadGame: 0
   solarSystemView: {fileID: 0}
   cameraMultiTarget: {fileID: 0}
   zoomCamera: {fileID: 0}
@@ -10231,7 +10231,7 @@ MonoBehaviour:
   NoDestination: 
   _galaxySize: 0
   _galaxyType: 0
-  _techLevel: 0
+  _techLevelOnLoadGame: 0
   solarSystemView: {fileID: 0}
   cameraMultiTarget: {fileID: 0}
   zoomCamera: {fileID: 0}
@@ -10556,7 +10556,6 @@ MonoBehaviour:
   - {fileID: 0}
   CivSOInGame: 
   CivControllersInGame: []
-  nowCivsCanJoinTheFederation: 0
   civFolder: {fileID: 6170489}
   civPrefab: {fileID: 621890460709148161, guid: 39c5565398a6fb847b05c461ce03dfa6, type: 3}
 --- !u!4 &1091640995
@@ -17108,7 +17107,6 @@ MonoBehaviour:
   StarSysControllerList: []
   galaxyImage: {fileID: 568107377}
   galaxyCenter: {fileID: 564492290}
-  starSystemPrefabPlaceHolder: {fileID: 1344623282000112472, guid: 06f0b4bc75ea46440939b026367c3da3, type: 3}
 --- !u!224 &1965346450
 RectTransform:
   m_ObjectHideFlags: 0
