@@ -22,7 +22,7 @@ namespace Assets.Core
         //List<StarSysController> StarSystemsWeHave;
         //List<PlayerDefinedTargetController> PlayerDefinedTargetControllersWeHave;
         private bool deltaShipList = false; //??? do I need this or the shipdropdown listener
-        private FleetState fleetState;
+        public FleetState fleetState;
         public bool isArrived =false;
         [SerializeField]
         private float maxWarpFactor = 9.8f;
