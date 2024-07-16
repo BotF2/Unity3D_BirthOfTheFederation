@@ -20,14 +20,11 @@ namespace Assets.Core
         [SerializeField]
         private GameObject sysPrefab;
         public List<StarSysController> StarSysControllerList;
-        private List<StarSysData> starSysDatas = new List<StarSysData>(); // { new StarSysData("Not Selected") };
         public GameObject galaxyImage;
         public GameObject galaxyCenter;
-        public StarSysData resultInGameStarSysData;
         private Camera galaxyEventCamera;
-        private Canvas systemUICanvas; //ToDo system ui
-        public StarSysController starSystemPrefabPlaceHolder;
-        private int systemCount = -1;
+        private Canvas systemUICanvas; 
+        private int systemCount = -1; // Used only in testing multiple systems in Federation
 
         private void Awake()
         {
@@ -47,12 +44,12 @@ namespace Assets.Core
         }
         public void SysDataFromSO(List<CivSO> civSOList)
         {
-            StarSysData SysData = new StarSysData("Not Selected");
+            StarSysData SysData = new StarSysData("null");
+            List<StarSysData> starSysDatas = new List<StarSysData>();
             starSysDatas.Add(SysData);
             foreach (var civSO in civSOList)
             {
                 StarSysSO starSysSO = GetStarSObyInt(civSO.CivInt);
-
                 SysData = new StarSysData(starSysSO);               
                 SysData.CurrentOwner = starSysSO.FirstOwner;
                 SysData.StarType = starSysSO.StarType;
@@ -75,8 +72,7 @@ namespace Assets.Core
                 //SysData.v;
                 //public List<GameObject> _fleetsInSystem;
 
-
-        starSysDatas.Add(SysData);
+                //starSysDatas.Add(SysData);
                 InstantiateSystem(SysData, civSO);
                 if (civSO.HasWarp)
                     FleetManager.instance.FleetDataFromSO(civSO, SysData.GetPosition()); 
@@ -89,7 +85,8 @@ namespace Assets.Core
            
             GameObject starSystemNewGameOb = (GameObject)Instantiate(sysPrefab, new Vector3(0,0,0),
                  Quaternion.identity);
-            starSystemNewGameOb.transform.Translate(new Vector3(sysData.GetPosition().x, sysData.GetPosition().y, sysData.GetPosition().z));
+            starSystemNewGameOb.transform.Translate(new Vector3(sysData.GetPosition().x,
+                sysData.GetPosition().y, sysData.GetPosition().z));
 
             starSystemNewGameOb.transform.SetParent(galaxyCenter.transform, true);
             starSystemNewGameOb.transform.localScale = new Vector3(1, 1, 1);
@@ -138,10 +135,11 @@ namespace Assets.Core
             StarSysController controller = starSystemNewGameOb.GetComponentInChildren<StarSysController>();
             controller.name = sysData.GetSysName();
             controller.StarSysData = sysData;
-
+            
             starSystemNewGameOb.SetActive(true);
             StarSysControllerList.Add(controller);
             systemCount++;
+            CivManager.instance.AddSystemToOwnedCivSystemList(controller);
             //***** This is temporary so we can test a multi-starsystem civ
             //******* before diplomacy will alow civs/systems to join another civ
             //if (systemCount == 8)
@@ -186,18 +184,6 @@ namespace Assets.Core
             }
             return result;
 
-        }
-        public StarSysController GetYourFirstStarSystem(CivEnum civEnum)
-        {
-            StarSysController controller = starSystemPrefabPlaceHolder;
-            foreach (var starSysController in StarSysControllerList)
-            {
-                if (starSysController.StarSysData.CurrentOwner == civEnum)
-                {
-                    controller = starSysController;
-                }
-            }
-            return controller;
         }
         public void UpdateStarSystemOwner(CivEnum civCurrent, CivEnum civNew)
         {

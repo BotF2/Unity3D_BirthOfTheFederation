@@ -55,26 +55,26 @@ namespace Assets.Core
             {
                 case "TOGGLE_SUPREME":
                     Supreme = _activeTechToggle;
-                    GameManager.Instance._techLevel = TechLevel.SUPREME;
+                    GameManager.Instance._techLevelOnLoadGame = TechLevel.SUPREME;
                     //GameManager.Instance.LoadStartGameObjectNames(Environment.CurrentDirectory + "\\Assets\\" + "Temp_GameObjectData.txt"); //"SupremeGameObjectsData.txt");
                     Debug.Log("Active Fed.");
                     break;
                 case "TOGGLE_ADVANCED":
                     Debug.Log("Active Kling.");
                     Advanced = _activeTechToggle;
-                    GameManager.Instance._techLevel = TechLevel.ADVANCED;
+                    GameManager.Instance._techLevelOnLoadGame = TechLevel.ADVANCED;
                     //GameManager.Instance.LoadStartGameObjectNames(Environment.CurrentDirectory + "\\Assets\\" + "Temp_GameObjectData.txt");// "AdvancedGameObjectData.txt");
                     break;
                 case "TOGGLE_DEVELOPED":
                     Debug.Log("Active Rom.");
                     Developed = _activeTechToggle;
-                    GameManager.Instance._techLevel = TechLevel.DEVELOPED;
+                    GameManager.Instance._techLevelOnLoadGame = TechLevel.DEVELOPED;
                     //GameManager.Instance.LoadStartGameObjectNames(Environment.CurrentDirectory + "\\Assets\\" + "Temp_GameObjectData.txt"); //"DevelopedGameObjectsData.txt");
                     break;
                 case "TOGGLE_EARLY":
                     Debug.Log("Active Card.");
                     Early = _activeTechToggle;
-                    GameManager.Instance._techLevel = TechLevel.EARLY;
+                    GameManager.Instance._techLevelOnLoadGame = TechLevel.EARLY;
                     //GameManager.Instance.LoadStartGameObjectNames(Environment.CurrentDirectory + "\\Assets\\" + "Temp_GameObjectData.txt"); //"EarlyGameObjectData.txt");
                     break;
                 default:

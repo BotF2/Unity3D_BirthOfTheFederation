@@ -350,7 +350,7 @@ namespace Assets.Core
         public Dictionary<string, GameObject> DestinationDictionary = new Dictionary<string, GameObject>();
         public GalaxySize _galaxySize;
         public GalaxyType _galaxyType;
-        public TechLevel _techLevel;
+        public TechLevel _techLevelOnLoadGame;
 
         public Galaxy galaxy; // = new Galaxy(GameManager.Instance, GalaxyType.ELLIPTICAL, 20);
         public SolarSystemView solarSystemView;
@@ -435,7 +435,7 @@ namespace Assets.Core
             mainMenuUIController = GameObject.Find("MainMenuUIController").GetComponent<MainMenuUIController>();
             _galaxySize = mainMenuUIController.selectedGalaxySize;
             _galaxyType = mainMenuUIController.selectedGalaxyType;
-            _techLevel = mainMenuUIController.selectedTechLevel;
+            _techLevelOnLoadGame = mainMenuUIController.selectedTechLevel;
             _localPlayer = mainMenuUIController.selectedCivEnum;
         }
 

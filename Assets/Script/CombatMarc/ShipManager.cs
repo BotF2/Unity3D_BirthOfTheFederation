@@ -88,7 +88,7 @@ public class ShipManager : MonoBehaviour
     {
         CivEnum civEnum = (fleetGO.GetComponent<FleetController>().FleetData.CivEnum);
         List<ShipSO> ships = new List<ShipSO>();
-        ships = FirstShipDateByTechlevel((int)GameManager.Instance._techLevel, civEnum);
+        ships = FirstShipDateByTechlevel((int)GameManager.Instance._techLevelOnLoadGame, civEnum);
         List<GameObject> shipsGO = new List<GameObject>();
         shipsGO = ShipDataFromSO(ships);
         foreach (GameObject go in shipsGO)

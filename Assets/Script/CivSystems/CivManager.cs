@@ -23,8 +23,7 @@ namespace Assets.Core
         public List<CivController> CivControllersInGame;
         public Dictionary<CivController, List<CivController>> CivsThatACivKnows = new Dictionary<CivController, List<CivController>>();
         public CivData localPlayer;
-        public CivData resultInGameCivData;
-        public bool nowCivsCanJoinTheFederation = true;
+        //public bool nowCivsCanJoinTheFederation = true; // for use with testing muliple system Federation
         private int HoldCivSize = 0;
         [SerializeField]
         private GameObject civFolder;
@@ -41,7 +40,6 @@ namespace Assets.Core
                 DontDestroyOnLoad(gameObject);
             }
             //ToDo: early random minor races set before menu selects size and tech
-            //ShipManager.instance.SendEarlyCivSOListForFirstShips(civSOListSmall);
         }
         private void Update()
         {
@@ -81,15 +79,11 @@ namespace Assets.Core
             return localPlayer;
 
         }
-        public void CivDataFromCivSO(CivData civData, CivSO civSO)
-        {
-            civData.CivInt = civSO.CivInt;
-            civData.CivShortName = civSO.CivShortName;
-        }
 
         public void CreateNewGameBySelections(int sizeGame, int gameTechLevel, int galaxyType)
         {
-            GameManager.Instance._techLevel = (TechLevel)gameTechLevel;
+
+            GameManager.Instance._techLevelOnLoadGame = (TechLevel)gameTechLevel;
             GameManager.Instance._galaxySize = (GalaxySize)sizeGame;
             GameManager.Instance._galaxyType = (GalaxyType)galaxyType;
 
@@ -140,10 +134,7 @@ namespace Assets.Core
                 civData.Playable = civSO.Playable;
                 civData.HasWarp = civSO.HasWarp;
                 civData.Decription = civSO.Decription;
-                //civData.StarSysOwned = civSO.StarSysOwned;
-                //civData.ContactList = new List<CivController>() { }
                 civData.IntelPoints = civSO.IntelPoints;
-                //CivsThatACivKnows.Add(civData.CivEnum, civData.ContactList);
                 civDataInGameList.Add(civData);
 
             }
@@ -162,7 +153,7 @@ namespace Assets.Core
                 var civController = civNewGameOb.GetComponentInChildren<CivController>();
                 civController.CivData = civData;
                 civController.CivShortName = civData.CivShortName;
-                CivControllersInGame.Add(civController);
+                CivControllersInGame.Add(civController);                
                 civNewGameOb.transform.SetParent(civFolder.transform, true);
                 civNewGameOb.name = civData.CivShortName.ToString();
             }
@@ -248,6 +239,16 @@ namespace Assets.Core
                 }
             }
             return aCiv;
+        }
+        public void AddSystemToOwnedCivSystemList(StarSysController controller)
+        {
+            for (int i = 0; i < CivControllersInGame.Count; i++)
+            {
+                if ((CivControllersInGame[i]).CivData.CivHomeSystem == controller.StarSysData.SysName)
+                {
+                    CivControllersInGame[i].CivData.StarSysOwned.Add(controller);
+                }
+            }
         }
     }
 }

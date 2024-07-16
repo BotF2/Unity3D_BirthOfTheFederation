@@ -24,7 +24,7 @@ namespace Assets.Core
         public bool PlayedByAI = true;
         public bool HasWarp;
         public string Decription;
-        //public List<StarSysController> StarSysOwned;
+        public List<StarSysController> StarSysOwned;
         //public List<CivController> ContactList;
         //public float TaxRate; // universal or variable by civ/sys??
         //public float GrowthRate; // universal or variable by civ/sys??
