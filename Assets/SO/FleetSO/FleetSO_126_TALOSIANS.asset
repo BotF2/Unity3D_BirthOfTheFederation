@@ -17,8 +17,8 @@ MonoBehaviour:
   CivOwnerEnum: 126
   Location: {x: 0, y: 0, z: 0}
   ShipsList: []
-  WarpFactor: 0
-  DefaultWarpFactor: 0
+  MaxWarpFactor: 0
+  CurrentWarpFactor: 0
   Name: 
   Description: description here
   Destination: {fileID: 0}

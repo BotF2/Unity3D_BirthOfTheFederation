@@ -25,9 +25,8 @@ namespace Assets.Core
         public GameObject galaxyCenter;
         public List<FleetController> ManagersFleetControllerList;
         public List<GameObject> FleetGOList = new List<GameObject>(); // all fleetGO GOs made
-        private List<ShipController> shipsOfAllFirstFleets;
+       // private List<ShipController> shipsOfAllFirstFleets;
         private bool PlaceHolderIsDestroyed = false;
-        private bool runCivList = true;
 
         private void Awake()
         {
@@ -52,22 +51,15 @@ namespace Assets.Core
             fleetController.FleetData.Name =fleetController.Name;
             FleetGOList.Add(fleetGOPlaceHolder);
             AddFleetConrollerToAllControllers(fleetController);
-            shipsOfAllFirstFleets = ShipManager.instance.GetShipControllersOfFirstFleet();
+            //shipsOfAllFirstFleets = ShipManager.instance.GetShipControllersOfFirstFleet();
         }
         private void Update()
         { 
-            //if (CivManager.instance.CivControllersInGame.Count > 0 && runCivList) 
-            //{
-            //    foreach (var fleetController in ManagersFleetControllerList)
-            //    {
-            //        fleetController.FleetData.OurCivController = CivManager.instance.GetCivControllerByEnum(fleetController.FleetData.CivEnum);
-            //    }
-            //    runCivList = false;
-            //}
+
         }
         public void UpdateFleetShipControllers(ShipController shipController) // one at a time, as ShipManager makes ships by civs
         {
-            shipsOfAllFirstFleets.Add(shipController);
+            //shipsOfAllFirstFleets.Add(shipController);
             
             foreach (var fleetController in ManagersFleetControllerList)
             {
@@ -96,6 +88,7 @@ namespace Assets.Core
         }
         public void FleetDataFromSO(CivSO civSO, Vector3 position) // first fleetGO
         {
+            // sent from StarSystem for civs with warp
             FleetSO fleetSO = GetFleetSObyInt(civSO.CivInt);
             if (fleetSO != null)
             {

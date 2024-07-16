@@ -75,9 +75,11 @@ namespace Assets.Core
                 //starSysDatas.Add(SysData);
                 InstantiateSystem(SysData, civSO);
                 if (civSO.HasWarp)
-                    FleetManager.instance.FleetDataFromSO(civSO, SysData.GetPosition()); 
+                    FleetManager.instance.FleetDataFromSO(civSO, SysData.GetPosition());
+                if (SysData.SysName != "null")
+                    starSysDatas.Add(SysData);
             }
-            starSysDatas.Remove(starSysDatas[0]);
+            starSysDatas.Remove(starSysDatas[0]); // pull out the null
             GameManager.Instance.LoadGalacticDestinations(starSysDatas);
         }
         public void InstantiateSystem(StarSysData sysData, CivSO civSO)
