@@ -43,7 +43,7 @@ public class ShipSOImporter : EditorWindow
             string[] fields = line.Split(',');
             string assetPath = " ";
 
-            if (fields.Length == 12) // Ensure there are enough fields
+            if (fields.Length > 8) // Ensure there are enough fields
             {
                 ShipSO shipSO = CreateInstance<ShipSO>();
                 shipSO.ShipName = fields[0];
@@ -52,6 +52,9 @@ public class ShipSOImporter : EditorWindow
                 shipSO.TechLevel = GetMyTechLevel(data[2], out TechLevel st);
                 shipSO.ShipType = GetMyShipClass(data[1]);
                 shipSO.ShieldMaxHealth = int.Parse(fields[2]);
+
+                //******ToDo: turn on next line and test when ship images are in place
+                //shipSO.shipSprite = Resources.Load<Sprite>($"Assets/Resources/Ships/" + fields[0].ToUpper());
                 shipSO.HullMaxHealth = int.Parse(fields[4]);
                 shipSO.TorpedoDamage = int.Parse(fields[6]);
                 shipSO.BeamDamage = int.Parse(fields[8]);

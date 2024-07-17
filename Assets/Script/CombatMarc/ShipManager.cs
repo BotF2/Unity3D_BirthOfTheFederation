@@ -11,7 +11,6 @@ public class ShipManager : MonoBehaviour
     public GameObject ShipControllerPrefab;
     public GameObject ShipDataPrefab;
     public List<ShipController> ShipControllerGameList;
-    public List<ShipController> allFirstFleetShipControllerList;// has place holders
     public List<ShipSO> ShipSOListTech0;
     public List<ShipSO> ShipSOListTech1;
     public List<ShipSO> ShipSOListTech2;
@@ -42,6 +41,8 @@ public class ShipManager : MonoBehaviour
             shipData.CivEnum = shipSO.CivEnum;
             shipData.TechLevel = shipSO.TechLevel;
             shipData.ShipType = shipSO.ShipType;
+            //***ToDo get ship sprits into Recources/Data/Ships
+            //shipData.ShipSprite = shipSO.shipSprite;
             shipData.maxWarpFactor = shipSO.maxWarpFactor;
             shipData.currentWarpFactor = 0f;
             shipData.ShieldMaxHealth = shipSO.ShieldMaxHealth;
@@ -61,29 +62,7 @@ public class ShipManager : MonoBehaviour
         }
         return listShipGO;
     }
-    //public void SendEarlyCivSOListForFirstShips(List<CivSO> listCivSO) // ToDo random minors, not all majors, Terran Empire
-    //{
-    //    GameObject shipNewGameOb = (GameObject)Instantiate(ShipControllerPrefab, new Vector3(0, 0, 0),
-    //            Quaternion.identity);
-    //    shipNewGameOb.name = "First Ship";
-    //    shipNewGameOb.gameObject.tag = "ShipPlaceHolder";
-    //    ShipController shipController = shipNewGameOb.GetComponent<ShipController>();
-    //    List<ShipController> listShipCons = new List<ShipController>() { shipController };
-    //    for (int i = 0; i < listCivSO.Count; i++)
-    //    {
-    //        GameObject shipGameOb = (GameObject)Instantiate(ShipControllerPrefab, new Vector3(0, 0, 0),
-    //                Quaternion.identity);
-    //        shipGameOb.name = "First Ship" + (i+1).ToString();
-    //        shipGameOb.gameObject.tag = "ShipPlaceHolder";
-    //        ShipController shipCon = shipGameOb.GetComponent<ShipController>();
-    //        listShipCons.Add( shipCon);
-    //    }
-    //    allFirstFleetShipControllerList = listShipCons;
-    //}
-    public List<ShipController> GetShipControllersOfFirstFleet()
-    {
-        return allFirstFleetShipControllerList;// not to early
-    }
+
     public void BuildShipsOfFirstFleet(GameObject fleetGO)
     {
         CivEnum civEnum = (fleetGO.GetComponent<FleetController>().FleetData.CivEnum);

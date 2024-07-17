@@ -9,6 +9,7 @@ public class ShipData : MonoBehaviour
     public CivEnum CivEnum;
     public TechLevel TechLevel;
     public ShipType ShipType;
+    public Sprite ShipSprite;
     public float maxWarpFactor;
     public float currentWarpFactor;
     public int ShieldMaxHealth;

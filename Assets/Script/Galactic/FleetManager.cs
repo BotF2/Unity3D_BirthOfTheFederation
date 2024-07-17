@@ -135,9 +135,6 @@ namespace Assets.Core
                 }
                 fleetNewGameOb.SetActive(true);
                 ShipManager.instance.BuildShipsOfFirstFleet(fleetNewGameOb);
-                FleetGOList.Add(fleetNewGameOb);
-                if (FleetGOList[0].GetComponentInChildren<FleetController>().Name == "999")
-                    Destroy(FleetGOList[0]);
                 GameManager.Instance.LoadGalacticDestinations(fleetData, fleetNewGameOb);
             }
         }

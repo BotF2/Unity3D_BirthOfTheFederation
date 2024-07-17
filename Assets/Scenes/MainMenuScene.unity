@@ -3921,7 +3921,6 @@ MonoBehaviour:
   ShipControllerPrefab: {fileID: 2997765887977151139, guid: e6ed809b39a20d54388b036703098391, type: 3}
   ShipDataPrefab: {fileID: 28308503933621443, guid: a4454b2caf877cf43905d006317b6b50, type: 3}
   ShipControllerGameList: []
-  allFirstFleetShipControllerList: []
   ShipSOListTech0:
   - {fileID: 11400000, guid: 9a6e53646f4b63b4a8be9e412fa47787, type: 2}
   - {fileID: 11400000, guid: 7dc7202d5f8a4df48bc10e1d6ea32845, type: 2}
