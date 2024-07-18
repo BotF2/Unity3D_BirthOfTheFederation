@@ -41,8 +41,8 @@ public class ShipManager : MonoBehaviour
             shipData.CivEnum = shipSO.CivEnum;
             shipData.TechLevel = shipSO.TechLevel;
             shipData.ShipType = shipSO.ShipType;
-            //***ToDo get ship sprits into Recources/Data/Ships
-            //shipData.ShipSprite = shipSO.shipSprite;
+            if (shipSO.shipSprite != null)
+                shipData.ShipSprite = shipSO.shipSprite;
             shipData.maxWarpFactor = shipSO.maxWarpFactor;
             shipData.currentWarpFactor = 0f;
             shipData.ShieldMaxHealth = shipSO.ShieldMaxHealth;
@@ -67,20 +67,19 @@ public class ShipManager : MonoBehaviour
     {
         CivEnum civEnum = (fleetGO.GetComponent<FleetController>().FleetData.CivEnum);
         List<ShipSO> ships = new List<ShipSO>();
-        ships = FirstShipDateByTechlevel((int)GameManager.Instance._techLevelOnLoadGame, civEnum);
-        List<GameObject> shipsGO = new List<GameObject>();
-        shipsGO = ShipDataFromSO(ships);
-        foreach (GameObject go in shipsGO)
+        ships = FirstShipDateByTechlevel((int)CivManager.instance.GetCivDataByCivEnum(civEnum).CivTechLevel, civEnum);
+        List<GameObject> shipGOs = new List<GameObject>();
+        shipGOs = ShipDataFromSO(ships);
+        foreach (GameObject shipGO in shipGOs)
         {
-            go.transform.SetParent(fleetGO.transform);
+            shipGO.transform.SetParent(fleetGO.transform);
             var listShipCon = fleetGO.GetComponent<FleetController>().FleetData.ShipsList;
-            listShipCon.Add(go.GetComponent<ShipController>());
+            listShipCon.Add(shipGO.GetComponent<ShipController>());
             List<ShipController> tempList = new List<ShipController>();
             foreach ( var shipController in listShipCon)
             {
                 if (shipController != null)
                 { tempList.Add(shipController); }
-
             }
             listShipCon = tempList;
         }

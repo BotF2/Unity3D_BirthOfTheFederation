@@ -16,6 +16,8 @@ MonoBehaviour:
   CivEnum: 2
   TechLevel: 3
   ShipType: 5
+  shipSprite: {fileID: 21300000, guid: 5d07ff9360275e9458963ae4d71561a6, type: 3}
+  shipColor: {r: 0, g: 0, b: 0, a: 0}
   maxWarpFactor: 9
   ShieldMaxHealth: 80
   HullMaxHealth: 60

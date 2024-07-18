@@ -46,18 +46,19 @@ public class CivSOImporter : EditorWindow
 
             if (fields.Length >8) // Ensure there are enough fields
             {
-                string imageString = fields[2].ToLower();
-                foreach (string file in Directory.GetFiles($"Assets/Resources/Races/", "*.png"))
-                {
-                    if(file == "Assets/Resources/Races/" + imageString +".png")
-                    {
-                        imageString = "Races/"+ imageString;
-                    }
-                    else if (file == "Assets/Resources/Races/"+ imageString + "s" +".png")
-                    {
-                        imageString = "Races/" + imageString+ "s"; 
-                    }
-                }
+                //string imageString = fields[2].ToLower();
+                //foreach (string file in Directory.GetFiles($"Assets/Resources/Races/", "*.png"))
+                //{
+                //    if(file == "Assets/Resources/Races/" + imageString +".png")
+                //    {
+                //        imageString = "Races/"+ imageString;
+                //    }
+                //    else if (file == "Assets/Resources/Races/"+ imageString + "s" +".png")
+                //    {
+                //        imageString = "Races/" + imageString+ "s"; 
+                //    }
+                //}
+                //civSO.CivImage = Resources.Load<Sprite>(imageString);
                 CivSO civSO = CreateInstance<CivSO>();
                 //CivInt	,	Civ Enum	,	Civ Short Name	,	Civ Long Name	,	Home System	,	Triat One	,	Trait Two	,	Civ Image	,	Insginia	,	Population	,	Credits	,	TechLevel Points
                 civSO.CivInt = int.Parse(fields[0]);
@@ -67,9 +68,6 @@ public class CivSOImporter : EditorWindow
                 civSO.CivHomeSystem = fields[4];
                 civSO.TraitOne = fields[5];
                 civSO.TraitTwo = fields[6];
-                civSO.CivImage = Resources.Load<Sprite>(imageString);
-                //if (fields[2].LastIndexOf == "S") { }
-               //civSO.Insignia =
                 var name = Resources.Load<Sprite>("Insignias/" + fields[2].ToUpper());
                 if (name == null) { name = Resources.Load<Sprite>("Insignias/" + fields[2].ToUpper() + "S"); }
                 civSO.Insignia = name;

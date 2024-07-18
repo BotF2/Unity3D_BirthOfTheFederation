@@ -47,14 +47,14 @@ public class ShipSOImporter : EditorWindow
             {
                 ShipSO shipSO = CreateInstance<ShipSO>();
                 shipSO.ShipName = fields[0];
+                shipSO.shipSprite = Resources.Load<Sprite>("Ships/" + shipSO.ShipName);
+                if (shipSO.shipSprite != null) { }
+                else shipSO.shipSprite = Resources.Load<Sprite>("Ships/DEFAULT");
                 string[] data = shipSO.ShipName.Split("_");
                 shipSO.CivEnum = GetMyCivEnum(data[0]);
                 shipSO.TechLevel = GetMyTechLevel(data[2], out TechLevel st);
                 shipSO.ShipType = GetMyShipClass(data[1]);
                 shipSO.ShieldMaxHealth = int.Parse(fields[2]);
-
-                //******ToDo: turn on next line and test when ship images are in place
-                //shipSO.shipSprite = Resources.Load<Sprite>($"Assets/Resources/Ships/" + fields[0].ToUpper());
                 shipSO.HullMaxHealth = int.Parse(fields[4]);
                 shipSO.TorpedoDamage = int.Parse(fields[6]);
                 shipSO.BeamDamage = int.Parse(fields[8]);
