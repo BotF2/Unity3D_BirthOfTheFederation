@@ -33,7 +33,6 @@ public class FleetUIManager : MonoBehaviour
     [SerializeField]
     private TMP_Dropdown destinationDropdown;
     private TMP_Dropdown shipDropdown;
-   // public GameObject Destination;
     [SerializeField]
     private TMP_Text FleetName;
     [SerializeField]
@@ -174,19 +173,6 @@ public class FleetUIManager : MonoBehaviour
         shipDropdown.AddOptions(newShipItems);
         shipDropdown.RefreshShownValue();
 
-        //foreach (var shipCon in controller.FleetData.ShipsList)
-        //{
-        //    if (shipCon != null)
-        //    {
-        //        string text = shipCon.ShipData.ShipName;
-        //        text.Replace("(CLONE)", string.Empty);
-        //        shipDropdown.options.Add(new TMP_Dropdown.OptionData(text));
-        //    }
-
-        //}
-        //controller.shipDropdownGO = ShipDropdownGO;
-        //controller.shipDropdown = ShipDropdownGO.GetComponent<TMP_Dropdown>();
-        //NamesToShipDropdown(controller.FleetData.ShipsList);
     }
     private void ReorderDropdownOptions(TMP_Dropdown dropdown)
     {
@@ -220,25 +206,6 @@ public class FleetUIManager : MonoBehaviour
             }
         }
     }
-    //private void NamesToShipDropdown(List<ShipController> shipControllers)
-    //{
-    //    var shipDropdown = ShipDropdownGO.GetComponent<TMP_Dropdown>();
-    //    shipDropdown.options.Clear();
-
-    //    foreach (var shipCon in shipControllers)
-    //    {
-    //        if (shipCon != null)
-    //        {
-    //            string text = shipCon.ShipData.ShipName;
-    //            text.Replace("(CLONE)", string.Empty);
-    //            shipDropdown.options.Add(new TMP_Dropdown.OptionData(text));
-    //        }
-        
-    //    }
-    //    //DropdownItemSelected(shipDropdown);
-    //    //shipDropdown.onValueChanged.AddListener(delegate { DropdownItemSelected(shipDropdown); });
-    //}
-
     private string GetDebuggerDisplay()
     {
         return ToString();

@@ -128,13 +128,16 @@ namespace Assets.Core
                 ourLineScript.SetUpLine(points);
                 fleetController.FleetData.yAboveGalaxyImage = galaxyCenter.transform.position.y - galaxyPlanePoint.y;
                 fleetController.dropLine = ourLineScript;
+                fleetController.FleetData.ShipsList.Clear();
                 foreach (var civCon in CivManager.instance.CivControllersInGame)
                 {
                     if (civCon.CivShortName == fleetData.CivShortName)
                         fleetData.OurCivController = civCon;
                 }
                 fleetNewGameOb.SetActive(true);
+                
                 ShipManager.instance.BuildShipsOfFirstFleet(fleetNewGameOb);
+                
                 GameManager.Instance.LoadGalacticDestinations(fleetData, fleetNewGameOb);
             }
         }

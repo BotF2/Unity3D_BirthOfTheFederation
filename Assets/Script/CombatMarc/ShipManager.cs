@@ -34,31 +34,34 @@ public class ShipManager : MonoBehaviour
         List<GameObject> listShipGO = new List<GameObject>();
         foreach (var shipSO in shipSOList)
         {
-            GameObject shipDataGO = (GameObject)Instantiate(ShipDataPrefab, new Vector3(0, 0, 0),
-            Quaternion.identity);
-            var shipData = shipDataGO.GetComponent<ShipData>();
-            shipData.ShipName = shipSO.ShipName;
-            shipData.CivEnum = shipSO.CivEnum;
-            shipData.TechLevel = shipSO.TechLevel;
-            shipData.ShipType = shipSO.ShipType;
-            if (shipSO.shipSprite != null)
-                shipData.ShipSprite = shipSO.shipSprite;
-            shipData.maxWarpFactor = shipSO.maxWarpFactor;
-            shipData.currentWarpFactor = 0f;
-            shipData.ShieldMaxHealth = shipSO.ShieldMaxHealth;
-            shipData.HullMaxHealth = shipSO.HullMaxHealth;
-            shipData.TorpedoDamage = shipSO.TorpedoDamage;
-            shipData.BeamDamage = shipSO.BeamDamage;
-            shipData.Cost = shipSO.Cost;
-            GameObject shipNewGameOb = (GameObject)Instantiate(ShipControllerPrefab, new Vector3(0, 0, 0),
-                            Quaternion.identity);
-            shipDataGO.transform.SetParent(shipNewGameOb.transform);
+            if (shipSO != null)
+            {
+                GameObject shipDataGO = (GameObject)Instantiate(ShipDataPrefab, new Vector3(0, 0, 0),
+                Quaternion.identity);
+                var shipData = shipDataGO.GetComponent<ShipData>();
+                shipData.ShipName = shipSO.ShipName;
+                shipData.CivEnum = shipSO.CivEnum;
+                shipData.TechLevel = shipSO.TechLevel;
+                shipData.ShipType = shipSO.ShipType;
+                if (shipSO.shipSprite != null)
+                    shipData.ShipSprite = shipSO.shipSprite;
+                shipData.maxWarpFactor = shipSO.maxWarpFactor;
+                shipData.currentWarpFactor = 0f;
+                shipData.ShieldMaxHealth = shipSO.ShieldMaxHealth;
+                shipData.HullMaxHealth = shipSO.HullMaxHealth;
+                shipData.TorpedoDamage = shipSO.TorpedoDamage;
+                shipData.BeamDamage = shipSO.BeamDamage;
+                shipData.Cost = shipSO.Cost;
+                GameObject shipNewGameOb = (GameObject)Instantiate(ShipControllerPrefab, new Vector3(0, 0, 0),
+                                Quaternion.identity);
+                shipDataGO.transform.SetParent(shipNewGameOb.transform);
 
-            shipNewGameOb.name = shipData.ShipName;
-            ShipController shipController = shipNewGameOb.GetComponent<ShipController>();
-            shipController.ShipData = shipData;
-            ShipControllerGameList.Add(shipController);
-            listShipGO.Add(shipNewGameOb);
+                shipNewGameOb.name = shipData.ShipName;
+                ShipController shipController = shipNewGameOb.GetComponent<ShipController>();
+                shipController.ShipData = shipData;
+                ShipControllerGameList.Add(shipController);
+                listShipGO.Add(shipNewGameOb);
+            }
         }
         return listShipGO;
     }
@@ -72,16 +75,11 @@ public class ShipManager : MonoBehaviour
         shipGOs = ShipDataFromSO(ships);
         foreach (GameObject shipGO in shipGOs)
         {
-            shipGO.transform.SetParent(fleetGO.transform);
-            var listShipCon = fleetGO.GetComponent<FleetController>().FleetData.ShipsList;
-            listShipCon.Add(shipGO.GetComponent<ShipController>());
-            List<ShipController> tempList = new List<ShipController>();
-            foreach ( var shipController in listShipCon)
+            if (shipGO != null)
             {
-                if (shipController != null)
-                { tempList.Add(shipController); }
+                shipGO.transform.SetParent(fleetGO.transform);             
+                fleetGO.GetComponent<FleetController>().FleetData.ShipsList.Add(shipGO.GetComponent<ShipController>());
             }
-            listShipCon = tempList;
         }
     }
     public List<ShipSO> FirstShipDateByTechlevel(int techLevel, CivEnum civ)
@@ -110,8 +108,7 @@ public class ShipManager : MonoBehaviour
             case 2:
                 foreach (var shipSO in ShipSOListTech2)
                 {
-                    if (shipSO.CivEnum == civ)
-                    {
+                    if (shipSO.CivEnum == civ)                    {
                         listOfShipSOs.Add(shipSO);
                     }
                 }

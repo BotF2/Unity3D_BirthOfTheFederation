@@ -158,30 +158,7 @@ namespace Assets.Core
                 // current warp factor = 0, destination = null, ?build something here? or patrol here?
             }
         }
-  
-        void PopulateShipDropdown()
-        {
-            shipDropdownGO = GameObject.FindGameObjectWithTag("DropdownShipsGO");
-            shipDropdown = shipDropdownGO.GetComponent<TMP_Dropdown>();
-            if (shipDropdown == null || shipDropdownOptions == null)
-            {
-                return;
-            }
 
-            shipDropdown.options.Clear();
-            for (int i = 0; i < ShipControllerList.Count; i++)
-            {
-                if (ShipControllerList[i] == null)
-                {
-                    ShipControllerList.RemoveAt(i);
-                }
-            }
-
-            foreach (var item in ShipControllerList)
-            {
-                shipDropdown.options.Add(new TMP_Dropdown.OptionData() { text = item.ShipData.ShipName.Replace("(CLONE)", string.Empty) });
-            }
-        }
 
         private void OnMouseDown()
         {
@@ -195,7 +172,6 @@ namespace Assets.Core
                 if (hitObject == gameObject)
                 {
                     FleetUIManager.instance.LoadFleetUI(gameObject);
-                    PopulateShipDropdown();
                 }
             }
 

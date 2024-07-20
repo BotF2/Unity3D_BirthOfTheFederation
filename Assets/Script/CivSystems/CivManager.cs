@@ -130,7 +130,7 @@ namespace Assets.Core
                 civData.Population = civSO.Population;
                 civData.Credits = civSO.Credits;
                 civData.TechPoints = civSO.TechPoints;
-                civData.CivTechLevel = civSO.CivTechLevel;
+                civData.CivTechLevel = GameManager.Instance._techLevelOnLoadGame;
                 civData.Playable = civSO.Playable;
                 civData.HasWarp = civSO.HasWarp;
                 civData.Decription = civSO.Decription;

@@ -11,7 +11,7 @@ using UnityEngine.Rendering;
 public class ShipUIManager : MonoBehaviour
 {
     public static ShipUIManager instance;
-    public FleetController clickedController;
+    public FleetController clickedFleetController;
     public Canvas parentCanvas;
     [SerializeField]
     private GameObject ShipManagerUIRoot;
@@ -43,7 +43,6 @@ public class ShipUIManager : MonoBehaviour
         ShipManagerUIRoot.SetActive(false);
         galaxyEventCamera = GameObject.FindGameObjectWithTag("Galactic Camera").GetComponent<Camera>() as Camera;
         parentCanvas.worldCamera = galaxyEventCamera;
-        //destinationDropdown.value = 0; // In FleetController
     }
 
 
@@ -52,47 +51,14 @@ public class ShipUIManager : MonoBehaviour
         StarSysUIManager.instance.UnLoadStarSysUI();
         FleetUIManager.instance.UnLoadFleetUI();
         ShipManagerUIRoot.SetActive(true);
-        /* destination dropdown */
-       // destinationDropdown.value = 0;
-
-        clickedController = fleetController;
-        CivName.text = clickedController.FleetData.CivLongName;
-        //destinationDropdown.value = index;
-        //DropdownItemSelected(destinationDropdown);
-        //destinationDropdown.onValueChanged.AddListener(delegate { DropdownItemSelected(destinationDropdown); });
-        //ship dropdown
-        //clickedController.shipDropdownGO = ShipDropdownGO;
-        //clickedController.shipDropdown = ShipDropdownGO.GetComponent<TMP_Dropdown>();
-        NamesToShipDropdown(clickedController.FleetData.ShipsList);
+        clickedFleetController = fleetController;
+        CivName.text = clickedFleetController.FleetData.CivLongName;
     }
-    //private void ReorderDropdownOptions(TMP_Dropdown dropdown)
-    //{
-    //    List<TMP_Dropdown.OptionData> options = dropdown.options;
-    //    options.Reverse();
-    //    // Update the UI
-    //    dropdown.RefreshShownValue();
-    //}
+
     public void UnLoadShipManagerUI()
     {
         ShipManagerUIRoot.SetActive(false);
     }
-    private void NamesToShipDropdown(List<ShipController> shipControllers)
-    {
-        //var shipDropdown = ShipDropdownGO.GetComponent<TMP_Dropdown>();
-        //shipDropdown.options.Clear();
 
-        //foreach (var shipCon in shipControllers)
-        //{
-        //    if (shipCon != null)
-        //    {
-        //        string text = shipCon.ShipData.ShipName;
-        //        text.Replace("(CLONE)", string.Empty);
-        //        shipDropdown.options.Add(new TMP_Dropdown.OptionData(text));
-        //    }
-        
-        //}
-        //DropdownItemSelected(shipDropdown);
-        //shipDropdown.onValueChanged.AddListener(delegate { DropdownItemSelected(shipDropdown); });
-    }
 
 }

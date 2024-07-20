@@ -12527,7 +12527,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5a19414b52a7b049a9c0242c10f7852, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clickedController: {fileID: 0}
+  clickedFleetController: {fileID: 0}
   parentCanvas: {fileID: 580266235}
   ShipManagerUIRoot: {fileID: 2065411579}
   shipControllerList: []
