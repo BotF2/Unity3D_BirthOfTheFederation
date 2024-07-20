@@ -98,7 +98,7 @@ namespace Assets.Core
                 CivDataFromSO(civSOListMedium);
                 CreateCivEnumList(civSOListMedium);
                 //ShipManager.instance.SendEarlyCivSOListForFirstShips(civSOListMedium);
-                HoldCivSize = sizeGame;
+                HoldCivSize = sizeGame; // used in Multisystems in Fedearation test code 
                 break;
               case 2:
                 CivDataFromSO(civSOListLarge);
@@ -111,8 +111,6 @@ namespace Assets.Core
                 //ShipManager.instance.SendEarlyCivSOListForFirstShips(civSOListSmall);
                 break;
             }
-
-            //ShipManager.instance.FirstShipDateByTechlevel(gameTechLevel);
         }
         public void CivDataFromSO(List<CivSO> civSOList)
         {
