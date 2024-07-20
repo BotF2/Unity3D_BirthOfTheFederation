@@ -57,11 +57,11 @@ namespace Assets.Core
             CanvasToolTip.worldCamera = galaxyEventCamera;
             FleetData.CurrentWarpFactor = 0f;
             Name = FleetData.CivShortName + " Fleet " + FleetData.Name;
-            GameObject Target = new GameObject("FirstDestination4FleetController");
-            Target.tag = "DestroyTemp";
-            Transform TheTarget = Target.transform;
-            TheTarget.position = new Vector3(0, 0, 0);
-            FleetData.Destination = Target;
+            //GameObject Target = new GameObject("FirstDestination4FleetController");
+            //Target.tag = "DestroyTemp";
+            //Transform TheTarget = Target.transform;
+            //TheTarget.position = new Vector3(0, 0, 0);
+            //FleetData.Destination = Target;
 
             fleetState = FleetState.FleetStationary;
         }
