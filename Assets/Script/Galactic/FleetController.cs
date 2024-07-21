@@ -115,46 +115,6 @@ namespace Assets.Core
 
         public Rigidbody GetRigidbody() { return rb; }
 
-        //private void OnCollisionEnter(Collision collision)
-        //{
-        //    //currentState.OnCollisionEnter(this, collision);
-        //    collision.gameObject.SetActive(true);
-        //    var controllerFleet = collision.gameObject.GetComponent<FleetController>();
-        //    if (controllerFleet != null)
-        //    {
-        //        CivManager.instance.Diplomacy(this.fleetData.OurCivController, controllerFleet.fleetData.OurCivController);
-        //        // is it our fleet or not? Diplomacy or manage fleets or keep going?
-        //        if (controllerFleet.gameObject == this.FleetData.Destination)
-        //        {
-        //            /// use fleet enum state
-        //            //this.FleetData.Destination = null;
-        //            //this.FleetData.war
-        //            //fleetState = FleetState.FleetInSystem;
-        //        }
-
-        //    }
-        //    var controllerStarSys = collision.gameObject.GetComponent<StarSysController>();
-        //    if (controllerStarSys != null && CivManager.instance.CivControllersInGame.Count > 0) 
-        //    {
-        //        CivManager.instance.Diplomacy(this.fleetData.OurCivController,
-        //            CivManager.instance.GetCivControllerByEnum(controllerStarSys.StarSysData.CurrentOwner));
-        //        // if not destination no change, keep going
-        //        if (controllerStarSys.StarSysData.SysGameObject == this.FleetData.Destination)
-        //        {
-        //            /// use fleet enum state
-        //            this.FleetData.Destination = null;
-        //            this.FleetData.CurrentWarpFactor = 0;
-        //            fleetState = FleetState.FleetInSystem;
-        //        }
-        //    }
-        //    var controllerPlayerTarget = collision.gameObject.GetComponent<PlayerDefinedTargetController>();
-        //    if (controllerPlayerTarget != null)
-        //    {
-        //        // current warp factor = 0, destination = null, ?build something here? or patrol here?
-        //    }
-        //}
-
-
         private void OnMouseDown()
         {
             //string goName;
