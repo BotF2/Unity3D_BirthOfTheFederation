@@ -26,7 +26,7 @@ namespace Assets.Core
         public GameObject galaxyCenter;
         public List<FleetController> ManagersFleetControllerList;
         public List<GameObject> FleetGOList = new List<GameObject>(); // all fleetGO GOs made
-        private bool PlaceHolderIsDestroyed = false;
+        public GameObject fleetGroupPrefab;
 
         private void Awake()
         {
@@ -131,7 +131,7 @@ namespace Assets.Core
                 fleetController.FleetData.ShipsList.Clear();
                 foreach (var civCon in CivManager.instance.CivControllersInGame)
                 {
-                    if (civCon.CivShortName == fleetData.CivShortName)
+                    if (civCon.CivData.CivEnum == fleetData.CivEnum)
                         fleetData.OurCivController = civCon;
                 }
                 fleetNewGameOb.SetActive(true);
@@ -148,6 +148,11 @@ namespace Assets.Core
             {
                 fleetCon.RemoveFleetController(fleetController);
             }
+        }
+        public void GetFleetGroupInSystemForShipTransfer(StarSysController starSysCon)
+        {
+            //GameObject fleetGroupNewGO = (GameObject)Instantiate(fleetGroupPrefab, new Vector3(0, 0, 0),
+            //        Quaternion.identity);
         }
         public GameObject FindFleetGO(FleetController fleetController)
         {

@@ -39,7 +39,7 @@ public class ShipUIManager : MonoBehaviour
     private void Start()
     {
         ShipManagerUIRoot.SetActive(false);
-        galaxyEventCamera = GameObject.FindGameObjectWithTag("Galactic Camera").GetComponent<Camera>() as Camera;
+        galaxyEventCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>() as Camera;
         parentCanvas.worldCamera = galaxyEventCamera;
     }
 

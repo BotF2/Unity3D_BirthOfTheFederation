@@ -37,7 +37,7 @@ namespace Assets.Core
         }
         public void Start()
         {
-            galaxyEventCamera = GameObject.FindGameObjectWithTag("Galactic Camera").GetComponent<Camera>() as Camera;
+            galaxyEventCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>() as Camera;
             var CanvasGO = GameObject.Find("CanvasStarSysUI");
             systemUICanvas = CanvasGO.GetComponent<Canvas>();
             systemUICanvas.worldCamera = galaxyEventCamera;
@@ -137,7 +137,11 @@ namespace Assets.Core
             StarSysController controller = starSystemNewGameOb.GetComponentInChildren<StarSysController>();
             controller.name = sysData.GetSysName();
             controller.StarSysData = sysData;
-            
+            foreach (var civCon in CivManager.instance.CivControllersInGame)
+            {
+                if (civCon.CivData.CivEnum == controller.StarSysData.GetFirstOwner())
+                    controller.StarSysData.CurrentCivController = civCon;
+            }
             starSystemNewGameOb.SetActive(true);
             StarSysControllerList.Add(controller);
             systemCount++;

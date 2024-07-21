@@ -11,15 +11,20 @@ public class StarSysController : MonoBehaviour
     private Camera galaxyEventCamera;
     [SerializeField]
     private Canvas canvasToolTip;
-    
+    [SerializeField]
+    private Canvas canvasStarSysUI;
+
     public StarSysController(string name)
     {
         StarSysData = new StarSysData(name);
     }
     private void Start()
     {
-        galaxyEventCamera = GameObject.FindGameObjectWithTag("Galactic Camera").GetComponent<Camera>() as Camera;
+        galaxyEventCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>() as Camera;
         canvasToolTip.worldCamera = galaxyEventCamera;
+        var CanvasGO = GameObject.Find("CanvasStarSysUI");
+        canvasStarSysUI = CanvasGO.GetComponent<Canvas>();
+        canvasStarSysUI.worldCamera = galaxyEventCamera;
     }
     public void UpdatePopulation(int delatPopulation)
     {

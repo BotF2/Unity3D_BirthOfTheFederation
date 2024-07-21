@@ -50,20 +50,15 @@ namespace Assets.Core
         {
             rb = GetComponent<Rigidbody>();
             rb.isKinematic = true;
-            galaxyEventCamera = GameObject.FindGameObjectWithTag("Galactic Camera").GetComponent<Camera>();
+            galaxyEventCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
             var CanvasGO = GameObject.Find("CanvasFleetUI");
             FleetUICanvas = CanvasGO.GetComponent<Canvas>();
             FleetUICanvas.worldCamera = galaxyEventCamera;
             CanvasToolTip.worldCamera = galaxyEventCamera;
             FleetData.CurrentWarpFactor = 0f;
             Name = FleetData.CivShortName + " Fleet " + FleetData.Name;
-            //GameObject Target = new GameObject("FirstDestination4FleetController");
-            //Target.tag = "DestroyTemp";
-            //Transform TheTarget = Target.transform;
-            //TheTarget.position = new Vector3(0, 0, 0);
-            //FleetData.Destination = Target;
-
             fleetState = FleetState.FleetStationary;
+
         }
         void Update()
         {
@@ -120,44 +115,44 @@ namespace Assets.Core
 
         public Rigidbody GetRigidbody() { return rb; }
 
-        private void OnCollisionEnter(Collision collision)
-        {
-            //currentState.OnCollisionEnter(this, collision);
-            collision.gameObject.SetActive(true);
-            var controllerFleet = collision.gameObject.GetComponent<FleetController>();
-            if (controllerFleet != null)
-            {
-                CivManager.instance.Diplomacy(this.fleetData.OurCivController, controllerFleet.fleetData.OurCivController);
-                // is it our fleet or not? Diplomacy or manage fleets or keep going?
-                if (controllerFleet.gameObject == this.FleetData.Destination)
-                {
-                    /// use fleet enum state
-                    //this.FleetData.Destination = null;
-                    //this.FleetData.war
-                    //fleetState = FleetState.FleetInSystem;
-                }
+        //private void OnCollisionEnter(Collision collision)
+        //{
+        //    //currentState.OnCollisionEnter(this, collision);
+        //    collision.gameObject.SetActive(true);
+        //    var controllerFleet = collision.gameObject.GetComponent<FleetController>();
+        //    if (controllerFleet != null)
+        //    {
+        //        CivManager.instance.Diplomacy(this.fleetData.OurCivController, controllerFleet.fleetData.OurCivController);
+        //        // is it our fleet or not? Diplomacy or manage fleets or keep going?
+        //        if (controllerFleet.gameObject == this.FleetData.Destination)
+        //        {
+        //            /// use fleet enum state
+        //            //this.FleetData.Destination = null;
+        //            //this.FleetData.war
+        //            //fleetState = FleetState.FleetInSystem;
+        //        }
 
-            }
-            var controllerStarSys = collision.gameObject.GetComponent<StarSysController>();
-            if (controllerStarSys != null && CivManager.instance.CivControllersInGame.Count > 0) 
-            {
-                CivManager.instance.Diplomacy(this.fleetData.OurCivController,
-                    CivManager.instance.GetCivControllerByEnum(controllerStarSys.StarSysData.CurrentOwner));
-                // if not destination no change, keep going
-                if (controllerStarSys.StarSysData.SysGameObject == this.FleetData.Destination)
-                {
-                    /// use fleet enum state
-                    this.FleetData.Destination = null;
-                    this.FleetData.CurrentWarpFactor = 0;
-                    fleetState = FleetState.FleetInSystem;
-                }
-            }
-            var controllerPlayerTarget = collision.gameObject.GetComponent<PlayerDefinedTargetController>();
-            if (controllerPlayerTarget != null)
-            {
-                // current warp factor = 0, destination = null, ?build something here? or patrol here?
-            }
-        }
+        //    }
+        //    var controllerStarSys = collision.gameObject.GetComponent<StarSysController>();
+        //    if (controllerStarSys != null && CivManager.instance.CivControllersInGame.Count > 0) 
+        //    {
+        //        CivManager.instance.Diplomacy(this.fleetData.OurCivController,
+        //            CivManager.instance.GetCivControllerByEnum(controllerStarSys.StarSysData.CurrentOwner));
+        //        // if not destination no change, keep going
+        //        if (controllerStarSys.StarSysData.SysGameObject == this.FleetData.Destination)
+        //        {
+        //            /// use fleet enum state
+        //            this.FleetData.Destination = null;
+        //            this.FleetData.CurrentWarpFactor = 0;
+        //            fleetState = FleetState.FleetInSystem;
+        //        }
+        //    }
+        //    var controllerPlayerTarget = collision.gameObject.GetComponent<PlayerDefinedTargetController>();
+        //    if (controllerPlayerTarget != null)
+        //    {
+        //        // current warp factor = 0, destination = null, ?build something here? or patrol here?
+        //    }
+        //}
 
 
         private void OnMouseDown()
@@ -176,7 +171,7 @@ namespace Assets.Core
             }
 
         }
-        void OnTriggerEnter(Collider collider)
+        void OnTriggerEnter(Collider collider) // Not using OnCollisionEnter....
         {
             FleetController fleetController = collider.gameObject.GetComponent<FleetController>();
             if (fleetController != null) // it is a FleetController and not a StarSystem or other fleetController
@@ -185,7 +180,8 @@ namespace Assets.Core
                 Debug.Log("fleet Controller collided with " + fleetController.gameObject.name);
             }
             StarSysController starSysController = collider.gameObject.GetComponent<StarSysController>();
-            if (starSysController != null)             {
+            if (starSysController != null)
+            {
                 OnFleetEncounteredStarSys(starSysController);
             }
             PlayerDefinedTargetController playerTargetController = collider.gameObject.GetComponent<PlayerDefinedTargetController>();
@@ -196,6 +192,15 @@ namespace Assets.Core
         }
         public void OnFleetEncounteredFleet(FleetController fleetController)
         {
+            CivManager.instance.Diplomacy(this.fleetData.OurCivController, fleetController.fleetData.OurCivController);
+            // is it our fleet or not? Diplomacy or manage fleets or keep going?
+            if (fleetController.gameObject == this.FleetData.Destination)
+            {
+                /// use fleet enum state
+                //this.FleetData.Destination = null;
+                //this.FleetData.war
+                //fleetState = FleetState.FleetInSystem;
+            }
             //FleetManager.instance.
             //1) you get the FleetController of the new fleet GO
             //2) you ask your factionOwner (CivManager) if you already know the faction of the new fleet
@@ -205,7 +210,17 @@ namespace Assets.Core
         }
         public void OnFleetEncounteredStarSys(StarSysController starSysController)
         {
-            //FleetManager.instance.
+            //????StarSysManager.instance.
+            FleetManager.instance.GetFleetGroupInSystemForShipTransfer(starSysController);
+            CivManager.instance.Diplomacy(this.fleetData.OurCivController, starSysController.StarSysData.CurrentCivController);
+            // is it our fleet or not? Diplomacy or manage fleets or keep going?
+            if (starSysController.gameObject == this.FleetData.Destination)
+            {
+                /// use fleet enum state
+                //this.FleetData.Destination = null;
+                //this.FleetData.war
+                //fleetState = FleetState.FleetInSystem;
+            }
             //1) you get the FleetController of the new fleet GO
             //2) you ask your factionOwner (CivManager) if you already know the faction of the new fleet
             //3) ?first contatact > what kind of hail, diplomacy vs uninhabited ?colonize vs terraform a rock vs do fleet busness in our system
@@ -213,10 +228,11 @@ namespace Assets.Core
         }
         public void OnFleetEncounteredPlayerDefinedTarget(PlayerDefinedTargetController playerTargetController)
         {
+            //????PlayerDefinedTargetManager.instance.
             //FleetManager.instance.
             //1) you get the FleetController of the new fleet GO
             //2) ?build a deep space starbase vs a partol point for travel
-            
+
         }
         public void SetWarpSpeed(float newSpeed)
         {

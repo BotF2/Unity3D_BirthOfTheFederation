@@ -12,7 +12,7 @@ namespace Assets.Core
         {
             foreach (Camera camera in Camera.allCameras)
             {
-                if (camera.tag == "Galactic Camera")
+                if (camera.tag == "MainCamera")
                 {
                     cameraGal = camera;
                 }

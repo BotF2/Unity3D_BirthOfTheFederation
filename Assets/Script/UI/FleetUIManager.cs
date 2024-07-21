@@ -59,7 +59,7 @@ public class FleetUIManager : MonoBehaviour
     private void Start()
     {
         fleetUIRoot.SetActive(false);
-        galaxyEventCamera = GameObject.FindGameObjectWithTag("Galactic Camera").GetComponent<Camera>() as Camera;
+        galaxyEventCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>() as Camera;
         parentCanvas.worldCamera = galaxyEventCamera;
         destinationDropdown.value = 0;
     }

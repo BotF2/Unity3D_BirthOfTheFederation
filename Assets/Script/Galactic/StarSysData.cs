@@ -12,6 +12,7 @@ public class StarSysData
     public string SysName { get { return sysName; } }
     private CivEnum firstOwner;
     public CivEnum CurrentOwner;
+    public CivController CurrentCivController;
     public StarSystemType StarType;
     public Sprite StarSprit;
     public int Population;
@@ -54,4 +55,11 @@ public class StarSysData
     }
     public string GetSysName() { return this.sysName; }
     public CivEnum GetFirstOwner() { return this.firstOwner; }
+    //public CivController GetCivController(CivEnum civEnum)
+    //{
+    //    CivController civCon = new CivController("null");
+    //    civCon = CivManager.instance.GetCivControllerByEnum(civEnum);
+
+    //    return civCon;
+    //}
 }

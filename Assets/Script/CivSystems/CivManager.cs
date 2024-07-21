@@ -134,31 +134,30 @@ namespace Assets.Core
                 civData.Decription = civSO.Decription;
                 civData.IntelPoints = civSO.IntelPoints;
                 civDataInGameList.Add(civData);
+                InstantiateCivilizations(civData);
 
             }
             if (civDataInGameList[0].CivHomeSystem != null) { }
             else
                 civDataInGameList.Remove(civDataInGameList[0]); // remove the null entered by field
             StarSysManager.instance.SysDataFromSO(civSOList);
-            InstantiateCivilizations(civDataInGameList);
         }
-        private void InstantiateCivilizations(List<CivData> civDataList)
+        private void InstantiateCivilizations(CivData civData)
         {
-            foreach (CivData civData in civDataList)
-            {
-                GameObject civNewGameOb = (GameObject)Instantiate(civPrefab, new Vector3(0, 0, 0),
-                        Quaternion.identity);
-                var civController = civNewGameOb.GetComponentInChildren<CivController>();
-                civController.CivData = civData;
-                civController.CivShortName = civData.CivShortName;
-                CivControllersInGame.Add(civController);                
-                civNewGameOb.transform.SetParent(civFolder.transform, true);
-                civNewGameOb.name = civData.CivShortName.ToString();
-            }
+            GameObject civNewGameOb = (GameObject)Instantiate(civPrefab, new Vector3(0, 0, 0),
+                    Quaternion.identity);
+            var civController = civNewGameOb.GetComponentInChildren<CivController>();
+            civController.CivData = civData;
+            civController.CivShortName = civData.CivShortName;
+            CivControllersInGame.Add(civController);
+            CivsThatACivKnows.Add(civController, new List<CivController> { civController });
+            civNewGameOb.transform.SetParent(civFolder.transform, true);
+            civNewGameOb.name = civData.CivShortName.ToString();
+
         }
         public void Diplomacy(CivController civPartyOne, CivController civPartyTwo)
         {
-            if (CivsThatACivKnows[civPartyOne].Contains(civPartyTwo))
+            if (!CivsThatACivKnows[civPartyOne].Contains(civPartyTwo))
             {
                 FirstContact(civPartyOne, civPartyTwo);
             }

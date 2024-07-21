@@ -66,7 +66,7 @@ public class StarSysUIManager : MonoBehaviour
     private void Start()
     {
         starSysUIRoot.SetActive(false);
-        galaxyEventCamera = GameObject.FindGameObjectWithTag("Galactic Camera").GetComponent<Camera>() as Camera;
+        galaxyEventCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>() as Camera;
         //parentCanvas.worldCamera = galaxyEventCamera; not working
         //destinationDropdown.value = 0;
     }

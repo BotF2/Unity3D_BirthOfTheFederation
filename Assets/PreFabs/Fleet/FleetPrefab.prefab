@@ -468,6 +468,7 @@ GameObject:
   - component: {fileID: 3085341754437070401}
   - component: {fileID: 8795473569609493852}
   - component: {fileID: 5996499329102622879}
+  - component: {fileID: 2094612986518787213}
   m_Layer: 5
   m_Name: CanvasToolTip
   m_TagString: Untagged
@@ -557,6 +558,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &2094612986518787213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4013154880826423505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af7f16d3fef340b4c9e71e726a445a9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4313669725746476940
 GameObject:
   m_ObjectHideFlags: 0
@@ -674,6 +687,7 @@ GameObject:
   - component: {fileID: 4466770422150793502}
   - component: {fileID: 8230090399004605540}
   - component: {fileID: 4245896937682261886}
+  - component: {fileID: 862922884150934134}
   m_Layer: 6
   m_Name: CanvasFleet
   m_TagString: Untagged
@@ -763,6 +777,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &862922884150934134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6429201278632843819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af7f16d3fef340b4c9e71e726a445a9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7014110171060802293
 GameObject:
   m_ObjectHideFlags: 0
@@ -842,18 +868,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: 
-  shipList: []
-  FleetConsWeHave: []
-  Destination: {fileID: 0}
+  ShipControllerList: []
+  fleetState: 0
+  isArrived: 0
+  maxWarpFactor: 9.8
+  dropLine: {fileID: 0}
   destinationDropdownGO: {fileID: 0}
-  sysDropdownGO: {fileID: 0}
-  sysDropdown: {fileID: 0}
-  sysDropdownOptions: []
+  destinationDropdown: {fileID: 0}
+  SelectedDestination: 
   shipDropdownGO: {fileID: 0}
   shipDropdown: {fileID: 0}
   shipDropdownOptions: []
-  dropdownSysText: {fileID: 0}
-  dropdownShipText: {fileID: 0}
   ourDestination: {fileID: 0}
   FleetUICanvas: {fileID: 0}
   CanvasToolTip: {fileID: 3085341754437070401}
