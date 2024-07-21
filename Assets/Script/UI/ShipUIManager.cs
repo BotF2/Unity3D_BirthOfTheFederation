@@ -17,11 +17,9 @@ public class ShipUIManager : MonoBehaviour
     private GameObject ShipManagerUIRoot;
     public List<ShipController> shipControllerList;
 
-    private bool deltaShipList = false;
-
-    public GameObject ShipDropdownGO;
+    public GameObject fleetGroupDropdownGO;
     [SerializeField]
-    private TMP_Dropdown shipDropdown;
+    private TMP_Dropdown fleetGroupDropdown;
     [SerializeField]
     private TMP_Text CivName;
     private Camera galaxyEventCamera;
