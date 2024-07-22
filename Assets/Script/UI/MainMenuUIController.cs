@@ -71,7 +71,7 @@ namespace Assets.Core
             uiCameraGO.SetActive(false);
             eventSystemGO.SetActive(false);
             galaxyCenter.SetActive(true);
-
+            TimeManager.instance.ResumeTime();
             SceneManager.LoadScene("GalaxyScene", LoadSceneMode.Additive);
             CivManager.instance.OnNewGameButtonClicked((int)selectedGalaxySize, (int)selectedTechLevel, (int)selectedGalaxyType);
            

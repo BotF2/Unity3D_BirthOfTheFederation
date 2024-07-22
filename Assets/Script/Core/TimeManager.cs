@@ -10,16 +10,12 @@ public class TimeManager : MonoBehaviour
     public static TimeManager instance;
     public event Action<TrekEventSO> OnSpecialEventReached; // EventListener.cs  
     public event Action OnStardateChanged;
-    //private float minuteToRealTime = 2f;
-    private float timer;
-    private bool showTime = false;
-
-    //int moveCounter = 5;
+    private float timer; 
+    private bool showTime = false; // set true in MainMenuUIController
     public int currentStardate { get; private set; }
-    //public int currentFleetMoves;
 
     private Coroutine timeCoroutine;
-    public float timeSpeedMultiplier = 1f;
+    private float timeSpeedMultiplier = 10f;
     public List<TrekEventSO> specialEvents;
 
     void Awake()
@@ -27,29 +23,30 @@ public class TimeManager : MonoBehaviour
         if (instance == null)
             instance = this;
         else if (instance != this)
-            Destroy(gameObject);
-
-        DontDestroyOnLoad(gameObject);
-        // Start time progression coroutine
-        timeCoroutine = StartCoroutine(TimeProgression());
-        currentStardate = 1010;
-
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
     }
     private void Start()
     {
         GameManager.Instance.timeManager = this;
         timer = timeSpeedMultiplier;
+        // Start time progression coroutine
+        timeCoroutine = StartCoroutine(TimeProgression());
+        currentStardate = 1010;
     }
 
     void Update()
     {
 
-        if (showTime)
+        if (showTime) // pause time
         {
-            timer -= Time.deltaTime;
+            timer -= Time.deltaTime;//count down
             OnStardateChanged?.Invoke();
             if (timer <= 0)
             {
+                //??Should this stuff be inside TimeProgression???
                 currentStardate++;
                 timer = timeSpeedMultiplier;
             }
@@ -61,11 +58,6 @@ public class TimeManager : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(10f / timeSpeedMultiplier); // 10 seconds in game = 1 stardate
-
-            // Increment current stardate
-            currentStardate++;
-            OnStardateChanged?.Invoke(); // StardateUIController.OnEnabled() called
-            // OnFleetMoves(FleetController)?.Invoke();
 
             // Check for special events
             CheckSpecialEvents();
@@ -103,12 +95,14 @@ public class TimeManager : MonoBehaviour
     {
         if (timeCoroutine != null)
             StopCoroutine(timeCoroutine);
+        showTime = false;
     }
 
     // Method to resume time progression
     public void ResumeTime()
     {
         timeCoroutine = StartCoroutine(TimeProgression());
+        showTime = true;
     }
 
     // Method to get current stardate
