@@ -152,7 +152,17 @@ namespace Assets.Core
         }
         public void OnFleetEncounteredFleet(FleetController fleetController)
         {
-            CivManager.instance.Diplomacy(this.fleetData.OurCivController, fleetController.fleetData.OurCivController);
+            if (fleetController.FleetData.OurCivController != this.FleetData.OurCivController)
+                CivManager.instance.Diplomacy(this.fleetData.OurCivController, fleetController.fleetData.OurCivController);
+            else
+            {
+                if (this.FleetData.ShipsList.Count >= fleetController.FleetData.ShipsList.Count)
+                {
+                    this.FleetData.FleetGroupControllers.Add(fleetController);
+                    //ToDo: manage to fleets in conjoined for ship exchange and what to do with original fleets, two or more
+                }
+            }
+
             // is it our fleet or not? Diplomacy or manage fleets or keep going?
             if (fleetController.gameObject == this.FleetData.Destination)
             {

@@ -27,6 +27,7 @@ namespace Assets.Core
         public List<FleetController> ManagersFleetControllerList;
         public List<GameObject> FleetGOList = new List<GameObject>(); // all fleetGO GOs made
         public GameObject fleetGroupPrefab;
+        
 
         private void Awake()
         {
@@ -134,6 +135,8 @@ namespace Assets.Core
                     if (civCon.CivData.CivEnum == fleetData.CivEnum)
                         fleetData.OurCivController = civCon;
                 }
+                List<FleetController> list = new List<FleetController>() { fleetController}; 
+                fleetController.FleetData.FleetGroupControllers = list;
                 fleetNewGameOb.SetActive(true);
                 
                 ShipManager.instance.BuildShipsOfFirstFleet(fleetNewGameOb);
