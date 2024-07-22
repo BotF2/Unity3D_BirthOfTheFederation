@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.Events;
 using System;
 using System.Collections.Generic;
 using Assets.Core;
@@ -12,9 +14,9 @@ public class TimeManager : MonoBehaviour
     private float timer;
     private bool showTime = false;
 
-    int moveCounter = 5;
+    //int moveCounter = 5;
     public int currentStardate { get; private set; }
-    public int currentFleetMoves;
+    //public int currentFleetMoves;
 
     private Coroutine timeCoroutine;
     public float timeSpeedMultiplier = 1f;
@@ -36,40 +38,25 @@ public class TimeManager : MonoBehaviour
     private void Start()
     {
         GameManager.Instance.timeManager = this;
+        timer = timeSpeedMultiplier;
     }
+
     void Update()
     {
 
         if (showTime)
         {
             timer -= Time.deltaTime;
-            if (moveCounter < 1)
-            {
-                //for (int i = 0; i < GalaxyView._movingGalaxyObjects.Count; i++)
-                //{
-                //    MoveFleets myMoveGalactic = GalaxyView._movingGalaxyObjects[i].GetComponent<MoveFleets>();
-                //    myMoveGalactic.ThrustVector(); // move galaxy objects
-                //                                   // myMoveGalactic.MovePlanePoint(); // move objects plane endpoints
-                //}
-                //moveCounter = 5;
-            }
-            else moveCounter--;
+            OnStardateChanged?.Invoke();
             if (timer <= 0)
             {
-                //gameMinute++;
-                //OnMinuteChanged?.Invoke();
-                //if (gameMinute >= 99)
-                //{
-                //    stardate++;
-                //    gameMinute = 0;
-                //    OnStardateChanged?.Invoke();
-                //}
-                //timer = minuteToRealTime;
+                currentStardate++;
+                timer = timeSpeedMultiplier;
             }
         }
     }
 
-    private System.Collections.IEnumerator TimeProgression()
+        private System.Collections.IEnumerator TimeProgression()
     {
         while (true)
         {

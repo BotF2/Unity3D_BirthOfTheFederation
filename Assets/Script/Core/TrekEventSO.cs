@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Assets.Core;
+using UnityEngine.EventSystems;
+using UnityEngine.Events;
 
 public enum TrekEventType { RaceDiscovered, TechDiscovered, Invasion, GiftReceived, DisasterEvent, CombatEvent, RemoveTempTargets, }
 
