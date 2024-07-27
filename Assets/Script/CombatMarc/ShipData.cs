@@ -11,12 +11,12 @@ public class ShipData : MonoBehaviour
     public ShipType ShipType;
     public Sprite ShipSprite;
     public float maxWarpFactor;
-    public float currentWarpFactor;
+    //public float currentWarpFactor;
     public int ShieldMaxHealth;
     public int HullMaxHealth;
     public int TorpedoDamage;
     public int BeamDamage;
-    public int Cost;
+    public int Price;
     public GameObject Mesh;
 
     void Start()

@@ -62,6 +62,7 @@ namespace Assets.Core
         }
         void RemoveTempTargets()
         {
+            Debug.Log("TimeManager at 1011");
             foreach (var gameObj in GameObject.FindGameObjectsWithTag("DestroyTemp"))
             {
                 Destroy(gameObj);

@@ -58,7 +58,7 @@ public class ShipSOImporter : EditorWindow
                 shipSO.HullMaxHealth = int.Parse(fields[4]);
                 shipSO.TorpedoDamage = int.Parse(fields[6]);
                 shipSO.BeamDamage = int.Parse(fields[8]);
-                shipSO.Cost = int.Parse(fields[10]);
+                shipSO.Price = int.Parse(fields[10]);
                 shipSO.maxWarpFactor = float.Parse(fields[11]);
                 if (shipSO.TechLevel == TechLevel.EARLY)
                     assetPath = $"Assets/SO/ShipSO_Level_0/ShipSO_{shipSO.ShipName}.asset";

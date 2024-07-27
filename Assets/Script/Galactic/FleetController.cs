@@ -17,7 +17,7 @@ namespace Assets.Core
         private FleetData fleetData;
         public FleetData FleetData { get { return fleetData; } set { fleetData = value; } }
         public string Name;
-        public List<ShipController> ShipControllerList;
+        //public List<ShipController> ShipControllerList;
         //public List<FleetController> FleetContollersWeHave;
         //List<StarSysController> StarSystemsWeHave;
         //List<PlayerDefinedTargetController> PlayerDefinedTargetControllersWeHave;
@@ -26,6 +26,7 @@ namespace Assets.Core
         public bool isArrived =false;
         [SerializeField]
         private float maxWarpFactor = 9.8f;
+        private float warpFactor = 0f;
         private float fudgeFactor = 1f;
         private float dropOutOfWarpDistance = 0.5f; // stop, but should be destination collider?
         private Rigidbody rb;
@@ -56,6 +57,11 @@ namespace Assets.Core
             FleetUICanvas.worldCamera = galaxyEventCamera;
             CanvasToolTip.worldCamera = galaxyEventCamera;
             FleetData.CurrentWarpFactor = 0f;
+            foreach (var shipCon in this.FleetData.ShipsList)
+            {
+                if (shipCon.ShipData.maxWarpFactor < maxWarpFactor)
+                { maxWarpFactor = shipCon.ShipData.maxWarpFactor;}
+            }
             Name = FleetData.CivShortName + " Fleet " + FleetData.Name;
             fleetState = FleetState.FleetStationary;
 
@@ -107,6 +113,7 @@ namespace Assets.Core
             {
                 if (FleetData.Destination != null && FleetData.CurrentWarpFactor > 0f)
                 {
+
                     fleetState = FleetState.FleetAtWarp;
                     MoveToDesitinationGO();
                 }
@@ -134,7 +141,7 @@ namespace Assets.Core
         void OnTriggerEnter(Collider collider) // Not using OnCollisionEnter....
         {
             FleetController fleetController = collider.gameObject.GetComponent<FleetController>();
-            if (fleetController != null) // it is a FleetController and not a StarSystem or other fleetController
+            if (fleetController != null) // it is a FleetController and not a StarSystem or other f                                                                                                                                                      leetController
             {
                 OnFleetEncounteredFleet(fleetController);
                 Debug.Log("fleet Controller collided with " + fleetController.gameObject.name);
@@ -217,9 +224,13 @@ namespace Assets.Core
         }
         void MoveToDesitinationGO()
         {
+
             Vector3 direction = (this.FleetData.Destination.transform.position - transform.position).normalized;
             float distance = Vector3.Distance(transform.position, this.FleetData.Destination.transform.position);
-
+            if (this.FleetData.CurrentWarpFactor > maxWarpFactor)
+            {
+                this.FleetData.CurrentWarpFactor = maxWarpFactor;
+            }
             if (distance > dropOutOfWarpDistance)
             {
                 Vector3 nextPosition = Vector3.MoveTowards(rb.position, FleetData.Destination.transform.position,

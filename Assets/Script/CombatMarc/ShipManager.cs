@@ -46,12 +46,12 @@ public class ShipManager : MonoBehaviour
                 if (shipSO.shipSprite != null)
                     shipData.ShipSprite = shipSO.shipSprite;
                 shipData.maxWarpFactor = shipSO.maxWarpFactor;
-                shipData.currentWarpFactor = 0f;
+                //shipData.currentWarpFactor = 0f;
                 shipData.ShieldMaxHealth = shipSO.ShieldMaxHealth;
                 shipData.HullMaxHealth = shipSO.HullMaxHealth;
                 shipData.TorpedoDamage = shipSO.TorpedoDamage;
                 shipData.BeamDamage = shipSO.BeamDamage;
-                shipData.Cost = shipSO.Cost;
+                shipData.Price = shipSO.Price;
                 GameObject shipNewGameOb = (GameObject)Instantiate(ShipControllerPrefab, new Vector3(0, 0, 0),
                                 Quaternion.identity);
                 shipDataGO.transform.SetParent(shipNewGameOb.transform);

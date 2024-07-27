@@ -25,10 +25,17 @@ namespace Assets.Core
         {
             trekEventSO.UnregisterListener(this);
         }
-
         public void OnEventRaised(Component sender, object data)
         {
             response.Invoke();
+        }
+        void RemoveTempTargets()
+        {
+            Debug.Log("TimeManager at 1011");
+            foreach (var gameObj in GameObject.FindGameObjectsWithTag("DestroyTemp"))
+            {
+                Destroy(gameObj);
+            }
         }
     }
     

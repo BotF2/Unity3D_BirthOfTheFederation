@@ -19,7 +19,7 @@ namespace Assets.Core
         public GameObject uiCameraGO;
         public GameObject eventSystemGO;
         public GameObject galaxyCenter;
-
+        public bool PastMainMenu = false;
         public GalaxyType selectedGalaxyType;
         public GalaxySize selectedGalaxySize;
         public TechLevel selectedTechLevel;
@@ -71,10 +71,11 @@ namespace Assets.Core
             uiCameraGO.SetActive(false);
             eventSystemGO.SetActive(false);
             galaxyCenter.SetActive(true);
+            PastMainMenu = true;
             TimeManager.instance.ResumeTime();
             SceneManager.LoadScene("GalaxyScene", LoadSceneMode.Additive);
             CivManager.instance.OnNewGameButtonClicked((int)selectedGalaxySize, (int)selectedTechLevel, (int)selectedGalaxyType);
-           
+
         }
 
         //IEnumerator loadScene(string SceneName)

@@ -13,14 +13,16 @@ namespace Assets.Core
 {
     public class RemoveTempTargets : MonoBehaviour
     {
-        [SerializeField]
-        private TrekEventSO onRemoveTempTargets;
-        public void RemoveTheTempTargets()
-        {
-            foreach (var gameObj in GameObject.FindGameObjectsWithTag("DestroyTemp"))
-            {
-                Destroy(gameObj);
-            }
-        }
+        // See Time Manager. RemoveTempTargets
+        //[SerializeField]
+        //private TrekEventSO onRemoveTempTargets;
+        //public void RemoveTheTempTargets()
+        //{
+        //    Debug.Log("We are at 1011");
+        //    foreach (var gameObj in GameObject.FindGameObjectsWithTag("DestroyTemp"))
+        //    {
+        //        Destroy(gameObj);
+        //    }
+        //}
     }
 }
