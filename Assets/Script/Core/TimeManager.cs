@@ -8,14 +8,16 @@ using Assets.Core;
 public class TimeManager : MonoBehaviour
 {
     public static TimeManager instance;
-    public event Action<TrekEventSO> OnSpecialEventReached; // EventListener.cs  
-    public event Action OnStardateChanged;
+    
+    public event Action<TrekEventSO> OnSpecialEventReached; // ?? EventListener subscribes the HandleSpecialEvent(TrekEvenTyep enum) function in OnSpecialEventReached
+    public event Action OnStardateChanged; //StardateUIController subscribes the UpdateDateText() function
     private float timer;
-    private bool runClock = false;
     public int currentStardate { get; private set; }
 
     private Coroutine timeCoroutine;
     private float timeSpeedReducer = 10f;
+    //public GameObject specialEventsGO;
+    //[SerializeField]
     public List<TrekEventSO> specialEvents;
 
     void Awake()
@@ -32,46 +34,31 @@ public class TimeManager : MonoBehaviour
     {
         GameManager.Instance.timeManager = this;
         timer = timeSpeedReducer;
-        // Start time progression coroutine
+        //var specialEvent  = Resources.Load<TrekEventSO>($"Assets/Resources/TrekEventSO/RemoveTempTargets.cs");
+        //specialEvents.Add(specialEvent);
         timeCoroutine = StartCoroutine(TimeProgression());
         currentStardate = 1010;
-        runClock = true;
     }
 
     void Update()
     {
-        //if (MainMenuUIController.instance.PastMainMenu) // pause time
-        //{
-        //    //timeCoroutine = StartCoroutine(TimeProgression());
-        //    ////runClock = true;
-        //    //timer -= Time.deltaTime;//count down
-        //    ////OnStardateChanged?.Invoke();
-        //    //if (timer <= 0)
-        //    //{
-        //    //    //??Should this stuff be inside TimeProgression???
-        //    //    currentStardate++;
-        //    //    //OnStardateChanged?.Invoke();
-        //    //    //CheckSpecialEvents();
-        //    //    timer = timeSpeedReducer;
-        //    //}
-        //}
+
     }
+    private System.Collections.IEnumerator TimeProgression()
+    {
 
-        private System.Collections.IEnumerator TimeProgression()
+        while (MainMenuUIController.instance.PastMainMenu) 
         {
+            yield return new WaitForSeconds(10f / timeSpeedReducer); // 10 seconds in game = 1 stardate
 
-            while (MainMenuUIController.instance.PastMainMenu && runClock)
-            {
-                yield return new WaitForSeconds(10f / timeSpeedReducer); // 10 seconds in game = 1 stardate
+            // Increment current day
+            //currentDay++;
+            currentStardate++;
+            OnStardateChanged?.Invoke();
 
-                // Increment current day
-                //currentDay++;
-                currentStardate++;
-                OnStardateChanged?.Invoke();
-
-                // Check for special events
-                CheckSpecialEvents();
-            }
+            // Check for special events
+           // CheckSpecialEvents();
+        }
         
     }
 
@@ -80,7 +67,7 @@ public class TimeManager : MonoBehaviour
     {
         foreach (var specialEvent in specialEvents)
         {
-            if (currentStardate == specialEvent.stardate)
+            if (specialEvent != null && currentStardate == specialEvent.stardate)
             {
                 // Trigger special event
                 OnSpecialEventReached?.Invoke(specialEvent);
@@ -107,14 +94,12 @@ public class TimeManager : MonoBehaviour
     {
         if (timeCoroutine != null)
             StopCoroutine(timeCoroutine);
-        runClock = false;
     }
 
     // Method to resume time progression
     public void ResumeTime()
     {
         timeCoroutine = StartCoroutine(TimeProgression());
-        runClock = true;
     }
 
     // Method to get current stardate

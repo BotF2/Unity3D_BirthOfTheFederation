@@ -17,10 +17,10 @@ public class Diplomacy : MonoBehaviour
         
     }
 
-    private void OnRaceDiscovered(string raceName, string raceDescrition)
-    {
-        onRaceDiscovered.Raise(this, this);
-    }
+    //private void OnRaceDiscovered(string raceName, string raceDescrition)
+    //{
+    //    onRaceDiscovered.Raise(this, this);
+    //}
 
     // Update is called once per frame
     void Update()

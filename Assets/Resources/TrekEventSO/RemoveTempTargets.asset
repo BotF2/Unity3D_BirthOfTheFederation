@@ -9,8 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0515b3ee832f6c43bd1a234d8352ac1, type: 3}
-  m_Name: LoadFirstFleets
+  m_Script: {fileID: 11500000, guid: 901329ed9ae2ebe43a161eb463080332, type: 3}
+  m_Name: RemoveTempTargets
   m_EditorClassIdentifier: 
+  eventName: RemoveTempTargets
+  stardate: 1012
   listeners:
   - {fileID: 0}
+  trekEventType: 6
+  eventParameter: something

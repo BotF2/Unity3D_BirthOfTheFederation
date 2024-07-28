@@ -17,7 +17,6 @@ namespace Assets.Core
         //public GameObject mainMenuPanelTip;
         public GameObject mainMenuButton;
         public GameObject uiCameraGO;
-        public GameObject eventSystemGO;
         public GameObject galaxyCenter;
         public bool PastMainMenu = false;
         public GalaxyType selectedGalaxyType;
@@ -69,7 +68,6 @@ namespace Assets.Core
             //mainMenuPanelSinglePlayer.SetActive(false);
             //mainMenuPanelTip.SetActive(true);
             uiCameraGO.SetActive(false);
-            eventSystemGO.SetActive(false);
             galaxyCenter.SetActive(true);
             PastMainMenu = true;
             TimeManager.instance.ResumeTime();
@@ -77,29 +75,6 @@ namespace Assets.Core
             CivManager.instance.OnNewGameButtonClicked((int)selectedGalaxySize, (int)selectedTechLevel, (int)selectedGalaxyType);
 
         }
-
-        //IEnumerator loadScene(string SceneName)
-        //{
-        //    AsyncOperation nScene = SceneManager.LoadSceneAsync(SceneName, LoadSceneMode.Additive);
-        //    nScene.allowSceneActivation = false;
-        //    _SceneAsync = nScene;
-        //    while (nScene.progress < 0.9f)
-        //    {
-        //        Debug.Log("Loading scene " + " [][] Progress: " + nScene.progress);
-        //        yield return null;
-        //    }
-
-        //    //Activate the Scene
-        //    _SceneAsync.allowSceneActivation = true;
-
-        //    while (!nScene.isDone)
-        //    {
-        //        // wait until it is really finished
-        //        yield return null;
-        //    }
-        //    //Debug.Log("Setting active scene..");
-        //    //SceneManager.SetActiveScene(nScene);
-        //}
     }
 }
 

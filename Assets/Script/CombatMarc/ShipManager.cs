@@ -71,14 +71,18 @@ public class ShipManager : MonoBehaviour
         CivEnum civEnum = (fleetGO.GetComponent<FleetController>().FleetData.CivEnum);
         List<ShipSO> ships = new List<ShipSO>();
         ships = FirstShipDateByTechlevel((int)CivManager.instance.GetCivDataByCivEnum(civEnum).CivTechLevel, civEnum);
+        //if (ships != null)
         List<GameObject> shipGOs = new List<GameObject>();
-        shipGOs = ShipDataFromSO(ships);
-        foreach (GameObject shipGO in shipGOs)
+        if (ships != null)
         {
-            if (shipGO != null)
+            shipGOs = ShipDataFromSO(ships);
+            foreach (GameObject shipGO in shipGOs)
             {
-                shipGO.transform.SetParent(fleetGO.transform);             
-                fleetGO.GetComponent<FleetController>().FleetData.ShipsList.Add(shipGO.GetComponent<ShipController>());
+                if (shipGO != null)
+                {
+                    shipGO.transform.SetParent(fleetGO.transform);
+                    fleetGO.GetComponent<FleetController>().FleetData.ShipsList.Add(shipGO.GetComponent<ShipController>());
+                }
             }
         }
     }

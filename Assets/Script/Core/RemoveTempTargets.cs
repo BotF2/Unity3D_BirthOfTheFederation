@@ -1,28 +1,17 @@
-﻿using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using Unity.VisualScripting;
-using TMPro;
+using UnityEngine;
+using Assets.Core;
+using UnityEngine.EventSystems;
+using UnityEngine.Events;
 
-namespace Assets.Core
+public class RemoveTempTargets : MonoBehaviour
 {
-    public class RemoveTempTargets : MonoBehaviour
+    public UnityEvent DoSoemthingEvent;
+    public void DoSomething()
     {
-        // See Time Manager. RemoveTempTargets
-        //[SerializeField]
-        //private TrekEventSO onRemoveTempTargets;
-        //public void RemoveTheTempTargets()
-        //{
-        //    Debug.Log("We are at 1011");
-        //    foreach (var gameObj in GameObject.FindGameObjectsWithTag("DestroyTemp"))
-        //    {
-        //        Destroy(gameObj);
-        //    }
-        //}
+        Debug.Log("******** DO SOMETHING **********");
+        DoSoemthingEvent.Invoke();
     }
+
 }
