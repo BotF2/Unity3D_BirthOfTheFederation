@@ -19334,7 +19334,6 @@ MonoBehaviour:
   StarSysControllerList: []
   galaxyImage: {fileID: 568107377}
   galaxyCenter: {fileID: 564492290}
-  teribalEventSO: {fileID: 11400000, guid: c8316b1368c5d76499c363691fd6e5ef, type: 2}
 --- !u!224 &1965346450
 RectTransform:
   m_ObjectHideFlags: 0

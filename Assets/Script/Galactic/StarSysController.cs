@@ -29,8 +29,7 @@ public class StarSysController : MonoBehaviour
         var CanvasGO = GameObject.Find("CanvasStarSysUI");
         canvasStarSysUI = CanvasGO.GetComponent<Canvas>();
         canvasStarSysUI.worldCamera = galaxyEventCamera;
-        TimeManager.instance.onSpecialEventReached = DoDisaster; 
-        
+        TimeManager.instance.onSpecialEventReached = DoDisaster;  
     }
     public void UpdatePopulation(int delatPopulation)
     {
