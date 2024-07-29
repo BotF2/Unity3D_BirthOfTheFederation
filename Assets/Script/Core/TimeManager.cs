@@ -9,7 +9,8 @@ public class TimeManager : MonoBehaviour
 {
     public static TimeManager instance;
     
-    public event Action<TrekEventSO> OnSpecialEventReached; // ?? EventListener subscribes the HandleSpecialEvent(TrekEvenTyep enum) function in OnSpecialEventReached
+    public event Action<TrekEventSO> OnSpecialEventReached; // 
+    public Action<TrekEventSO> onSpecialEventReached;
     public event Action OnStardateChanged; //StardateUIController subscribes the UpdateDateText() function
     private float timer;
     public int currentStardate { get; private set; }
@@ -38,6 +39,7 @@ public class TimeManager : MonoBehaviour
         //specialEvents.Add(specialEvent);
         timeCoroutine = StartCoroutine(TimeProgression());
         currentStardate = 1010;
+
     }
 
     void Update()
@@ -57,7 +59,7 @@ public class TimeManager : MonoBehaviour
             OnStardateChanged?.Invoke();
 
             // Check for special events
-           // CheckSpecialEvents();
+            CheckSpecialEvents();
         }
         
     }
@@ -70,7 +72,7 @@ public class TimeManager : MonoBehaviour
             if (specialEvent != null && currentStardate == specialEvent.stardate)
             {
                 // Trigger special event
-                OnSpecialEventReached?.Invoke(specialEvent);
+                onSpecialEventReached?.Invoke(specialEvent);
             }
         }
     }
