@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Assets.Core;
+using System;
 
 public class StarSysController : MonoBehaviour
 {
@@ -13,6 +14,9 @@ public class StarSysController : MonoBehaviour
     private Canvas canvasToolTip;
     [SerializeField]
     private Canvas canvasStarSysUI;
+    public static event Action<TrekEventSO> trekEventDisasters;
+    //public TrekEventSO trekEventSO;
+
 
     public StarSysController(string name)
     {
@@ -25,6 +29,8 @@ public class StarSysController : MonoBehaviour
         var CanvasGO = GameObject.Find("CanvasStarSysUI");
         canvasStarSysUI = CanvasGO.GetComponent<Canvas>();
         canvasStarSysUI.worldCamera = galaxyEventCamera;
+        TimeManager.instance.onSpecialEventReached = DoDisaster; 
+        
     }
     public void UpdatePopulation(int delatPopulation)
     {
@@ -54,6 +60,64 @@ public class StarSysController : MonoBehaviour
                 //warpState = new FleetWarpState(hitObject, this.FleetData.Destination, rb, this.FleetData.CurrentWarpFactor);
             }
         }
-
     }
+    public void OnEnable()
+    {
+        TimeManager.instance.onSpecialEventReached += DoDisaster;
+    }
+    public void OnDisable()
+    {
+        TimeManager.instance.onSpecialEventReached -= DoDisaster;
+    }
+    private void DoDisaster(TrekEventSO specialEvent)
+    {
+        if (specialEvent != null)
+        {
+            Debug.Log("Special event reached StarSystemController: " + specialEvent.eventName + " on stardate " +
+                specialEvent.stardate + " TrekEventType: " + specialEvent.trekEventType +
+                " parameter: " + specialEvent.eventParameter);
+            // Add your logic to handle the special event here
+            switch (specialEvent.trekEventType)
+            {
+                case TrekEventType.AsteroidHit:
+                    {
+                        //CALL METHOD FOR ASTEROID HIT HERE
+                        Debug.Log("******** Asteroid ***********"); ;
+                        break;
+                    }
+                case TrekEventType.Pandemic:
+                    {
+                        Debug.Log("********** PANDEMIC **********");
+                        break;
+                    }
+                case TrekEventType.SuperVolcano:
+                    {
+                        Debug.Log("********** SUPER VOLCANO **********");
+                        break;
+                    }
+                case TrekEventType.GamaRayBurst:
+                    {
+                        Debug.Log("********** GAMERAY BURST **********");
+                        break;
+                    }
+                case TrekEventType.SeismicEvent:
+                    {
+                        Debug.Log("********** SEISMEIC EVENT **********");
+                        break;
+                    }
+                case TrekEventType.Teribals:
+                    {
+                        break;
+                    }
+                case TrekEventType.RemoveTempTargets:
+                    {
+                        Debug.Log("********** REMOVE TEMP TARGET **********");
+                        break;
+                    }
+                default:
+                    break;
+            }
+        }
+    }
+
 }

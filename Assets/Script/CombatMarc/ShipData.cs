@@ -19,6 +19,7 @@ public class ShipData : MonoBehaviour
     public int Price;
     public GameObject Mesh;
 
+
     void Start()
     {
         //little code change :D

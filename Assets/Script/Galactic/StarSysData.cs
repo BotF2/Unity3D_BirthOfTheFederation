@@ -26,6 +26,7 @@ public class StarSysData
     public int production;
     public int tech;
 
+
     public string Description;
     private string v;
 

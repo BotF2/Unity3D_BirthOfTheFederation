@@ -5,7 +5,7 @@ using Assets.Core;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
 
-public enum TrekEventType { AsteroidHit, Pandemic, SuperVolcano, GamaRayBurst, SeismicEvent, Tribles, RemoveTempTargets }
+public enum TrekEventType { AsteroidHit, Pandemic, SuperVolcano, GamaRayBurst, SeismicEvent, Teribals, RemoveTempTargets }
 
 
 [CreateAssetMenu(fileName = "New Trek Event", menuName = "Game Event/Trek Event")]

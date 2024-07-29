@@ -10,7 +10,7 @@ public class TimeManager : MonoBehaviour
     public static TimeManager instance;
     
     public event Action<TrekEventSO> OnSpecialEventReached; // 
-    public Action<TrekEventSO> onSpecialEventReached;
+    public Action<TrekEventSO> onSpecialEventReached; // instance of the delegate Action 
     public event Action OnStardateChanged; //StardateUIController subscribes the UpdateDateText() function
     private float timer;
     public int currentStardate { get; private set; }

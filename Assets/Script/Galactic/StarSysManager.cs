@@ -25,7 +25,6 @@ namespace Assets.Core
         private Camera galaxyEventCamera;
         private Canvas systemUICanvas; 
         private int systemCount = -1; // Used only in testing multiple systems in Federation
-
         private void Awake()
         {
             if (instance != null) { Destroy(gameObject); }

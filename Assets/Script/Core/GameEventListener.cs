@@ -15,7 +15,7 @@ namespace Assets.Core
     {
         public TrekEventSO trekEventSO;
 
-        public UnityEvent response; // link method calls in editor
+        public UnityEvent response; // link method calls in editor by setting to gameobject
 
         private void Start()
         {
@@ -64,7 +64,7 @@ namespace Assets.Core
                             Debug.Log("********** SEISMEIC EVENT **********");
                             break;
                         }
-                    case TrekEventType.Tribles:
+                    case TrekEventType.Teribals:
                         {
                             break;
                         }
