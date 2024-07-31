@@ -11,7 +11,7 @@ public class Diplomacy : MonoBehaviour
     public string raceDescription;
     [Header("Events")]
     public TrekEventSO onRaceDiscovered;
-    // Start is called before the first frame update
+
     void Awake()
     {
         
@@ -22,7 +22,6 @@ public class Diplomacy : MonoBehaviour
     //    onRaceDiscovered.Raise(this, this);
     //}
 
-    // Update is called once per frame
     void Update()
     {
         

@@ -136,7 +136,6 @@ namespace Assets.Core
                     FleetUIManager.instance.LoadFleetUI(gameObject);
                 }
             }
-
         }
         void OnTriggerEnter(Collider collider) // Not using OnCollisionEnter....
         {

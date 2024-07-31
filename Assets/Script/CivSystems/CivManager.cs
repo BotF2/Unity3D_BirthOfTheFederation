@@ -77,12 +77,10 @@ namespace Assets.Core
         {
             localPlayer = GetCivDataByName("FEDERATION");
             return localPlayer;
-
         }
 
         public void CreateNewGameBySelections(int sizeGame, int gameTechLevel, int galaxyType)
         {
-
             GameManager.Instance._techLevelOnLoadGame = (TechLevel)gameTechLevel;
             GameManager.Instance._galaxySize = (GalaxySize)sizeGame;
             GameManager.Instance._galaxyType = (GalaxyType)galaxyType;
@@ -153,7 +151,6 @@ namespace Assets.Core
             CivsThatACivKnows.Add(civController, new List<CivController> { civController });
             civNewGameOb.transform.SetParent(civFolder.transform, true);
             civNewGameOb.name = civData.CivShortName.ToString();
-
         }
         public void Diplomacy(CivController civPartyOne, CivController civPartyTwo)
         {
@@ -202,9 +199,7 @@ namespace Assets.Core
         }
         public CivData GetCivDataByCivEnum(CivEnum civEnum)
         {
-
             CivData result = null;
-
 
             foreach (var civ in civDataInGameList)
             {

@@ -27,8 +27,7 @@ namespace Assets.Core
         public List<FleetController> ManagersFleetControllerList;
         public List<GameObject> FleetGOList = new List<GameObject>(); // all fleetGO GOs made
         public GameObject fleetGroupPrefab;
-        
-
+       
         private void Awake()
         {
             if (instance != null)

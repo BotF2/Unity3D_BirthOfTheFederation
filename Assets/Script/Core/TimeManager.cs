@@ -14,11 +14,8 @@ public class TimeManager : MonoBehaviour
     public event Action OnStardateChanged; //StardateUIController subscribes the UpdateDateText() function
     private float timer;
     public int currentStardate { get; private set; }
-
     private Coroutine timeCoroutine;
     private float timeSpeedReducer = 10f;
-    //public GameObject specialEventsGO;
-    //[SerializeField]
     public List<TrekEventSO> specialEvents;
 
     void Awake()
@@ -35,11 +32,8 @@ public class TimeManager : MonoBehaviour
     {
         GameManager.Instance.timeManager = this;
         timer = timeSpeedReducer;
-        //var specialEvent  = Resources.Load<TrekEventSO>($"Assets/Resources/TrekEventSO/RemoveTempTargets.cs");
-        //specialEvents.Add(specialEvent);
         timeCoroutine = StartCoroutine(TimeProgression());
         currentStardate = 1010;
-
     }
 
     void Update()
@@ -52,7 +46,6 @@ public class TimeManager : MonoBehaviour
         while (MainMenuUIController.instance.PastMainMenu) 
         {
             yield return new WaitForSeconds(10f / timeSpeedReducer); // 10 seconds in game = 1 stardate
-
             // Increment current day
             //currentDay++;
             currentStardate++;

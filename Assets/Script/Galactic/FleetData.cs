@@ -21,7 +21,6 @@ namespace Assets.Core
         public string Name;
         private string description;
         public float yAboveGalaxyImage; // used in FleetManager
-
         public FleetData(FleetSO fleetSO)
         {
             Insignia = fleetSO.Insignia;

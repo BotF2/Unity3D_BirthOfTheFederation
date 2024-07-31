@@ -430,7 +430,6 @@ namespace Assets.Core
         public bool _statePassedCombatInit = false; // COMBAT INIT
         public bool _statePassedCombatPlay = false;
 
-
         public void InitializeGameManagerWithMainMenuUIController() {
             mainMenuUIController = GameObject.Find("MainMenuUIController").GetComponent<MainMenuUIController>();
             _galaxySize = mainMenuUIController.selectedGalaxySize;
@@ -468,7 +467,6 @@ namespace Assets.Core
         {
             destinationNames.Remove(fleetData.Name);
             DestinationDictionary.Remove(fleetData.Name);
-  
         }
         public void LoadPlayerGalacticDestinations(PlayerDefinedTargetData playerTargetData, GameObject playerTargetGO)
         {

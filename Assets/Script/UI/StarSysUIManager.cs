@@ -21,7 +21,6 @@ public class StarSysUIManager : MonoBehaviour
     private GameObject starSysPanelPrefab;
     [SerializeField]
     private GameObject starSysListGO;
-
     public List<StarSysController> sysControllerList;
 
     //[SerializeField]
@@ -74,7 +73,7 @@ public class StarSysUIManager : MonoBehaviour
     public void LoadStarSysUI(GameObject go) 
     {
         FleetUIManager.instance.UnLoadFleetUI();
-        ShipUIManager.instance.UnLoadShipManagerUI();
+        FleetSelectionUI.instance.UnLoadShipManagerUI();
         starSysUIRoot.SetActive(true);
 
         controller = go.GetComponent<StarSysController>();
@@ -161,26 +160,6 @@ public class StarSysUIManager : MonoBehaviour
     {
         starSysUIRoot.SetActive(false);
     }
-
-    private void NamesToShipDropdown(List<ShipController> shipControllers)
-    {
-        //var shipDropdown = ShipDropdownGO.GetComponent<TMP_Dropdown>();
-        //shipDropdown.options.Clear();
-
-        //foreach (var shipCon in shipControllers)
-        //{
-        //    if (shipCon != null)
-        //    {
-        //        string text = shipCon.ShipData.ShipName;
-        //        text.Replace("(CLONE)", string.Empty);
-        //        shipDropdown.options.Add(new TMP_Dropdown.OptionData(text));
-        //    }
-        
-        //}
-        ////DropdownItemSelected(shipDropdown);
-        ////shipDropdown.onValueChanged.AddListener(delegate { DropdownItemSelected(shipDropdown); });
-    }
-
     private string GetDebuggerDisplay()
     {
         return ToString();

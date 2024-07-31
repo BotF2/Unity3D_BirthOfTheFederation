@@ -77,12 +77,12 @@ public class FleetUIManager : MonoBehaviour
     }
     public void OnClickShipManager()
     {
-        ShipUIManager.instance.LoadShipUIManager(controller);
+        FleetSelectionUI.instance.LoadShipUIManager(controller);
     }
     public void LoadFleetUI(GameObject go) 
     {
         StarSysUIManager.instance.UnLoadStarSysUI();
-        ShipUIManager.instance.UnLoadShipManagerUI();
+        FleetSelectionUI.instance.UnLoadShipManagerUI();
         fleetUIRoot.SetActive(true);
         destinationDropdown.options.Clear();
         noDestination = GameManager.Instance.NoDestination;

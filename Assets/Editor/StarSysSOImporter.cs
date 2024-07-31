@@ -21,8 +21,6 @@ public class StarSysSOImporter : EditorWindow
 
         if (GUILayout.Button("Import StarSysSO CSV"))
         {
-
-
             //Output the Game data path to the console
             Debug.Log("dataPath : " + Application.dataPath);
             ImportStarSysCSV(filePath);

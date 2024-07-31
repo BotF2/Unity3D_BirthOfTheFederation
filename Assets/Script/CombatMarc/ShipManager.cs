@@ -15,7 +15,6 @@ public class ShipManager : MonoBehaviour
     public List<ShipSO> ShipSOListTech1;
     public List<ShipSO> ShipSOListTech2;
     public List<ShipSO> ShipSOListTech3;
-
     private void Awake()
     {
         if (instance != null)

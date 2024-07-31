@@ -8,9 +8,9 @@ using Unity.VisualScripting;
 using System.Diagnostics;
 using UnityEngine.Rendering;
 
-public class ShipUIManager : MonoBehaviour
+public class FleetSelectionUI : MonoBehaviour
 {
-    public static ShipUIManager instance;
+    public static FleetSelectionUI instance;
     public FleetController clickedFleetController;
     public Canvas parentCanvas;
     [SerializeField]

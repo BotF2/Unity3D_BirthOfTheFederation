@@ -60,8 +60,6 @@ namespace Assets.Core
         {
             selectedCivEnum = (CivEnum)index;
         }
-
-
         public void LoadGalaxyScene()
         {
             mainMenuCanvas.SetActive(false);
