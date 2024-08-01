@@ -13,60 +13,60 @@ namespace Assets.Core
     }
     public class GameEventListener : MonoBehaviour
     {
-        //public TrekEventSO trekEventSO;
+        //public TrekRandomEventSO trekEventSO;
         public UnityEvent response; // link method calls in editor by setting to gameobject
 
         private void Start()
         {
-            TimeManager.instance.onSpecialEventReached = Instance_OnSpecialEventReached;
+            TimeManager.instance.onRandomSpecialEvent = Instance_OnRandomEvent;
         }
         private void OnEnable()
         {
             if(TimeManager.instance != null)
-            TimeManager.instance.onSpecialEventReached += Instance_OnSpecialEventReached;
+            TimeManager.instance.onRandomSpecialEvent += Instance_OnRandomEvent;
         }
 
-        private void Instance_OnSpecialEventReached(TrekEventSO specialEvent)
+        private void Instance_OnRandomEvent(TrekRandomEventSO specialEvent)
         {
             //if (specialEvent != null)
             //{
-            //    Debug.Log("Special event reached: " + specialEvent.eventName + " on stardate " +
-            //        specialEvent.stardate + " TrekEventType: " + specialEvent.trekEventType +
+            //    Debug.Log("Special event reached: " + specialEvent.eventName + " on stardateRate " +
+            //        specialEvent.stardateRate + " TrekRandomEvents: " + specialEvent.trekEventType +
             //        " parameter: " + specialEvent.eventParameter);
             //    // Add your logic to handle the special event here
             //    switch (specialEvent.trekEventType)
             //    {
-            //        case TrekEventType.AsteroidHit:
+            //        case TrekRandomEvents.AsteroidHit:
             //            {
             //                //CALL METHOD FOR ASTEROID HIT HERE
             //                Debug.Log("******** Asteroid ***********"); ;
             //                break;
             //            }
-            //        case TrekEventType.Pandemic:
+            //        case TrekRandomEvents.Pandemic:
             //            {
             //                Debug.Log("********** PANDEMIC **********");
             //                break;
             //            }
-            //        case TrekEventType.SuperVolcano:
+            //        case TrekRandomEvents.SuperVolcano:
             //            {
             //                Debug.Log("********** SUPER VOLCANO **********");
             //                break;
             //            }
-            //        case TrekEventType.GamaRayBurst:
+            //        case TrekRandomEvents.GamaRayBurst:
             //            {
             //                Debug.Log("********** GAMERAY BURST **********");
             //                break;
             //            }
-            //        case TrekEventType.SeismicEvent:
+            //        case TrekRandomEvents.SeismicEvent:
             //            {
             //                Debug.Log("********** SEISMEIC EVENT **********");
             //                break;
             //            }
-            //        case TrekEventType.Teribals:
+            //        case TrekRandomEvents.Teribals:
             //            {
             //                break;
             //            }
-            //        case TrekEventType.RemoveTempTargets:
+            //        case TrekRandomEvents.RemoveTempTargets:
             //            {
             //                Debug.Log("********** REMOVE TEMP TARGET **********");
             //                break;
@@ -79,7 +79,7 @@ namespace Assets.Core
 
         private void OnDisable()
         {
-            TimeManager.instance.onSpecialEventReached -= Instance_OnSpecialEventReached;
+            TimeManager.instance.onRandomSpecialEvent -= Instance_OnRandomEvent;
         }
         public void OnEventRaised(Component sender, object data)
         {

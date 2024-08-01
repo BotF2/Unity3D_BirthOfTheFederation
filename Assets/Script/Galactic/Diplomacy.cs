@@ -10,7 +10,7 @@ public class Diplomacy : MonoBehaviour
     public string raceName;
     public string raceDescription;
     [Header("Events")]
-    public TrekEventSO onRaceDiscovered;
+    public TrekRandomEventSO onRaceDiscovered;
 
     void Awake()
     {

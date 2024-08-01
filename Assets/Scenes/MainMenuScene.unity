@@ -771,14 +771,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f09e5165c6e14964db547498e5904423, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  specialEvents:
+  randomEvents:
   - {fileID: 11400000, guid: f0a1c974ffd88484cb29c4964b12e2e1, type: 2}
   - {fileID: 11400000, guid: 999178769fb86d34696f0b203cc51df7, type: 2}
-  - {fileID: 11400000, guid: c8316b1368c5d76499c363691fd6e5ef, type: 2}
   - {fileID: 11400000, guid: a5e955a4560ae1e4fa5205208a0b3560, type: 2}
   - {fileID: 11400000, guid: f19a2b7ac4c52a848b9b5ef4bf038f92, type: 2}
   - {fileID: 11400000, guid: 1c1b6483047cbd349806f1d56fee6172, type: 2}
   - {fileID: 11400000, guid: 07f1585f911815c49a58c497f3d19333, type: 2}
+  - {fileID: 11400000, guid: c8316b1368c5d76499c363691fd6e5ef, type: 2}
+  stardateEvents:
+  - {fileID: 11400000, guid: 671d37c8d3f3cc84f82fc9e2734303a1, type: 2}
+  - {fileID: 11400000, guid: a702b933973b93e4aa63f6c48ad40db2, type: 2}
+  - {fileID: 11400000, guid: 17312f4bc30a3254093bd6d06a7512da, type: 2}
+  - {fileID: 11400000, guid: e141730a814a005469338b50ff11913c, type: 2}
 --- !u!1 &121357774
 GameObject:
   m_ObjectHideFlags: 0
@@ -9046,7 +9051,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Fleet Dropdown
+  m_text: Your Fleets
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
@@ -9073,7 +9078,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20.1
+  m_fontSize: 21.45
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -16352,12 +16357,12 @@ GameObject:
   - component: {fileID: 1447317997}
   - component: {fileID: 1447317996}
   m_Layer: 6
-  m_Name: Fleet to Select a
+  m_Name: FleetSelectionDropdown
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1447317995
 RectTransform:
   m_ObjectHideFlags: 0
@@ -19022,7 +19027,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Fleet ...
+  m_text: Fleets
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -21181,7 +21186,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2065411580
 RectTransform:
   m_ObjectHideFlags: 0

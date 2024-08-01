@@ -9,15 +9,17 @@ public class TimeManager : MonoBehaviour
 {
     public static TimeManager instance;
     
-    public event Action<TrekEventSO> OnSpecialEventReached; // 
-    public Action<TrekEventSO> onSpecialEventReached; // instance of the delegate Action 
+    public event Action<TrekRandomEventSO> OnRandomSpecialEvent; // 
+    public Action<TrekRandomEventSO> onRandomSpecialEvent; // instance of the delegate Action 
+    public event Action<TrekStardateEventSO> OnStardateSpecialEvent; // 
+    public Action<TrekStardateEventSO> onStardateSpecialEvent;
     public event Action OnStardateChanged; //StardateUIController subscribes the UpdateDateText() function
     private float timer;
     public int currentStardate { get; private set; }
     private Coroutine timeCoroutine;
     private float timeSpeedReducer = 10f;
-    public List<TrekEventSO> specialEvents;
-
+    public List<TrekRandomEventSO> randomEvents;
+    public List<TrekStardateEventSO> stardateEvents;
     void Awake()
     {
         if (instance == null)
@@ -45,7 +47,7 @@ public class TimeManager : MonoBehaviour
 
         while (MainMenuUIController.instance.PastMainMenu) 
         {
-            yield return new WaitForSeconds(10f / timeSpeedReducer); // 10 seconds in game = 1 stardate
+            yield return new WaitForSeconds(10f / timeSpeedReducer); // 10 seconds in game = 1 stardateRate
             // Increment current day
             //currentDay++;
             currentStardate++;
@@ -60,12 +62,12 @@ public class TimeManager : MonoBehaviour
     // Check for special events and trigger corresponding actions
     private void CheckSpecialEvents()
     {
-        foreach (var specialEvent in specialEvents)
+        foreach (var specialEvent in randomEvents)
         {
-            if (specialEvent != null && currentStardate == specialEvent.stardate)
+            if (specialEvent != null && currentStardate == specialEvent.stardateRate)
             {
                 // Trigger special event
-                onSpecialEventReached?.Invoke(specialEvent);
+                onRandomSpecialEvent?.Invoke(specialEvent);
             }
         }
     }
@@ -97,7 +99,7 @@ public class TimeManager : MonoBehaviour
         timeCoroutine = StartCoroutine(TimeProgression());
     }
 
-    // Method to get current stardate
+    // Method to get current stardateRate
     public int GetCurrentDay()
     {
         return currentStardate;

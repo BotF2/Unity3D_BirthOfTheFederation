@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 901329ed9ae2ebe43a161eb463080332, type: 3}
-  m_Name: AteroidHit
+  m_Name: RemoveTempTargets
   m_EditorClassIdentifier: 
-  eventName: Asteroid Hit
-  stardate: 1100
-  trekEventType: 0
-  eventParameter: Asteroid hit Colony
+  eventName: Remove Temp Targets
+  stardateRate: 1015
+  trekEventType: 6
+  eventParameter: Description

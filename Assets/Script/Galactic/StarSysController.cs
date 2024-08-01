@@ -14,8 +14,8 @@ public class StarSysController : MonoBehaviour
     private Canvas canvasToolTip;
     [SerializeField]
     private Canvas canvasStarSysUI;
-    public static event Action<TrekEventSO> trekEventDisasters;
-    //public TrekEventSO trekEventSO;
+    public static event Action<TrekRandomEventSO> trekEventDisasters;
+    //public TrekRandomEventSO trekEventSO;
 
 
     public StarSysController(string name)
@@ -29,7 +29,7 @@ public class StarSysController : MonoBehaviour
         var CanvasGO = GameObject.Find("CanvasStarSysUI");
         canvasStarSysUI = CanvasGO.GetComponent<Canvas>();
         canvasStarSysUI.worldCamera = galaxyEventCamera;
-        TimeManager.instance.onSpecialEventReached = DoDisaster;  
+        TimeManager.instance.onRandomSpecialEvent = DoDisaster;  
     }
     public void UpdatePopulation(int delatPopulation)
     {
@@ -59,54 +59,54 @@ public class StarSysController : MonoBehaviour
     }
     public void OnEnable()
     {
-        TimeManager.instance.onSpecialEventReached += DoDisaster;
+        TimeManager.instance.onRandomSpecialEvent += DoDisaster;
     }
     public void OnDisable()
     {
-        TimeManager.instance.onSpecialEventReached -= DoDisaster;
+        TimeManager.instance.onRandomSpecialEvent -= DoDisaster;
     }
-    private void DoDisaster(TrekEventSO specialEvent)
+    private void DoDisaster(TrekRandomEventSO specialEvent)
     {
         if (specialEvent != null)
         {
-            Debug.Log("Special event reached StarSystemController: " + specialEvent.eventName + " on stardate " +
-                specialEvent.stardate + " TrekEventType: " + specialEvent.trekEventType +
+            Debug.Log("Special event reached StarSystemController: " + specialEvent.eventName + " on stardateRate " +
+                specialEvent.stardateRate + " TrekRandomEvents: " + specialEvent.trekEventType +
                 " parameter: " + specialEvent.eventParameter);
             // Add your logic to handle the special event here
             switch (specialEvent.trekEventType)
             {
-                case TrekEventType.AsteroidHit:
+                case TrekRandomEvents.AsteroidHit:
                     {
                         // ToDo: Do Disaster code for each disaster 
                         Debug.Log("******** Asteroid ***********"); ;
                         break;
                     }
-                case TrekEventType.Pandemic:
+                case TrekRandomEvents.Pandemic:
                     {
                         Debug.Log("********** PANDEMIC **********");
                         break;
                     }
-                case TrekEventType.SuperVolcano:
+                case TrekRandomEvents.SuperVolcano:
                     {
                         Debug.Log("********** SUPER VOLCANO **********");
                         break;
                     }
-                case TrekEventType.GamaRayBurst:
+                case TrekRandomEvents.GamaRayBurst:
                     {
                         Debug.Log("********** GAMERAY BURST **********");
                         break;
                     }
-                case TrekEventType.SeismicEvent:
+                case TrekRandomEvents.SeismicEvent:
                     {
                         Debug.Log("********** SEISMEIC EVENT **********");
                         break;
                     }
-                case TrekEventType.Teribals:
+                case TrekRandomEvents.Teribals:
                     {
                         Debug.Log("********** TERIBAL TROUBLE **********");
                         break;
                     }
-                case TrekEventType.RemoveTempTargets:
+                case TrekRandomEvents.RemoveTempTargets:
                     {
                         Debug.Log("********** REMOVE TEMP TARGET **********");
                         break;

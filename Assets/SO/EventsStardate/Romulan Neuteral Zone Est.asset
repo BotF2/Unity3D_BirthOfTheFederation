@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 901329ed9ae2ebe43a161eb463080332, type: 3}
-  m_Name: RemoveTempTargets
+  m_Script: {fileID: 11500000, guid: 49b7dbec97466c243a36f908851265e8, type: 3}
+  m_Name: Romulan Neuteral Zone Est
   m_EditorClassIdentifier: 
-  eventName: Remove Temp Targets
-  stardate: 1012
-  trekEventType: 6
-  eventParameter: Description
+  eventName: Romulan Neutral Zone Est
+  stardate: 1040
+  trekEventType: 2
+  eventParameter: 
