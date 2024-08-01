@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Federation Established
   m_EditorClassIdentifier: 
   eventName: Fderation Established
-  stardate: 1020
+  stardate: 1011
   trekEventType: 1
   eventParameter: 

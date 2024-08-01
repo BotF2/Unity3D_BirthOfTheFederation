@@ -70,6 +70,14 @@ public class TimeManager : MonoBehaviour
                 onRandomSpecialEvent?.Invoke(specialEvent);
             }
         }
+        foreach (var specialEvent in stardateEvents)
+        {
+            if (specialEvent != null && currentStardate == specialEvent.stardate)
+            {
+                // Trigger special event
+                onStardateSpecialEvent?.Invoke(specialEvent);
+            }
+        }
     }
 
     // Method to set time speed multiplier
