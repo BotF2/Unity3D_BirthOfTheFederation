@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: AteroidHit
   m_EditorClassIdentifier: 
   eventName: Asteroid Hit
-  stardateRate: 1011
+  oneInXChance: 100
   trekEventType: 0
   eventParameter: Asteroid hit Colony

@@ -69,8 +69,8 @@ public class StarSysController : MonoBehaviour
     {
         if (specialEvent != null)
         {
-            Debug.Log("Special event reached StarSystemController: " + specialEvent.eventName + " on stardateRate " +
-                specialEvent.stardateRate + " TrekRandomEvents: " + specialEvent.trekEventType +
+            Debug.Log("Special event reached StarSystemController: " + specialEvent.eventName + " on oneInXChance " +
+                specialEvent.oneInXChance + " TrekRandomEvents: " + specialEvent.trekEventType +
                 " parameter: " + specialEvent.eventParameter);
             // Add your logic to handle the special event here
             switch (specialEvent.trekEventType)
@@ -104,11 +104,6 @@ public class StarSysController : MonoBehaviour
                 case TrekRandomEvents.Teribals:
                     {
                         Debug.Log("********** TERIBAL TROUBLE **********");
-                        break;
-                    }
-                case TrekRandomEvents.RemoveTempTargets:
-                    {
-                        Debug.Log("********** REMOVE TEMP TARGET **********");
                         break;
                     }
                 default:

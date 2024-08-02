@@ -30,8 +30,8 @@ namespace Assets.Core
         {
             //if (specialEvent != null)
             //{
-            //    Debug.Log("Special event reached: " + specialEvent.eventName + " on stardateRate " +
-            //        specialEvent.stardateRate + " TrekRandomEvents: " + specialEvent.trekEventType +
+            //    Debug.Log("Special event reached: " + specialEvent.eventName + " on oneInXChance " +
+            //        specialEvent.oneInXChance + " TrekRandomEvents: " + specialEvent.trekEventType +
             //        " parameter: " + specialEvent.eventParameter);
             //    // Add your logic to handle the special event here
             //    switch (specialEvent.trekEventType)

@@ -47,7 +47,7 @@ public class TimeManager : MonoBehaviour
 
         while (MainMenuUIController.instance.PastMainMenu) 
         {
-            yield return new WaitForSeconds(10f / timeSpeedReducer); // 10 seconds in game = 1 stardateRate
+            yield return new WaitForSeconds(10f / timeSpeedReducer); // 10 seconds in game = 1 oneInXChance
             // Increment current day
             //currentDay++;
             currentStardate++;
@@ -64,10 +64,13 @@ public class TimeManager : MonoBehaviour
     {
         foreach (var specialEvent in randomEvents)
         {
-            if (specialEvent != null && currentStardate == specialEvent.stardateRate)
+            if (specialEvent != null)
             {
-                // Trigger special event
-                onRandomSpecialEvent?.Invoke(specialEvent);
+                if (1 == UnityEngine.Random.Range(1, specialEvent.oneInXChance))
+                {
+                    // Trigger special event
+                    onRandomSpecialEvent?.Invoke(specialEvent);
+                }
             }
         }
         foreach (var specialEvent in stardateEvents)
@@ -107,7 +110,7 @@ public class TimeManager : MonoBehaviour
         timeCoroutine = StartCoroutine(TimeProgression());
     }
 
-    // Method to get current stardateRate
+    // Method to get current oneInXChance
     public int GetCurrentDay()
     {
         return currentStardate;

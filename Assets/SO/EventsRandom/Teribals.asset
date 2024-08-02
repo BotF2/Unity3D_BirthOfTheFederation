@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Teribals
   m_EditorClassIdentifier: 
   eventName: Teribals
-  stardateRate: 1020
+  oneInXChance: 40
   trekEventType: 5
   eventParameter: Teribals are eating the food supply in ____ system

@@ -32,7 +32,7 @@ namespace Assets.Core
         {
             if (specialEvent != null)
             {
-                Debug.Log("Special event reached StarSystemController: " + specialEvent.eventName + " on stardateRate " +
+                Debug.Log("Special event reached StarSystemController: " + specialEvent.eventName + " on oneInXChance " +
                     specialEvent.stardate + " TrekRandomEvents: " + specialEvent.trekEventType +
                     " parameter: " + specialEvent.eventParameter);
                 // Add your logic to handle the special event here

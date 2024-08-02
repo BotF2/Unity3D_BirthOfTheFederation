@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Pandemic
   m_EditorClassIdentifier: 
   eventName: Pandemic
-  stardateRate: 1013
+  oneInXChance: 50
   trekEventType: 1
   eventParameter: There is a pandemic in the ____ system

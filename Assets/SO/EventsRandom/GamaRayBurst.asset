@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: GamaRayBurst
   m_EditorClassIdentifier: 
   eventName: Gama Ray Burst
-  stardateRate: 1012
+  oneInXChance: 500
   trekEventType: 3
   eventParameter: A gama ray burst hit ____ system.

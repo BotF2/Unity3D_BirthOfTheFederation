@@ -11,7 +11,7 @@ public enum TrekStardateEvents { QandTheBorg, FederartionEst, RomulanNeutralZone
 public class TrekStardateEventSO : ScriptableObject
 {
     public string eventName;
-    public int stardate; // stardateRate of the event
+    public int stardate; // oneInXChance of the event
     public TrekStardateEvents trekEventType;
 
     public string eventParameter;

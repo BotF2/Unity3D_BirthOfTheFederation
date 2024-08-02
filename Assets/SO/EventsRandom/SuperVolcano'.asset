@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: SuperVolcano'
   m_EditorClassIdentifier: 
   eventName: Super Volcano
-  stardateRate: 1019
+  oneInXChance: 100
   trekEventType: 2
   eventParameter: There is a Super Volcano in ____ system.

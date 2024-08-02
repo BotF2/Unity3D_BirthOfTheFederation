@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: SeismicEvent
   m_EditorClassIdentifier: 
   eventName: Seismic Event
-  stardateRate: 1017
+  oneInXChance: 30
   trekEventType: 4
   eventParameter: There was a Seismic Event in ____ System
