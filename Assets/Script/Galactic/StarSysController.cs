@@ -14,7 +14,7 @@ public class StarSysController : MonoBehaviour
     private Canvas canvasToolTip;
     [SerializeField]
     private Canvas canvasStarSysUI;
-    public static event Action<TrekRandomEventSO> trekEventDisasters;
+    public static event Action<TrekRandomEventSO> TrekEventDisasters;
     //public TrekRandomEventSO trekEventSO;
 
 

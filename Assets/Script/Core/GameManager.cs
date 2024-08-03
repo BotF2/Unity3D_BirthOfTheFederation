@@ -337,7 +337,6 @@ namespace Assets.Core
         List<AsyncOperation> scenesToLoad = new List<AsyncOperation>();
         public bool _weAreFriend = false;
         public bool _warpingInIsOver = false; // WarpingInCompleted() called from E_Animator3 sets true and set false again in CombatCompleted state in BeginState
-        public bool _isSinglePlayer;
         public CivEnum _localPlayer;
         public GameObject CivilizationPrefab;
         public CivManager civManager;
@@ -435,7 +434,7 @@ namespace Assets.Core
             _galaxySize = mainMenuUIController.selectedGalaxySize;
             _galaxyType = mainMenuUIController.selectedGalaxyType;
             _techLevelOnLoadGame = mainMenuUIController.selectedTechLevel;
-            _localPlayer = mainMenuUIController.selectedCivEnum;
+            _localPlayer = mainMenuUIController.selectedLocalCivEnum;
         }
 
         private void Awake()

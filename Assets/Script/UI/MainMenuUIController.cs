@@ -22,7 +22,8 @@ namespace Assets.Core
         public GalaxyType selectedGalaxyType;
         public GalaxySize selectedGalaxySize;
         public TechLevel selectedTechLevel;
-        public CivEnum selectedCivEnum;
+        public CivEnum selectedLocalCivEnum;
+        public bool isSinglePlayer;
 
         //private AsyncOperation _SceneAsync;
         //private bool _bGalaxyShow = false;
@@ -39,7 +40,10 @@ namespace Assets.Core
                 DontDestroyOnLoad(gameObject);
             }
         }
-
+        public void SetSingleVsMultiplayer(bool singleMultiSelection)
+        {
+            isSinglePlayer = singleMultiSelection;
+        }
         public void SetGalaxySize(int index)
         {
             selectedGalaxySize = (GalaxySize)index;
@@ -56,21 +60,20 @@ namespace Assets.Core
             selectedTechLevel = (TechLevel)index;
         }
 
-        public void SetCivilization(int index)
+        public void SetLocalCivilization(int index)
         {
-            selectedCivEnum = (CivEnum)index;
+            selectedLocalCivEnum = (CivEnum)index;
         }
         public void LoadGalaxyScene()
         {
             mainMenuCanvas.SetActive(false);
-            //mainMenuPanelSinglePlayer.SetActive(false);
-            //mainMenuPanelTip.SetActive(true);
             uiCameraGO.SetActive(false);
             galaxyCenter.SetActive(true);
             PastMainMenu = true;
             TimeManager.instance.ResumeTime();
             SceneManager.LoadScene("GalaxyScene", LoadSceneMode.Additive);
-            CivManager.instance.OnNewGameButtonClicked((int)selectedGalaxySize, (int)selectedTechLevel, (int)selectedGalaxyType);
+            CivManager.instance.OnNewGameButtonClicked((int)selectedGalaxySize, (int)selectedTechLevel, (int)selectedGalaxyType,
+                (int)selectedLocalCivEnum, isSinglePlayer);
 
         }
     }

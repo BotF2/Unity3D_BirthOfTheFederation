@@ -10,7 +10,7 @@ namespace Assets.Core
         //Fields
         public CivData CivData;
         public string CivShortName;
-        public static event Action<TrekStardateEventSO> trekEventStardate;
+        public static event Action<TrekStardateEventSO> TrekEventStardate;
         //public List<CivController> CivContollersWeHave;
         //private List<CivController> civsControllerList;
 

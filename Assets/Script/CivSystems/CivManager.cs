@@ -23,7 +23,8 @@ namespace Assets.Core
         public List<CivController> CivControllersInGame;
         public Dictionary<CivController, List<CivController>> CivsThatACivKnows = new Dictionary<CivController, List<CivController>>();
         public CivData localPlayer;
-        //public bool nowCivsCanJoinTheFederation = true; // for use with testing muliple system Federation
+        public bool isSinglePlayer;
+        //public bool nowCivsCanJoinTheFederation = true; // for use with testing a muliple system Federation
         private int HoldCivSize = 0;
         [SerializeField]
         private GameObject civFolder;
@@ -73,17 +74,20 @@ namespace Assets.Core
             //}
             //nowCivsCanJoinTheFederation = false;
         }
-        public CivData CreateLocalPlayer()
+        public void SetSingleVsMulitplayer()
         {
-            localPlayer = GetCivDataByName("FEDERATION");
-            return localPlayer;
+
         }
 
-        public void CreateNewGameBySelections(int sizeGame, int gameTechLevel, int galaxyType)
+        public void CreateNewGameBySelections(int sizeGame, int gameTechLevel, int galaxyType, int localPlayerCivInt, bool isSingleVsMultiplayer)
         {
             GameManager.Instance._techLevelOnLoadGame = (TechLevel)gameTechLevel;
             GameManager.Instance._galaxySize = (GalaxySize)sizeGame;
             GameManager.Instance._galaxyType = (GalaxyType)galaxyType;
+            isSinglePlayer = isSingleVsMultiplayer;
+            // ToDo: assure that selected civ is in game, in game civs (Terrans)
+
+            //localPlayer = GetCivDataByCivEnum((CivEnum)localPlayerCivInt);
 
             switch (sizeGame)
             { case 0:
@@ -214,10 +218,9 @@ namespace Assets.Core
             return result;
 
         }
-        public void OnNewGameButtonClicked(int gameSize, int gameTechLevel, int galaxyType)
+        public void OnNewGameButtonClicked(int gameSize, int gameTechLevel, int galaxyType, int selectedLocalCiv, bool isSingle)
         {
-            CreateNewGameBySelections(gameSize, gameTechLevel, galaxyType);
-            
+            CreateNewGameBySelections(gameSize, gameTechLevel, galaxyType, selectedLocalCiv, isSingle);            
         }
 
         public CivController GetCivControllerByEnum(CivEnum civEnum)
