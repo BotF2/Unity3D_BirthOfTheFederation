@@ -7,6 +7,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Linq;
 using System;
+using TMPro;
 //using UnityEditor.UIElements;
 
 namespace Assets.Core
@@ -17,7 +18,7 @@ namespace Assets.Core
         /// ??? ToggleGroup by default only allows one toggle to be active so:
         /// Will each remote player make a unique selection in their own Toggle group or
         /// is it better to just have buttons or toggles not in a group for remotes to select
-        /// Need to sort out and define local player for the host and from each remote players multiplayer lobby
+        /// Need to sort out and define local player for the host and from each remote player PC in multiplayer lobby
         ///  can try using Mirror; with GameObject localPlayer = NetworkClient.localPlayer.gameObject;
         /// ToDo this...
         /// </summary>
@@ -27,7 +28,7 @@ namespace Assets.Core
         public GameObject mainMenuButton;
         public GameObject uiCameraGO;
         public GameObject galaxyCenter;
-        public bool PastMainMenu = false;
+        public bool PastMainMenu = false; // see TimeManager
         public GalaxyType selectedGalaxyType;
         public GalaxySize selectedGalaxySize;
         public TechLevel selectedTechLevel;
@@ -51,6 +52,15 @@ namespace Assets.Core
         private GameObject singlePlayToggleGroup;
         [SerializeField]
         private GameObject mulitplayerToggleGroup;
+        [SerializeField]
+        private GameObject youPrefab;
+        [SerializeField]
+        private GameObject computerPrefab;
+        [SerializeField]
+        private GameObject notInGamePrefab;
+        [SerializeField]
+        private GameObject textListContents;
+        private static TextMeshProUGUI[] textMeshProUGUIs;
         private Toggle _activeHostToggle;
         private Toggle _activeRemote0; // ToDo multiplayer lobby
         private Toggle _activeRemote1;
@@ -74,6 +84,7 @@ namespace Assets.Core
                 instance = this;
                 DontDestroyOnLoad(gameObject);
             }
+            textMeshProUGUIs = textListContents.GetComponentsInChildren<TextMeshProUGUI>(true);
             SinglePlayerCivilizationGroup.enabled = true;
             SinglePlayerCivilizationGroup = singlePlayToggleGroup.GetComponent<ToggleGroup>();
             SinglePlayerCivilizationGroup.RegisterToggle(Fed);
@@ -111,6 +122,7 @@ namespace Assets.Core
             Dom.isOn = false;
             Borg.isOn = false;
             Terran.isOn = false;
+
         }
         private void Update()
         {
@@ -160,9 +172,9 @@ namespace Assets.Core
             {
                 case "TOGGLE_FED":
                     Fed = _activeHostToggle;
-                    
                     CivManager.instance.localPlayer = CivManager.instance.GetCivDataByCivEnum(CivEnum.FED);
                     Debug.Log("Active Fed.");
+                    PlaceYouYourselfInPlayerList(0);
                     break;
                 case "TOGGLE_ROM":
                     Debug.Log("Active Rom.");
@@ -204,6 +216,16 @@ namespace Assets.Core
                     break;
             }
         }
+
+        private void PlaceYouYourselfInPlayerList(int civInt)
+        {
+            if (textMeshProUGUIs[civInt].text.ToUpper() != "YOU YOURSELF")
+            {
+                var listGO = Instantiate(youPrefab, textListContents.transform.position, textListContents.transform.rotation);
+                textMeshProUGUIs[civInt] = listGO.GetComponentInChildren<TextMeshProUGUI>(true);
+            }
+        }
+
         public void SetSingleVsMultiplayer(bool singleMultiSelection)
         {
             isSinglePlayer = singleMultiSelection;
@@ -225,6 +247,7 @@ namespace Assets.Core
         }
         public void SaveButton()
         {
+           // UpdateToggles();
             panelLobby.SetActive(false);
             panelMuliplayer.SetActive(false);
             panelCivSelection.SetActive(false);
@@ -236,6 +259,13 @@ namespace Assets.Core
             panelMuliplayer.SetActive(false);
             panelCivSelection.SetActive(true);
             mulitplayerToggleGroup.SetActive(true);
+            panelGamePara.SetActive(false);
+        }
+        public void ReturnButton()
+        {
+            panelLobby.SetActive(false);
+            panelMuliplayer.SetActive(false);
+            panelCivSelection.SetActive(true);
             panelGamePara.SetActive(false);
         }
         public void SetCivSelectionMenu(CivEnum civEnum)

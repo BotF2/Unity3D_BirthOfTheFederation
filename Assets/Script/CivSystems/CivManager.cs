@@ -146,8 +146,7 @@ namespace Assets.Core
         }
         private void InstantiateCivilizations(CivData civData)
         {
-            GameObject civNewGameOb = (GameObject)Instantiate(civPrefab, new Vector3(0, 0, 0),
-                    Quaternion.identity);
+            GameObject civNewGameOb = (GameObject)Instantiate(civPrefab, new Vector3(0, 0, 0), Quaternion.identity);
             var civController = civNewGameOb.GetComponentInChildren<CivController>();
             civController.CivData = civData;
             civController.CivShortName = civData.CivShortName;

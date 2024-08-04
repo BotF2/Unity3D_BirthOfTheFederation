@@ -21,7 +21,8 @@ namespace Assets.Core
         public static FleetManager instance;
 
         public List<FleetSO> fleetSOList;// all possible fleetSO(s)
-        public GameObject fleetPrefab;
+        [SerializeField]
+        private GameObject fleetPrefab;
         public GameObject galaxyImage;
         public GameObject galaxyCenter;
         public List<FleetController> ManagersFleetControllerList;
