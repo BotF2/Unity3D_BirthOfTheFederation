@@ -358,13 +358,13 @@ namespace Assets.Core
         public GameObject Canvas;
         public GameObject CanvasGalactic;
          
-        public SinglePlayer _SinglePlayer;
-        public MultiPlayer _MultiPlayer;
-        public LoadGamePanel _LoadGamePanel;
-        public SaveGamePanel _SaveGamePanel;
-        public SettingsGamePanel _SettingsGamePanel;
-        public ExitQuit _ExitQuit;
-        public CreditsGamePanel _CreditsGamePanel;
+        //public SinglePlayer _SinglePlayer;
+        //public MultiPlayer _MultiPlayer;
+        //public LoadGamePanel _LoadGamePanel;
+        //public SaveGamePanel _SaveGamePanel;
+        //public SettingsGamePanel _SettingsGamePanel;
+        //public ExitQuit _ExitQuit;
+        //public CreditsGamePanel _CreditsGamePanel;
         public GameObject animFriend1;
         public GameObject animFriend2;
         public GameObject animFriend3;
