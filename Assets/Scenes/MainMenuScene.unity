@@ -2566,6 +2566,13 @@ MonoBehaviour:
   youPrefab: {fileID: 7940472500614409562, guid: 1dfb1a693816d6a48870c3b5a2409d0d, type: 3}
   computerPrefab: {fileID: 7277431893796968634, guid: 76b078478ccdeec4a92b0b9f11ba2747, type: 3}
   notInGamePrefab: {fileID: 1255915672668882285, guid: b0efa89adb8703a4eb47495146294706, type: 3}
+  playerFed: {fileID: 1059799337}
+  playerRom: {fileID: 1379353631}
+  playerKling: {fileID: 1801387741}
+  playerCard: {fileID: 2106645474}
+  playerDom: {fileID: 1099271822}
+  playerBorg: {fileID: 1307477982}
+  playerTerran: {fileID: 1779403519}
   textListContents: {fileID: 699083933}
   Fed: {fileID: 328394470}
   Rom: {fileID: 515176094}
@@ -5891,7 +5898,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7277431893796968634, guid: 76b078478ccdeec4a92b0b9f11ba2747, type: 3}
       propertyPath: m_Name
-      value: AI (2)
+      value: CardPlayed
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 76b078478ccdeec4a92b0b9f11ba2747, type: 3}
@@ -9986,7 +9993,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7277431893796968634, guid: 76b078478ccdeec4a92b0b9f11ba2747, type: 3}
       propertyPath: m_Name
-      value: AI (1)
+      value: KlingPlayed
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 76b078478ccdeec4a92b0b9f11ba2747, type: 3}
@@ -12306,7 +12313,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7277431893796968634, guid: 76b078478ccdeec4a92b0b9f11ba2747, type: 3}
       propertyPath: m_Name
-      value: AI (3)
+      value: DomPlayed
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 76b078478ccdeec4a92b0b9f11ba2747, type: 3}
@@ -16634,7 +16641,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7277431893796968634, guid: 76b078478ccdeec4a92b0b9f11ba2747, type: 3}
       propertyPath: m_Name
-      value: AI (5)
+      value: FedPlayed
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 76b078478ccdeec4a92b0b9f11ba2747, type: 3}
@@ -17480,6 +17487,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 28}
   m_Pivot: {x: 0.5, y: 1}
+--- !u!1 &1059799337 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7277431893796968634, guid: 76b078478ccdeec4a92b0b9f11ba2747, type: 3}
+  m_PrefabInstance: {fileID: 1010864415}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1073172956
 GameObject:
   m_ObjectHideFlags: 0
@@ -17953,6 +17965,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ShowMaskGraphic: 0
+--- !u!1 &1099271822 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7277431893796968634, guid: 76b078478ccdeec4a92b0b9f11ba2747, type: 3}
+  m_PrefabInstance: {fileID: 785138789}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1134150693
 GameObject:
   m_ObjectHideFlags: 0
@@ -20130,7 +20147,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7277431893796968634, guid: 76b078478ccdeec4a92b0b9f11ba2747, type: 3}
       propertyPath: m_Name
-      value: AI (4)
+      value: BorgPlayed
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 76b078478ccdeec4a92b0b9f11ba2747, type: 3}
@@ -21520,6 +21537,11 @@ RectTransform:
   m_AnchoredPosition: {x: 975, y: 550}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1307477982 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7277431893796968634, guid: 76b078478ccdeec4a92b0b9f11ba2747, type: 3}
+  m_PrefabInstance: {fileID: 1239859105}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1308612508
 GameObject:
   m_ObjectHideFlags: 0
@@ -22524,6 +22546,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1379353631 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7277431893796968634, guid: 76b078478ccdeec4a92b0b9f11ba2747, type: 3}
+  m_PrefabInstance: {fileID: 3439575715844842245}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1388812848
 GameObject:
   m_ObjectHideFlags: 0
@@ -26864,6 +26891,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_IsOn: 0
+--- !u!1 &1779403519 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1255915672668882285, guid: b0efa89adb8703a4eb47495146294706, type: 3}
+  m_PrefabInstance: {fileID: 5625361125429034366}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1781470100
 GameObject:
   m_ObjectHideFlags: 0
@@ -27516,6 +27548,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1797769775}
   m_CullTransparentMesh: 1
+--- !u!1 &1801387741 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7277431893796968634, guid: 76b078478ccdeec4a92b0b9f11ba2747, type: 3}
+  m_PrefabInstance: {fileID: 609975065}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1802094483
 GameObject:
   m_ObjectHideFlags: 0
@@ -32754,6 +32791,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2097442216}
   m_CullTransparentMesh: 1
+--- !u!1 &2106645474 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7277431893796968634, guid: 76b078478ccdeec4a92b0b9f11ba2747, type: 3}
+  m_PrefabInstance: {fileID: 395136396}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2112011882
 GameObject:
   m_ObjectHideFlags: 0
@@ -33533,7 +33575,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7277431893796968634, guid: 76b078478ccdeec4a92b0b9f11ba2747, type: 3}
       propertyPath: m_Name
-      value: AI
+      value: RomPlayed
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 76b078478ccdeec4a92b0b9f11ba2747, type: 3}
@@ -33546,7 +33588,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1255915672668882285, guid: b0efa89adb8703a4eb47495146294706, type: 3}
       propertyPath: m_Name
-      value: NotInGame
+      value: TerranPlayed
       objectReference: {fileID: 0}
     - target: {fileID: 5819923596806753190, guid: b0efa89adb8703a4eb47495146294706, type: 3}
       propertyPath: m_Pivot.x
