@@ -12,7 +12,7 @@ using TMPro;
 
 namespace Assets.Core
 {
-    public class MainMenuUIController : MonoBehaviour, IPointerDownHandler
+    public class MainMenuUIController : MonoBehaviour //, IPointerDownHandler
     {
         /// <summary Multiplayer issues>
         /// ??? ToggleGroup by default only allows one toggle to be active so:
@@ -52,42 +52,9 @@ namespace Assets.Core
         private GameObject singlePlayToggleGroup;
         [SerializeField]
         private GameObject mulitplayerToggleGroup;
-        //[SerializeField]
-        public GameObject youPrefab, computerPrefab, notInGamePrefab;
-        //[SerializeField]
-        public GameObject playerFed, playerRom, playerKling, playerCard, playerDom, playerBorg, playerTerran;
-        //[SerializeField]
-        //private GameObject[] listPlayerGOs = [MainMenuUIController.instance.playerFed,
-        //    MainMenuUIController.instance.playerRom, MainMenuUIController.instance.playerKling, MainMenuUIController.instance.playerCard,
-        //    MainMenuUIController.instance.playerDom, MainMenuUIController.instance.playerBorg, MainMenuUIController.instance.playerTerran ];
-
         [SerializeField]
         private TMP_Text playerFed, playerRom, playerKling, playerCard, playerDom, playerBorg, playerTerran;
         private string you = "You", computer = "Computer", notInGame = "Absent";
-        private GameObject computerPrefab;
-        [SerializeField]
-        private GameObject notInGamePrefab;
-        [SerializeField]
-        private GameObject textListContents;
-        private static TextMeshProUGUI[] textMeshProUGUIs;
-        private GameObject computerPrefab;
-        [SerializeField]
-        private GameObject notInGamePrefab;
-        [SerializeField]
-        private GameObject textListContents;
-        private static TextMeshProUGUI[] textMeshProUGUIs;
-        private GameObject computerPrefab;
-        [SerializeField]
-        private GameObject notInGamePrefab;
-        [SerializeField]
-        private GameObject textListContents;
-        private static TextMeshProUGUI[] textMeshProUGUIs;
-        private GameObject computerPrefab;
-        [SerializeField]
-        private GameObject notInGamePrefab;
-        [SerializeField]
-        private GameObject textListContents;
-        private static TextMeshProUGUI[] textMeshProUGUIs;
         private Toggle _activeHostToggle;
         //private Toggle _activeRemote0; // ToDo multiplayer lobby
         //private Toggle _activeRemote1;
@@ -103,17 +70,15 @@ namespace Assets.Core
         private void Awake()
         {
             if (instance != null)
-
-            // Pending Multiplayer lobby if needed
-            //MultiplayerCivilizationGroup.enabled = true;
-            //MultiplayerCivilizationGroup = mulitplayerToggleGroup.GetComponent<ToggleGroup>();
-            //MultiplayerCivilizationGroup.RegisterToggle(Fed);
-            //MultiplayerCivilizationGroup.RegisterToggle(Kling);
-            //MultiplayerCivilizationGroup.RegisterToggle(Rom);
-            //MultiplayerCivilizationGroup.RegisterToggle(Card);
-            //MultiplayerCivilizationGroup.RegisterToggle(Dom);
-            //MultiplayerCivilizationGroup.RegisterToggle(Borg);
-            //MultiplayerCivilizationGroup.RegisterToggle(Terran);
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                instance = this;
+                DontDestroyOnLoad(gameObject);
+            }
+            SinglePlayerCivilizationGroup.enabled = true;
             SinglePlayerCivilizationGroup = singlePlayToggleGroup.GetComponent<ToggleGroup>();
             SinglePlayerCivilizationGroup.RegisterToggle(Fed);
             SinglePlayerCivilizationGroup.RegisterToggle(Kling);
@@ -129,10 +94,36 @@ namespace Assets.Core
             Dom.isOn = false;
             Borg.isOn = false;
             Terran.isOn = false;
-            MultiplayerCivilizationGroup.enabled = true;
-            MultiplayerCivilizationGroup = mulitplayerToggleGroup.GetComponent<ToggleGroup>();
-            MultiplayerCivilizationGroup.RegisterToggle(Fed);
-            MultiplayerCivilizationGroup.RegisterToggle(Kling);
+
+            // Pending Multiplayer lobby if needed
+            //MultiplayerCivilizationGroup.enabled = true;
+            //MultiplayerCivilizationGroup = mulitplayerToggleGroup.GetComponent<ToggleGroup>();
+            //MultiplayerCivilizationGroup.RegisterToggle(Fed);
+            //MultiplayerCivilizationGroup.RegisterToggle(Kling);
+            //MultiplayerCivilizationGroup.RegisterToggle(Rom);
+            //MultiplayerCivilizationGroup.RegisterToggle(Card);
+            //MultiplayerCivilizationGroup.RegisterToggle(Dom);
+            //MultiplayerCivilizationGroup.RegisterToggle(Borg);
+            //MultiplayerCivilizationGroup.RegisterToggle(Terran);
+        }
+        private void Start()
+        {
+            Fed.isOn = true;
+            Fed.Select();
+            Fed.OnSelect(null); // turns background selected color on, go figure.
+            Kling.isOn = false;
+            Rom.isOn = false;
+            Card.isOn = false;
+            Dom.isOn = false;
+            Borg.isOn = false;
+            Terran.isOn = false;
+
+        }
+        private void UpdatePlayers()
+        {
+            _activeHostToggle = SinglePlayerCivilizationGroup.ActiveToggles().ToArray().FirstOrDefault();
+            if (_activeHostToggle != null)
+                ActiveToggle();
 
         // ToDo do we need a multiplayer toggle group
             //foreach (var toggle in MultiplayerCivilizationGroup.ActiveToggles().ToArray())
@@ -170,31 +161,6 @@ namespace Assets.Core
             //        Terran = _activeRemote6;
             //    }
             //}
-                    Rom = _activeRemote1;
-                }
-                else if (toggle.name == "TOGGLE_KLING")
-                {
-                    Kling = _activeRemote2;
-                }
-
-                else if (toggle.name == "TOGGLE_CARD")
-                {
-                    Card = _activeRemote3;
-                    SetLocalCivilization(0);
-                }
-                else if (toggle.name == "TOGGLE_DOM")
-                {
-                    Dom = _activeRemote4;
-                }
-                else if (toggle.name == "TOGGLE_BORG")
-                {
-                    Borg = _activeRemote5;
-                }
-                else if (toggle.name == "TOGGLE_TERRAN")
-                {
-                    Terran = _activeRemote6;
-                }
-            }
         }
 
         public void ActiveToggle()
@@ -205,6 +171,7 @@ namespace Assets.Core
                     Fed = _activeHostToggle;
                     CivManager.instance.localPlayer = CivManager.instance.GetCivDataByCivEnum(CivEnum.FED);
                     Debug.Log("Active Fed.");
+                    SetLocalCivilization(0);
                     PlaceYouYourselfInPlayerList(0);
                     break;
                 case "TOGGLE_ROM":
@@ -234,6 +201,30 @@ namespace Assets.Core
                     PlaceYouYourselfInPlayerList(4);
                     Dom = _activeHostToggle;
                     CivManager.instance.localPlayer = CivManager.instance.GetCivDataByCivEnum(CivEnum.DOM);
+                    break;
+                case "TOGGLE_BORG":
+                    Debug.Log("Active Borg.");
+                    SetLocalCivilization(5);
+                    PlaceYouYourselfInPlayerList(5);
+                    Borg = _activeHostToggle;
+                    CivManager.instance.localPlayer = CivManager.instance.GetCivDataByCivEnum(CivEnum.BORG);
+                    break;
+                case "TOGGLE_TERRAN":
+                    Debug.Log("Active Terran.");
+                    SetLocalCivilization(158);
+                    PlaceYouYourselfInPlayerList(158);
+                    Terran = _activeHostToggle;
+                    CivManager.instance.localPlayer = CivManager.instance.GetCivDataByCivEnum(CivEnum.TERRAN);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void PlaceYouYourselfInPlayerList(int civInt)
+        {
+            switch (civInt)
+            {
                 case 0:
                     playerFed.text = you;
                     break;
@@ -259,6 +250,8 @@ namespace Assets.Core
                     break;
             }
         }
+            
+        
         private void ResetPlayers()
         {
             if (playerFed.text == you)
@@ -275,30 +268,6 @@ namespace Assets.Core
                 playerBorg.text = computer;                  
             if(playerTerran.text == you)
                 playerTerran.text = computer;
-                    SetLocalCivilization(5);
-                    PlaceYouYourselfInPlayerList(5);
-                    Borg = _activeHostToggle;
-                    CivManager.instance.localPlayer = CivManager.instance.GetCivDataByCivEnum(CivEnum.BORG);
-                    break;
-                case "TOGGLE_TERRAN":
-                    Debug.Log("Active Terran.");
-                    SetLocalCivilization(158);
-                    PlaceYouYourselfInPlayerList(158);
-                    Terran = _activeHostToggle;
-                    CivManager.instance.localPlayer = CivManager.instance.GetCivDataByCivEnum(CivEnum.TERRAN);
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        private void PlaceYouYourselfInPlayerList(int civInt)
-        {
-            switch (civInt)
-            {
-                var listGO = Instantiate(youPrefab, textListContents.transform.position, textListContents.transform.rotation);
-                textMeshProUGUIs[civInt] = listGO.GetComponentInChildren<TextMeshProUGUI>(true);
-            }
         }
         public void SetSingleVsMultiplayer(bool singleMultiSelection)
         {
@@ -321,6 +290,7 @@ namespace Assets.Core
         }
         public void SaveButton()
         {
+            singlePlayToggleGroup.SetActive(true);
             UpdatePlayers();
             panelLobby.SetActive(false);
             panelMuliplayer.SetActive(false);
