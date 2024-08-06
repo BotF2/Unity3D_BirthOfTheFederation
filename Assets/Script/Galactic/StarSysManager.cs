@@ -20,8 +20,10 @@ namespace Assets.Core
         [SerializeField]
         private GameObject sysPrefab;
         public List<StarSysController> StarSysControllerList;
-        public GameObject galaxyImage;
-        public GameObject galaxyCenter;
+        [SerializeField]
+        private GameObject galaxyImage;
+        [SerializeField]
+        private GameObject galaxyCenter;
         private Camera galaxyEventCamera;
         private Canvas systemUICanvas; 
         private int systemCount = -1; // Used only in testing multiple systems in Federation

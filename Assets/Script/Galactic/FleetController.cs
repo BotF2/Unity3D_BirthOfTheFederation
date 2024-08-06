@@ -17,35 +17,31 @@ namespace Assets.Core
         private FleetData fleetData;
         public FleetData FleetData { get { return fleetData; } set { fleetData = value; } }
         public string Name;
-        //public List<ShipController> ShipControllerList;
-        //public List<FleetController> FleetContollersWeHave;
-        //List<StarSysController> StarSystemsWeHave;
-        //List<PlayerDefinedTargetController> PlayerDefinedTargetControllersWeHave;
         private bool deltaShipList = false; //??? do I need this or the shipdropdown listener
-        public FleetState fleetState;
-        public bool isArrived =false;
+        public FleetState FleetState;
+        public bool IsArrived = false;
         [SerializeField]
         private float maxWarpFactor = 9.8f;
         private float warpFactor = 0f;
         private float fudgeFactor = 1f;
         private float dropOutOfWarpDistance = 0.5f; // stop, but should be destination collider?
         private Rigidbody rb;
-        public DropLineMovable dropLine;
-        GameObject fleetDropdownGO;
-        public GameObject destinationDropdownGO; // UI dropdown
-        public TMP_Dropdown destinationDropdown;
+        public DropLineMovable DropLine;
+        public GameObject DestinationDropdownGO; // UI dropdown
+        [SerializeField]
+        private TMP_Dropdown destinationDropdown;
         public string SelectedDestination; // save destination name for FleetUI, start null
-        public GameObject shipDropdownGO;
-        public TMP_Dropdown shipDropdown;
-        public List<string> shipDropdownOptions;
+        public GameObject ShipDropdownGO;
+        [SerializeField]
+        private TMP_Dropdown shipDropdown;
+        [SerializeField]
+        private List<string> shipDropdownOptions;
 
         [SerializeField]
         private TMP_Text ourDestination;
         private Camera galaxyEventCamera;
-        [SerializeField]
-        private Canvas FleetUICanvas;
-        [SerializeField]
-        private Canvas CanvasToolTip;
+        public Canvas FleetUICanvas;
+        public Canvas CanvasToolTip;
 
         private void Start()
         {
@@ -63,12 +59,12 @@ namespace Assets.Core
                 { maxWarpFactor = shipCon.ShipData.maxWarpFactor;}
             }
             Name = FleetData.CivShortName + " Fleet " + FleetData.Name;
-            fleetState = FleetState.FleetStationary;
+            FleetState = FleetState.FleetStationary;
 
         }
         void Update()
         {
-            switch (fleetState) 
+            switch (FleetState) 
             {
                 case FleetState.FleetInSystem:
                     {
@@ -114,7 +110,7 @@ namespace Assets.Core
                 if (FleetData.Destination != null && FleetData.CurrentWarpFactor > 0f)
                 {
 
-                    fleetState = FleetState.FleetAtWarp;
+                    FleetState = FleetState.FleetAtWarp;
                     MoveToDesitinationGO();
                 }
             }
@@ -175,7 +171,7 @@ namespace Assets.Core
                 /// use fleet enum state
                 //this.FleetData.Destination = null;
                 //this.FleetData.war
-                //fleetState = FleetState.FleetInSystem;
+                //FleetState = FleetState.FleetInSystem;
             }
             //FleetManager.instance.
             //1) you get the FleetController of the new fleet GO
@@ -195,7 +191,7 @@ namespace Assets.Core
                 /// use fleet enum state
                 //this.FleetData.Destination = null;
                 //this.FleetData.war
-                //fleetState = FleetState.FleetInSystem;
+                //FleetState = FleetState.FleetInSystem;
             }
             //1) you get the FleetController of the new fleet GO
             //2) you ask your factionOwner (CivManager) if you already know the faction of the new fleet
@@ -243,13 +239,13 @@ namespace Assets.Core
             }
             Vector3 galaxyPlanePoint = new Vector3(rb.position.x, -60f, rb.position.z);
             Vector3[] points = { rb.position, galaxyPlanePoint };
-            dropLine.SetUpLine(points);
+            DropLine.SetUpLine(points);
         }
         void OnArrivedAtDestination()
         {
-            if (isArrived == false)
+            if (IsArrived == false)
             {
-                isArrived = true;
+                IsArrived = true;
                 // Logic to handle what happens when the fleet arrives at the destination
                 Debug.Log("Arrived at destination: " + this.FleetData.Destination.name);
                 // Example: Stop the fleet, update UI, trigger events, etc.

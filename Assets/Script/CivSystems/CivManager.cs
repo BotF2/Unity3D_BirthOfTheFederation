@@ -13,19 +13,22 @@ namespace Assets.Core
     public class CivManager : MonoBehaviour
     {
         public static CivManager instance;
-
-        public List<CivSO> civSOListSmall;
-        public List<CivSO> civSOListMedium;
-        public List<CivSO> civSOListLarge;
-        public List<CivSO> civSOListAllPossible;
+        [SerializeField]
+        private List<CivSO> civSOListSmall;
+        [SerializeField]
+        private List<CivSO> civSOListMedium;
+        [SerializeField]
+        private List<CivSO> civSOListLarge;
+        [SerializeField]
+        private List<CivSO> civSOListAllPossible;
         public List<CivEnum> CivSOInGame;
-        public List<CivData> civDataInGameList = new List<CivData> { new CivData() };
+        public List<CivData> CivDataInGameList = new List<CivData> { new CivData() };
         public List<CivController> CivControllersInGame;
         public Dictionary<CivController, List<CivController>> CivsThatACivKnows = new Dictionary<CivController, List<CivController>>();
-        public CivData localPlayer;
+        public CivData LocalPlayer;
         public bool isSinglePlayer;
         //public bool nowCivsCanJoinTheFederation = true; // for use with testing a muliple system Federation
-        private int HoldCivSize = 0;
+        private int HoldCivSize = 0;// used in testing of a multisystem civilization/faction
         [SerializeField]
         private GameObject civFolder;
         [SerializeField]
@@ -87,7 +90,7 @@ namespace Assets.Core
             isSinglePlayer = isSingleVsMultiplayer;
             // ToDo: assure that selected civ is in game, in game civs (Terrans)
 
-            //localPlayer = GetCivDataByCivEnum((CivEnum)localPlayerCivInt);
+            //LocalPlayer = GetCivDataByCivEnum((CivEnum)localPlayerCivInt);
 
             switch (sizeGame)
             { case 0:
@@ -135,13 +138,13 @@ namespace Assets.Core
                 civData.HasWarp = civSO.HasWarp;
                 civData.Decription = civSO.Decription;
                 civData.IntelPoints = civSO.IntelPoints;
-                civDataInGameList.Add(civData);
+                CivDataInGameList.Add(civData);
                 InstantiateCivilizations(civData);
 
             }
-            if (civDataInGameList[0].CivHomeSystem != null) { }
+            if (CivDataInGameList[0].CivHomeSystem != null) { }
             else
-                civDataInGameList.Remove(civDataInGameList[0]); // remove the null entered by field
+                CivDataInGameList.Remove(CivDataInGameList[0]); // remove the null entered by field
             StarSysManager.instance.SysDataFromSO(civSOList);
         }
         private void InstantiateCivilizations(CivData civData)
@@ -187,7 +190,7 @@ namespace Assets.Core
             CivData result = null;
 
 
-            foreach (var civ in civDataInGameList)
+            foreach (var civ in CivDataInGameList)
             {
 
                 if (civ.CivShortName.Equals(shortName))
@@ -204,7 +207,7 @@ namespace Assets.Core
         {
             CivData result = null;
 
-            foreach (var civ in civDataInGameList)
+            foreach (var civ in CivDataInGameList)
             {
 
                 if (civ.CivEnum.Equals(civEnum))

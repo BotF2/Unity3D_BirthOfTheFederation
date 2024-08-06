@@ -19,15 +19,18 @@ namespace Assets.Core
     public class FleetManager : MonoBehaviour
     {
         public static FleetManager instance;
-
-        public List<FleetSO> fleetSOList;// all possible fleetSO(s)
+        [SerializeField]
+        private List<FleetSO> fleetSOList;// all possible fleetSO(s)
         [SerializeField]
         private GameObject fleetPrefab;
-        public GameObject galaxyImage;
-        public GameObject galaxyCenter;
+        [SerializeField]
+        private GameObject galaxyImage;
+        [SerializeField]
+        private GameObject galaxyCenter;
         public List<FleetController> ManagersFleetControllerList;
         public List<GameObject> FleetGOList = new List<GameObject>(); // all fleetGO GOs made
-        public GameObject fleetGroupPrefab;
+        [SerializeField]
+        private GameObject fleetGroupPrefab;
        
         private void Awake()
         {
@@ -98,7 +101,7 @@ namespace Assets.Core
                 var fleetController = fleetNewGameOb.GetComponentInChildren<FleetController>();
                 fleetController.FleetData = fleetData;
                 fleetController.Name = fleetData.Name;
-                fleetController.fleetState = FleetState.FleetStationary;
+                fleetController.FleetState = FleetState.FleetStationary;
                 ManagersFleetControllerList.Add(fleetController);
                 fleetNewGameOb.transform.Translate(new Vector3(fleetData.Position.x + 40f, fleetData.Position.y, fleetData.Position.z + 10f));
                 fleetNewGameOb.transform.SetParent(galaxyCenter.transform, true);
@@ -128,7 +131,7 @@ namespace Assets.Core
                 Vector3[] points = { fleetNewGameOb.transform.position, galaxyPlanePoint };
                 ourLineScript.SetUpLine(points);
                 fleetController.FleetData.yAboveGalaxyImage = galaxyCenter.transform.position.y - galaxyPlanePoint.y;
-                fleetController.dropLine = ourLineScript;
+                fleetController.DropLine = ourLineScript;
                 fleetController.FleetData.ShipsList.Clear();
                 foreach (var civCon in CivManager.instance.CivControllersInGame)
                 {

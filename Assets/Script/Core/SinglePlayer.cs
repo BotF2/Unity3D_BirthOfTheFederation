@@ -54,7 +54,7 @@ namespace Assets.Core
         //}
         //public void OnClickPlayCiv() // ToDo: call this on play button in Main Menu
         //{
-        //    //GameManager.Instance.localPlayer = _
+        //    //GameManager.Instance.LocalPlayer = _
         //    Toggle toggle = _activeHostToggle;
         //    Debug.Log(toggle.CivName + " _ ");
         //}
@@ -64,33 +64,33 @@ namespace Assets.Core
         //    //{
         //    //    case "TOGGLE_FED":
         //    //        Fed = _activeHostToggle;
-        //    //        GameManager.Instance.localPlayer = Civilization.FED;
+        //    //        GameManager.Instance.LocalPlayer = Civilization.FED;
         //    //        Debug.Log("Active Fed.");
         //    //        break;
         //    //    case "TOGGLE_KLING":
         //    //        Debug.Log("Active Kling.");
-        //    //        GameManager.Instance.localPlayer = Civilization.KLING;
+        //    //        GameManager.Instance.LocalPlayer = Civilization.KLING;
         //    //        Kling = _activeHostToggle;
         //    //        break;
         //    //    case "TOGGLE_ROM":
         //    //        Debug.Log("Active Rom.");
         //    //        Rom = _activeHostToggle;
-        //    //        GameManager.Instance.localPlayer = Civilization.ROM;
+        //    //        GameManager.Instance.LocalPlayer = Civilization.ROM;
         //    //        break;
         //    //    case "TOGGLE_CARD":
         //    //        Debug.Log("Active Card.");
         //    //        Card = _activeHostToggle;
-        //    //        GameManager.Instance.localPlayer = Civilization.CARD;
+        //    //        GameManager.Instance.LocalPlayer = Civilization.CARD;
         //    //        break;
         //    //    case "TOGGLE_DOM":
         //    //        Debug.Log("Active Dom.");
         //    //        Dom = _activeHostToggle;
-        //    //        GameManager.Instance.localPlayer = Civilization.DOM;
+        //    //        GameManager.Instance.LocalPlayer = Civilization.DOM;
         //    //        break;
         //    //    case "TOGGLE_BORG":
         //    //        Debug.Log("Active Borg.");
         //    //        Borg = _activeHostToggle;
-        //    //        GameManager.Instance.localPlayer = Civilization.BORG;
+        //    //        GameManager.Instance.LocalPlayer = Civilization.BORG;
         //    //        break;
         //    //    default:
         //    //        break;

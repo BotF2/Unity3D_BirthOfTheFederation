@@ -332,54 +332,58 @@ namespace Assets.Core
     public class GameManager : MonoBehaviour
     {
         public static GameManager Instance { get; private set; } // a static singleton, no other script can instatniate a GameManager, must us the singleton
-        public TimeManager timeManager;
-        public MainMenuUIController mainMenuUIController;
-        List<AsyncOperation> scenesToLoad = new List<AsyncOperation>();
+        public TimeManager TimeManager;
+        [SerializeField]
+        private MainMenuUIController mainMenuUIController;
+        // ?? will we need these again?
+        //List<AsyncOperation> scenesToLoad = new List<AsyncOperation>();
         public bool _weAreFriend = false;
         public bool _warpingInIsOver = false; // WarpingInCompleted() called from E_Animator3 sets true and set false again in CombatCompleted state in BeginState
-        public CivEnum _localPlayer;
-        public GameObject CivilizationPrefab;
-        public CivManager civManager;
-        public GameObject DestinationDropdownGO; // UI dropdown
-        private bool foundDestinationDropdown = false;
+        public CivEnum LocalPlayer;
         public string NoDestination;
         private List<string> destinationNames = new List<string>() { "No Destination Selected" };
         public List<string> DestinationNames { get { return destinationNames; } }
-        //public TMP_Dropdown DestinationDropdown;
         public Dictionary<string, GameObject> DestinationDictionary = new Dictionary<string, GameObject>();
         public GalaxySize _galaxySize;
         public GalaxyType _galaxyType;
         public TechLevel _techLevelOnLoadGame;
-
-        public Galaxy galaxy; // = new Galaxy(GameManager.Instance, GalaxyType.ELLIPTICAL, 20);
-        public SolarSystemView solarSystemView;
-        public CameraMultiTarget cameraMultiTarget;
-        public ZoomCamera zoomCamera;
         public GameObject Canvas;
         public GameObject CanvasGalactic;
-         
-        //public SinglePlayer _SinglePlayer;
-        //public MultiPlayer _MultiPlayer;
-        //public LoadGamePanel _LoadGamePanel;
-        //public SaveGamePanel _SaveGamePanel;
-        //public SettingsGamePanel _SettingsGamePanel;
-        //public ExitQuit _ExitQuit;
-        //public CreditsGamePanel _CreditsGamePanel;
-        public GameObject animFriend1;
-        public GameObject animFriend2;
-        public GameObject animFriend3;
-        public GameObject animEnemy1;
-        public GameObject animEnemy2;
-        public GameObject animEnemy3;
-        public GameObject Friend_0; // prefab empty gameobject to clone instantiat into the grids
-        public GameObject Enemy_0;
-        private GameObject[] _cameraTargets; // = new GameObject [] { Friend_0, Enemy_0 };
-        public int yFactor = 3000; // old LoadCombatData combat, gap in grid between empties on y axis
-        public int zFactor = 3000;
-        public int offsetFriendLeft = -5500; // listSONames of x axis for friend grid left side (start here), world location
-        public int offsetFriendRight = 5800; // listSONames of x axis for friend grid right side, world location
-        public int offsetEnemyRight = 5500; // start here
-        public int offsetEnemyLeft = -5800;
+        public Galaxy galaxy; // = new Galaxy(GameManager.Instance, GalaxyType.ELLIPTICAL, 20);
+        public SolarSystemView solarSystemView;
+        /// <summary>
+        /// Old combat tool for view of all ships in combat
+        /// </summary>
+        //public CameraMultiTarget cameraMultiTarget; 
+        //private GameObject[] _cameraTargets; // = new GameObject [] { Friend_0, Enemy_0 };
+        /// <summary>
+        /// Old UI elements
+        /// </summary>
+            //public SinglePlayer _SinglePlayer;
+            //public MultiPlayer _MultiPlayer;
+            //public LoadGamePanel _LoadGamePanel;
+            //public SaveGamePanel _SaveGamePanel;
+            //public SettingsGamePanel _SettingsGamePanel;
+            //public ExitQuit _ExitQuit;
+            //public CreditsGamePanel _CreditsGamePanel;
+        /// <summary>
+        /// Old pre combat opening ship warpin animation and setup for start of combat
+        /// </summary>
+        //public GameObject animFriend1;
+        //public GameObject animFriend2;
+        //public GameObject animFriend3;
+        //public GameObject animEnemy1;
+        //public GameObject animEnemy2;
+        //public GameObject animEnemy3;
+        //public GameObject Friend_0; // prefab empty gameobject to clone instantiat into the grids
+        //public GameObject Enemy_0;
+
+        //public int yFactor = 3000; // old LoadCombatData combat, gap in grid between empties on y axis
+        //public int zFactor = 3000;
+        //public int offsetFriendLeft = -5500; // listSONames of x axis for friend grid left side (start here), world location
+        //public int offsetFriendRight = 5800; // listSONames of x axis for friend grid right side, world location
+        //public int offsetEnemyRight = 5500; // start here
+        //public int offsetEnemyLeft = -5800;
 
         #region Animation empties by ship type Now from ActOnCombatOrder.cs?
         //public GameObject FriendScout_Y0_Z0;
@@ -402,24 +406,24 @@ namespace Assets.Core
                                                                    // Unity does not like c# lists
         #endregion
 
-        public static List<string> StartGameObjectNames = new List<string>();
-        public  string[] FriendNameArray; // For current Combat ****
-        public  string[] EnemyNameArray;
+        //public static List<string> StartGameObjectNames = new List<string>();
+        //public  string[] FriendNameArray; // For old Combat ****
+        //public  string[] EnemyNameArray;
 
-        public int friends;
-        public int enemies;
-        public  List<GameObject> FriendShips = new List<GameObject>();  // updated to current combat
-        public  List<GameObject> EnemyShips = new List<GameObject>();
+        //public int friends;
+        //public int enemies;
+        //public  List<GameObject> FriendShips = new List<GameObject>();  // updated to current combat
+        //public  List<GameObject> EnemyShips = new List<GameObject>();
 
-        private int friendShipLayer;
-        private int enemyShipLayer;
-        private int _level;
+        //private int friendShipLayer;
+        //private int enemyShipLayer;
+        //private int _level;
 
-        public int Level
-        {
-            get { return _level; }
-            set { _level = value; }
-        }
+        //public int Level
+        //{
+        //    //get { return _level; }
+        //    //set { _level = value; }
+        //}
 
         bool _isSwitchingState = false;
 
@@ -431,10 +435,10 @@ namespace Assets.Core
 
         public void InitializeGameManagerWithMainMenuUIController() {
             mainMenuUIController = GameObject.Find("MainMenuUIController").GetComponent<MainMenuUIController>();
-            _galaxySize = mainMenuUIController.selectedGalaxySize;
-            _galaxyType = mainMenuUIController.selectedGalaxyType;
-            _techLevelOnLoadGame = mainMenuUIController.selectedTechLevel;
-            _localPlayer = mainMenuUIController.selectedLocalCivEnum;
+            _galaxySize = mainMenuUIController.SelectedGalaxySize;
+            _galaxyType = mainMenuUIController.SelectedGalaxyType;
+            _techLevelOnLoadGame = mainMenuUIController.SelectedTechLevel;
+            LocalPlayer = mainMenuUIController.SelectedLocalCivEnum;
         }
 
         private void Awake()
@@ -503,33 +507,33 @@ namespace Assets.Core
           
             //cameraMultiTarget.SetTargets(_cameraTargets.ToArray()); // start multiCamera - main camers before warp in of ships
         }
-        public void ProvideFriendCombatShips(int numIndex, GameObject daObject)
-        {
-            FriendShips.Add(daObject); // geting friend combat ship dictionary for combat
-        }
-        public void ProvideEnemyCombatShips(int numIndex, GameObject daObject)
-        {
-            EnemyShips.Add(daObject);
-        }
+        //public void ProvideFriendCombatShips(int numIndex, GameObject daObject)
+        //{
+        //    FriendShips.Add(daObject); // geting friend combat ship dictionary for combat
+        //}
+        //public void ProvideEnemyCombatShips(int numIndex, GameObject daObject)
+        //{
+        //    EnemyShips.Add(daObject);
+        //}
         public void WarpingInCompleted()
         {
             _warpingInIsOver = true;
         }
         public void SetShipLayer()
         {
-            List<GameObject> allDaShipObjectInCombat = new List<GameObject>();
-            allDaShipObjectInCombat = FriendShips;
-            for (int i = 0; i < EnemyShips.Count; i++)
-            {
-                allDaShipObjectInCombat.Add(EnemyShips[i]);
-            }
+            //List<GameObject> allDaShipObjectInCombat = new List<GameObject>();
+            //allDaShipObjectInCombat = FriendShips;
+            //for (int i = 0; i < EnemyShips.Count; i++)
+            //{
+            //    allDaShipObjectInCombat.Add(EnemyShips[i]);
+            //}
             
-            foreach (var shipGameObject in allDaShipObjectInCombat)
-            {
-                var arrayOfName = shipGameObject.name.ToUpper().Split('_');
-                shipGameObject.layer = SetShipLayer(arrayOfName[0]);
+            //foreach (var shipGameObject in allDaShipObjectInCombat)
+            //{
+            //    var arrayOfName = shipGameObject.name.ToUpper().Split('_');
+            //    shipGameObject.layer = SetShipLayer(arrayOfName[0]);
                 
-            } 
+            //} 
         }
 
         public int SetShipLayer(string civ)

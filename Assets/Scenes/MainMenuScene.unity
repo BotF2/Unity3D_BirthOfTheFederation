@@ -2681,17 +2681,11 @@ MonoBehaviour:
   uiCameraGO: {fileID: 1302084395}
   galaxyCenter: {fileID: 564492290}
   PastMainMenu: 0
-  selectedGalaxyType: 0
-  selectedGalaxySize: 0
-  selectedTechLevel: 0
-  selectedLocalCivEnum: 0
-  selectedRemote0CivEnum: 1
-  selectedRemote1CivEnum: 2
-  selectedRemote2CivEnum: 3
-  selectedRemote3CivEnum: 4
-  selectedRemote4CivEnum: 5
-  selectedRemote5CivEnum: 158
-  isSinglePlayer: 1
+  SelectedGalaxyType: 0
+  SelectedGalaxySize: 0
+  SelectedTechLevel: 0
+  SelectedLocalCivEnum: 0
+  IsSinglePlayer: 0
   panelLobby: {fileID: 270225717}
   panelMuliplayer: {fileID: 4711736}
   panelCivSelection: {fileID: 593379916}
@@ -2713,7 +2707,6 @@ MonoBehaviour:
   Borg: {fileID: 1763767021}
   Terran: {fileID: 1787285891}
   SinglePlayerCivilizationGroup: {fileID: 1369377087}
-  MultiplayerCivilizationGroup: {fileID: 831971746}
 --- !u!4 &206574037
 Transform:
   m_ObjectHideFlags: 0
@@ -6879,8 +6872,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3689b3e544fa624d92c0de97ee7fe74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ShipControllerPrefab: {fileID: 2997765887977151139, guid: e6ed809b39a20d54388b036703098391, type: 3}
-  ShipDataPrefab: {fileID: 28308503933621443, guid: a4454b2caf877cf43905d006317b6b50, type: 3}
+  shipControllerPrefab: {fileID: 2997765887977151139, guid: e6ed809b39a20d54388b036703098391, type: 3}
+  shipDataPrefab: {fileID: 28308503933621443, guid: a4454b2caf877cf43905d006317b6b50, type: 3}
   ShipControllerGameList: []
   ShipSOListTech0:
   - {fileID: 11400000, guid: 52c5391ba01feef499f69c948f97b515, type: 2}
@@ -10068,7 +10061,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &626776156
 RectTransform:
   m_ObjectHideFlags: 0
@@ -16537,7 +16530,7 @@ GameObject:
   - component: {fileID: 1003489537}
   - component: {fileID: 1003489536}
   m_Layer: 6
-  m_Name: Scroll Systems Player List
+  m_Name: Player List
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17495,37 +17488,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3ea4cc63b5115448b2ef4d337cb7b50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeManager: {fileID: 0}
+  TimeManager: {fileID: 0}
   mainMenuUIController: {fileID: 0}
   _weAreFriend: 0
   _warpingInIsOver: 0
-  _localPlayer: 0
-  CivilizationPrefab: {fileID: 0}
-  civManager: {fileID: 0}
-  DestinationDropdownGO: {fileID: 1046361529}
+  LocalPlayer: 0
   NoDestination: 
   _galaxySize: 0
   _galaxyType: 0
   _techLevelOnLoadGame: 0
-  solarSystemView: {fileID: 0}
-  cameraMultiTarget: {fileID: 0}
-  zoomCamera: {fileID: 0}
   Canvas: {fileID: 0}
   CanvasGalactic: {fileID: 0}
-  animFriend1: {fileID: 0}
-  animFriend2: {fileID: 0}
-  animFriend3: {fileID: 0}
-  animEnemy1: {fileID: 0}
-  animEnemy2: {fileID: 0}
-  animEnemy3: {fileID: 0}
-  Friend_0: {fileID: 0}
-  Enemy_0: {fileID: 0}
-  yFactor: 3000
-  zFactor: 3000
-  offsetFriendLeft: -5500
-  offsetFriendRight: 5800
-  offsetEnemyRight: 5500
-  offsetEnemyLeft: -5800
+  solarSystemView: {fileID: 0}
   animationEmpties:
   - {fileID: 0}
   - {fileID: 0}
@@ -17539,12 +17513,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  FriendNameArray: []
-  EnemyNameArray: []
-  friends: 0
-  enemies: 0
-  FriendShips: []
-  EnemyShips: []
   _statePassedLobbyInit: 0
   _statePassedMain_Init: 0
   _statePassedCombatMenu_Init: 0
@@ -30295,7 +30263,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.8018868, g: 0.502314, b: 0.502314, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -30434,7 +30402,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.31641153, g: 0.8301887, b: 0.37583375, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

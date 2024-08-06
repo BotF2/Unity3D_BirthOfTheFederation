@@ -8,8 +8,10 @@ using Unity.VisualScripting;
 public class ShipManager : MonoBehaviour
 {
     public static ShipManager instance;
-    public GameObject ShipControllerPrefab;
-    public GameObject ShipDataPrefab;
+    [SerializeField]
+    private GameObject shipControllerPrefab;
+    [SerializeField]
+    private GameObject shipDataPrefab;
     public List<ShipController> ShipControllerGameList;
     public List<ShipSO> ShipSOListTech0;
     public List<ShipSO> ShipSOListTech1;
@@ -35,7 +37,7 @@ public class ShipManager : MonoBehaviour
         {
             if (shipSO != null)
             {
-                GameObject shipDataGO = (GameObject)Instantiate(ShipDataPrefab, new Vector3(0, 0, 0),
+                GameObject shipDataGO = (GameObject)Instantiate(shipDataPrefab, new Vector3(0, 0, 0),
                 Quaternion.identity);
                 var shipData = shipDataGO.GetComponent<ShipData>();
                 shipData.ShipName = shipSO.ShipName;
@@ -51,7 +53,7 @@ public class ShipManager : MonoBehaviour
                 shipData.TorpedoDamage = shipSO.TorpedoDamage;
                 shipData.BeamDamage = shipSO.BeamDamage;
                 shipData.Price = shipSO.Price;
-                GameObject shipNewGameOb = (GameObject)Instantiate(ShipControllerPrefab, new Vector3(0, 0, 0),
+                GameObject shipNewGameOb = (GameObject)Instantiate(shipControllerPrefab, new Vector3(0, 0, 0),
                                 Quaternion.identity);
                 shipDataGO.transform.SetParent(shipNewGameOb.transform);
 

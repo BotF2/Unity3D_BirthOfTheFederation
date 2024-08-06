@@ -46,12 +46,12 @@ public class FleetGroupController : MonoBehaviour
         //CanvasToolTip.worldCamera = galaxyEventCamera;
         //FleetData.CurrentWarpFactor = 0f;
         //Name = FleetData.CivShortName + " Fleet " + FleetData.Name;
-        //fleetState = FleetState.FleetStationary;
+        //FleetState = FleetState.FleetStationary;
 
     }
     void Update()
     {
-        //switch (fleetState)
+        //switch (FleetState)
         //{
         //    case FleetState.FleetInSystem:
         //        {
@@ -96,7 +96,7 @@ public class FleetGroupController : MonoBehaviour
         //{
         //    if (FleetData.Destination != null && FleetData.CurrentWarpFactor > 0f)
         //    {
-        //        fleetState = FleetState.FleetAtWarp;
+        //        FleetState = FleetState.FleetAtWarp;
         //        MoveToDesitinationGO();
         //    }
         //}
@@ -148,7 +148,7 @@ public class FleetGroupController : MonoBehaviour
         //    /// use fleet enum state
         //    //this.FleetData.Destination = null;
         //    //this.FleetData.war
-        //    //fleetState = FleetState.FleetInSystem;
+        //    //FleetState = FleetState.FleetInSystem;
         //}
         //FleetManager.instance.
         //1) you get the FleetController of the new fleet GO
@@ -168,7 +168,7 @@ public class FleetGroupController : MonoBehaviour
         //    /// use fleet enum state
         //    //this.FleetData.Destination = null;
         //    //this.FleetData.war
-        //    //fleetState = FleetState.FleetInSystem;
+        //    //FleetState = FleetState.FleetInSystem;
         //}
         //1) you get the FleetController of the new fleet GO
         //2) you ask your factionOwner (CivManager) if you already know the faction of the new fleet
@@ -212,13 +212,13 @@ public class FleetGroupController : MonoBehaviour
         //}
         //Vector3 galaxyPlanePoint = new Vector3(rb.position.x, -60f, rb.position.z);
         //Vector3[] points = { rb.position, galaxyPlanePoint };
-        //dropLine.SetUpLine(points);
+        //DropLine.SetUpLine(points);
     }
     void OnArrivedAtDestination()
     {
-        //if (isArrived == false)
+        //if (IsArrived == false)
         //{
-        //    isArrived = true;
+        //    IsArrived = true;
         //    // Logic to handle what happens when the fleet arrives at the destination
         //    Debug.Log("Arrived at destination: " + this.FleetData.Destination.name);
         //    // Example: Stop the fleet, update UI, trigger events, etc.
