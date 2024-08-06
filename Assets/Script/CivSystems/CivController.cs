@@ -21,7 +21,7 @@ namespace Assets.Core
 
         public void Start()
         {
-            TimeManager.instance.onStardateSpecialEvent = DoStardateEvent;
+            TimeManager.instance.OnStardateSpecialEvent = DoStardateEvent;
         }
         public void UpdateCredits()
         {

@@ -29,7 +29,7 @@ public class StarSysController : MonoBehaviour
         var CanvasGO = GameObject.Find("CanvasStarSysUI");
         canvasStarSysUI = CanvasGO.GetComponent<Canvas>();
         canvasStarSysUI.worldCamera = galaxyEventCamera;
-        TimeManager.instance.onRandomSpecialEvent = DoDisaster;  
+        TimeManager.instance.OnRandomSpecialEvent = DoDisaster;  
     }
     public void UpdatePopulation(int delatPopulation)
     {
@@ -59,11 +59,11 @@ public class StarSysController : MonoBehaviour
     }
     public void OnEnable()
     {
-        TimeManager.instance.onRandomSpecialEvent += DoDisaster;
+        TimeManager.instance.OnRandomSpecialEvent += DoDisaster;
     }
     public void OnDisable()
     {
-        TimeManager.instance.onRandomSpecialEvent -= DoDisaster;
+        TimeManager.instance.OnRandomSpecialEvent -= DoDisaster;
     }
     private void DoDisaster(TrekRandomEventSO specialEvent)
     {

@@ -9,17 +9,17 @@ public class TimeManager : MonoBehaviour
 {
     public static TimeManager instance;
     
-    public event Action<TrekRandomEventSO> OnRandomSpecialEvent; // 
-    public Action<TrekRandomEventSO> onRandomSpecialEvent; // instance of the delegate Action 
-    public event Action<TrekStardateEventSO> OnStardateSpecialEvent; // 
-    public Action<TrekStardateEventSO> onStardateSpecialEvent;
+    public event Action<TrekRandomEventSO> onRandomSpecialEvent; // 
+    public Action<TrekRandomEventSO> OnRandomSpecialEvent; // instance of the delegate Action 
+    public event Action<TrekStardateEventSO> onStardateSpecialEvent; // 
+    public Action<TrekStardateEventSO> OnStardateSpecialEvent;
     public event Action OnStardateChanged; //StardateUIController subscribes the UpdateDateText() function
     private float timer;
     public int currentStardate { get; private set; }
     private Coroutine timeCoroutine;
     private float timeSpeedReducer = 10f;
-    public List<TrekRandomEventSO> randomEvents;
-    public List<TrekStardateEventSO> stardateEvents;
+    public List<TrekRandomEventSO> RandomEvents;
+    public List<TrekStardateEventSO> StardateEvents;
     void Awake()
     {
         if (instance == null)
@@ -62,7 +62,7 @@ public class TimeManager : MonoBehaviour
     // Check for special events and trigger corresponding actions
     private void CheckSpecialEvents()
     {
-        foreach (var specialEvent in randomEvents)
+        foreach (var specialEvent in RandomEvents)
         {
             if (specialEvent != null)
             {
@@ -73,12 +73,12 @@ public class TimeManager : MonoBehaviour
                 }
             }
         }
-        foreach (var specialEvent in stardateEvents)
+        foreach (var specialEvent in StardateEvents)
         {
             if (specialEvent != null && currentStardate == specialEvent.stardate)
             {
                 // Trigger special event
-                onStardateSpecialEvent?.Invoke(specialEvent);
+                OnStardateSpecialEvent?.Invoke(specialEvent);
             }
         }
     }

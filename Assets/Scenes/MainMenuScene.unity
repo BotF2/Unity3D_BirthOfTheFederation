@@ -1518,18 +1518,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f09e5165c6e14964db547498e5904423, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  randomEvents:
-  - {fileID: 11400000, guid: f0a1c974ffd88484cb29c4964b12e2e1, type: 2}
-  - {fileID: 11400000, guid: 999178769fb86d34696f0b203cc51df7, type: 2}
-  - {fileID: 11400000, guid: a5e955a4560ae1e4fa5205208a0b3560, type: 2}
-  - {fileID: 11400000, guid: 1c1b6483047cbd349806f1d56fee6172, type: 2}
-  - {fileID: 11400000, guid: 07f1585f911815c49a58c497f3d19333, type: 2}
-  - {fileID: 11400000, guid: c8316b1368c5d76499c363691fd6e5ef, type: 2}
-  stardateEvents:
-  - {fileID: 11400000, guid: 671d37c8d3f3cc84f82fc9e2734303a1, type: 2}
-  - {fileID: 11400000, guid: a702b933973b93e4aa63f6c48ad40db2, type: 2}
-  - {fileID: 11400000, guid: 17312f4bc30a3254093bd6d06a7512da, type: 2}
-  - {fileID: 11400000, guid: e141730a814a005469338b50ff11913c, type: 2}
+  RandomEvents: []
+  StardateEvents: []
 --- !u!1 &108644946
 GameObject:
   m_ObjectHideFlags: 0

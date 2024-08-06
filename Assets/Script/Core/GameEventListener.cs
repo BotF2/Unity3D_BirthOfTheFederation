@@ -18,12 +18,12 @@ namespace Assets.Core
 
         private void Start()
         {
-            TimeManager.instance.onRandomSpecialEvent = Instance_OnRandomEvent;
+            TimeManager.instance.OnRandomSpecialEvent = Instance_OnRandomEvent;
         }
         private void OnEnable()
         {
             if(TimeManager.instance != null)
-            TimeManager.instance.onRandomSpecialEvent += Instance_OnRandomEvent;
+            TimeManager.instance.OnRandomSpecialEvent += Instance_OnRandomEvent;
         }
 
         private void Instance_OnRandomEvent(TrekRandomEventSO specialEvent)
@@ -79,7 +79,7 @@ namespace Assets.Core
 
         private void OnDisable()
         {
-            TimeManager.instance.onRandomSpecialEvent -= Instance_OnRandomEvent;
+            TimeManager.instance.OnRandomSpecialEvent -= Instance_OnRandomEvent;
         }
         public void OnEventRaised(Component sender, object data)
         {
