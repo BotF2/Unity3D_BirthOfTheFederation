@@ -22,7 +22,7 @@ namespace Assets.Core
         ///  can try using Mirror; with GameObject LocalPlayer = NetworkClient.LocalPlayer.gameObject;
         /// ToDo this...
         /// </summary>
-        public static MainMenuUIController instance;
+        public static MainMenuUIController Instance;
         [SerializeField]
         private GameObject mainMenuCanvas;
         [SerializeField]
@@ -34,9 +34,9 @@ namespace Assets.Core
         [SerializeField]
         private GameObject galaxyCenter;
         public bool PastMainMenu = false; // see TimeManager
-        public GalaxyType SelectedGalaxyType;
-        public GalaxySize SelectedGalaxySize;
-        public TechLevel SelectedTechLevel;
+        public GalaxyType SelectedGalaxyType { get; private set; }
+        public GalaxySize SelectedGalaxySize { get; private set; }
+        public TechLevel SelectedTechLevel { get; private set; }
         public CivEnum SelectedLocalCivEnum;
         //public CivEnum SelectedRemote0CivEnum;//ToDo for multiplayer lobby
         //public CivEnum SelectedRemote1CivEnum;
@@ -74,13 +74,13 @@ namespace Assets.Core
 
         private void Awake()
         {
-            if (instance != null)
+            if (Instance != null)
             {
                 Destroy(gameObject);
             }
             else
             {
-                instance = this;
+                Instance = this;
                 DontDestroyOnLoad(gameObject);
             }
             SinglePlayerCivilizationGroup.enabled = true;
@@ -134,7 +134,7 @@ namespace Assets.Core
             //foreach (var toggle in MultiplayerCivilizationGroup.ActiveToggles().ToArray())
             //{
             //    // ToDo: !!! need to get local player for SetLocalCivilization(int of civ) and
-            //    // CivManager.instance.LocalPlayer = CivManager.instance.GetCivDataByCivEnum(CivEnum...);
+            //    // CivManager.Instance.LocalPlayer = CivManager.Instance.GetCivDataByCivEnum(CivEnum...);
             //    // can try using Mirror; with GameObject LocalPlayer = NetworkClient.LocalPlayer.gameObject;
             //    if (toggle.name == "TOGGLE_FED")
             //    {
@@ -174,7 +174,7 @@ namespace Assets.Core
             {
                 case "TOGGLE_FED":
                     Fed = _activeHostToggle;
-                    CivManager.instance.LocalPlayer = CivManager.instance.GetCivDataByCivEnum(CivEnum.FED);
+                    CivManager.Instance.LocalPlayer = CivManager.Instance.GetCivDataByCivEnum(CivEnum.FED);
                     Debug.Log("Active Fed.");
                     SetLocalCivilization(0);
                     PlaceYouYourselfInPlayerList(0);
@@ -184,13 +184,13 @@ namespace Assets.Core
                     SetLocalCivilization(1);
                     PlaceYouYourselfInPlayerList(1);
                     Rom = _activeHostToggle;
-                    CivManager.instance.LocalPlayer = CivManager.instance.GetCivDataByCivEnum(CivEnum.ROM);
+                    CivManager.Instance.LocalPlayer = CivManager.Instance.GetCivDataByCivEnum(CivEnum.ROM);
                     break;
                 case "TOGGLE_KLING":
                     Debug.Log("Active Kling.");
                     SetLocalCivilization(2);
                     PlaceYouYourselfInPlayerList(2);
-                    CivManager.instance.LocalPlayer = CivManager.instance.GetCivDataByCivEnum(CivEnum.KLING);
+                    CivManager.Instance.LocalPlayer = CivManager.Instance.GetCivDataByCivEnum(CivEnum.KLING);
                     Kling = _activeHostToggle;
                     break;
                 case "TOGGLE_CARD":
@@ -198,28 +198,28 @@ namespace Assets.Core
                     SetLocalCivilization(3);
                     PlaceYouYourselfInPlayerList(3);
                     Card = _activeHostToggle;
-                    CivManager.instance.LocalPlayer = CivManager.instance.GetCivDataByCivEnum(CivEnum.CARD);
+                    CivManager.Instance.LocalPlayer = CivManager.Instance.GetCivDataByCivEnum(CivEnum.CARD);
                     break;
                 case "TOGGLE_DOM":
                     Debug.Log("Active Dom.");
                     SetLocalCivilization(4);
                     PlaceYouYourselfInPlayerList(4);
                     Dom = _activeHostToggle;
-                    CivManager.instance.LocalPlayer = CivManager.instance.GetCivDataByCivEnum(CivEnum.DOM);
+                    CivManager.Instance.LocalPlayer = CivManager.Instance.GetCivDataByCivEnum(CivEnum.DOM);
                     break;
                 case "TOGGLE_BORG":
                     Debug.Log("Active Borg.");
                     SetLocalCivilization(5);
                     PlaceYouYourselfInPlayerList(5);
                     Borg = _activeHostToggle;
-                    CivManager.instance.LocalPlayer = CivManager.instance.GetCivDataByCivEnum(CivEnum.BORG);
+                    CivManager.Instance.LocalPlayer = CivManager.Instance.GetCivDataByCivEnum(CivEnum.BORG);
                     break;
                 case "TOGGLE_TERRAN":
                     Debug.Log("Active Terran.");
                     SetLocalCivilization(158);
                     PlaceYouYourselfInPlayerList(158);
                     Terran = _activeHostToggle;
-                    CivManager.instance.LocalPlayer = CivManager.instance.GetCivDataByCivEnum(CivEnum.TERRAN);
+                    CivManager.Instance.LocalPlayer = CivManager.Instance.GetCivDataByCivEnum(CivEnum.TERRAN);
                     break;
                 default:
                     break;
@@ -349,9 +349,9 @@ namespace Assets.Core
             uiCameraGO.SetActive(false);
             galaxyCenter.SetActive(true);
             PastMainMenu = true;
-            TimeManager.instance.ResumeTime();
+            TimeManager.Instance.ResumeTime();
             SceneManager.LoadScene("GalaxyScene", LoadSceneMode.Additive);
-            CivManager.instance.OnNewGameButtonClicked((int)SelectedGalaxySize, (int)SelectedTechLevel, (int)SelectedGalaxyType,
+            CivManager.Instance.OnNewGameButtonClicked((int)SelectedGalaxySize, (int)SelectedTechLevel, (int)SelectedGalaxyType,
                 (int)SelectedLocalCivEnum, IsSinglePlayer);
 
         }

@@ -18,7 +18,7 @@ namespace Assets.Core
 {
     public class FleetManager : MonoBehaviour
     {
-        public static FleetManager instance;
+        public static FleetManager Instance;
         [SerializeField]
         private List<FleetSO> fleetSOList;// all possible fleetSO(s)
         [SerializeField]
@@ -34,13 +34,13 @@ namespace Assets.Core
        
         private void Awake()
         {
-            if (instance != null)
+            if (Instance != null)
             {
                 Destroy(gameObject);
             }
             else
             {
-                instance = this;
+                Instance = this;
                 DontDestroyOnLoad(gameObject);
             }
         }
@@ -87,7 +87,7 @@ namespace Assets.Core
                 fleetData.CivLongName = civSO.CivLongName;
                 fleetData.CivShortName = civSO.CivShortName;
                 fleetData.Name = (myInt -i).ToString();
-                //fleetData.OurCivController = CivManager.instance.GetCivControllerByEnum(fleetData.CivEnum); // Too early
+                //fleetData.OurCivController = CivManager.Instance.GetCivControllerByEnum(fleetData.CivEnum); // Too early
                 InstantiateFleet(fleetData, position);
             }
         }
@@ -133,7 +133,7 @@ namespace Assets.Core
                 fleetController.FleetData.yAboveGalaxyImage = galaxyCenter.transform.position.y - galaxyPlanePoint.y;
                 fleetController.DropLine = ourLineScript;
                 fleetController.FleetData.ShipsList.Clear();
-                foreach (var civCon in CivManager.instance.CivControllersInGame)
+                foreach (var civCon in CivManager.Instance.CivControllersInGame)
                 {
                     if (civCon.CivData.CivEnum == fleetData.CivEnum)
                         fleetData.OurCivController = civCon;
@@ -142,7 +142,7 @@ namespace Assets.Core
                 fleetController.FleetData.FleetGroupControllers = list;
                 fleetNewGameOb.SetActive(true);
                 
-                ShipManager.instance.BuildShipsOfFirstFleet(fleetNewGameOb);
+                ShipManager.Instance.BuildShipsOfFirstFleet(fleetNewGameOb);
                 
                 GameManager.Instance.LoadGalacticDestinations(fleetData, fleetNewGameOb);
             }

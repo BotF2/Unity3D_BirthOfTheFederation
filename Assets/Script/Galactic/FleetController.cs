@@ -40,7 +40,7 @@ namespace Assets.Core
         [SerializeField]
         private TMP_Text ourDestination;
         private Camera galaxyEventCamera;
-        public Canvas FleetUICanvas;
+        public Canvas FleetUICanvas { get; private set; }
         public Canvas CanvasToolTip;
 
         private void Start()
@@ -129,7 +129,7 @@ namespace Assets.Core
                 //goName = hitObject.name;
                 if (hitObject == gameObject)
                 {
-                    FleetUIManager.instance.LoadFleetUI(gameObject);
+                    FleetUIManager.Instance.LoadFleetUI(gameObject);
                 }
             }
         }
@@ -155,7 +155,7 @@ namespace Assets.Core
         public void OnFleetEncounteredFleet(FleetController fleetController)
         {
             if (fleetController.FleetData.OurCivController != this.FleetData.OurCivController)
-                CivManager.instance.Diplomacy(this.fleetData.OurCivController, fleetController.fleetData.OurCivController);
+                CivManager.Instance.Diplomacy(this.fleetData.OurCivController, fleetController.fleetData.OurCivController);
             else
             {
                 if (this.FleetData.ShipsList.Count >= fleetController.FleetData.ShipsList.Count)
@@ -173,7 +173,7 @@ namespace Assets.Core
                 //this.FleetData.war
                 //FleetState = FleetState.FleetInSystem;
             }
-            //FleetManager.instance.
+            //FleetManager.Instance.
             //1) you get the FleetController of the new fleet GO
             //2) you ask your factionOwner (CivManager) if you already know the faction of the new fleet
             //3) ?first contatact > what kind of hail?
@@ -182,9 +182,9 @@ namespace Assets.Core
         }
         public void OnFleetEncounteredStarSys(StarSysController starSysController)
         {
-            //????StarSysManager.instance.
-            FleetManager.instance.GetFleetGroupInSystemForShipTransfer(starSysController);
-            CivManager.instance.Diplomacy(this.fleetData.OurCivController, starSysController.StarSysData.CurrentCivController);
+            //????StarSysManager.Instance.
+            FleetManager.Instance.GetFleetGroupInSystemForShipTransfer(starSysController);
+            CivManager.Instance.Diplomacy(this.fleetData.OurCivController, starSysController.StarSysData.CurrentCivController);
             // is it our fleet or not? Diplomacy or manage fleets or keep going?
             if (starSysController.gameObject == this.FleetData.Destination)
             {
@@ -200,8 +200,8 @@ namespace Assets.Core
         }
         public void OnFleetEncounteredPlayerDefinedTarget(PlayerDefinedTargetController playerTargetController)
         {
-            //????PlayerDefinedTargetManager.instance.
-            //FleetManager.instance.
+            //????PlayerDefinedTargetManager.Instance.
+            //FleetManager.Instance.
             //1) you get the FleetController of the new fleet GO
             //2) ?build a deep space starbase vs a partol point for travel
 
@@ -270,13 +270,13 @@ namespace Assets.Core
         //}
         public void AddFleetController(FleetController controller) // do we need this?
         {
-            if (!FleetManager.instance.ManagersFleetControllerList.Contains(controller)) 
-                FleetManager.instance.ManagersFleetControllerList.Add(controller);
+            if (!FleetManager.Instance.ManagersFleetControllerList.Contains(controller)) 
+                FleetManager.Instance.ManagersFleetControllerList.Add(controller);
         }
         public void RemoveFleetController(FleetController controller)
         {
-            if (FleetManager.instance.ManagersFleetControllerList.Contains(controller))
-                FleetManager.instance.ManagersFleetControllerList.Remove(controller);
+            if (FleetManager.Instance.ManagersFleetControllerList.Contains(controller))
+                FleetManager.Instance.ManagersFleetControllerList.Remove(controller);
         }
     }
 

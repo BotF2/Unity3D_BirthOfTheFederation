@@ -10,7 +10,7 @@ using UnityEngine.Rendering;
 
 public class FleetSelectionUI : MonoBehaviour
 {
-    public static FleetSelectionUI instance;
+    public static FleetSelectionUI Instance;
     public FleetController clickedFleetController;
     public Canvas parentCanvas;
     [SerializeField]
@@ -26,13 +26,13 @@ public class FleetSelectionUI : MonoBehaviour
 
     private void Awake()
     {
-        if (instance != null)
+        if (Instance != null)
         {
             Destroy(gameObject);
         }
         else
         {
-            instance = this;
+            Instance = this;
             DontDestroyOnLoad(gameObject);
         }
     }
@@ -46,8 +46,8 @@ public class FleetSelectionUI : MonoBehaviour
 
     public void LoadShipUIManager(FleetController fleetController) 
     {
-        StarSysUIManager.instance.UnLoadStarSysUI();
-        FleetUIManager.instance.UnLoadFleetUI();
+        StarSysUIManager.Instance.UnLoadStarSysUI();
+        FleetUIManager.Instance.UnLoadFleetUI();
         ShipManagerUIRoot.SetActive(true);
         clickedFleetController = fleetController;
         CivName.text = clickedFleetController.FleetData.CivLongName;

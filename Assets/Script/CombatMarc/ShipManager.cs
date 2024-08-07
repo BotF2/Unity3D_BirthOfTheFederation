@@ -7,7 +7,7 @@ using Unity.VisualScripting;
 
 public class ShipManager : MonoBehaviour
 {
-    public static ShipManager instance;
+    public static ShipManager Instance;
     [SerializeField]
     private GameObject shipControllerPrefab;
     [SerializeField]
@@ -19,13 +19,13 @@ public class ShipManager : MonoBehaviour
     public List<ShipSO> ShipSOListTech3;
     private void Awake()
     {
-        if (instance != null)
+        if (Instance != null)
         {
             Destroy(gameObject);
         }
         else
         {
-            instance = this;
+            Instance = this;
             DontDestroyOnLoad(gameObject);
         }     
     }
@@ -71,7 +71,7 @@ public class ShipManager : MonoBehaviour
     {
         CivEnum civEnum = (fleetGO.GetComponent<FleetController>().FleetData.CivEnum);
         List<ShipSO> ships = new List<ShipSO>();
-        ships = FirstShipDateByTechlevel((int)CivManager.instance.GetCivDataByCivEnum(civEnum).CivTechLevel, civEnum);
+        ships = FirstShipDateByTechlevel((int)CivManager.Instance.GetCivDataByCivEnum(civEnum).CivTechLevel, civEnum);
         //if (ships != null)
         List<GameObject> shipGOs = new List<GameObject>();
         if (ships != null)

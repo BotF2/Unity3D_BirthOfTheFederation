@@ -57,7 +57,7 @@ public class StarSysData
     //public CivController GetCivController(CivEnum civEnum)
     //{
     //    CivController civCon = new CivController("null");
-    //    civCon = CivManager.instance.GetCivControllerByEnum(civEnum);
+    //    civCon = CivManager.Instance.GetCivControllerByEnum(civEnum);
 
     //    return civCon;
     //}

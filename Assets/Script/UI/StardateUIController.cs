@@ -12,17 +12,17 @@ public class StardateUIController : MonoBehaviour
 
     private void OnEnable()
     {
-        if (TimeManager.instance != null)
-        TimeManager.instance.OnStardateChanged += UpdateDateText;
+        if (TimeManager.Instance != null)
+        TimeManager.Instance.OnStardateChanged += UpdateDateText;
     }
 
     private void OnDisable()
     {
-        if (TimeManager.instance != null)
-        TimeManager.instance.OnStardateChanged -= UpdateDateText;
+        if (TimeManager.Instance != null)
+        TimeManager.Instance.OnStardateChanged -= UpdateDateText;
     }
     void UpdateDateText()
     {
-        stardateText.text = TimeManager.instance.currentStardate.ToString();
+        stardateText.text = TimeManager.Instance.currentStardate.ToString();
     }
 }

@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 
 public class HoverManager : MonoBehaviour
 {
-    public static HoverManager instance;
+    public static HoverManager Instance;
     public Canvas parentCanvas;
     public Transform ToolTipTrans;
     public TextMeshProUGUI Name;
@@ -14,13 +14,13 @@ public class HoverManager : MonoBehaviour
 
     private void Awake()
     {    
-        if (instance != null)
+        if (Instance != null)
         {
             Destroy(gameObject);
         }
         else
         {
-            instance = this;
+            Instance = this;
             DontDestroyOnLoad(gameObject);
         }
     }

@@ -37,7 +37,7 @@ public class ShipController : MonoBehaviour
         //    GameObject hitObject = hit.collider.gameObject;
         //    goName = hitObject.name;
         //}
-        //CombatUIManager.instance.LoadShipUI(gameObject);
+        //CombatUIManager.Instance.LoadShipUI(gameObject);
     }
     void OnTriggerEnter(Collider collider)
     {

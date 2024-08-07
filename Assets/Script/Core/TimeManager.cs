@@ -7,10 +7,10 @@ using Assets.Core;
 
 public class TimeManager : MonoBehaviour
 {
-    public static TimeManager instance;
+    public static TimeManager Instance;
     
     public event Action<TrekRandomEventSO> onRandomSpecialEvent; // 
-    public Action<TrekRandomEventSO> OnRandomSpecialEvent; // instance of the delegate Action 
+    public Action<TrekRandomEventSO> OnRandomSpecialEvent; // Instance of the delegate Action 
     public event Action<TrekStardateEventSO> onStardateSpecialEvent; // 
     public Action<TrekStardateEventSO> OnStardateSpecialEvent;
     public event Action OnStardateChanged; //StardateUIController subscribes the UpdateDateText() function
@@ -22,11 +22,11 @@ public class TimeManager : MonoBehaviour
     public List<TrekStardateEventSO> StardateEvents;
     void Awake()
     {
-        if (instance == null)
-            instance = this;
-        else if (instance != this)
+        if (Instance == null)
+            Instance = this;
+        else if (Instance != this)
         {
-            instance = this;
+            Instance = this;
             DontDestroyOnLoad(gameObject);
         }
     }
@@ -45,7 +45,7 @@ public class TimeManager : MonoBehaviour
     private System.Collections.IEnumerator TimeProgression()
     {
 
-        while (MainMenuUIController.instance.PastMainMenu) 
+        while (MainMenuUIController.Instance.PastMainMenu) 
         {
             yield return new WaitForSeconds(10f / timeSpeedReducer); // 10 seconds in game = 1 oneInXChance
             // Increment current day

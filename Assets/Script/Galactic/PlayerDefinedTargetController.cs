@@ -32,7 +32,7 @@ public class PlayerDefinedTargetController : MonoBehaviour
     }
     public void OnFleetEncounteredFleet(FleetController fleetController)
     {
-        //FleetManager.instance.
+        //FleetManager.Instance.
         //1) you get the FleetController of the new fleet GO
         //2) you will need to apply different logics depending of the answer
     }

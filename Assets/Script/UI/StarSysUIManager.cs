@@ -12,7 +12,7 @@ using System.Linq;
 [DebuggerDisplay("{" + nameof(GetDebuggerDisplay) + "(),nq}")]
 public class StarSysUIManager : MonoBehaviour
 {
-    public static StarSysUIManager instance;
+    public static StarSysUIManager Instance;
     public StarSysController controller; // system we clicked
     public Canvas parentCanvas;
     [SerializeField]
@@ -52,13 +52,13 @@ public class StarSysUIManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance != null)
+        if (Instance != null)
         {
             Destroy(gameObject);
         }
         else
         {
-            instance = this;
+            Instance = this;
             DontDestroyOnLoad(gameObject);
         }
     }
@@ -72,13 +72,13 @@ public class StarSysUIManager : MonoBehaviour
 
     public void LoadStarSysUI(GameObject go) 
     {
-        FleetUIManager.instance.UnLoadFleetUI();
-        FleetSelectionUI.instance.UnLoadShipManagerUI();
+        FleetUIManager.Instance.UnLoadFleetUI();
+        FleetSelectionUI.Instance.UnLoadShipManagerUI();
         starSysUIRoot.SetActive(true);
 
         controller = go.GetComponent<StarSysController>();
         var civEnum = controller.StarSysData.CurrentOwner;
-        var civData = CivManager.instance.GetCivDataByCivEnum(civEnum);
+        var civData = CivManager.Instance.GetCivDataByCivEnum(civEnum);
 
         CivName.text = civData.CivLongName;
         LoadSystemsList(civData.CivEnum);
@@ -86,7 +86,7 @@ public class StarSysUIManager : MonoBehaviour
     private void LoadSystemsList(CivEnum civEnum)
     {
         sysControllerList.Clear(); 
-        foreach (var sysController in StarSysManager.instance.StarSysControllerList)
+        foreach (var sysController in StarSysManager.Instance.StarSysControllerList)
         {
             if (sysController.StarSysData.CurrentOwner == civEnum)
             {

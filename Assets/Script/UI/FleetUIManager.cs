@@ -12,7 +12,7 @@ using static System.Net.Mime.MediaTypeNames;
 [DebuggerDisplay("{" + nameof(GetDebuggerDisplay) + "(),nq}")]
 public class FleetUIManager : MonoBehaviour
 {
-    public static FleetUIManager instance;
+    public static FleetUIManager Instance;
     public FleetController controller;
     public Canvas parentCanvas;
     [SerializeField]
@@ -46,13 +46,13 @@ public class FleetUIManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance != null)
+        if (Instance != null)
         {
             Destroy(gameObject);
         }
         else
         {
-            instance = this;
+            Instance = this;
             DontDestroyOnLoad(gameObject);
         }
     }
@@ -77,12 +77,12 @@ public class FleetUIManager : MonoBehaviour
     }
     public void OnClickShipManager()
     {
-        FleetSelectionUI.instance.LoadShipUIManager(controller);
+        FleetSelectionUI.Instance.LoadShipUIManager(controller);
     }
     public void LoadFleetUI(GameObject go) 
     {
-        StarSysUIManager.instance.UnLoadStarSysUI();
-        FleetSelectionUI.instance.UnLoadShipManagerUI();
+        StarSysUIManager.Instance.UnLoadStarSysUI();
+        FleetSelectionUI.Instance.UnLoadShipManagerUI();
         fleetUIRoot.SetActive(true);
         destinationDropdown.options.Clear();
         noDestination = GameManager.Instance.NoDestination;

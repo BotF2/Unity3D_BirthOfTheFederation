@@ -12,7 +12,7 @@ namespace Assets.Core
 
     public class CivManager : MonoBehaviour
     {
-        public static CivManager instance;
+        public static CivManager Instance;
         [SerializeField]
         private List<CivSO> civSOListSmall;
         [SerializeField]
@@ -37,10 +37,10 @@ namespace Assets.Core
 
         private void Awake()
         {
-            if (instance != null) { Destroy(gameObject); }
+            if (Instance != null) { Destroy(gameObject); }
             else
             {
-                instance = this;
+                Instance = this;
                 DontDestroyOnLoad(gameObject);
             }
             //ToDo: early random minor races set before menu selects size and tech
@@ -71,9 +71,9 @@ namespace Assets.Core
             //            civ.CivData.Decription = "temp civ member of Federation";
             //        }
             //    }
-            //    StarSysManager.instance.UpdateStarSystemOwner(CivEnum.ANDORIANS, CivEnum.FED);
-            //    StarSysManager.instance.UpdateStarSystemOwner(CivEnum.VULCANS, CivEnum.FED);
-            //    StarSysManager.instance.UpdateStarSystemOwner(CivEnum.TELLARITES, CivEnum.FED);
+            //    StarSysManager.Instance.UpdateStarSystemOwner(CivEnum.ANDORIANS, CivEnum.FED);
+            //    StarSysManager.Instance.UpdateStarSystemOwner(CivEnum.VULCANS, CivEnum.FED);
+            //    StarSysManager.Instance.UpdateStarSystemOwner(CivEnum.TELLARITES, CivEnum.FED);
             //}
             //nowCivsCanJoinTheFederation = false;
         }
@@ -96,24 +96,24 @@ namespace Assets.Core
             { case 0:
                 CivDataFromSO(civSOListSmall);
                 CreateCivEnumList(civSOListSmall);
-                //ShipManager.instance.SendEarlyCivSOListForFirstShips(civSOListSmall);
+                //ShipManager.Instance.SendEarlyCivSOListForFirstShips(civSOListSmall);
                 break;
               case 1:
 
                 CivDataFromSO(civSOListMedium);
                 CreateCivEnumList(civSOListMedium);
-                //ShipManager.instance.SendEarlyCivSOListForFirstShips(civSOListMedium);
+                //ShipManager.Instance.SendEarlyCivSOListForFirstShips(civSOListMedium);
                 HoldCivSize = sizeGame; // used in Multisystems in Fedearation test code 
                 break;
               case 2:
                 CivDataFromSO(civSOListLarge);
                 CreateCivEnumList(civSOListLarge);
-                //ShipManager.instance.SendEarlyCivSOListForFirstShips(civSOListLarge);
+                //ShipManager.Instance.SendEarlyCivSOListForFirstShips(civSOListLarge);
                 break;
               default:
                 CivDataFromSO(civSOListSmall);
                 CreateCivEnumList(civSOListSmall);
-                //ShipManager.instance.SendEarlyCivSOListForFirstShips(civSOListSmall);
+                //ShipManager.Instance.SendEarlyCivSOListForFirstShips(civSOListSmall);
                 break;
             }
         }
@@ -145,7 +145,7 @@ namespace Assets.Core
             if (CivDataInGameList[0].CivHomeSystem != null) { }
             else
                 CivDataInGameList.Remove(CivDataInGameList[0]); // remove the null entered by field
-            StarSysManager.instance.SysDataFromSO(civSOList);
+            StarSysManager.Instance.SysDataFromSO(civSOList);
         }
         private void InstantiateCivilizations(CivData civData)
         {

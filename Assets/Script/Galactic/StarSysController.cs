@@ -29,7 +29,7 @@ public class StarSysController : MonoBehaviour
         var CanvasGO = GameObject.Find("CanvasStarSysUI");
         canvasStarSysUI = CanvasGO.GetComponent<Canvas>();
         canvasStarSysUI.worldCamera = galaxyEventCamera;
-        TimeManager.instance.OnRandomSpecialEvent = DoDisaster;  
+        TimeManager.Instance.OnRandomSpecialEvent = DoDisaster;  
     }
     public void UpdatePopulation(int delatPopulation)
     {
@@ -53,17 +53,17 @@ public class StarSysController : MonoBehaviour
           
             if (hitObject == gameObject)
             {
-                StarSysUIManager.instance.LoadStarSysUI(gameObject);
+                StarSysUIManager.Instance.LoadStarSysUI(gameObject);
             }
         }
     }
     public void OnEnable()
     {
-        TimeManager.instance.OnRandomSpecialEvent += DoDisaster;
+        TimeManager.Instance.OnRandomSpecialEvent += DoDisaster;
     }
     public void OnDisable()
     {
-        TimeManager.instance.OnRandomSpecialEvent -= DoDisaster;
+        TimeManager.Instance.OnRandomSpecialEvent -= DoDisaster;
     }
     private void DoDisaster(TrekRandomEventSO specialEvent)
     {

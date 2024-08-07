@@ -14,7 +14,7 @@ namespace Assets.Core
 {
     public class StarSysManager : MonoBehaviour
     {
-        public static StarSysManager instance;
+        public static StarSysManager Instance;
         [SerializeField]
         private List<StarSysSO> starSysSOList; // get StarSysSO for civ by int
         [SerializeField]
@@ -29,10 +29,10 @@ namespace Assets.Core
         private int systemCount = -1; // Used only in testing multiple systems in Federation
         private void Awake()
         {
-            if (instance != null) { Destroy(gameObject); }
+            if (Instance != null) { Destroy(gameObject); }
             else
             {
-                instance = this;
+                Instance = this;
                 DontDestroyOnLoad(gameObject);
             }
         }
@@ -76,7 +76,7 @@ namespace Assets.Core
                 //starSysDatas.Add(SysData);
                 InstantiateSystem(SysData, civSO);
                 if (civSO.HasWarp)
-                    FleetManager.instance.FleetDataFromSO(civSO, SysData.GetPosition());
+                    FleetManager.Instance.FleetDataFromSO(civSO, SysData.GetPosition());
                 if (SysData.SysName != "null")
                     starSysDatas.Add(SysData);
             }
@@ -138,7 +138,7 @@ namespace Assets.Core
             StarSysController controller = starSystemNewGameOb.GetComponentInChildren<StarSysController>();
             controller.name = sysData.GetSysName();
             controller.StarSysData = sysData;
-            foreach (var civCon in CivManager.instance.CivControllersInGame)
+            foreach (var civCon in CivManager.Instance.CivControllersInGame)
             {
                 if (civCon.CivData.CivEnum == controller.StarSysData.GetFirstOwner())
                     controller.StarSysData.CurrentCivController = civCon;
@@ -146,12 +146,12 @@ namespace Assets.Core
             starSystemNewGameOb.SetActive(true);
             StarSysControllerList.Add(controller);
             systemCount++;
-            CivManager.instance.AddSystemToOwnedCivSystemList(controller);
+            CivManager.Instance.AddSystemToOwnedCivSystemList(controller);
             //***** This is temporary so we can test a multi-starsystem civ
             //******* before diplomacy will alow civs/systems to join another civ
             //if (systemCount == 8)
             //{
-            //    CivManager.instance.nowCivsCanJoinTheFederation = true;
+            //    CivManager.Instance.nowCivsCanJoinTheFederation = true;
             //}
         }
 
