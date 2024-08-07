@@ -304,11 +304,12 @@ namespace Assets.Core
         }
         public void NextButton()
         {
-            panelLobby.SetActive(false);
-            panelMuliplayer.SetActive(false);
-            panelCivSelection.SetActive(true);
-            mulitplayerToggleGroup.SetActive(true);
-            panelGamePara.SetActive(false);
+            //ToDo ***Turned off for now
+            //panelLobby.SetActive(false);
+            //panelMuliplayer.SetActive(false);
+            //panelCivSelection.SetActive(true);
+            //mulitplayerToggleGroup.SetActive(true); //**** currently set to mulitplayer toggle, not single player
+            //panelGamePara.SetActive(false);
         }
         public void ReturnButton()
         {
