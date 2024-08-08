@@ -68,9 +68,13 @@ namespace Assets.Core
         //private Toggle _activeRemote4;
         //private Toggle _activeRemote5;
         //private Toggle _activeRemote6;
-        public Toggle Fed, Rom, Kling, Card, Dom, Borg, Terran;
+        public Toggle FedLocalPalyerToggle, RomLocalPlayerToggle, KlingLocalPlayerToggle, CardLocalPlayerToggle,
+            DomLocalPlayerToggle, BorgLocalPlayerToggle, TerranLocalPlayerToggle;
+        
         public ToggleGroup SinglePlayerCivilizationGroup;
-        //public ToggleGroup MultiplayerCivilizationGroup;// Does this need to be a group in the multiplayer setting, maybe not
+        //public ToggleGroup MultiplayerCivilizationGroup;// Can and should this be a group in the multiplayer setting, maybe.
+        public Toggle FedOnOff, RomOnOff, KlingOnOff, CardOnOff, DomOnOff, BorgOnOff, TerranOnOff;
+        List<Toggle> OnOffToggles = new List<Toggle>();
 
         private void Awake()
         {
@@ -85,43 +89,50 @@ namespace Assets.Core
             }
             SinglePlayerCivilizationGroup.enabled = true;
             SinglePlayerCivilizationGroup = singlePlayToggleGroup.GetComponent<ToggleGroup>();
-            SinglePlayerCivilizationGroup.RegisterToggle(Fed);
-            SinglePlayerCivilizationGroup.RegisterToggle(Kling);
-            SinglePlayerCivilizationGroup.RegisterToggle(Rom);
-            SinglePlayerCivilizationGroup.RegisterToggle(Card);
-            SinglePlayerCivilizationGroup.RegisterToggle(Dom);
-            SinglePlayerCivilizationGroup.RegisterToggle(Borg);
-            SinglePlayerCivilizationGroup.RegisterToggle(Terran);
-            Fed.isOn = true;
-            Kling.isOn = false;
-            Rom.isOn = false;
-            Card.isOn = false;
-            Dom.isOn = false;
-            Borg.isOn = false;
-            Terran.isOn = false;
+            SinglePlayerCivilizationGroup.RegisterToggle(FedLocalPalyerToggle);
+            SinglePlayerCivilizationGroup.RegisterToggle(KlingLocalPlayerToggle);
+            SinglePlayerCivilizationGroup.RegisterToggle(RomLocalPlayerToggle);
+            SinglePlayerCivilizationGroup.RegisterToggle(CardLocalPlayerToggle);
+            SinglePlayerCivilizationGroup.RegisterToggle(DomLocalPlayerToggle);
+            SinglePlayerCivilizationGroup.RegisterToggle(BorgLocalPlayerToggle);
+            SinglePlayerCivilizationGroup.RegisterToggle(TerranLocalPlayerToggle);
+            FedOnOff.isOn = true;
+            RomOnOff.isOn = true;
+            KlingOnOff.isOn = true;
+            CardOnOff.isOn = true;
+            DomOnOff.isOn = true;
+            BorgOnOff.isOn = true;
+            TerranOnOff.isOn = false;
 
             // Pending Multiplayer lobby if needed
             //MultiplayerCivilizationGroup.enabled = true;
             //MultiplayerCivilizationGroup = mulitplayerToggleGroup.GetComponent<ToggleGroup>();
-            //MultiplayerCivilizationGroup.RegisterToggle(Fed);
-            //MultiplayerCivilizationGroup.RegisterToggle(Kling);
-            //MultiplayerCivilizationGroup.RegisterToggle(Rom);
-            //MultiplayerCivilizationGroup.RegisterToggle(Card);
-            //MultiplayerCivilizationGroup.RegisterToggle(Dom);
-            //MultiplayerCivilizationGroup.RegisterToggle(Borg);
-            //MultiplayerCivilizationGroup.RegisterToggle(Terran);
+            //MultiplayerCivilizationGroup.RegisterToggle(FedLocalPalyerToggle);
+            //MultiplayerCivilizationGroup.RegisterToggle(KlingLocalPlayerToggle);
+            //MultiplayerCivilizationGroup.RegisterToggle(RomLocalPlayerToggle);
+            //MultiplayerCivilizationGroup.RegisterToggle(CardLocalPlayerToggle);
+            //MultiplayerCivilizationGroup.RegisterToggle(DomLocalPlayerToggle);
+            //MultiplayerCivilizationGroup.RegisterToggle(BorgLocalPlayerToggle);
+            //MultiplayerCivilizationGroup.RegisterToggle(TerranLocalPlayerToggle);
         }
         private void Start()
         {
-            Fed.isOn = true;
-            Fed.Select();
-            Fed.OnSelect(null); // turns background selected color on, go figure.
-            Kling.isOn = false;
-            Rom.isOn = false;
-            Card.isOn = false;
-            Dom.isOn = false;
-            Borg.isOn = false;
-            Terran.isOn = false;
+            FedLocalPalyerToggle.isOn = true;
+            FedLocalPalyerToggle.Select();
+            FedLocalPalyerToggle.OnSelect(null); // turns background selected color on, go figure.
+            KlingLocalPlayerToggle.isOn = false;
+            RomLocalPlayerToggle.isOn = false;
+            CardLocalPlayerToggle.isOn = false;
+            DomLocalPlayerToggle.isOn = false;
+            BorgLocalPlayerToggle.isOn = false;
+            TerranLocalPlayerToggle.isOn = false;
+            OnOffToggles.Add(FedOnOff); 
+            OnOffToggles.Add(RomOnOff); 
+            OnOffToggles.Add(KlingOnOff);
+            OnOffToggles.Add(CardOnOff);
+            OnOffToggles.Add(DomOnOff);
+            OnOffToggles.Add(BorgOnOff);
+            OnOffToggles.Add(TerranOnOff);
 
         }
         private void UpdatePlayers()
@@ -138,32 +149,32 @@ namespace Assets.Core
             //    // can try using Mirror; with GameObject LocalPlayer = NetworkClient.LocalPlayer.gameObject;
             //    if (toggle.name == "TOGGLE_FED")
             //    {
-            //        Fed = _activeRemote0;
+            //        FedLocalPalyerToggle = _activeRemote0;
             //    }
             //    else if (toggle.name == "TOGGLE_ROM")
             //    {
-            //        Rom = _activeRemote1;
+            //        RomLocalPlayerToggle = _activeRemote1;
             //    }
             //    else if (toggle.name == "TOGGLE_KLING")
             //    {
-            //        Kling = _activeRemote2;
+            //        KlingLocalPlayerToggle = _activeRemote2;
             //    }
 
             //    else if (toggle.name == "TOGGLE_CARD")
             //    {
-            //        Card = _activeRemote3;
+            //        CardLocalPlayerToggle = _activeRemote3;
             //    }
             //    else if (toggle.name == "TOGGLE_DOM")
             //    {
-            //        Dom = _activeRemote4;
+            //        DomLocalPlayerToggle = _activeRemote4;
             //    }
             //    else if (toggle.name == "TOGGLE_BORG")
             //    {
-            //        Borg = _activeRemote5;
+            //        BorgLocalPlayerToggle = _activeRemote5;
             //    }
             //    else if (toggle.name == "TOGGLE_TERRAN")
             //    {
-            //        Terran = _activeRemote6;
+            //        TerranLocalPlayerToggle = _activeRemote6;
             //    }
             //}
         }
@@ -173,52 +184,66 @@ namespace Assets.Core
             switch (_activeHostToggle.name.ToUpper())
             {
                 case "TOGGLE_FED":
-                    Fed = _activeHostToggle;
+                    FedOnOff.isOn = true;
+                    FedOnOff.OnSelect(null);
+                    FedLocalPalyerToggle = _activeHostToggle;
                     CivManager.Instance.LocalPlayer = CivManager.Instance.GetCivDataByCivEnum(CivEnum.FED);
-                    Debug.Log("Active Fed.");
+                    Debug.Log("Active FedLocalPalyerToggle.");
                     SetLocalCivilization(0);
                     PlaceYouYourselfInPlayerList(0);
                     break;
                 case "TOGGLE_ROM":
-                    Debug.Log("Active Rom.");
+                    RomOnOff.isOn = true;
+                    RomOnOff.OnSelect(null);
+                    RomLocalPlayerToggle = _activeHostToggle;
+                    Debug.Log("Active RomLocalPlayerToggle.");
                     SetLocalCivilization(1);
                     PlaceYouYourselfInPlayerList(1);
-                    Rom = _activeHostToggle;
                     CivManager.Instance.LocalPlayer = CivManager.Instance.GetCivDataByCivEnum(CivEnum.ROM);
                     break;
                 case "TOGGLE_KLING":
-                    Debug.Log("Active Kling.");
+                    KlingOnOff.isOn = true;
+                    KlingOnOff.OnSelect(null);
+                    KlingLocalPlayerToggle = _activeHostToggle;
+                    Debug.Log("Active KlingLocalPlayerToggle.");
                     SetLocalCivilization(2);
                     PlaceYouYourselfInPlayerList(2);
                     CivManager.Instance.LocalPlayer = CivManager.Instance.GetCivDataByCivEnum(CivEnum.KLING);
-                    Kling = _activeHostToggle;
                     break;
                 case "TOGGLE_CARD":
-                    Debug.Log("Active Card.");
+                    CardOnOff.isOn = true; 
+                    CardOnOff.OnSelect(null);
+                    CardLocalPlayerToggle = _activeHostToggle;
+                    Debug.Log("Active CardLocalPlayerToggle.");
                     SetLocalCivilization(3);
                     PlaceYouYourselfInPlayerList(3);
-                    Card = _activeHostToggle;
                     CivManager.Instance.LocalPlayer = CivManager.Instance.GetCivDataByCivEnum(CivEnum.CARD);
                     break;
                 case "TOGGLE_DOM":
-                    Debug.Log("Active Dom.");
+                    DomOnOff.isOn = true;
+                    DomOnOff.OnSelect(null);
+                    DomLocalPlayerToggle = _activeHostToggle;
+                    Debug.Log("Active DomLocalPlayerToggle.");
                     SetLocalCivilization(4);
                     PlaceYouYourselfInPlayerList(4);
-                    Dom = _activeHostToggle;
                     CivManager.Instance.LocalPlayer = CivManager.Instance.GetCivDataByCivEnum(CivEnum.DOM);
                     break;
                 case "TOGGLE_BORG":
-                    Debug.Log("Active Borg.");
+                    BorgOnOff.isOn = true;
+                    BorgOnOff.OnSelect(null);
+                    BorgLocalPlayerToggle = _activeHostToggle;
+                    Debug.Log("Active BorgLocalPlayerToggle.");
                     SetLocalCivilization(5);
                     PlaceYouYourselfInPlayerList(5);
-                    Borg = _activeHostToggle;
                     CivManager.Instance.LocalPlayer = CivManager.Instance.GetCivDataByCivEnum(CivEnum.BORG);
                     break;
                 case "TOGGLE_TERRAN":
-                    Debug.Log("Active Terran.");
+                    TerranOnOff.isOn = true;
+                    TerranOnOff.OnDeselect(null);
+                    TerranLocalPlayerToggle = _activeHostToggle;
+                    Debug.Log("Active TerranLocalPlayerToggle.");
                     SetLocalCivilization(158);
                     PlaceYouYourselfInPlayerList(158);
-                    Terran = _activeHostToggle;
                     CivManager.Instance.LocalPlayer = CivManager.Instance.GetCivDataByCivEnum(CivEnum.TERRAN);
                     break;
                 default:
@@ -281,6 +306,18 @@ namespace Assets.Core
             panelMuliplayer.SetActive(!singleMultiSelection);
             panelCivSelection.SetActive(singleMultiSelection);
             singlePlayToggleGroup.SetActive(true);
+        }
+        private void OnTogglePlayerToggleInGame(Toggle civPlayedToggle)
+        {
+            if (civPlayedToggle.isOn)
+            {
+                foreach (var tog in OnOffToggles)
+                {
+                    if (tog == civPlayedToggle)
+                        tog.isOn = true;
+                }
+            }
+                
         }
         public void LoadSavedGame()
         {

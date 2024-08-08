@@ -41,22 +41,22 @@ namespace Assets.Core
                     case TrekStardateEvents.FederartionEst:
                         {
                             // ToDo: Do Disaster code for each disaster 
-                            Debug.Log("******** Fed Established ***********"); ;
+                            Debug.Log("******** FedLocalPalyerToggle Established ***********"); ;
                             break;
                         }
                     case TrekStardateEvents.RomulanNeutralZoneEst:
                         {
-                            Debug.Log("********** Rom Neutral Zone established **********");
+                            Debug.Log("********** RomLocalPlayerToggle Neutral Zone established **********");
                             break;
                         }
                     case TrekStardateEvents.KhitomerRomulanAttack:
                         {
-                            Debug.Log("********** Khitomer Rom Attack **********");
+                            Debug.Log("********** Khitomer RomLocalPlayerToggle Attack **********");
                             break;
                         }
                     case TrekStardateEvents.QandTheBorg:
                         {
-                            Debug.Log("********** Q and Borg **********");
+                            Debug.Log("********** Q and BorgLocalPlayerToggle **********");
                             break;
                         }
                     default:

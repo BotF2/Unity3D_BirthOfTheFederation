@@ -2748,9 +2748,6 @@ MonoBehaviour:
   uiCameraGO: {fileID: 1302084395}
   galaxyCenter: {fileID: 564492290}
   PastMainMenu: 0
-  SelectedGalaxyType: 0
-  SelectedGalaxySize: 0
-  SelectedTechLevel: 0
   SelectedLocalCivEnum: 0
   IsSinglePlayer: 0
   panelLobby: {fileID: 270225717}
@@ -2766,13 +2763,20 @@ MonoBehaviour:
   playerDom: {fileID: 810422452}
   playerBorg: {fileID: 701802094}
   playerTerran: {fileID: 1725172053}
-  Fed: {fileID: 328394470}
-  Rom: {fileID: 515176094}
-  Kling: {fileID: 1216783783}
-  Card: {fileID: 1937191118}
-  Dom: {fileID: 2133290542}
-  Borg: {fileID: 1763767021}
-  Terran: {fileID: 1787285891}
+  FedLocalPalyerToggle: {fileID: 328394470}
+  RomLocalPlayerToggle: {fileID: 515176094}
+  KlingLocalPlayerToggle: {fileID: 1216783783}
+  CardLocalPlayerToggle: {fileID: 1937191118}
+  DomLocalPlayerToggle: {fileID: 2133290542}
+  BorgLocalPlayerToggle: {fileID: 1763767021}
+  TerranLocalPlayerToggle: {fileID: 1787285891}
+  FedOnOff: {fileID: 1038907108}
+  RomOnOff: {fileID: 1687844378}
+  KlingOnOff: {fileID: 1626525931}
+  CardOnOff: {fileID: 1615495581}
+  DomOnOff: {fileID: 297851393}
+  BorgOnOff: {fileID: 1474495130}
+  TerranOnOff: {fileID: 1929148016}
   SinglePlayerCivilizationGroup: {fileID: 1369377087}
 --- !u!4 &206574037
 Transform:
@@ -10601,7 +10605,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &593379917
 RectTransform:
   m_ObjectHideFlags: 0

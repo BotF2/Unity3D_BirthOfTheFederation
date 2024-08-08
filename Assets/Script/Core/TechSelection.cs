@@ -57,22 +57,22 @@ namespace Assets.Core
                     Supreme = _activeTechToggle;
                     GameManager.Instance._techLevelOnLoadGame = TechLevel.SUPREME;
                     //GameManager.Instance.LoadStartGameObjectNames(Environment.CurrentDirectory + "\\Assets\\" + "Temp_GameObjectData.txt"); //"SupremeGameObjectsData.txt");
-                    Debug.Log("Active Fed.");
+                    Debug.Log("Active FedLocalPalyerToggle.");
                     break;
                 case "TOGGLE_ADVANCED":
-                    Debug.Log("Active Kling.");
+                    Debug.Log("Active KlingLocalPlayerToggle.");
                     Advanced = _activeTechToggle;
                     GameManager.Instance._techLevelOnLoadGame = TechLevel.ADVANCED;
                     //GameManager.Instance.LoadStartGameObjectNames(Environment.CurrentDirectory + "\\Assets\\" + "Temp_GameObjectData.txt");// "AdvancedGameObjectData.txt");
                     break;
                 case "TOGGLE_DEVELOPED":
-                    Debug.Log("Active Rom.");
+                    Debug.Log("Active RomLocalPlayerToggle.");
                     Developed = _activeTechToggle;
                     GameManager.Instance._techLevelOnLoadGame = TechLevel.DEVELOPED;
                     //GameManager.Instance.LoadStartGameObjectNames(Environment.CurrentDirectory + "\\Assets\\" + "Temp_GameObjectData.txt"); //"DevelopedGameObjectsData.txt");
                     break;
                 case "TOGGLE_EARLY":
-                    Debug.Log("Active Card.");
+                    Debug.Log("Active CardLocalPlayerToggle.");
                     Early = _activeTechToggle;
                     GameManager.Instance._techLevelOnLoadGame = TechLevel.EARLY;
                     //GameManager.Instance.LoadStartGameObjectNames(Environment.CurrentDirectory + "\\Assets\\" + "Temp_GameObjectData.txt"); //"EarlyGameObjectData.txt");

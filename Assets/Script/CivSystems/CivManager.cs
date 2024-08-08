@@ -28,7 +28,7 @@ namespace Assets.Core
         public CivData LocalPlayer;
         public bool isSinglePlayer;
         //public bool nowCivsCanJoinTheFederation = true; // for use with testing a muliple system Federation
-        private int HoldCivSize = 0;// used in testing of a multisystem civilization/faction
+        private int HoldCivSize = 0;// used in testing of a multiStarSystem civilization/faction
         [SerializeField]
         private GameObject civFolder;
         [SerializeField]
