@@ -27,7 +27,7 @@ namespace Assets.Core
         public Dictionary<CivController, List<CivController>> CivsThatACivKnows = new Dictionary<CivController, List<CivController>>();
         public CivData LocalPlayer;
         public bool isSinglePlayer;
-        //public bool nowCivsCanJoinTheFederation = true; // for use with testing a muliple system Federation
+        //public bool nowCivsCanJoinTheFederation = true; // for use with testing a muliple star system Federation
         private int HoldCivSize = 0;// used in testing of a multiStarSystem civilization/faction
         [SerializeField]
         private GameObject civFolder;
@@ -47,9 +47,10 @@ namespace Assets.Core
         }
         private void Update()
         {
+            #region temp multi-starsystem hack
             //***** This is temporary so we can test a multi-starsystem civ
             //******* before diplomacy will alow civs/systems to join another civ
-            
+
             //if (nowCivsCanJoinTheFederation && HoldCivSize == 1)
             //{
             //    foreach (var civ in CivControllersInGame)
@@ -76,16 +77,32 @@ namespace Assets.Core
             //    StarSysManager.Instance.UpdateStarSystemOwner(CivEnum.TELLARITES, CivEnum.FED);
             //}
             //nowCivsCanJoinTheFederation = false;
+            #endregion
         }
         public void SetSingleVsMulitplayer()
         {
 
         }
+        public void UpdatePlayableCivList(List<CivEnum> listForCivSOs, int galaxySize)
+        {
+            List<CivEnum> soListInGame = new List<CivEnum>() { CivEnum.FED, CivEnum.ROM, CivEnum.KLING, CivEnum.CARD, CivEnum.DOM, CivEnum.BORG, CivEnum.TERRAN};
+            GameManager.Instance._galaxySize = (GalaxySize)galaxySize;
+            switch (galaxySize)
+            {
+                case 0:
+                    for (int i = 0; i < soListInGame.Count; i++)
+                    {
+                        //if (civSOListSmall[i] == )
+                    }
+                    break;
+                default:
+                    break;
+            }
 
+        }
         public void CreateNewGameBySelections(int sizeGame, int gameTechLevel, int galaxyType, int localPlayerCivInt, bool isSingleVsMultiplayer)
         {
             GameManager.Instance._techLevelOnLoadGame = (TechLevel)gameTechLevel;
-            GameManager.Instance._galaxySize = (GalaxySize)sizeGame;
             GameManager.Instance._galaxyType = (GalaxyType)galaxyType;
             isSinglePlayer = isSingleVsMultiplayer;
             // ToDo: assure that selected civ is in game, in game civs (Terrans)

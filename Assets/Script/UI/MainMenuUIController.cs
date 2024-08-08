@@ -38,6 +38,7 @@ namespace Assets.Core
         public GalaxySize SelectedGalaxySize { get; private set; }
         public TechLevel SelectedTechLevel { get; private set; }
         public CivEnum SelectedLocalCivEnum;
+        public List<CivEnum> InGamePlayableCivList {  get; private set; }
         //public CivEnum SelectedRemote0CivEnum;//ToDo for multiplayer lobby
         //public CivEnum SelectedRemote1CivEnum;
         //public CivEnum SelectedRemote2CivEnum;
@@ -133,6 +134,13 @@ namespace Assets.Core
             OnOffToggles.Add(DomOnOff);
             OnOffToggles.Add(BorgOnOff);
             OnOffToggles.Add(TerranOnOff);
+            //InGamePlayableCivList.Add(CivEnum.FED);
+            //InGamePlayableCivList.Add(CivEnum.ROM);
+            //InGamePlayableCivList.Add(CivEnum.KLING);
+            //InGamePlayableCivList.Add(CivEnum.CARD);
+            //InGamePlayableCivList.Add(CivEnum.DOM);
+            //InGamePlayableCivList.Add(CivEnum.BORG);
+            //InGamePlayableCivList.Add(CivEnum.TERRAN);
 
         }
         private void UpdatePlayers()
@@ -140,8 +148,8 @@ namespace Assets.Core
             _activeHostToggle = SinglePlayerCivilizationGroup.ActiveToggles().ToArray().FirstOrDefault();
             if (_activeHostToggle != null)
                 ActiveToggle();
-
-        // ToDo do we need a multiplayer toggle group
+            #region Multiplayer toggle group - 
+            // ToDo do we need a multiplayer toggle group
             //foreach (var toggle in MultiplayerCivilizationGroup.ActiveToggles().ToArray())
             //{
             //    // ToDo: !!! need to get local player for SetLocalCivilization(int of civ) and
@@ -177,9 +185,10 @@ namespace Assets.Core
             //        TerranLocalPlayerToggle = _activeRemote6;
             //    }
             //}
+            #endregion Multiplayer toggle group
         }
 
-        public void ActiveToggle()
+        private void ActiveToggle()
         {
             switch (_activeHostToggle.name.ToUpper())
             {
@@ -299,7 +308,7 @@ namespace Assets.Core
             if(playerTerran.text == you)
                 playerTerran.text = computer;
         }
-        public void SetSingleVsMultiplayer(bool singleMultiSelection)
+        private void SetSingleVsMultiplayer(bool singleMultiSelection)
         {
             IsSinglePlayer = singleMultiSelection;
             panelLobby.SetActive(false); 
@@ -307,30 +316,47 @@ namespace Assets.Core
             panelCivSelection.SetActive(singleMultiSelection);
             singlePlayToggleGroup.SetActive(true);
         }
-        private void OnTogglePlayerToggleInGame(Toggle civPlayedToggle)
-        {
-            if (civPlayedToggle.isOn)
-            {
-                foreach (var tog in OnOffToggles)
-                {
-                    if (tog == civPlayedToggle)
-                        tog.isOn = true;
-                }
-            }
-                
+        public void FedOnOffToggleReset()
+        { 
+                FedOnOff.isOn = true;
         }
-        public void LoadSavedGame()
+        public void RomOnOffToggleReset()
+        {
+            RomOnOff.isOn = true;
+        }
+        public void KlinOnOffToggleReset()
+        {
+            KlingOnOff.isOn = true;
+        }
+        public void CardOnOffToggleReset()
+        {
+            CardOnOff.isOn = true;
+        }
+        public void DomOnOffToggleReset()
+        {
+            DomOnOff.isOn = true;
+        }
+        public void BorgOnOffToggleReset()
+        {
+            BorgOnOff.isOn = true;
+        }
+        public void TerranOnOffToggleReset()
+        {
+            TerranOnOff.isOn = true;
+        }
+
+        private void LoadSavedGame()
         {
             //ToDo
         }
-        public void CancelButton()
+        private void CancelButton()
         {
             panelMuliplayer.SetActive(false);
             panelCivSelection.SetActive(false);
             panelGamePara.SetActive(false);
             panelLobby.SetActive(true);
         }
-        public void SaveButton()
+        private void SaveButton()
         {
             singlePlayToggleGroup.SetActive(true);
             UpdatePlayers();
@@ -339,7 +365,7 @@ namespace Assets.Core
             panelCivSelection.SetActive(false);
             panelGamePara.SetActive(true);
         }
-        public void NextButton()
+        private void NextButton()
         {
             //ToDo ***Turned off for now
             //panelLobby.SetActive(false);
@@ -348,7 +374,7 @@ namespace Assets.Core
             //mulitplayerToggleGroup.SetActive(true); //**** currently set to mulitplayer toggle, not single player
             //panelGamePara.SetActive(false);
         }
-        public void ReturnButton()
+        private void ReturnButton()
         {
             ResetPlayers();
             panelLobby.SetActive(false);
@@ -356,32 +382,34 @@ namespace Assets.Core
             panelCivSelection.SetActive(true);
             panelGamePara.SetActive(false);
         }
-        public void SetCivSelectionMenu(CivEnum civEnum)
+        private void SetCivSelectionMenu(CivEnum civEnum)
         {
 
         }
-        public void SetGalaxySize(int index)
+        private void SetGalaxySize(int index)
         {
             SelectedGalaxySize = (GalaxySize)index;
             //GalaxyContro
         }
 
-        public void SetGalaxyType(int index)
+        private void SetGalaxyType(int index)
         {
             SelectedGalaxyType = (GalaxyType)index;
         }
 
-        public void SetTechLevel(int index)
+        private void SetTechLevel(int index)
         {
             SelectedTechLevel = (TechLevel)index;
         }
 
-        public void SetLocalCivilization(int index)
+        private void SetLocalCivilization(int index)
         {
             SelectedLocalCivEnum = (CivEnum)index;
         }
-        public void LoadGalaxyScene()
+        private void LoadGalaxyScene()
         {
+            PruningCivInGameList();
+            CivManager.Instance.UpdatePlayableCivList(InGamePlayableCivList, (int)SelectedGalaxySize);
             mainMenuCanvas.SetActive(false);
             uiCameraGO.SetActive(false);
             galaxyCenter.SetActive(true);
@@ -392,10 +420,18 @@ namespace Assets.Core
                 (int)SelectedLocalCivEnum, IsSinglePlayer);
 
         }
-        public void OnPointerDown(PointerEventData eventData)
+        private void PruningCivInGameList()
         {
-            throw new NotImplementedException();
+            if (FedOnOff.isOn)
+            {
+
+            }
+            
         }
+        //public void OnPointerDown(PointerEventData eventData)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }
 

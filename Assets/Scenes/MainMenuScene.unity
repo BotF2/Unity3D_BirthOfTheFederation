@@ -5000,13 +5000,13 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 206574035}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: 
+      - m_Target: {fileID: 206574036}
+        m_TargetAssemblyTypeName: Assets.Core.MainMenuUIController, Assembly-CSharp
+        m_MethodName: FedOnOffToggleReset
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -9351,7 +9351,19 @@ MonoBehaviour:
   m_Group: {fileID: 1369377087}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 206574036}
+        m_TargetAssemblyTypeName: Assets.Core.MainMenuUIController, Assembly-CSharp
+        m_MethodName: RomOnOffToggleReset
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &525730555
 GameObject:
@@ -21013,7 +21025,19 @@ MonoBehaviour:
   m_Group: {fileID: 1369377087}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 206574036}
+        m_TargetAssemblyTypeName: Assets.Core.MainMenuUIController, Assembly-CSharp
+        m_MethodName: KlinOnOffToggleReset
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &1218102499
 GameObject:
@@ -28904,7 +28928,19 @@ MonoBehaviour:
   m_Group: {fileID: 1369377087}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 206574036}
+        m_TargetAssemblyTypeName: Assets.Core.MainMenuUIController, Assembly-CSharp
+        m_MethodName: BorgOnOffToggleReset
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &1768753611
 GameObject:
@@ -29776,7 +29812,19 @@ MonoBehaviour:
   m_Group: {fileID: 1369377087}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 206574036}
+        m_TargetAssemblyTypeName: Assets.Core.MainMenuUIController, Assembly-CSharp
+        m_MethodName: TerranOnOffToggleReset
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &1797769775
 GameObject:
@@ -32921,7 +32969,19 @@ MonoBehaviour:
   m_Group: {fileID: 1369377087}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 206574036}
+        m_TargetAssemblyTypeName: Assets.Core.MainMenuUIController, Assembly-CSharp
+        m_MethodName: CardOnOffToggleReset
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &1951415809
 GameObject:
@@ -36231,7 +36291,19 @@ MonoBehaviour:
   m_Group: {fileID: 1369377087}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 206574036}
+        m_TargetAssemblyTypeName: Assets.Core.MainMenuUIController, Assembly-CSharp
+        m_MethodName: DomOnOffToggleReset
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &2138998739
 GameObject:
