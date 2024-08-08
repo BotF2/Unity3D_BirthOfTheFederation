@@ -2770,6 +2770,7 @@ MonoBehaviour:
   DomLocalPlayerToggle: {fileID: 2133290542}
   BorgLocalPlayerToggle: {fileID: 1763767021}
   TerranLocalPlayerToggle: {fileID: 1787285891}
+  SinglePlayerCivilizationGroup: {fileID: 1369377087}
   FedOnOff: {fileID: 1038907108}
   RomOnOff: {fileID: 1687844378}
   KlingOnOff: {fileID: 1626525931}
@@ -2777,7 +2778,6 @@ MonoBehaviour:
   DomOnOff: {fileID: 297851393}
   BorgOnOff: {fileID: 1474495130}
   TerranOnOff: {fileID: 1929148016}
-  SinglePlayerCivilizationGroup: {fileID: 1369377087}
 --- !u!4 &206574037
 Transform:
   m_ObjectHideFlags: 0
@@ -4999,7 +4999,19 @@ MonoBehaviour:
   m_Group: {fileID: 1369377087}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 206574035}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 1
 --- !u!1 &334428933
 GameObject:
@@ -10605,7 +10617,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &593379917
 RectTransform:
   m_ObjectHideFlags: 0
