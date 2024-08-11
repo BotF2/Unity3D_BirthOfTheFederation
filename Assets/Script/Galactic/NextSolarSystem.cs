@@ -15,7 +15,7 @@ namespace Assets.Core
 
         public void ShowThisSolarSystemView(int buttonSystemID)
         {
-            solarSystemView = GameObject.Find("SolarSystemView");
+            solarSystemView = GameObject.Find("solarSystemView");
             SolarSystemView view = solarSystemView.GetComponent<SolarSystemView>();
             view.ShowNextSolarSystemView(buttonSystemID);
             

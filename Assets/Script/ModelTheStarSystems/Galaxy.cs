@@ -18,10 +18,10 @@ namespace Assets.Core
         {
             Galaxy galaxy = new Galaxy();
             theGalaxy = this;
-            GameManager.Instance.galaxy = galaxy;
+            GameManager.Instance.Galaxy = galaxy;
 
             // For now, we set a SEED for the random number generator, so that it
-            // starts from the same galaxy every time, see planet.cs random is now not so random
+            // starts from the same Galaxy every time, see planet.cs random is now not so random
             //UnityEngine.Random.InitState(123);
             //NumberOfStars = numberOfStars;
             //SolarSystems = GenerateSystems(numberOfStars); // for solar system view
@@ -30,7 +30,7 @@ namespace Assets.Core
         }
         public void Awake()
         {
-            // On awake there is a galaxy with the galalctic center 'system' but no button for it
+            // On awake there is a Galaxy with the galalctic center 'system' but no button for it
             var galaxyCenterSystem = new SolarSystem();
             galaxyCenter = galaxyCenterSystem.GenerateGalaxyCenter();
             Vector3 galacticCenterVector = new Vector3(0, 0, 0);
@@ -47,7 +47,7 @@ namespace Assets.Core
             }
         }
 
-        public SolarSystem LoadThisSystem(int systemButtonID) // Do we need this for just a single system to be shown by SolarSystemView??
+        public SolarSystem LoadThisSystem(int systemButtonID) // Do we need this for just a single system to be shown by solarSystemView??
         {
 
             SolarSystem ss = new SolarSystem();
@@ -92,9 +92,9 @@ namespace Assets.Core
                     SolarSystem ss = new SolarSystem();
                     ss.Generate();
                     SolarSystems.Add(ss);
-                    // galaxy.AddChild(ss);
+                    // Galaxy.AddChild(ss);
                 }
-                //gameManager.Galaxy = galaxy;
+                //gameManager.Galaxy = Galaxy;
 
                 // ToDo: use numStars and GalaxyType
             }

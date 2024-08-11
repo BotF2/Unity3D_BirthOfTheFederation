@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: CivSO_143_VISSIANS
   m_EditorClassIdentifier: 
   CivInt: 143
-  CivEnum: 143
+  CivEnum: 144
   CivShortName: VISSIANS
   CivLongName: VISSIANS
   CivHomeSystem: VISSIA
   TraitOne: Arrogant
   TraitTwo: Ruthless
-  CivImage: {fileID: 21300000, guid: 694e5f99b5f187f4d9237e61e0574b8d, type: 3}
+  CivImage: {fileID: 0}
   Insignia: {fileID: 21300000, guid: e003f8cb9c4b9d54bbc42ce66d3318db, type: 3}
   Population: 0
   Credits: 0

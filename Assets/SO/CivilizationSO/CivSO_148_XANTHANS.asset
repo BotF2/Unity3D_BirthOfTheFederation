@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: CivSO_148_XANTHANS
   m_EditorClassIdentifier: 
   CivInt: 148
-  CivEnum: 148
+  CivEnum: 149
   CivShortName: XANTHANS
   CivLongName: XANTHANS
   CivHomeSystem: XANTHAN
   TraitOne: Neutral
   TraitTwo: Materialistic
-  CivImage: {fileID: 21300000, guid: 89a07206aa04dcc40bca64d8c695e7c0, type: 3}
+  CivImage: {fileID: 0}
   Insignia: {fileID: 21300000, guid: 0ad06addb654d2e43afbdfcbc58eaecd, type: 3}
   Population: 0
   Credits: 0

@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: StarSysSO_147_WADI
   m_EditorClassIdentifier: 
   StarSysInt: 147
-  Position: {x: -720, y: -14, z: 670}
+  Position: {x: -620, y: -14, z: 370}
   SysName: WADI
-  FirstOwner: 147
-  CurrentOwner: 147
+  FirstOwner: 148
+  CurrentOwner: 148
   StarType: 3
   StarSprit: {fileID: 21300000, guid: f46fc7ae4eec69d40aa8026ba9da085d, type: 3}
   Population: 10

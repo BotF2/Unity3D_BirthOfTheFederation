@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: CivSO_145_VORI
   m_EditorClassIdentifier: 
   CivInt: 145
-  CivEnum: 145
+  CivEnum: 146
   CivShortName: VORI
   CivLongName: VORI
   CivHomeSystem: VORI
   TraitOne: Warlike
   TraitTwo: Materialistic
-  CivImage: {fileID: 21300000, guid: 17b978ecd8db2a043b1464f1376e9f8d, type: 3}
+  CivImage: {fileID: 0}
   Insignia: {fileID: 21300000, guid: a55b190b3727d834b95514b1191a74f6, type: 3}
   Population: 0
   Credits: 0

@@ -41,7 +41,7 @@ public class FleetSOImporter : EditorWindow
         {
             string[] fields = line.Split(',');
 
-            if (fields.Length == 5) // Ensure there are enough fields
+            if (fields.Length  >4) // Ensure there are enough fields
             {
                 string imageString = fields[1];
                 foreach (string file in Directory.GetFiles($"Assets/Resources/Insignias/", "*.png"))

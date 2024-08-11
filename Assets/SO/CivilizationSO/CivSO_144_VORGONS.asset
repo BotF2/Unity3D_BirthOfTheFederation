@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CivSO_144_VORGONS
   m_EditorClassIdentifier: 
   CivInt: 144
-  CivEnum: 144
+  CivEnum: 145
   CivShortName: VORGONS
   CivLongName: VORGONS
   CivHomeSystem: VORGON

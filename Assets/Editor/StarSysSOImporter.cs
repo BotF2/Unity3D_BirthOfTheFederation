@@ -40,7 +40,7 @@ public class StarSysSOImporter : EditorWindow
         {
             string[] fields = line.Split(',');
 
-             if (fields.Length > 8) // Ensure there are enough fields
+             if (fields.Length > 7) // Ensure there are enough fields
             {
                 string imageString = fields[6];
                 foreach (string file in Directory.GetFiles($"Assets/Resources/Stars/", "*.png"))
@@ -52,7 +52,7 @@ public class StarSysSOImporter : EditorWindow
                 }
 
 
-                if (fields.Length > 8) // Ensure there are enough fields
+                if (fields.Length >= 8) // Ensure there are enough fields
                 {
                     StarSysSO StarSysSO = CreateInstance<StarSysSO>();
                     ////StarSysInt	,	StarSysSO Enum	,	StarSysSO Short Name	,	StarSysSO Long Name	,	Home System	,	Triat One	,	Trait Two	,	StarSysSO Image	,	Insginia	,	Population	,	Credits	,	TechLevel Points

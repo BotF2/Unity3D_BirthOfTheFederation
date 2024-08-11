@@ -17,7 +17,7 @@ public class ShipController : MonoBehaviour
         //rb = GetComponent<Rigidbody>();
         //combatEventCamera = GameObject.FindGameObjectWithTag("Combat Camera").GetComponent<Camera>();
         //var CanvasGO = GameObject.Find("CombatShipUI");
-        //CombatUICanvas = CanvasGO.GetComponent<Canvas>();
+        //CombatUICanvas = CanvasGO.GetComponent<canvas>();
         //CombatUICanvas.worldCamera = combatEventCamera;
         //CanvasToolTip.worldCamera = combatEventCamera;
         //Name = shipData.CivEnum.ToString() + " Fleet " + shipData.ShipName;

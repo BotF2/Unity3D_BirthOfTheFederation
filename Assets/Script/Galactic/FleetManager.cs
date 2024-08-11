@@ -56,21 +56,23 @@ namespace Assets.Core
             int xyzBump = 1;
             if (fleetSO != null)
             {
-                switch (GameManager.Instance._galaxySize)
-                {
-                    case GalaxySize.SMALL:
-                        BuildFirstFleets(xyzBump, civSO, position);
-                        break;
-                    case GalaxySize.MEDIUM:
-                        BuildFirstFleets(xyzBump +1, civSO, position);
-                        break;
-                    case GalaxySize.LARGE:
-                        BuildFirstFleets(xyzBump +2, civSO, position);
-                        break;
-                    default:
-                        BuildFirstFleets(xyzBump, civSO, position);
-                        break;
-                }
+                BuildFirstFleets(xyzBump, civSO, position);
+                // This is an option for more fleets/ships with larger galaxy
+                //switch (GameManager.Instance.GalaxySize)
+                //{
+                //    case GalaxySize.SMALL:
+                //        BuildFirstFleets(xyzBump, civSO, position);
+                //        break;
+                //    case GalaxySize.MEDIUM:
+                //        BuildFirstFleets(xyzBump +1, civSO, position);
+                //        break;
+                //    case GalaxySize.LARGE:
+                //        BuildFirstFleets(xyzBump +2, civSO, position);
+                //        break;
+                //    default:
+                //        BuildFirstFleets(xyzBump, civSO, position);
+                //        break;
+                //}
             }           
         }
         private void BuildFirstFleets(int myInt, CivSO civSO, Vector3 position)
@@ -78,7 +80,7 @@ namespace Assets.Core
             FleetSO fleetSO = GetFleetSObyInt(civSO.CivInt);
             for (int i = 0; i < myInt; i++)
             {
-                FleetData fleetData = new FleetData(fleetSO);
+                FleetData fleetData = new FleetData(fleetSO); // FleetData is not MonoBehavior so new is OK
                 fleetData.CivIndex = fleetSO.CivIndex;
                 fleetData.Insignia = fleetSO.Insignia;
                 fleetData.CivEnum = fleetSO.CivOwnerEnum;
@@ -103,7 +105,7 @@ namespace Assets.Core
                 fleetController.Name = fleetData.Name;
                 fleetController.FleetState = FleetState.FleetStationary;
                 ManagersFleetControllerList.Add(fleetController);
-                fleetNewGameOb.transform.Translate(new Vector3(fleetData.Position.x + 40f, fleetData.Position.y, fleetData.Position.z + 10f));
+                fleetNewGameOb.transform.Translate(new Vector3(fleetData.Position.x + 40f,  fleetData.Position.y + 10f, fleetData.Position.z));
                 fleetNewGameOb.transform.SetParent(galaxyCenter.transform, true);
                 fleetNewGameOb.transform.localScale = new Vector3(1, 1, 1);
                 fleetNewGameOb.name = fleetData.CivShortName.ToString() + " Fleet " + fleetData.Name; // name game object

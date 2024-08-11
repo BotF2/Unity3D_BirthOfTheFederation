@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ShipSO_MALCORIANS_DESTROYER_I(CLONE)
   m_EditorClassIdentifier: 
   ShipName: MALCORIANS_DESTROYER_I(CLONE)
-  CivEnum: 85
+  CivEnum: 86
   TechLevel: 0
   ShipType: 1
   shipSprite: {fileID: 21300000, guid: 5d07ff9360275e9458963ae4d71561a6, type: 3}
@@ -23,5 +23,5 @@ MonoBehaviour:
   HullMaxHealth: 15
   TorpedoDamage: 15
   BeamDamage: 15
-  Cost: 78
+  Price: 78
   Mesh: {fileID: 0}

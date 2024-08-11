@@ -15,8 +15,8 @@ MonoBehaviour:
   StarSysInt: 114
   Position: {x: -160, y: 11, z: -1130}
   SysName: RUTIA
-  FirstOwner: 114
-  CurrentOwner: 114
+  FirstOwner: 115
+  CurrentOwner: 115
   StarType: 3
   StarSprit: {fileID: 21300000, guid: f46fc7ae4eec69d40aa8026ba9da085d, type: 3}
   Population: 10

@@ -16,7 +16,7 @@ namespace Assets.Core
 
         private void Awake()
         {
-            Canvas = GameObject.Find("Canvas"); // What changed? Now we have to code that unity use to assign in the Inspector.
+            Canvas = GameObject.Find("canvas"); // What changed? Now we have to code that unity use to assign in the Inspector.
             var _mainMenu = Canvas.transform.Find("PanelMain_Menu").gameObject;
             var _technologyGroup = _mainMenu.transform.Find("TECHNOLOGY").gameObject;
             TechLevelGroup = _technologyGroup.GetComponent<ToggleGroup>();
@@ -55,26 +55,26 @@ namespace Assets.Core
             {
                 case "TOGGLE_SUPREME":
                     Supreme = _activeTechToggle;
-                    GameManager.Instance._techLevelOnLoadGame = TechLevel.SUPREME;
+                    GameManager.Instance.TechLevelOnLoadGame = TechLevel.SUPREME;
                     //GameManager.Instance.LoadStartGameObjectNames(Environment.CurrentDirectory + "\\Assets\\" + "Temp_GameObjectData.txt"); //"SupremeGameObjectsData.txt");
                     Debug.Log("Active FedLocalPalyerToggle.");
                     break;
                 case "TOGGLE_ADVANCED":
                     Debug.Log("Active KlingLocalPlayerToggle.");
                     Advanced = _activeTechToggle;
-                    GameManager.Instance._techLevelOnLoadGame = TechLevel.ADVANCED;
+                    GameManager.Instance.TechLevelOnLoadGame = TechLevel.ADVANCED;
                     //GameManager.Instance.LoadStartGameObjectNames(Environment.CurrentDirectory + "\\Assets\\" + "Temp_GameObjectData.txt");// "AdvancedGameObjectData.txt");
                     break;
                 case "TOGGLE_DEVELOPED":
                     Debug.Log("Active RomLocalPlayerToggle.");
                     Developed = _activeTechToggle;
-                    GameManager.Instance._techLevelOnLoadGame = TechLevel.DEVELOPED;
+                    GameManager.Instance.TechLevelOnLoadGame = TechLevel.DEVELOPED;
                     //GameManager.Instance.LoadStartGameObjectNames(Environment.CurrentDirectory + "\\Assets\\" + "Temp_GameObjectData.txt"); //"DevelopedGameObjectsData.txt");
                     break;
                 case "TOGGLE_EARLY":
                     Debug.Log("Active CardLocalPlayerToggle.");
                     Early = _activeTechToggle;
-                    GameManager.Instance._techLevelOnLoadGame = TechLevel.EARLY;
+                    GameManager.Instance.TechLevelOnLoadGame = TechLevel.EARLY;
                     //GameManager.Instance.LoadStartGameObjectNames(Environment.CurrentDirectory + "\\Assets\\" + "Temp_GameObjectData.txt"); //"EarlyGameObjectData.txt");
                     break;
                 default:

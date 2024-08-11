@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: CivSO_121_TAKARANS
   m_EditorClassIdentifier: 
   CivInt: 121
-  CivEnum: 121
+  CivEnum: 122
   CivShortName: TAKARANS
   CivLongName: TAKARANS
   CivHomeSystem: TAKARA
   TraitOne: Neutral
   TraitTwo: Peaceful
-  CivImage: {fileID: 21300000, guid: b9ba4438b9b49e24a93e87d856b3e5d4, type: 3}
+  CivImage: {fileID: 0}
   Insignia: {fileID: 21300000, guid: 16afd7ac189d6a04bbdd9e3e8784ac7b, type: 3}
   Population: 0
   Credits: 0

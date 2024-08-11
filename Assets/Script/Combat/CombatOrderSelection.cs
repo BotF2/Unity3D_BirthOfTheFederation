@@ -12,7 +12,7 @@ namespace Assets.Core
     {
         //public static Toggle Engage, Rush, Retreat, Formation, ProtectTransports, TargetTransports;
         //public List<Toggle> toggleOrderList = new List<Toggle>() { Engage, Rush, Retreat, Formation, ProtectTransports, TargetTransports};
-        //private Toggle _activeHostToggle;
+        //private Toggle activeLocalPlayerToggle;
         //private Toggle previousToggle;
         //public static Orders order;
 
@@ -27,13 +27,13 @@ namespace Assets.Core
         //    {
         //        if (toggle.isOn)
         //        {
-        //            _activeHostToggle = toggle;
+        //            activeLocalPlayerToggle = toggle;
         //            if (previousToggle != toggle)
-        //                ActiveToggle(_activeHostToggle);
+        //                ActiveToggle(activeLocalPlayerToggle);
         //            break;
         //        }
         //    }
-        //    previousToggle = _activeHostToggle;
+        //    previousToggle = activeLocalPlayerToggle;
         //}
         //public void ActiveToggle(Toggle activeToggleOrder)
         //{

@@ -23,5 +23,5 @@ MonoBehaviour:
   HullMaxHealth: 56
   TorpedoDamage: 60
   BeamDamage: 60
-  Cost: 251
+  Price: 251
   Mesh: {fileID: 0}

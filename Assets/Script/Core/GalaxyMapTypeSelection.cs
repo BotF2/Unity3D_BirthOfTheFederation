@@ -16,7 +16,7 @@ namespace Assets.Core
 
         private void Awake()
         {
-            Canvas = GameObject.Find("Canvas"); 
+            Canvas = GameObject.Find("canvas"); 
             var _mainMenu = Canvas.transform.Find("PanelMain_Menu").gameObject;
             var _technologyGroup = _mainMenu.transform.Find("GALAXYMAPTYPE").gameObject; // DID WE CONNECT THIS???
             GalaxyMapTypeGroup = _technologyGroup.GetComponent<ToggleGroup>();
@@ -50,13 +50,13 @@ namespace Assets.Core
                 case "TOGGLE_CANON":
                     Debug.Log("CANON MAP");
                     Canon = _activeGalaxyMapTypeToggle;
-                    GameManager.Instance._galaxyType = GalaxyType.CANON;
+                    GameManager.Instance.GalaxyType = GalaxyType.CANON;
                    // GameManager.Instance.LoadStartGameObjectNames(Environment.CurrentDirectory + "\\Assets\\" + "Temp_GameObjectData.txt");// "AdvancedGameObjectData.txt");
                     break;
                 case "TOGGLE_RANOM":
                     Debug.Log("RANDOM MAP");
                     Random = _activeGalaxyMapTypeToggle;
-                    GameManager.Instance._galaxyType = GalaxyType.RANDOM;
+                    GameManager.Instance.GalaxyType = GalaxyType.RANDOM;
                   //  GameManager.Instance.LoadStartGameObjectNames(Environment.CurrentDirectory + "\\Assets\\" + "Temp_GameObjectData.txt"); //"DevelopedGameObjectsData.txt");
                     break;
                 default:

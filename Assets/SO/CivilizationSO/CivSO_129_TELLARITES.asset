@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: CivSO_129_TELLARITES
   m_EditorClassIdentifier: 
   CivInt: 129
-  CivEnum: 129
+  CivEnum: 130
   CivShortName: TELLARITES
   CivLongName: TELLARITES
   CivHomeSystem: TELLAR
   TraitOne: Intellectual
   TraitTwo: Neutral
-  CivImage: {fileID: 21300000, guid: 8bce29800a7698646a298b7e32b0a787, type: 3}
+  CivImage: {fileID: 0}
   Insignia: {fileID: 21300000, guid: bfa7871423cdc544b8a33c097895297c, type: 3}
   Population: 0
   Credits: 0

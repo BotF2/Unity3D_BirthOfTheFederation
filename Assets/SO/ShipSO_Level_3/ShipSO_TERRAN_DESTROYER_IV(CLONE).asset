@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ShipSO_TERRAN_DESTROYER_IV(CLONE)
   m_EditorClassIdentifier: 
   ShipName: TERRAN_DESTROYER_IV(CLONE)
-  CivEnum: 158
+  CivEnum: 6
   TechLevel: 3
   ShipType: 1
   shipSprite: {fileID: 21300000, guid: 3464b1795f5316f4984d672445ed05b2, type: 3}
@@ -23,5 +23,5 @@ MonoBehaviour:
   HullMaxHealth: 44
   TorpedoDamage: 40
   BeamDamage: 40
-  Cost: 190
+  Price: 190
   Mesh: {fileID: 0}

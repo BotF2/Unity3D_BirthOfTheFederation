@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: CivSO_134_TRABE
   m_EditorClassIdentifier: 
   CivInt: 134
-  CivEnum: 134
+  CivEnum: 135
   CivShortName: TRABE
   CivLongName: TRABE
   CivHomeSystem: TRABE
   TraitOne: Hostile
   TraitTwo: Warlike
-  CivImage: {fileID: 21300000, guid: 1241d5a4b6c465f42bad551ce2c5b4fb, type: 3}
+  CivImage: {fileID: 0}
   Insignia: {fileID: 21300000, guid: 50f85bbe81fa7e84590ebeb3c74a722c, type: 3}
   Population: 0
   Credits: 0

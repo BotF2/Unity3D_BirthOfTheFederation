@@ -15,8 +15,8 @@ MonoBehaviour:
   StarSysInt: 120
   Position: {x: 40, y: 28, z: -800}
   SysName: SULIBAN
-  FirstOwner: 120
-  CurrentOwner: 120
+  FirstOwner: 121
+  CurrentOwner: 121
   StarType: 3
   StarSprit: {fileID: 21300000, guid: f46fc7ae4eec69d40aa8026ba9da085d, type: 3}
   Population: 10

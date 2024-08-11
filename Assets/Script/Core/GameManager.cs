@@ -23,7 +23,8 @@ namespace Assets.Core
         KLING,
         CARD,
         DOM,
-        BORG, // **SEE TERRANS AT 158
+        BORG,
+        TERRAN,
         #region minors
         ACAMARIANS,
         AKAALI,
@@ -95,7 +96,7 @@ namespace Assets.Core
         KAZON,
         KELLERUN,
         KESPRYTT,
-        KLAESTRONIANS,
+        KLAESTRON,
         KRADIN,
         KREETASSANS,
         KRIOSIANS,
@@ -177,7 +178,6 @@ namespace Assets.Core
         ZAKDORN,
         ZALKONIANS,
         ZIBALIANS,
-        TERRAN,
         #endregion
         ZZUNINHABITED1,
         #region More Uninhabited
@@ -341,16 +341,14 @@ namespace Assets.Core
         public bool _warpingInIsOver = false; // WarpingInCompleted() called from E_Animator3 sets true and set false again in CombatCompleted state in BeginState
         public CivEnum LocalPlayer;
         public string NoDestination;
-        private List<string> destinationNames = new List<string>() { "No Destination Selected" };
+        private readonly List<string> destinationNames = new List<string>() { "No Destination Selected" };
         public List<string> DestinationNames { get { return destinationNames; } }
         public Dictionary<string, GameObject> DestinationDictionary = new Dictionary<string, GameObject>();
-        public GalaxySize _galaxySize;
-        public GalaxyType _galaxyType;
-        public TechLevel _techLevelOnLoadGame;
-        public GameObject Canvas;
-        public GameObject CanvasGalactic;
-        public Galaxy galaxy; // = new Galaxy(GameManager.Instance, GalaxyType.ELLIPTICAL, 20);
-        public SolarSystemView solarSystemView;
+        public GalaxySize GalaxySize;
+        public GalaxyType GalaxyType;
+        public TechLevel TechLevelOnLoadGame;
+        public Galaxy Galaxy; // = new Galaxy(GameManager.Instance, GalaxyType.ELLIPTICAL, 20);
+        private SolarSystemView solarSystemView;
         /// <summary>
         /// Old combat tool for view of all ships in combat
         /// </summary>
@@ -435,17 +433,15 @@ namespace Assets.Core
 
         public void InitializeGameManagerWithMainMenuUIController() {
             mainMenuUIController = GameObject.Find("MainMenuUIController").GetComponent<MainMenuUIController>();
-            _galaxySize = mainMenuUIController.SelectedGalaxySize;
-            _galaxyType = mainMenuUIController.SelectedGalaxyType;
-            _techLevelOnLoadGame = mainMenuUIController.SelectedTechLevel;
+            GalaxySize = mainMenuUIController.SelectedGalaxySize;
+            GalaxyType = mainMenuUIController.SelectedGalaxyType;
+            TechLevelOnLoadGame = mainMenuUIController.SelectedTechLevel;
             LocalPlayer = mainMenuUIController.SelectedLocalCivEnum;
         }
 
         private void Awake()
         {
             Instance = this; // static reference to single GameManager
-            Canvas = GameObject.Find("Canvas"); 
-            CanvasGalactic = GameObject.Find("CanvasGalactic");
             InitializeGameManagerWithMainMenuUIController();
         }
         void Start()
@@ -457,14 +453,15 @@ namespace Assets.Core
             foreach (var sysData in starSysDataList)
             {
                 destinationNames.Add(sysData.SysName);
-                if (!DestinationDictionary.ContainsKey(sysData.SysName))
-                    DestinationDictionary.Add(sysData.SysName, sysData.SysGameObject);
+                //if (!DestinationDictionary.ContainsKey(sysData.SysName))
+                DestinationDictionary.Add(sysData.SysName, sysData.SysGameObject);
             }
         }
         public void LoadGalacticDestinations(FleetData fleetData, GameObject fleetGO)
         {
             destinationNames.Add(fleetData.Name);
-            DestinationDictionary.Add(fleetData.Name, fleetGO);
+            if(!DestinationDictionary.ContainsKey(fleetData.Name))
+                DestinationDictionary.Add(fleetData.Name, fleetGO);
         }
         public void RemoveFleetFromGalaxyDestiations(FleetData fleetData, GameObject fleetGO)
         {

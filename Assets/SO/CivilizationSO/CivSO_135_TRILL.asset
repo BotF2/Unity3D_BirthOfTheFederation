@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: CivSO_135_TRILL
   m_EditorClassIdentifier: 
   CivInt: 135
-  CivEnum: 135
+  CivEnum: 136
   CivShortName: TRILL
   CivLongName: TRILL
   CivHomeSystem: TRILL
   TraitOne: Honorable
   TraitTwo: Warlike
-  CivImage: {fileID: 21300000, guid: f58b3530ddcb65d4eacb84035938196b, type: 3}
+  CivImage: {fileID: 0}
   Insignia: {fileID: 21300000, guid: 1d3012f675889734d8d24ced723b3cf5, type: 3}
   Population: 0
   Credits: 0

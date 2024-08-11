@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: CivSO_153_YRIDIANS
   m_EditorClassIdentifier: 
   CivInt: 153
-  CivEnum: 153
+  CivEnum: 154
   CivShortName: YRIDIANS
   CivLongName: YRIDIANS
   CivHomeSystem: YRIDIA
   TraitOne: Warlike
   TraitTwo: Arrogant
-  CivImage: {fileID: 21300000, guid: 6f55e0cbddc08374ab3a26ba016fac21, type: 3}
+  CivImage: {fileID: 0}
   Insignia: {fileID: 21300000, guid: 457c6a5279735de45af05819e6c47d37, type: 3}
   Population: 0
   Credits: 0

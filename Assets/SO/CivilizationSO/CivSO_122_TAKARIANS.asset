@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: CivSO_122_TAKARIANS
   m_EditorClassIdentifier: 
   CivInt: 122
-  CivEnum: 122
+  CivEnum: 123
   CivShortName: TAKARIANS
   CivLongName: TAKARIANS
   CivHomeSystem: TAKARIA
   TraitOne: Hostile
   TraitTwo: Materialistic
-  CivImage: {fileID: 21300000, guid: cff3420d8b578344ca8a6a5f9846d0c4, type: 3}
+  CivImage: {fileID: 0}
   Insignia: {fileID: 21300000, guid: cfd2a3a189e85e742b370fb5b8f959d6, type: 3}
   Population: 0
   Credits: 0

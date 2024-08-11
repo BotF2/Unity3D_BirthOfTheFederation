@@ -41,7 +41,7 @@ namespace Assets.Core
             //    _isMultipPlayer.enabled = true;
             //    GameManager.Instance.MultiPlayerLobbyClicked();
             //}
-            //_activeHostToggle = SinglePlayerCivilizationGroup.ActiveToggles().ToArray().FirstOrDefault();
+            //activeLocalPlayerToggle = SinglePlayerCivilizationGroup.ActiveToggles().ToArray().FirstOrDefault();
             //ActiveToggle();
         }
         //public void SinglePlay()
@@ -55,41 +55,41 @@ namespace Assets.Core
         //public void OnClickPlayCiv() // ToDo: call this on play button in Main Menu
         //{
         //    //GameManager.Instance.LocalPlayer = _
-        //    Toggle toggle = _activeHostToggle;
+        //    Toggle toggle = activeLocalPlayerToggle;
         //    Debug.Log(toggle.CivName + " _ ");
         //}
         //public void ActiveToggle()
         //{
-        //    //switch (_activeHostToggle.CivName.ToUpper())
+        //    //switch (activeLocalPlayerToggle.CivName.ToUpper())
         //    //{
         //    //    case "TOGGLE_FED":
-        //    //        FedLocalPalyerToggle = _activeHostToggle;
+        //    //        FedLocalPalyerToggle = activeLocalPlayerToggle;
         //    //        GameManager.Instance.LocalPlayer = Civilization.FED;
         //    //        Debug.Log("Active FedLocalPalyerToggle.");
         //    //        break;
         //    //    case "TOGGLE_KLING":
         //    //        Debug.Log("Active KlingLocalPlayerToggle.");
         //    //        GameManager.Instance.LocalPlayer = Civilization.KLING;
-        //    //        KlingLocalPlayerToggle = _activeHostToggle;
+        //    //        KlingLocalPlayerToggle = activeLocalPlayerToggle;
         //    //        break;
         //    //    case "TOGGLE_ROM":
         //    //        Debug.Log("Active RomLocalPlayerToggle.");
-        //    //        RomLocalPlayerToggle = _activeHostToggle;
+        //    //        RomLocalPlayerToggle = activeLocalPlayerToggle;
         //    //        GameManager.Instance.LocalPlayer = Civilization.ROM;
         //    //        break;
         //    //    case "TOGGLE_CARD":
         //    //        Debug.Log("Active CardLocalPlayerToggle.");
-        //    //        CardLocalPlayerToggle = _activeHostToggle;
+        //    //        CardLocalPlayerToggle = activeLocalPlayerToggle;
         //    //        GameManager.Instance.LocalPlayer = Civilization.CARD;
         //    //        break;
         //    //    case "TOGGLE_DOM":
         //    //        Debug.Log("Active DomLocalPlayerToggle.");
-        //    //        DomLocalPlayerToggle = _activeHostToggle;
+        //    //        DomLocalPlayerToggle = activeLocalPlayerToggle;
         //    //        GameManager.Instance.LocalPlayer = Civilization.DOM;
         //    //        break;
         //    //    case "TOGGLE_BORG":
         //    //        Debug.Log("Active BorgLocalPlayerToggle.");
-        //    //        BorgLocalPlayerToggle = _activeHostToggle;
+        //    //        BorgLocalPlayerToggle = activeLocalPlayerToggle;
         //    //        GameManager.Instance.LocalPlayer = Civilization.BORG;
         //    //        break;
         //    //    default:

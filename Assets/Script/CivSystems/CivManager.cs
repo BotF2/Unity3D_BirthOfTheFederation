@@ -13,14 +13,22 @@ namespace Assets.Core
     public class CivManager : MonoBehaviour
     {
         public static CivManager Instance;
-        [SerializeField]
-        private List<CivSO> civSOListSmall;
-        [SerializeField]
-        private List<CivSO> civSOListMedium;
-        [SerializeField]
-        private List<CivSO> civSOListLarge;
+        //[SerializeField]
+        //private List<CivSO> civSOListSmall;
+        //[SerializeField]
+        //private List<CivSO> civSOListMedium;
+        //[SerializeField]
+        //private List<CivSO> civSOListLarge;
         [SerializeField]
         private List<CivSO> civSOListAllPossible;
+        private List<CivSO> allCivSOsInGame;
+        [SerializeField]
+        private List<CivSO> smallMapMinorsAlwaysInGame;
+        [SerializeField]
+        private List<CivSO> mediumMapMinorsAlwaysInGame;
+        [SerializeField]
+        private List<CivSO> largeMapMinorsAlwaysInGame;
+        private List<CivSO> randomMinorsInGame;
         public List<CivEnum> CivSOInGame;
         public List<CivData> CivDataInGameList = new List<CivData> { new CivData() };
         public List<CivController> CivControllersInGame;
@@ -83,53 +91,54 @@ namespace Assets.Core
         {
 
         }
-        public void UpdatePlayableCivList(List<CivEnum> listForCivSOs, int galaxySize)
+        public void UpdatePlayableCivList(List<CivEnum> listCivEnumForCivSOs, int galaxySize)
         {
-            List<CivEnum> soListInGame = new List<CivEnum>() { CivEnum.FED, CivEnum.ROM, CivEnum.KLING, CivEnum.CARD, CivEnum.DOM, CivEnum.BORG, CivEnum.TERRAN};
-            GameManager.Instance._galaxySize = (GalaxySize)galaxySize;
-            switch (galaxySize)
+            List<CivSO> _SOsInGame = new List<CivSO>();
+            for (int i = 0; i < listCivEnumForCivSOs.Count; i++)
             {
-                case 0:
-                    for (int i = 0; i < soListInGame.Count; i++)
-                    {
-                        //if (civSOListSmall[i] == )
-                    }
-                    break;
-                default:
-                    break;
+                if (listCivEnumForCivSOs[i] != CivEnum.ZZUNINHABITED1)
+                {
+                    _SOsInGame.Add(civSOListAllPossible[i]);
+                    _SOsInGame.Add(smallMapMinorsAlwaysInGame[i]);
+                    if (galaxySize >= 1)
+                        _SOsInGame.Add(mediumMapMinorsAlwaysInGame[i]);
+                    if (galaxySize > 2)
+                        _SOsInGame.Add(largeMapMinorsAlwaysInGame[i]);
+                }
             }
-
+            allCivSOsInGame = _SOsInGame;
+            
         }
-        public void CreateNewGameBySelections(int sizeGame, int gameTechLevel, int galaxyType, int localPlayerCivInt, bool isSingleVsMultiplayer)
+        public void CreateNewGameBySelections( int sizeGame, int gameTechLevel, int galaxyType, int localPlayerCivInt, bool isSingleVsMultiplayer)
         {
-            GameManager.Instance._techLevelOnLoadGame = (TechLevel)gameTechLevel;
-            GameManager.Instance._galaxyType = (GalaxyType)galaxyType;
+            GameManager.Instance.GalaxySize = (GalaxySize)sizeGame;
+            GameManager.Instance.TechLevelOnLoadGame = (TechLevel)gameTechLevel;
+            GameManager.Instance.GalaxyType = (GalaxyType)galaxyType;
             isSinglePlayer = isSingleVsMultiplayer;
-            // ToDo: assure that selected civ is in game, in game civs (Terrans)
 
             //LocalPlayer = GetCivDataByCivEnum((CivEnum)localPlayerCivInt);
 
             switch (sizeGame)
             { case 0:
-                CivDataFromSO(civSOListSmall);
-                CreateCivEnumList(civSOListSmall);
+                    CivDataFromSO(allCivSOsInGame);//civSOListSmall);
+                    CreateCivEnumList(allCivSOsInGame);//civSOListSmall);
                 //ShipManager.Instance.SendEarlyCivSOListForFirstShips(civSOListSmall);
                 break;
               case 1:
 
-                CivDataFromSO(civSOListMedium);
-                CreateCivEnumList(civSOListMedium);
+                CivDataFromSO(allCivSOsInGame);
+                CreateCivEnumList(allCivSOsInGame);
                 //ShipManager.Instance.SendEarlyCivSOListForFirstShips(civSOListMedium);
                 HoldCivSize = sizeGame; // used in Multisystems in Fedearation test code 
                 break;
               case 2:
-                CivDataFromSO(civSOListLarge);
-                CreateCivEnumList(civSOListLarge);
+                CivDataFromSO(allCivSOsInGame);
+                CreateCivEnumList(allCivSOsInGame);
                 //ShipManager.Instance.SendEarlyCivSOListForFirstShips(civSOListLarge);
                 break;
               default:
-                CivDataFromSO(civSOListSmall);
-                CreateCivEnumList(civSOListSmall);
+                CivDataFromSO(allCivSOsInGame);
+                CreateCivEnumList(allCivSOsInGame);
                 //ShipManager.Instance.SendEarlyCivSOListForFirstShips(civSOListSmall);
                 break;
             }
@@ -138,7 +147,7 @@ namespace Assets.Core
         {
             foreach (var civSO in civSOList)
             {
-                CivData civData = new CivData();
+                CivData civData = new CivData(); // CivData is not MonoBehavior so new is OK
                 civData.CivInt = civSO.CivInt;
                 civData.CivEnum = civSO.CivEnum;
                 civData.CivLongName = civSO.CivLongName;
@@ -150,7 +159,7 @@ namespace Assets.Core
                 civData.Population = civSO.Population;
                 civData.Credits = civSO.Credits;
                 civData.TechPoints = civSO.TechPoints;
-                civData.CivTechLevel = GameManager.Instance._techLevelOnLoadGame;
+                civData.CivTechLevel = GameManager.Instance.TechLevelOnLoadGame;
                 civData.Playable = civSO.Playable;
                 civData.HasWarp = civSO.HasWarp;
                 civData.Decription = civSO.Decription;
@@ -244,7 +253,8 @@ namespace Assets.Core
 
         public CivController GetCivControllerByEnum(CivEnum civEnum)
         {
-            CivController aCiv = new CivController("placeholder");
+            GameObject aCivGO = (GameObject)Instantiate(civPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+            CivController aCiv = aCivGO.GetComponent<CivController>();
             foreach(var civ in CivControllersInGame)
             {
                 if(civEnum == civ.CivData.CivEnum)

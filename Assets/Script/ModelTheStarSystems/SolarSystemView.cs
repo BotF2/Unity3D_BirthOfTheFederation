@@ -53,9 +53,9 @@ namespace Assets.Core
 
         //}
 
-        //public void TurnOffSolarSystemview(Galaxy galaxy, int solarSystemID)
+        //public void TurnOffSolarSystemview(Galaxy Galaxy, int solarSystemID)
         //{
-        //    //ourGalaxy = galaxy;
+        //    //ourGalaxy = Galaxy;
         //    while (transform.childCount > 0) // delelt old systems from prior update
         //    {
         //        Transform child = transform.GetChild(0);

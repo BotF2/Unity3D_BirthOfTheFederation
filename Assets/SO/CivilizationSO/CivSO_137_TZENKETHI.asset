@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: CivSO_137_TZENKETHI
   m_EditorClassIdentifier: 
   CivInt: 137
-  CivEnum: 137
+  CivEnum: 138
   CivShortName: TZENKETHI
   CivLongName: TZENKETHI
   CivHomeSystem: TZENKETHI
   TraitOne: Peaceful
   TraitTwo: Religious
-  CivImage: {fileID: 21300000, guid: 87cd3f40472922d408c07937b0ef2d89, type: 3}
+  CivImage: {fileID: 0}
   Insignia: {fileID: 21300000, guid: ebd63201eca4fa8458a000b41ee90229, type: 3}
   Population: 0
   Credits: 0

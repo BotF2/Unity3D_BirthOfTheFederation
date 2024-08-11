@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: CivSO_123_TAKTAK
   m_EditorClassIdentifier: 
   CivInt: 123
-  CivEnum: 123
+  CivEnum: 124
   CivShortName: TAKTAK
   CivLongName: TAKTAK
   CivHomeSystem: TAKTAK
   TraitOne: Honorable
   TraitTwo: Religious
-  CivImage: {fileID: 21300000, guid: b7ddff6f74fa6de4ca230a30cd446c9f, type: 3}
+  CivImage: {fileID: 0}
   Insignia: {fileID: 21300000, guid: 6074e24e2b4630149aa2f46477bf23c5, type: 3}
   Population: 0
   Credits: 0

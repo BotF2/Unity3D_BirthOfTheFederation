@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: CivSO_130_TEPLANS
   m_EditorClassIdentifier: 
   CivInt: 130
-  CivEnum: 130
+  CivEnum: 131
   CivShortName: TEPLANS
   CivLongName: TEPLANS
   CivHomeSystem: TEPLA
   TraitOne: Humility
   TraitTwo: Hostile
-  CivImage: {fileID: 21300000, guid: c716f97bf73881c44935273990df8c10, type: 3}
+  CivImage: {fileID: 0}
   Insignia: {fileID: 21300000, guid: c6e41167a57c969449146b70625f5dce, type: 3}
   Population: 0
   Credits: 0

@@ -14,11 +14,6 @@ namespace Assets.Core
         //public List<CivController> CivContollersWeHave;
         //private List<CivController> civsControllerList;
 
-        public CivController(string name)
-        {
-            CivShortName = name;
-        }
-
         public void Start()
         {
             TimeManager.Instance.OnStardateSpecialEvent = DoStardateEvent;

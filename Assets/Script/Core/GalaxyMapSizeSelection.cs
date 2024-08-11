@@ -16,7 +16,7 @@ namespace Assets.Core
 
         private void Awake()
         {
-            Canvas = GameObject.Find("Canvas"); 
+            Canvas = GameObject.Find("canvas"); 
             var _mainMenu = Canvas.transform.Find("PanelMain_Menu").gameObject;
             var _technologyGroup = _mainMenu.transform.Find("GALAXYMAPSIZE").gameObject; // DID WE CONNECT THIS???
             GalaxyMapSizeGroup = _technologyGroup.GetComponent<ToggleGroup>();
@@ -53,19 +53,19 @@ namespace Assets.Core
                 case "TOGGLE_LARGE":
                     Debug.Log("Galaxy Map Large.");
                     Large = _activeGalaxyMapSizeToggle;
-                    GameManager.Instance._galaxySize = GalaxySize.LARGE;
+                    GameManager.Instance.GalaxySize = GalaxySize.LARGE;
                    // GameManager.Instance.LoadStartGameObjectNames(Environment.CurrentDirectory + "\\Assets\\" + "Temp_GameObjectData.txt");// "AdvancedGameObjectData.txt");
                     break;
                 case "TOGGLE_MEDIUM":
                     Debug.Log("Galaxy Map Medium");
                     Medium = _activeGalaxyMapSizeToggle;
-                    GameManager.Instance._galaxySize = GalaxySize.MEDIUM;
+                    GameManager.Instance.GalaxySize = GalaxySize.MEDIUM;
                   //  GameManager.Instance.LoadStartGameObjectNames(Environment.CurrentDirectory + "\\Assets\\" + "Temp_GameObjectData.txt"); //"DevelopedGameObjectsData.txt");
                     break;
                 case "TOGGLE_SMALL":
                     Debug.Log("Galaxy Map Small");
                     Small = _activeGalaxyMapSizeToggle;
-                    GameManager.Instance._galaxySize = GalaxySize.SMALL;
+                    GameManager.Instance.GalaxySize = GalaxySize.SMALL;
                    // GameManager.Instance.LoadStartGameObjectNames(Environment.CurrentDirectory + "\\Assets\\" + "Temp_GameObjectData.txt"); //"EarlyGameObjectData.txt");
                     break;
                 default:

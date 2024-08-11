@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: CivSO_149_XEPOLITES
   m_EditorClassIdentifier: 
   CivInt: 149
-  CivEnum: 149
+  CivEnum: 150
   CivShortName: XEPOLITES
   CivLongName: XEPOLITES
   CivHomeSystem: XEPOLITES
   TraitOne: Hostile
   TraitTwo: Religious
-  CivImage: {fileID: 21300000, guid: 585e8a926d9a8644b986739787f58af5, type: 3}
+  CivImage: {fileID: 0}
   Insignia: {fileID: 21300000, guid: 292599f654a832449a23a860748b47fb, type: 3}
   Population: 0
   Credits: 0

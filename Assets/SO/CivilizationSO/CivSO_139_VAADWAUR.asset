@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: CivSO_139_VAADWAUR
   m_EditorClassIdentifier: 
   CivInt: 139
-  CivEnum: 139
+  CivEnum: 140
   CivShortName: VAADWAUR
   CivLongName: VAADWAUR
   CivHomeSystem: VAADWAUR
   TraitOne: Materialistic
   TraitTwo: Humility
-  CivImage: {fileID: 21300000, guid: 48dc7a857f69bd3478647c1560cd9a31, type: 3}
+  CivImage: {fileID: 0}
   Insignia: {fileID: 21300000, guid: 97b67a73c2b434f45aefc1e449f85d87, type: 3}
   Population: 0
   Credits: 0

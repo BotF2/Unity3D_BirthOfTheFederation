@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: CivSO_118_SKRREEA
   m_EditorClassIdentifier: 
   CivInt: 118
-  CivEnum: 118
+  CivEnum: 119
   CivShortName: SKRREEA
   CivLongName: SKRREEA
   CivHomeSystem: SKRREEA
   TraitOne: Humility
   TraitTwo: Honorable
-  CivImage: {fileID: 21300000, guid: 4cac727b3ff41c2499876d8834a0c8ef, type: 3}
+  CivImage: {fileID: 0}
   Insignia: {fileID: 0}
   Population: 0
   Credits: 0
