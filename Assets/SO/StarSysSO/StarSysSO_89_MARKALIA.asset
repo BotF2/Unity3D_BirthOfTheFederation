@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_89_MARKALIA
   m_EditorClassIdentifier: 
   StarSysInt: 89
-  Position: {x: -480, y: -2, z: -1380}
+  Position: {x: -480, y: -2, z: -780}
   SysName: MARKALIA
   FirstOwner: 89
   CurrentOwner: 89

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_142_VIDIIA
   m_EditorClassIdentifier: 
   StarSysInt: 142
-  Position: {x: 200, y: 1, z: 700}
+  Position: {x: 460, y: 1, z: 540}
   SysName: VIDIIA
   FirstOwner: 143
   CurrentOwner: 143

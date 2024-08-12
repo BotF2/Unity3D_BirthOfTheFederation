@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_1_ROMULUS
   m_EditorClassIdentifier: 
   StarSysInt: 1
-  Position: {x: 220, y: 0, z: -510}
+  Position: {x: 285, y: 0, z: -280}
   SysName: ROMULUS
   FirstOwner: 1
   CurrentOwner: 1

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_196_PARLIAMENT
   m_EditorClassIdentifier: 
   StarSysInt: 196
-  Position: {x: -90, y: 25, z: -980}
+  Position: {x: -90, y: 25, z: 780}
   SysName: PARLIAMENT
   FirstOwner: 197
   CurrentOwner: 197

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_72_KAELON
   m_EditorClassIdentifier: 
   StarSysInt: 72
-  Position: {x: -90, y: 8, z: -1090}
+  Position: {x: -90, y: 8, z: -890}
   SysName: KAELON
   FirstOwner: 72
   CurrentOwner: 72

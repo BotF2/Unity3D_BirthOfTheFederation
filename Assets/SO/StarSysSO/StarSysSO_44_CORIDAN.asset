@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_44_CORIDAN
   m_EditorClassIdentifier: 
   StarSysInt: 44
-  Position: {x: -30, y: 23, z: -720}
+  Position: {x: -30, y: 23, z: -520}
   SysName: CORIDAN
   FirstOwner: 44
   CurrentOwner: 44

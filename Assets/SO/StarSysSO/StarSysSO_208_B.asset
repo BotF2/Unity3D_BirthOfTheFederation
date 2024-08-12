@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_208_B
   m_EditorClassIdentifier: 
   StarSysInt: 208
-  Position: {x: 60, y: 28, z: -930}
+  Position: {x: 60, y: 28, z: 730}
   SysName: B
   FirstOwner: 209
   CurrentOwner: 209

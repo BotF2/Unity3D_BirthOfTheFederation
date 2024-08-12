@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_42_CAPELLA
   m_EditorClassIdentifier: 
   StarSysInt: 42
-  Position: {x: -90, y: -12, z: -830}
+  Position: {x: -90, y: -12, z: -630}
   SysName: CAPELLA
   FirstOwner: 42
   CurrentOwner: 42

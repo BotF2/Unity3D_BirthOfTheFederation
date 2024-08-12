@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_7_ACAMA
   m_EditorClassIdentifier: 
   StarSysInt: 7
-  Position: {x: -80, y: 0, z: -849}
+  Position: {x: -80, y: 0, z: -649}
   SysName: ACAMA
   FirstOwner: 7
   CurrentOwner: 7

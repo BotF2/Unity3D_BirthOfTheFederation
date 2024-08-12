@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_53_DREMA
   m_EditorClassIdentifier: 
   StarSysInt: 53
-  Position: {x: -230, y: -11, z: -1135}
+  Position: {x: -230, y: -11, z: -835}
   SysName: DREMA
   FirstOwner: 53
   CurrentOwner: 53

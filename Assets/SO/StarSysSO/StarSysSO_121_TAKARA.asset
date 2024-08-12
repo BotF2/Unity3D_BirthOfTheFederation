@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_121_TAKARA
   m_EditorClassIdentifier: 
   StarSysInt: 121
-  Position: {x: -480, y: 1, z: -1350}
+  Position: {x: -480, y: 1, z: -750}
   SysName: TAKARA
   FirstOwner: 122
   CurrentOwner: 122

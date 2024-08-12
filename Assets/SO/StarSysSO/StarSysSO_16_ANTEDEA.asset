@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_16_ANTEDEA
   m_EditorClassIdentifier: 
   StarSysInt: 16
-  Position: {x: -170, y: 0, z: -1090}
+  Position: {x: -170, y: 0, z: -790}
   SysName: ANTEDEA
   FirstOwner: 16
   CurrentOwner: 16

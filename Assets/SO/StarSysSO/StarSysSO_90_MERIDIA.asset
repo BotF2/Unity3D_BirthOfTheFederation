@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_90_MERIDIA
   m_EditorClassIdentifier: 
   StarSysInt: 90
-  Position: {x: -700, y: -22, z: 750}
+  Position: {x: -600, y: -22, z: 750}
   SysName: MERIDIA
   FirstOwner: 90
   CurrentOwner: 90

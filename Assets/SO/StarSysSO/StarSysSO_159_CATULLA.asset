@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_159_CATULLA
   m_EditorClassIdentifier: 
   StarSysInt: 159
-  Position: {x: 390, y: 22, z: -690}
+  Position: {x: 390, y: 22, z: -490}
   SysName: CATULLA
   FirstOwner: 160
   CurrentOwner: 160

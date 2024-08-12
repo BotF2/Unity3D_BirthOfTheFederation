@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_14_ANGOSIA
   m_EditorClassIdentifier: 
   StarSysInt: 14
-  Position: {x: 10, y: -21, z: -690}
+  Position: {x: 10, y: -21, z: -490}
   SysName: ANGOSIA
   FirstOwner: 14
   CurrentOwner: 14

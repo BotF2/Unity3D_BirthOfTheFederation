@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_17_ANTICA
   m_EditorClassIdentifier: 
   StarSysInt: 17
-  Position: {x: -140, y: -5, z: -1020}
+  Position: {x: -140, y: -5, z: -720}
   SysName: ANTICA
   FirstOwner: 17
   CurrentOwner: 17

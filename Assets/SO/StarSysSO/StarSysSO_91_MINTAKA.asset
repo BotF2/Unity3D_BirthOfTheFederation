@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_91_MINTAKA
   m_EditorClassIdentifier: 
   StarSysInt: 91
-  Position: {x: 50, y: -12, z: -590}
+  Position: {x: 50, y: -12, z: -390}
   SysName: MINTAKA
   FirstOwner: 91
   CurrentOwner: 91

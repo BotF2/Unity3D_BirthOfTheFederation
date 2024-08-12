@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_0_SOL
   m_EditorClassIdentifier: 
   StarSysInt: 0
-  Position: {x: -100, y: 10, z: -600}
+  Position: {x: -100, y: 10, z: -500}
   SysName: SOL
   FirstOwner: 0
   CurrentOwner: 0

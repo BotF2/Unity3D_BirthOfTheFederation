@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_93_MIZARIA
   m_EditorClassIdentifier: 
   StarSysInt: 93
-  Position: {x: 120, y: -11, z: -1080}
+  Position: {x: 120, y: -11, z: -880}
   SysName: MIZARIA
   FirstOwner: 93
   CurrentOwner: 93

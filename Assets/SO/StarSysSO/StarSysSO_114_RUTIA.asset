@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_114_RUTIA
   m_EditorClassIdentifier: 
   StarSysInt: 114
-  Position: {x: -160, y: 11, z: -1130}
+  Position: {x: -160, y: 11, z: -830}
   SysName: RUTIA
   FirstOwner: 115
   CurrentOwner: 115

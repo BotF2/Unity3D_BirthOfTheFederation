@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_8_AKAALI
   m_EditorClassIdentifier: 
   StarSysInt: 8
-  Position: {x: -180, y: -10, z: -540}
+  Position: {x: -180, y: -10, z: -340}
   SysName: AKAALI
   FirstOwner: 8
   CurrentOwner: 8

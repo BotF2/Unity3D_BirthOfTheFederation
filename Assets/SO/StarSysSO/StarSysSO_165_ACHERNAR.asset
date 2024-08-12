@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_165_ACHERNAR
   m_EditorClassIdentifier: 
   StarSysInt: 165
-  Position: {x: 340, y: -16, z: -320}
+  Position: {x: 340, y: -16, z: -220}
   SysName: ACHERNAR
   FirstOwner: 166
   CurrentOwner: 166

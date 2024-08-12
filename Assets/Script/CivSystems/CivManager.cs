@@ -102,7 +102,7 @@ namespace Assets.Core
                     _SOsInGame.Add(smallMapMinorsAlwaysInGame[i]);
                     if (galaxySize >= 1)
                         _SOsInGame.Add(mediumMapMinorsAlwaysInGame[i]);
-                    if (galaxySize > 2)
+                    if (galaxySize == 2)
                         _SOsInGame.Add(largeMapMinorsAlwaysInGame[i]);
                 }
             }

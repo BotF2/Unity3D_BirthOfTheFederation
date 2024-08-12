@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_29_BENZAR
   m_EditorClassIdentifier: 
   StarSysInt: 29
-  Position: {x: 10, y: -5, z: -1220}
+  Position: {x: 10, y: -5, z: -820}
   SysName: BENZAR
   FirstOwner: 29
   CurrentOwner: 29

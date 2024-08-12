@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_194_MORSKA
   m_EditorClassIdentifier: 
   StarSysInt: 194
-  Position: {x: 60, y: 28, z: -930}
+  Position: {x: 60, y: 28, z: 730}
   SysName: MORSKA
   FirstOwner: 195
   CurrentOwner: 195

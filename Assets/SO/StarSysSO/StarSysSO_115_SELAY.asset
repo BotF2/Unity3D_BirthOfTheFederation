@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_115_SELAY
   m_EditorClassIdentifier: 
   StarSysInt: 115
-  Position: {x: -190, y: -24, z: -1050}
+  Position: {x: -190, y: -24, z: -850}
   SysName: SELAY
   FirstOwner: 116
   CurrentOwner: 116

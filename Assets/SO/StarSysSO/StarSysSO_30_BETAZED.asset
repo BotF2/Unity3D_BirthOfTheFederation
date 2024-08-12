@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_30_BETAZED
   m_EditorClassIdentifier: 
   StarSysInt: 30
-  Position: {x: -290, y: 11, z: -910}
+  Position: {x: -290, y: 11, z: -710}
   SysName: BETAZED
   FirstOwner: 30
   CurrentOwner: 30

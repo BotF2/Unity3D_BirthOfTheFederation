@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: StarSysSO_104_ORION
   m_EditorClassIdentifier: 
   StarSysInt: 104
-  Position: {x: 20, y: 25, z: -730}
+  Position: {x: -290, y: 25, z: -670}
   SysName: ORION
   FirstOwner: 104
   CurrentOwner: 104
   StarType: 5
-  StarSprit: {fileID: 0}
+  StarSprit: {fileID: 1572158192, guid: c88c4ed55aadded46a918a7cd604deb3, type: 3}
   Population: 10
   PopulationLimit: 20
   Farms: 5

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_54_EDO
   m_EditorClassIdentifier: 
   StarSysInt: 54
-  Position: {x: -310, y: 28, z: -1000}
+  Position: {x: -310, y: 28, z: -850}
   SysName: EDO
   FirstOwner: 54
   CurrentOwner: 54

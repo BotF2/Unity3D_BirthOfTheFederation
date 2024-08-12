@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_86_MALCORIA
   m_EditorClassIdentifier: 
   StarSysInt: 86
-  Position: {x: -40, y: -12, z: -780}
+  Position: {x: -40, y: -12, z: -580}
   SysName: MALCORIA
   FirstOwner: 86
   CurrentOwner: 86

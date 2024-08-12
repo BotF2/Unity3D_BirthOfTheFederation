@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_169_ECHEVARRIA
   m_EditorClassIdentifier: 
   StarSysInt: 169
-  Position: {x: 150, y: 16, z: -570}
+  Position: {x: 150, y: 16, z: -370}
   SysName: ECHEVARRIA
   FirstOwner: 170
   CurrentOwner: 170

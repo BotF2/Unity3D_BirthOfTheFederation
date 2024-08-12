@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_63_GRAZERITES
   m_EditorClassIdentifier: 
   StarSysInt: 63
-  Position: {x: -310, y: -3, z: -1090}
+  Position: {x: -310, y: -3, z: -910}
   SysName: GRAZERITES
   FirstOwner: 63
   CurrentOwner: 63

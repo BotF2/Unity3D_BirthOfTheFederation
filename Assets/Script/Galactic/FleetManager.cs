@@ -186,6 +186,7 @@ namespace Assets.Core
                 if (fleetSO.CivIndex == fleetInt)
                 {
                     result = fleetSO;
+                    break;
                 }
             }
             return result;

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_58_EVORA
   m_EditorClassIdentifier: 
   StarSysInt: 58
-  Position: {x: 270, y: 18, z: -1380}
+  Position: {x: 270, y: 18, z: -880}
   SysName: EVORA
   FirstOwner: 58
   CurrentOwner: 58

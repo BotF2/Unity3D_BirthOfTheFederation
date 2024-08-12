@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_40_CAIRN
   m_EditorClassIdentifier: 
   StarSysInt: 40
-  Position: {x: -10, y: 5, z: -320}
+  Position: {x: -10, y: 5, z: -220}
   SysName: CAIRN
   FirstOwner: 40
   CurrentOwner: 40

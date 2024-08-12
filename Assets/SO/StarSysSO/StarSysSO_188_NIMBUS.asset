@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_188_NIMBUS
   m_EditorClassIdentifier: 
   StarSysInt: 188
-  Position: {x: 100, y: 27, z: -670}
+  Position: {x: 100, y: 27, z: 470}
   SysName: NIMBUS
   FirstOwner: 189
   CurrentOwner: 189

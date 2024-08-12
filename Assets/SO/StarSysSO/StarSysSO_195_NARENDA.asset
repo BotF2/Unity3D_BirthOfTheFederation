@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_195_NARENDA
   m_EditorClassIdentifier: 
   StarSysInt: 195
-  Position: {x: 190, y: -14, z: -780}
+  Position: {x: 190, y: -14, z: -580}
   SysName: NARENDA
   FirstOwner: 196
   CurrentOwner: 196

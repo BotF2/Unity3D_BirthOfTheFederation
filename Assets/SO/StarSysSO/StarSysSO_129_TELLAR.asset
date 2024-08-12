@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_129_TELLAR
   m_EditorClassIdentifier: 
   StarSysInt: 129
-  Position: {x: -180, y: -23, z: -640}
+  Position: {x: -180, y: -23, z: -440}
   SysName: TELLAR
   FirstOwner: 130
   CurrentOwner: 130

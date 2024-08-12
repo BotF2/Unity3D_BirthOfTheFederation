@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_135_TRILL
   m_EditorClassIdentifier: 
   StarSysInt: 135
-  Position: {x: -260, y: 25, z: -840}
+  Position: {x: -260, y: 25, z: -640}
   SysName: TRILL
   FirstOwner: 136
   CurrentOwner: 136

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_197_CHALTOK
   m_EditorClassIdentifier: 
   StarSysInt: 197
-  Position: {x: 290, y: 9, z: -450}
+  Position: {x: 290, y: 9, z: -350}
   SysName: CHALTOK
   FirstOwner: 198
   CurrentOwner: 198

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_60_FERENGINAR
   m_EditorClassIdentifier: 
   StarSysInt: 60
-  Position: {x: -330, y: 26, z: -480}
+  Position: {x: -280, y: 26, z: -380}
   SysName: FERENGINAR
   FirstOwner: 60
   CurrentOwner: 60

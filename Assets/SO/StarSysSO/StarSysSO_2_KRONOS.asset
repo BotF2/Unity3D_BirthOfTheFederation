@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_2_KRONOS
   m_EditorClassIdentifier: 
   StarSysInt: 2
-  Position: {x: 140, y: -25, z: -867}
+  Position: {x: 310, y: -25, z: -620}
   SysName: KRONOS
   FirstOwner: 2
   CurrentOwner: 2

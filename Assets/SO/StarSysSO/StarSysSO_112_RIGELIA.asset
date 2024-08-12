@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_112_RIGELIA
   m_EditorClassIdentifier: 
   StarSysInt: 112
-  Position: {x: -20, y: 26, z: -820}
+  Position: {x: -400, y: 26, z: -620}
   SysName: RIGELIA
   FirstOwner: 113
   CurrentOwner: 113

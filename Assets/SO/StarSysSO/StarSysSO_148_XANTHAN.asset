@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_148_XANTHAN
   m_EditorClassIdentifier: 
   StarSysInt: 148
-  Position: {x: 200, y: 13, z: -1450}
+  Position: {x: 200, y: 13, z: -750}
   SysName: XANTHAN
   FirstOwner: 149
   CurrentOwner: 149

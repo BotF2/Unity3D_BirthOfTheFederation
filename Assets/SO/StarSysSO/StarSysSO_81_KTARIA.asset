@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_81_KTARIA
   m_EditorClassIdentifier: 
   StarSysInt: 81
-  Position: {x: -530, y: 27, z: -1060}
+  Position: {x: -530, y: 27, z: -760}
   SysName: KTARIA
   FirstOwner: 81
   CurrentOwner: 81

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_155_ZAKDORN
   m_EditorClassIdentifier: 
   StarSysInt: 155
-  Position: {x: 200, y: 20, z: -520}
+  Position: {x: 200, y: 20, z: -320}
   SysName: ZAKDORN
   FirstOwner: 156
   CurrentOwner: 156

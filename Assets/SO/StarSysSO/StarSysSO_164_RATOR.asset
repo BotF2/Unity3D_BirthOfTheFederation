@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_164_RATOR
   m_EditorClassIdentifier: 
   StarSysInt: 164
-  Position: {x: 100, y: -9, z: -540}
+  Position: {x: 100, y: -9, z: -530}
   SysName: RATOR
   FirstOwner: 165
   CurrentOwner: 165

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_48_DENOBULA
   m_EditorClassIdentifier: 
   StarSysInt: 48
-  Position: {x: -30, y: 9, z: -530}
+  Position: {x: -30, y: 9, z: -330}
   SysName: DENOBULA
   FirstOwner: 48
   CurrentOwner: 48
