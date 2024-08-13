@@ -89,7 +89,6 @@ namespace Assets.Core
                 fleetData.CivLongName = civSO.CivLongName;
                 fleetData.CivShortName = civSO.CivShortName;
                 fleetData.Name = (myInt -i).ToString();
-                //fleetData.OurCivController = CivManager.Instance.GetCivControllerByEnum(fleetData.CivEnum); // Too early
                 InstantiateFleet(fleetData, position);
             }
         }

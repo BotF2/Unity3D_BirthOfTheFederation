@@ -13,12 +13,6 @@ namespace Assets.Core
     public class CivManager : MonoBehaviour
     {
         public static CivManager Instance;
-        //[SerializeField]
-        //private List<CivSO> civSOListSmall;
-        //[SerializeField]
-        //private List<CivSO> civSOListMedium;
-        //[SerializeField]
-        //private List<CivSO> civSOListLarge;
         [SerializeField]
         private List<CivSO> civSOListAllPossible;
         private List<CivSO> allCivSOsInGame;
@@ -115,33 +109,9 @@ namespace Assets.Core
             GameManager.Instance.TechLevelOnLoadGame = (TechLevel)gameTechLevel;
             GameManager.Instance.GalaxyType = (GalaxyType)galaxyType;
             isSinglePlayer = isSingleVsMultiplayer;
-
+            CivDataFromSO(allCivSOsInGame);//civSOListSmall);
+            CreateCivEnumList(allCivSOsInGame);//civSOListSmall);
             //LocalPlayer = GetCivDataByCivEnum((CivEnum)localPlayerCivInt);
-
-            switch (sizeGame)
-            { case 0:
-                    CivDataFromSO(allCivSOsInGame);//civSOListSmall);
-                    CreateCivEnumList(allCivSOsInGame);//civSOListSmall);
-                //ShipManager.Instance.SendEarlyCivSOListForFirstShips(civSOListSmall);
-                break;
-              case 1:
-
-                CivDataFromSO(allCivSOsInGame);
-                CreateCivEnumList(allCivSOsInGame);
-                //ShipManager.Instance.SendEarlyCivSOListForFirstShips(civSOListMedium);
-                HoldCivSize = sizeGame; // used in Multisystems in Fedearation test code 
-                break;
-              case 2:
-                CivDataFromSO(allCivSOsInGame);
-                CreateCivEnumList(allCivSOsInGame);
-                //ShipManager.Instance.SendEarlyCivSOListForFirstShips(civSOListLarge);
-                break;
-              default:
-                CivDataFromSO(allCivSOsInGame);
-                CreateCivEnumList(allCivSOsInGame);
-                //ShipManager.Instance.SendEarlyCivSOListForFirstShips(civSOListSmall);
-                break;
-            }
         }
         public void CivDataFromSO(List<CivSO> civSOList)
         {
