@@ -23,6 +23,7 @@ namespace Assets.Core
         [SerializeField]
         private List<CivSO> largeMapMinorsAlwaysInGame;
         private List<CivSO> randomMinorsInGame;
+        private int smallGalaxyRandomCivs =10, mediumGalaxyRandomCivs =20, largeGalaxyRandomCivs =30;
         public List<CivEnum> CivSOInGame;
         public List<CivData> CivDataInGameList = new List<CivData> { new CivData() };
         public List<CivController> CivControllersInGame;
@@ -85,7 +86,7 @@ namespace Assets.Core
         {
 
         }
-        public void UpdatePlayableCivList(List<CivEnum> listCivEnumForCivSOs, int galaxySize)
+        public void UpdateGameCivList(List<CivEnum> listCivEnumForCivSOs, int galaxySize)
         {
             List<CivSO> _SOsInGame = new List<CivSO>();
             for (int i = 0; i < listCivEnumForCivSOs.Count; i++)
@@ -99,19 +100,51 @@ namespace Assets.Core
                     if (galaxySize == 2)
                         _SOsInGame.Add(largeMapMinorsAlwaysInGame[i]);
                 }
+
             }
             allCivSOsInGame = _SOsInGame;
-            
+            SetRandomCivsByGalaxySize(galaxySize);
+
         }
-        public void CreateNewGameBySelections( int sizeGame, int gameTechLevel, int galaxyType, int localPlayerCivInt, bool isSingleVsMultiplayer)
+        private void SetRandomCivsByGalaxySize(int galaxySize)
+        {
+            switch (galaxySize)
+            {
+                case 0:
+                    for (int i = 0; i < smallGalaxyRandomCivs; i++)
+                    {
+                        int oneMoreCiv;
+                        foreach (var civSO in civSOListAllPossible)
+                        {
+                            if (allCivSOsInGame.Contains(civSO))
+                            {
+
+                            }
+                        }
+                    }
+                    break;
+                case 1:
+                    for (int i = 0; i < smallGalaxyRandomCivs; i++)
+                    {
+
+                    }
+                    break;
+                case 2:
+                    for (int i = 0; i < smallGalaxyRandomCivs; i++)
+                    {
+
+                    }
+                    break;
+            }
+        }
+    public void CreateNewGameBySelections( int sizeGame, int gameTechLevel, int galaxyType, int localPlayerCivInt, bool isSingleVsMultiplayer)
         {
             GameManager.Instance.GalaxySize = (GalaxySize)sizeGame;
             GameManager.Instance.TechLevelOnLoadGame = (TechLevel)gameTechLevel;
             GameManager.Instance.GalaxyType = (GalaxyType)galaxyType;
             isSinglePlayer = isSingleVsMultiplayer;
-            CivDataFromSO(allCivSOsInGame);//civSOListSmall);
-            CreateCivEnumList(allCivSOsInGame);//civSOListSmall);
-            //LocalPlayer = GetCivDataByCivEnum((CivEnum)localPlayerCivInt);
+            CivDataFromSO(allCivSOsInGame);
+            CreateCivEnumList(allCivSOsInGame);
         }
         public void CivDataFromSO(List<CivSO> civSOList)
         {

@@ -78,6 +78,8 @@ namespace Assets.Core
         //public ToggleGroup MultiplayerCivilizationGroup;// Can and should this be a group in the multiplayer setting, maybe.
         public Toggle FedOnOff, RomOnOff, KlingOnOff, CardOnOff, DomOnOff, BorgOnOff, TerranOnOff;
         public List<Toggle> OnOffToggles;
+        public Toggle Canon, Random, Ring;
+        public List<Toggle> mapToggles;
 
         private void Awake()
         {
@@ -488,7 +490,7 @@ namespace Assets.Core
         private void LoadGalaxyScene()
         {
             PlayableCivOffInGameList();
-            CivManager.Instance.UpdatePlayableCivList(InGamePlayableCivList, (int)SelectedGalaxySize);
+            CivManager.Instance.UpdateGameCivList(InGamePlayableCivList, (int)SelectedGalaxySize);
             mainMenuCanvas.SetActive(false);
             uiCameraGO.SetActive(false);
             galaxyCenter.SetActive(true);

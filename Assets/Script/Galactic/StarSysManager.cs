@@ -65,6 +65,7 @@ namespace Assets.Core
                 SysData.production = starSysSO.Factories;
                 SysData.Research = starSysSO.Research;
                 SysData.tech = 0;
+               
                 //SysData.food;
                 //SysData.power;
                 //SysData.production;
@@ -85,7 +86,9 @@ namespace Assets.Core
         }
         public void InstantiateSystem(StarSysData sysData, CivSO civSO)
         { 
-           
+           if(GameManager.Instance.GalaxyType == GalaxyType.RANDOM)
+            { // do something with sysData.
+            }
             GameObject starSystemNewGameOb = (GameObject)Instantiate(sysPrefab, new Vector3(0,0,0),
                  Quaternion.identity);
             starSystemNewGameOb.transform.Translate(new Vector3(sysData.GetPosition().x,

@@ -26,6 +26,6 @@ MonoBehaviour:
   TechPoints: 0
   CivTechLevel: 0
   Playable: 0
-  HasWarp: 0
+  HasWarp: 1
   Decription: ToDo, connect to libaray of civSO descriptions
   IntelPoints: 0

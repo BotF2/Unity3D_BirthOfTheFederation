@@ -57,7 +57,7 @@ namespace Assets.Core
             if (fleetSO != null)
             {
                 BuildFirstFleets(xyzBump, civSO, position);
-                // This is an option for more fleets/ships with larger galaxy
+                // *** This is an option for more fleets/ships with larger galaxy
                 //switch (GameManager.Instance.GalaxySize)
                 //{
                 //    case GalaxySize.SMALL:
