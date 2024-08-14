@@ -2759,6 +2759,10 @@ MonoBehaviour:
   BorgOnOff: {fileID: 1474495130}
   TerranOnOff: {fileID: 1929148016}
   OnOffToggles: []
+  Canon: {fileID: 0}
+  Random: {fileID: 0}
+  Ring: {fileID: 0}
+  mapToggles: []
 --- !u!4 &206574037
 Transform:
   m_ObjectHideFlags: 0
