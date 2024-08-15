@@ -19460,7 +19460,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a12a02737a46c3745b53af16a4e9f1ee, type: 2}
   - {fileID: 11400000, guid: 14e59251270a3624da40193b345125d2, type: 2}
   - {fileID: 11400000, guid: b1e9bd92ed3ec8840a9154fe7e602f5f, type: 2}
-  smallMapMinorsAlwaysInGame:
+  smallMapMinorNeighborsInGame:
   - {fileID: 11400000, guid: 5f4edd1a71679a6459c65f02a6003032, type: 2}
   - {fileID: 11400000, guid: a9b9e62c85ee2f843b19ea1f1234e12e, type: 2}
   - {fileID: 11400000, guid: 541f2e72387d4a641b1b1db930a2b962, type: 2}
@@ -19468,7 +19468,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 80c40ff28695b1d4cb58198c10bc8831, type: 2}
   - {fileID: 11400000, guid: ef7962b3dd935714ca22e0455cef057e, type: 2}
   - {fileID: 11400000, guid: aae9a605f8a61394caaa714a47c008b3, type: 2}
-  mediumMapMinorsAlwaysInGame:
+  mediumMapMinorNeighborsInGame:
   - {fileID: 11400000, guid: 0b2f6582b3b008345b331b5ff0b6e1be, type: 2}
   - {fileID: 11400000, guid: 35f804365d7c65044a7ddecaaf11cf9c, type: 2}
   - {fileID: 11400000, guid: 3d84112439d2a3c4fbcc437edbfb7b56, type: 2}
@@ -19476,7 +19476,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b3c28e9276d4b9c48a491838df66f40f, type: 2}
   - {fileID: 11400000, guid: 8095c72bb0cc87c4db612dee1e4fca7f, type: 2}
   - {fileID: 11400000, guid: 5db0893ed272eee448333e566d4386c7, type: 2}
-  largeMapMinorsAlwaysInGame:
+  largeMapMinorNeighborsInGame:
   - {fileID: 11400000, guid: da0e5beb5d8714f4c8dc86275681b04f, type: 2}
   - {fileID: 11400000, guid: b3b220b498755fe409f12ac784061868, type: 2}
   - {fileID: 11400000, guid: e82b379276aa5ec4c94abf57d5aacb3b, type: 2}

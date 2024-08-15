@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data.Common;
+using System.Linq;
 using System.Net.Http.Headers;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -17,11 +18,11 @@ namespace Assets.Core
         private List<CivSO> civSOListAllPossible;
         private List<CivSO> allCivSOsInGame;
         [SerializeField]
-        private List<CivSO> smallMapMinorsAlwaysInGame;
+        private List<CivSO> smallMapMinorNeighborsInGame;
         [SerializeField]
-        private List<CivSO> mediumMapMinorsAlwaysInGame;
+        private List<CivSO> mediumMapMinorNeighborsInGame;
         [SerializeField]
-        private List<CivSO> largeMapMinorsAlwaysInGame;
+        private List<CivSO> largeMapMinorNeighborsInGame;
         private List<CivSO> randomMinorsInGame;
         private int smallGalaxyRandomCivs =10, mediumGalaxyRandomCivs =20, largeGalaxyRandomCivs =30;
         public List<CivEnum> CivSOInGame;
@@ -94,11 +95,11 @@ namespace Assets.Core
                 if (listCivEnumForCivSOs[i] != CivEnum.ZZUNINHABITED1)
                 {
                     _SOsInGame.Add(civSOListAllPossible[i]);
-                    _SOsInGame.Add(smallMapMinorsAlwaysInGame[i]);
+                    _SOsInGame.Add(smallMapMinorNeighborsInGame[i]);
                     if (galaxySize >= 1)
-                        _SOsInGame.Add(mediumMapMinorsAlwaysInGame[i]);
+                        _SOsInGame.Add(mediumMapMinorNeighborsInGame[i]);
                     if (galaxySize == 2)
-                        _SOsInGame.Add(largeMapMinorsAlwaysInGame[i]);
+                        _SOsInGame.Add(largeMapMinorNeighborsInGame[i]);
                 }
 
             }
@@ -108,6 +109,7 @@ namespace Assets.Core
         }
         private void SetRandomCivsByGalaxySize(int galaxySize)
         {
+            civSOListAllPossible = civSOListAllPossible.OrderBy(i => Guid.NewGuid()).ToList();
             switch (galaxySize)
             {
                 case 0:
