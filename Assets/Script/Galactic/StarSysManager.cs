@@ -85,77 +85,84 @@ namespace Assets.Core
             GameManager.Instance.LoadGalacticDestinations(starSysDatas);
         }
         public void InstantiateSystem(StarSysData sysData, CivSO civSO)
-        { 
-           if(GameManager.Instance.GalaxyType == GalaxyType.RANDOM)
-            { // do something with sysData.
+        {
+            if (GameManager.Instance.GalaxyType == GalaxyType.RANDOM)
+            { // do something with sysData.position
             }
-            GameObject starSystemNewGameOb = (GameObject)Instantiate(sysPrefab, new Vector3(0,0,0),
-                 Quaternion.identity);
-            starSystemNewGameOb.transform.Translate(new Vector3(sysData.GetPosition().x,
-                sysData.GetPosition().y, sysData.GetPosition().z));
-
-            starSystemNewGameOb.transform.SetParent(galaxyCenter.transform, true);
-            starSystemNewGameOb.transform.localScale = new Vector3(1, 1, 1);
-            starSystemNewGameOb.name = sysData.GetSysName();
-            //starSystemNewGameOb.
-            sysData.SysGameObject = starSystemNewGameOb;
-            var ImageRenderers = starSystemNewGameOb.GetComponentsInChildren<SpriteRenderer>();
-
-            TextMeshProUGUI[] TheText = starSystemNewGameOb.GetComponentsInChildren<TextMeshProUGUI>(); 
-            foreach (var OneTmp in TheText)
+            else if (GameManager.Instance.GalaxyType == GalaxyType.RING)
             {
-                OneTmp.enabled = true;
-                if (OneTmp != null && OneTmp.name == "SysName (TMP)")
-                    OneTmp.text = sysData.GetSysName();
-                else if (OneTmp != null && OneTmp.name == "SysDescription (TMP)")
-                    OneTmp.text = sysData.Description;
-   
+                // do something else with sysData.position
             }
-            var Renderers = starSystemNewGameOb.GetComponentsInChildren<SpriteRenderer>();
-            foreach (var oneRenderer in Renderers)
+            else
             {
-                if (oneRenderer != null)
+                GameObject starSystemNewGameOb = (GameObject)Instantiate(sysPrefab, new Vector3(0, 0, 0),
+                     Quaternion.identity);
+                starSystemNewGameOb.transform.Translate(new Vector3(sysData.GetPosition().x,
+                    sysData.GetPosition().y, sysData.GetPosition().z));
+
+                starSystemNewGameOb.transform.SetParent(galaxyCenter.transform, true);
+                starSystemNewGameOb.transform.localScale = new Vector3(1, 1, 1);
+                starSystemNewGameOb.name = sysData.GetSysName();
+                //starSystemNewGameOb.
+                sysData.SysGameObject = starSystemNewGameOb;
+                var ImageRenderers = starSystemNewGameOb.GetComponentsInChildren<SpriteRenderer>();
+
+                TextMeshProUGUI[] TheText = starSystemNewGameOb.GetComponentsInChildren<TextMeshProUGUI>();
+                foreach (var OneTmp in TheText)
                 {
-                    //if (oneRenderer.CivName == "CivRaceSprite")
-                    //{
-                    //    oneRenderer.sprite = civSO.CivImage; // ok
-                    //}
+                    OneTmp.enabled = true;
+                    if (OneTmp != null && OneTmp.name == "SysName (TMP)")
+                        OneTmp.text = sysData.GetSysName();
+                    else if (OneTmp != null && OneTmp.name == "SysDescription (TMP)")
+                        OneTmp.text = sysData.Description;
 
-                    if (oneRenderer.name == "OwnerInsignia")
-                    {
-                        oneRenderer.sprite = civSO.Insignia;
-                        //oneRenderer.sprite.GetComponent<MeshFilter>().sharedMesh.RecalculateBounds();
-                    }
-                    else if (oneRenderer.name == "StarSprite")
-                        oneRenderer.sprite = sysData.StarSprit;
                 }
-            }
-            DropLineFixed ourDropLine = starSystemNewGameOb.GetComponentInChildren<DropLineFixed>();
-            
-            ourDropLine.GetLineRenderer();
+                var Renderers = starSystemNewGameOb.GetComponentsInChildren<SpriteRenderer>();
+                foreach (var oneRenderer in Renderers)
+                {
+                    if (oneRenderer != null)
+                    {
+                        //if (oneRenderer.CivName == "CivRaceSprite")
+                        //{
+                        //    oneRenderer.sprite = civSO.CivImage; // ok
+                        //}
 
-            Vector3 galaxyPlanePoint = new Vector3(starSystemNewGameOb.transform.position.x,
-                galaxyImage.transform.position.y, starSystemNewGameOb.transform.position.z);
-            Vector3[] points = {starSystemNewGameOb.transform.position, galaxyPlanePoint};
-            ourDropLine.SetUpLine(points);
-            StarSysController controller = starSystemNewGameOb.GetComponentInChildren<StarSysController>();
-            controller.name = sysData.GetSysName();
-            controller.StarSysData = sysData;
-            foreach (var civCon in CivManager.Instance.CivControllersInGame)
-            {
-                if (civCon.CivData.CivEnum == controller.StarSysData.GetFirstOwner())
-                    controller.StarSysData.CurrentCivController = civCon;
+                        if (oneRenderer.name == "OwnerInsignia")
+                        {
+                            oneRenderer.sprite = civSO.Insignia;
+                            //oneRenderer.sprite.GetComponent<MeshFilter>().sharedMesh.RecalculateBounds();
+                        }
+                        else if (oneRenderer.name == "StarSprite")
+                            oneRenderer.sprite = sysData.StarSprit;
+                    }
+                }
+                DropLineFixed ourDropLine = starSystemNewGameOb.GetComponentInChildren<DropLineFixed>();
+
+                ourDropLine.GetLineRenderer();
+
+                Vector3 galaxyPlanePoint = new Vector3(starSystemNewGameOb.transform.position.x,
+                    galaxyImage.transform.position.y, starSystemNewGameOb.transform.position.z);
+                Vector3[] points = { starSystemNewGameOb.transform.position, galaxyPlanePoint };
+                ourDropLine.SetUpLine(points);
+                StarSysController controller = starSystemNewGameOb.GetComponentInChildren<StarSysController>();
+                controller.name = sysData.GetSysName();
+                controller.StarSysData = sysData;
+                foreach (var civCon in CivManager.Instance.CivControllersInGame)
+                {
+                    if (civCon.CivData.CivEnum == controller.StarSysData.GetFirstOwner())
+                        controller.StarSysData.CurrentCivController = civCon;
+                }
+                starSystemNewGameOb.SetActive(true);
+                StarSysControllerList.Add(controller);
+                systemCount++;
+                CivManager.Instance.AddSystemToOwnedCivSystemList(controller);
+                //***** This is temporary so we can test a multi-starsystem civ
+                //******* before diplomacy will alow civs/systems to join another civ
+                //if (systemCount == 8)
+                //{
+                //    CivManager.Instance.nowCivsCanJoinTheFederation = true;
+                //}
             }
-            starSystemNewGameOb.SetActive(true);
-            StarSysControllerList.Add(controller);
-            systemCount++;
-            CivManager.Instance.AddSystemToOwnedCivSystemList(controller);
-            //***** This is temporary so we can test a multi-starsystem civ
-            //******* before diplomacy will alow civs/systems to join another civ
-            //if (systemCount == 8)
-            //{
-            //    CivManager.Instance.nowCivsCanJoinTheFederation = true;
-            //}
         }
 
         public StarSysSO GetStarSObyInt(int sysInt)

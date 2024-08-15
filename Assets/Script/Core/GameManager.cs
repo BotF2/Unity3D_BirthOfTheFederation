@@ -238,7 +238,9 @@ namespace Assets.Core
     public enum GalaxyType
     {
         CANON,
-        RANDOM
+        RANDOM,
+        RING,
+        WHATEVER
     }
     public enum GalaxySize
     {
