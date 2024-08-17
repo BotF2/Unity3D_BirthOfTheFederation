@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: FleetSO_77_KLAESTRON
   m_EditorClassIdentifier: 
   CivIndex: 77
-  Insignia: {fileID: 0}
+  Insignia: {fileID: 21300000, guid: 25ebb8312d33a664ea98b65bd6cd92f3, type: 3}
   CivOwnerEnum: 77
   Location: {x: 0, y: 0, z: 0}
-  ShipsList: []
+  ShipsList:
+  - {fileID: 0}
   MaxWarpFactor: 0
   CurrentWarpFactor: 0
   Name: 

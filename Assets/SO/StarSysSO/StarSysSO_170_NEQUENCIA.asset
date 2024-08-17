@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_170_NEQUENCIA
   m_EditorClassIdentifier: 
   StarSysInt: 170
-  Position: {x: 230, y: 23, z: -230}
+  Position: {x: 280, y: 23, z: 10}
   SysName: NEQUENCIA
   FirstOwner: 171
   CurrentOwner: 171

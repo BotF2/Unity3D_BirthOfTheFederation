@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_134_TRABE
   m_EditorClassIdentifier: 
   StarSysInt: 134
-  Position: {x: 490, y: -17, z: 690}
+  Position: {x: 335, y: -17, z: 827}
   SysName: TRABE
   FirstOwner: 135
   CurrentOwner: 135

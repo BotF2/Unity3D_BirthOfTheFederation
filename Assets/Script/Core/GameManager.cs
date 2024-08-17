@@ -455,8 +455,8 @@ namespace Assets.Core
             foreach (var sysData in starSysDataList)
             {
                 destinationNames.Add(sysData.SysName);
-                //if (!DestinationDictionary.ContainsKey(sysData.SysName))
-                DestinationDictionary.Add(sysData.SysName, sysData.SysGameObject);
+                if (!DestinationDictionary.ContainsKey(sysData.SysName))
+                    DestinationDictionary.Add(sysData.SysName, sysData.SysGameObject);
             }
         }
         public void LoadGalacticDestinations(FleetData fleetData, GameObject fleetGO)

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_168_ASCHELAN
   m_EditorClassIdentifier: 
   StarSysInt: 168
-  Position: {x: -400, y: 11, z: -370}
+  Position: {x: -400, y: 11, z: 300}
   SysName: ASCHELAN
   FirstOwner: 169
   CurrentOwner: 169

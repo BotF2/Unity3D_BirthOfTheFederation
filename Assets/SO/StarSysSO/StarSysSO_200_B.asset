@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: StarSysSO_200_B
   m_EditorClassIdentifier: 
   StarSysInt: 200
-  Position: {x: 50, y: 9, z: -340}
-  SysName: B
+  Position: {x: 100, y: 1, z: -260}
+  SysName: LEO
   FirstOwner: 201
   CurrentOwner: 201
   StarType: 3

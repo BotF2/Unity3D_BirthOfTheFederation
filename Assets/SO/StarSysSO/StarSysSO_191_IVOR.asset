@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_191_IVOR
   m_EditorClassIdentifier: 
   StarSysInt: 191
-  Position: {x: 60, y: 1, z: -440}
+  Position: {x: 180, y: 1, z: -440}
   SysName: IVOR
   FirstOwner: 192
   CurrentOwner: 192

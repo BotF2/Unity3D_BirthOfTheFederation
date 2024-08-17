@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: FleetSO_154_ZAHL
   m_EditorClassIdentifier: 
   CivIndex: 154
-  Insignia: {fileID: 0}
+  Insignia: {fileID: 21300000, guid: b78d493ebde59ce4ea5f97a3f1b52df9, type: 3}
   CivOwnerEnum: 155
   Location: {x: 0, y: 0, z: 0}
-  ShipsList: []
+  ShipsList:
+  - {fileID: 0}
   MaxWarpFactor: 0
   CurrentWarpFactor: 0
   Name: 

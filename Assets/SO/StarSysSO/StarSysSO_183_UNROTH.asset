@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_183_UNROTH
   m_EditorClassIdentifier: 
   StarSysInt: 183
-  Position: {x: 130, y: 9, z: -550}
+  Position: {x: 330, y: 9, z: -420}
   SysName: UNROTH
   FirstOwner: 184
   CurrentOwner: 184

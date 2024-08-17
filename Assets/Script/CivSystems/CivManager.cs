@@ -89,21 +89,22 @@ namespace Assets.Core
         }
         public void UpdateGameCivList(List<CivEnum> listCivEnumForCivSOs, int galaxySize)
         {
-            List<CivSO> _SOsInGame = new List<CivSO>();
-            for (int i = 0; i < listCivEnumForCivSOs.Count; i++)
-            {
-                if (listCivEnumForCivSOs[i] != CivEnum.ZZUNINHABITED1)
-                {
-                    _SOsInGame.Add(civSOListAllPossible[i]);
-                    _SOsInGame.Add(smallMapMinorNeighborsInGame[i]);
-                    if (galaxySize >= 1)
-                        _SOsInGame.Add(mediumMapMinorNeighborsInGame[i]);
-                    if (galaxySize == 2)
-                        _SOsInGame.Add(largeMapMinorNeighborsInGame[i]);
-                }
+            //List<CivSO> _SOsInGame = new List<CivSO>();
+            //for (int i = 0; i < listCivEnumForCivSOs.Count; i++)
+            //{
+            //    if (listCivEnumForCivSOs[i] != CivEnum.ZZUNINHABITED1)
+            //    {
+            //        _SOsInGame.Add(civSOListAllPossible[i]);
+            //        _SOsInGame.Add(smallMapMinorNeighborsInGame[i]);
+            //        if (galaxySize >= 1)
+            //            _SOsInGame.Add(mediumMapMinorNeighborsInGame[i]);
+            //        if (galaxySize == 2)
+            //            _SOsInGame.Add(largeMapMinorNeighborsInGame[i]);
+            //    }
 
-            }
-            allCivSOsInGame = _SOsInGame;
+            //}
+            //allCivSOsInGame = _SOsInGame;
+            allCivSOsInGame = civSOListAllPossible;
             SetRandomCivsByGalaxySize(galaxySize);
 
         }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_97_NECHANI
   m_EditorClassIdentifier: 
   StarSysInt: 97
-  Position: {x: 550, y: 8, z: 650}
+  Position: {x: 494, y: 8, z: 180}
   SysName: NECHANI
   FirstOwner: 97
   CurrentOwner: 97

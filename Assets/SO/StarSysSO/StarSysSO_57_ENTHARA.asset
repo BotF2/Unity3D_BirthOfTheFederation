@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_57_ENTHARA
   m_EditorClassIdentifier: 
   StarSysInt: 57
-  Position: {x: 390, y: -29, z: 480}
+  Position: {x: 284, y: -29, z: 480}
   SysName: ENTHARA
   FirstOwner: 57
   CurrentOwner: 57

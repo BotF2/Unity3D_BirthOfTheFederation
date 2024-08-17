@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: StarSysSO_203_A
   m_EditorClassIdentifier: 
   StarSysInt: 203
-  Position: {x: 70, y: 18, z: 640}
-  SysName: A
+  Position: {x: -77, y: 18, z: 555}
+  SysName: PROVONSHA
   FirstOwner: 204
   CurrentOwner: 204
   StarType: 3

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: StarSysSO_202_B
   m_EditorClassIdentifier: 
   StarSysInt: 202
-  Position: {x: 100, y: 27, z: -670}
-  SysName: B
+  Position: {x: 110, y: 27, z: -130}
+  SysName: LYRA
   FirstOwner: 203
   CurrentOwner: 203
   StarType: 2

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: StarSysSO_206_B
   m_EditorClassIdentifier: 
   StarSysInt: 206
-  Position: {x: 180, y: -5, z: -280}
-  SysName: B
+  Position: {x: -250, y: -5, z: 280}
+  SysName: HYDRA
   FirstOwner: 207
   CurrentOwner: 207
   StarType: 2

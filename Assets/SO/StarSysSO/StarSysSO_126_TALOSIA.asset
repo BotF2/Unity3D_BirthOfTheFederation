@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_126_TALOSIA
   m_EditorClassIdentifier: 
   StarSysInt: 126
-  Position: {x: -50, y: 5, z: -480}
+  Position: {x: -400, y: 5, z: -50}
   SysName: TALOSIA
   FirstOwner: 127
   CurrentOwner: 127

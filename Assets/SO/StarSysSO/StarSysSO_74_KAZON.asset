@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_74_KAZON
   m_EditorClassIdentifier: 
   StarSysInt: 74
-  Position: {x: 300, y: 2, z: 600}
+  Position: {x: 448, y: 2, z: 523}
   SysName: KAZON
   FirstOwner: 74
   CurrentOwner: 74

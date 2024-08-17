@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_23_AXANAR
   m_EditorClassIdentifier: 
   StarSysInt: 23
-  Position: {x: -140, y: 11, z: -540}
+  Position: {x: 50, y: 11, z: -540}
   SysName: AXANAR
   FirstOwner: 23
   CurrentOwner: 23

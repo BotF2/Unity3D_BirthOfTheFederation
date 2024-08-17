@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_41_CALDON
   m_EditorClassIdentifier: 
   StarSysInt: 41
-  Position: {x: 140, y: -12, z: -910}
+  Position: {x: 410, y: -12, z: -810}
   SysName: CALDON
   FirstOwner: 41
   CurrentOwner: 41

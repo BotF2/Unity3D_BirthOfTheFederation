@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_38_BREKKA
   m_EditorClassIdentifier: 
   StarSysInt: 38
-  Position: {x: -60, y: 11, z: -820}
+  Position: {x: 97, y: 11, z: -832}
   SysName: BREKKA
   FirstOwner: 38
   CurrentOwner: 38

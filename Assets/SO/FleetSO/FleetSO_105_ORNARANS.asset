@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: FleetSO_105_ORNARANS
   m_EditorClassIdentifier: 
   CivIndex: 105
-  Insignia: {fileID: 0}
+  Insignia: {fileID: 21300000, guid: afb953f8040d207458dfe708d0e0b253, type: 3}
   CivOwnerEnum: 105
   Location: {x: 0, y: 0, z: 0}
-  ShipsList: []
+  ShipsList:
+  - {fileID: 0}
   MaxWarpFactor: 0
   CurrentWarpFactor: 0
   Name: 

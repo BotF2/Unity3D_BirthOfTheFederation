@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_56_ELAYSIA
   m_EditorClassIdentifier: 
   StarSysInt: 56
-  Position: {x: -520, y: -1, z: -620}
+  Position: {x: -563, y: -1, z: -389}
   SysName: ELAYSIA
   FirstOwner: 56
   CurrentOwner: 56

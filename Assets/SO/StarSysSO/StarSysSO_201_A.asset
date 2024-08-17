@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: StarSysSO_201_A
   m_EditorClassIdentifier: 
   StarSysInt: 201
-  Position: {x: 70, y: 26, z: 380}
-  SysName: A
+  Position: {x: -200, y: 26, z: 210}
+  SysName: CEPHEUS
   FirstOwner: 202
   CurrentOwner: 202
   StarType: 4

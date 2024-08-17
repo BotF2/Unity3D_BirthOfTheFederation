@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: StarSysSO_205_A
   m_EditorClassIdentifier: 
   StarSysInt: 205
-  Position: {x: 60, y: 1, z: -340}
-  SysName: A
+  Position: {x: -100, y: 1, z: 260}
+  SysName: DRACO
   FirstOwner: 206
   CurrentOwner: 206
   StarType: 2
