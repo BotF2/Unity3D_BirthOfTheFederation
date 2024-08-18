@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: StarSysSO_204_B
   m_EditorClassIdentifier: 
   StarSysInt: 204
-  Position: {x: 40, y: 17, z: -680}
-  SysName: B
+  Position: {x: -4310, y: 17, z: 2280}
+  SysName: HYADES
   FirstOwner: 205
   CurrentOwner: 205
   StarType: 4

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: StarSysSO_207_A
   m_EditorClassIdentifier: 
   StarSysInt: 207
-  Position: {x: 150, y: 11, z: -620}
-  SysName: A
+  Position: {x: -174, y: 11, z: 326}
+  SysName: CETUS
   FirstOwner: 208
   CurrentOwner: 208
   StarType: 0

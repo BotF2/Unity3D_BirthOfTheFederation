@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: StarSysSO_210_B
   m_EditorClassIdentifier: 
   StarSysInt: 210
-  Position: {x: -90, y: 25, z: 680}
-  SysName: B
+  Position: {x: -133, y: 25, z: 680}
+  SysName: CARINA
   FirstOwner: 211
   CurrentOwner: 211
   StarType: 2

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: StarSysSO_208_B
   m_EditorClassIdentifier: 
   StarSysInt: 208
-  Position: {x: 60, y: 28, z: 730}
-  SysName: B
+  Position: {x: -340, y: 28, z: 322}
+  SysName: MIZAR
   FirstOwner: 209
   CurrentOwner: 209
   StarType: 3

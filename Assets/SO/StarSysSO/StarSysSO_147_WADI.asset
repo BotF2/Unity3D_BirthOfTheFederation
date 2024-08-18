@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_147_WADI
   m_EditorClassIdentifier: 
   StarSysInt: 147
-  Position: {x: -620, y: -14, z: 370}
+  Position: {x: -210, y: -14, z: 424}
   SysName: WADI
   FirstOwner: 148
   CurrentOwner: 148

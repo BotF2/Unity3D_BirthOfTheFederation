@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_209_A
   m_EditorClassIdentifier: 
   StarSysInt: 209
-  Position: {x: 190, y: -14, z: 780}
+  Position: {x: -156, y: -14, z: 527}
   SysName: REIL
   FirstOwner: 210
   CurrentOwner: 210

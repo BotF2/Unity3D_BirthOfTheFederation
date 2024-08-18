@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_73_KAREMMA
   m_EditorClassIdentifier: 
   StarSysInt: 73
-  Position: {x: -620, y: -20, z: 570}
+  Position: {x: -370, y: -20, z: 570}
   SysName: KAREMMA
   FirstOwner: 73
   CurrentOwner: 73
