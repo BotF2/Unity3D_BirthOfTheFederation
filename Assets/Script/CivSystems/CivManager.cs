@@ -24,13 +24,14 @@ namespace Assets.Core
         [SerializeField]
         private List<CivSO> largeMapMinorNeighborsInGame;
         private List<CivSO> randomMinorsInGame;
-        private int smallGalaxyRandomCivs =10, mediumGalaxyRandomCivs =20, largeGalaxyRandomCivs =30;
+        //private int smallGalaxyRandomCivs =5, mediumGalaxyRandomCivs =10, largeGalaxyRandomCivs =15;
         public List<CivEnum> CivSOInGame;
         public List<CivData> CivDataInGameList = new List<CivData> { new CivData() };
         public List<CivController> CivControllersInGame;
         public Dictionary<CivController, List<CivController>> CivsThatACivKnows = new Dictionary<CivController, List<CivController>>();
         public CivData LocalPlayer;
         public bool isSinglePlayer;
+        public List<CivEnum> InGamePlayableCivs;
         //public bool nowCivsCanJoinTheFederation = true; // for use with testing a muliple star system Federation
         private int HoldCivSize = 0;// used in testing of a multiStarSystem civilization/faction
         [SerializeField]
@@ -87,65 +88,83 @@ namespace Assets.Core
         {
 
         }
-        public void UpdateGameCivList(List<CivEnum> listCivEnumForCivSOs, int galaxySize)
+        public void UpdatePlayableCivGameList(List<CivEnum> listPlayableCivEnumForCivSOs, int galaxySize, GalaxyMapType galaxyType)
         {
-            List<CivSO> _SOsInGame = new List<CivSO>();
-            for (int i = 0; i < listCivEnumForCivSOs.Count; i++)
+            if (galaxyType == GalaxyMapType.CANON)
             {
-                if (listCivEnumForCivSOs[i] != CivEnum.ZZUNINHABITED1)
-                {
-                    _SOsInGame.Add(civSOListAllPossible[i]);
-                    _SOsInGame.Add(smallMapMinorNeighborsInGame[i]);
-                    if (galaxySize >= 1)
-                        _SOsInGame.Add(mediumMapMinorNeighborsInGame[i]);
-                    if (galaxySize == 2)
-                        _SOsInGame.Add(largeMapMinorNeighborsInGame[i]);
-                }
+                #region COMMENT OUT SELECTIVE CIS AND TURN ON ALL CIVS BELOW
+                //// **********TURN OFF SELECTIVE CIVS HERE AND TURN ON ALL CIVS BELOW *******
+                ///
 
+                List<CivSO> _SOsInGame = new List<CivSO>();
+                for (int i = 0; i < listPlayableCivEnumForCivSOs.Count; i++)
+                {
+                    if (listPlayableCivEnumForCivSOs[i] != CivEnum.ZZUNINHABITED1)
+                    {
+                        _SOsInGame.Add(civSOListAllPossible[i]); // add the playable
+                        _SOsInGame.Add(smallMapMinorNeighborsInGame[i]); // add playable's minor races
+                        if (galaxySize >= 1)
+                            _SOsInGame.Add(mediumMapMinorNeighborsInGame[i]);
+                        if (galaxySize == 2)
+                            _SOsInGame.Add(largeMapMinorNeighborsInGame[i]);
+                    }
+                }
+                SetRandomCanonCivsByGalaxySize(galaxySize, _SOsInGame);
+                allCivSOsInGame = _SOsInGame;
+
+
+                ////**** See all Civs -  ****
+                //allCivSOsInGame = civSOListAllPossible;
+                #endregion TURN ON ALL CIVs WITH LAST LINE ABOVE
             }
-            allCivSOsInGame = _SOsInGame;
-            //**** See all Civs ****
-            //allCivSOsInGame = civSOListAllPossible; // 
-            SetRandomCivsByGalaxySize(galaxySize);
+            else if (galaxyType == GalaxyMapType.RANDOM)
+            {
+                // do random map here
+            }
+            else if (galaxyType == GalaxyMapType.RING)
+            {
+                // do ring galaxy here
+            }
+            else if (galaxyType == GalaxyMapType.WHATEVER)
+            {
+                // do something else here
+            }
 
         }
-        private void SetRandomCivsByGalaxySize(int galaxySize)
+        private void SetRandomCanonCivsByGalaxySize(int galaxySize, List<CivSO> _SOsInGame)
         {
             civSOListAllPossible = civSOListAllPossible.OrderBy(i => Guid.NewGuid()).ToList();
-            switch (galaxySize)
+
+            for (int i = 0; i < (15 * (1 + galaxySize)); i++)
             {
-                case 0:
-                    for (int i = 0; i < smallGalaxyRandomCivs; i++)
+                for (int j = 0; j < civSOListAllPossible.Count; j++)
+                {
+                    int oneMoreCiv = j;
                     {
-                        int oneMoreCiv;
-                        foreach (var civSO in civSOListAllPossible)
+                        if (!_SOsInGame.Contains(civSOListAllPossible[i]))
                         {
-                            if (allCivSOsInGame.Contains(civSO))
-                            {
-
-                            }
+                            _SOsInGame.Add(civSOListAllPossible[i]);
+                            break;
                         }
+                        else if (!_SOsInGame.Contains(civSOListAllPossible[i + 1]))
+                        {
+                            _SOsInGame.Add(civSOListAllPossible[i + 1]);
+                            j++;
+                            break;
+                        }
+                        else
+                            j++;
                     }
-                    break;
-                case 1:
-                    for (int i = 0; i < smallGalaxyRandomCivs; i++)
-                    {
-
-                    }
-                    break;
-                case 2:
-                    for (int i = 0; i < smallGalaxyRandomCivs; i++)
-                    {
-
-                    }
-                    break;
+                }
             }
+
+            
         }
     public void CreateNewGameBySelections( int sizeGame, int gameTechLevel, int galaxyType, int localPlayerCivInt, bool isSingleVsMultiplayer)
         {
             GameManager.Instance.GalaxySize = (GalaxySize)sizeGame;
             GameManager.Instance.TechLevelOnLoadGame = (TechLevel)gameTechLevel;
-            GameManager.Instance.GalaxyType = (GalaxyType)galaxyType;
+            GameManager.Instance.GalaxyType = (GalaxyMapType)galaxyType;
             isSinglePlayer = isSingleVsMultiplayer;
             CivDataFromSO(allCivSOsInGame);
             CreateCivEnumList(allCivSOsInGame);

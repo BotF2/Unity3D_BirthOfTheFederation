@@ -235,7 +235,7 @@ namespace Assets.Core
         ZZUNINHABITED53
         #endregion
     }
-    public enum GalaxyType
+    public enum GalaxyMapType
     {
         CANON,
         RANDOM,
@@ -347,9 +347,9 @@ namespace Assets.Core
         public List<string> DestinationNames { get { return destinationNames; } }
         public Dictionary<string, GameObject> DestinationDictionary = new Dictionary<string, GameObject>();
         public GalaxySize GalaxySize;
-        public GalaxyType GalaxyType;
+        public GalaxyMapType GalaxyType;
         public TechLevel TechLevelOnLoadGame;
-        public Galaxy Galaxy; // = new Galaxy(GameManager.Instance, GalaxyType.ELLIPTICAL, 20);
+        public Galaxy Galaxy; // = new Galaxy(GameManager.Instance, GalaxyMapType.ELLIPTICAL, 20);
         private SolarSystemView solarSystemView;
         /// <summary>
         /// Old combat tool for view of all ships in combat

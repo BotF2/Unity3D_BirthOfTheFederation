@@ -42,7 +42,7 @@ namespace Assets.Core
             //    GameManager.Instance.MultiPlayerLobbyClicked();
             //}
             //activeLocalPlayerToggle = SinglePlayerCivilizationGroup.ActiveToggles().ToArray().FirstOrDefault();
-            //ActiveToggle();
+            //ActivePlayerToggle();
         }
         //public void SinglePlay()
         //{
@@ -58,7 +58,7 @@ namespace Assets.Core
         //    Toggle toggle = activeLocalPlayerToggle;
         //    Debug.Log(toggle.CivName + " _ ");
         //}
-        //public void ActiveToggle()
+        //public void ActivePlayerToggle()
         //{
         //    //switch (activeLocalPlayerToggle.CivName.ToUpper())
         //    //{

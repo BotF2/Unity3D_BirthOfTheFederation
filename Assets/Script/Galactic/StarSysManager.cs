@@ -86,10 +86,10 @@ namespace Assets.Core
         }
         public void InstantiateSystem(StarSysData sysData, CivSO civSO)
         {
-            if (GameManager.Instance.GalaxyType == GalaxyType.RANDOM)
+            if (GameManager.Instance.GalaxyType == GalaxyMapType.RANDOM)
             { // do something with sysData.position
             }
-            else if (GameManager.Instance.GalaxyType == GalaxyType.RING)
+            else if (GameManager.Instance.GalaxyType == GalaxyMapType.RING)
             {
                 // do something else with sysData.position
             }

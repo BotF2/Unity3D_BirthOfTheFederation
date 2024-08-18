@@ -29,13 +29,13 @@ namespace Assets.Core
         //        {
         //            activeLocalPlayerToggle = toggle;
         //            if (previousToggle != toggle)
-        //                ActiveToggle(activeLocalPlayerToggle);
+        //                ActivePlayerToggle(activeLocalPlayerToggle);
         //            break;
         //        }
         //    }
         //    previousToggle = activeLocalPlayerToggle;
         //}
-        //public void ActiveToggle(Toggle activeToggleOrder)
+        //public void ActivePlayerToggle(Toggle activeToggleOrder)
         //{
 
         //    switch (activeToggleOrder.name.ToUpper())

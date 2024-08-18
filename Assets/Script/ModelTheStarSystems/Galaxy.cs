@@ -96,7 +96,7 @@ namespace Assets.Core
                 }
                 //gameManager.Galaxy = Galaxy;
 
-                // ToDo: use numStars and GalaxyType
+                // ToDo: use numStars and GalaxyMapType
             }
         }
 

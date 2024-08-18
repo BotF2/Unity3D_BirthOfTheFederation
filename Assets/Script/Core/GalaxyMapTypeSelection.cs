@@ -50,13 +50,13 @@ namespace Assets.Core
                 case "TOGGLE_CANON":
                     Debug.Log("CANON MAP");
                     Canon = _activeGalaxyMapTypeToggle;
-                    GameManager.Instance.GalaxyType = GalaxyType.CANON;
+                    GameManager.Instance.GalaxyType = GalaxyMapType.CANON;
                    // GameManager.Instance.LoadStartGameObjectNames(Environment.CurrentDirectory + "\\Assets\\" + "Temp_GameObjectData.txt");// "AdvancedGameObjectData.txt");
                     break;
                 case "TOGGLE_RANOM":
                     Debug.Log("RANDOM MAP");
                     Random = _activeGalaxyMapTypeToggle;
-                    GameManager.Instance.GalaxyType = GalaxyType.RANDOM;
+                    GameManager.Instance.GalaxyType = GalaxyMapType.RANDOM;
                   //  GameManager.Instance.LoadStartGameObjectNames(Environment.CurrentDirectory + "\\Assets\\" + "Temp_GameObjectData.txt"); //"DevelopedGameObjectsData.txt");
                     break;
                 default:

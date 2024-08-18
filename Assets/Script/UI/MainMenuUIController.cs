@@ -8,6 +8,7 @@ using UnityEngine.EventSystems;
 using System.Linq;
 using System;
 using TMPro;
+using Unity.VisualScripting;
 //using UnityEditor.UIElements;
 
 namespace Assets.Core
@@ -23,6 +24,8 @@ namespace Assets.Core
         /// ToDo this...
         /// </summary>
         public static MainMenuUIController Instance;
+        public Color activeColor = Color.magenta;
+        public Color backgroundColor = Color.white;
         [SerializeField]
         private GameObject mainMenuCanvas;
         [SerializeField]
@@ -34,7 +37,7 @@ namespace Assets.Core
         [SerializeField]
         private GameObject galaxyCenter;
         public bool PastMainMenu = false; // see TimeManager
-        public GalaxyType SelectedGalaxyType { get; private set; }
+        public GalaxyMapType SelectedGalaxyType { get; private set; }
         public GalaxySize SelectedGalaxySize { get; private set; }
         public TechLevel SelectedTechLevel { get; private set; }
         public CivEnum SelectedLocalCivEnum;
@@ -60,6 +63,8 @@ namespace Assets.Core
         [SerializeField]
         private GameObject mulitplayerToggleGroup;
         [SerializeField]
+        private GameObject mapToggleGroup;
+        [SerializeField]
         private TMP_Text playerFed, playerRom, playerKling, playerCard, playerDom, playerBorg, playerTerran;
         private readonly string you = "You", computer = "Computer", notInGame = "Absent";
         private Toggle activeLocalPlayerToggle;
@@ -78,8 +83,10 @@ namespace Assets.Core
         //public ToggleGroup MultiplayerCivilizationGroup;// Can and should this be a group in the multiplayer setting, maybe.
         public Toggle FedOnOff, RomOnOff, KlingOnOff, CardOnOff, DomOnOff, BorgOnOff, TerranOnOff;
         public List<Toggle> OnOffToggles;
-        public Toggle Canon, Random, Ring;
-        public List<Toggle> mapToggles;
+        private Toggle activeMapToggle;
+        public ToggleGroup MapToggleGroup;
+        public Toggle CanonToggle, RandomToggle, RingToggle;
+        public List<Toggle> MapToggles;
 
         private void Awake()
         {
@@ -101,6 +108,11 @@ namespace Assets.Core
             SinglePlayerCivilizationGroup.RegisterToggle(DomLocalPlayerToggle);
             SinglePlayerCivilizationGroup.RegisterToggle(BorgLocalPlayerToggle);
             SinglePlayerCivilizationGroup.RegisterToggle(TerranLocalPlayerToggle);
+            MapToggleGroup.enabled = true;
+            MapToggleGroup = mapToggleGroup.GetComponent<ToggleGroup>();
+            MapToggleGroup.RegisterToggle(CanonToggle);
+            MapToggleGroup.RegisterToggle(RandomToggle);
+            MapToggleGroup.RegisterToggle(RingToggle);
             FedOnOff.isOn = true;
             RomOnOff.isOn = true;
             KlingOnOff.isOn = true;
@@ -108,6 +120,7 @@ namespace Assets.Core
             DomOnOff.isOn = true;
             BorgOnOff.isOn = true;
             TerranOnOff.isOn = false;
+
 
             // Pending Multiplayer lobby if needed
             //MultiplayerCivilizationGroup.enabled = true;
@@ -145,13 +158,18 @@ namespace Assets.Core
             InGamePlayableCivList.Add(CivEnum.DOM);
             InGamePlayableCivList.Add(CivEnum.BORG);
             InGamePlayableCivList.Add(CivEnum.TERRAN);
+            CanonToggle.isOn = true;
+            CanonToggle.Select();
+            CanonToggle.OnSelect(null);
+            RandomToggle.isOn = false;
+            RingToggle.isOn = false;
 
         }
         private void UpdatePlayers()
         {
             activeLocalPlayerToggle = SinglePlayerCivilizationGroup.ActiveToggles().ToArray().FirstOrDefault();
             if (activeLocalPlayerToggle != null)
-                ActiveToggle();
+                ActivePlayerToggle();
             #region Multiplayer toggle group - 
             // ToDo do we need a multiplayer toggle group
             //foreach (var toggle in MultiplayerCivilizationGroup.ActiveToggles().ToArray())
@@ -191,6 +209,14 @@ namespace Assets.Core
             //}
             #endregion Multiplayer toggle group
         }
+        public void UpdateMapSelection()
+        { 
+            activeMapToggle = MapToggleGroup.ActiveToggles().ToArray().FirstOrDefault();
+            if (activeMapToggle != null)
+            {
+                ActiveMapToggle();
+            }
+        }
         private void UpdateNotInGame()
         {
             for (int i = 0; i < OnOffToggles.Count; i++)
@@ -227,7 +253,7 @@ namespace Assets.Core
             }
         }
 
-        private void ActiveToggle()
+        private void ActivePlayerToggle()
         {
             switch (activeLocalPlayerToggle.name.ToUpper())
             {
@@ -293,6 +319,35 @@ namespace Assets.Core
                     SetLocalCivilization(6);
                     PlaceTheYouInPlayerList(6);
                     CivManager.Instance.LocalPlayer = CivManager.Instance.GetCivDataByCivEnum(CivEnum.TERRAN);
+                    break;
+                default:
+                    break;
+            }
+        }
+        public void ActiveMapToggle()
+        {
+            switch (activeMapToggle.name.ToUpper())
+            {
+                case "TOGGLE_CANON":
+                    CanonToggle.isOn = true;
+                    CanonToggle.OnSelect(null);
+                    CanonToggle = activeMapToggle;
+                    //CanonToggle.GetComponent<Image>().color = activeColor;
+                    SetMapGalaxyType((int)GalaxyMapType.CANON);
+                    break;
+                case "TOGGLE_RANDOM":
+                    RandomToggle.isOn = true;
+                    RandomToggle.OnSelect(null);
+                    RandomToggle = activeMapToggle;
+                    //RandomToggle.GetComponent<Image>().color = activeColor;
+                    SetMapGalaxyType((int)GalaxyMapType.RANDOM);
+                    break;
+                case "TOGGLE_RING":
+                    RingToggle.isOn = true;
+                    RingToggle.OnSelect(null);
+                    RingToggle = activeMapToggle;
+                   // RingToggle.GetComponent<Image>().color = activeColor;
+                    SetMapGalaxyType((int)(GalaxyMapType.RING));
                     break;
                 default:
                     break;
@@ -473,9 +528,9 @@ namespace Assets.Core
             SelectedGalaxySize = (GalaxySize)index;
         }
 
-        private void SetGalaxyType(int index)
+        public void SetMapGalaxyType(int index)
         {
-            SelectedGalaxyType = (GalaxyType)index;
+            SelectedGalaxyType = (GalaxyMapType)index;
         }
 
         private void SetTechLevel(int index)
@@ -489,8 +544,9 @@ namespace Assets.Core
         }
         private void LoadGalaxyScene()
         {
+            UpdateMapSelection();
             PlayableCivOffInGameList();
-            CivManager.Instance.UpdateGameCivList(InGamePlayableCivList, (int)SelectedGalaxySize);
+            CivManager.Instance.UpdatePlayableCivGameList(InGamePlayableCivList, (int)SelectedGalaxySize, SelectedGalaxyType);
             mainMenuCanvas.SetActive(false);
             uiCameraGO.SetActive(false);
             galaxyCenter.SetActive(true);
@@ -510,6 +566,7 @@ namespace Assets.Core
                     InGamePlayableCivList[i] = CivEnum.ZZUNINHABITED1;
                 }
             }
+
         }
     }
 }
