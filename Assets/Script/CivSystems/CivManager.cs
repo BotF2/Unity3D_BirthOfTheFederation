@@ -135,7 +135,7 @@ namespace Assets.Core
         {
             civSOListAllPossible = civSOListAllPossible.OrderBy(i => Guid.NewGuid()).ToList();
 
-            for (int i = 0; i < (15 * (1 + galaxySize)); i++)
+            for (int i = 0; i < (50 * (1 + galaxySize)); i++)
             {
                 for (int j = 0; j < civSOListAllPossible.Count; j++)
                 {

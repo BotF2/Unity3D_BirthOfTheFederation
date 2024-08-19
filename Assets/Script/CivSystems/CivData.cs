@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Assets.Core
 {
 
-    public class CivData// : MonoBehaviour // has list of civsInGame, starSytemData and civs data dictionaries?
+    public class CivData // has list of civsInGame, it's starSytems Data
     {
         public int CivInt;
         public CivEnum CivEnum;

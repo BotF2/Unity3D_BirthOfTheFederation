@@ -24,8 +24,6 @@ namespace Assets.Core
         /// ToDo this...
         /// </summary>
         public static MainMenuUIController Instance;
-        public Color activeColor = Color.magenta;
-        public Color backgroundColor = Color.white;
         [SerializeField]
         private GameObject mainMenuCanvas;
         [SerializeField]
@@ -65,6 +63,10 @@ namespace Assets.Core
         [SerializeField]
         private GameObject mapToggleGroup;
         [SerializeField]
+        private GameObject galaxySizeToggleGroup;
+        [SerializeField]
+        private GameObject techLevelToggleGroup;
+        [SerializeField]
         private TMP_Text playerFed, playerRom, playerKling, playerCard, playerDom, playerBorg, playerTerran;
         private readonly string you = "You", computer = "Computer", notInGame = "Absent";
         private Toggle activeLocalPlayerToggle;
@@ -87,6 +89,14 @@ namespace Assets.Core
         public ToggleGroup MapToggleGroup;
         public Toggle CanonToggle, RandomToggle, RingToggle;
         public List<Toggle> MapToggles;
+        private Toggle activeGalaxySizeToggle;
+        public ToggleGroup GalaxySizeToggleGroup;
+        public Toggle SmallGalaxyToggle, MediumGalaxyToggle, LargeGalaxyToggle, PonderousGalaxyToggle;
+        public List<Toggle> GalaxySizeToggles;
+        private Toggle activeTechLevelToggle;
+        public ToggleGroup TechLevelToggleGroup;
+        public Toggle EarlyToggle, DevelopedToggle, AdvancedToggle, SupremeToggle;
+        public List<Toggle> TechLevelToggles;
 
         private void Awake()
         {
@@ -120,7 +130,18 @@ namespace Assets.Core
             DomOnOff.isOn = true;
             BorgOnOff.isOn = true;
             TerranOnOff.isOn = false;
-
+            MapToggleGroup.enabled = true;
+            GalaxySizeToggleGroup = galaxySizeToggleGroup.GetComponent<ToggleGroup>();
+            GalaxySizeToggleGroup.RegisterToggle(SmallGalaxyToggle);
+            GalaxySizeToggleGroup.RegisterToggle(MediumGalaxyToggle);
+            GalaxySizeToggleGroup.RegisterToggle(LargeGalaxyToggle);
+            GalaxySizeToggleGroup.RegisterToggle(PonderousGalaxyToggle);
+            TechLevelToggleGroup.enabled = true;
+            TechLevelToggleGroup = techLevelToggleGroup.GetComponent<ToggleGroup>();
+            TechLevelToggleGroup.RegisterToggle(EarlyToggle);
+            TechLevelToggleGroup.RegisterToggle(DevelopedToggle);
+            TechLevelToggleGroup.RegisterToggle(AdvancedToggle);
+            TechLevelToggleGroup.RegisterToggle(SupremeToggle);
 
             // Pending Multiplayer lobby if needed
             //MultiplayerCivilizationGroup.enabled = true;
@@ -163,7 +184,18 @@ namespace Assets.Core
             CanonToggle.OnSelect(null);
             RandomToggle.isOn = false;
             RingToggle.isOn = false;
-
+            SmallGalaxyToggle.isOn = true;
+            SmallGalaxyToggle.Select();
+            SmallGalaxyToggle.OnSelect(null);
+            MediumGalaxyToggle.isOn = false;
+            LargeGalaxyToggle.isOn = false;
+            PonderousGalaxyToggle.isOn = false;
+            EarlyToggle.isOn = true;
+            EarlyToggle.Select();
+            EarlyToggle.OnSelect(null);
+            DevelopedToggle.isOn = false;
+            AdvancedToggle.isOn = false;
+            SupremeToggle.isOn = false;
         }
         private void UpdatePlayers()
         {
@@ -215,6 +247,22 @@ namespace Assets.Core
             if (activeMapToggle != null)
             {
                 ActiveMapToggle();
+            }
+        }
+        public void UpdateGalaxySizeSelection()
+        {
+            activeGalaxySizeToggle = GalaxySizeToggleGroup.ActiveToggles().ToArray().FirstOrDefault();
+            if (activeMapToggle != null)
+            {
+                ActiveGalaxySizeToggle();
+            }
+        }
+        public void UpdateTechLevelSelection()
+        {
+            activeTechLevelToggle = TechLevelToggleGroup.ActiveToggles().ToArray().FirstOrDefault();
+            if (activeTechLevelToggle != null)
+            {
+                ActiveTechLevelToggle();
             }
         }
         private void UpdateNotInGame()
@@ -353,7 +401,70 @@ namespace Assets.Core
                     break;
             }
         }
-
+        public void ActiveGalaxySizeToggle()
+        {
+            switch (activeGalaxySizeToggle.name.ToUpper())
+            {
+                case "TOGGLE_SMALL":
+                    SmallGalaxyToggle.isOn = true;
+                    SmallGalaxyToggle.OnSelect(null);
+                    SmallGalaxyToggle = activeGalaxySizeToggle;
+                    SetGalaxySize((int)GalaxySize.SMALL);
+                    break;
+                case "TOGGLE_MEDIUM":
+                    MediumGalaxyToggle.isOn = true;
+                    MediumGalaxyToggle.OnSelect(null);
+                    MediumGalaxyToggle = activeGalaxySizeToggle;
+                    SetGalaxySize((int)GalaxySize.MEDIUM);
+                    break;
+                case "TOGGLE_LARGE":
+                    LargeGalaxyToggle.isOn = true;
+                    LargeGalaxyToggle.OnSelect(null);
+                    LargeGalaxyToggle = activeGalaxySizeToggle;
+                    SetGalaxySize((int)GalaxySize.MEDIUM);
+                    break;
+                case "TOGGLE_PONDEROUS":
+                    PonderousGalaxyToggle.isOn = true;
+                    PonderousGalaxyToggle.OnSelect(null);
+                    PonderousGalaxyToggle = activeGalaxySizeToggle;
+                    SetGalaxySize((int)GalaxySize.PONDEROUS);
+                    break;
+                default:
+                    break;
+            }
+        }
+        public void ActiveTechLevelToggle()
+        {
+            switch (activeTechLevelToggle.name.ToUpper())
+            {
+                case "TOGGLE_EARLY":
+                    EarlyToggle.isOn = true;
+                    EarlyToggle.OnSelect(null);
+                    EarlyToggle = activeTechLevelToggle;
+                    SetTechLevel((int)TechLevel.EARLY);
+                    break;
+                case "TOGGLE_DEVELOPED":
+                    DevelopedToggle.isOn = true;
+                    DevelopedToggle.OnSelect(null);
+                    DevelopedToggle = activeTechLevelToggle;
+                    SetTechLevel((int)TechLevel.DEVELOPED);
+                    break;
+                case "TOGGLE_ADVANCED":
+                    AdvancedToggle.isOn = true;
+                    AdvancedToggle.OnSelect(null);
+                    AdvancedToggle = activeTechLevelToggle;
+                    SetTechLevel((int)TechLevel.ADVANCED);
+                    break;
+                case "TOGGLE_SUPREME":
+                    SupremeToggle.isOn = true;
+                    SupremeToggle.OnSelect(null);
+                    SupremeToggle = activeTechLevelToggle;
+                    SetTechLevel((int)TechLevel.SUPREME);
+                    break;
+                default:
+                    break;
+            }
+        }
         private void PlaceTheYouInPlayerList(int civInt)
         {
             switch (civInt)
@@ -383,8 +494,7 @@ namespace Assets.Core
                     break;
             }
         }
-            
-        
+              
         private void ResetPlayers()
         {
             if (playerFed.text == you)
@@ -545,6 +655,8 @@ namespace Assets.Core
         private void LoadGalaxyScene()
         {
             UpdateMapSelection();
+            UpdateGalaxySizeSelection();
+            UpdateTechLevelSelection();
             PlayableCivOffInGameList();
             CivManager.Instance.UpdatePlayableCivGameList(InGamePlayableCivList, (int)SelectedGalaxySize, SelectedGalaxyType);
             mainMenuCanvas.SetActive(false);

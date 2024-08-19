@@ -246,7 +246,8 @@ namespace Assets.Core
     {
         SMALL,
         MEDIUM,
-        LARGE
+        LARGE,
+        PONDEROUS
     }
     public enum TechLevel
     {
@@ -359,13 +360,13 @@ namespace Assets.Core
         /// <summary>
         /// Old UI elements
         /// </summary>
-            //public SinglePlayer _SinglePlayer;
-            //public MultiPlayer _MultiPlayer;
-            //public LoadGamePanel _LoadGamePanel;
-            //public SaveGamePanel _SaveGamePanel;
-            //public SettingsGamePanel _SettingsGamePanel;
-            //public ExitQuit _ExitQuit;
-            //public CreditsGamePanel _CreditsGamePanel;
+        //public SinglePlayer _SinglePlayer;
+        //public MultiPlayer _MultiPlayer;
+        //public LoadGamePanel _LoadGamePanel;
+        //public SaveGamePanel _SaveGamePanel;
+        //public SettingsGamePanel _SettingsGamePanel;
+        //public ExitQuit _ExitQuit;
+        //public CreditsGamePanel _CreditsGamePanel;
         /// <summary>
         /// Old pre combat opening ship warpin animation and setup for start of combat
         /// </summary>
@@ -399,11 +400,11 @@ namespace Assets.Core
         //public GameObject Enemy_Y1_Z1;
         //public GameObject Enemy_Y1_Z2;
 
-        public GameObject[] animationEmpties = new GameObject[12]; // Populated in Unity Hierarchy under Combat for animation empty objexts
-                                                                   // { FriendScout_Y0_Z0, 
-                                                                   //    FriendDestroyer_Y0_Z1, FriendCapitalShip_Y0_Z2, FriendColony_Y1_Z0, Friend_Y1_Z1, Friend_Y1_Z2, 
-                                                                   //    EnemyScout_Y0_Z0, EnemyDestroyer_Y0_Z1, EnemyCapital_Y0_Z2, EnemyColony_Y1_Z0, Enemy_Y1_Z1, Enemy_Y1_Z2 };
-                                                                   // Unity does not like c# lists
+        //public GameObject[] animationEmpties = new GameObject[12]; // Populated in Unity Hierarchy under Combat for animation empty objexts
+        // { FriendScout_Y0_Z0, 
+        //    FriendDestroyer_Y0_Z1, FriendCapitalShip_Y0_Z2, FriendColony_Y1_Z0, Friend_Y1_Z1, Friend_Y1_Z2, 
+        //    EnemyScout_Y0_Z0, EnemyDestroyer_Y0_Z1, EnemyCapital_Y0_Z2, EnemyColony_Y1_Z0, Enemy_Y1_Z1, Enemy_Y1_Z2 };
+        // Unity does not like c# lists
         #endregion
 
         //public static List<string> StartGameObjectNames = new List<string>();
@@ -485,7 +486,7 @@ namespace Assets.Core
         public GameObject UICamera;
         public GameObject GalaxyCamera;
         
-        public void SetCameraTargets()
+        public void SetCameraTargets() // ToDo: re-implement in combat
          {
             //List<GameObject> _cameraTargets = new List<GameObject>() { Friend_0, Enemy_0}; // dummies
            
@@ -514,11 +515,11 @@ namespace Assets.Core
         //{
         //    EnemyShips.Add(daObject);
         //}
-        public void WarpingInCompleted()
+        public void WarpingInCompleted() // ToDo: re-implement in combat
         {
             _warpingInIsOver = true;
         }
-        public void SetShipLayer()
+        public void SetShipLayer() // ToDo: re-implement in combat
         {
             //List<GameObject> allDaShipObjectInCombat = new List<GameObject>();
             //allDaShipObjectInCombat = FriendShips;
