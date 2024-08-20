@@ -5,6 +5,10 @@ using UnityEngine;
 
 namespace Assets.Core
 {
+    /// <summary>
+    /// Controlling a Civilization(faction) while the matching CivData class
+    /// holds key info on status and for save game
+    /// </summary>
     public class CivController : MonoBehaviour
     {
         //Fields

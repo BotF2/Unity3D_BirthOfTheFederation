@@ -6,6 +6,10 @@ using System;
 
 public class StarSysController : MonoBehaviour
 {
+    /// <summary>
+    /// Controlling Star System interactions while the matching StarSystemData class
+    /// holds key info on status and for save game
+    /// </summary>
     //Fields
     private StarSysData starSysData;
     public StarSysData StarSysData { get { return starSysData; } set { starSysData = value; } }

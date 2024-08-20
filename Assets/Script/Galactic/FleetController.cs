@@ -9,7 +9,10 @@ using UnityEngine.Networking.Types;
 using UnityEngine.UIElements;
 
 namespace Assets.Core
-{
+{    /// <summary>
+     /// Controlling fleet movement and interactions while the matching FeetData class
+     /// holds key info on status and for save game
+     /// </summary>
     public enum FleetState { FleetCombat, FleetDipolmacy, FleetInSystem, FleetsInRendezvous, FleetStationary, FleetAtWarp}
     public class FleetController : MonoBehaviour
     {

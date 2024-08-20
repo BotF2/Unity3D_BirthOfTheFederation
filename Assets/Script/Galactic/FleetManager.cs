@@ -16,6 +16,9 @@ using UnityEngine.UIElements;
 
 namespace Assets.Core
 {
+    /// <summary>
+    /// Instantiates the fleets (a FleetController and a FleetData) using FleetSO
+    /// </summary>
     public class FleetManager : MonoBehaviour
     {
         public static FleetManager Instance;
@@ -99,6 +102,7 @@ namespace Assets.Core
                 GameObject fleetNewGameOb = (GameObject)Instantiate(fleetPrefab, new Vector3(0, 0, 0),
                         Quaternion.identity);
                 FleetGOList.Add(fleetNewGameOb);
+                
                 var fleetController = fleetNewGameOb.GetComponentInChildren<FleetController>();
                 fleetController.FleetData = fleetData;
                 fleetController.Name = fleetData.Name;
@@ -106,7 +110,7 @@ namespace Assets.Core
                 ManagersFleetControllerList.Add(fleetController);
                 fleetNewGameOb.transform.Translate(new Vector3(fleetData.Position.x + 40f,  fleetData.Position.y + 10f, fleetData.Position.z));
                 fleetNewGameOb.transform.SetParent(galaxyCenter.transform, true);
-                fleetNewGameOb.transform.localScale = new Vector3(1, 1, 1);
+                fleetNewGameOb.transform.localScale = new Vector3(0.7f, 0.7f, 1); // scale ship insignia here
                 fleetNewGameOb.name = fleetData.CivShortName.ToString() + " Fleet " + fleetData.Name; // name game object
                 TextMeshProUGUI TheText = fleetNewGameOb.GetComponentInChildren<TextMeshProUGUI>();
 

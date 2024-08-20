@@ -12,6 +12,9 @@ using UnityEngine.Rendering.VirtualTexturing;
 
 namespace Assets.Core
 {
+    /// <summary>
+    /// Instantiates the star system (a StarSysController and a StarSysData) using StarSysSO
+    /// </summary>
     public class StarSysManager : MonoBehaviour
     {
         public static StarSysManager Instance;

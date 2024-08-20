@@ -10,7 +10,9 @@ using UnityEngine;
 
 namespace Assets.Core
 {
-
+    /// <summary>
+    /// Instantiates the Civilizations(factions) (a CivController and a CivData) using CivSO
+    /// </summary>
     public class CivManager : MonoBehaviour
     {
         public static CivManager Instance;
