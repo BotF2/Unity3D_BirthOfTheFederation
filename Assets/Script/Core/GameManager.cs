@@ -337,8 +337,6 @@ namespace Assets.Core
         public TimeManager TimeManager;
         [SerializeField]
         private MainMenuUIController mainMenuUIController;
-        // ?? will we need these again?
-        //List<AsyncOperation> scenesToLoad = new List<AsyncOperation>();
         public bool _weAreFriend = false;
         public bool _warpingInIsOver = false; // WarpingInCompleted() called from E_Animator3 sets true and set false again in CombatCompleted state in BeginState
         public CivEnum LocalPlayer;
