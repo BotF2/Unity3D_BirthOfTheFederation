@@ -154,7 +154,7 @@ namespace Assets.Core
                 
                 ShipManager.Instance.BuildShipsOfFirstFleet(fleetNewGameOb);
                 
-                GameManager.Instance.LoadGalacticDestinations(fleetData, fleetNewGameOb);
+                GameManager.Instance.GameData.LoadGalacticDestinations(fleetData, fleetNewGameOb);
             }
         }
         void RemoveFleetConrollerFromAllControllers(FleetController fleetController)

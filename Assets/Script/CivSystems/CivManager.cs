@@ -162,9 +162,9 @@ namespace Assets.Core
         }
     public void CreateNewGameBySelections( int sizeGame, int gameTechLevel, int galaxyType, int localPlayerCivInt, bool isSingleVsMultiplayer)
         {
-            GameManager.Instance.GalaxySize = (GalaxySize)sizeGame;
-            GameManager.Instance.TechLevelOnLoadGame = (TechLevel)gameTechLevel;
-            GameManager.Instance.GalaxyType = (GalaxyMapType)galaxyType;
+            MainMenuUIController.Instance.MainMenuData.SelectedGalaxySize = (GalaxySize)sizeGame;
+            MainMenuUIController.Instance.MainMenuData.SelectedTechLevel = (TechLevel)gameTechLevel;
+            MainMenuUIController.Instance.MainMenuData.SelectedGalaxyType = (GalaxyMapType)galaxyType;
             isSinglePlayer = isSingleVsMultiplayer;
             CivDataFromSO(allCivSOsInGame);
             CreateCivEnumList(allCivSOsInGame);
@@ -185,7 +185,7 @@ namespace Assets.Core
                 civData.Population = civSO.Population;
                 civData.Credits = civSO.Credits;
                 civData.TechPoints = civSO.TechPoints;
-                civData.CivTechLevel = GameManager.Instance.TechLevelOnLoadGame;
+                civData.CivTechLevel = MainMenuUIController.Instance.MainMenuData.SelectedTechLevel;
                 civData.Playable = civSO.Playable;
                 civData.HasWarp = civSO.HasWarp;
                 civData.Decription = civSO.Decription;

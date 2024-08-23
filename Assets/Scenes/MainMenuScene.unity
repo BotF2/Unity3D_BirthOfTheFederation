@@ -2682,8 +2682,6 @@ MonoBehaviour:
   uiCameraGO: {fileID: 1302084395}
   galaxyCenter: {fileID: 564492290}
   PastMainMenu: 0
-  SelectedLocalCivEnum: 0
-  InGamePlayableCivList: 
   IsSinglePlayer: 0
   panelLobby: {fileID: 270225717}
   panelMuliplayer: {fileID: 4711736}
@@ -18707,11 +18705,6 @@ MonoBehaviour:
   mainMenuUIController: {fileID: 206574036}
   _weAreFriend: 0
   _warpingInIsOver: 0
-  LocalPlayer: 0
-  NoDestination: 
-  GalaxySize: 0
-  GalaxyType: 0
-  TechLevelOnLoadGame: 0
   _statePassedLobbyInit: 0
   _statePassedMain_Init: 0
   _statePassedCombatMenu_Init: 0

@@ -24,6 +24,8 @@ namespace Assets.Core
         /// ToDo this...
         /// </summary>
         public static MainMenuUIController Instance;
+
+        public MainMenuData MainMenuData = new MainMenuData(); 
         [SerializeField]
         private GameObject mainMenuCanvas;
         [SerializeField]
@@ -35,11 +37,6 @@ namespace Assets.Core
         [SerializeField]
         private GameObject galaxyCenter;
         public bool PastMainMenu = false; // see TimeManager
-        public GalaxyMapType SelectedGalaxyType { get; private set; }
-        public GalaxySize SelectedGalaxySize { get; private set; }
-        public TechLevel SelectedTechLevel { get; private set; }
-        public CivEnum SelectedLocalCivEnum;
-        public List<CivEnum> InGamePlayableCivList;
         //ToDo for multiplayer lobby
         //public CivEnum SelectedRemote0CivEnum;
         //public CivEnum SelectedRemote1CivEnum;
@@ -156,6 +153,10 @@ namespace Assets.Core
         }
         private void Start()
         {
+            //this.MainMenuData = GameObject.Find("MainMenuUIController").GetComponentInChildren<MainMenuUIController>();
+            //GalaxySize = mainMenuUIController.SelectedGalaxySize;
+            //GalaxyType = mainMenuUIController.SelectedGalaxyType;
+            //TechLevelOnLoadGame = mainMenuUIController.SelectedTechLevel;
             FedLocalPalyerToggle.isOn = true;
             FedLocalPalyerToggle.Select();
             FedLocalPalyerToggle.OnSelect(null); // turns background selected color on, go figure.
@@ -172,13 +173,13 @@ namespace Assets.Core
             OnOffToggles.Add(DomOnOff);
             OnOffToggles.Add(BorgOnOff);
             OnOffToggles.Add(TerranOnOff);
-            InGamePlayableCivList.Add(CivEnum.FED);
-            InGamePlayableCivList.Add(CivEnum.ROM);
-            InGamePlayableCivList.Add(CivEnum.KLING);
-            InGamePlayableCivList.Add(CivEnum.CARD);
-            InGamePlayableCivList.Add(CivEnum.DOM);
-            InGamePlayableCivList.Add(CivEnum.BORG);
-            InGamePlayableCivList.Add(CivEnum.TERRAN);
+            MainMenuData.InGamePlayableCivList.Add(CivEnum.FED);
+            MainMenuData.InGamePlayableCivList.Add(CivEnum.ROM);
+            MainMenuData.InGamePlayableCivList.Add(CivEnum.KLING);
+            MainMenuData.InGamePlayableCivList.Add(CivEnum.CARD);
+            MainMenuData.InGamePlayableCivList.Add(CivEnum.DOM);
+            MainMenuData.InGamePlayableCivList.Add(CivEnum.BORG);
+            MainMenuData.InGamePlayableCivList.Add(CivEnum.TERRAN);
             CanonToggle.isOn = true;
             CanonToggle.Select();
             CanonToggle.OnSelect(null);
@@ -196,6 +197,13 @@ namespace Assets.Core
             DevelopedToggle.isOn = false;
             AdvancedToggle.isOn = false;
             SupremeToggle.isOn = false;
+        }
+        public void LoadDefault()
+        {
+            MainMenuData.SelectedGalaxySize = GalaxySize.SMALL;
+            MainMenuData.SelectedGalaxyType = GalaxyMapType.CANON;
+            MainMenuData.SelectedTechLevel = TechLevel.EARLY;
+            GameManager.Instance.GameData.LocalPlayer = CivEnum.FED;
         }
         private void UpdatePlayers()
         {
@@ -635,22 +643,23 @@ namespace Assets.Core
         }
         private void SetGalaxySize(int index)
         {
-            SelectedGalaxySize = (GalaxySize)index;
+            this.MainMenuData.SelectedGalaxySize = (GalaxySize)index;
         }
 
-        public void SetMapGalaxyType(int index)
+        private void SetMapGalaxyType(int index)
         {
-            SelectedGalaxyType = (GalaxyMapType)index;
+            this.MainMenuData.SelectedGalaxyType = (GalaxyMapType)index;
         }
 
         private void SetTechLevel(int index)
         {
-            SelectedTechLevel = (TechLevel)index;
+            this.MainMenuData.SelectedTechLevel = (TechLevel)index;
         }
 
         private void SetLocalCivilization(int index)
         {
-            SelectedLocalCivEnum = (CivEnum)index;
+            //SelectedLocalCivEnum = (CivEnum)index;
+            GameManager.Instance.GameData.LocalPlayer = (CivEnum)((int)index);
         }
         private void LoadGalaxyScene()
         {
@@ -658,15 +667,15 @@ namespace Assets.Core
             UpdateGalaxySizeSelection();
             UpdateTechLevelSelection();
             PlayableCivOffInGameList();
-            CivManager.Instance.UpdatePlayableCivGameList(InGamePlayableCivList, (int)SelectedGalaxySize, SelectedGalaxyType);
+            CivManager.Instance.UpdatePlayableCivGameList(MainMenuData.InGamePlayableCivList, (int)MainMenuData.SelectedGalaxySize, this.MainMenuData.SelectedGalaxyType);
             mainMenuCanvas.SetActive(false);
             uiCameraGO.SetActive(false);
             galaxyCenter.SetActive(true);
             PastMainMenu = true;
             TimeManager.Instance.ResumeTime();
             SceneManager.LoadScene("GalaxyScene", LoadSceneMode.Additive);
-            CivManager.Instance.OnNewGameButtonClicked((int)SelectedGalaxySize, (int)SelectedTechLevel, (int)SelectedGalaxyType,
-                (int)SelectedLocalCivEnum, IsSinglePlayer);
+            CivManager.Instance.OnNewGameButtonClicked((int)MainMenuData.SelectedGalaxySize, (int)MainMenuData.SelectedTechLevel, (int)MainMenuData.SelectedGalaxyType,
+                (int)GameManager.Instance.GameData.LocalPlayer, IsSinglePlayer);
 
         }
         private void PlayableCivOffInGameList()
@@ -675,7 +684,7 @@ namespace Assets.Core
             {
                 if (OnOffToggles[i].isOn == false)
                 {
-                    InGamePlayableCivList[i] = CivEnum.ZZUNINHABITED1;
+                    MainMenuData.InGamePlayableCivList[i] = CivEnum.ZZUNINHABITED1;
                 }
             }
 

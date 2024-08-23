@@ -87,14 +87,14 @@ namespace Assets.Core
                     starSysDatas.Add(SysData);
             }
             starSysDatas.Remove(starSysDatas[0]); // pull out the null
-            GameManager.Instance.LoadGalacticDestinations(starSysDatas);
+            GameManager.Instance.GameData.LoadGalacticDestinations(starSysDatas);
         }
         public void InstantiateSystem(StarSysData sysData, CivSO civSO)
         {
-            if (GameManager.Instance.GalaxyType == GalaxyMapType.RANDOM)
+            if (MainMenuUIController.Instance.MainMenuData.SelectedGalaxyType == GalaxyMapType.RANDOM)
             { // do something with sysData.position
             }
-            else if (GameManager.Instance.GalaxyType == GalaxyMapType.RING)
+            else if (MainMenuUIController.Instance.MainMenuData.SelectedGalaxyType == GalaxyMapType.RING)
             {
                 // do something else with sysData.position
             }
@@ -115,12 +115,13 @@ namespace Assets.Core
                 foreach (var OneTmp in TheText)
                 {
                     OneTmp.enabled = true;
-                    if (OneTmp != null && OneTmp.name == "SysName (TMP)") {
+                    if (OneTmp != null && OneTmp.name == "SysName (TMP)")
+                    {
                         if (sysData.CurrentOwner != CivManager.Instance.LocalPlayer.CivEnum)
                         {
                             OneTmp.text = "UNKNOWN";
                         }
-                        OneTmp.text = sysData.GetSysName();
+                        else OneTmp.text = sysData.GetSysName();
                     }
                     else if (OneTmp != null && OneTmp.name == "SysDescription (TMP)")
                         OneTmp.text = sysData.Description;

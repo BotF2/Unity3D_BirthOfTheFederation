@@ -338,16 +338,10 @@ namespace Assets.Core
         public TimeManager TimeManager;
         [SerializeField]
         private MainMenuUIController mainMenuUIController;
+        public GameData GameData = new GameData();
         public bool _weAreFriend = false;
         public bool _warpingInIsOver = false; // WarpingInCompleted() called from E_Animator3 sets true and set false again in CombatCompleted state in BeginState
-        public CivEnum LocalPlayer;
-        public string NoDestination;
-        private readonly List<string> destinationNames = new List<string>() { "No Destination Selected" };
-        public List<string> DestinationNames { get { return destinationNames; } }
-        public Dictionary<string, GameObject> DestinationDictionary = new Dictionary<string, GameObject>();
-        public GalaxySize GalaxySize;
-        public GalaxyMapType GalaxyType;
-        public TechLevel TechLevelOnLoadGame;
+
         //public Galaxy Galaxy; // Was part of SolarSystemView - Galaxy.cs
         private SolarSystemView solarSystemView;
         /// <summary>
@@ -432,52 +426,17 @@ namespace Assets.Core
         public bool _statePassedCombatInit = false; // COMBAT INIT
         public bool _statePassedCombatPlay = false;
 
-        public void InitializeGameManagerWithMainMenuUIController() {
+        public void InitializeGameManagerWithMainMenuUIController()
+        {
             mainMenuUIController = GameObject.Find("MainMenuUIController").GetComponent<MainMenuUIController>();
-            GalaxySize = mainMenuUIController.SelectedGalaxySize;
-            GalaxyType = mainMenuUIController.SelectedGalaxyType;
-            TechLevelOnLoadGame = mainMenuUIController.SelectedTechLevel;
-            LocalPlayer = mainMenuUIController.SelectedLocalCivEnum;
+            mainMenuUIController.LoadDefault();
+            GameData.LocalPlayer = CivEnum.FED;
         }
 
         private void Awake()
         {
             Instance = this; // static reference to single GameManager
             InitializeGameManagerWithMainMenuUIController();
-        }
-        void Start()
-        {
-            NoDestination = DestinationNames[0];
-        }
-        public void LoadGalacticDestinations(List<StarSysData> starSysDataList)
-        {
-            foreach (var sysData in starSysDataList)
-            {
-                destinationNames.Add(sysData.SysName);
-                if (!DestinationDictionary.ContainsKey(sysData.SysName))
-                    DestinationDictionary.Add(sysData.SysName, sysData.SysGameObject);
-            }
-        }
-        public void LoadGalacticDestinations(FleetData fleetData, GameObject fleetGO)
-        {
-            destinationNames.Add(fleetData.Name);
-            if(!DestinationDictionary.ContainsKey(fleetData.Name))
-                DestinationDictionary.Add(fleetData.Name, fleetGO);
-        }
-        public void RemoveFleetFromGalaxyDestiations(FleetData fleetData, GameObject fleetGO)
-        {
-            destinationNames.Remove(fleetData.Name);
-            DestinationDictionary.Remove(fleetData.Name);
-        }
-        public void LoadPlayerGalacticDestinations(PlayerDefinedTargetData playerTargetData, GameObject playerTargetGO)
-        {
-            destinationNames.Add(playerTargetData.Name);
-            DestinationDictionary.Add(playerTargetData.Name, playerTargetGO);
-        }
-        public void RemovePlayerTargetFromGalaxyDestiations(PlayerDefinedTargetData playerTargetData)
-        {
-            destinationNames.Remove(playerTargetData.Name);
-            DestinationDictionary.Remove(playerTargetData.Name);
         }
 
         //  MARC CODE

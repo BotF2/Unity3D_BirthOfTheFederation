@@ -85,9 +85,9 @@ public class FleetUIManager : MonoBehaviour
         FleetSelectionUI.Instance.UnLoadShipManagerUI();
         fleetUIRoot.SetActive(true);
         destinationDropdown.options.Clear();
-        noDestination = GameManager.Instance.NoDestination;
+        noDestination = GameManager.Instance.GameData.NoDestination;
         List<string> listings = new List<string>();
-        foreach (string location in GameManager.Instance.DestinationNames)
+        foreach (string location in GameManager.Instance.GameData.DestinationNames)
         {
             listings.Add(location);
         }
@@ -118,9 +118,9 @@ public class FleetUIManager : MonoBehaviour
             for (int i = 0; i < listings.Count; i++)
             {
 
-                if (controller.SelectedDestination == listings[i] && GameManager.Instance.DestinationDictionary[listings[i]] != null)
+                if (controller.SelectedDestination == listings[i] && GameManager.Instance.GameData.DestinationDictionary[listings[i]] != null)
                 {
-                    controller.FleetData.Destination = GameManager.Instance.DestinationDictionary[listings[i]];
+                    controller.FleetData.Destination = GameManager.Instance.GameData.DestinationDictionary[listings[i]];
                     controller.SelectedDestination = listings[i];
                     dropdownDestinationText.text = listings[i];
                     indexOfSelected = i;
@@ -190,9 +190,9 @@ public class FleetUIManager : MonoBehaviour
         int index = dropdown.value;
         if (dropdown.name == "Dropdown Destination")
         {
-            if (dropdown.options[index].text != "No Destination Selected" && GameManager.Instance.DestinationDictionary[dropdown.options[index].text] != null)
+            if (dropdown.options[index].text != "No Destination Selected" && GameManager.Instance.GameData.DestinationDictionary[dropdown.options[index].text] != null)
             {
-                controller.FleetData.Destination = GameManager.Instance.DestinationDictionary[dropdown.options[index].text];
+                controller.FleetData.Destination = GameManager.Instance.GameData.DestinationDictionary[dropdown.options[index].text];
                 controller.SelectedDestination = dropdown.options[index].text;
                 dropdownDestinationText.text = dropdown.options[index].text;
                 destinationDropdown.value = index;
