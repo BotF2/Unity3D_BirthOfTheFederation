@@ -6,6 +6,11 @@ using UnityEngine;
 
 namespace Assets.Core
 {
+    /// <summary>
+    /// Part of the solar system view code
+    /// ToDo: determin if any code is still need for the solarsystem view
+    /// and what code can be removed.
+    /// </summary>
     public class Galaxy
     {
         public Galaxy theGalaxy;
@@ -18,7 +23,7 @@ namespace Assets.Core
         {
             Galaxy galaxy = new Galaxy();
             theGalaxy = this;
-            GameManager.Instance.Galaxy = galaxy;
+           // GameManager.Instance.Galaxy = galaxy;
 
             // For now, we set a SEED for the random number generator, so that it
             // starts from the same Galaxy every time, see planet.cs random is now not so random

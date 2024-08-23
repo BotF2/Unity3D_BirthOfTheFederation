@@ -30,7 +30,7 @@ namespace Assets.Core
         public List<CivEnum> CivSOInGame;
         public List<CivData> CivDataInGameList = new List<CivData> { new CivData() };
         public List<CivController> CivControllersInGame;
-        public Dictionary<CivController, List<CivController>> CivsThatACivKnows = new Dictionary<CivController, List<CivController>>();
+        //public Dictionary<CivController, List<CivController>> CivsThatACivKnows = new Dictionary<CivController, List<CivController>>();
         public CivData LocalPlayer;
         public bool isSinglePlayer;
         public List<CivEnum> InGamePlayableCivs;
@@ -158,9 +158,7 @@ namespace Assets.Core
                             j++;
                     }
                 }
-            }
-
-            
+            }            
         }
     public void CreateNewGameBySelections( int sizeGame, int gameTechLevel, int galaxyType, int localPlayerCivInt, bool isSingleVsMultiplayer)
         {
@@ -208,21 +206,22 @@ namespace Assets.Core
             civController.CivData = civData;
             civController.CivShortName = civData.CivShortName;
             CivControllersInGame.Add(civController);
-            CivsThatACivKnows.Add(civController, new List<CivController> { civController });
+            civController.CivData.CivsWeKnow = new List<CivController>() { civController};
             civNewGameOb.transform.SetParent(civFolder.transform, true);
             civNewGameOb.name = civData.CivShortName.ToString();
         }
         public void Diplomacy(CivController civPartyOne, CivController civPartyTwo)
         {
-            if (!CivsThatACivKnows[civPartyOne].Contains(civPartyTwo))
+            if (!civPartyOne.CivData.CivsWeKnow.Contains(civPartyTwo))
             {
                 FirstContact(civPartyOne, civPartyTwo);
             }
         }
         private void FirstContact(CivController civPartyOne, CivController civPartyTwo)
         {
-            CivsThatACivKnows[civPartyOne].Add(civPartyTwo);
-            CivsThatACivKnows[civPartyTwo].Add(civPartyOne);
+            civPartyOne.CivData.CivsWeKnow.Add(civPartyTwo);
+            civPartyTwo.CivData.CivsWeKnow.Add(civPartyOne);
+            // ToDo: Update the system name or the fleet insignia;
         }
         void CreateStarSystemsWeOwnList(List<CivSO> list)
         {
@@ -246,13 +245,10 @@ namespace Assets.Core
 
             foreach (var civ in CivDataInGameList)
             {
-
                 if (civ.CivShortName.Equals(shortName))
                 {
                     result = civ;
                 }
-
-
             }
             return result;
 
@@ -268,8 +264,6 @@ namespace Assets.Core
                 {
                     result = civ;
                 }
-
-
             }
             return result;
 

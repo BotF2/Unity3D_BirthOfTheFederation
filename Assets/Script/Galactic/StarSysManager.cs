@@ -26,6 +26,7 @@ namespace Assets.Core
         [SerializeField]
         private GameObject galaxyImage;
         [SerializeField]
+        private Sprite unknowSystem;
         private GameObject galaxyCenter;
         private Camera galaxyEventCamera;
         private Canvas systemUICanvas; 
@@ -108,14 +109,17 @@ namespace Assets.Core
                 starSystemNewGameOb.name = sysData.GetSysName();
                 //starSystemNewGameOb.
                 sysData.SysGameObject = starSystemNewGameOb;
-                var ImageRenderers = starSystemNewGameOb.GetComponentsInChildren<SpriteRenderer>();
 
                 TextMeshProUGUI[] TheText = starSystemNewGameOb.GetComponentsInChildren<TextMeshProUGUI>();
                 foreach (var OneTmp in TheText)
                 {
                     OneTmp.enabled = true;
                     if (OneTmp != null && OneTmp.name == "SysName (TMP)")
-                        OneTmp.text = sysData.GetSysName();
+                        if (sysData.CurrentCivController.CivData.CivEnum != CivManager.Instance.LocalPlayer.CivEnum)
+                        {
+                            OneTmp.text = "UNKNOWN";
+                        }
+                    OneTmp.text = sysData.GetSysName();
                     else if (OneTmp != null && OneTmp.name == "SysDescription (TMP)")
                         OneTmp.text = sysData.Description;
 
@@ -132,6 +136,12 @@ namespace Assets.Core
 
                         if (oneRenderer.name == "OwnerInsignia")
                         {
+                            var ImageRenderers = starSystemNewGameOb.GetComponentsInChildren<SpriteRenderer>();
+                            //if (sysData.CurrentCivController.CivData.CivEnum != CivManager.Instance.LocalPlayer.CivEnum)
+                            //{
+                            //    oneRenderer.sprite = unknowSystem;
+                            //}
+                            //else
                             oneRenderer.sprite = civSO.Insignia;
                             //oneRenderer.sprite.GetComponent<MeshFilter>().sharedMesh.RecalculateBounds();
                         }

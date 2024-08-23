@@ -348,7 +348,7 @@ namespace Assets.Core
         public GalaxySize GalaxySize;
         public GalaxyMapType GalaxyType;
         public TechLevel TechLevelOnLoadGame;
-        public Galaxy Galaxy; // = new Galaxy(GameManager.Instance, GalaxyMapType.ELLIPTICAL, 20);
+        //public Galaxy Galaxy; // Was part of SolarSystemView - Galaxy.cs
         private SolarSystemView solarSystemView;
         /// <summary>
         /// Old combat tool for view of all ships in combat

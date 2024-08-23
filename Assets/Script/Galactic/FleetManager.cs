@@ -34,6 +34,7 @@ namespace Assets.Core
         public List<GameObject> FleetGOList = new List<GameObject>(); // all fleetGO GOs made
         [SerializeField]
         private GameObject fleetGroupPrefab;
+        private Sprite unknownfleet;
        
         private void Awake()
         {
@@ -108,6 +109,10 @@ namespace Assets.Core
                 fleetController.Name = fleetData.Name;
                 fleetController.FleetState = FleetState.FleetStationary;
                 ManagersFleetControllerList.Add(fleetController);
+                if (fleetController.FleetData.CivEnum != CivManager.Instance.LocalPlayer.CivEnum)
+                {
+                   // fleetController.FleetData.Insignia = unknownfleet;
+                }
                 fleetNewGameOb.transform.Translate(new Vector3(fleetData.Position.x + 40f,  fleetData.Position.y + 10f, fleetData.Position.z));
                 fleetNewGameOb.transform.SetParent(galaxyCenter.transform, true);
                 fleetNewGameOb.transform.localScale = new Vector3(0.7f, 0.7f, 1); // scale ship insignia here
