@@ -27,6 +27,7 @@ namespace Assets.Core
         private GameObject galaxyImage;
         [SerializeField]
         private Sprite unknowSystem;
+        [SerializeField]
         private GameObject galaxyCenter;
         private Camera galaxyEventCamera;
         private Canvas systemUICanvas; 
@@ -114,12 +115,13 @@ namespace Assets.Core
                 foreach (var OneTmp in TheText)
                 {
                     OneTmp.enabled = true;
-                    if (OneTmp != null && OneTmp.name == "SysName (TMP)")
-                        if (sysData.CurrentCivController.CivData.CivEnum != CivManager.Instance.LocalPlayer.CivEnum)
+                    if (OneTmp != null && OneTmp.name == "SysName (TMP)") {
+                        if (sysData.CurrentOwner != CivManager.Instance.LocalPlayer.CivEnum)
                         {
                             OneTmp.text = "UNKNOWN";
                         }
-                    OneTmp.text = sysData.GetSysName();
+                        OneTmp.text = sysData.GetSysName();
+                    }
                     else if (OneTmp != null && OneTmp.name == "SysDescription (TMP)")
                         OneTmp.text = sysData.Description;
 

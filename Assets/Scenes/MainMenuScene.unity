@@ -34015,6 +34015,7 @@ MonoBehaviour:
   sysPrefab: {fileID: 6000483729355016117, guid: 06f0b4bc75ea46440939b026367c3da3, type: 3}
   StarSysControllerList: []
   galaxyImage: {fileID: 568107377}
+  unknowSystem: {fileID: 0}
   galaxyCenter: {fileID: 564492290}
 --- !u!224 &1965346450
 RectTransform:
