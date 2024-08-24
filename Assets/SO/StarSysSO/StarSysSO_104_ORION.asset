@@ -18,7 +18,7 @@ MonoBehaviour:
   FirstOwner: 104
   CurrentOwner: 104
   StarType: 5
-  StarSprit: {fileID: 1572158192, guid: c88c4ed55aadded46a918a7cd604deb3, type: 3}
+  StarSprit: {fileID: 21300000, guid: ba15e4ad72d9dc742b9cf4c766854c07, type: 3}
   Population: 10
   PopulationLimit: 20
   Farms: 5

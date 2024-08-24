@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using Assets.Core;
 
 public class ToolTipController : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
@@ -12,7 +13,22 @@ public class ToolTipController : MonoBehaviour, IPointerEnterHandler, IPointerEx
     void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)
     {
         if (Name != null && HoverManager.Instance != null)
-            HoverManager.Instance.ShowTip(Name.text); 
+        {
+            var localPlayerCivCon = CivManager.Instance.GetLocalPlayerCivController();
+            foreach (StarSysController starSysCon in localPlayerCivCon.CivData.StarSysOwned)
+            {
+                if (starSysCon.StarSysData.GetSysName() == Name.text)
+                {
+                    HoverManager.Instance.ShowTip(Name.text);
+                    break;
+                }
+            }
+            
+            if (Name.text.Contains(localPlayerCivCon.CivShortName))
+            {
+                HoverManager.Instance.ShowTip(Name.text);
+            }
+        }
     }
 
     void IPointerExitHandler.OnPointerExit(PointerEventData eventData)

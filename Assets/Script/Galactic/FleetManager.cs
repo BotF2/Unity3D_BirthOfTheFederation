@@ -34,6 +34,7 @@ namespace Assets.Core
         public List<GameObject> FleetGOList = new List<GameObject>(); // all fleetGO GOs made
         [SerializeField]
         private GameObject fleetGroupPrefab;
+        [SerializeField]
         private Sprite unknownfleet;
        
         private void Awake()
@@ -109,9 +110,9 @@ namespace Assets.Core
                 fleetController.Name = fleetData.Name;
                 fleetController.FleetState = FleetState.FleetStationary;
                 ManagersFleetControllerList.Add(fleetController);
-                if (fleetController.FleetData.CivEnum != CivManager.Instance.LocalPlayer.CivEnum)
+                if (fleetController.FleetData.CivEnum != GameManager.Instance.GameData.LocalPlayerCivEnum)
                 {
-                   // fleetController.FleetData.Insignia = unknownfleet;
+                   fleetController.FleetData.Insignia = unknownfleet;
                 }
                 fleetNewGameOb.transform.Translate(new Vector3(fleetData.Position.x + 40f,  fleetData.Position.y + 10f, fleetData.Position.z));
                 fleetNewGameOb.transform.SetParent(galaxyCenter.transform, true);
@@ -126,7 +127,7 @@ namespace Assets.Core
                 {
                     if (oneRenderer != null)
                     {
-                        if (oneRenderer.name == "Insignia")
+                        if (oneRenderer.name == "Insignia") // && fleetData.CivShortName.ToUpper() == fleetData.Insignia.name.ToUpper())
                         {
                             oneRenderer.sprite = fleetData.Insignia;
                         }

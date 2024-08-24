@@ -7,7 +7,8 @@ namespace Assets.Core
 {
     public class GameData
     {
-        public CivEnum LocalPlayer;
+        public CivEnum LocalPlayerCivEnum;
+        public CivController LocalPlayerCivController;
         public string NoDestination;
         private readonly List<string> destinationNames = new List<string>() { "No Destination Selected" };
         public List<string> DestinationNames { get { return destinationNames; } }

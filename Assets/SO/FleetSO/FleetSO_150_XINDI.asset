@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: FleetSO_150_XINDI
   m_EditorClassIdentifier: 
   CivIndex: 150
-  Insignia: {fileID: 0}
+  Insignia: {fileID: 21300000, guid: 7bd503cc560cc4d4da4299d90893af3d, type: 3}
   CivOwnerEnum: 151
   Location: {x: 0, y: 0, z: 0}
-  ShipsList: []
+  ShipsList:
+  - {fileID: 0}
   MaxWarpFactor: 0
   CurrentWarpFactor: 0
   Name: 

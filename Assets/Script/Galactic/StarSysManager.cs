@@ -117,7 +117,7 @@ namespace Assets.Core
                     OneTmp.enabled = true;
                     if (OneTmp != null && OneTmp.name == "SysName (TMP)")
                     {
-                        if (sysData.CurrentOwner != CivManager.Instance.LocalPlayer.CivEnum)
+                        if (sysData.CurrentOwner != GameManager.Instance.GameData.LocalPlayerCivEnum)
                         {
                             OneTmp.text = "UNKNOWN";
                         }
@@ -139,17 +139,17 @@ namespace Assets.Core
 
                         if (oneRenderer.name == "OwnerInsignia")
                         {
-                            var ImageRenderers = starSystemNewGameOb.GetComponentsInChildren<SpriteRenderer>();
-                            //if (sysData.CurrentCivController.CivData.CivEnum != CivManager.Instance.LocalPlayer.CivEnum)
-                            //{
-                            //    oneRenderer.sprite = unknowSystem;
-                            //}
-                            //else
+                            //var ImageRenderers = starSystemNewGameOb.GetComponentsInChildren<SpriteRenderer>();
+            
                             oneRenderer.sprite = civSO.Insignia;
                             //oneRenderer.sprite.GetComponent<MeshFilter>().sharedMesh.RecalculateBounds();
                         }
                         else if (oneRenderer.name == "StarSprite")
-                            oneRenderer.sprite = sysData.StarSprit;
+                            if (sysData.StarType != StarSystemType.Yellow && sysData.StarType != StarSystemType.Red
+                                    && sysData.StarType != StarSystemType.White && sysData.StarType != StarSystemType.Orange && sysData.StarType != StarSystemType.Blue)
+                                oneRenderer.sprite = unknowSystem;
+                            else
+                                oneRenderer.sprite = sysData.StarSprit;
                     }
                 }
                 DropLineFixed ourDropLine = starSystemNewGameOb.GetComponentInChildren<DropLineFixed>();
@@ -171,7 +171,8 @@ namespace Assets.Core
                 starSystemNewGameOb.SetActive(true);
                 StarSysControllerList.Add(controller);
                 systemCount++;
-                CivManager.Instance.AddSystemToOwnedCivSystemList(controller);
+                List<StarSysController> listStarSysCon = new List<StarSysController> { controller };
+                CivManager.Instance.AddSystemToOwnSystemListAndHomeSys(listStarSysCon);
                 //***** This is temporary so we can test a multi-starsystem civ
                 //******* before diplomacy will alow civs/systems to join another civ
                 //if (systemCount == 8)

@@ -430,7 +430,7 @@ namespace Assets.Core
         {
             mainMenuUIController = GameObject.Find("MainMenuUIController").GetComponent<MainMenuUIController>();
             mainMenuUIController.LoadDefault();
-            GameData.LocalPlayer = CivEnum.FED;
+            GameData.LocalPlayerCivEnum = CivEnum.FED;
         }
 
         private void Awake()

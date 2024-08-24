@@ -24027,6 +24027,7 @@ MonoBehaviour:
   ManagersFleetControllerList: []
   FleetGOList: []
   fleetGroupPrefab: {fileID: 3717699476320669143, guid: 724c5663d5780da4a9ab08bdbf7ccc98, type: 3}
+  unknownfleet: {fileID: 21300000, guid: 676a31f5882728b488cd207719b5c55a, type: 3}
 --- !u!4 &1362581733
 Transform:
   m_ObjectHideFlags: 0
@@ -34008,7 +34009,7 @@ MonoBehaviour:
   sysPrefab: {fileID: 6000483729355016117, guid: 06f0b4bc75ea46440939b026367c3da3, type: 3}
   StarSysControllerList: []
   galaxyImage: {fileID: 568107377}
-  unknowSystem: {fileID: 0}
+  unknowSystem: {fileID: 21300000, guid: 188d05e1f1b27484c9874846cadffe34, type: 3}
   galaxyCenter: {fileID: 564492290}
 --- !u!224 &1965346450
 RectTransform:

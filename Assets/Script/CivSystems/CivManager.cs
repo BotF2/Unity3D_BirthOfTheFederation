@@ -31,7 +31,7 @@ namespace Assets.Core
         public List<CivData> CivDataInGameList = new List<CivData> { new CivData() };
         public List<CivController> CivControllersInGame;
         //public Dictionary<CivController, List<CivController>> CivsThatACivKnows = new Dictionary<CivController, List<CivController>>();
-        public CivData LocalPlayer;
+        //public CivData LocalPlayerCivEnum;
         public bool isSinglePlayer;
         public List<CivEnum> InGamePlayableCivs;
         //public bool nowCivsCanJoinTheFederation = true; // for use with testing a muliple star system Federation
@@ -55,28 +55,28 @@ namespace Assets.Core
         private void Update()
         {
             #region temp multi-starsystem hack
-            //***** This is temporary so we can test a multi-starsystem civ
-            //******* before diplomacy will alow civs/systems to join another civ
+            //***** This is temporary so we can test a multi-starsystem civCon
+            //******* before diplomacy will alow civs/systems to join another civCon
 
             //if (nowCivsCanJoinTheFederation && HoldCivSize == 1)
             //{
-            //    foreach (var civ in CivControllersInGame)
+            //    foreach (var civCon in CivControllersInGame)
             //    {
-            //        if(civ.CivData.CivEnum == CivEnum.ANDORIANS || civ.CivData.CivEnum == CivEnum.VULCANS || civ.CivData.CivEnum == CivEnum.TELLARITES)
+            //        if(civCon.CivData.CivEnum == CivEnum.ANDORIANS || civCon.CivData.CivEnum == CivEnum.VULCANS || civCon.CivData.CivEnum == CivEnum.TELLARITES)
             //        {
-            //            civ.CivData.CivInt = CivControllersInGame[0].CivData.CivInt;
-            //            civ.CivData.CivEnum = CivControllersInGame[0].CivData.CivEnum;
-            //            civ.CivData.CivShortName = CivControllersInGame[0].CivData.CivShortName;
-            //            civ.CivData.CivLongName = CivControllersInGame[0].CivData.CivLongName;
-            //            civ.CivData.CivHomeSystem = CivControllersInGame[0].CivData.CivHomeSystem;
-            //            civ.CivData.TraitOne = CivControllersInGame[0].CivData.TraitOne;
-            //            civ.CivData.TraitTwo = CivControllersInGame[0].CivData.TraitTwo;
-            //            civ.CivData.CivImage = CivControllersInGame[0].CivData.CivImage;
-            //            civ.CivData.Insignia = CivControllersInGame[0].CivData.Insignia;
-            //            civ.CivData.Playable = true;
-            //            civ.CivData.PlayedByAI = true;
-            //            civ.CivData.HasWarp =true;
-            //            civ.CivData.Decription = "temp civ member of Federation";
+            //            civCon.CivData.CivInt = CivControllersInGame[0].CivData.CivInt;
+            //            civCon.CivData.CivEnum = CivControllersInGame[0].CivData.CivEnum;
+            //            civCon.CivData.CivShortName = CivControllersInGame[0].CivData.CivShortName;
+            //            civCon.CivData.CivLongName = CivControllersInGame[0].CivData.CivLongName;
+            //            civCon.CivData.CivHomeSystem = CivControllersInGame[0].CivData.CivHomeSystem;
+            //            civCon.CivData.TraitOne = CivControllersInGame[0].CivData.TraitOne;
+            //            civCon.CivData.TraitTwo = CivControllersInGame[0].CivData.TraitTwo;
+            //            civCon.CivData.CivImage = CivControllersInGame[0].CivData.CivImage;
+            //            civCon.CivData.Insignia = CivControllersInGame[0].CivData.Insignia;
+            //            civCon.CivData.Playable = true;
+            //            civCon.CivData.PlayedByAI = true;
+            //            civCon.CivData.HasWarp =true;
+            //            civCon.CivData.Decription = "temp civCon member of Federation";
             //        }
             //    }
             //    StarSysManager.Instance.UpdateStarSystemOwner(CivEnum.ANDORIANS, CivEnum.FED);
@@ -116,7 +116,7 @@ namespace Assets.Core
 
 
                 ////**** See all Civs -  ****
-                //allCivSOsInGame = civSOListAllPossible;
+                // allCivSOsInGame = civSOListAllPossible;
                 #endregion TURN ON ALL CIVs WITH LAST LINE ABOVE
             }
             else if (galaxyType == GalaxyMapType.RANDOM)
@@ -286,15 +286,24 @@ namespace Assets.Core
             }
             return aCiv;
         }
-        public void AddSystemToOwnedCivSystemList(StarSysController controller)
+        public void AddSystemToOwnSystemListAndHomeSys(List<StarSysController> controllers)
         {
             for (int i = 0; i < CivControllersInGame.Count; i++)
             {
-                if ((CivControllersInGame[i]).CivData.CivHomeSystem == controller.StarSysData.SysName)
+                if (CivControllersInGame[i].CivData.CivEnum == controllers[0].StarSysData.CurrentOwner)
                 {
-                    CivControllersInGame[i].CivData.StarSysOwned.Add(controller);
+                    CivControllersInGame[i].CivData.StarSysOwned = controllers;
+                    CivControllersInGame[i].CivData.CivHomeSystem = controllers[0].StarSysData.SysName;
                 }
             }
+        }
+        public CivController GetLocalPlayerCivController()
+        {
+            CivController civController = null;
+            foreach (var civCon in CivControllersInGame)
+                if (civCon.CivData.CivEnum == GameManager.Instance.GameData.LocalPlayerCivEnum)
+                    civController = civCon;
+            return civController;
         }
     }
 }
