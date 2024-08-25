@@ -5,9 +5,15 @@ using TMPro;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Assets.Core;
+using Unity.VisualScripting;
 
 public class ToolTipController : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
+    /// <summary>
+    /// Only tool tips on our systems and fleet for now. ToDo: do we want to add known systems and fleets? 
+    /// It gets complicated.
+    /// </summary>
+
     public TextMeshProUGUI Name;
 
     void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)
@@ -26,8 +32,16 @@ public class ToolTipController : MonoBehaviour, IPointerEnterHandler, IPointerEx
             
             if (Name.text.Contains(localPlayerCivCon.CivShortName))
             {
-                HoverManager.Instance.ShowTip(Name.text);
+                HoverManager.Instance.ShowTip(Name.text);               
             }
+            ///***** ToDo maybe - also see civs we know?
+            //else
+            //{
+            //    foreach (CivController civCon in localPlayerCivCon.CivData.CivsWeKnow)
+            //    {
+            //        //if (Name.text.Contains(civCon.CivData.))
+            //    }
+            //}
         }
     }
 

@@ -80,11 +80,11 @@ public class CameraDragMove : MonoBehaviour //, IPointerClickHandler
         {
             inputZ -= panSpeed * Time.deltaTime;
         }
-        if (Input.GetKey("d"))
+        if (Input.GetKey("a"))
         {
             inputX += panSpeed * Time.deltaTime;
         }
-        if (Input.GetKey("a"))
+        if (Input.GetKey("d"))
         {
             inputX -= panSpeed * Time.deltaTime;
         }
