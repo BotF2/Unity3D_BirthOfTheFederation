@@ -10,6 +10,10 @@ using UnityEngine.Rendering;
 
 public class FleetSelectionUI : MonoBehaviour
 {
+    /// <summary>
+    /// This is inteneded as a UI to manage all your fleets in one location.
+    /// ToDo: make it work
+    /// </summary>
     public static FleetSelectionUI Instance;
     public FleetController clickedFleetController;
     public Canvas parentCanvas;

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
 using Assets.Core;
+using FischlWorks_FogWar;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -26,6 +27,8 @@ namespace Assets.Core
         private List<FleetSO> fleetSOList;// all possible fleetSO(s)
         [SerializeField]
         private GameObject fleetPrefab;
+        [SerializeField]
+        private GameObject fogWarPrefab;
         [SerializeField]
         private GameObject galaxyImage;
         [SerializeField]
@@ -104,7 +107,11 @@ namespace Assets.Core
                 GameObject fleetNewGameOb = (GameObject)Instantiate(fleetPrefab, new Vector3(0, 0, 0),
                         Quaternion.identity);
                 FleetGOList.Add(fleetNewGameOb);
-                
+                fleetNewGameOb.AddComponent<csFogWar>();
+                var ourFogWar = fleetNewGameOb.GetComponent<csFogWar>();
+                var ourFogVisibilityAgent = fleetNewGameOb.GetComponent<csFogVisibilityAgent>();
+                ourFogVisibilityAgent.FogWar = ourFogWar;
+                //ourFogVisibilityAgent.FogWar.;
                 var fleetController = fleetNewGameOb.GetComponentInChildren<FleetController>();
                 fleetController.FleetData = fleetData;
                 fleetController.Name = fleetData.Name;

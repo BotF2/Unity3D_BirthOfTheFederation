@@ -14,14 +14,13 @@ using System.IO;                    // Directory
 using System.Linq;                  // Enumerable
 using System.Collections.Generic;   // List
 using UnityEngine;                  // Monobehaviour
-using UnityEditor;                  // Handles
+using UnityEditor;// Handles
+using Assets.Core;
 
 
 
 namespace FischlWorks_FogWar
 {
-
-
 
     /// The non-static high-level monobehaviour interface of the AOS Fog of War module.
 
@@ -37,7 +36,12 @@ namespace FischlWorks_FogWar
         /// Empty spaces are stored as 0, while the obstacles are stored as 1.\n
         /// If a level is loaded instead of being scanned, 
         /// the level dimension properties of csFogWar will be replaced by the level data.
-        [System.Serializable]
+        //public void SetLevelData(Transform transform)
+        //{
+
+        //}
+
+[System.Serializable]
         public class LevelData
         {
             public void AddColumn(LevelColumn levelColumn)
@@ -346,8 +350,6 @@ namespace FischlWorks_FogWar
                 Debug.LogErrorFormat("Please assign the \"FogPlane\" material to the Fog Plane Material property!");
             }
         }
-
-
 
         private void InitializeVariables()
         {
