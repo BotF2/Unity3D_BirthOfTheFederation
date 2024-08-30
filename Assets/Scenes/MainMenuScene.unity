@@ -29840,7 +29840,7 @@ MonoBehaviour:
   fogRevealers: []
   levelMidPoint: {fileID: 1914198655}
   FogRefreshRate: 10
-  fogPlaneHeight: 1
+  fogPlaneHeight: 63
   fogPlaneMaterial: {fileID: 2100000, guid: 36b93ac6fcf129c449491654e397fe4a, type: 2}
   fogColor: {r: 0.019607844, g: 0.05882353, b: 0.09803922, a: 1}
   fogPlaneAlpha: 1
@@ -29850,7 +29850,7 @@ MonoBehaviour:
   LevelDataToLoad: {fileID: 0}
   saveDataOnScan: 1
   levelNameToSave: SuperCoolFogLevel
-  levelDimensionX: 100
+  levelDimensionX: 110
   levelDimensionY: 110
   unitScale: 0.1
   scanSpacingPerUnit: 0.05
@@ -32852,7 +32852,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1914198651}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 60, z: -150}
+  m_LocalPosition: {x: 0, y: 0, z: -200}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
