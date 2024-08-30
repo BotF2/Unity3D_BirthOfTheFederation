@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6238125726850088001}
   - component: {fileID: 4970423174887535027}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Line
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -982,7 +982,6 @@ GameObject:
   - component: {fileID: 5708389054477549145}
   - component: {fileID: 3540990890258790066}
   - component: {fileID: 3160800702558713386}
-  - component: {fileID: 1830309610051245084}
   m_Layer: 0
   m_Name: FleetPrefab
   m_TagString: Untagged
@@ -1073,22 +1072,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfd9330479ce7844995d6188ebcce402, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1830309610051245084
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8531124223347370568}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39d6dc4cac8b76b4fb318cc3cb63657d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fogWarGO: {fileID: 0}
-  fogWar: {fileID: 0}
-  visibility: 0
-  additionalRadius: 0
 --- !u!1 &8751740120061494374
 GameObject:
   m_ObjectHideFlags: 0

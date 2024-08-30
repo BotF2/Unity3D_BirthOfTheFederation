@@ -7,14 +7,12 @@
  * All Content (C) 2022 Unlimited Fischl Works, all rights reserved.
  */
 
-
-
 using System;                       // Convert
 using System.IO;                    // Directory
 using System.Linq;                  // Enumerable
 using System.Collections.Generic;   // List
 using UnityEngine;                  // Monobehaviour
-using UnityEditor;// Handles
+using UnityEditor;                  // Handles
 using Assets.Core;
 
 
@@ -36,10 +34,6 @@ namespace FischlWorks_FogWar
         /// Empty spaces are stored as 0, while the obstacles are stored as 1.\n
         /// If a level is loaded instead of being scanned, 
         /// the level dimension properties of csFogWar will be replaced by the level data.
-        //public void SetLevelData(Transform transform)
-        //{
-
-        //}
 
 [System.Serializable]
         public class LevelData
@@ -81,7 +75,7 @@ namespace FischlWorks_FogWar
             public int levelDimensionX = 0;
             public int levelDimensionY = 0;
 
-            public float unitScale = 0;
+            public float unitScale = 0; 
 
             public float scanSpacingPerUnit = 0;
 
@@ -195,7 +189,9 @@ namespace FischlWorks_FogWar
         private List<FogRevealer> fogRevealers = null;
         public List<FogRevealer> _FogRevealers => fogRevealers;
         [SerializeField]
-        private Transform levelMidPoint = null;
+        private Transform levelMidPoint = null; // This is assigned in the inspector but to the inactivated game object PlaneFogWar and
+        // *** not the Runtime plane Fog_Plane at 513 ScanLevel() but updates the Fog_Plane levelMidPoint values used
+        //public Transform LevelMidPoint { set { levelMidPoint = value; } } // set by FleetManager, StarSystemManager
         public Transform _LevelMidPoint => levelMidPoint;
         [SerializeField]
         [Range(1, 30)]
@@ -204,9 +200,10 @@ namespace FischlWorks_FogWar
         [BigHeader("Fog Properties")]
         [SerializeField]
         [Range(0, 100)]
-        private float fogPlaneHeight = 1;
+        private float fogPlaneHeight = 60;
         [SerializeField]
         private Material fogPlaneMaterial = null;
+       
         [SerializeField]
         private Color fogColor = new Color32(5, 15, 25, 255);
         [SerializeField]
@@ -228,24 +225,24 @@ namespace FischlWorks_FogWar
         private bool saveDataOnScan = true;
         [ShowIf("saveDataOnScan")]
         [SerializeField]
-        private string levelNameToSave = "Default";
+        private string levelNameToSave = "SuperCoolFogLevel";
 
         [BigHeader("Scan Properties")]
         [SerializeField]
         [Range(1, 300)]
-        private int levelDimensionX = 11;
+        private int levelDimensionX = 100;
         [SerializeField]
         [Range(1, 300)]
-        private int levelDimensionY = 11;
+        private int levelDimensionY = 100;
         [SerializeField]
-        private float unitScale = 1;
+        private float unitScale = 0.1f;
         public float _UnitScale => unitScale;
         [SerializeField]
         private float scanSpacingPerUnit = 0.25f;
         [SerializeField]
-        private float rayStartHeight = 5;
+        private float rayStartHeight = 350;
         [SerializeField]
-        private float rayMaxDistance = 10;
+        private float rayMaxDistance = 600;
         [SerializeField]
         private LayerMask obstacleLayers = new LayerMask();
         [SerializeField]
@@ -380,9 +377,9 @@ namespace FischlWorks_FogWar
                 levelMidPoint.position.z);
 
             fogPlane.transform.localScale = new Vector3(
-                (levelDimensionX * unitScale) / 10.0f,
+                (levelDimensionX * unitScale) * 11.0f,
                 1,
-                (levelDimensionY * unitScale) / 10.0f);
+                (levelDimensionY * unitScale) * 19.0f);
 
             fogPlaneTextureLerpTarget = new Texture2D(levelDimensionX, levelDimensionY);
             fogPlaneTextureLerpBuffer = new Texture2D(levelDimensionX, levelDimensionY);

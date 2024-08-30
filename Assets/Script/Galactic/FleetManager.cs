@@ -24,11 +24,13 @@ namespace Assets.Core
     {
         public static FleetManager Instance;
         [SerializeField]
+        private csFogWar fogWar;
+        [SerializeField]
         private List<FleetSO> fleetSOList;// all possible fleetSO(s)
         [SerializeField]
         private GameObject fleetPrefab;
         [SerializeField]
-        private GameObject fogWarPrefab;
+        private Material fogPlaneMaterial;
         [SerializeField]
         private GameObject galaxyImage;
         [SerializeField]
@@ -107,11 +109,20 @@ namespace Assets.Core
                 GameObject fleetNewGameOb = (GameObject)Instantiate(fleetPrefab, new Vector3(0, 0, 0),
                         Quaternion.identity);
                 FleetGOList.Add(fleetNewGameOb);
-                fleetNewGameOb.AddComponent<csFogWar>();
-                var ourFogWar = fleetNewGameOb.GetComponent<csFogWar>();
-                var ourFogVisibilityAgent = fleetNewGameOb.GetComponent<csFogVisibilityAgent>();
-                ourFogVisibilityAgent.FogWar = ourFogWar;
-                //ourFogVisibilityAgent.FogWar.;
+            
+                //var ourFogRevealerFleet = new csFogWar.FogRevealer(this.transform, 5, true);
+
+                //fogWar.AddFogRevealer(ourFogRevealerFleet);
+                //fogWar.AddFogRevealer(fogRevealer(this.transform, 21, true));
+
+                //fleetNewGameOb.AddComponent<csFogWar>();
+                //var ourFogWar = fleetNewGameOb.GetComponent<csFogWar>();
+                //var ourFogVisibilityAgent = fleetNewGameOb.GetComponent<csFogVisibilityAgent>();
+                //ourFogVisibilityAgent.FogWar = ourFogWar;
+                //fogWar.LevelMidPoint = planeFogOfWar.transform;
+                //fleetNewGameOb.AddComponent<csRevealerSpawner>();
+                //var ourRevealerSponer = fleetNewGameOb.GetComponent<csRevealerSpawner>();
+                //ourRevealerSponer.FogWar = ourFogWar;
                 var fleetController = fleetNewGameOb.GetComponentInChildren<FleetController>();
                 fleetController.FleetData = fleetData;
                 fleetController.Name = fleetData.Name;
@@ -126,6 +137,10 @@ namespace Assets.Core
                 fleetNewGameOb.transform.localScale = new Vector3(0.7f, 0.7f, 1); // scale ship insignia here
                 fleetNewGameOb.name = fleetData.CivShortName.ToString() + " Fleet " + fleetData.Name; // name game object
                 TextMeshProUGUI TheText = fleetNewGameOb.GetComponentInChildren<TextMeshProUGUI>();
+
+
+                //var ourFogRevealerFleet = new csFogWar.FogRevealer(this.transform, 7, true);
+                //fogWar.AddFogRevealer(ourFogRevealerFleet);
 
                 TheText.text = fleetNewGameOb.name;
                 fleetData.Name = TheText.text;

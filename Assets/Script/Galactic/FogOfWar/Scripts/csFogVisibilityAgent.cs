@@ -32,10 +32,9 @@ namespace FischlWorks_FogWar
     /// then enables / disables them based on each FogRevealer's FOV.
     public class csFogVisibilityAgent : MonoBehaviour
     {
-        //public GameObject fogWarGO;
         [SerializeField]
         private csFogWar fogWar = null;
-        public csFogWar FogWar { get { return fogWar; } set { fogWar = value; } }
+        //public csFogWar FogWar { get { return fogWar; } set { fogWar = value; } }
 
         [SerializeField]
         private bool visibility = false;
@@ -51,17 +50,17 @@ namespace FischlWorks_FogWar
 
         private void Start()
         {
-            // This part is meant to be modified following the project's scene structure later...
-            //try
-            //{
-            //    fogWar = GameObject.Find("FogWar").GetComponent<csFogWar>();
-            //}
-            //catch
-            //{
-            //    Debug.LogErrorFormat("Failed to fetch csFogWar component. " +
-            //        "Please rename the gameobject that the module is attachted to as \"FogWar\", " +
-            //        "or change the implementation located in the csFogVisibilityAgent.cs script.");
-            //}
+            //This part is meant to be modified following the project's scene structure later...
+            try
+            {
+                fogWar = GameObject.Find("FogWar").GetComponent<csFogWar>();
+            }
+            catch
+            {
+                Debug.LogErrorFormat("Failed to fetch csFogWar component. " +
+                    "Please rename the gameobject that the module is attachted to as \"FogWar\", " +
+                    "or change the implementation located in the csFogVisibilityAgent.cs script.");
+            }
 
             meshRenderers = GetComponentsInChildren<MeshRenderer>().ToList();
             skinnedMeshRenderers = GetComponentsInChildren<SkinnedMeshRenderer>().ToList();

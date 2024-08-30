@@ -22,6 +22,7 @@ namespace FischlWorks_FogWar
     {
         [SerializeField]
         private csFogWar fogWar = null;
+        //public csFogWar FogWar {  set { fogWar = value; } }
 
         [SerializeField]
         private GameObject exampleRevealer = null;
