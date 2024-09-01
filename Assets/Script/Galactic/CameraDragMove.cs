@@ -18,7 +18,7 @@ public class CameraDragMove : MonoBehaviour //, IPointerClickHandler
     public float minX = -600f;
     public float maxX = 600f;
     public float minZ = -1140f;
-    public float maxZ = 500f;
+    public float maxZ = 150f;
 
     private Vector3 dragOrigin;
     private Vector3 cameraDragOrigin;
@@ -102,7 +102,7 @@ public class CameraDragMove : MonoBehaviour //, IPointerClickHandler
         pos.y = Mathf.Clamp(pos.y, minY, maxY);
         pos.x = Mathf.Clamp(pos.x, minX, maxX);
         pos.z = Mathf.Clamp(pos.z, minZ, maxZ);
-        transform.eulerAngles = new Vector3((pos.y - 250f) * 0.06f, transform.eulerAngles.y, transform.eulerAngles.z);
+        transform.eulerAngles = new Vector3((pos.y - 300f) * 0.06f, transform.eulerAngles.y, transform.eulerAngles.z);
         transform.position = pos;
     }
 

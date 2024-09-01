@@ -28,6 +28,8 @@ namespace FischlWorks_FogWar
     /// Various public interfaces related to FogRevealer's FOV are also available.
     public class csFogWar : MonoBehaviour
     {
+        public static csFogWar Instance { get; private set; }
+        bool fogReady = false;
         /// A class for storing the base level data.
         /// 
         /// This class is later serialized into Json format.\n
@@ -35,7 +37,20 @@ namespace FischlWorks_FogWar
         /// If a level is loaded instead of being scanned, 
         /// the level dimension properties of csFogWar will be replaced by the level data.
 
-[System.Serializable]
+        private void Awake()
+        {
+            if (Instance != null)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                Instance = this;
+                DontDestroyOnLoad(gameObject);
+            }
+        }
+
+        [System.Serializable]
         public class LevelData
         {
             public void AddColumn(LevelColumn levelColumn)
@@ -74,9 +89,7 @@ namespace FischlWorks_FogWar
             // Adding private getter / setters are not allowed for serialization
             public int levelDimensionX = 0;
             public int levelDimensionY = 0;
-
             public float unitScale = 0; 
-
             public float scanSpacingPerUnit = 0;
 
             [SerializeField]
@@ -189,9 +202,7 @@ namespace FischlWorks_FogWar
         private List<FogRevealer> fogRevealers = null;
         public List<FogRevealer> _FogRevealers => fogRevealers;
         [SerializeField]
-        private Transform levelMidPoint = null; // This is assigned in the inspector but to the inactivated game object PlaneFogWar and
-        // *** not the Runtime plane Fog_Plane at 513 ScanLevel() but updates the Fog_Plane levelMidPoint values used
-        //public Transform LevelMidPoint { set { levelMidPoint = value; } } // set by FleetManager, StarSystemManager
+        private Transform levelMidPoint = null; 
         public Transform _LevelMidPoint => levelMidPoint;
         [SerializeField]
         [Range(1, 30)]
@@ -199,8 +210,8 @@ namespace FischlWorks_FogWar
 
         [BigHeader("Fog Properties")]
         [SerializeField]
-        [Range(0, 100)]
-        private float fogPlaneHeight = 60;
+        [Range(0, 140)]
+        private float fogPlaneHeight = 0;
         [SerializeField]
         private Material fogPlaneMaterial = null;
        
@@ -210,8 +221,8 @@ namespace FischlWorks_FogWar
         [Range(0, 1)]
         private float fogPlaneAlpha = 1;
         [SerializeField]
-        [Range(1, 5)]
-        private float fogLerpSpeed = 2.5f;
+        [Range(0, 5)]
+        private float fogLerpSpeed = 0.01f;
         [Header("Debug")]
         [SerializeField]
         private Texture2D fogPlaneTextureLerpTarget = null;
@@ -240,7 +251,7 @@ namespace FischlWorks_FogWar
         [SerializeField]
         private float scanSpacingPerUnit = 0.25f;
         [SerializeField]
-        private float rayStartHeight = 350;
+        private float rayStartHeight = 5;
         [SerializeField]
         private float rayMaxDistance = 600;
         [SerializeField]
@@ -266,56 +277,47 @@ namespace FischlWorks_FogWar
 
         private const string levelScanDataPath = "/LevelData";
 
+        //private void Start()
+        public void RunFogOfWar()
+        {            
+                CheckProperties();
 
+                InitializeVariables();
 
-        // --- --- ---
-
-
-
-        private void Start()
-        {
-            CheckProperties();
-
-            InitializeVariables();
-
-            if (LevelDataToLoad == null)
-            {
-                ScanLevel();
-
-                if (saveDataOnScan == true)
+                if (LevelDataToLoad == null)
                 {
-                    // Preprocessor definitions are used because the save function code will be stripped out on build
+                    ScanLevel();
+
+                    if (saveDataOnScan == true)
+                    {
+                        // Preprocessor definitions are used because the save function code will be stripped out on build
 #if UNITY_EDITOR
-                    SaveScanAsLevelData();
+                        SaveScanAsLevelData();
 #endif
+                    }
                 }
-            }
-            else
-            {
-                LoadLevelData();
-            }
+                else
+                {
+                    LoadLevelData();
+                }
 
-            InitializeFog();
+                InitializeFog();
 
-            // This part passes the needed references to the shadowcaster
-            shadowcaster.Initialize(this);
+                // This part passes the needed references to the shadowcaster
+                shadowcaster.Initialize(this);
 
-            // This is needed because we do not update the fog when there's no unit-scale movement of each fogRevealer
-            ForceUpdateFog();
+                // This is needed because we do not update the fog when there's no unit-scale movement of each fogRevealer
+                ForceUpdateFog();
+                fogReady = true;
         }
-
-
 
         private void Update()
         {
-            UpdateFog();
+            if(fogPlane != null && fogReady)
+                UpdateFog();
         }
 
-
-
         // --- --- ---
-
-
 
         private void CheckProperties()
         {
@@ -377,9 +379,9 @@ namespace FischlWorks_FogWar
                 levelMidPoint.position.z);
 
             fogPlane.transform.localScale = new Vector3(
-                (levelDimensionX * unitScale) * 11.0f,
+                (levelDimensionX * unitScale) / 10f,
                 1,
-                (levelDimensionY * unitScale) * 19.0f);
+                (levelDimensionY * unitScale) / 10f);
 
             fogPlaneTextureLerpTarget = new Texture2D(levelDimensionX, levelDimensionY);
             fogPlaneTextureLerpBuffer = new Texture2D(levelDimensionX, levelDimensionY);
@@ -391,7 +393,7 @@ namespace FischlWorks_FogWar
             fogPlane.GetComponent<MeshRenderer>().material = new Material(fogPlaneMaterial);
 
             fogPlane.GetComponent<MeshRenderer>().material.SetTexture("_MainTex", fogPlaneTextureLerpBuffer);
-
+            //fogPlane.GetComponent<MeshRenderer>().material.renderQueue = 1; 
             fogPlane.GetComponent<MeshCollider>().enabled = false;
         }
 
@@ -411,7 +413,7 @@ namespace FischlWorks_FogWar
             fogPlane.transform.position = new Vector3(
                 levelMidPoint.position.x,
                 levelMidPoint.position.y + fogPlaneHeight,
-                levelMidPoint.position.z);
+                levelMidPoint.position.z - 160f);
 
             FogRefreshRateTimer += Time.deltaTime;
 
@@ -491,8 +493,6 @@ namespace FischlWorks_FogWar
 
             fogPlaneTextureLerpBuffer.Apply();
         }
-
-
 
         private void UpdateFogPlaneTextureTarget()
         {

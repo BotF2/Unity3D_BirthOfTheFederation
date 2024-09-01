@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using TMPro;
-using Assets.Core;
+using FischlWorks_FogWar;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEditor;
@@ -30,8 +30,9 @@ namespace Assets.Core
         [SerializeField]
         private GameObject galaxyCenter;
         private Camera galaxyEventCamera;
-        private Canvas systemUICanvas; 
-        private int systemCount = -1; // Used only in testing multiple systems in Federation
+        private Canvas systemUICanvas;
+        private int starSystemCounter = 0;
+        //private int systemCount = -1; // Used only in testing multiple systems in Federation
         private void Awake()
         {
             if (Instance != null) { Destroy(gameObject); }
@@ -91,6 +92,8 @@ namespace Assets.Core
         }
         public void InstantiateSystem(StarSysData sysData, CivSO civSO)
         {
+             
+
             if (MainMenuUIController.Instance.MainMenuData.SelectedGalaxyType == GalaxyMapType.RANDOM)
             { // do something with sysData.position
             }
@@ -170,9 +173,13 @@ namespace Assets.Core
                 }
                 starSystemNewGameOb.SetActive(true);
                 StarSysControllerList.Add(controller);
-                systemCount++;
+                //systemCount++;
                 List<StarSysController> listStarSysCon = new List<StarSysController> { controller };
                 CivManager.Instance.AddSystemToOwnSystemListAndHomeSys(listStarSysCon);
+                starSystemCounter++;
+                if (starSystemCounter == CivManager.Instance.CivControllersInGame.Count)
+                    csFogWar.Instance.RunFogOfWar(); // star systems are in place so time to scan for the fog
+
                 //***** This is temporary so we can test a multi-starsystem civ
                 //******* before diplomacy will alow civs/systems to join another civ
                 //if (systemCount == 8)

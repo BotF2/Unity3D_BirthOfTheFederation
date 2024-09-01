@@ -146,7 +146,7 @@ GameObject:
   m_Component:
   - component: {fileID: 209625221646379460}
   - component: {fileID: 627075598613999377}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Insignia
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -237,7 +237,7 @@ GameObject:
   - component: {fileID: 2936855120812224797}
   - component: {fileID: 5683767032781824699}
   - component: {fileID: 4116131559086912959}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: LoadToolTip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -434,7 +434,7 @@ GameObject:
   - component: {fileID: 2675803383976995007}
   - component: {fileID: 1404781485455401959}
   - component: {fileID: 4963242530823097274}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -565,7 +565,7 @@ GameObject:
   - component: {fileID: 8805442515458808144}
   - component: {fileID: 2856196885408235915}
   - component: {fileID: 6359073903694642056}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: CanvasToolTip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -679,7 +679,7 @@ GameObject:
   - component: {fileID: 5398848585442404107}
   - component: {fileID: 5242705555423699537}
   - component: {fileID: 6538304210169794346}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: CanvasFleet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -791,7 +791,7 @@ GameObject:
   - component: {fileID: 3597375083586155400}
   - component: {fileID: 6914205171284014129}
   - component: {fileID: 3476718599975112345}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Name (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -925,7 +925,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6635926363981130409}
   - component: {fileID: 2039294588425904161}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Fleet
   m_TagString: fleet
   m_Icon: {fileID: 0}
@@ -1081,7 +1081,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2911109836740292483}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: FleetName
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -8,6 +8,7 @@ using UnityEngine.EventSystems;
 using System.Linq;
 using System;
 using TMPro;
+using FischlWorks_FogWar;
 using Unity.VisualScripting;
 //using UnityEditor.UIElements;
 
@@ -663,6 +664,7 @@ namespace Assets.Core
         }
         private void LoadGalaxyScene()
         {
+
             UpdateMapSelection();
             UpdateGalaxySizeSelection();
             UpdateTechLevelSelection();
@@ -676,7 +678,7 @@ namespace Assets.Core
             SceneManager.LoadScene("GalaxyScene", LoadSceneMode.Additive);
             CivManager.Instance.OnNewGameButtonClicked((int)MainMenuData.SelectedGalaxySize, (int)MainMenuData.SelectedTechLevel, (int)MainMenuData.SelectedGalaxyType,
                 (int)GameManager.Instance.GameData.LocalPlayerCivEnum, IsSinglePlayer);
-
+         
         }
         private void PlayableCivOffInGameList()
         {

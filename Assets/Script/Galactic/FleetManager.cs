@@ -110,19 +110,6 @@ namespace Assets.Core
                         Quaternion.identity);
                 FleetGOList.Add(fleetNewGameOb);
             
-                //var ourFogRevealerFleet = new csFogWar.FogRevealer(this.transform, 5, true);
-
-                //fogWar.AddFogRevealer(ourFogRevealerFleet);
-                //fogWar.AddFogRevealer(fogRevealer(this.transform, 21, true));
-
-                //fleetNewGameOb.AddComponent<csFogWar>();
-                //var ourFogWar = fleetNewGameOb.GetComponent<csFogWar>();
-                //var ourFogVisibilityAgent = fleetNewGameOb.GetComponent<csFogVisibilityAgent>();
-                //ourFogVisibilityAgent.FogWar = ourFogWar;
-                //fogWar.LevelMidPoint = planeFogOfWar.transform;
-                //fleetNewGameOb.AddComponent<csRevealerSpawner>();
-                //var ourRevealerSponer = fleetNewGameOb.GetComponent<csRevealerSpawner>();
-                //ourRevealerSponer.FogWar = ourFogWar;
                 var fleetController = fleetNewGameOb.GetComponentInChildren<FleetController>();
                 fleetController.FleetData = fleetData;
                 fleetController.Name = fleetData.Name;
@@ -138,9 +125,18 @@ namespace Assets.Core
                 fleetNewGameOb.name = fleetData.CivShortName.ToString() + " Fleet " + fleetData.Name; // name game object
                 TextMeshProUGUI TheText = fleetNewGameOb.GetComponentInChildren<TextMeshProUGUI>();
 
-
-                //var ourFogRevealerFleet = new csFogWar.FogRevealer(this.transform, 7, true);
-                //fogWar.AddFogRevealer(ourFogRevealerFleet);
+                if (fleetData.CivEnum == GameManager.Instance.GameData.LocalPlayerCivEnum)
+                {
+                    var ourFogRevealerFleet = new csFogWar.FogRevealer(this.transform, 7, true);
+                    fogWar.AddFogRevealer(ourFogRevealerFleet);
+                }
+                else
+                {
+                    fleetNewGameOb.AddComponent<csFogVisibilityAgent>();
+                    var ourFogVisibilityAgent = fleetNewGameOb.GetComponent<csFogVisibilityAgent>();
+                    ourFogVisibilityAgent.enabled = true;
+                    ourFogVisibilityAgent.FogWar = fogWar;
+                }
 
                 TheText.text = fleetNewGameOb.name;
                 fleetData.Name = TheText.text;
