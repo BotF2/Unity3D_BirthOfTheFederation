@@ -127,7 +127,7 @@ namespace Assets.Core
 
                 if (fleetData.CivEnum == GameManager.Instance.GameData.LocalPlayerCivEnum)
                 {
-                    var ourFogRevealerFleet = new csFogWar.FogRevealer(this.transform, 7, true);
+                    var ourFogRevealerFleet = new csFogWar.FogRevealer(fleetNewGameOb.transform, 50, true);
                     fogWar.AddFogRevealer(ourFogRevealerFleet);
                 }
                 else
