@@ -84,13 +84,13 @@ public class FleetUIManager : MonoBehaviour
         StarSysUIManager.Instance.UnLoadStarSysUI();
         FleetSelectionUI.Instance.UnLoadShipManagerUI();
         fleetUIRoot.SetActive(true);
-        destinationDropdown.options.Clear();
-        noDestination = GameManager.Instance.GameData.NoDestination;
+        // destinationDropdown.options.Clear();
+        // noDestination = GameManager.Instance.GameData.NoDestination;
         List<string> listings = new List<string>();
-        foreach (string location in GameManager.Instance.GameData.DestinationNames)
-        {
-            listings.Add(location);
-        }
+        //foreach (string location in GameManager.Instance.GameData.DestinationNames)
+        //{
+        //    listings.Add(location);
+        //}
         controller = go.GetComponent<FleetController>();
         FleetName.text = controller.FleetData.Name;
         ResetWarpSlider(controller.FleetData.CurrentWarpFactor);
@@ -111,50 +111,50 @@ public class FleetUIManager : MonoBehaviour
             if (ourFleet > -1)
             listings.Remove(listings[ourFleet]);           
         }
-        listings.Reverse();
-        int indexOfSelected = -1;
-        if (controller.SelectedDestination != "" && controller.SelectedDestination != noDestination)
-        {
-            for (int i = 0; i < listings.Count; i++)
-            {
+        //listings.Reverse();
+        //int indexOfSelected = -1;
+        //if (controller.SelectedDestination != "" && controller.SelectedDestination != noDestination)
+        //{
+        //    for (int i = 0; i < listings.Count; i++)
+        //    {
 
-                if (controller.SelectedDestination == listings[i] && GameManager.Instance.GameData.DestinationDictionary[listings[i]] != null)
-                {
-                    controller.FleetData.Destination = GameManager.Instance.GameData.DestinationDictionary[listings[i]];
-                    controller.SelectedDestination = listings[i];
-                    dropdownDestinationText.text = listings[i];
-                    indexOfSelected = i;
-                    break;
-                }
-            }
-        }
-        if (controller.SelectedDestination == "" || controller.SelectedDestination == noDestination)
-        {
-            controller.FleetData.Destination = null;
-            controller.SelectedDestination = noDestination;
-            dropdownDestinationText.text = noDestination;
-            for (int i = 0; i < listings.Count; i++)
-            {
-                if (listings[i] == noDestination)
-                {
-                    indexOfSelected = i;
-                    break;
-                }
-            }
-        }
+        //        if (controller.SelectedDestination == listings[i] && GameManager.Instance.GameData.DestinationDictionary[listings[i]] != null)
+        //        {
+        //            controller.FleetData.Destination = GameManager.Instance.GameData.DestinationDictionary[listings[i]];
+        //            controller.SelectedDestination = listings[i];
+        //            dropdownDestinationText.text = listings[i];
+        //            indexOfSelected = i;
+        //            break;
+        //        }
+        //    }
+        //}
+        //if (controller.SelectedDestination == "" || controller.SelectedDestination == noDestination)
+        //{
+        //    controller.FleetData.Destination = null;
+        //    controller.SelectedDestination = noDestination;
+        //    dropdownDestinationText.text = noDestination;
+        //    for (int i = 0; i < listings.Count; i++)
+        //    {
+        //        if (listings[i] == noDestination)
+        //        {
+        //            indexOfSelected = i;
+        //            break;
+        //        }
+        //    }
+        //}
 
-        List<TMP_Dropdown.OptionData> dataItems = new List<TMP_Dropdown.OptionData>();
-        for (int i = 0; i < listings.Count; i++)
-        {
-            TMP_Dropdown.OptionData newDataItem = new TMP_Dropdown.OptionData();
-            newDataItem.text = listings[i];
-            dataItems.Add(newDataItem);    
-        }
-        destinationDropdown.AddOptions(dataItems);
-        if (indexOfSelected > -1) 
-        destinationDropdown.value = indexOfSelected;
-        destinationDropdown.RefreshShownValue();
-        destinationDropdown.onValueChanged.AddListener(delegate { DropdownItemSelected(destinationDropdown); });
+        //List<TMP_Dropdown.OptionData> dataItems = new List<TMP_Dropdown.OptionData>();
+        //for (int i = 0; i < listings.Count; i++)
+        //{
+        //    TMP_Dropdown.OptionData newDataItem = new TMP_Dropdown.OptionData();
+        //    newDataItem.text = listings[i];
+        //    dataItems.Add(newDataItem);    
+        //}
+        //destinationDropdown.AddOptions(dataItems);
+        //if (indexOfSelected > -1) 
+        //destinationDropdown.value = indexOfSelected;
+        //destinationDropdown.RefreshShownValue();
+        //destinationDropdown.onValueChanged.AddListener(delegate { DropdownItemSelected(destinationDropdown); });
 
         //ship dropdown
         var shipDropdown = ShipDropdownGO.GetComponent<TMP_Dropdown>();
@@ -174,38 +174,38 @@ public class FleetUIManager : MonoBehaviour
         shipDropdown.RefreshShownValue();
 
     }
-    private void ReorderDropdownOptions(TMP_Dropdown dropdown)
-    {
-        List<TMP_Dropdown.OptionData> options = dropdown.options;
-        options.Reverse();
-        // Update the UI
-        dropdown.RefreshShownValue();
-    }
+    //private void ReorderDropdownOptions(TMP_Dropdown dropdown)
+    //{
+    //    List<TMP_Dropdown.OptionData> options = dropdown.options;
+    //    options.Reverse();
+    //    // Update the UI
+    //    dropdown.RefreshShownValue();
+    //}
     public void UnLoadFleetUI()
     {
         fleetUIRoot.SetActive(false);
     }
-    void DropdownItemSelected(TMP_Dropdown dropdown)
-    {
-        int index = dropdown.value;
-        if (dropdown.name == "Dropdown Destination")
-        {
-            if (dropdown.options[index].text != "No Destination Selected" && GameManager.Instance.GameData.DestinationDictionary[dropdown.options[index].text] != null)
-            {
-                controller.FleetData.Destination = GameManager.Instance.GameData.DestinationDictionary[dropdown.options[index].text];
-                controller.SelectedDestination = dropdown.options[index].text;
-                dropdownDestinationText.text = dropdown.options[index].text;
-                destinationDropdown.value = index;
-                destinationDropdown.RefreshShownValue();
-            }
-            else if(dropdown.options[index].text == "No Destination Selected")
-            {
-                controller.FleetData.Destination = null;
-                controller.SelectedDestination = "No Destination Selected";
-                dropdownDestinationText.text = "No Destination Selected";
-            }
-        }
-    }
+    //void DropdownItemSelected(TMP_Dropdown dropdown)
+    //{
+    //    int index = dropdown.value;
+    //    if (dropdown.name == "Dropdown Destination")
+    //    {
+    //        if (dropdown.options[index].text != "No Destination Selected" && GameManager.Instance.GameData.DestinationDictionary[dropdown.options[index].text] != null)
+    //        {
+    //            controller.FleetData.Destination = GameManager.Instance.GameData.DestinationDictionary[dropdown.options[index].text];
+    //            controller.SelectedDestination = dropdown.options[index].text;
+    //            dropdownDestinationText.text = dropdown.options[index].text;
+    //            destinationDropdown.value = index;
+    //            destinationDropdown.RefreshShownValue();
+    //        }
+    //        else if(dropdown.options[index].text == "No Destination Selected")
+    //        {
+    //            controller.FleetData.Destination = null;
+    //            controller.SelectedDestination = "No Destination Selected";
+    //            dropdownDestinationText.text = "No Destination Selected";
+    //        }
+    //    }
+    //}
     private string GetDebuggerDisplay()
     {
         return ToString();

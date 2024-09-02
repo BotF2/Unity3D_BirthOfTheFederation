@@ -88,7 +88,7 @@ namespace Assets.Core
                     starSysDatas.Add(SysData);
             }
             starSysDatas.Remove(starSysDatas[0]); // pull out the null
-            GameManager.Instance.GameData.LoadGalacticDestinations(starSysDatas);
+            //GameManager.Instance.GameData.LoadGalacticDestinations(starSysDatas);
         }
         public void InstantiateSystem(StarSysData sysData, CivSO civSO)
         {
