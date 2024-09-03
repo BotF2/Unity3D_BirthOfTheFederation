@@ -131,11 +131,37 @@ namespace Assets.Core
                     fogWar.AddFogRevealer(ourFogRevealerFleet);
                 }
                 else
-                {
+                { /// **** ToDo: Get the non local player not seen through fog of war, need to add FogVisibilityAgent and make it work.
+
+                    //var renderers = fleetNewGameOb.GetComponentsInChildren<SpriteRenderer>();
+                    //foreach (var oneRenderer in renderers)
+                    //{
+                    //    if (oneRenderer != null)
+                    //    {
+                    //        if (oneRenderer.name == "Insignia")
+                    //        {
+                    //            var oneFogVisiblility = oneRenderer.GetComponent<csFogVisibilityAgent>();
+                    //            oneFogVisiblility.FogWar = fogWar;
+                    //            oneFogVisiblility.enabled = true;
+       
+                    //            //var oneFogVisibilityAgent = oneRenderer.GetComponentInChildren(typeof(csFogVisibilityAgent));
+                    //            //oneFogVisibilityAgent.FogWar = fogWar;
+                    //            //oneRenderer.sprite.GetComponent<MeshFilter>().sharedMesh.RecalculateBounds();
+                    //        }
+                    //        //else if (oneRenderer.name == "StarSprite")
+                    //        //    if (sysData.StarType != StarSystemType.Yellow && sysData.StarType != StarSystemType.Red
+                    //        //            && sysData.StarType != StarSystemType.White && sysData.StarType != StarSystemType.Orange && sysData.StarType != StarSystemType.Blue)
+                    //        //        oneRenderer.sprite = unknowSystem;
+                    //        //    else
+                    //        //        oneRenderer.sprite = sysData.StarSprit;
+                    //    }
+                    //}
+
+                    // *** this does not help, try harder
                     fleetNewGameOb.AddComponent<csFogVisibilityAgent>();
-                    var ourFogVisibilityAgent = fleetNewGameOb.GetComponent<csFogVisibilityAgent>();
+                    var ourFogVisibilityAgent = fleetNewGameOb.GetComponent<csFogVisibilityAgent>();                   
+                    ourFogVisibilityAgent.FogWar = fogWar;                    
                     ourFogVisibilityAgent.enabled = true;
-                    ourFogVisibilityAgent.FogWar = fogWar;
                 }
 
                 TheText.text = fleetNewGameOb.name;

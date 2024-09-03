@@ -30003,7 +30003,7 @@ MonoBehaviour:
   unitScale: 10
   scanSpacingPerUnit: 5
   rayStartHeight: 60
-  rayMaxDistance: 120
+  rayMaxDistance: 110
   obstacleLayers:
     serializedVersion: 2
     m_Bits: 16
