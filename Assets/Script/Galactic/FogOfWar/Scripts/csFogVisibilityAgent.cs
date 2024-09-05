@@ -20,12 +20,8 @@ using System.Collections.Generic;   // List
 using System.Linq;
 using Assets.Core;
 
-
-
-
 namespace FischlWorks_FogWar
 {
-
     /// An example of an monobehaviour agent that utilizes the public interfaces of csFogWar class.
 
     /// Fetches all MeshRenderers and SkinnedMeshRenderers of child objects,\n
@@ -43,30 +39,21 @@ namespace FischlWorks_FogWar
         [Range(0, 2)]
         private int additionalRadius = 0;
 
-        private List<MeshRenderer> meshRenderers = null;
-        private List<SkinnedMeshRenderer> skinnedMeshRenderers = null;
-
-
+        private List<SpriteRenderer> spriteRenderers = null;
+        private List<LineRenderer> lineRenderers = null;
+        //** not using MeshRenderer in Galaxy map currently
+        //private List<MeshRenderer> meshRenderers = null; 
+        //** not using SkinnedMeshRenderer in Galaxy map currently
+        //private List<SkinnedMeshRenderer> skinnedMeshRenderers = null;
 
         private void Start()
         {
-            //This part is meant to be modified following the project's scene structure later...
-            //try
-            //{
-            //    fogWar = GameObject.Find("FogWar").GetComponent<csFogWar>();
-            //}
-            //catch
-            //{
-            //    Debug.LogErrorFormat("Failed to fetch csFogWar component. " +
-            //        "Please rename the gameobject that the module is attachted to as \"FogWar\", " +
-            //        "or change the implementation located in the csFogVisibilityAgent.cs script.");
-            //}
 
-            meshRenderers = GetComponentsInChildren<MeshRenderer>().ToList();
-            skinnedMeshRenderers = GetComponentsInChildren<SkinnedMeshRenderer>().ToList();
+            spriteRenderers = GetComponentsInChildren<SpriteRenderer>().ToList();
+            lineRenderers = GetComponentsInChildren<LineRenderer>().ToList();
+            //meshRenderers = GetComponentsInChildren<MeshRenderer>().ToList();
+            //skinnedMeshRenderers = GetComponentsInChildren<SkinnedMeshRenderer>().ToList();
         }
-
-
 
         private void Update()
         {
@@ -77,15 +64,22 @@ namespace FischlWorks_FogWar
 
             visibility = fogWar.CheckVisibility(transform.position, additionalRadius);
 
-            foreach (MeshRenderer renderer in meshRenderers)
+            foreach (SpriteRenderer renderer in spriteRenderers)
             {
                 renderer.enabled = visibility;
             }
-
-            foreach (SkinnedMeshRenderer renderer in skinnedMeshRenderers)
+            foreach (LineRenderer renderer in lineRenderers)
             {
                 renderer.enabled = visibility;
             }
+            //foreach (MeshRenderer renderer in meshRenderers)
+            //{
+            //    renderer.enabled = visibility;
+            //}
+            //foreach (SkinnedMeshRenderer renderer in skinnedMeshRenderers)
+            //{
+            //    renderer.enabled = visibility;
+            //}
         }
 
 

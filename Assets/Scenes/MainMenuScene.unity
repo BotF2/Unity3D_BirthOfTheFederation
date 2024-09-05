@@ -24171,13 +24171,14 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 218c89f1d661a1f459071e3df588f0ad, type: 2}
   - {fileID: 11400000, guid: b7236efde200c8c45b9b05e761211674, type: 2}
   fleetPrefab: {fileID: 8531124223347370568, guid: ef3b3036010abf54e8925e887e9010ad, type: 3}
+  fleetMarkerCubePrefab: {fileID: 2689998286238458528, guid: f0a7a04dae88ff04f8b580b1eca8c75c, type: 3}
   fogPlaneMaterial: {fileID: 2100000, guid: 36b93ac6fcf129c449491654e397fe4a, type: 2}
   galaxyImage: {fileID: 568107377}
   galaxyCenter: {fileID: 564492290}
   ManagersFleetControllerList: []
   FleetGOList: []
   fleetGroupPrefab: {fileID: 3717699476320669143, guid: 724c5663d5780da4a9ab08bdbf7ccc98, type: 3}
-  unknownfleet: {fileID: 21300000, guid: 676a31f5882728b488cd207719b5c55a, type: 3}
+  unknownfleet: {fileID: 21300000, guid: 27c860ebab275d645b0a07e61cafa11f, type: 3}
 --- !u!4 &1362581733
 Transform:
   m_ObjectHideFlags: 0

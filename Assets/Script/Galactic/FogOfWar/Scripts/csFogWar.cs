@@ -173,7 +173,7 @@ namespace FischlWorks_FogWar
             public Transform _RevealerTransform => revealerTransform;
 
             [SerializeField]
-            private int sightRange = 15;
+            private int sightRange = 200;
             public int _SightRange => sightRange;
 
             [SerializeField]
@@ -241,19 +241,19 @@ namespace FischlWorks_FogWar
         [BigHeader("Scan Properties")]
         [SerializeField]
         [Range(1, 300)]
-        private int levelDimensionX = 100;
+        private int levelDimensionX = 130;
         [SerializeField]
         [Range(1, 300)]
-        private int levelDimensionY = 100;
+        private int levelDimensionY = 180;
         [SerializeField]
-        private float unitScale = 0.1f;
+        private float unitScale = 10f;
         public float _UnitScale => unitScale;
         [SerializeField]
-        private float scanSpacingPerUnit = 0.25f;
+        private float scanSpacingPerUnit = 5f;
         [SerializeField]
-        private float rayStartHeight = 5;
+        private float rayStartHeight = 60;
         [SerializeField]
-        private float rayMaxDistance = 600;
+        private float rayMaxDistance = 110;
         [SerializeField]
         private LayerMask obstacleLayers = new LayerMask();
         [SerializeField]
