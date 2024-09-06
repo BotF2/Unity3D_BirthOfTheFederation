@@ -173,7 +173,7 @@ namespace FischlWorks_FogWar
             public Transform _RevealerTransform => revealerTransform;
 
             [SerializeField]
-            private int sightRange = 200;
+            private int sightRange = 200; // Size of the hole in the fog plane to view
             public int _SightRange => sightRange;
 
             [SerializeField]
@@ -219,7 +219,7 @@ namespace FischlWorks_FogWar
         private Color fogColor = new Color32(5, 15, 25, 255);
         [SerializeField]
         [Range(0, 1)]
-        private float fogPlaneAlpha = 1;
+        private float fogPlaneAlpha = 1; // opaque
         [SerializeField]
         [Range(0, 5)]
         private float fogLerpSpeed = 0.01f;
@@ -246,7 +246,8 @@ namespace FischlWorks_FogWar
         [Range(1, 300)]
         private int levelDimensionY = 180;
         [SerializeField]
-        private float unitScale = 10f;
+        private float unitScale = 10f;  // This 10f, along with scanSpacingPerUnit = 5f and level DimensionX 130 and Y 180, gives a scan (draw gizmos) that is well lined up
+                                        // with the background galaxy map image. See Unity csFogWar in the Hierarchy, scene.
         public float _UnitScale => unitScale;
         [SerializeField]
         private float scanSpacingPerUnit = 5f;
@@ -413,7 +414,8 @@ namespace FischlWorks_FogWar
             fogPlane.transform.position = new Vector3(
                 levelMidPoint.position.x,
                 levelMidPoint.position.y + fogPlaneHeight,
-                levelMidPoint.position.z - 160f);
+                levelMidPoint.position.z - 160f); // This  - 160f offsets the fogPlan towards the camera on z, Can we move better with raycast?
+            // *** ToDo: find where the fogPlane view hole is updated, get it to move with revealer objects.
 
             FogRefreshRateTimer += Time.deltaTime;
 
