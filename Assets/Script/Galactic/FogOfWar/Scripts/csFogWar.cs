@@ -222,7 +222,7 @@ namespace FischlWorks_FogWar
         private float fogPlaneAlpha = 1; // opaque
         [SerializeField]
         [Range(0, 5)]
-        private float fogLerpSpeed = 0.01f;
+        private float fogLerpSpeed = 2.5f;
         [Header("Debug")]
         [SerializeField]
         private Texture2D fogPlaneTextureLerpTarget = null;
