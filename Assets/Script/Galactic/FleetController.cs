@@ -7,6 +7,8 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Networking.Types;
 using UnityEngine.UIElements;
+using JetBrains.Annotations;
+using FischlWorks_FogWar;
 
 namespace Assets.Core
 {    /// <summary>
@@ -48,6 +50,7 @@ namespace Assets.Core
 
         private void Start()
         {
+            //layerMask = ~ignoreLayers.value;
             rb = GetComponent<Rigidbody>();
             rb.isKinematic = true;
             galaxyEventCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
@@ -63,10 +66,10 @@ namespace Assets.Core
             }
             Name = FleetData.CivShortName + " Fleet " + FleetData.Name;
             FleetState = FleetState.FleetStationary;
-
         }
         void Update()
         {
+
             switch (FleetState) 
             {
                 case FleetState.FleetInSystem:
@@ -117,24 +120,28 @@ namespace Assets.Core
                     MoveToDesitinationGO();
                 }
             }
+            if (Input.GetMouseButtonDown(0)) // Had to use this as OnMouseDown() is blocked by FOG plane collider
+                ClickFleet();
         }
 
         public Rigidbody GetRigidbody() { return rb; }
 
-        private void OnMouseDown()
+        private void ClickFleet() // Had to use this as OnMouseDown() is blocked by FOG plane collider
         {
-            //string goName;
+            csFogWar.Instance.DisableFogCollider();
             Ray ray = galaxyEventCamera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit))
+
+            if (Physics.Raycast(ray, out hit)) //,Mathf.Infinity,8, QueryTriggerInteraction.Ignore))
             {
                 GameObject hitObject = hit.collider.gameObject;
-                //goName = hitObject.name;
+         
                 if (hitObject == gameObject)
                 {
                     FleetUIManager.Instance.LoadFleetUI(gameObject);
                 }
             }
+            csFogWar.Instance.EnableFogCollider(); 
         }
         void OnTriggerEnter(Collider collider) // Not using OnCollisionEnter....
         {

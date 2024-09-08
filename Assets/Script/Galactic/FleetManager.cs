@@ -111,7 +111,9 @@ namespace Assets.Core
                 GameObject fleetNewGameOb = (GameObject)Instantiate(fleetPrefab, new Vector3(0, 0, 0),
                         Quaternion.identity);
                 FleetGOList.Add(fleetNewGameOb);
-            
+                fleetNewGameOb.layer = 6; // galaxy layer
+                //SphereCollider ourCollider = fleetNewGameOb.GetComponent<SphereCollider>();
+                //ourCollider.is
                 var fleetController = fleetNewGameOb.GetComponentInChildren<FleetController>();
                 fleetController.FleetData = fleetData;
                 fleetController.Name = fleetData.Name;

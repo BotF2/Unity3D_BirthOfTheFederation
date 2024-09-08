@@ -105,6 +105,7 @@ namespace Assets.Core
             {
                 GameObject starSystemNewGameOb = (GameObject)Instantiate(sysPrefab, new Vector3(0, 0, 0),
                      Quaternion.identity);
+                starSystemNewGameOb.layer = 4; // water layer (also used by fog of war for obsticles with shows to line of sight
                 starSystemNewGameOb.transform.Translate(new Vector3(sysData.GetPosition().x,
                     sysData.GetPosition().y, sysData.GetPosition().z));
 
@@ -178,7 +179,11 @@ namespace Assets.Core
                 CivManager.Instance.AddSystemToOwnSystemListAndHomeSys(listStarSysCon);
                 starSystemCounter++;
                 if (starSystemCounter == CivManager.Instance.CivControllersInGame.Count)
+                {
                     csFogWar.Instance.RunFogOfWar(); // star systems are in place so time to scan for the fog
+                    
+                }
+
 
                 //***** This is temporary so we can test a multi-starsystem civ
                 //******* before diplomacy will alow civs/systems to join another civ
