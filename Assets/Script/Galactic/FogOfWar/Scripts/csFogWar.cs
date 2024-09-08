@@ -181,8 +181,6 @@ namespace FischlWorks_FogWar
                 bool foundIt= false;
                 foreach (RaycastHit hit in hits)
                 {
-                    //if (Physics.Raycast(ray, out hit))
-                    //{
                     GameObject hitObject = hit.collider.gameObject;
 
                     if (hitObject.name == "PlaneFogTarget")//, Mathf.Infinity, 8)) // only layer 8
