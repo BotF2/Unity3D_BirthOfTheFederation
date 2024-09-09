@@ -24171,7 +24171,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 218c89f1d661a1f459071e3df588f0ad, type: 2}
   - {fileID: 11400000, guid: b7236efde200c8c45b9b05e761211674, type: 2}
   fleetPrefab: {fileID: 8531124223347370568, guid: ef3b3036010abf54e8925e887e9010ad, type: 3}
-  fleetMarkerCubePrefab: {fileID: 2689998286238458528, guid: f0a7a04dae88ff04f8b580b1eca8c75c, type: 3}
+  fleetMarkerCubePrefab: {fileID: 0}
   fogPlaneMaterial: {fileID: 2100000, guid: 36b93ac6fcf129c449491654e397fe4a, type: 2}
   galaxyImage: {fileID: 568107377}
   galaxyCenter: {fileID: 564492290}

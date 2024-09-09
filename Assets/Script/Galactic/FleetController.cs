@@ -120,13 +120,11 @@ namespace Assets.Core
                     MoveToDesitinationGO();
                 }
             }
-            if (Input.GetMouseButtonDown(0)) // Had to use this as OnMouseDown() is blocked by FOG plane collider
-                ClickFleet();
         }
 
         public Rigidbody GetRigidbody() { return rb; }
 
-        private void ClickFleet() // Had to use this as OnMouseDown() is blocked by FOG plane collider
+        private void OnMouseDown() // Had to use this as OnMouseDown() is blocked by FOG plane collider
         {
             Ray ray = galaxyEventCamera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
