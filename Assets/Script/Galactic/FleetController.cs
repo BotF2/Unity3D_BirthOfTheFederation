@@ -128,7 +128,6 @@ namespace Assets.Core
 
         private void ClickFleet() // Had to use this as OnMouseDown() is blocked by FOG plane collider
         {
-            csFogWar.Instance.DisableFogCollider();
             Ray ray = galaxyEventCamera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
@@ -141,7 +140,6 @@ namespace Assets.Core
                     FleetUIManager.Instance.LoadFleetUI(gameObject);
                 }
             }
-            csFogWar.Instance.EnableFogCollider(); 
         }
         void OnTriggerEnter(Collider collider) // Not using OnCollisionEnter....
         {

@@ -32,9 +32,7 @@ namespace FischlWorks_FogWar
         public static csFogWar Instance { get; private set; }
         bool fogReady = false;
         [SerializeField]
-        GameObject galacticCamGO;
-        [SerializeField]
-        GameObject fogColliderGO;
+        GameObject galacticCamHolder;
 
         //public LayerMask interactableLayers;
         /// A class for storing the base level data.
@@ -159,7 +157,7 @@ namespace FischlWorks_FogWar
         [System.Serializable]
         public class FogRevealer
         {
-            Transform camTransform = csFogWar.Instance.galacticCamGO.transform;
+            Transform camTransform = csFogWar.Instance.galacticCamHolder.transform;
             
 
             public FogRevealer(Transform revealerTransform, int sightRange, bool updateOnlyOnMove)
@@ -171,35 +169,11 @@ namespace FischlWorks_FogWar
 
             public Vector2Int GetCurrentLevelCoordinates(csFogWar fogWar)
             {
-                ///*** Trying to get the fog plane transparent hole to move with camera
-
-                Ray ray;
-                RaycastHit[] hits;
-                ray = new Ray(camTransform.position.normalized, revealerTransform.position.normalized); // cast ray at revealer from camera
-                csFogWar.Instance.EnableFogCollider();
-                hits = Physics.RaycastAll(ray);
-                bool foundIt= false;
-                foreach (RaycastHit hit in hits)
-                {
-                    GameObject hitObject = hit.collider.gameObject;
-
-                    if (hitObject.name == "PlaneFogTarget")//, Mathf.Infinity, 8)) // only layer 8
-                    {
-                        currentLevelCoordinates = new Vector2Int(
-                            fogWar.GetUnitX(hit.point.x),
-                            fogWar.GetUnitY(hit.point.z));
-                        foundIt = true;
-                    }
-                }
-                if(!foundIt)
-                { 
-                        currentLevelCoordinates = new Vector2Int(
-                        fogWar.GetUnitX(revealerTransform.position.x),
-                        fogWar.GetUnitY(revealerTransform.position.z));
-
-                    
-                }
-
+                float xCam = camTransform.position.x;
+                float zCam = camTransform.position.z + 1100f;
+                currentLevelCoordinates = new Vector2Int(
+                fogWar.GetUnitX(revealerTransform.position.x + xCam/10),
+                fogWar.GetUnitY(revealerTransform.position.z + zCam/12));
 
                 return currentLevelCoordinates;
             }
@@ -231,16 +205,6 @@ namespace FischlWorks_FogWar
             [SerializeField]
             private Vector2Int lastSeenAt = new Vector2Int(Int32.MaxValue, Int32.MaxValue);
             public Vector2Int _LastSeenAt => lastSeenAt;
-        }
-        public void EnableFogCollider()
-        {
-            if (fogColliderGO != null)
-                fogColliderGO.GetComponent<MeshCollider>().enabled = true;
-        }
-        public void DisableFogCollider()
-        {
-            if (fogColliderGO != null)
-            fogColliderGO.GetComponent<MeshCollider>().enabled = false;
         }
 
 
@@ -414,8 +378,6 @@ namespace FischlWorks_FogWar
             }
         }
 
-
-
         private void InitializeFog()
         {
             fogPlane = GameObject.CreatePrimitive(PrimitiveType.Plane);
@@ -445,10 +407,6 @@ namespace FischlWorks_FogWar
             //fogPlane.GetComponent<MeshRenderer>().material.renderQueue = 1; // Not sure why this needs to be left out but it works
             MeshCollider mCollider = fogPlane.GetComponent<MeshCollider>();
             mCollider.enabled = false;
-            //mCollider.convex = false;
-            // **** Only enabled it here for a raycast hit and move the FOW transparent area with camera but not working so far
-
-
         }
 
 
