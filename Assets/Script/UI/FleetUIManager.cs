@@ -71,7 +71,7 @@ public class FleetUIManager : MonoBehaviour
     }
     public void ResetWarpSlider(float value)
     {
-        
+        maxSliderValue =controller.FleetData.MaxWarpFactor;
         warpSlider.value = value/maxSliderValue;
         warpSliderText.text = value.ToString("0.0");
     }
@@ -98,7 +98,7 @@ public class FleetUIManager : MonoBehaviour
         //}
         controller = go.GetComponent<FleetController>();
         FleetName.text = controller.FleetData.Name;
-        maxSliderValue = controller.FleetData.GetMaxWarpFactor();
+        maxSliderValue = controller.FleetData.MaxWarpFactor;
         ResetWarpSlider(controller.FleetData.CurrentWarpFactor);
        
         //int ourFleet = -1;
