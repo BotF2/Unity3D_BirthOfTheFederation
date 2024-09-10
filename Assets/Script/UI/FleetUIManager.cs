@@ -16,33 +16,31 @@ public class FleetUIManager : MonoBehaviour
     public FleetController controller;
     public Canvas parentCanvas;
     [SerializeField]
-    private GameObject fleetUIRoot;
+    private GameObject fleetUIRoot;// GameObject controlles this active UI on/off
     [SerializeField]
     private Slider warpSlider;
     [SerializeField]
     private TextMeshProUGUI warpSliderText;
     [SerializeField]
     private float maxSliderValue = 9.8f;
-    public string noDestination;
-
     [SerializeField]
     private List<ShipData> shipList;
     private bool deltaShipList = false;
-
-    public GameObject ShipDropdownGO;
-    //[SerializeField]
-    //private TMP_Dropdown destinationDropdown;
     private TMP_Dropdown shipDropdown;
     [SerializeField]
-    private TMP_Text FleetName;
-    [SerializeField]
-    private GameObject selectedDestination;
-    //[SerializeField]
-    //private TMP_Text dropdownDestinationText;
+    public GameObject ShipDropdownGO;
     [SerializeField]
     private TMP_Text dropdownShipText;
+    //[SerializeField]
+    //private TMP_Dropdown destinationDropdown;
     [SerializeField]
-    private TMP_Text sysDestination;
+    private TMP_Text FleetName;
+    public string noDestination;
+    [SerializeField]
+    private GameObject selectedDestinationGO;
+    [SerializeField]
+    private TMP_Text destinationTextMP;
+
     private Camera galaxyEventCamera;
 
 
@@ -73,8 +71,14 @@ public class FleetUIManager : MonoBehaviour
     }
     public void ResetWarpSlider(float value)
     {
+        
         warpSlider.value = value/maxSliderValue;
         warpSliderText.text = value.ToString("0.0");
+    }
+    public void SetAsDestination(GameObject hitObject)
+    {
+        selectedDestinationGO = hitObject;
+        destinationTextMP.text = hitObject.name;
     }
     public void OnClickShipManager()
     {
@@ -94,55 +98,57 @@ public class FleetUIManager : MonoBehaviour
         //}
         controller = go.GetComponent<FleetController>();
         FleetName.text = controller.FleetData.Name;
+        maxSliderValue = controller.FleetData.GetMaxWarpFactor();
         ResetWarpSlider(controller.FleetData.CurrentWarpFactor);
+       
         //int ourFleet = -1;
         ///* customize the list of destinations
         // Remove the current fleet name */
        
-        if (listings.Contains(controller.FleetData.Name));
-        {
-            for (int i = 0; i < listings.Count; i++)
-            {
-                if (listings[i] == controller.FleetData.Name)
-                {
-                    ourFleet = i;
-                    break;
-                }
-            }
-            if (ourFleet > -1)
-            listings.Remove(listings[ourFleet]);           
-        }
-        listings.Reverse();
-        int indexOfSelected = -1;
-        if (controller.SelectedDestination != "" && controller.SelectedDestination != noDestination)
-        {
-            for (int i = 0; i < listings.Count; i++)
-            {
+        //if (listings.Contains(controller.FleetData.Name));
+        //{
+        //    for (int i = 0; i < listings.Count; i++)
+        //    {
+        //        if (listings[i] == controller.FleetData.Name)
+        //        {
+        //            ourFleet = i;
+        //            break;
+        //        }
+        //    }
+        //    if (ourFleet > -1)
+        //    listings.Remove(listings[ourFleet]);           
+        //}
+        //listings.Reverse();
+        //int indexOfSelected = -1;
+        //if (controller.SelectedDestination != "" && controller.SelectedDestination != noDestination)
+        //{
+        //    for (int i = 0; i < listings.Count; i++)
+        //    {
 
-                if (controller.SelectedDestination == listings[i] && GameManager.Instance.GameData.DestinationDictionary[listings[i]] != null)
-                {
-                    controller.FleetData.Destination = GameManager.Instance.GameData.DestinationDictionary[listings[i]];
-                    controller.SelectedDestination = listings[i];
-                    dropdownDestinationText.text = listings[i];
-                    indexOfSelected = i;
-                    break;
-                }
-            }
-        }
-        if (controller.SelectedDestination == "" || controller.SelectedDestination == noDestination)
-        {
-            controller.FleetData.Destination = null;
-            controller.SelectedDestination = noDestination;
-            dropdownDestinationText.text = noDestination;
-            for (int i = 0; i < listings.Count; i++)
-            {
-                if (listings[i] == noDestination)
-                {
-                    indexOfSelected = i;
-                    break;
-                }
-            }
-        }
+        //        if (controller.SelectedDestination == listings[i] && GameManager.Instance.GameData.DestinationDictionary[listings[i]] != null)
+        //        {
+        //            controller.FleetData.Destination = GameManager.Instance.GameData.DestinationDictionary[listings[i]];
+        //            controller.SelectedDestination = listings[i];
+        //            dropdownDestinationText.text = listings[i];
+        //            indexOfSelected = i;
+        //            break;
+        //        }
+        //    }
+        //}
+        //if (controller.SelectedDestination == "" || controller.SelectedDestination == noDestination)
+        //{
+        //    controller.FleetData.Destination = null;
+        //    controller.SelectedDestination = noDestination;
+        //    dropdownDestinationText.text = noDestination;
+        //    for (int i = 0; i < listings.Count; i++)
+        //    {
+        //        if (listings[i] == noDestination)
+        //        {
+        //            indexOfSelected = i;
+        //            break;
+        //        }
+        //    }
+        //}
 
         //List<TMP_Dropdown.OptionData> dataItems = new List<TMP_Dropdown.OptionData>();
         //for (int i = 0; i < listings.Count; i++)

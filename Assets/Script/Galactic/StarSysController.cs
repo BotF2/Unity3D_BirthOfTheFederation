@@ -13,7 +13,6 @@ public class StarSysController : MonoBehaviour
     //Fields
     private StarSysData starSysData;
     public StarSysData StarSysData { get { return starSysData; } set { starSysData = value; } }
-    public CivEnum CurrentOwner;
     private Camera galaxyEventCamera;
     [SerializeField]
     private Canvas canvasToolTip;
@@ -58,13 +57,13 @@ public class StarSysController : MonoBehaviour
 
             if (hitObject.GetComponent<StarSysController>() != null)
             {
-                if (hitObject.GetComponentInChildren<StarSysController>().CurrentOwner == GameManager.Instance.GameData.LocalPlayerCivEnum)
+                if (hitObject.GetComponentInChildren<StarSysController>().StarSysData.CurrentOwner == GameManager.Instance.GameData.LocalPlayerCivEnum)
                 {
                     StarSysUIManager.Instance.LoadStarSysUI(gameObject);
                 }
                 else if (true) //selectAsDestination)
                 {
-                    //selectedDestination = hitObject;
+                    //selectedDestinationGO = hitObject;
                     FleetUIManager.Instance.SetAsDestination(hitObject);
                     //this.FleetData.Destination = hitObject;
                     //SetTheDestination(hitObject);
