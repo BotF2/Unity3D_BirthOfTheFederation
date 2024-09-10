@@ -164,6 +164,7 @@ namespace Assets.Core
                 Vector3[] points = { starSystemNewGameOb.transform.position, galaxyPlanePoint };
                 ourDropLine.SetUpLine(points);
                 StarSysController controller = starSystemNewGameOb.GetComponentInChildren<StarSysController>();
+                controller.CurrentOwner = sysData.CurrentOwner; // **** need to keep them alined!
                 controller.name = sysData.GetSysName();
                 controller.StarSysData = sysData;
                 foreach (var civCon in CivManager.Instance.CivControllersInGame)

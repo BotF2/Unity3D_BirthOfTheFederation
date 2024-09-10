@@ -113,6 +113,7 @@ namespace Assets.Core
                 var fleetController = fleetNewGameOb.GetComponentInChildren<FleetController>();
                 fleetController.FleetData = fleetData;
                 fleetController.Name = fleetData.Name;
+                fleetController.CivEnum = fleetData.CivEnum;
                 fleetController.FleetState = FleetState.FleetStationary;
                 ManagersFleetControllerList.Add(fleetController);
                 if (fleetController.FleetData.CivEnum != GameManager.Instance.GameData.LocalPlayerCivEnum)

@@ -20,6 +20,7 @@ namespace Assets.Core
         private FleetData fleetData;
         public FleetData FleetData { get { return fleetData; } set { fleetData = value; } }
         public string Name;
+        public CivEnum CivEnum;
         private bool deltaShipList = false; //??? do I need this or the shipdropdown listener
         public FleetState FleetState;
         public bool IsArrived = false;
@@ -30,10 +31,13 @@ namespace Assets.Core
         private float dropOutOfWarpDistance = 0.5f; // stop, but should be destination collider?
         private Rigidbody rb;
         public DropLineMovable DropLine;
-        public GameObject DestinationDropdownGO; // UI dropdown
-        [SerializeField]
-        private TMP_Dropdown destinationDropdown;
+        //public GameObject DestinationDropdownGO; // UI dropdown
+        //[SerializeField]
+        //private TMP_Dropdown destinationDropdown;
         public string SelectedDestination; // save destination name for FleetUI, start null
+        [SerializeField]
+        private GameObject selectedDestination;
+        public bool selectAsDestination = false;
         public GameObject ShipDropdownGO;
         [SerializeField]
         private TMP_Dropdown shipDropdown;
@@ -121,15 +125,16 @@ namespace Assets.Core
 
         public Rigidbody GetRigidbody() { return rb; }
 
-        private void OnMouseDown()
+        private void OnMouseDown() // Had to use this as OnMouseDown() is blocked by FOG plane collider
         {
             //string goName;
             Ray ray = galaxyEventCamera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit))
+
+            if (Physics.Raycast(ray, out hit)) //,Mathf.Infinity,8, QueryTriggerInteraction.Ignore))
             {
                 GameObject hitObject = hit.collider.gameObject;
-                //goName = hitObject.name;
+         
                 if (hitObject == gameObject)
                 {
                     FleetUIManager.Instance.LoadFleetUI(gameObject);
@@ -216,10 +221,7 @@ namespace Assets.Core
                 FleetData.CurrentWarpFactor = newSpeed;
             }
         }
-        public void SetDestination(GameObject newDestination)
-        {
-            this.FleetData.Destination = newDestination;
-        }
+
         void MoveToDesitinationGO()
         {
 
