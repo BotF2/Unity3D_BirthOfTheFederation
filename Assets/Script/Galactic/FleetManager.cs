@@ -30,8 +30,6 @@ namespace Assets.Core
         [SerializeField]
         private GameObject fleetPrefab;
         [SerializeField]
-        private GameObject fleetMarkerCubePrefab;
-        [SerializeField]
         private Material fogPlaneMaterial;
         [SerializeField]
         private GameObject galaxyImage;
@@ -174,9 +172,10 @@ namespace Assets.Core
                 List<FleetController> list = new List<FleetController>() { fleetController}; 
                 fleetController.FleetData.FleetGroupControllers = list;
                 fleetNewGameOb.SetActive(true);
-                // minor change
-                ShipManager.Instance.BuildShipsOfFirstFleet(fleetNewGameOb);               
-                GameManager.Instance.GameData.LoadGalacticDestinations(fleetData, fleetNewGameOb);
+                
+                ShipManager.Instance.BuildShipsOfFirstFleet(fleetNewGameOb);
+                
+                //GameManager.Instance.GameData.LoadGalacticDestinations(fleetData, fleetNewGameOb);
             }
         }
         void RemoveFleetConrollerFromAllControllers(FleetController fleetController)

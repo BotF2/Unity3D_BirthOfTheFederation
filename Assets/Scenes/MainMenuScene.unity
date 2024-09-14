@@ -13534,14 +13534,13 @@ MonoBehaviour:
   warpSlider: {fileID: 1534032025}
   warpSliderText: {fileID: 1295497451}
   maxSliderValue: 9.8
-  noDestination: 
   shipList: []
   ShipDropdownGO: {fileID: 1841860120}
-  destinationDropdown: {fileID: 1046361530}
-  FleetName: {fileID: 473136351}
-  dropdownDestinationText: {fileID: 1252500423}
   dropdownShipText: {fileID: 1045958678}
-  sysDestination: {fileID: 1252500423}
+  FleetName: {fileID: 473136351}
+  noDestination: 
+  selectedDestinationGO: {fileID: 0}
+  destinationTextMP: {fileID: 1252500423}
 --- !u!1 &803406169
 GameObject:
   m_ObjectHideFlags: 0
@@ -18575,7 +18574,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1046361530
 MonoBehaviour:
   m_ObjectHideFlags: 0

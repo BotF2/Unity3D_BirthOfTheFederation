@@ -54,11 +54,22 @@ public class StarSysController : MonoBehaviour
         if (Physics.Raycast(ray, out hit))
         {
             GameObject hitObject = hit.collider.gameObject;
-          
-            if (hitObject == gameObject)
+
+            if (hitObject.GetComponent<StarSysController>() != null)
             {
-                StarSysUIManager.Instance.LoadStarSysUI(gameObject);
+                if (hitObject.GetComponentInChildren<StarSysController>().StarSysData.CurrentOwner == GameManager.Instance.GameData.LocalPlayerCivEnum)
+                {
+                    StarSysUIManager.Instance.LoadStarSysUI(gameObject);
+                }
+                else if (true) //selectAsDestination)
+                {
+                    //selectedDestinationGO = hitObject;
+                    FleetUIManager.Instance.SetAsDestination(hitObject);
+                    //this.FleetData.Destination = hitObject;
+                    //SetTheDestination(hitObject);
+                }
             }
+
         }
     }
     public void OnEnable()

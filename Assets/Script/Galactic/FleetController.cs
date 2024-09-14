@@ -31,18 +31,20 @@ namespace Assets.Core
         private float dropOutOfWarpDistance = 0.5f; // stop, but should be destination collider?
         private Rigidbody rb;
         public DropLineMovable DropLine;
-        public GameObject DestinationDropdownGO; // UI dropdown
+
+        //[SerializeField]
+        //private TMP_Text ourDestination; // do we need this here?
+        //public string SelectedDestination; // save destination name for FleetUI, start null
         [SerializeField]
-        private TMP_Dropdown destinationDropdown;
-        public string SelectedDestination; // save destination name for FleetUI, start null
-        public GameObject ShipDropdownGO;
-        [SerializeField]
-        private TMP_Dropdown shipDropdown;
+        private GameObject selectedDestinationGO;
+        public bool selectAsDestination = false;
+        //public GameObject ShipDropdownGO;
+        //[SerializeField]
+        //private TMP_Dropdown shipDropdown;// do we need this here?
         [SerializeField]
         private List<string> shipDropdownOptions;
 
-        [SerializeField]
-        private TMP_Text ourDestination;
+
         private Camera galaxyEventCamera;
         public Canvas FleetUICanvas { get; private set; }
         public Canvas CanvasToolTip;
@@ -128,13 +130,21 @@ namespace Assets.Core
             Ray ray = galaxyEventCamera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit)) //,Mathf.Infinity,8, QueryTriggerInteraction.Ignore))
+            if (Physics.Raycast(ray, out hit)) 
             {
                 GameObject hitObject = hit.collider.gameObject;
-         
-                if (hitObject == gameObject)
+                // What a fleet controller does with a hit
+                if (hitObject.GetComponent<FleetController>().FleetData.CivEnum == GameManager.Instance.GameData.LocalPlayerCivEnum)
                 {
-                    FleetUIManager.Instance.LoadFleetUI(gameObject);
+                    FleetUIManager.Instance.LoadFleetUI(hitObject);
+                }
+                else if (hitObject != null) // && selectAsDestination)
+                {
+                      FleetUIManager.Instance.SetAsDestination(hitObject);
+                      selectAsDestination = false;
+                      this.FleetData.Destination = hitObject;
+                    //            controller.FleetData.Destination = GameManager.Instance.GameData.DestinationDictionary[dropdown.options[index].text];
+                    //            controller.SelectedDestination = dropdown.options[index].text;
                 }
             }
         }
@@ -218,10 +228,7 @@ namespace Assets.Core
                 FleetData.CurrentWarpFactor = newSpeed;
             }
         }
-        public void SetDestination(GameObject newDestination)
-        {
-            this.FleetData.Destination = newDestination;
-        }
+
         void MoveToDesitinationGO()
         {
 
