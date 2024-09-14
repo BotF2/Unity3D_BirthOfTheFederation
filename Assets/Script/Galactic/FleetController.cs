@@ -22,13 +22,12 @@ namespace Assets.Core
         private FleetData fleetData;
         public FleetData FleetData { get { return fleetData; } set { fleetData = value; } }
         public string Name;
-        private bool deltaShipList = false; //??? do I need this or the shipdropdown listener
         public FleetState FleetState;
         public bool IsArrived = false;
         [SerializeField]
         private float maxWarpFactor = 9.8f;
         private float warpFactor = 0f;
-        private float fudgeFactor = 1f;
+        private float fudgeFactor = 10f;
         private float dropOutOfWarpDistance = 0.5f; // stop, but should be destination collider?
         private Rigidbody rb;
         public DropLineMovable DropLine;
@@ -257,23 +256,31 @@ namespace Assets.Core
                 // Example: Stop the fleet, update UI, trigger events, etc.
             }
         }
-        void AddToShipList(ShipController shipController)
+        public void AddToShipList(ShipController shipController)
         {
             foreach (var ShipData in this.FleetData.GetShipList())
                 FleetData.AddToShipList(shipController);
-            deltaShipList = true;
+            UpdateMaxWarp();
         }
-        void RemoveFromShipList(ShipController shipController)
+        public void RemoveFromShipList(ShipController shipController)
         {
             this.FleetData.RemoveFromShipList(shipController);
-            deltaShipList = true;
+            UpdateMaxWarp();
+        }
+        public void UpdateMaxWarp()
+        {
+            float maxWarp = 9.8f;
+            for (int i = 0; this.fleetData.ShipsList.Count > 0; i++)
+            {
+                if(fleetData.ShipsList[i] != null)
+                {
+                    if (fleetData.ShipsList[i].ShipData.maxWarpFactor < maxWarp)
+                        maxWarp = fleetData.ShipsList[i].ShipData.maxWarpFactor;
+                }
+                fleetData.maxWarpFactor = maxWarp;
+            }
         }
 
-        //public void UpdateWarpFactor(float delta)
-        //{
-        //    FleetData.CurrentWarpFactor += delta;
-        //    FleetData.CurrentWarpFactor += delta;
-        //}
         public void AddFleetController(FleetController controller) // do we need this?
         {
             if (!FleetManager.Instance.ManagersFleetControllerList.Contains(controller)) 

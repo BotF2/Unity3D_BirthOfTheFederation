@@ -172,8 +172,8 @@ namespace FischlWorks_FogWar
                 float xCam = camTransform.position.x;
                 float zCam = camTransform.position.z + 1100f;
                 currentLevelCoordinates = new Vector2Int(
-                fogWar.GetUnitX(revealerTransform.position.x + xCam/10),
-                fogWar.GetUnitY(revealerTransform.position.z + zCam/12));
+                fogWar.GetUnitX(revealerTransform.position.x), // + xCam/5),
+                fogWar.GetUnitY(revealerTransform.position.z)); // + zCam/6));
 
                 return currentLevelCoordinates;
             }
@@ -222,7 +222,7 @@ namespace FischlWorks_FogWar
         [BigHeader("Fog Properties")]
         [SerializeField]
         [Range(0, 140)]
-        private float fogPlaneHeight = 60;
+        private float fogPlaneHeight = 0;// 60; 60 is above galaxy, 0 is mide but other ships run on the shadow, not directly line of sight in the 3D camera view
         [SerializeField]
         private Material fogPlaneMaterial = null;
        
@@ -230,7 +230,7 @@ namespace FischlWorks_FogWar
         private Color fogColor = new Color32(5, 15, 25, 255);
         [SerializeField]
         [Range(0, 1)]
-        private float fogPlaneAlpha = 1; // opaque
+        private float fogPlaneAlpha = 0.8f; // opaque
         [SerializeField]
         [Range(0, 5)]
         private float fogLerpSpeed = 2.5f;

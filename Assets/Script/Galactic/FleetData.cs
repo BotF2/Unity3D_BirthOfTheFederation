@@ -13,7 +13,7 @@ namespace Assets.Core
         public Vector3 Position;
         public List<ShipController> ShipsList;
         public List<FleetController> FleetGroupControllers; // used to hold fleets exchanging ships
-        private float maxWarpFactor;
+        public float maxWarpFactor;
         public float CurrentWarpFactor = 0f;
         public GameObject Destination;
         public string CivLongName;
