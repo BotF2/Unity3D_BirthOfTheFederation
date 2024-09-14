@@ -174,9 +174,8 @@ namespace Assets.Core
                 List<FleetController> list = new List<FleetController>() { fleetController}; 
                 fleetController.FleetData.FleetGroupControllers = list;
                 fleetNewGameOb.SetActive(true);
-                
-                ShipManager.Instance.BuildShipsOfFirstFleet(fleetNewGameOb);
-                
+                // minor change
+                ShipManager.Instance.BuildShipsOfFirstFleet(fleetNewGameOb);               
                 GameManager.Instance.GameData.LoadGalacticDestinations(fleetData, fleetNewGameOb);
             }
         }
