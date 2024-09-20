@@ -38,6 +38,7 @@ public class FleetUIManager : MonoBehaviour
     public string noDestination;
     [SerializeField]
     private GameObject selectedDestinationGO;
+    public bool MouseSetToDestination = false;
     [SerializeField]
     private TMP_Text destinationTextMP;
 
@@ -75,11 +76,24 @@ public class FleetUIManager : MonoBehaviour
         warpSlider.value = value/maxSliderValue;
         warpSliderText.text = value.ToString("0.0");
     }
-    public void SetAsDestination(GameObject hitObject)
+    public void ActivateSelectionOfDestination()
     {
-        selectedDestinationGO = hitObject;
-        destinationTextMP.text = hitObject.name;
+        MouseSetToDestination = true;
+        // turn on special mouse pointer
     }
+    public void SetStarSysAsDestination(GameObject hitObject, FleetController fleetCon)
+    {
+        fleetCon.FleetData.Destination = hitObject;
+        selectedDestinationGO = hitObject;
+        //destinationTextMP.text = hitObject.name;
+    }
+    public void SetFleetAsDestination(GameObject hitObject)
+    {
+        
+        selectedDestinationGO = hitObject;
+        //destinationTextMP.text = hitObject.name;
+    }
+
     public void OnClickShipManager()
     {
         FleetSelectionUI.Instance.LoadShipUIManager(controller);
@@ -167,13 +181,15 @@ public class FleetUIManager : MonoBehaviour
         var shipDropdown = ShipDropdownGO.GetComponent<TMP_Dropdown>();
         shipDropdown.options.Clear();
         List<TMP_Dropdown.OptionData> newShipItems = new List<TMP_Dropdown.OptionData>();
+        string name;
         for (int i = 0; i < controller.FleetData.ShipsList.Count; i++)
         {
             if (controller.FleetData.ShipsList[i] != null)
             {
                 TMP_Dropdown.OptionData newDataItem = new TMP_Dropdown.OptionData();
-                newDataItem.text = controller.FleetData.ShipsList[i].name;
-                newDataItem.text.Replace("(CLONE)", string.Empty);
+                name = controller.FleetData.ShipsList[i].name;
+                name = name.Replace("(CLONE)", string.Empty);
+                newDataItem.text = name;
                 newShipItems.Add(newDataItem);
             }
         }

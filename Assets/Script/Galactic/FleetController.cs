@@ -37,7 +37,7 @@ namespace Assets.Core
         //public string SelectedDestination; // save destination name for FleetUI, start null
         [SerializeField]
         private GameObject selectedDestinationGO;
-        public bool selectAsDestination = false;
+
         //public GameObject ShipDropdownGO;
         //[SerializeField]
         //private TMP_Dropdown shipDropdown;// do we need this here?
@@ -51,7 +51,6 @@ namespace Assets.Core
 
         private void Start()
         {
-            //layerMask = ~ignoreLayers.value;
             rb = GetComponent<Rigidbody>();
             rb.isKinematic = true;
             galaxyEventCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
@@ -116,7 +115,6 @@ namespace Assets.Core
             {
                 if (FleetData.Destination != null && FleetData.CurrentWarpFactor > 0f)
                 {
-
                     FleetState = FleetState.FleetAtWarp;
                     MoveToDesitinationGO();
                 }
@@ -134,20 +132,23 @@ namespace Assets.Core
             {
                 GameObject hitObject = hit.collider.gameObject;
                 // What a fleet controller does with a hit
-                if (hitObject.GetComponent<FleetController>().FleetData.CivEnum == GameManager.Instance.GameData.LocalPlayerCivEnum)
+                if (hitObject.GetComponent<FleetController>().FleetData.CivEnum == GameManager.Instance.GameData.LocalPlayerCivEnum
+                    && FleetUIManager.Instance.MouseSetToDestination == false)
                 {
                     FleetUIManager.Instance.LoadFleetUI(hitObject);
                 }
-                else if (hitObject != null) // && selectAsDestination)
+                else if (FleetUIManager.Instance.MouseSetToDestination == true)
                 {
-                      FleetUIManager.Instance.SetAsDestination(hitObject);
-                      selectAsDestination = false;
-                      this.FleetData.Destination = hitObject;
-                    //            controller.FleetData.Destination = GameManager.Instance.GameData.DestinationDictionary[dropdown.options[index].text];
-                    //            controller.SelectedDestination = dropdown.options[index].text;
+                    FleetUIManager.Instance.SetFleetAsDestination(hitObject);
+                    this.FleetData.Destination = hitObject;
+                }
+                else
+                { //ToDo: show player this is unknow system or fleet}
+
                 }
             }
         }
+
         void OnTriggerEnter(Collider collider) // Not using OnCollisionEnter....
         {
             FleetController fleetController = collider.gameObject.GetComponent<FleetController>();
@@ -221,34 +222,30 @@ namespace Assets.Core
             //2) ?build a deep space starbase vs a partol point for travel
 
         }
+
         public void SetWarpSpeed(float newSpeed)
         {
             if (newSpeed <= maxWarpFactor)
             {
                 FleetData.CurrentWarpFactor = newSpeed;
+                if (newSpeed > 0)
+                    this.FleetState = FleetState.FleetAtWarp;
             }
+            if (newSpeed == 0f)
+                this.FleetState= FleetState.FleetStationary;
         }
 
         void MoveToDesitinationGO()
         {
-
             Vector3 direction = (this.FleetData.Destination.transform.position - transform.position).normalized;
             float distance = Vector3.Distance(transform.position, this.FleetData.Destination.transform.position);
             if (this.FleetData.CurrentWarpFactor > maxWarpFactor)
             {
                 this.FleetData.CurrentWarpFactor = maxWarpFactor;
-            }
-            if (distance > dropOutOfWarpDistance)
-            {
-                Vector3 nextPosition = Vector3.MoveTowards(rb.position, FleetData.Destination.transform.position,
-                    FleetData.CurrentWarpFactor * fudgeFactor * Time.fixedDeltaTime);
-                rb.MovePosition(nextPosition); // kinematic with physics movement
-            }
-            else
-            {
                 rb.velocity = Vector3.zero;
                 OnArrivedAtDestination();
             }
+            // update dropline
             Vector3 galaxyPlanePoint = new Vector3(rb.position.x, -60f, rb.position.z);
             Vector3[] points = { rb.position, galaxyPlanePoint };
             DropLine.SetUpLine(points);
@@ -277,15 +274,14 @@ namespace Assets.Core
         public void UpdateMaxWarp()
         {
             float maxWarp = 9.8f;
-            for (int i = 0; this.fleetData.ShipsList.Count > 0; i++)
+            foreach (var shipController in fleetData.ShipsList)
             {
-                if(fleetData.ShipsList[i] != null)
+               if (shipController.ShipData.maxWarpFactor < maxWarp)
                 {
-                    if (fleetData.ShipsList[i].ShipData.maxWarpFactor < maxWarp)
-                        maxWarp = fleetData.ShipsList[i].ShipData.maxWarpFactor;
+                    maxWarp = shipController.ShipData.maxWarpFactor;
                 }
-                fleetData.maxWarpFactor = maxWarp;
             }
+            fleetData.MaxWarpFactor = maxWarp;
         }
 
         public void AddFleetController(FleetController controller) // do we need this?

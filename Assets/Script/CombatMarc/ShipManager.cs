@@ -83,11 +83,10 @@ public class ShipManager : MonoBehaviour
                 {
                     shipGO.transform.SetParent(fleetGO.transform);
                     fleetGO.GetComponent<FleetController>().FleetData.ShipsList.Add(shipGO.GetComponent<ShipController>());
-                }
-            
+                }           
             }
-            //fleetGO.GetComponent<FleetController>().UpdateMaxWarp();
         }
+        fleetGO.GetComponent<FleetController>().UpdateMaxWarp();
     }
     public List<ShipSO> FirstShipDateByTechlevel(int techLevel, CivEnum civ)
     {
