@@ -51,7 +51,7 @@ public class FleetSelectionUI : MonoBehaviour
     public void LoadShipUIManager(FleetController fleetController) 
     {
         StarSysUIManager.Instance.UnLoadStarSysUI();
-        FleetUIManager.Instance.UnLoadFleetUI();
+        FleetUIManager.Instance.CloseUnLoadFleetUI();
         ShipManagerUIRoot.SetActive(true);
         clickedFleetController = fleetController;
         CivName.text = clickedFleetController.FleetData.CivLongName;

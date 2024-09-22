@@ -350,16 +350,7 @@ namespace Assets.Core
         //public CameraMultiTarget cameraMultiTarget; 
         //private GameObject[] _cameraTargets; // = new GameObject [] { Friend_0, Enemy_0 };
         /// <summary>
-        /// Old UI elements
-        /// </summary>
-        //public SinglePlayer _SinglePlayer;
-        //public MultiPlayer _MultiPlayer;
-        //public LoadGamePanel _LoadGamePanel;
-        //public SaveGamePanel _SaveGamePanel;
-        //public SettingsGamePanel _SettingsGamePanel;
-        //public ExitQuit _ExitQuit;
-        //public CreditsGamePanel _CreditsGamePanel;
-        /// <summary>
+
         /// Old pre combat opening ship warpin animation and setup for start of combat
         /// </summary>
         //public GameObject animFriend1;

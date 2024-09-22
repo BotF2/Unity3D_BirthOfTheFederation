@@ -210,19 +210,20 @@ namespace Assets.Core
             civNewGameOb.transform.SetParent(civFolder.transform, true);
             civNewGameOb.name = civData.CivShortName.ToString();
         }
-        public void Diplomacy(CivController civPartyOne, CivController civPartyTwo)
-        {
-            if (!civPartyOne.CivData.CivsWeKnow.Contains(civPartyTwo))
-            {
-                FirstContact(civPartyOne, civPartyTwo);
-            }
-        }
-        private void FirstContact(CivController civPartyOne, CivController civPartyTwo)
-        {
-            civPartyOne.CivData.CivsWeKnow.Add(civPartyTwo);
-            civPartyTwo.CivData.CivsWeKnow.Add(civPartyOne);
-            // ToDo: Update the system name or the fleet insignia;
-        }
+        //public void Diplomacy(CivController civPartyOne, CivController civPartyTwo)
+        //{
+        //    if (!civPartyOne.CivData.CivsWeKnow.Contains(civPartyTwo))
+        //    {
+        //        FirstContact(civPartyOne, civPartyTwo);
+        //    }
+        //}
+        //private void FirstContact(CivController civPartyOne, CivController civPartyTwo)
+        //{
+        //    civPartyOne.CivData.CivsWeKnow.Add(civPartyTwo);
+        //    civPartyTwo.CivData.CivsWeKnow.Add(civPartyOne);
+
+        //    // ToDo: Update the system name and/or the fleet name/insignia;
+        //}
         void CreateStarSystemsWeOwnList(List<CivSO> list)
         {
             //for (int i = 0; i < .Count; i++)

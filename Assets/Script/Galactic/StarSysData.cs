@@ -28,10 +28,6 @@ public class StarSysData
     public string Description;
     private string v;
 
-    public StarSysData()
-    {
-
-    }
     public StarSysData(StarSysSO starSysSO)
     {
         starSysInt = starSysSO.StarSysInt;

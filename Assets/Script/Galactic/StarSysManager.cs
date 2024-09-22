@@ -156,6 +156,7 @@ namespace Assets.Core
                                 oneRenderer.sprite = sysData.StarSprit;
                     }
                 }
+
                 DropLineFixed ourDropLine = starSystemNewGameOb.GetComponentInChildren<DropLineFixed>();
 
                 ourDropLine.GetLineRenderer();
@@ -164,19 +165,30 @@ namespace Assets.Core
                     galaxyImage.transform.position.y, starSystemNewGameOb.transform.position.z);
                 Vector3[] points = { starSystemNewGameOb.transform.position, galaxyPlanePoint };
                 ourDropLine.SetUpLine(points);
-                StarSysController controller = starSystemNewGameOb.GetComponentInChildren<StarSysController>();
-                controller.name = sysData.GetSysName();
-                controller.StarSysData = sysData;
+                StarSysController starSysConroller = starSystemNewGameOb.GetComponentInChildren<StarSysController>();
+                starSysConroller.name = sysData.GetSysName();
+                starSysConroller.StarSysData = sysData;
                 foreach (var civCon in CivManager.Instance.CivControllersInGame)
                 {
-                    if (civCon.CivData.CivEnum == controller.StarSysData.GetFirstOwner())
-                        controller.StarSysData.CurrentCivController = civCon;
+                    if (civCon.CivData.CivEnum == starSysConroller.StarSysData.GetFirstOwner())
+                        starSysConroller.StarSysData.CurrentCivController = civCon;
                 }
                 starSystemNewGameOb.SetActive(true);
-                StarSysControllerList.Add(controller);
+                StarSysControllerList.Add(starSysConroller);
                 //systemCount++;
-                List<StarSysController> listStarSysCon = new List<StarSysController> { controller };
+                List<StarSysController> listStarSysCon = new List<StarSysController> { starSysConroller };
                 CivManager.Instance.AddSystemToOwnSystemListAndHomeSys(listStarSysCon);
+                var canvases = starSystemNewGameOb.GetComponentsInChildren<Canvas>();
+                foreach (var aCanvas in canvases)
+                {
+                    if (aCanvas != null)
+                    {
+                        if (aCanvas.name == "CanvasSelectionMarker")
+                        {
+                            starSysConroller.OurSelectedMarkerCanvas = aCanvas;
+                        }
+                    }
+                }
                 starSystemCounter++;
                 if (starSystemCounter == CivManager.Instance.CivControllersInGame.Count)
                 {

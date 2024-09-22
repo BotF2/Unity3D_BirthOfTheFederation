@@ -95,7 +95,7 @@ namespace Assets.Core
                 fleetData.Insignia = fleetSO.Insignia;
                 fleetData.CivEnum = fleetSO.CivOwnerEnum;
                 fleetData.Position = position + new Vector3(i * 40, 0, 0);
-                fleetData.CurrentWarpFactor = 0f;
+                fleetData.CurrentWarpFactor = 9f;
                 fleetData.CivLongName = civSO.CivLongName;
                 fleetData.CivShortName = civSO.CivShortName;
                 fleetData.Name = (myInt -i).ToString();
@@ -110,17 +110,12 @@ namespace Assets.Core
                         Quaternion.identity);
                 FleetGOList.Add(fleetNewGameOb);
                 fleetNewGameOb.layer = 6; // galaxy layer
-                //SphereCollider ourCollider = fleetNewGameOb.GetComponent<SphereCollider>();
-                //ourCollider.is
+
                 var fleetController = fleetNewGameOb.GetComponentInChildren<FleetController>();
                 fleetController.FleetData = fleetData;
                 fleetController.Name = fleetData.Name;
                 fleetController.FleetState = FleetState.FleetStationary;
                 ManagersFleetControllerList.Add(fleetController);
-                if (fleetController.FleetData.CivEnum != GameManager.Instance.GameData.LocalPlayerCivEnum)
-                {
-                   fleetController.FleetData.Insignia = unknownfleet;
-                }
                 fleetNewGameOb.transform.Translate(new Vector3(fleetData.Position.x + 40f,  fleetData.Position.y + 10f, fleetData.Position.z));
                 fleetNewGameOb.transform.SetParent(galaxyCenter.transform, true);
                 fleetNewGameOb.transform.localScale = new Vector3(0.7f, 0.7f, 1); // scale ship insignia here
@@ -149,8 +144,27 @@ namespace Assets.Core
                     {
                         if (oneRenderer.name == "Insignia") // && fleetData.CivShortName.ToUpper() == fleetData.Insignia.name.ToUpper())
                         {
-                            oneRenderer.sprite = fleetData.Insignia;
+                            oneRenderer.sprite = fleetController.FleetData.Insignia;
+                            if (fleetController.FleetData.CivEnum != GameManager.Instance.GameData.LocalPlayerCivEnum)
+                            {
+                                oneRenderer.gameObject.SetActive(false);
+                            }
                         }
+                        if (oneRenderer.name == "InsigniaUnknown" && fleetController.FleetData.CivEnum == GameManager.Instance.GameData.LocalPlayerCivEnum)
+                        {
+                            oneRenderer.gameObject.SetActive(false);
+                        }
+                    }
+                }
+                var canvas = fleetNewGameOb.GetComponentsInChildren<Canvas>();
+                foreach (var aCanvas in canvas)
+                {
+                    if (aCanvas != null)
+                    {
+                         if (aCanvas.name == "CanvasSelectionMarker")
+                            {
+                                fleetController.OurSelectedMarkerCanvas = aCanvas;
+                            }
                     }
                 }
                 DropLineMovable ourLineScript = fleetNewGameOb.GetComponentInChildren<DropLineMovable>();
