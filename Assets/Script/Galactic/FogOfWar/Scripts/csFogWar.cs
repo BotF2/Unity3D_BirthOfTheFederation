@@ -425,7 +425,7 @@ namespace FischlWorks_FogWar
             fogPlane.transform.position = new Vector3(
                 levelMidPoint.position.x,
                 levelMidPoint.position.y + fogPlaneHeight,
-                levelMidPoint.position.z - 160f); // This  - 160f offsets the fogPlan towards the camera on z, Can we move better with raycast?
+                levelMidPoint.position.z - 60f); // This  - 60f offsets the fogPlan towards the camera on z, Can we move better with raycast?
             // *** ToDo: find where the fogPlane view hole is updated, get it to move with revealer objects.
 
             FogRefreshRateTimer += Time.deltaTime;

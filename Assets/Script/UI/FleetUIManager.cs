@@ -31,8 +31,6 @@ public class FleetUIManager : MonoBehaviour
     public GameObject ShipDropdownGO;
     [SerializeField]
     private TMP_Text dropdownShipText;
-    //[SerializeField]
-    //private TMP_Dropdown destinationDropdown;
     [SerializeField]
     private TMP_Text FleetName;
     public string noDestination;
@@ -60,6 +58,7 @@ public class FleetUIManager : MonoBehaviour
         fleetUIRoot.SetActive(false);
         galaxyEventCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>() as Camera;
         parentCanvas.worldCamera = galaxyEventCamera;
+        //warpSlider.onValueChanged.AddListener((v)) => ()
     }
 
     public void WarpSliderChange(float value)
@@ -76,8 +75,16 @@ public class FleetUIManager : MonoBehaviour
     }
     public void ActivateSelectionOfDestination()
     {
-        MouseSetToDestination = true;
-        MousePointerChanger.Instance.ChangeToGalaxyMapCursor();
+        if (MousePointerChanger.Instance.HaveGalaxyCursor == false)
+        {
+            MouseSetToDestination = true;
+            MousePointerChanger.Instance.ChangeToGalaxyMapCursor();
+        }
+        else 
+        { 
+            MouseSetToDestination = false;
+            MousePointerChanger.Instance.ResetCursor();
+        }
     }
     public void SetStarSysAsDestination(GameObject hitObject)
     {

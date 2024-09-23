@@ -21,6 +21,7 @@ public class MousePointerChanger : MonoBehaviour
     private Texture2D galaxyMapCursorBorg;
     [SerializeField]
     private Texture2D galaxyMapCursorTerran;
+    public bool HaveGalaxyCursor = false;
 
 
     // Define the hot spot of the cursor (the point that will be the "clicking" point)
@@ -61,13 +62,14 @@ public class MousePointerChanger : MonoBehaviour
     // Function to change the cursor
     private void ChangeCursor(Texture2D cursorTexture, Vector2 hotSpot, CursorMode cursorMode)
     {
-
+        HaveGalaxyCursor = true;
         Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
     }
 
     // Reset to default cursor
     public void ResetCursor()
     {
+        HaveGalaxyCursor = false;
         Cursor.SetCursor(null, Vector2.zero, cursorMode);
     }
 }
