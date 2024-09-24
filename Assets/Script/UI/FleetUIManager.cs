@@ -58,7 +58,7 @@ public class FleetUIManager : MonoBehaviour
         fleetUIRoot.SetActive(false);
         galaxyEventCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>() as Camera;
         parentCanvas.worldCamera = galaxyEventCamera;
-        //warpSlider.onValueChanged.AddListener((v)) => ()
+        
     }
 
     public void WarpSliderChange(float value)
@@ -84,6 +84,7 @@ public class FleetUIManager : MonoBehaviour
         { 
             MouseSetToDestination = false;
             MousePointerChanger.Instance.ResetCursor();
+            controller.FleetData.Destination = null;
         }
     }
     public void SetStarSysAsDestination(GameObject hitObject)
@@ -135,7 +136,7 @@ public class FleetUIManager : MonoBehaviour
 
         controller = go.GetComponent<FleetController>();
         FleetName.text = controller.FleetData.Name;
-        maxSliderValue = controller.FleetData.MaxWarpFactor;
+        
         ResetWarpSlider(controller.FleetData.CurrentWarpFactor);
        
         //ship dropdown
@@ -156,6 +157,9 @@ public class FleetUIManager : MonoBehaviour
         }
         shipDropdown.AddOptions(newShipItems);
         shipDropdown.RefreshShownValue();
+        controller.UpdateMaxWarp();
+        maxSliderValue = controller.FleetData.MaxWarpFactor;
+
 
     }
     private void ReorderDropdownOptions(TMP_Dropdown dropdown)

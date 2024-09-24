@@ -18,7 +18,7 @@ MonoBehaviour:
   ShipType: 1
   shipSprite: {fileID: 21300000, guid: ec6076df65b093b40a93debae827c32d, type: 3}
   shipColor: {r: 0, g: 0, b: 0, a: 0}
-  maxWarpFactor: 2
+  maxWarpFactor: 5
   ShieldMaxHealth: 33
   HullMaxHealth: 15
   TorpedoDamage: 15

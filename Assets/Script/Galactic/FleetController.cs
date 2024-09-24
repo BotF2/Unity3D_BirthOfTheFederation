@@ -24,24 +24,14 @@ namespace Assets.Core
         public string Name;
         public FleetState FleetState;
         public bool IsArrived = false;
-        //[SerializeField]
-        //private float maxWarpFactor = 9.8f; // do this in FeetData
-        //private float warpFactor = 0f;
-        private float fudgeFactor = 10f;
-        private float dropOutOfWarpDistance = 0.5f; // stop, but should be destination collider?
+
+        private float warpFudgeFactor = 10f;
+  
         private Rigidbody rb;
         public DropLineMovable DropLine;
-        //private SpriteRenderer[] spriteRenderes;
+ 
         public Canvas OurSelectedMarkerCanvas;
-        //[SerializeField]
-        //private TMP_Text ourDestination; // do we need this here?
-        //public string SelectedDestination; // save destination name for FleetUI, start null
 
-        //public GameObject selectedDestinationGO;
-
-        //public GameObject ShipDropdownGO;
-        //[SerializeField]
-        //private TMP_Dropdown shipDropdown;// do we need this here?
         [SerializeField]
         private List<string> shipDropdownOptions;
         private Camera galaxyEventCamera;
@@ -233,6 +223,7 @@ namespace Assets.Core
             }
             if (newSpeed == 0f)
                 this.FleetState= FleetState.FleetStationary;
+
         }
 
         void MoveToDesitinationGO()
@@ -244,7 +235,7 @@ namespace Assets.Core
                 this.FleetData.CurrentWarpFactor = this.FleetData.MaxWarpFactor;
             }
             Vector3 nextPosition = Vector3.MoveTowards(rb.position, FleetData.Destination.transform.position,
-            FleetData.CurrentWarpFactor * fudgeFactor * Time.fixedDeltaTime);
+            FleetData.CurrentWarpFactor * warpFudgeFactor * Time.fixedDeltaTime);
             rb.MovePosition(nextPosition); // kinematic with physics movement
             rb.velocity = Vector3.zero;
             // OnArrivedAtDestination();

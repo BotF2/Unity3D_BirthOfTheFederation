@@ -202,7 +202,7 @@ public class FleetGroupController : MonoBehaviour
         //if (distance > dropOutOfWarpDistance)
         //{
         //    Vector3 nextPosition = Vector3.MoveTowards(rb.position, FleetData.Destination.transform.position,
-        //        FleetData.CurrentWarpFactor * fudgeFactor * Time.fixedDeltaTime);
+        //        FleetData.CurrentWarpFactor * warpFudgeFactor * Time.fixedDeltaTime);
         //    rb.MovePosition(nextPosition); // kinematic with physics movement
         //}
         //else
