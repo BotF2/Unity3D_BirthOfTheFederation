@@ -188,8 +188,7 @@ namespace Assets.Core
                 fleetNewGameOb.SetActive(true);
                 
                 ShipManager.Instance.BuildShipsOfFirstFleet(fleetNewGameOb);
-                // no longer need all destination in a list or dictionary, just click it
-                //GameManager.Instance.GameData.LoadGalacticDestinations(fleetData, fleetNewGameOb);
+
             }
         }
         void RemoveFleetConrollerFromAllControllers(FleetController fleetController)

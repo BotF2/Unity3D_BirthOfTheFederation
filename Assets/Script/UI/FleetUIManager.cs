@@ -84,7 +84,9 @@ public class FleetUIManager : MonoBehaviour
         { 
             MouseSetToDestination = false;
             MousePointerChanger.Instance.ResetCursor();
+            controller.OurSelectedMarkerCanvas.gameObject.SetActive(false);
             controller.FleetData.Destination = null;
+            destinationTextMP.text = "No Destination";
         }
     }
     public void SetStarSysAsDestination(GameObject hitObject)
@@ -101,7 +103,7 @@ public class FleetUIManager : MonoBehaviour
         }
         controller.FleetData.Destination = hitObject;
         destinationTextMP.text = hitObject.name;
-        // do we know them
+        //ToDo: When do we know them
     }
     public void SetFleetAsDestination(GameObject hitObject)
     {
@@ -159,7 +161,7 @@ public class FleetUIManager : MonoBehaviour
         shipDropdown.RefreshShownValue();
         controller.UpdateMaxWarp();
         maxSliderValue = controller.FleetData.MaxWarpFactor;
-
+        ResetWarpSlider(0f);
 
     }
     private void ReorderDropdownOptions(TMP_Dropdown dropdown)
@@ -175,27 +177,6 @@ public class FleetUIManager : MonoBehaviour
         MousePointerChanger.Instance.ResetCursor();
         fleetUIRoot.SetActive(false);
     }
-    //void DropdownItemSelected(TMP_Dropdown dropdown)
-    //{
-    //    int index = dropdown.value;
-    //    if (dropdown.name == "Dropdown Destination")
-    //    {
-    //        if (dropdown.options[index].text != "No Destination Selected" && GameManager.Instance.GameData.DestinationDictionary[dropdown.options[index].text] != null)
-    //        {
-    //            controller.FleetData.Destination = GameManager.Instance.GameData.DestinationDictionary[dropdown.options[index].text];
-    //            controller.SelectedDestination = dropdown.options[index].text;
-    //            dropdownDestinationText.text = dropdown.options[index].text;
-    //            destinationDropdown.value = index;
-    //            destinationDropdown.RefreshShownValue();
-    //        }
-    //        else if(dropdown.options[index].text == "No Destination Selected")
-    //        {
-    //            controller.FleetData.Destination = null;
-    //            controller.SelectedDestination = "No Destination Selected";
-    //            dropdownDestinationText.text = "No Destination Selected";
-    //        }
-    //    }
-    //}
     private string GetDebuggerDisplay()
     {
         return ToString();
