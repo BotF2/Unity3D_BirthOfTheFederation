@@ -29,15 +29,17 @@ namespace Assets.Core
         }
         public void Diplomacy(CivController civPartyOne, CivController civPartyTwo, GameObject hitGO)
         {
-            if (!civPartyOne.CivData.CivsWeKnow.Contains(civPartyTwo))
+            if (!civPartyOne.CivData.CivControllersWeKnow.Contains(civPartyTwo))
             {
                 FirstContact(civPartyOne, civPartyTwo, hitGO);
             }
         }
         private void FirstContact(CivController civPartyOne, CivController civPartyTwo, GameObject hitGO)
         {
-            civPartyOne.CivData.CivsWeKnow.Add(civPartyTwo);
-            civPartyTwo.CivData.CivsWeKnow.Add(civPartyOne);
+            civPartyOne.CivData.CivControllersWeKnow.Add(civPartyTwo);
+            civPartyOne.CivData.CivEnumsWeKnow.Add(civPartyTwo.CivData.CivEnum);
+            civPartyTwo.CivData.CivControllersWeKnow.Add(civPartyOne);
+            civPartyTwo.CivData.CivEnumsWeKnow.Add(civPartyOne.CivData.CivEnum);
             ResetSprits(civPartyTwo, hitGO);
             ResetNames(civPartyTwo, hitGO);
             // ToDo: Update the system name and/or the fleet name/insignia;
@@ -69,7 +71,7 @@ namespace Assets.Core
                 OneTMPtest.enabled = true;
                 if (OneTMPtest != null && OneTMPtest.name == "SysName (TMP)")
                 {
-                    if (hitGO.GetComponent<StarSysController>().StarSysData.CurrentOwner != GameManager.Instance.GameData.LocalPlayerCivEnum)
+                    if (hitGO.GetComponent<StarSysController>().StarSysData.CurrentOwner != CivManager.Instance.LocalPlayerCivEnum)
 
                      OneTMPtest.text = hitGO.GetComponent<StarSysController>().StarSysData.SysName;
                 }

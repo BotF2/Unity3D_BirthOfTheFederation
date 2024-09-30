@@ -124,17 +124,19 @@ namespace Assets.Core
                 GameObject hitObject = hit.collider.gameObject;
                 // What a fleet controller does with a hit
 
-                if (hitObject.GetComponent<FleetController>().FleetData.CivEnum == GameManager.Instance.GameData.LocalPlayerCivEnum)
+                if (this.FleetData.CivEnum == CivManager.Instance.LocalPlayerCivEnum)
                 {
-                    if (FleetUIManager.Instance.MouseSetToDestination == false)
+                    if (FleetUIManager.Instance.MouseClickSetsDestination == false)
                     {
                         FleetUIManager.Instance.LoadFleetUI(hitObject);
                     }
                 }
-                else if (FleetUIManager.Instance.MouseSetToDestination == true && hitObject.GetComponent<FleetController>() != FleetUIManager.Instance.controller)
+                else if (FleetUIManager.Instance.MouseClickSetsDestination == true && this != FleetUIManager.Instance.controller)
                 {
-                    FleetUIManager.Instance.SetFleetAsDestination(hitObject);
-                    hitObject.GetComponent<FleetController>().OurSelectedMarkerCanvas.gameObject.SetActive(true);
+                    FleetUIManager.Instance.SetAsDestination(hitObject);
+                    this.OurSelectedMarkerCanvas.gameObject.SetActive(true);
+                    //MousePointerChanger.Instance.ResetCursor();
+                    //MousePointerChanger.Instance.HaveGalaxyMapCursor = false;
                 }             
             }
         }
@@ -210,7 +212,6 @@ namespace Assets.Core
             //FleetManager.Instance.
             //1) you get the FleetController of the new fleet GO
             //2) ?build a deep space starbase vs a partol point for travel
-
         }
 
         public void SetWarpSpeed(float newSpeed)
@@ -278,17 +279,5 @@ namespace Assets.Core
             }
             fleetData.MaxWarpFactor = maxWarp;
         }
-
-        public void AddFleetController(FleetController controller) // do we need this?
-        {
-            if (!FleetManager.Instance.ManagersFleetControllerList.Contains(controller)) 
-                FleetManager.Instance.ManagersFleetControllerList.Add(controller);
-        }
-        public void RemoveFleetController(FleetController controller)
-        {
-            if (FleetManager.Instance.ManagersFleetControllerList.Contains(controller))
-                FleetManager.Instance.ManagersFleetControllerList.Remove(controller);
-        }
     }
-
 }

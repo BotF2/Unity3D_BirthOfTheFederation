@@ -22,7 +22,7 @@ namespace Assets.Core
         private List<StarSysSO> starSysSOList; // get StarSysSO for civ by int
         [SerializeField]
         private GameObject sysPrefab;
-        public List<StarSysController> StarSysControllerList;
+        public List<StarSysController> ManagersStarSysControllerList;
         [SerializeField]
         private GameObject galaxyImage;
         [SerializeField]
@@ -121,7 +121,7 @@ namespace Assets.Core
                     OneTmp.enabled = true;
                     if (OneTmp != null && OneTmp.name == "SysName (TMP)")
                     {
-                        if (sysData.CurrentOwner != GameManager.Instance.GameData.LocalPlayerCivEnum)
+                        if (sysData.CurrentOwner != CivManager.Instance.LocalPlayerCivEnum)
                         {
                             OneTmp.text = "UNKNOWN";
                         }
@@ -174,7 +174,7 @@ namespace Assets.Core
                         starSysConroller.StarSysData.CurrentCivController = civCon;
                 }
                 starSystemNewGameOb.SetActive(true);
-                StarSysControllerList.Add(starSysConroller);
+                ManagersStarSysControllerList.Add(starSysConroller);
                 //systemCount++;
                 List<StarSysController> listStarSysCon = new List<StarSysController> { starSysConroller };
                 CivManager.Instance.AddSystemToOwnSystemListAndHomeSys(listStarSysCon);
@@ -232,7 +232,7 @@ namespace Assets.Core
             StarSysData result = null;
 
 
-            foreach (var sysCon in StarSysControllerList)
+            foreach (var sysCon in ManagersStarSysControllerList)
             {
 
                 if (sysCon.StarSysData.GetSysName().Equals(name))
@@ -245,11 +245,19 @@ namespace Assets.Core
         }
         public void UpdateStarSystemOwner(CivEnum civCurrent, CivEnum civNew)
         {
-            foreach (var sysCon in StarSysControllerList) 
+            foreach (var sysCon in ManagersStarSysControllerList) 
             {
               if(sysCon.StarSysData.GetFirstOwner() == civCurrent)
                     sysCon.StarSysData.CurrentOwner = civNew;
             }
+        }
+        void RemoveStarSysConrollerFromAllControllers(StarSysController starSysController)
+        {
+            ManagersStarSysControllerList.Remove(starSysController);
+        }
+        void AddFleetConrollerFromAllControllers(StarSysController starSysController)
+        {
+            ManagersStarSysControllerList.Add(starSysController);
         }
     }
 }

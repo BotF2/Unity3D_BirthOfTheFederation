@@ -69,7 +69,8 @@ public class ShipManager : MonoBehaviour
 
     public void BuildShipsOfFirstFleet(GameObject fleetGO)
     {
-        CivEnum civEnum = (fleetGO.GetComponent<FleetController>().FleetData.CivEnum);
+        var fleetCon = fleetGO.GetComponent<FleetController>();
+        CivEnum civEnum = fleetCon.FleetData.CivEnum;
         List<ShipSO> ships = new List<ShipSO>();
         ships = FirstShipDateByTechlevel((int)CivManager.Instance.GetCivDataByCivEnum(civEnum).CivTechLevel, civEnum);
         //if (ships != null)
@@ -82,11 +83,13 @@ public class ShipManager : MonoBehaviour
                 if (shipGO != null)
                 {
                     shipGO.transform.SetParent(fleetGO.transform);
-                    fleetGO.GetComponent<FleetController>().FleetData.ShipsList.Add(shipGO.GetComponent<ShipController>());
+                    fleetCon.FleetData.ShipsList.Add(shipGO.GetComponent<ShipController>());
                 }           
             }
         }
-        fleetGO.GetComponent<FleetController>().UpdateMaxWarp();
+            
+        fleetCon.UpdateMaxWarp();
+        //fleetCon.FleetData.CurrentWarpFactor = 0f;
     }
     public List<ShipSO> FirstShipDateByTechlevel(int techLevel, CivEnum civ)
     {

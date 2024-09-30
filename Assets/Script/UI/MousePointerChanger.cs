@@ -21,7 +21,7 @@ public class MousePointerChanger : MonoBehaviour
     private Texture2D galaxyMapCursorBorg;
     [SerializeField]
     private Texture2D galaxyMapCursorTerran;
-    public bool HaveGalaxyCursor = false;
+    public bool HaveGalaxyMapCursor = false;
 
 
     // Define the hot spot of the cursor (the point that will be the "clicking" point)
@@ -44,17 +44,17 @@ public class MousePointerChanger : MonoBehaviour
     // Call this function to change the cursor
     public void ChangeToGalaxyMapCursor()
     {
-        if(GameManager.Instance.GameData.LocalPlayerCivEnum == CivEnum.FED)
+        if(CivManager.Instance.LocalPlayerCivEnum == CivEnum.FED)
             ChangeCursor(galaxyMapCursorFed, hotSpot, cursorMode);
-        else if (GameManager.Instance.GameData.LocalPlayerCivEnum == CivEnum.ROM)
+        else if (CivManager.Instance.LocalPlayerCivEnum == CivEnum.ROM)
             ChangeCursor(galaxyMapCursorRom, hotSpot, cursorMode);
-        else if (GameManager.Instance.GameData.LocalPlayerCivEnum == CivEnum.KLING)
+        else if (CivManager.Instance.LocalPlayerCivEnum == CivEnum.KLING)
             ChangeCursor(galaxyMapCursorKling, hotSpot, cursorMode);
-        else if (GameManager.Instance.GameData.LocalPlayerCivEnum == CivEnum.CARD)
+        else if (CivManager.Instance.LocalPlayerCivEnum == CivEnum.CARD)
             ChangeCursor(galaxyMapCursorCard, hotSpot, cursorMode);
-        else if (GameManager.Instance.GameData.LocalPlayerCivEnum == CivEnum.DOM)
+        else if (CivManager.Instance.LocalPlayerCivEnum == CivEnum.DOM)
             ChangeCursor(galaxyMapCursorDom, hotSpot, cursorMode);
-        else if (GameManager.Instance.GameData.LocalPlayerCivEnum == CivEnum.BORG)
+        else if (CivManager.Instance.LocalPlayerCivEnum == CivEnum.BORG)
             ChangeCursor(galaxyMapCursorBorg, hotSpot, cursorMode);
         else ChangeCursor(galaxyMapCursorTerran, hotSpot, cursorMode);
     }
@@ -62,14 +62,14 @@ public class MousePointerChanger : MonoBehaviour
     // Function to change the cursor
     private void ChangeCursor(Texture2D cursorTexture, Vector2 hotSpot, CursorMode cursorMode)
     {
-        HaveGalaxyCursor = true;
+        HaveGalaxyMapCursor = true; // used by FleetUIManager
         Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
     }
 
     // Reset to default cursor
     public void ResetCursor()
     {
-        HaveGalaxyCursor = false;
+        HaveGalaxyMapCursor = false;
         Cursor.SetCursor(null, Vector2.zero, cursorMode);
     }
 }

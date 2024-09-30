@@ -37,7 +37,7 @@ public class ToolTipController : MonoBehaviour, IPointerEnterHandler, IPointerEx
             ///***** ToDo maybe - also see civs we know?
             //else
             //{
-            //    foreach (CivController civCon in localPlayerCivCon.CivData.CivsWeKnow)
+            //    foreach (CivController civCon in localPlayerCivCon.CivData.CivControllersWeKnow)
             //    {
             //        //if (Name.text.Contains(civCon.CivData.))
             //    }

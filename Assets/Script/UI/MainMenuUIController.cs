@@ -318,7 +318,9 @@ namespace Assets.Core
                     FedOnOff.isOn = true;
                     FedOnOff.OnSelect(null);
                     FedLocalPalyerToggle = activeLocalPlayerToggle;
-                    GameManager.Instance.GameData.LocalPlayerCivEnum = CivEnum.FED;                 
+                    CivManager.Instance.LocalPlayerCivEnum = CivEnum.FED;
+                    GameManager.Instance.GameData.LocalPlayerCivEnum = CivEnum.FED;
+                    //CivManager.Instance.SetLocalPlayerCivController(CivEnum.FED); // To early
                     Debug.Log("Active FedLocalPalyerToggle.");
                     SetLocalCivilization(0);
                     PlaceTheYouInPlayerList(0);
@@ -330,6 +332,8 @@ namespace Assets.Core
                     Debug.Log("Active RomLocalPlayerToggle.");
                     SetLocalCivilization(1);
                     PlaceTheYouInPlayerList(1);
+                    CivManager.Instance.LocalPlayerCivEnum = CivEnum.ROM;
+                    //CivManager.Instance.SetLocalPlayerCivController(CivEnum.ROM);
                     GameManager.Instance.GameData.LocalPlayerCivEnum = CivEnum.ROM;
                     break;
                 case "TOGGLE_KLING":
@@ -339,6 +343,8 @@ namespace Assets.Core
                     Debug.Log("Active KlingLocalPlayerToggle.");
                     SetLocalCivilization(2);
                     PlaceTheYouInPlayerList(2);
+                    CivManager.Instance.LocalPlayerCivEnum = CivEnum.KLING;
+                    //CivManager.Instance.SetLocalPlayerCivController(CivEnum.KLING);
                     GameManager.Instance.GameData.LocalPlayerCivEnum = CivEnum.KLING;
                     break;
                 case "TOGGLE_CARD":
@@ -348,6 +354,8 @@ namespace Assets.Core
                     Debug.Log("Active CardLocalPlayerToggle.");
                     SetLocalCivilization(3);
                     PlaceTheYouInPlayerList(3);
+                    CivManager.Instance.LocalPlayerCivEnum = CivEnum.CARD;
+                    //CivManager.Instance.SetLocalPlayerCivController(CivEnum.CARD);
                     GameManager.Instance.GameData.LocalPlayerCivEnum = CivEnum.CARD;
                     break;
                 case "TOGGLE_DOM":
@@ -357,6 +365,8 @@ namespace Assets.Core
                     Debug.Log("Active DomLocalPlayerToggle.");
                     SetLocalCivilization(4);
                     PlaceTheYouInPlayerList(4);
+                    CivManager.Instance.LocalPlayerCivEnum = CivEnum.DOM;
+                    //CivManager.Instance.SetLocalPlayerCivController(CivEnum.DOM);
                     GameManager.Instance.GameData.LocalPlayerCivEnum = CivEnum.DOM;
                     break;
                 case "TOGGLE_BORG":
@@ -366,6 +376,8 @@ namespace Assets.Core
                     Debug.Log("Active BorgLocalPlayerToggle.");
                     SetLocalCivilization(5);
                     PlaceTheYouInPlayerList(5);
+                    CivManager.Instance.LocalPlayerCivEnum = CivEnum.BORG;
+                    //CivManager.Instance.SetLocalPlayerCivController(CivEnum.BORG);
                     GameManager.Instance.GameData.LocalPlayerCivEnum = CivEnum.BORG;
                     break;
                 case "TOGGLE_TERRAN":
@@ -375,6 +387,8 @@ namespace Assets.Core
                     Debug.Log("Active TerranLocalPlayerToggle.");
                     SetLocalCivilization(6);
                     PlaceTheYouInPlayerList(6);
+                    CivManager.Instance.LocalPlayerCivEnum = CivEnum.TERRAN;
+                    //CivManager.Instance.SetLocalPlayerCivController(CivEnum.TERRAN);
                     GameManager.Instance.GameData.LocalPlayerCivEnum = CivEnum.TERRAN;
                     break;
                 default:
@@ -660,7 +674,7 @@ namespace Assets.Core
         private void SetLocalCivilization(int index)
         {
             //SelectedLocalCivEnum = (CivEnum)index;
-            GameManager.Instance.GameData.LocalPlayerCivEnum = (CivEnum)((int)index);
+            CivManager.Instance.LocalPlayerCivEnum = (CivEnum)((int)index);
         }
         private void LoadGalaxyScene()
         {
@@ -677,7 +691,7 @@ namespace Assets.Core
             TimeManager.Instance.ResumeTime();
             SceneManager.LoadScene("GalaxyScene", LoadSceneMode.Additive);
             CivManager.Instance.OnNewGameButtonClicked((int)MainMenuData.SelectedGalaxySize, (int)MainMenuData.SelectedTechLevel, (int)MainMenuData.SelectedGalaxyType,
-                (int)GameManager.Instance.GameData.LocalPlayerCivEnum, IsSinglePlayer);
+                (int)CivManager.Instance.LocalPlayerCivEnum, IsSinglePlayer);
          
         }
         private void PlayableCivOffInGameList()

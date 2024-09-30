@@ -34,6 +34,8 @@ namespace Assets.Core
         //public CivData LocalPlayerCivEnum;
         public bool isSinglePlayer;
         public List<CivEnum> InGamePlayableCivs;
+        public CivController LocalPlayerCivContoller;
+        public CivEnum LocalPlayerCivEnum;
         //public bool nowCivsCanJoinTheFederation = true; // for use with testing a muliple star system Federation
         private int HoldCivSize = 0;// used in testing of a multiStarSystem civilization/faction
         [SerializeField]
@@ -89,6 +91,10 @@ namespace Assets.Core
         public void SetSingleVsMulitplayer()
         {
 
+        }
+        public void SetLocalPlayerCivController(CivController civ)
+        {
+            this.LocalPlayerCivContoller = civ;
         }
         public void UpdatePlayableCivGameList(List<CivEnum> listPlayableCivEnumForCivSOs, int galaxySize, GalaxyMapType galaxyType)
         {
@@ -206,21 +212,24 @@ namespace Assets.Core
             civController.CivData = civData;
             civController.CivShortName = civData.CivShortName;
             CivControllersInGame.Add(civController);
-            civController.CivData.CivsWeKnow = new List<CivController>() { civController};
+            civController.CivData.CivControllersWeKnow = new List<CivController>() { civController};
+            civController.CivData.CivEnumsWeKnow = new List<CivEnum>() { civController.CivData.CivEnum};
             civNewGameOb.transform.SetParent(civFolder.transform, true);
             civNewGameOb.name = civData.CivShortName.ToString();
+            if(civController.CivData.CivEnum == this.LocalPlayerCivEnum)
+                SetLocalPlayerCivController(civController);
         }
         //public void Diplomacy(CivController civPartyOne, CivController civPartyTwo)
         //{
-        //    if (!civPartyOne.CivData.CivsWeKnow.Contains(civPartyTwo))
+        //    if (!civPartyOne.CivData.CivControllersWeKnow.Contains(civPartyTwo))
         //    {
         //        FirstContact(civPartyOne, civPartyTwo);
         //    }
         //}
         //private void FirstContact(CivController civPartyOne, CivController civPartyTwo)
         //{
-        //    civPartyOne.CivData.CivsWeKnow.Add(civPartyTwo);
-        //    civPartyTwo.CivData.CivsWeKnow.Add(civPartyOne);
+        //    civPartyOne.CivData.CivControllersWeKnow.Add(civPartyTwo);
+        //    civPartyTwo.CivData.CivControllersWeKnow.Add(civPartyOne);
 
         //    // ToDo: Update the system name and/or the fleet name/insignia;
         //}
@@ -302,7 +311,7 @@ namespace Assets.Core
         {
             CivController civController = null;
             foreach (var civCon in CivControllersInGame)
-                if (civCon.CivData.CivEnum == GameManager.Instance.GameData.LocalPlayerCivEnum)
+                if (civCon == CivManager.Instance.LocalPlayerCivContoller)
                     civController = civCon;
             return civController;
         }

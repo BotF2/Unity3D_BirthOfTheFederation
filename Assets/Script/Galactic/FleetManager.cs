@@ -122,7 +122,7 @@ namespace Assets.Core
                 fleetNewGameOb.name = fleetData.CivShortName.ToString() + " Fleet " + fleetData.Name; // name game object
                 TextMeshProUGUI TheText = fleetNewGameOb.GetComponentInChildren<TextMeshProUGUI>();
 
-                if (fleetData.CivEnum == GameManager.Instance.GameData.LocalPlayerCivEnum)
+                if (fleetData.CivEnum == CivManager.Instance.LocalPlayerCivEnum)
                 {
                     var ourFogRevealerFleet = new csFogWar.FogRevealer(fleetNewGameOb.transform, 200, true);
                     fogWar.AddFogRevealer(ourFogRevealerFleet);
@@ -145,12 +145,12 @@ namespace Assets.Core
                         if (oneRenderer.name == "Insignia") // && fleetData.CivShortName.ToUpper() == fleetData.Insignia.name.ToUpper())
                         {
                             oneRenderer.sprite = fleetController.FleetData.Insignia;
-                            if (fleetController.FleetData.CivEnum != GameManager.Instance.GameData.LocalPlayerCivEnum)
+                            if (fleetController.FleetData.CivEnum != CivManager.Instance.LocalPlayerCivEnum)
                             {
                                 oneRenderer.gameObject.SetActive(false);
                             }
                         }
-                        if (oneRenderer.name == "InsigniaUnknown" && fleetController.FleetData.CivEnum == GameManager.Instance.GameData.LocalPlayerCivEnum)
+                        if (oneRenderer.name == "InsigniaUnknown" && fleetController.FleetData.CivEnum == CivManager.Instance.LocalPlayerCivEnum)
                         {
                             oneRenderer.gameObject.SetActive(false);
                         }
@@ -188,16 +188,16 @@ namespace Assets.Core
                 fleetNewGameOb.SetActive(true);
                 
                 ShipManager.Instance.BuildShipsOfFirstFleet(fleetNewGameOb);
-
+                fleetController.FleetData.CurrentWarpFactor = 0f;
             }
         }
         void RemoveFleetConrollerFromAllControllers(FleetController fleetController)
         {
             ManagersFleetControllerList.Remove(fleetController);
-            foreach (FleetController fleetCon in ManagersFleetControllerList)
-            {
-                fleetCon.RemoveFleetController(fleetController);
-            }
+        }
+        void AddFleetConrollerFromAllControllers(FleetController fleetController)
+        {
+            ManagersFleetControllerList.Add(fleetController);
         }
         public void GetFleetGroupInSystemForShipTransfer(StarSysController starSysCon)
         {

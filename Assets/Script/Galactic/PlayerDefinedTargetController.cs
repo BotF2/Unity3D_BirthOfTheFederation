@@ -14,11 +14,37 @@ public class PlayerDefinedTargetController : MonoBehaviour
     private Camera galaxyEventCamera;
     [SerializeField]
     private Canvas CanvasToolTip;
-    public List<PlayerDefinedTargetController> playerConsWeHave;
+    public string Name;
 
     void Start()
     {
         galaxyEventCamera = GameObject.FindGameObjectWithTag("Galactic Camera").GetComponent<Camera>();
+    }
+    private void OnMouseDown()
+    {
+        Ray ray = galaxyEventCamera.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit))
+        {
+            GameObject hitObject = hit.collider.gameObject;
+
+
+            //if (this.FleetData.CivEnum == GameManager.Instance.GameData.LocalPlayerCivEnum)
+            //{
+            //    if (FleetUIManager.Instance.MouseClickSetsDestination == false)
+            //    {
+            //        FleetUIManager.Instance.LoadFleetUI(hitObject);
+            //    }
+            //}
+            //else if (FleetUIManager.Instance.MouseClickSetsDestination == true && this != FleetUIManager.Instance.controller)
+            //{
+            //    FleetUIManager.Instance.SetAsDestination(hitObject);
+            //    this.OurSelectedMarkerCanvas.gameObject.SetActive(true);
+            //    //MousePointerChanger.Instance.ResetCursor();
+            //    //MousePointerChanger.Instance.HaveGalaxyMapCursor = false;
+            //}
+        }
     }
     void OnTriggerEnter(Collider collider)
     {
@@ -35,13 +61,5 @@ public class PlayerDefinedTargetController : MonoBehaviour
         //FleetManager.Instance.
         //1) you get the FleetController of the new fleet GO
         //2) you will need to apply different logics depending of the answer
-    }
-    public void AddPlayerTargetController(PlayerDefinedTargetController controller)
-    {
-        playerConsWeHave.Add(controller);
-    }
-    public void RemovePlayerTargetController(PlayerDefinedTargetController controller)
-    {
-        playerConsWeHave.Remove(controller);
     }
 }

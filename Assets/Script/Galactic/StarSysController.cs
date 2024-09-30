@@ -58,17 +58,17 @@ namespace Assets.Core
             {
                 GameObject hitObject = hit.collider.gameObject;
 
-                if (hitObject.GetComponent<StarSysController>().StarSysData.CurrentOwner == GameManager.Instance.GameData.LocalPlayerCivEnum)
+                if (this.StarSysData.CurrentOwner == CivManager.Instance.LocalPlayerCivEnum)
                 {
-                    if (FleetUIManager.Instance.MouseSetToDestination == false)
+                    if (FleetUIManager.Instance.MouseClickSetsDestination == false)
                     {
                         StarSysUIManager.Instance.LoadStarSysUI(gameObject);
                     }
                 }
-                else if (FleetUIManager.Instance.MouseSetToDestination == true)
+                else if (FleetUIManager.Instance.MouseClickSetsDestination == true)
                 {
-                    FleetUIManager.Instance.SetStarSysAsDestination(hitObject);
-                    hitObject.GetComponent<StarSysController>().OurSelectedMarkerCanvas.gameObject.SetActive(true);
+                    FleetUIManager.Instance.SetAsDestination(hitObject);
+                    this.OurSelectedMarkerCanvas.gameObject.SetActive(true);
                 }
             }
         }

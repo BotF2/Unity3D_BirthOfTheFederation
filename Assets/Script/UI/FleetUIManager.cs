@@ -8,6 +8,7 @@ using Unity.VisualScripting;
 using System.Diagnostics;
 using UnityEngine.Rendering;
 using static System.Net.Mime.MediaTypeNames;
+using System.Linq;
 
 [DebuggerDisplay("{" + nameof(GetDebuggerDisplay) + "(),nq}")]
 public class FleetUIManager : MonoBehaviour
@@ -33,11 +34,18 @@ public class FleetUIManager : MonoBehaviour
     private TMP_Text dropdownShipText;
     [SerializeField]
     private TMP_Text FleetName;
-    public string noDestination;
-    public bool MouseSetToDestination = false;
     [SerializeField]
-    private TMP_Text destinationTextMP;
+    private GameObject selectDestinationCursorButtonGO;
+    [SerializeField]
+    private TMP_Text selectDestinationBttonText;
 
+    public bool MouseClickSetsDestination = false;// used by FleetController and StarSysController
+    [SerializeField]
+    private GameObject cancelDestinationButtonGO;
+    [SerializeField]
+    private TMP_Text destinationName;
+    [SerializeField]
+    private TMP_Text destinationCoordinates;
     private Camera galaxyEventCamera;
 
 
@@ -73,55 +81,85 @@ public class FleetUIManager : MonoBehaviour
         warpSlider.value = value/maxSliderValue;
         warpSliderText.text = value.ToString("0.0");
     }
-    public void ActivateSelectionOfDestination()
+    public void ClickOnOffDestinationCursor()
     {
-        if (MousePointerChanger.Instance.HaveGalaxyCursor == false)
+        if (MousePointerChanger.Instance.HaveGalaxyMapCursor == false)
         {
-            MouseSetToDestination = true;
+
+            selectDestinationBttonText.text = "Select Destination";
+            MouseClickSetsDestination = true;
             MousePointerChanger.Instance.ChangeToGalaxyMapCursor();
-        }
-        else 
-        { 
-            MouseSetToDestination = false;
-            MousePointerChanger.Instance.ResetCursor();
-            controller.OurSelectedMarkerCanvas.gameObject.SetActive(false);
-            controller.FleetData.Destination = null;
-            destinationTextMP.text = "No Destination";
+            MousePointerChanger.Instance.HaveGalaxyMapCursor = true;
+            if (controller.FleetData.Destination != null)
+                cancelDestinationButtonGO.SetActive(true);
+            selectDestinationCursorButtonGO.SetActive(true);
         }
     }
-    public void SetStarSysAsDestination(GameObject hitObject)
+    public void ClickCancelDestinationButton()
     {
+        if (controller.FleetData.Destination != null)
+        {
+            var canvases = controller.FleetData.Destination.GetComponentsInChildren<Canvas>();
+            foreach (Canvas c in canvases)
+            {
+                if (c.name == "OurSelectedMarkerCanvas")
+                {
+                    c.gameObject.SetActive(false);
+                }
+
+            }
+            controller.FleetData.Destination = null;
+        }
         MousePointerChanger.Instance.ResetCursor();
+        MousePointerChanger.Instance.HaveGalaxyMapCursor = false;
+        destinationName.text = "No Destination";
+        MouseClickSetsDestination = false;
+        cancelDestinationButtonGO.SetActive(false);
+        selectDestinationCursorButtonGO.SetActive(true);
+    }
+    public void SetAsDestination(GameObject hitObject)
+    {
+        CivEnum civ = CivEnum.ZZUNINHABITED53;
+        bool weKnowThem = false;
+        if (CivManager.Instance.LocalPlayerCivContoller.CivData.CivEnumsWeKnow.Contains(civ))
+            weKnowThem = true;  
+        cancelDestinationButtonGO.SetActive(true);
         if (controller.FleetData.Destination != hitObject)
         {
+            MousePointerChanger.Instance.ResetCursor();
+            MouseClickSetsDestination = false;
             if (controller.FleetData.Destination != null)
             {
                 if (controller.FleetData.Destination.GetComponent<StarSysController>() != null)
                     controller.FleetData.Destination.GetComponent<StarSysController>().OurSelectedMarkerCanvas.gameObject.SetActive(false);
-                else controller.FleetData.Destination.GetComponent<FleetController>().OurSelectedMarkerCanvas.gameObject.SetActive(false);
-            }
-        }
-        controller.FleetData.Destination = hitObject;
-        destinationTextMP.text = hitObject.name;
-        //ToDo: When do we know them
-    }
-    public void SetFleetAsDestination(GameObject hitObject)
-    {
-        MousePointerChanger.Instance.ResetCursor();
-        if (controller.FleetData.Destination != hitObject) 
-        {
-            if (controller.FleetData.Destination != null) 
-            {  
-                if (controller.FleetData.Destination.GetComponent<FleetController>() != null)
+                else if (controller.FleetData.Destination.GetComponent<FleetController>() != null)
                     controller.FleetData.Destination.GetComponent<FleetController>().OurSelectedMarkerCanvas.gameObject.SetActive(false);
-                else controller.FleetData.Destination.GetComponent<StarSysController>().OurSelectedMarkerCanvas.gameObject.SetActive(false);
             }
+            if (hitObject.GetComponent<StarSysController>() != null)
+                civ = hitObject.GetComponent<StarSysController>().StarSysData.CurrentOwner;
+                
+            else if (hitObject.GetComponent<FleetController>() != null)
+                civ = hitObject.GetComponent<FleetController>().FleetData.CivEnum;
         }
         controller.FleetData.Destination = hitObject;
-        // ToDo: do we know them? change from Unknown
-        if (hitObject.GetComponent<FleetController>().FleetData.CivEnum != GameManager.Instance.GameData.LocalPlayerCivEnum)
-            destinationTextMP.text = "Warp Signture";
-        else destinationTextMP.text = hitObject.name;
+        destinationCoordinates.text = hitObject.transform.position.ToString();
+        if (civ != CivManager.Instance.LocalPlayerCivEnum)
+        {
+            if (hitObject.GetComponent<FleetController>() != null)
+                destinationName.text = "Warp Signture at";
+            //ToDo: update location as fleet moves
+            //ToDo: code in name of fleet on contact of colliders
+            else
+            {
+                if (weKnowThem)
+                    destinationName.text = hitObject.name;
+                else destinationName.text = "Galaxy Object at";
+            }
+        }
+        else 
+        {
+            destinationName.text = hitObject.name.ToString();
+        }
     }
 
     public void OnClickShipManager()
@@ -133,13 +171,13 @@ public class FleetUIManager : MonoBehaviour
         StarSysUIManager.Instance.UnLoadStarSysUI();
         FleetSelectionUI.Instance.UnLoadShipManagerUI();
         fleetUIRoot.SetActive(true);
-
+        
         List<string> listings = new List<string>();
 
         controller = go.GetComponent<FleetController>();
         FleetName.text = controller.FleetData.Name;
-        
-        ResetWarpSlider(controller.FleetData.CurrentWarpFactor);
+        PlayerDefinedTargetManager.instance.nameOfLocalFleet = FleetName.text;
+        WarpSliderChange(0f);
        
         //ship dropdown
         var shipDropdown = ShipDropdownGO.GetComponent<TMP_Dropdown>();
@@ -161,7 +199,7 @@ public class FleetUIManager : MonoBehaviour
         shipDropdown.RefreshShownValue();
         controller.UpdateMaxWarp();
         maxSliderValue = controller.FleetData.MaxWarpFactor;
-        ResetWarpSlider(0f);
+        ResetWarpSlider(controller.FleetData.CurrentWarpFactor);
 
     }
     private void ReorderDropdownOptions(TMP_Dropdown dropdown)
@@ -173,7 +211,7 @@ public class FleetUIManager : MonoBehaviour
     }
     public void CloseUnLoadFleetUI()
     {
-        MouseSetToDestination = false;
+        MouseClickSetsDestination = false;
         MousePointerChanger.Instance.ResetCursor();
         fleetUIRoot.SetActive(false);
     }

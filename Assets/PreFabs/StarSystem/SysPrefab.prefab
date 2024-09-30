@@ -151,7 +151,7 @@ GameObject:
   - component: {fileID: 990841811679337107}
   - component: {fileID: 8549477685571873669}
   m_Layer: 6
-  m_Name: CanvasSelectionMarker
+  m_Name: OurSelectedMarkerCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -949,9 +949,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d116b78ae9cd6b84c8714da7db2c4686, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OurSelectedMarkerCanvas: {fileID: 0}
+  OurSelectedMarkerCanvas: {fileID: 1654145218687920715}
   canvasToolTip: {fileID: 4392431061251062606}
-  canvasStarSysUI: {fileID: 0}
+  canvasStarSysUI: {fileID: 5076678459824870277}
 --- !u!114 &1062730312094019230
 MonoBehaviour:
   m_ObjectHideFlags: 0

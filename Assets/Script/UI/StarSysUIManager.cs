@@ -86,7 +86,7 @@ public class StarSysUIManager : MonoBehaviour
     private void LoadSystemsList(CivEnum civEnum)
     {
         sysControllerList.Clear(); 
-        foreach (var sysController in StarSysManager.Instance.StarSysControllerList)
+        foreach (var sysController in StarSysManager.Instance.ManagersStarSysControllerList)
         {
             if (sysController.StarSysData.CurrentOwner == civEnum)
             {
