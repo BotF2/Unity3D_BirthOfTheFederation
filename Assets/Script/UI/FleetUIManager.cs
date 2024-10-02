@@ -9,6 +9,9 @@ using System.Diagnostics;
 using UnityEngine.Rendering;
 using static System.Net.Mime.MediaTypeNames;
 using System.Linq;
+using UnityEngine.PlayerLoop;
+using UnityEngine.EventSystems;
+using UnityEngine.Events;
 
 [DebuggerDisplay("{" + nameof(GetDebuggerDisplay) + "(),nq}")]
 public class FleetUIManager : MonoBehaviour
@@ -25,6 +28,15 @@ public class FleetUIManager : MonoBehaviour
     [SerializeField]
     private float maxSliderValue = 9.8f;
     [SerializeField]
+    private GameObject warpUpButtonGO;
+    [SerializeField]
+    private GameObject warpDownButtonGO;
+    [SerializeField]
+    private float warpChange = 0.1f;
+    [SerializeField]
+    private bool warpButtonPress = false;
+
+    [SerializeField]
     private List<ShipData> shipList;
     private bool deltaShipList = false;
     private TMP_Dropdown shipDropdown;
@@ -37,11 +49,12 @@ public class FleetUIManager : MonoBehaviour
     [SerializeField]
     private GameObject selectDestinationCursorButtonGO;
     [SerializeField]
+    private GameObject cancelDestinationButtonGO;
+    [SerializeField]
     private TMP_Text selectDestinationBttonText;
 
     public bool MouseClickSetsDestination = false;// used by FleetController and StarSysController
-    [SerializeField]
-    private GameObject cancelDestinationButtonGO;
+
     [SerializeField]
     private TMP_Text destinationName;
     [SerializeField]
@@ -68,6 +81,15 @@ public class FleetUIManager : MonoBehaviour
         parentCanvas.worldCamera = galaxyEventCamera;
         
     }
+    private void FixedUpdate()
+    {
+        if (warpButtonPress)
+        {
+            controller.FleetData.CurrentWarpFactor += warpChange;
+            warpSlider.value = controller.FleetData.CurrentWarpFactor / maxSliderValue;
+        }
+
+    }
 
     public void WarpSliderChange(float value)
     {
@@ -80,6 +102,19 @@ public class FleetUIManager : MonoBehaviour
         maxSliderValue =controller.FleetData.MaxWarpFactor;
         warpSlider.value = value/maxSliderValue;
         warpSliderText.text = value.ToString("0.0");
+    }
+
+    public void WarpButtonUp(bool _warpButton)
+    {
+        if (warpChange < 0)
+            warpChange = 0.1f;
+        warpButtonPress = _warpButton;
+    }
+    public void WarpButtonDown(bool _warpButton)
+    {
+        if (warpChange > 0)
+            warpChange = -0.1f;
+        warpButtonPress = _warpButton;
     }
     public void ClickOnOffDestinationCursor()
     {
@@ -113,6 +148,7 @@ public class FleetUIManager : MonoBehaviour
         MousePointerChanger.Instance.ResetCursor();
         MousePointerChanger.Instance.HaveGalaxyMapCursor = false;
         destinationName.text = "No Destination";
+        destinationCoordinates.text = "";
         MouseClickSetsDestination = false;
         cancelDestinationButtonGO.SetActive(false);
         selectDestinationCursorButtonGO.SetActive(true);
@@ -127,6 +163,7 @@ public class FleetUIManager : MonoBehaviour
         if (controller.FleetData.Destination != hitObject)
         {
             MousePointerChanger.Instance.ResetCursor();
+            MousePointerChanger.Instance.HaveGalaxyMapCursor = false;
             MouseClickSetsDestination = false;
             if (controller.FleetData.Destination != null)
             {
@@ -161,7 +198,20 @@ public class FleetUIManager : MonoBehaviour
             destinationName.text = hitObject.name.ToString();
         }
     }
-
+    public void TurnOffCurrentDestination()
+    {
+        if (controller.FleetData.Destination != null)
+        {
+            var canvases = controller.FleetData.Destination.GetComponentsInChildren<Canvas>();
+            foreach (Canvas c in canvases)
+            {
+                if (c.name == "OurSelectedMarkerCanvas")
+                {
+                    c.gameObject.SetActive(false);
+                }
+            }
+        }
+    }
     public void OnClickShipManager()
     {
         FleetSelectionUI.Instance.LoadShipUIManager(controller);
@@ -219,4 +269,5 @@ public class FleetUIManager : MonoBehaviour
     {
         return ToString();
     }
+
 }

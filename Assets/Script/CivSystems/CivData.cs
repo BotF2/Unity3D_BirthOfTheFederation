@@ -22,6 +22,7 @@ namespace Assets.Core
         public TechLevel CivTechLevel; // all cis have tech points, tech level is more a playable race game state thing????
         public bool Playable;
         public bool PlayedByAI = true;
+        public CivEnum LocalPlayerCivEnum;
         public bool HasWarp;
         public string Decription;
         public List<StarSysController> StarSysOwned;

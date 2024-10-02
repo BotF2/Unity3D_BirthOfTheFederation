@@ -217,7 +217,10 @@ namespace Assets.Core
             civNewGameOb.transform.SetParent(civFolder.transform, true);
             civNewGameOb.name = civData.CivShortName.ToString();
             if(civController.CivData.CivEnum == this.LocalPlayerCivEnum)
+            {
                 SetLocalPlayerCivController(civController);
+            }
+                
         }
         //public void Diplomacy(CivController civPartyOne, CivController civPartyTwo)
         //{

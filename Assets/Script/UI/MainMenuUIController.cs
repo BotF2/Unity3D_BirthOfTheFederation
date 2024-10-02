@@ -333,7 +333,6 @@ namespace Assets.Core
                     SetLocalCivilization(1);
                     PlaceTheYouInPlayerList(1);
                     CivManager.Instance.LocalPlayerCivEnum = CivEnum.ROM;
-                    //CivManager.Instance.SetLocalPlayerCivController(CivEnum.ROM);
                     GameManager.Instance.GameData.LocalPlayerCivEnum = CivEnum.ROM;
                     break;
                 case "TOGGLE_KLING":
@@ -344,7 +343,6 @@ namespace Assets.Core
                     SetLocalCivilization(2);
                     PlaceTheYouInPlayerList(2);
                     CivManager.Instance.LocalPlayerCivEnum = CivEnum.KLING;
-                    //CivManager.Instance.SetLocalPlayerCivController(CivEnum.KLING);
                     GameManager.Instance.GameData.LocalPlayerCivEnum = CivEnum.KLING;
                     break;
                 case "TOGGLE_CARD":
@@ -355,7 +353,6 @@ namespace Assets.Core
                     SetLocalCivilization(3);
                     PlaceTheYouInPlayerList(3);
                     CivManager.Instance.LocalPlayerCivEnum = CivEnum.CARD;
-                    //CivManager.Instance.SetLocalPlayerCivController(CivEnum.CARD);
                     GameManager.Instance.GameData.LocalPlayerCivEnum = CivEnum.CARD;
                     break;
                 case "TOGGLE_DOM":
@@ -366,7 +363,6 @@ namespace Assets.Core
                     SetLocalCivilization(4);
                     PlaceTheYouInPlayerList(4);
                     CivManager.Instance.LocalPlayerCivEnum = CivEnum.DOM;
-                    //CivManager.Instance.SetLocalPlayerCivController(CivEnum.DOM);
                     GameManager.Instance.GameData.LocalPlayerCivEnum = CivEnum.DOM;
                     break;
                 case "TOGGLE_BORG":
@@ -377,7 +373,6 @@ namespace Assets.Core
                     SetLocalCivilization(5);
                     PlaceTheYouInPlayerList(5);
                     CivManager.Instance.LocalPlayerCivEnum = CivEnum.BORG;
-                    //CivManager.Instance.SetLocalPlayerCivController(CivEnum.BORG);
                     GameManager.Instance.GameData.LocalPlayerCivEnum = CivEnum.BORG;
                     break;
                 case "TOGGLE_TERRAN":
@@ -388,7 +383,6 @@ namespace Assets.Core
                     SetLocalCivilization(6);
                     PlaceTheYouInPlayerList(6);
                     CivManager.Instance.LocalPlayerCivEnum = CivEnum.TERRAN;
-                    //CivManager.Instance.SetLocalPlayerCivController(CivEnum.TERRAN);
                     GameManager.Instance.GameData.LocalPlayerCivEnum = CivEnum.TERRAN;
                     break;
                 default:

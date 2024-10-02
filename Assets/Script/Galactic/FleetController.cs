@@ -130,17 +130,23 @@ namespace Assets.Core
                     {
                         FleetUIManager.Instance.LoadFleetUI(hitObject);
                     }
+                    else
+                    {
+                        SetNewDestination(hitObject);
+                    }
                 }
                 else if (FleetUIManager.Instance.MouseClickSetsDestination == true && this != FleetUIManager.Instance.controller)
                 {
-                    FleetUIManager.Instance.SetAsDestination(hitObject);
-                    this.OurSelectedMarkerCanvas.gameObject.SetActive(true);
-                    //MousePointerChanger.Instance.ResetCursor();
-                    //MousePointerChanger.Instance.HaveGalaxyMapCursor = false;
+                    SetNewDestination(hitObject);
                 }             
             }
         }
-
+        private void SetNewDestination(GameObject hitObject)
+        {
+            FleetUIManager.Instance.TurnOffCurrentDestination();
+            FleetUIManager.Instance.SetAsDestination(hitObject);
+            this.OurSelectedMarkerCanvas.gameObject.SetActive(true);
+        }
         void OnTriggerEnter(Collider collider) // Not using OnCollisionEnter....
         {
             FleetController fleetController = collider.gameObject.GetComponent<FleetController>();

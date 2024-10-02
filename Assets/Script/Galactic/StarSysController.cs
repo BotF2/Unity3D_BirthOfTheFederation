@@ -57,21 +57,31 @@ namespace Assets.Core
             if (Physics.Raycast(ray, out hit))
             {
                 GameObject hitObject = hit.collider.gameObject;
-
+                // what a Star System Controller does with a hit
                 if (this.StarSysData.CurrentOwner == CivManager.Instance.LocalPlayerCivEnum)
                 {
                     if (FleetUIManager.Instance.MouseClickSetsDestination == false)
                     {
                         StarSysUIManager.Instance.LoadStarSysUI(gameObject);
                     }
+                    else
+                    {
+                        SetNewDestination(hitObject);
+                    }
                 }
                 else if (FleetUIManager.Instance.MouseClickSetsDestination == true)
                 {
-                    FleetUIManager.Instance.SetAsDestination(hitObject);
-                    this.OurSelectedMarkerCanvas.gameObject.SetActive(true);
+                    SetNewDestination(hitObject);
                 }
             }
         }
+        private void SetNewDestination(GameObject hitObject) 
+        {
+            FleetUIManager.Instance.TurnOffCurrentDestination();
+            FleetUIManager.Instance.SetAsDestination(hitObject);
+            this.OurSelectedMarkerCanvas.gameObject.SetActive(true);
+        }
+
         public void OnEnable()
         {
             TimeManager.Instance.OnRandomSpecialEvent += DoDisaster;
