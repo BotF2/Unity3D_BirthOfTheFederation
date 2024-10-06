@@ -13,12 +13,14 @@ using UnityEngine.PlayerLoop;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
 
-[DebuggerDisplay("{" + nameof(GetDebuggerDisplay) + "(),nq}")]
+
 public class FleetUIManager : MonoBehaviour
 {
     public static FleetUIManager Instance;
     public FleetController controller;
-    public Canvas parentCanvas;
+    private Camera galaxyEventCamera;
+    [SerializeField]
+    private Canvas parentCanvas;
     [SerializeField]
     private GameObject fleetUIRoot;// GameObject controlles this active UI on/off
     [SerializeField]
@@ -59,7 +61,7 @@ public class FleetUIManager : MonoBehaviour
     private TMP_Text destinationName;
     [SerializeField]
     private TMP_Text destinationCoordinates;
-    private Camera galaxyEventCamera;
+
 
 
     private void Awake()
@@ -79,7 +81,7 @@ public class FleetUIManager : MonoBehaviour
         fleetUIRoot.SetActive(false);
         galaxyEventCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>() as Camera;
         parentCanvas.worldCamera = galaxyEventCamera;
-        
+
     }
     private void FixedUpdate()
     {
@@ -88,7 +90,6 @@ public class FleetUIManager : MonoBehaviour
             controller.FleetData.CurrentWarpFactor += warpChange;
             warpSlider.value = controller.FleetData.CurrentWarpFactor / maxSliderValue;
         }
-
     }
 
     public void WarpSliderChange(float value)
@@ -104,7 +105,7 @@ public class FleetUIManager : MonoBehaviour
         warpSliderText.text = value.ToString("0.0");
     }
 
-    public void WarpButtonUp(bool _warpButton)
+    public void WarpButtonUp(bool _warpButton) // bool comes from WarButtons with attached Event Triger
     {
         if (warpChange < 0)
             warpChange = 0.1f;
@@ -216,15 +217,16 @@ public class FleetUIManager : MonoBehaviour
     {
         FleetSelectionUI.Instance.LoadShipUIManager(controller);
     }
-    public void LoadFleetUI(GameObject go) 
+    public void LoadFleetUI(GameObject rayHitGO) 
     {
-        StarSysUIManager.Instance.UnLoadStarSysUI();
+        StarSysUIManager.Instance.CloseUnLoadStarSysUI();
+        DiplomacyUIManager.Instance.CloseUnLoadFleetUI();
         FleetSelectionUI.Instance.UnLoadShipManagerUI();
         fleetUIRoot.SetActive(true);
         
         List<string> listings = new List<string>();
 
-        controller = go.GetComponent<FleetController>();
+        controller = rayHitGO.GetComponent<FleetController>();
         FleetName.text = controller.FleetData.Name;
         PlayerDefinedTargetManager.instance.nameOfLocalFleet = FleetName.text;
         WarpSliderChange(0f);

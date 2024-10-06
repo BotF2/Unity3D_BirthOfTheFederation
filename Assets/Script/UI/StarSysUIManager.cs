@@ -156,7 +156,7 @@ public class StarSysUIManager : MonoBehaviour
 
         lastCivUser = CivName.text;
     }
-    public void UnLoadStarSysUI()
+    public void CloseUnLoadStarSysUI()
     {
         starSysUIRoot.SetActive(false);
     }

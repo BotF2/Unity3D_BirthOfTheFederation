@@ -2,17 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data.Common;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Security.Cryptography.X509Certificates;
-using Assets.Core;
 using FischlWorks_FogWar;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Animations;
-using UnityEngine.UI;
-using UnityEngine.UIElements;
+
 
 
 namespace Assets.Core

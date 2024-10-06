@@ -48,8 +48,6 @@ public class TimeManager : MonoBehaviour
         while (MainMenuUIController.Instance.PastMainMenu) 
         {
             yield return new WaitForSeconds(10f / timeSpeedReducer); // 10 seconds in game = 1 oneInXChance
-            // Increment current day
-            //currentDay++;
             currentStardate++;
             OnStardateChanged?.Invoke();
 

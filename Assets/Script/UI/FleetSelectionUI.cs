@@ -50,7 +50,7 @@ public class FleetSelectionUI : MonoBehaviour
 
     public void LoadShipUIManager(FleetController fleetController) 
     {
-        StarSysUIManager.Instance.UnLoadStarSysUI();
+        StarSysUIManager.Instance.CloseUnLoadStarSysUI();
         FleetUIManager.Instance.CloseUnLoadFleetUI();
         ShipManagerUIRoot.SetActive(true);
         clickedFleetController = fleetController;

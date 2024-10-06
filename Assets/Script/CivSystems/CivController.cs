@@ -16,35 +16,34 @@ namespace Assets.Core
         public CivData CivData;
         public string CivShortName;
         public static event Action<TrekStardateEventSO> TrekEventStardate;
-        //public List<CivController> CivContollersWeHave;
-        //private List<CivController> civsControllerList;
+        private DiplomacyManager diplomacyManager;
 
         public void Start()
         {
             TimeManager.Instance.OnStardateSpecialEvent = DoStardateEvent;
+            diplomacyManager = DiplomacyManager.Instance;
         }
         public void UpdateCredits()
         {
             CivData.Credits += 50;
         }
-        public void Diplomacy(CivController civPartyOne, CivController civPartyTwo, GameObject hitGO)
-        {
-            if (!civPartyOne.CivData.CivControllersWeKnow.Contains(civPartyTwo))
-            {
-                FirstContact(civPartyOne, civPartyTwo, hitGO);
-            }
-        }
-        private void FirstContact(CivController civPartyOne, CivController civPartyTwo, GameObject hitGO)
-        {
-            civPartyOne.CivData.CivControllersWeKnow.Add(civPartyTwo);
-            civPartyOne.CivData.CivEnumsWeKnow.Add(civPartyTwo.CivData.CivEnum);
-            civPartyTwo.CivData.CivControllersWeKnow.Add(civPartyOne);
-            civPartyTwo.CivData.CivEnumsWeKnow.Add(civPartyOne.CivData.CivEnum);
-            ResetSprits(civPartyTwo, hitGO);
-            ResetNames(civPartyTwo, hitGO);
-            // ToDo: Update the system name and/or the fleet name/insignia;
-        }
-        private void ResetSprits(CivController civPartyTwo, GameObject hitGO)
+        //public void Diplomacy(CivController civPartyOne, CivController civPartyTwo, GameObject hitGO)
+        //{
+        //    if (!civPartyOne.CivData.CivControllersWeKnow.Contains(civPartyTwo))
+        //    {
+        //        FirstContact(civPartyOne, civPartyTwo, hitGO);
+        //    }
+        //}
+        //private void FirstContact(CivController civPartyOne, CivController civPartyTwo, GameObject hitGO)
+        //{
+        //    civPartyOne.CivData.AddToCivControllersWeKnow(civPartyTwo);
+        //    civPartyTwo.CivData.AddToCivControllersWeKnow(civPartyOne);
+        //    ResetSprites(civPartyTwo, hitGO);
+        //    ResetNames(civPartyTwo, hitGO);
+        //    // ToDo: Update the system name and/or the fleet name/insignia;
+
+        //}
+        public void ResetSprites(CivController civPartyTwo, GameObject hitGO)
         {
             var gOs = hitGO.GetComponentsInChildren<RectTransform>(true);
             foreach (var gO in gOs)
@@ -63,7 +62,7 @@ namespace Assets.Core
                 }
             }
         }
-        private void ResetNames(CivController civPartyTwo, GameObject hitGO)
+        public void ResetNames(CivController civPartyTwo, GameObject hitGO)
         {
             TextMeshProUGUI[] TheText = hitGO.GetComponentsInChildren<TextMeshProUGUI>();
             foreach (var OneTMPtest in TheText)

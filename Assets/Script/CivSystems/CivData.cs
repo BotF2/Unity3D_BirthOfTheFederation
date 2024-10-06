@@ -28,12 +28,15 @@ namespace Assets.Core
         public List<StarSysController> StarSysOwned;
         public List<CivController> CivControllersWeKnow;
         public List<CivEnum> CivEnumsWeKnow;
-        //public List<CivController> ContactList;
         //public float TaxRate; // universal or variable by civ/sys??
         //public float GrowthRate; // universal or variable by civ/sys??
         public float IntelPoints;
         
-        
+        public void AddToCivControllersWeKnow(CivController civControllerWeFound)
+        {
+            CivControllersWeKnow.Add(civControllerWeFound);
+            CivEnumsWeKnow.Add(civControllerWeFound.CivData.CivEnum);
+        }
     }
 }
 

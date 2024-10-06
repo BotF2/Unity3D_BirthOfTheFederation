@@ -9,6 +9,7 @@ using UnityEngine.Networking.Types;
 using UnityEngine.UIElements;
 using JetBrains.Annotations;
 using FischlWorks_FogWar;
+using System.ComponentModel;
 
 namespace Assets.Core
 {    /// <summary>
@@ -23,15 +24,11 @@ namespace Assets.Core
         public FleetData FleetData { get { return fleetData; } set { fleetData = value; } }
         public string Name;
         public FleetState FleetState;
-        public bool IsArrived = false;
-
-        private float warpFudgeFactor = 10f;
-  
+       // public bool IsArrived = false;
+        private float warpFudgeFactor = 10f; 
         private Rigidbody rb;
         public DropLineMovable DropLine;
- 
         public Canvas OurSelectedMarkerCanvas;
-
         [SerializeField]
         private List<string> shipDropdownOptions;
         private Camera galaxyEventCamera;
@@ -102,7 +99,7 @@ namespace Assets.Core
         }
         private void FixedUpdate()
         {
-            if (FleetData.CivEnum != CivEnum.ZZUNINHABITED10)
+            if (FleetData.CivEnum != CivEnum.ZZUNINHABITED10) // move
             {
                 if (FleetData.Destination != null && FleetData.CurrentWarpFactor > 0f)
                 {
@@ -111,7 +108,6 @@ namespace Assets.Core
                 }
             }
         }
-
         public Rigidbody GetRigidbody() { return rb; }
 
         private void OnMouseDown() 
@@ -143,6 +139,7 @@ namespace Assets.Core
         }
         private void SetNewDestination(GameObject hitObject)
         {
+            
             FleetUIManager.Instance.TurnOffCurrentDestination();
             FleetUIManager.Instance.SetAsDestination(hitObject);
             this.OurSelectedMarkerCanvas.gameObject.SetActive(true);
@@ -168,13 +165,18 @@ namespace Assets.Core
         }
         public void OnFleetEncounteredFleet(FleetController fleetController, GameObject hitGO)
         {
-            if (fleetController.FleetData.OurCivController != this.FleetData.OurCivController)
-                this.FleetData.OurCivController.Diplomacy(this.fleetData.OurCivController, fleetController.fleetData.OurCivController, hitGO);
+
+            if (fleetController.FleetData.CivEnum != this.FleetData.CivEnum)
+            {
+                DiplomacyManager.Instance.DoDiplomacy(this.fleetData.OurCivController, fleetController.fleetData.OurCivController, hitGO);
+                this.FleetState = FleetState.FleetDipolmacy;
+            }
             else
             {
                 if (this.FleetData.ShipsList.Count >= fleetController.FleetData.ShipsList.Count)
                 {
                     this.FleetData.FleetGroupControllers.Add(fleetController);
+                    this.FleetState = FleetState.FleetsInRendezvous;
                     //ToDo: manage to fleets in conjoined for ship exchange and what to do with original fleets, two or more
                 }
             }
@@ -182,10 +184,9 @@ namespace Assets.Core
             // is it our fleet or not? Diplomacy or manage fleets or keep going?
             if (fleetController.gameObject == this.FleetData.Destination)
             {
-                /// use fleet enum state
-                //this.FleetData.Destination = null;
-                //this.FleetData.war
-                //FleetState = FleetState.FleetInSystem;
+                FleetUIManager.Instance.CloseUnLoadFleetUI();
+                StarSysUIManager.Instance.CloseUnLoadStarSysUI();
+                OnArrivedAtDestination();
             }
             //FleetManager.Instance.
             //1) you get the FleetController of the new fleet GO
@@ -196,9 +197,8 @@ namespace Assets.Core
         }
         public void OnFleetEncounteredStarSys(StarSysController starSysController, GameObject hitGO)
         {
-            //????StarSysManager.Instance.
             FleetManager.Instance.GetFleetGroupInSystemForShipTransfer(starSysController);
-            this.FleetData.OurCivController.Diplomacy(this.fleetData.OurCivController, starSysController.StarSysData.CurrentCivController, hitGO);
+            DiplomacyManager.Instance.DoDiplomacy(this.fleetData.OurCivController, starSysController.StarSysData.CurrentCivController, hitGO);
             // is it our fleet or not? Diplomacy or manage fleets or keep going?
             if (starSysController.gameObject == this.FleetData.Destination)
             {
@@ -251,16 +251,15 @@ namespace Assets.Core
             Vector3 galaxyPlanePoint = new Vector3(rb.position.x, -60f, rb.position.z);
             Vector3[] points = { rb.position, galaxyPlanePoint };
             DropLine.SetUpLine(points);
+            this.FleetState = FleetState.FleetAtWarp;
         }
         void OnArrivedAtDestination()
         {
-            if (IsArrived == false)
-            {
-                IsArrived = true;
-                // Logic to handle what happens when the fleet arrives at the destination
-                Debug.Log("Arrived at destination: " + this.FleetData.Destination.name);
-                // Example: Stop the fleet, update UI, trigger events, etc.
-            }
+            // Logic to handle what happens when the fleet arrives at the destination
+;           FleetUIManager.Instance.ClickCancelDestinationButton(); 
+           // Debug.Log("Arrived at destination: " + this.FleetData.Destination.name);
+            // Example: Stop the fleet, update UI, trigger events, etc.
+          
         }
         public void AddToShipList(ShipController shipController)
         {
