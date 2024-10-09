@@ -10,9 +10,6 @@ using Unity.VisualScripting;
 using TMPro;
 
 
-//using MLAPI;
-//using UnityEngine.UI;
-
 namespace Assets.Core
 {
     #region Enums
@@ -251,10 +248,10 @@ namespace Assets.Core
     }
     public enum TechLevel
     {
-        EARLY,
-        DEVELOPED,
-        ADVANCED,
-        SUPREME
+        EARLY =100,
+        DEVELOPED =300,
+        ADVANCED =600,
+        SUPREME= 900
     }
 
     public enum SystemData

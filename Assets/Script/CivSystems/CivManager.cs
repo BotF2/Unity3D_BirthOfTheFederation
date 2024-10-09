@@ -196,6 +196,19 @@ namespace Assets.Core
                 civData.HasWarp = civSO.HasWarp;
                 civData.Decription = civSO.Decription;
                 civData.IntelPoints = civSO.IntelPoints;
+                if ((int)civData.CivEnum <= 6) // playable races, major civilization
+                {
+                    civData.Population = 20;
+                    civData.Credits = 300;
+                    civData.TechPoints = 100; // set to tech level early at 100 points
+                    civData.CivTechLevel = TechLevel.EARLY;
+                }
+                else if ((int)civData.CivEnum >= 159)// uninhabited system
+                {
+                    civData.Population = 0;
+                    civData.Credits = 0;
+                    civData.TechPoints = 0;
+                }
                 CivDataInGameList.Add(civData);
                 InstantiateCivilizations(civData);
 

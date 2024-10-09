@@ -6,11 +6,11 @@ using System;
 
 public enum DiplomacyStatusEnum
 {
-    TotalWar = 100,
-    ColdWar = 300,
-    Neutral = 500,
-    Friendly = 700,
-    Allied = 900,
+    TotalWar = 0,
+    ColdWar = 200,
+    Neutral = 400,
+    Friendly = 600,
+    Allied = 800,
     Unified = 1000,
 }
 public class DiplomacyManager : MonoBehaviour

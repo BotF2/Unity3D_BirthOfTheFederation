@@ -2,17 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEngine.UI;
-using Assets.Core;
-using System;
-using Unity.VisualScripting;
-using System.Diagnostics;
-using UnityEngine.Rendering;
-using static System.Net.Mime.MediaTypeNames;
-using System.Linq;
-using UnityEngine.PlayerLoop;
-using UnityEngine.EventSystems;
-using UnityEngine.Events;
+
 
 
 public class DiplomacyUIManager: MonoBehaviour

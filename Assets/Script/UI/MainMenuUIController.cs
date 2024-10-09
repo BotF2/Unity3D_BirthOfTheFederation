@@ -37,7 +37,7 @@ namespace Assets.Core
         private GameObject uiCameraGO;
         [SerializeField]
         private GameObject galaxyCenter;
-        public bool PastMainMenu = false; // see TimeManager
+ 
         //ToDo for multiplayer lobby
         //public CivEnum SelectedRemote0CivEnum;
         //public CivEnum SelectedRemote1CivEnum;
@@ -672,7 +672,8 @@ namespace Assets.Core
         }
         private void LoadGalaxyScene()
         {
-
+            TimeManager.Instance.timeRunning = true;
+            TimeManager.Instance.StarTime();
             UpdateMapSelection();
             UpdateGalaxySizeSelection();
             UpdateTechLevelSelection();
@@ -681,8 +682,7 @@ namespace Assets.Core
             mainMenuCanvas.SetActive(false);
             uiCameraGO.SetActive(false);
             galaxyCenter.SetActive(true);
-            PastMainMenu = true;
-            TimeManager.Instance.ResumeTime();
+            //TimeManager.Instance.ResumeTime();
             SceneManager.LoadScene("GalaxyScene", LoadSceneMode.Additive);
             CivManager.Instance.OnNewGameButtonClicked((int)MainMenuData.SelectedGalaxySize, (int)MainMenuData.SelectedTechLevel, (int)MainMenuData.SelectedGalaxyType,
                 (int)CivManager.Instance.LocalPlayerCivEnum, IsSinglePlayer);

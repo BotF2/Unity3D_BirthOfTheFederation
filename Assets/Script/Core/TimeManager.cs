@@ -20,6 +20,7 @@ public class TimeManager : MonoBehaviour
     private float timeSpeedReducer = 10f;
     public List<TrekRandomEventSO> RandomEvents;
     public List<TrekStardateEventSO> StardateEvents;
+    public bool timeRunning = false;
     void Awake()
     {
         if (Instance == null)
@@ -34,7 +35,7 @@ public class TimeManager : MonoBehaviour
     {
         GameManager.Instance.TimeManager = this;
         timer = timeSpeedReducer;
-        timeCoroutine = StartCoroutine(TimeProgression());
+        //timeCoroutine = StartCoroutine(TimeProgression());
         currentStardate = 1010;
     }
 
@@ -42,10 +43,14 @@ public class TimeManager : MonoBehaviour
     {
 
     }
+    public void StarTime()
+    {
+        timeCoroutine = StartCoroutine(TimeProgression());
+    }
     private System.Collections.IEnumerator TimeProgression()
     {
 
-        while (MainMenuUIController.Instance.PastMainMenu) 
+        while (timeRunning) 
         {
             yield return new WaitForSeconds(10f / timeSpeedReducer); // 10 seconds in game = 1 oneInXChance
             currentStardate++;
@@ -53,8 +58,7 @@ public class TimeManager : MonoBehaviour
 
             // Check for special events
             CheckSpecialEvents();
-        }
-        
+        }        
     }
 
     // Check for special events and trigger corresponding actions
@@ -99,13 +103,19 @@ public class TimeManager : MonoBehaviour
     public void PauseTime()
     {
         if (timeCoroutine != null)
+        {
             StopCoroutine(timeCoroutine);
+            timeRunning = false;
+        }
+
     }
 
     // Method to resume time progression
     public void ResumeTime()
     {
+        timeRunning = true;
         timeCoroutine = StartCoroutine(TimeProgression());
+        
     }
 
     // Method to get current oneInXChance
