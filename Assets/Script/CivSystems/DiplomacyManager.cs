@@ -13,6 +13,22 @@ public enum DiplomacyStatusEnum
     Allied = 800,
     Unified = 1000,
 }
+public enum CivTraitsEnum
+{
+    Scientific,
+    Materialistic,
+    Fanatic,
+
+    Xenophobia,
+    Indifferent,
+    Compassion,
+
+    Honourable,
+    Ruthless,
+
+    Null
+}
+
 public class DiplomacyManager : MonoBehaviour
 {
     public static DiplomacyManager Instance;
@@ -44,28 +60,47 @@ public class DiplomacyManager : MonoBehaviour
         diplomacyController.DiplomacyData.CivTwo = civPartyTwo;
         ManagersDiplomacyControllerList.Add(diplomacyController);
         diplomacyController.FirstContact(civPartyOne, civPartyTwo, hitGO);
-        DiplomacyUIManager.Instance.LoadDiplomacyUI();
+        if (GameController.Instance.AreWeLocalPlayer(civPartyOne.CivData.CivEnum) ||
+            GameController.Instance.AreWeLocalPlayer(civPartyTwo.CivData.CivEnum))
+            DiplomacyUIManager.Instance.LoadDiplomacyUI(diplomacyController);
+        else DoDiplomacyForBot(civPartyOne, civPartyTwo, hitGO);
         
+    }
+    private void DoDiplomacyForBot(CivController civOne, CivController civTwo, GameObject weHitGO)
+    {
+        //Do some diplomacy without a UI by/for either civ
     }
     public void DoDiplomacy(CivController civPartyOne, CivController civPartyTwo, GameObject hitGO)
     {
+        if (ManagersDiplomacyControllerList.Count == 0) 
+        {
+            //first contact of game
+            InstantiateDipolmacy(civPartyOne, civPartyTwo, hitGO);
+        }
         foreach (var diplomacyController in ManagersDiplomacyControllerList)
         {
-            DiplomacyData ourDiplomacyData = new DiplomacyData();
-            if (diplomacyController.DiplomacyData.CivOne == civPartyOne && diplomacyController.DiplomacyData.CivTwo == civPartyTwo || diplomacyController.DiplomacyData.CivTwo == civPartyOne && diplomacyController.DiplomacyData.CivOne == civPartyTwo)
+            if (diplomacyController != null)
             {
-                diplomacyController.DiplomaticContact(civPartyOne, civPartyTwo);
-                break;
+                if (diplomacyController.DiplomacyData.CivOne == civPartyOne && diplomacyController.DiplomacyData.CivTwo == civPartyTwo || diplomacyController.DiplomacyData.CivTwo == civPartyOne && diplomacyController.DiplomacyData.CivOne == civPartyTwo)
+                {
+                    diplomacyController.NextDiplomaticContact(diplomacyController);
+                    break;
+                }
+                else
+                {
+                    // This is frist contact
+                    InstantiateDipolmacy(civPartyOne, civPartyTwo, hitGO);
+                    break;
+                }
+
             }
             else
-
+            {
+                // This is frist contact
+                InstantiateDipolmacy(civPartyOne, civPartyTwo, hitGO);
+            }
             break;
-            //if (!civPartyOne.CivData.CivControllersWeKnow.Contains(civPartyTwo))
-            //{
-            //    FirstContact(civPartyOne, civPartyTwo);
-            //}
         }
-        InstantiateDipolmacy(civPartyOne, civPartyTwo, hitGO);
     }
 }
     

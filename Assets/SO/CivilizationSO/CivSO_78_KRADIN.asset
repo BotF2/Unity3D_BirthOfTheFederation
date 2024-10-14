@@ -17,14 +17,16 @@ MonoBehaviour:
   CivShortName: KRADIN
   CivLongName: KRADIN
   CivHomeSystem: KRADIN
-  TraitOne: Peaceful
-  TraitTwo: Neutral
+  WarlikeToPeaseful: 5
+  TraitOne: 2
+  TraitTwo: 8
+  TraitThree: 8
   CivImage: {fileID: 0}
   Insignia: {fileID: 21300000, guid: 7f6821413bcc9304390c63f32ae03189, type: 3}
   Population: 0
   Credits: 0
   TechPoints: 0
-  CivTechLevel: 0
+  CivTechLevel: 100
   Playable: 0
   HasWarp: 1
   Decription: ToDo, connect to libaray of civSO descriptions

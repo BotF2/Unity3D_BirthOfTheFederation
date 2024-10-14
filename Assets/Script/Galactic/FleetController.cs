@@ -119,8 +119,8 @@ namespace Assets.Core
             {
                 GameObject hitObject = hit.collider.gameObject;
                 // What a fleet controller does with a hit
-
-                if (this.FleetData.CivEnum == CivManager.Instance.LocalPlayerCivEnum)
+                /// ********** In a real multplayer using 
+                if (GameController.Instance.AreWeLocalPlayer(this.FleetData.CivEnum))
                 {
                     if (FleetUIManager.Instance.MouseClickSetsDestination == false)
                     {
@@ -147,7 +147,7 @@ namespace Assets.Core
         void OnTriggerEnter(Collider collider) // Not using OnCollisionEnter....
         {
             FleetController fleetController = collider.gameObject.GetComponent<FleetController>();
-            if (fleetController != null) // it is a FleetController and not a StarSystem or other f                                                                                                                                                      leetController
+            if (fleetController != null) // it is a FleetController and not a StarSystem or other                                                                                                                                                    leetController
             {
                 OnFleetEncounteredFleet(fleetController, collider.gameObject);
                 Debug.Log("fleet Controller collided with " + fleetController.gameObject.name);
@@ -165,29 +165,35 @@ namespace Assets.Core
         }
         public void OnFleetEncounteredFleet(FleetController fleetController, GameObject hitGO)
         {
+            // check if we are at war, combat
+
+            // is this fleet we hit our destination
+            if (fleetController.gameObject == this.FleetData.Destination)
+            {
+                FleetUIManager.Instance.ClickCancelDestinationButton();
+                FleetUIManager.Instance.CloseUnLoadFleetUI();
+                StarSysUIManager.Instance.CloseUnLoadStarSysUI();
+
+                OnArrivedAtDestination();//? should we do other stuff here that fleet controller runs? 
+            }
 
             if (fleetController.FleetData.CivEnum != this.FleetData.CivEnum)
             {
                 DiplomacyManager.Instance.DoDiplomacy(this.fleetData.OurCivController, fleetController.fleetData.OurCivController, hitGO);
                 this.FleetState = FleetState.FleetDipolmacy;
             }
-            else
+            else if (GameController.Instance.AreWeLocalPlayer(this.fleetData.CivEnum))
             {
+                // Does local player want to exhange ships or other fleet management???
                 if (this.FleetData.ShipsList.Count >= fleetController.FleetData.ShipsList.Count)
                 {
-                    this.FleetData.FleetGroupControllers.Add(fleetController);
-                    this.FleetState = FleetState.FleetsInRendezvous;
+                    //this.FleetData.FleetGroupControllers.Add(fleetController);
+                    //this.FleetState = FleetState.FleetsInRendezvous;
                     //ToDo: manage to fleets in conjoined for ship exchange and what to do with original fleets, two or more
                 }
             }
 
-            // is it our fleet or not? Diplomacy or manage fleets or keep going?
-            if (fleetController.gameObject == this.FleetData.Destination)
-            {
-                FleetUIManager.Instance.CloseUnLoadFleetUI();
-                StarSysUIManager.Instance.CloseUnLoadStarSysUI();
-                OnArrivedAtDestination();
-            }
+
             //FleetManager.Instance.
             //1) you get the FleetController of the new fleet GO
             //2) you ask your factionOwner (CivManager) if you already know the faction of the new fleet
@@ -256,7 +262,7 @@ namespace Assets.Core
         void OnArrivedAtDestination()
         {
             // Logic to handle what happens when the fleet arrives at the destination
-;           FleetUIManager.Instance.ClickCancelDestinationButton(); 
+;           //FleetUIManager.Instance.ClickCancelDestinationButton(); 
            // Debug.Log("Arrived at destination: " + this.FleetData.Destination.name);
             // Example: Stop the fleet, update UI, trigger events, etc.
           

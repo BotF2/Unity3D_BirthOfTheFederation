@@ -95,11 +95,11 @@ namespace Assets.Core
              
 
             if (MainMenuUIController.Instance.MainMenuData.SelectedGalaxyType == GalaxyMapType.RANDOM)
-            { // do something with sysData.position
+            { // do something random with sysData.position
             }
             else if (MainMenuUIController.Instance.MainMenuData.SelectedGalaxyType == GalaxyMapType.RING)
             {
-                // do something else with sysData.position
+                // do something in a ring with sysData.position
             }
             else
             {
@@ -121,11 +121,12 @@ namespace Assets.Core
                     OneTmp.enabled = true;
                     if (OneTmp != null && OneTmp.name == "SysName (TMP)")
                     {
-                        if (sysData.CurrentOwner != CivManager.Instance.LocalPlayerCivEnum)
-                        {
-                            OneTmp.text = "UNKNOWN";
-                        }
-                        else OneTmp.text = sysData.GetSysName();
+                        //if (!GameController.Instance.AreWeLocalPlayer(sysData.CurrentOwner)) // != CivManager.Instance.LocalPlayerCivEnum)
+                        //{
+                        //    OneTmp.text = "UNKNOWN";
+                        //}
+                        //else 
+                            OneTmp.text = sysData.GetSysName();
                     }
                     else if (OneTmp != null && OneTmp.name == "SysDescription (TMP)")
                         OneTmp.text = sysData.Description;
@@ -138,7 +139,7 @@ namespace Assets.Core
                     {
                         //if (oneRenderer.CivName == "CivRaceSprite")
                         //{
-                        //    oneRenderer.sprite = civSO.CivImage; // ok
+                        //    oneRenderer.sprite = civSO.CivImageSprite; // ok
                         //}
 
                         if (oneRenderer.name == "OwnerInsignia")

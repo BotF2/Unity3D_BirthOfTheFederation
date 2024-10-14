@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_131_THOLIA
   m_EditorClassIdentifier: 
   StarSysInt: 131
-  Position: {x: 131, y: -9, z: -650}
+  Position: {x: 371, y: -9, z: -650}
   SysName: THOLIA
   FirstOwner: 132
   CurrentOwner: 132

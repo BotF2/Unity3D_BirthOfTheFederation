@@ -35,22 +35,24 @@ public class DiplomacyController : MonoBehaviour
         civPartyOne.CivData.AddToCivControllersWeKnow(civPartyTwo);
         civPartyTwo.CivData.AddToCivControllersWeKnow(civPartyOne);
         this.DiplomacyData.DiplomacyEnumOfCivs = DiplomacyStatusEnum.Neutral;
-        this.DiplomacyData.DiplomacyPointsOfCivs = 400;
-        if (civPartyOne.CivData.CivEnum == CivManager.Instance.LocalPlayerCivEnum)
+        this.DiplomacyData.DiplomacyPointsOfCivs = 400; //neutral threashold
+        if (GameController.Instance.AreWeLocalPlayer(civPartyOne.CivData.CivEnum)) // temp to fed
+            
         {
-            civPartyTwo.ResetSprites(civPartyTwo, hitGO);
-            civPartyTwo.ResetNames(civPartyTwo, hitGO);
+            civPartyTwo.ResetSprites( hitGO);
+            civPartyTwo.ResetNames(hitGO);
         }
-        else if (civPartyTwo.CivData.CivEnum == CivManager.Instance.LocalPlayerCivEnum)
+        else if (GameController.Instance.AreWeLocalPlayer(civPartyTwo.CivData.CivEnum))
         {
-            civPartyOne.ResetSprites(civPartyOne, hitGO);
-            civPartyOne.ResetNames(civPartyOne, hitGO);
+            civPartyOne.ResetSprites(hitGO);
+            civPartyOne.ResetNames(hitGO);
         }
         DiplomacyUIManager.Instance.diplomacyUIRoot.SetActive(true);
     }
-    public void DiplomaticContact(CivController civOne, CivController civTwo)
+    public void NextDiplomaticContact(DiplomacyController controller)
     {
-            
+        DiplomacyUIManager.Instance.LoadDiplomacyUI(controller);
+
     }
     public void CloseUnLoadDipolmacyUI()
     {

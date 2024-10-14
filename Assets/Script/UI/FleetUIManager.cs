@@ -181,7 +181,7 @@ public class FleetUIManager : MonoBehaviour
         }
         controller.FleetData.Destination = hitObject;
         destinationCoordinates.text = hitObject.transform.position.ToString();
-        if (civ != CivManager.Instance.LocalPlayerCivEnum)
+        if (!GameController.Instance.AreWeLocalPlayer(civ))
         {
             if (hitObject.GetComponent<FleetController>() != null)
                 destinationName.text = "Warp Signture at";

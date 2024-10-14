@@ -116,7 +116,7 @@ namespace Assets.Core
                 fleetNewGameOb.name = fleetData.CivShortName.ToString() + " Fleet " + fleetData.Name; // name game object
                 TextMeshProUGUI TheText = fleetNewGameOb.GetComponentInChildren<TextMeshProUGUI>();
 
-                if (fleetData.CivEnum == CivManager.Instance.LocalPlayerCivEnum)
+                if (GameController.Instance.AreWeLocalPlayer(fleetData.CivEnum))
                 {
                     var ourFogRevealerFleet = new csFogWar.FogRevealer(fleetNewGameOb.transform, 200, true);
                     fogWar.AddFogRevealer(ourFogRevealerFleet);
@@ -136,15 +136,15 @@ namespace Assets.Core
                 {
                     if (oneRenderer != null)
                     {
-                        if (oneRenderer.name == "Insignia") // && fleetData.CivShortName.ToUpper() == fleetData.Insignia.name.ToUpper())
+                        if (oneRenderer.name == "InsigniaSprite")
                         {
                             oneRenderer.sprite = fleetController.FleetData.Insignia;
-                            if (fleetController.FleetData.CivEnum != CivManager.Instance.LocalPlayerCivEnum)
+                            if (!GameController.Instance.AreWeLocalPlayer(fleetController.FleetData.CivEnum))
                             {
                                 oneRenderer.gameObject.SetActive(false);
                             }
                         }
-                        if (oneRenderer.name == "InsigniaUnknown" && fleetController.FleetData.CivEnum == CivManager.Instance.LocalPlayerCivEnum)
+                        if (oneRenderer.name == "InsigniaUnknown" && GameController.Instance.AreWeLocalPlayer(fleetController.FleetData.CivEnum))
                         {
                             oneRenderer.gameObject.SetActive(false);
                         }

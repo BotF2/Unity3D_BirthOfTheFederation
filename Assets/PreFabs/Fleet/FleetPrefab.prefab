@@ -245,7 +245,7 @@ GameObject:
   - component: {fileID: 209625221646379460}
   - component: {fileID: 627075598613999377}
   m_Layer: 6
-  m_Name: Insignia
+  m_Name: InsigniaSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1244,7 +1244,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: 
   FleetState: 0
-  IsArrived: 0
   DropLine: {fileID: 2039294588425904161}
   OurSelectedMarkerCanvas: {fileID: 1311256390793980519}
   shipDropdownOptions: []

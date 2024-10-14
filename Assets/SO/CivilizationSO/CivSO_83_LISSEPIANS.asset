@@ -17,14 +17,16 @@ MonoBehaviour:
   CivShortName: LISSEPIANS
   CivLongName: LISSEPIANS
   CivHomeSystem: LISSEPIA
-  TraitOne: Humility
-  TraitTwo: Materialistic
+  WarlikeToPeaseful: 3
+  TraitOne: 1
+  TraitTwo: 8
+  TraitThree: 8
   CivImage: {fileID: 0}
   Insignia: {fileID: 21300000, guid: 14cf8a9ad2d3c1145aee1755b48d3a9b, type: 3}
   Population: 0
   Credits: 0
   TechPoints: 0
-  CivTechLevel: 0
+  CivTechLevel: 100
   Playable: 0
   HasWarp: 1
   Decription: ToDo, connect to libaray of civSO descriptions

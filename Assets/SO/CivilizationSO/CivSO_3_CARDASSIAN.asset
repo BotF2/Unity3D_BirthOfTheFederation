@@ -17,14 +17,16 @@ MonoBehaviour:
   CivShortName: CARDASSIAN
   CivLongName: Cardassian Union
   CivHomeSystem: CARDASSIA
-  TraitOne: Ruthless
-  TraitTwo: Materialistic
+  WarlikeToPeaseful: 2
+  TraitOne: 1
+  TraitTwo: 8
+  TraitThree: 7
   CivImage: {fileID: 0}
   Insignia: {fileID: 21300000, guid: fe3216cef2c7a434ebc99bee3423171a, type: 3}
   Population: 0
   Credits: 0
   TechPoints: 0
-  CivTechLevel: 0
+  CivTechLevel: 100
   Playable: 1
   HasWarp: 1
   Decription: ToDo, connect to libaray of civSO descriptions

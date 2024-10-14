@@ -3,12 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+//using Unity.Netcode; //********** install for Multiplayer
+
+/// <summary>
+/// ToDo; Steps after install:
+// 1. Add the NetworkObject component to your CivConroller prefab.
+// 2. Check if a NetworkObject belongs to the local player by comparing the NetworkObject.OwnerClientId with NetworkManager.Singleton.LocalClientId.
+/// </summary>
 
 namespace Assets.Core
 {
     /// <summary>
-    /// Controlling a Civilization(faction) while the matching CivData class
-    /// holds key info on status and for save game
+    /// Controlling a Civilization(faction) with the matching CivData class
+    /// civData holds key info on status including for save game
     /// </summary>
     public class CivController : MonoBehaviour
     {
@@ -43,7 +50,7 @@ namespace Assets.Core
         //    // ToDo: Update the system name and/or the fleet name/insignia;
 
         //}
-        public void ResetSprites(CivController civPartyTwo, GameObject hitGO)
+        public void ResetSprites(GameObject hitGO)
         {
             var gOs = hitGO.GetComponentsInChildren<RectTransform>(true);
             foreach (var gO in gOs)
@@ -62,7 +69,7 @@ namespace Assets.Core
                 }
             }
         }
-        public void ResetNames(CivController civPartyTwo, GameObject hitGO)
+        public void ResetNames( GameObject hitGO)
         {
             TextMeshProUGUI[] TheText = hitGO.GetComponentsInChildren<TextMeshProUGUI>();
             foreach (var OneTMPtest in TheText)
@@ -70,7 +77,7 @@ namespace Assets.Core
                 OneTMPtest.enabled = true;
                 if (OneTMPtest != null && OneTMPtest.name == "SysName (TMP)")
                 {
-                    if (hitGO.GetComponent<StarSysController>().StarSysData.CurrentOwner != CivManager.Instance.LocalPlayerCivEnum)
+                    if (GameController.Instance.AreWeLocalPlayer(hitGO.GetComponent<StarSysController>().StarSysData.CurrentOwner)) // **** LocalPlayerCivEnum by NetCode check)
 
                      OneTMPtest.text = hitGO.GetComponent<StarSysController>().StarSysData.SysName;
                 }

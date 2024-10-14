@@ -14,8 +14,10 @@ namespace Assets.Core
         public string CivShortName;
         public string CivLongName;
         public string CivHomeSystem; //best way???
-        public string TraitOne;
-        public string TraitTwo;
+        public int WarlikeToPeaseful;// a scale from most worklike 0 (attacks on contact) to neutral 3 and most peasful at 5
+        public CivTraitsEnum TraitOne; 
+        public CivTraitsEnum TraitTwo;
+        public CivTraitsEnum TraitThree;
         public Sprite CivImage;
         public Sprite Insignia;
         public int Population;

@@ -12,7 +12,13 @@ namespace Assets.Core
 {
     /// <summary>
     /// Instantiates the Civilizations(factions) (a CivController and a CivData) using CivSO
+    /// Playable civs are: 0 FED, 1 ROM, 2 KLING, 3 CARD, 4 DOM, 5 BORG, 6 TERRAN
+    /// FOR CANON MAP GETS THESE MINORS NEAR THE PLAYALBLES PER MAP SIZE AND + MORE RANDOMS PER MAP SIZE
+    ///  SMALL map minor race near: FED = 146 VULCAN, ROM = 62 GORN, KLING = 131 THOLIANS, CARD = 24 BAJORANS, DOM = 73 KAREMMA, BORG = 142 VIDIANS, TERRAN = 54 EDO
+    ///  MEDIUM map minors adds near: FED = 129 TELLARITES, ROM = 37 BREEN, KLING = 96 NAUSICAANS, CARD = 85 LURIANS, DOM = 147 WADI, BORG = 74 KAZON, TERRAN = 30 BETAZOIDS
+    ///  LARGE map minors adds near: FED = 13 ANDORIAN, ROM = 155 ZAKDORN, KLING = 156 ZIBALIANS, CARD = 121 TAKARANS, DOM = 51 DOSI, BORG = 145 VORI, TERRAN = 47 DELTANS
     /// </summary>
+
     public class CivManager : MonoBehaviour
     {
         public static CivManager Instance;
@@ -26,24 +32,22 @@ namespace Assets.Core
         [SerializeField]
         private List<CivSO> largeMapMinorNeighborsInGame;
         private List<CivSO> randomMinorsInGame;
-        //private int smallGalaxyRandomCivs =5, mediumGalaxyRandomCivs =10, largeGalaxyRandomCivs =15;
+
         public List<CivEnum> CivSOInGame;
         public List<CivData> CivDataInGameList = new List<CivData> { new CivData() };
         public List<CivController> CivControllersInGame;
-        //public Dictionary<CivController, List<CivController>> CivsThatACivKnows = new Dictionary<CivController, List<CivController>>();
-        //public CivData LocalPlayerCivEnum;
+        
+        //public CivData LocalPlayerCivEnum;// This will be set by NetCode checking if NetworkObject belongs to the local player by comparing the NetworkObject.OwnerClientId with NetworkManager.Singleton.LocalClientId. 
         public bool isSinglePlayer;
         public List<CivEnum> InGamePlayableCivs;
         public CivController LocalPlayerCivContoller;
-        public CivEnum LocalPlayerCivEnum;
+      
         //public bool nowCivsCanJoinTheFederation = true; // for use with testing a muliple star system Federation
         private int HoldCivSize = 0;// used in testing of a multiStarSystem civilization/faction
         [SerializeField]
         private GameObject civFolder;
         [SerializeField]
         private GameObject civPrefab;
-
-
         private void Awake()
         {
             if (Instance != null) { Destroy(gameObject); }
@@ -73,8 +77,8 @@ namespace Assets.Core
             //            civCon.CivData.CivHomeSystem = CivControllersInGame[0].CivData.CivHomeSystem;
             //            civCon.CivData.TraitOne = CivControllersInGame[0].CivData.TraitOne;
             //            civCon.CivData.TraitTwo = CivControllersInGame[0].CivData.TraitTwo;
-            //            civCon.CivData.CivImage = CivControllersInGame[0].CivData.CivImage;
-            //            civCon.CivData.Insignia = CivControllersInGame[0].CivData.Insignia;
+            //            civCon.CivData.CivImageSprite = CivControllersInGame[0].CivData.CivImageSprite;
+            //            civCon.CivData.InsigniaSprite = CivControllersInGame[0].CivData.InsigniaSprite;
             //            civCon.CivData.Playable = true;
             //            civCon.CivData.PlayedByAI = true;
             //            civCon.CivData.HasWarp =true;
@@ -184,10 +188,12 @@ namespace Assets.Core
                 civData.CivEnum = civSO.CivEnum;
                 civData.CivLongName = civSO.CivLongName;
                 civData.CivShortName = civSO.CivShortName;
+                civData.WarlikeToPeaseful = civSO.WarlikeToPeaseful; // a scale from most worklike 0 to neutral 3 and most peasful at 5
                 civData.TraitOne = civSO.TraitOne;
                 civData.TraitTwo = civSO.TraitTwo;
-                civData.CivImage = civSO.CivImage;
-                civData.Insignia = civSO.Insignia;
+                civData.TraitThree = civSO.TraitThree;  
+                civData.CivImageSprite = civSO.CivImage;
+                civData.InsigniaSprite = civSO.Insignia;
                 civData.Population = civSO.Population;
                 civData.Credits = civSO.Credits;
                 civData.TechPoints = civSO.TechPoints;
@@ -229,26 +235,16 @@ namespace Assets.Core
             civController.CivData.CivEnumsWeKnow = new List<CivEnum>() { civController.CivData.CivEnum};
             civNewGameOb.transform.SetParent(civFolder.transform, true);
             civNewGameOb.name = civData.CivShortName.ToString();
-            if(civController.CivData.CivEnum == this.LocalPlayerCivEnum)
+            //********** We are just assuming Fed is local player, need to do a check for 
+            // NetCode, NetworkObject belongs to the local player
+            if (GameController.Instance.AreWeLocalPlayer(civController.CivData.CivEnum)) // *** this is temp
+                
             {
                 SetLocalPlayerCivController(civController);
             }
                 
         }
-        //public void Diplomacy(CivController civPartyOne, CivController civPartyTwo)
-        //{
-        //    if (!civPartyOne.CivData.CivControllersWeKnow.Contains(civPartyTwo))
-        //    {
-        //        FirstContact(civPartyOne, civPartyTwo);
-        //    }
-        //}
-        //private void FirstContact(CivController civPartyOne, CivController civPartyTwo)
-        //{
-        //    civPartyOne.CivData.CivControllersWeKnow.Add(civPartyTwo);
-        //    civPartyTwo.CivData.CivControllersWeKnow.Add(civPartyOne);
 
-        //    // ToDo: Update the system name and/or the fleet name/insignia;
-        //}
         void CreateStarSystemsWeOwnList(List<CivSO> list)
         {
             //for (int i = 0; i < .Count; i++)

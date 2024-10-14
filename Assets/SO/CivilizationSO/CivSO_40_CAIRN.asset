@@ -17,14 +17,16 @@ MonoBehaviour:
   CivShortName: CAIRN
   CivLongName: CAIRN
   CivHomeSystem: CAIRN
-  TraitOne: Intellectual
-  TraitTwo: Compation
+  WarlikeToPeaseful: 4
+  TraitOne: 5
+  TraitTwo: 0
+  TraitThree: 8
   CivImage: {fileID: 0}
   Insignia: {fileID: 21300000, guid: abeca793511b9f54383d16962f7c35d9, type: 3}
   Population: 0
   Credits: 0
   TechPoints: 0
-  CivTechLevel: 0
+  CivTechLevel: 100
   Playable: 0
   HasWarp: 1
   Decription: ToDo, connect to libaray of civSO descriptions

@@ -17,14 +17,16 @@ MonoBehaviour:
   CivShortName: BOSLICS
   CivLongName: BOSLICS
   CivHomeSystem: BOSLIC
-  TraitOne: Honorable
-  TraitTwo: Warlike
+  WarlikeToPeaseful: 1
+  TraitOne: 1
+  TraitTwo: 6
+  TraitThree: 8
   CivImage: {fileID: 0}
   Insignia: {fileID: 21300000, guid: d50cab35a7a32ab4188ab75594f6cce4, type: 3}
   Population: 0
   Credits: 0
   TechPoints: 0
-  CivTechLevel: 0
+  CivTechLevel: 100
   Playable: 0
   HasWarp: 1
   Decription: ToDo, connect to libaray of civSO descriptions

@@ -17,14 +17,16 @@ MonoBehaviour:
   CivShortName: ROMULAN
   CivLongName: Romulan Star Empire
   CivHomeSystem: ROMULUS
-  TraitOne: Arrogent
-  TraitTwo: Hostile
+  WarlikeToPeaseful: 2
+  TraitOne: 8
+  TraitTwo: 1
+  TraitThree: 7
   CivImage: {fileID: 0}
   Insignia: {fileID: 21300000, guid: 1b5479184d7cea445b4270a277fa0adb, type: 3}
   Population: 0
   Credits: 0
   TechPoints: 0
-  CivTechLevel: 0
+  CivTechLevel: 100
   Playable: 1
   HasWarp: 1
   Decription: ToDo, connect to libaray of civSO descriptions

@@ -7,15 +7,18 @@ namespace Assets.Core
 
     public class CivData // has list of civsInGame, it's starSytems Data
     {
+
         public int CivInt;
         public CivEnum CivEnum;
         public string CivShortName;
         public string CivLongName;
         public string CivHomeSystem;
-        public string TraitOne;
-        public string TraitTwo;
-        public Sprite CivImage;
-        public Sprite Insignia;
+        public int WarlikeToPeaseful;// a scale from most worklike 0 to neutral 3 and most peasful at 5
+        public CivTraitsEnum TraitOne; // CivTraitsEnum
+        public CivTraitsEnum TraitTwo; //CivTraitsEnum
+        public CivTraitsEnum TraitThree; //CivTraitsEnum
+        public Sprite CivImageSprite;
+        public Sprite InsigniaSprite;
         public int Population = 5;
         public int Credits = 100;
         public int TechPoints =10; // 10 for pre warp and playable get 90 more to be tech level early at 100; 
@@ -24,7 +27,7 @@ namespace Assets.Core
         public bool PlayedByAI = true;
         public CivEnum LocalPlayerCivEnum;
         public bool HasWarp;
-        public string Decription;
+        public string Decription = "We are the Borg";
         public List<StarSysController> StarSysOwned;
         public List<CivController> CivControllersWeKnow;
         public List<CivEnum> CivEnumsWeKnow;

@@ -58,7 +58,7 @@ namespace Assets.Core
             {
                 GameObject hitObject = hit.collider.gameObject;
                 // what a Star System Controller does with a hit
-                if (this.StarSysData.CurrentOwner == CivManager.Instance.LocalPlayerCivEnum)
+                if (GameController.Instance.AreWeLocalPlayer(this.StarSysData.CurrentOwner))
                 {
                     if (FleetUIManager.Instance.MouseClickSetsDestination == false)
                     {

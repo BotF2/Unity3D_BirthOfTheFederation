@@ -17,14 +17,16 @@ MonoBehaviour:
   CivShortName: TELLARITES
   CivLongName: TELLARITES
   CivHomeSystem: TELLAR
-  TraitOne: Intellectual
-  TraitTwo: Neutral
+  WarlikeToPeaseful: 3
+  TraitOne: 0
+  TraitTwo: 8
+  TraitThree: 8
   CivImage: {fileID: 0}
   Insignia: {fileID: 21300000, guid: bfa7871423cdc544b8a33c097895297c, type: 3}
   Population: 0
   Credits: 0
   TechPoints: 0
-  CivTechLevel: 0
+  CivTechLevel: 100
   Playable: 0
   HasWarp: 1
   Decription: ToDo, connect to libaray of civSO descriptions

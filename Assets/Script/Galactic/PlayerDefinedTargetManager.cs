@@ -73,9 +73,9 @@ namespace Assets.Core
             //{
             //    if (oneRenderer != null)
             //    {
-            //        if (oneRenderer.name == "Insignia")
+            //        if (oneRenderer.name == "InsigniaSprite")
             //        {
-            //            oneRenderer.sprite = playerDefinedTargetData.Insignia;
+            //            oneRenderer.sprite = playerDefinedTargetData.InsigniaSprite;
             //        }
             //    }
             //}

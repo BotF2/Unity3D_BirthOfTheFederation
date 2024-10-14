@@ -17,14 +17,16 @@ MonoBehaviour:
   CivShortName: BAKU
   CivLongName: BAKU
   CivHomeSystem: BAKU
-  TraitOne: Warlike
-  TraitTwo: Religious
+  WarlikeToPeaseful: 1
+  TraitOne: 2
+  TraitTwo: 8
+  TraitThree: 8
   CivImage: {fileID: 0}
   Insignia: {fileID: 21300000, guid: 7aa37f987bb0da9439bcd6a414d0437d, type: 3}
   Population: 0
   Credits: 0
   TechPoints: 0
-  CivTechLevel: 0
+  CivTechLevel: 100
   Playable: 0
   HasWarp: 0
   Decription: ToDo, connect to libaray of civSO descriptions

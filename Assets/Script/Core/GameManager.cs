@@ -335,7 +335,8 @@ namespace Assets.Core
         public TimeManager TimeManager;
         [SerializeField]
         private MainMenuUIController mainMenuUIController;
-        public GameData GameData = new GameData();
+        //public GameData GameData = new GameData();
+        public GameController GameController;
         public bool _weAreFriend = false;
         public bool _warpingInIsOver = false; // WarpingInCompleted() called from E_Animator3 sets true and set false again in CombatCompleted state in BeginState
 
@@ -418,7 +419,7 @@ namespace Assets.Core
         {
             mainMenuUIController = GameObject.Find("MainMenuUIController").GetComponent<MainMenuUIController>();
             mainMenuUIController.LoadDefault();
-            this.GameData.LocalPlayerCivEnum = CivEnum.FED;
+            this.GameController.GameData.LocalPlayerCivEnum = CivEnum.FED;
         }
 
         private void Awake()

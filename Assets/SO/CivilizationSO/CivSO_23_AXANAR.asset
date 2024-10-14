@@ -17,14 +17,16 @@ MonoBehaviour:
   CivShortName: AXANAR
   CivLongName: AXANAR
   CivHomeSystem: AXANAR
-  TraitOne: Ruthless
-  TraitTwo: Warlike
+  WarlikeToPeaseful: 1
+  TraitOne: 7
+  TraitTwo: 8
+  TraitThree: 8
   CivImage: {fileID: 0}
   Insignia: {fileID: 21300000, guid: acc50ce06f5548a4da44e35967757a72, type: 3}
   Population: 0
   Credits: 0
   TechPoints: 0
-  CivTechLevel: 0
+  CivTechLevel: 100
   Playable: 0
   HasWarp: 1
   Decription: ToDo, connect to libaray of civSO descriptions

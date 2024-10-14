@@ -44,17 +44,17 @@ public class MousePointerChanger : MonoBehaviour
     // Call this function to change the cursor
     public void ChangeToGalaxyMapCursor()
     {
-        if(CivManager.Instance.LocalPlayerCivEnum == CivEnum.FED)
+        if(GameController.Instance.AreWeLocalPlayer(CivEnum.FED))
             ChangeCursor(galaxyMapCursorFed, hotSpot, cursorMode);
-        else if (CivManager.Instance.LocalPlayerCivEnum == CivEnum.ROM)
+        else if (GameController.Instance.AreWeLocalPlayer(CivEnum.ROM))
             ChangeCursor(galaxyMapCursorRom, hotSpot, cursorMode);
-        else if (CivManager.Instance.LocalPlayerCivEnum == CivEnum.KLING)
+        else if (GameController.Instance.AreWeLocalPlayer(CivEnum.KLING))
             ChangeCursor(galaxyMapCursorKling, hotSpot, cursorMode);
-        else if (CivManager.Instance.LocalPlayerCivEnum == CivEnum.CARD)
+        else if (GameController.Instance.AreWeLocalPlayer(CivEnum.CARD))
             ChangeCursor(galaxyMapCursorCard, hotSpot, cursorMode);
-        else if (CivManager.Instance.LocalPlayerCivEnum == CivEnum.DOM)
+        else if (GameController.Instance.AreWeLocalPlayer(CivEnum.DOM))
             ChangeCursor(galaxyMapCursorDom, hotSpot, cursorMode);
-        else if (CivManager.Instance.LocalPlayerCivEnum == CivEnum.BORG)
+        else if (GameController.Instance.AreWeLocalPlayer(CivEnum.BORG))
             ChangeCursor(galaxyMapCursorBorg, hotSpot, cursorMode);
         else ChangeCursor(galaxyMapCursorTerran, hotSpot, cursorMode);
     }

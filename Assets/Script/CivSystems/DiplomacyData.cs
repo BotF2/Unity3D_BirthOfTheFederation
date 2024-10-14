@@ -7,6 +7,6 @@ public class DiplomacyData
 {
     public CivController CivOne;
     public CivController CivTwo;
-    public DiplomacyStatusEnum DiplomacyEnumOfCivs; // friendly, allied, at war
-    public int DiplomacyPointsOfCivs;
+    public DiplomacyStatusEnum DiplomacyEnumOfCivs = DiplomacyStatusEnum.Neutral; // friendly, allied, at war
+    public int DiplomacyPointsOfCivs = 400;
 }

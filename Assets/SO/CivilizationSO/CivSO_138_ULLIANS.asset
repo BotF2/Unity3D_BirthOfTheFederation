@@ -17,14 +17,16 @@ MonoBehaviour:
   CivShortName: ULLIANS
   CivLongName: ULLIANS
   CivHomeSystem: ULLIA
-  TraitOne: Warlike
-  TraitTwo: Intellectual
+  WarlikeToPeaseful: 1
+  TraitOne: 0
+  TraitTwo: 8
+  TraitThree: 8
   CivImage: {fileID: 0}
   Insignia: {fileID: 21300000, guid: cdead3588dc56cf469d0a037f204e787, type: 3}
   Population: 0
   Credits: 0
   TechPoints: 0
-  CivTechLevel: 0
+  CivTechLevel: 100
   Playable: 0
   HasWarp: 0
   Decription: ToDo, connect to libaray of civSO descriptions
