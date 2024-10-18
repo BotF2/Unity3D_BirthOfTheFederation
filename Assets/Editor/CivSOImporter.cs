@@ -90,7 +90,7 @@ public class CivSOImporter : EditorWindow
         else if (ourString == switchTraits[5])
             return CivTraitsEnum.Compassion;
         else if (ourString == switchTraits[6])
-            return CivTraitsEnum.Honourable;
+            return CivTraitsEnum.Honorable;
         else if (ourString == switchTraits[7])
             return CivTraitsEnum.Ruthless;
         else if (ourString == switchTraits[8])

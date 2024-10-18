@@ -121,11 +121,11 @@ namespace Assets.Core
                     OneTmp.enabled = true;
                     if (OneTmp != null && OneTmp.name == "SysName (TMP)")
                     {
-                        //if (!GameController.Instance.AreWeLocalPlayer(sysData.CurrentOwner)) // != CivManager.Instance.LocalPlayerCivEnum)
-                        //{
-                        //    OneTmp.text = "UNKNOWN";
-                        //}
-                        //else 
+                        if (!GameController.Instance.AreWeLocalPlayer(sysData.CurrentOwner)) // != CivManager.Instance.LocalPlayerCivEnum)
+                        {
+                            OneTmp.text = "UNKNOWN";
+                        }
+                        else
                             OneTmp.text = sysData.GetSysName();
                     }
                     else if (OneTmp != null && OneTmp.name == "SysDescription (TMP)")

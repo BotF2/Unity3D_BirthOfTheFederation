@@ -13,7 +13,7 @@ namespace Assets.Core
         {
             if (eventSystemGameObject != null && !eventSystemGameObject.activeInHierarchy)
             {
-                Debug.LogWarning("EventSystem is inactive!");
+                Debug.LogWarning("EventSystem is active!");
                 eventSystemGameObject.SetActive(true);
             }
         }

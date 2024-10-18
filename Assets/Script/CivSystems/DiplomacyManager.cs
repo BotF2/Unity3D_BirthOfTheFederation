@@ -7,26 +7,33 @@ using System;
 public enum DiplomacyStatusEnum
 {
     TotalWar = 0,
-    ColdWar = 200,
-    Neutral = 400,
-    Friendly = 600,
-    Allied = 800,
-    Unified = 1000,
+    ColdWar = 20,
+    Hostile = 40,
+    Neutral = 50,
+    Friendly = 60,
+    Allied = 80,
+    Unified = 100
 }
 public enum CivTraitsEnum
 {
     Scientific,
     Materialistic,
     Fanatic,
-
     Xenophobia,
     Indifferent,
     Compassion,
-
-    Honourable,
+    Honorable,
     Ruthless,
-
     Null
+}
+public enum WarLike
+{
+    FireAllWeapons = 0, // intended for 'will come out shooting' on contact without stopping for diplomacy, as in the Borg
+    WarLike, // inclined to wars like civs, the Klingons but do not bypass diplomacy UI
+    Hostile,
+    Neutral,
+    Friendly,
+    PeaceLoving // will give 'ground' to keep the peace. appeasement
 }
 
 public class DiplomacyManager : MonoBehaviour
@@ -63,10 +70,10 @@ public class DiplomacyManager : MonoBehaviour
         if (GameController.Instance.AreWeLocalPlayer(civPartyOne.CivData.CivEnum) ||
             GameController.Instance.AreWeLocalPlayer(civPartyTwo.CivData.CivEnum))
             DiplomacyUIManager.Instance.LoadDiplomacyUI(diplomacyController);
-        else DoDiplomacyForBot(civPartyOne, civPartyTwo, hitGO);
+        else DoDiplomacyForAI(civPartyOne, civPartyTwo, hitGO);
         
     }
-    private void DoDiplomacyForBot(CivController civOne, CivController civTwo, GameObject weHitGO)
+    private void DoDiplomacyForAI(CivController civOne, CivController civTwo, GameObject weHitGO)
     {
         //Do some diplomacy without a UI by/for either civ
     }

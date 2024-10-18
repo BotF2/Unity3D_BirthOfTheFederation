@@ -64,8 +64,8 @@ namespace Assets.Core
                 {
                     if(oneRenderer.name == "InsigniaUnknown")
                         oneRenderer.gameObject.SetActive(false);
-                    if (oneRenderer.name == "StarSprite")
-                        oneRenderer.sprite = hitGO.GetComponent<StarSysController>().StarSysData.StarSprit;
+                    //if (oneRenderer.name == "StarSprite")
+                    //    oneRenderer.sprite = hitGO.GetComponent<StarSysController>().StarSysData.StarSprit;
                 }
             }
         }
@@ -77,7 +77,7 @@ namespace Assets.Core
                 OneTMPtest.enabled = true;
                 if (OneTMPtest != null && OneTMPtest.name == "SysName (TMP)")
                 {
-                    if (GameController.Instance.AreWeLocalPlayer(hitGO.GetComponent<StarSysController>().StarSysData.CurrentOwner)) // **** LocalPlayerCivEnum by NetCode check)
+                    if (!GameController.Instance.AreWeLocalPlayer(hitGO.GetComponent<StarSysController>().StarSysData.CurrentOwner)) // **** LocalPlayerCivEnum by NetCode check)
 
                      OneTMPtest.text = hitGO.GetComponent<StarSysController>().StarSysData.SysName;
                 }

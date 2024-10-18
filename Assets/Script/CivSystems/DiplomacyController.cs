@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Assets.Core;
+using UnityEditor;
 
 
 public class DiplomacyController : MonoBehaviour
@@ -35,11 +36,10 @@ public class DiplomacyController : MonoBehaviour
         civPartyOne.CivData.AddToCivControllersWeKnow(civPartyTwo);
         civPartyTwo.CivData.AddToCivControllersWeKnow(civPartyOne);
         this.DiplomacyData.DiplomacyEnumOfCivs = DiplomacyStatusEnum.Neutral;
-        this.DiplomacyData.DiplomacyPointsOfCivs = 400; //neutral threashold
+        this.DiplomacyData.DiplomacyPointsOfCivs = (int)DiplomacyStatusEnum.Neutral;
         if (GameController.Instance.AreWeLocalPlayer(civPartyOne.CivData.CivEnum)) // temp to fed
-            
         {
-            civPartyTwo.ResetSprites( hitGO);
+            civPartyTwo.ResetSprites(hitGO);
             civPartyTwo.ResetNames(hitGO);
         }
         else if (GameController.Instance.AreWeLocalPlayer(civPartyTwo.CivData.CivEnum))
@@ -58,5 +58,51 @@ public class DiplomacyController : MonoBehaviour
     {
 
         DiplomacyUIManager.Instance.diplomacyUIRoot.SetActive(false);
+    }
+    public void AddDiplomaticPoints(int points)
+    {
+        this.DiplomacyData.DiplomacyPointsOfCivs += points;
+        ChangedDiplomacyStatus(this.DiplomacyData.DiplomacyPointsOfCivs);   
+    }
+    public void SubtractDiplomaticPoints(int points)
+    {
+        this.DiplomacyData.DiplomacyPointsOfCivs -= points;
+        ChangedDiplomacyStatus(this.DiplomacyData.DiplomacyPointsOfCivs);
+    }
+    private void ChangedDiplomacyStatus(int currentStatusPoints)
+    {
+        if (currentStatusPoints > (int)DiplomacyStatusEnum.Hostile && currentStatusPoints < (int)DiplomacyStatusEnum.Friendly)
+        {
+            this.DiplomacyData.DiplomacyEnumOfCivs = DiplomacyStatusEnum.Neutral;
+        }
+        else if (currentStatusPoints <= (int)DiplomacyStatusEnum.Hostile && currentStatusPoints > (int)DiplomacyStatusEnum.ColdWar)
+        {
+            this.DiplomacyData.DiplomacyEnumOfCivs = DiplomacyStatusEnum.Hostile;
+        }
+        else if (currentStatusPoints >= (int)DiplomacyStatusEnum.Friendly && currentStatusPoints < (int)DiplomacyStatusEnum.Allied)
+        {
+            this.DiplomacyData.DiplomacyEnumOfCivs = DiplomacyStatusEnum.Friendly;
+        }
+        else if (currentStatusPoints <= (int)DiplomacyStatusEnum.ColdWar && currentStatusPoints > (int)DiplomacyStatusEnum.TotalWar)
+        {
+            this.DiplomacyData.DiplomacyEnumOfCivs = DiplomacyStatusEnum.ColdWar;
+        }
+        else if (currentStatusPoints >= (int)DiplomacyStatusEnum.Allied && currentStatusPoints < (int)DiplomacyStatusEnum.Unified)
+        {
+            this.DiplomacyData.DiplomacyEnumOfCivs = DiplomacyStatusEnum.Allied;
+        }
+        else if (currentStatusPoints <= (int)DiplomacyStatusEnum.TotalWar)
+        {
+            this.DiplomacyData.DiplomacyEnumOfCivs = DiplomacyStatusEnum.TotalWar;
+        }
+        else if ((int)this.DiplomacyData.CivOne.CivData.CivInt > 6 || (int)this.DiplomacyData.CivTwo.CivData.CivInt > 6)
+        {
+            if (currentStatusPoints >= (int)DiplomacyStatusEnum.Unified)
+            {
+                //DoTo: minor race joins major race, vulcans join the Federation
+            }
+        }
+
+
     }
 }

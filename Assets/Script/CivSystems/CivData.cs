@@ -13,7 +13,7 @@ namespace Assets.Core
         public string CivShortName;
         public string CivLongName;
         public string CivHomeSystem;
-        public int WarlikeToPeaseful;// a scale from most worklike 0 to neutral 3 and most peasful at 5
+        public WarLike WarlikeToPeaseful;// a enum scale from most worklike 0 to neutral 3 and most peasful 5
         public CivTraitsEnum TraitOne; // CivTraitsEnum
         public CivTraitsEnum TraitTwo; //CivTraitsEnum
         public CivTraitsEnum TraitThree; //CivTraitsEnum

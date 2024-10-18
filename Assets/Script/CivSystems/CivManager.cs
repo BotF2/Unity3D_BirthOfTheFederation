@@ -12,6 +12,7 @@ namespace Assets.Core
 {
     /// <summary>
     /// Instantiates the Civilizations(factions) (a CivController and a CivData) using CivSO
+    /// See civ SOs listed in Unity CivManager SerializeFields
     /// Playable civs are: 0 FED, 1 ROM, 2 KLING, 3 CARD, 4 DOM, 5 BORG, 6 TERRAN
     /// FOR CANON MAP GETS THESE MINORS NEAR THE PLAYALBLES PER MAP SIZE AND + MORE RANDOMS PER MAP SIZE
     ///  SMALL map minor race near: FED = 146 VULCAN, ROM = 62 GORN, KLING = 131 THOLIANS, CARD = 24 BAJORANS, DOM = 73 KAREMMA, BORG = 142 VIDIANS, TERRAN = 54 EDO
@@ -188,7 +189,7 @@ namespace Assets.Core
                 civData.CivEnum = civSO.CivEnum;
                 civData.CivLongName = civSO.CivLongName;
                 civData.CivShortName = civSO.CivShortName;
-                civData.WarlikeToPeaseful = civSO.WarlikeToPeaseful; // a scale from most worklike 0 to neutral 3 and most peasful at 5
+                civData.WarlikeToPeaseful = (WarLike)civSO.WarlikeToPeaseful; // a scale from most worklike 0 to neutral 3 and most peasful at 5
                 civData.TraitOne = civSO.TraitOne;
                 civData.TraitTwo = civSO.TraitTwo;
                 civData.TraitThree = civSO.TraitThree;  

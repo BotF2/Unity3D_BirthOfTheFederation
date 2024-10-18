@@ -184,7 +184,6 @@ namespace Assets.Core
             }
             else if (GameController.Instance.AreWeLocalPlayer(this.fleetData.CivEnum))
             {
-                // Does local player want to exhange ships or other fleet management???
                 if (this.FleetData.ShipsList.Count >= fleetController.FleetData.ShipsList.Count)
                 {
                     //this.FleetData.FleetGroupControllers.Add(fleetController);
@@ -192,30 +191,41 @@ namespace Assets.Core
                     //ToDo: manage to fleets in conjoined for ship exchange and what to do with original fleets, two or more
                 }
             }
-
-
             //FleetManager.Instance.
             //1) you get the FleetController of the new fleet GO
-            //2) you ask your factionOwner (CivManager) if you already know the faction of the new fleet
+            //2) you ask your factionOwner (CivManager) if you already know the civ/faction of the new fleet
             //3) ?first contatact > what kind of hail?
             //4) ?combat
             //5) ?move ships in and out of fleets
         }
         public void OnFleetEncounteredStarSys(StarSysController starSysController, GameObject hitGO)
         {
-            FleetManager.Instance.GetFleetGroupInSystemForShipTransfer(starSysController);
-            DiplomacyManager.Instance.DoDiplomacy(this.fleetData.OurCivController, starSysController.StarSysData.CurrentCivController, hitGO);
-            // is it our fleet or not? Diplomacy or manage fleets or keep going?
             if (starSysController.gameObject == this.FleetData.Destination)
             {
+                FleetUIManager.Instance.ClickCancelDestinationButton();
+                FleetUIManager.Instance.CloseUnLoadFleetUI();
+                StarSysUIManager.Instance.CloseUnLoadStarSysUI();
+                OnArrivedAtDestination();
+            
                 /// use fleet enum state
                 //this.FleetData.Destination = null;
                 //this.FleetData.war
                 //FleetState = FleetState.FleetInSystem;
             }
+            int firstUninhabited = (int)CivEnum.ZZUNINHABITED1;
+            if (starSysController.StarSysData.CurrentOwner != this.FleetData.CivEnum && (int)starSysController.StarSysData.CurrentCivController.CivData.CivEnum < firstUninhabited)
+            {
+                DiplomacyManager.Instance.DoDiplomacy(this.fleetData.OurCivController, starSysController.StarSysData.CurrentCivController, hitGO);
+                this.FleetState = FleetState.FleetDipolmacy;
+                //To Decide, do we use an event to turn on star name or set something up in StarSysData?
+            }
+            if ((int)starSysController.StarSysData.CurrentCivController.CivData.CivEnum >= firstUninhabited)
+            {
+                //ToDo: React to firstUninhabited system contact
+            }
             //1) you get the FleetController of the new fleet GO
             //2) you ask your factionOwner (CivManager) if you already know the faction of the new fleet
-            //3) ?first contatact > what kind of hail, diplomacy vs uninhabited ?colonize vs terraform a rock vs do fleet busness in our system
+            //3) ?first contatact > what kind of hail, diplomacy vs firstUninhabited ?colonize vs terraform a rock vs do fleet busness in our system
             //4) ?combat vs diplomacy and or traid...
         }
         public void OnFleetEncounteredPlayerDefinedTarget(PlayerDefinedTargetController playerTargetController)
