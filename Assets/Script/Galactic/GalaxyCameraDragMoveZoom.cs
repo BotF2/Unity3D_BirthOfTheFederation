@@ -7,29 +7,41 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using Unity.VisualScripting;
 
-public class CameraDragMove : MonoBehaviour //, IPointerClickHandler
+public class GalaxyCameraDragMoveZoom : MonoBehaviour //, IPointerClickHandler
 {
-    // Button Input Vars
-    public float panSpeed = 400f;
-    public float scrollSpeed = 200f;
-    public float minY = 5f;
-    public float maxY = 400f;
-    public float mouseSpeed = 2f;
-    public float minX = -600f;
-    public float maxX = 600f;
-    public float minZ = -1140f;
-    public float maxZ = 150f;
+    [SerializeField]
+    private Camera galaxyCam;
+    [SerializeField]
+    private float panSpeed = 400f;
+    [SerializeField]
+    private float zoomSpeed = 400f;
+    [SerializeField]
+    private float minY = 123f;
+    [SerializeField]
+    private float maxY = 800f;
+    [SerializeField]
+    private float mouseSpeed = 2f;
+    [SerializeField]
+    private float minX = -600f;
+    [SerializeField]
+    private float maxX = 600f;
+    [SerializeField]
+    private float minZ = -1140f;
+    [SerializeField]
+    private float maxZ = 500f;
 
-    private Vector3 dragOrigin;
-    private Vector3 cameraDragOrigin;
-    private Vector3 currentPosition;
+   // private Vector3 dragOrigin;
+    //private Vector3 cameraDragOrigin;
+    //private Vector3 currentPosition;
     private Vector3 lastMousePosition;
 
     void Update()
     {
+        DoZoom();
         KeyboardInputs();
-        DrageCameraWithMouse();
-        UpDownCameraOnMouseWheel();       
+        DrageCameraWithLeftMouse();
+        RotateCamerWithRightMouse();
+        CameraMoveLimits();   
     }
 
     private void MoveCamera(float xInput, float zInput)
@@ -38,11 +50,22 @@ public class CameraDragMove : MonoBehaviour //, IPointerClickHandler
         float xMove = Mathf.Sin(transform.eulerAngles.y * Mathf.PI / 180) * zInput - Mathf.Cos(transform.eulerAngles.y * Mathf.PI / 180) * xInput;
         transform.position = transform.position + new Vector3(xMove, 0, zMove);
     }
+    private void DoZoom()
+    {
+        galaxyCam.fieldOfView -= Input.GetAxis("Mouse ScrollWheel") * zoomSpeed;
+        if (Input.GetKey("q"))
+        {
+            galaxyCam.fieldOfView += 1f;
+        }
+        if (Input.GetKey("e"))
+        {
+            galaxyCam.fieldOfView -= 1f;
+        }
+        galaxyCam.fieldOfView = Mathf.Clamp(galaxyCam.fieldOfView, 25f, 90f);
 
+    }
 
-    // Get mouse drag inputs
-
-    void DrageCameraWithMouse()
+    void DrageCameraWithLeftMouse()
     {
         if (Input.GetMouseButtonDown(0))
         {
@@ -60,10 +83,29 @@ public class CameraDragMove : MonoBehaviour //, IPointerClickHandler
                 }
             }
         }
-
-        if (Input.GetMouseButtonUp(0))
+    }
+    void RotateCamerWithRightMouse()
+    {
+        if (Input.GetMouseButtonDown(1))
         {
+            
+            lastMousePosition.y = Input.mousePosition.y;
         }
+        if (Input.GetMouseButton(1))
+        {
+            var rotation = transform.eulerAngles.x;
+            float delta = (rotation += (Input.mousePosition.y - lastMousePosition.y)/ mouseSpeed);
+           //delta = Mathf.Clamp(delta, -25, 32);
+            transform.eulerAngles = new Vector3(delta, transform.eulerAngles.y, transform.eulerAngles.z);
+           
+            lastMousePosition.y = Input.mousePosition.y;
+
+        }
+        //var rotation = transform.eulerAngles.x;
+        //float scroll = Input.GetAxis("Mouse ScrollWheel");
+        //pos.y += scroll * scrollSpeed * Time.deltaTime * 300f;
+        //float xAngle = (pos.y - 300f) * 0.006f; 
+        //transform.eulerAngles = new Vector3(xAngle, transform.eulerAngles.y, transform.eulerAngles.z);
     }
 
     // get keyboard inputs
@@ -91,18 +133,12 @@ public class CameraDragMove : MonoBehaviour //, IPointerClickHandler
         MoveCamera(inputX, inputZ);
     }
 
-    // zoom via scrollwheel
-    void UpDownCameraOnMouseWheel()
+    void CameraMoveLimits()
     {
         Vector3 pos = transform.position;
-        //consider getting rotation so at max y=400 look at local angle 10 and at min y=5 look at angle 10
-        var rotation = transform.eulerAngles.x;
-        float scroll = Input.GetAxis("Mouse ScrollWheel");
-        pos.y += scroll * scrollSpeed * Time.deltaTime * 300f;
         pos.y = Mathf.Clamp(pos.y, minY, maxY);
         pos.x = Mathf.Clamp(pos.x, minX, maxX);
         pos.z = Mathf.Clamp(pos.z, minZ, maxZ);
-        transform.eulerAngles = new Vector3((pos.y - 300f) * 0.06f, transform.eulerAngles.y, transform.eulerAngles.z);
         transform.position = pos;
     }
 

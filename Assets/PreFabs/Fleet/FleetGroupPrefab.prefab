@@ -284,16 +284,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: 
   FleetState: 0
-  IsArrived: 0
-  maxWarpFactor: 9.8
   DropLine: {fileID: 0}
-  DestinationDropdownGO: {fileID: 0}
-  destinationDropdown: {fileID: 0}
-  SelectedDestination: 
-  ShipDropdownGO: {fileID: 0}
-  shipDropdown: {fileID: 0}
+  OurSelectedMarkerCanvas: {fileID: 0}
   shipDropdownOptions: []
-  ourDestination: {fileID: 0}
   CanvasToolTip: {fileID: 8651870127657169251}
 --- !u!114 &4547615063490781822
 MonoBehaviour:

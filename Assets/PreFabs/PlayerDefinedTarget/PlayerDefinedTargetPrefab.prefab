@@ -350,6 +350,7 @@ MonoBehaviour:
   CivOwnerEnum: 0
   Position: {x: 0, y: 0, z: 0}
   CanvasToolTip: {fileID: 8885959776631510070}
+  Name: 
 --- !u!114 &5587468946898028948
 MonoBehaviour:
   m_ObjectHideFlags: 0

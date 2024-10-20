@@ -170,7 +170,7 @@ namespace FischlWorks_FogWar
             public Vector2Int GetCurrentLevelCoordinates(csFogWar fogWar)
             {
                 float xCam = camTransform.position.x;
-                float zCam = camTransform.position.z + 1100f;
+                float zCam = camTransform.position.z;
                 currentLevelCoordinates = new Vector2Int(
                 fogWar.GetUnitX(revealerTransform.position.x), // + xCam/5),
                 fogWar.GetUnitY(revealerTransform.position.z)); // + zCam/6));
@@ -222,7 +222,7 @@ namespace FischlWorks_FogWar
         [BigHeader("Fog Properties")]
         [SerializeField]
         [Range(0, 140)]
-        private float fogPlaneHeight = 0;// 60; 60 is above galaxy, 0 is mide but other ships run on the shadow, not directly line of sight in the 3D camera view
+        private float fogPlaneHeight = 0;// 60 is above galaxy image, 0 is world space of the galaxy stars in 3D space. Other ships run on the shadow, not directly line of sight in the 3D camera view
         [SerializeField]
         private Material fogPlaneMaterial = null;
        
@@ -422,11 +422,12 @@ namespace FischlWorks_FogWar
 
         private void UpdateFog()
         {
-            fogPlane.transform.position = new Vector3(
-                levelMidPoint.position.x,
+            float slidingCameraParalaxFacotr = (galacticCamHolder.transform.position.z + 1141)/820; // absolute value from z, greater than 0...
+            //This is the instantiated fog plane
+            fogPlane.transform.position = new Vector3( 
+                levelMidPoint.position.x + (galacticCamHolder.transform.position.x) / 5, // correct for paralaxy from perspective camera moving left or right on x
                 levelMidPoint.position.y + fogPlaneHeight,
-                levelMidPoint.position.z - 60f); // This  - 60f offsets the fogPlan towards the camera on z, Can we move better with raycast?
-            // *** ToDo: find where the fogPlane view hole is updated, get it to move with revealer objects.
+                levelMidPoint.position.z + (-(galacticCamHolder.transform.position.z + 1100f)/ slidingCameraParalaxFacotr) - 120); // correct for paralxy from perspective camera moving in and out of screen on z
 
             FogRefreshRateTimer += Time.deltaTime;
 

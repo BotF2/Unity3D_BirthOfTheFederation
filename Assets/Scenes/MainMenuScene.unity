@@ -2982,7 +2982,7 @@ Transform:
   m_Children:
   - {fileID: 1302084401}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &221117362
 GameObject:
@@ -10684,7 +10684,7 @@ RectTransform:
   - {fileID: 593379917}
   - {fileID: 626776156}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -15718,7 +15718,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 843799567}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a53b6371ea1de0a47abebc560f0886fc, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
@@ -16561,7 +16561,7 @@ Transform:
   m_Children:
   - {fileID: 963194235}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &889922731
 MonoBehaviour:
@@ -16575,10 +16575,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a0d627ad2c7723468aa2489f1ea7bfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  galaxyCam: {fileID: 963194234}
   panSpeed: 400
-  scrollSpeed: 200
+  zoomSpeed: 10
   minY: 123
-  maxY: 400
+  maxY: 800
   mouseSpeed: 2
   minX: -600
   maxX: 600
@@ -27048,7 +27049,7 @@ MonoBehaviour:
   galaxyImage: {fileID: 843799567}
   galaxyCenter: {fileID: 564492290}
   nameOfLocalFleet: 
-  galaxyEventCamera: {fileID: 0}
+  galaxyEventCamera: {fileID: 963194234}
   ManagersPlayerTargetControllerList: []
   PlayerTargetGOList: []
 --- !u!4 &1377999098
@@ -33394,7 +33395,7 @@ MonoBehaviour:
   saveDataOnScan: 1
   levelNameToSave: SuperCoolFogLevel
   levelDimensionX: 130
-  levelDimensionY: 185
+  levelDimensionY: 195
   unitScale: 10
   scanSpacingPerUnit: 5
   rayStartHeight: 60
