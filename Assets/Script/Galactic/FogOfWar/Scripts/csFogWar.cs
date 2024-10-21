@@ -172,7 +172,7 @@ namespace FischlWorks_FogWar
                 float xCam = camTransform.position.x;
                 float zCam = camTransform.position.z;
                 currentLevelCoordinates = new Vector2Int(
-                fogWar.GetUnitX(revealerTransform.position.x), // + xCam/5),
+                fogWar.GetUnitX(revealerTransform.position.x - (revealerTransform.position.x/6.5f)), // + xCam/5),
                 fogWar.GetUnitY(revealerTransform.position.z)); // + zCam/6));
 
                 return currentLevelCoordinates;
@@ -418,16 +418,13 @@ namespace FischlWorks_FogWar
             Graphics.CopyTexture(fogPlaneTextureLerpTarget, fogPlaneTextureLerpBuffer);
         }
 
-
-
         private void UpdateFog()
         {
-            float slidingCameraParalaxFacotr = (galacticCamHolder.transform.position.z + 1141)/820; // absolute value from z, greater than 0...
-            //This is the instantiated fog plane
-            fogPlane.transform.position = new Vector3( 
-                levelMidPoint.position.x + (galacticCamHolder.transform.position.x) / 5, // correct for paralaxy from perspective camera moving left or right on x
+
+            fogPlane.transform.position = new Vector3(
+                levelMidPoint.position.x + (galacticCamHolder.transform.position.x / 5), // correct for paralaxy from perspective camera moving on x by moving the fog layer too
                 levelMidPoint.position.y + fogPlaneHeight,
-                levelMidPoint.position.z + (-(galacticCamHolder.transform.position.z + 1100f)/ slidingCameraParalaxFacotr) - 120); // correct for paralxy from perspective camera moving in and out of screen on z
+                levelMidPoint.position.z + (-120) + ((galacticCamHolder.transform.position.z + 1100)/5)); // ToDo: get camera to start on home world of local player at same relative position as if Fed
 
             FogRefreshRateTimer += Time.deltaTime;
 
@@ -467,8 +464,6 @@ namespace FischlWorks_FogWar
 
             UpdateFogPlaneTextureBuffer();
         }
-
-
 
         private void UpdateFogField()
         {
