@@ -29,6 +29,7 @@ namespace FischlWorks_FogWar
     /// Various public interfaces related to FogRevealer's FOV are also available.
     public class csFogWar : MonoBehaviour
     {
+        public int LocalPlayerGalaxyCameraStartingZ;
         public static csFogWar Instance { get; private set; }
         bool fogReady = false;
         [SerializeField]
@@ -56,7 +57,10 @@ namespace FischlWorks_FogWar
             
             
         }
-
+        private void Start()
+        {
+            LocalPlayerGalaxyCameraStartingZ  = (int)galacticCamHolder.transform.position.z;
+        }
         [System.Serializable]
         public class LevelData
         {
@@ -172,8 +176,8 @@ namespace FischlWorks_FogWar
                 float xCam = camTransform.position.x;
                 float zCam = camTransform.position.z;
                 currentLevelCoordinates = new Vector2Int(
-                fogWar.GetUnitX(revealerTransform.position.x - (revealerTransform.position.x/6.5f)), // + xCam/5),
-                fogWar.GetUnitY(revealerTransform.position.z)); // + zCam/6));
+                fogWar.GetUnitX(revealerTransform.position.x - (revealerTransform.position.x / 6.5f)),
+                fogWar.GetUnitY((revealerTransform.position.z))); // - (revealerTransform.position.z / 6.5f)))); // + csFogWar.Instance.LocalPlayerGalaxyCameraStartingZ/5); 
 
                 return currentLevelCoordinates;
             }
