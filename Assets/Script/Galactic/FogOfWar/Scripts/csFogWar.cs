@@ -29,7 +29,7 @@ namespace FischlWorks_FogWar
     /// Various public interfaces related to FogRevealer's FOV are also available.
     public class csFogWar : MonoBehaviour
     {
-        public int LocalPlayerGalaxyCameraStartingZ;
+       //public int LocalPlayerGalaxyCameraStartingZ;
         public static csFogWar Instance { get; private set; }
         bool fogReady = false;
         [SerializeField]
@@ -59,7 +59,7 @@ namespace FischlWorks_FogWar
         }
         private void Start()
         {
-            LocalPlayerGalaxyCameraStartingZ  = (int)galacticCamHolder.transform.position.z;
+           //LocalPlayerGalaxyCameraStartingZ  = (int)galacticCamHolder.transform.position.z;
         }
         [System.Serializable]
         public class LevelData
@@ -176,8 +176,8 @@ namespace FischlWorks_FogWar
                 float xCam = camTransform.position.x;
                 float zCam = camTransform.position.z;
                 currentLevelCoordinates = new Vector2Int(
-                fogWar.GetUnitX(revealerTransform.position.x - (revealerTransform.position.x / 6.5f)),
-                fogWar.GetUnitY((revealerTransform.position.z))); // - (revealerTransform.position.z / 6.5f)))); // + csFogWar.Instance.LocalPlayerGalaxyCameraStartingZ/5); 
+                fogWar.GetUnitX(revealerTransform.position.x - (revealerTransform.position.x / 7f)),
+                fogWar.GetUnitY(revealerTransform.position.z)); // - ((revealerTransform.position.z +820 )/ 8f))); // + csFogWar.Instance.LocalPlayerGalaxyCameraStartingZ/5); 
 
                 return currentLevelCoordinates;
             }
@@ -261,7 +261,7 @@ namespace FischlWorks_FogWar
         [Range(1, 300)]
         private int levelDimensionY = 180;
         [SerializeField]
-        private float unitScale = 10f;  // This 10f, along with scanSpacingPerUnit = 5f and level DimensionX 130 and Y 180, gives a scan (draw gizmos) that is well lined up
+        private float unitScale = 10f;  // This 10f, along with scanSpacingPerUnit = 5f and level DimensionX 130 and Y 180, gives a scan (draw gizmos) that is lined up
                                         // with the background galaxy map image. See Unity csFogWar in the Hierarchy, scene.
         public float _UnitScale => unitScale;
         [SerializeField]
@@ -428,7 +428,7 @@ namespace FischlWorks_FogWar
             fogPlane.transform.position = new Vector3(
                 levelMidPoint.position.x + (galacticCamHolder.transform.position.x / 5), // correct for paralaxy from perspective camera moving on x by moving the fog layer too
                 levelMidPoint.position.y + fogPlaneHeight,
-                levelMidPoint.position.z + (-120) + ((galacticCamHolder.transform.position.z + 1100)/5)); // ToDo: get camera to start on home world of local player at same relative position as if Fed
+                levelMidPoint.position.z + (-70)+((galacticCamHolder.transform.position.z + 820)/10)); // ToDo: get camera to start on home world of local player at same relative position as if Fed
 
             FogRefreshRateTimer += Time.deltaTime;
 
