@@ -29,7 +29,6 @@ namespace FischlWorks_FogWar
     /// Various public interfaces related to FogRevealer's FOV are also available.
     public class csFogWar : MonoBehaviour
     {
-       //public int LocalPlayerGalaxyCameraStartingZ;
         public static csFogWar Instance { get; private set; }
         bool fogReady = false;
         [SerializeField]
@@ -57,10 +56,7 @@ namespace FischlWorks_FogWar
             
             
         }
-        private void Start()
-        {
-           //LocalPlayerGalaxyCameraStartingZ  = (int)galacticCamHolder.transform.position.z;
-        }
+
         [System.Serializable]
         public class LevelData
         {
@@ -176,8 +172,8 @@ namespace FischlWorks_FogWar
                 float xCam = camTransform.position.x;
                 float zCam = camTransform.position.z;
                 currentLevelCoordinates = new Vector2Int(
-                fogWar.GetUnitX(revealerTransform.position.x - (revealerTransform.position.x / 7f)),
-                fogWar.GetUnitY(revealerTransform.position.z)); // - ((revealerTransform.position.z +820 )/ 8f))); // + csFogWar.Instance.LocalPlayerGalaxyCameraStartingZ/5); 
+                fogWar.GetUnitX(revealerTransform.position.x), // - (camTransform.transform.position.x / 5)), // adjust for camera position moving the fog layer, move the revealer too
+                fogWar.GetUnitY(revealerTransform.position.z));  
 
                 return currentLevelCoordinates;
             }
@@ -226,7 +222,7 @@ namespace FischlWorks_FogWar
         [BigHeader("Fog Properties")]
         [SerializeField]
         [Range(0, 140)]
-        private float fogPlaneHeight = 0;// 60 is above galaxy image, 0 is world space of the galaxy stars in 3D space. Other ships run on the shadow, not directly line of sight in the 3D camera view
+        private float fogPlaneHeight = -55;// put it over the background image at -60, 0 is world space of the galaxy stars in 3D space. Other ships are not seen in the shadow, not directly line of sight in the 3D camera view
         [SerializeField]
         private Material fogPlaneMaterial = null;
        
@@ -426,9 +422,11 @@ namespace FischlWorks_FogWar
         {
 
             fogPlane.transform.position = new Vector3(
-                levelMidPoint.position.x + (galacticCamHolder.transform.position.x / 5), // correct for paralaxy from perspective camera moving on x by moving the fog layer too
+                levelMidPoint.position.x, // + (galacticCamHolder.transform.position.x / 5), // correct for paralax from perspective camera moving on x by moving the fog layer too
                 levelMidPoint.position.y + fogPlaneHeight,
-                levelMidPoint.position.z + (-70)+((galacticCamHolder.transform.position.z + 820)/10)); // ToDo: get camera to start on home world of local player at same relative position as if Fed
+                levelMidPoint.position.z); // + ((galacticCamHolder.transform.position.z + 820)/3));
+            // The Camera holder is offset to a location of -1100 in the z axis and on a range of movment from -1400 to +500, -820 corresponds to galactic center on z
+            //ToDo: get camera to start on home world of local player at same relative position as if Fed
 
             FogRefreshRateTimer += Time.deltaTime;
 
