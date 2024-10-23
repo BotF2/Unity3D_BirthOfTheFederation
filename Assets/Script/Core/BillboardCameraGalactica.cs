@@ -19,7 +19,6 @@ namespace Assets.Core
             }
         }
 
-        // Update is called once per frame
         void LateUpdate()
         {
             transform.LookAt(cameraGal.transform, Vector3.up);

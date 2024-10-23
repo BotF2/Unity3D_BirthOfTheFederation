@@ -92,7 +92,7 @@ namespace Assets.Core
         }
         public void InstantiateSystem(StarSysData sysData, CivSO civSO)
         {
-             
+
 
             if (MainMenuUIController.Instance.MainMenuData.SelectedGalaxyType == GalaxyMapType.RANDOM)
             { // do something random with sysData.position
@@ -111,8 +111,11 @@ namespace Assets.Core
 
                 starSystemNewGameOb.transform.SetParent(galaxyCenter.transform, true);
                 starSystemNewGameOb.transform.localScale = new Vector3(1, 1, 1);
+                Transform fogObsticleTransform = starSystemNewGameOb.transform.Find("FogObstacle");
+                fogObsticleTransform.SetParent(galaxyCenter.transform, false);
+                fogObsticleTransform.Translate(new Vector3(sysData.GetPosition().x, -55f, sysData.GetPosition().z));
                 starSystemNewGameOb.name = sysData.GetSysName();
-                //starSystemNewGameOb.
+
                 sysData.SysGameObject = starSystemNewGameOb;
 
                 TextMeshProUGUI[] TheText = starSystemNewGameOb.GetComponentsInChildren<TextMeshProUGUI>();
