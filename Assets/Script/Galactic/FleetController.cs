@@ -170,6 +170,8 @@ namespace Assets.Core
             // is this fleet we hit our destination
             if (fleetController.gameObject == this.FleetData.Destination)
             {
+                var destinationMarker = hitGO.transform.Find("OurSelectedMarkerCanvas");
+                destinationMarker.gameObject.SetActive(false);
                 FleetUIManager.Instance.ClickCancelDestinationButton();
                 FleetUIManager.Instance.CloseUnLoadFleetUI();
                 StarSysUIManager.Instance.CloseUnLoadStarSysUI();
