@@ -151,7 +151,7 @@ GameObject:
   - component: {fileID: 990841811679337107}
   - component: {fileID: 8549477685571873669}
   m_Layer: 6
-  m_Name: OurSelectedMarkerCanvas
+  m_Name: OurMapTargetMarkerCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

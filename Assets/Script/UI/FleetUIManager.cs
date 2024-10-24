@@ -138,7 +138,7 @@ public class FleetUIManager : MonoBehaviour
             var canvases = controller.FleetData.Destination.GetComponentsInChildren<Canvas>();
             foreach (Canvas c in canvases)
             {
-                if (c.name == "OurSelectedMarkerCanvas")
+                if (c.name == "OurMapTargetMarkerCanvas")
                 {
                     c.gameObject.SetActive(false);
                 }
@@ -169,9 +169,9 @@ public class FleetUIManager : MonoBehaviour
             if (controller.FleetData.Destination != null)
             {
                 if (controller.FleetData.Destination.GetComponent<StarSysController>() != null)
-                    controller.FleetData.Destination.GetComponent<StarSysController>().OurSelectedMarkerCanvas.gameObject.SetActive(false);
+                    controller.FleetData.Destination.GetComponent<StarSysController>().OurMapTargetMarkerCanvas.gameObject.SetActive(false);
                 else if (controller.FleetData.Destination.GetComponent<FleetController>() != null)
-                    controller.FleetData.Destination.GetComponent<FleetController>().OurSelectedMarkerCanvas.gameObject.SetActive(false);
+                    controller.FleetData.Destination.GetComponent<FleetController>().OurMapTargetMarkerCanvas.gameObject.SetActive(false);
             }
             if (hitObject.GetComponent<StarSysController>() != null)
                 civ = hitObject.GetComponent<StarSysController>().StarSysData.CurrentOwner;
@@ -206,7 +206,7 @@ public class FleetUIManager : MonoBehaviour
             var canvases = controller.FleetData.Destination.GetComponentsInChildren<Canvas>();
             foreach (Canvas c in canvases)
             {
-                if (c.name == "OurSelectedMarkerCanvas")
+                if (c.name == "OurMapTargetMarkerCanvas")
                 {
                     c.gameObject.SetActive(false);
                 }

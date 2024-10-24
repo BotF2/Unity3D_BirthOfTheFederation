@@ -24,11 +24,13 @@ namespace Assets.Core
         public FleetData FleetData { get { return fleetData; } set { fleetData = value; } }
         public string Name;
         public FleetState FleetState;
-       // public bool IsArrived = false;
-        private float warpFudgeFactor = 10f; 
+        // public bool IsArrived = false;
+        private float warpFudgeFactor = 10f;
         private Rigidbody rb;
         public DropLineMovable DropLine;
-        public Canvas OurSelectedMarkerCanvas;
+        [Header("GalaxyMapDestinationEvent")]
+        public GalaxyMapEvents GalaxyMapDestinationEvent;
+        public Canvas OurMapTargetMarkerCanvas;
         [SerializeField]
         private List<string> shipDropdownOptions;
         private Camera galaxyEventCamera;
@@ -39,8 +41,9 @@ namespace Assets.Core
         {
             rb = GetComponent<Rigidbody>();
             rb.isKinematic = true;
-
-            OurSelectedMarkerCanvas.gameObject.SetActive(false);
+            GalaxyMapEvents.current.onSetDestination += OnSetDestination;
+            GalaxyMapEvents.current.onRemoveDestination += OnRemoveDestination;
+            OurMapTargetMarkerCanvas.gameObject.SetActive(false);
             galaxyEventCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
             var CanvasGO = GameObject.Find("CanvasFleetUI");
             FleetUICanvas = CanvasGO.GetComponent<Canvas>();
@@ -50,7 +53,7 @@ namespace Assets.Core
             foreach (var shipCon in this.FleetData.ShipsList)
             {
                 if (shipCon.ShipData.maxWarpFactor < this.FleetData.MaxWarpFactor)
-                { this.FleetData.MaxWarpFactor = shipCon.ShipData.maxWarpFactor;}
+                { this.FleetData.MaxWarpFactor = shipCon.ShipData.maxWarpFactor; }
             }
             Name = FleetData.CivShortName + " Fleet " + FleetData.Name;
             FleetState = FleetState.FleetStationary;
@@ -104,18 +107,18 @@ namespace Assets.Core
                 if (FleetData.Destination != null && FleetData.CurrentWarpFactor > 0f)
                 {
                     FleetState = FleetState.FleetAtWarp;
-                    MoveToDesitinationGO();
+                    MoveToDesitinationGO(); 
                 }
             }
         }
         public Rigidbody GetRigidbody() { return rb; }
 
-        private void OnMouseDown() 
+        private void OnMouseDown()
         {
             Ray ray = galaxyEventCamera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit)) 
+            if (Physics.Raycast(ray, out hit))
             {
                 GameObject hitObject = hit.collider.gameObject;
                 // What a fleet controller does with a hit
@@ -134,15 +137,24 @@ namespace Assets.Core
                 else if (FleetUIManager.Instance.MouseClickSetsDestination == true && this != FleetUIManager.Instance.controller)
                 {
                     SetNewDestination(hitObject);
-                }             
+                }
             }
+        }
+        private void OnSetDestination(GameObject destination)
+        {
+            if (destination == this.FleetData.Destination) { }
+        }
+        private void OnRemoveDestination(GameObject destination)
+        {
+            if (destination != this.FleetData.Destination) { }
         }
         private void SetNewDestination(GameObject hitObject)
         {
             
             FleetUIManager.Instance.TurnOffCurrentDestination();
             FleetUIManager.Instance.SetAsDestination(hitObject);
-            this.OurSelectedMarkerCanvas.gameObject.SetActive(true);
+           // GalaxyMapDestinationEvent.RaiseGalaxyMapEvent();
+            this.OurMapTargetMarkerCanvas.gameObject.SetActive(true);
         }
         void OnTriggerEnter(Collider collider) // Not using OnCollisionEnter....
         {
@@ -170,7 +182,7 @@ namespace Assets.Core
             // is this fleet we hit our destination
             if (fleetController.gameObject == this.FleetData.Destination)
             {
-                var destinationMarker = hitGO.transform.Find("OurSelectedMarkerCanvas");
+                var destinationMarker = hitGO.transform.Find("OurMapTargetMarkerCanvas");
                 destinationMarker.gameObject.SetActive(false);
                 FleetUIManager.Instance.ClickCancelDestinationButton();
                 FleetUIManager.Instance.CloseUnLoadFleetUI();

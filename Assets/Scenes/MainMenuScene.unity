@@ -26732,6 +26732,7 @@ MonoBehaviour:
   FleetGOList: []
   fleetGroupPrefab: {fileID: 3717699476320669143, guid: 724c5663d5780da4a9ab08bdbf7ccc98, type: 3}
   unknownfleet: {fileID: 21300000, guid: 27c860ebab275d645b0a07e61cafa11f, type: 3}
+  galaxyMapEvents: {fileID: 0}
 --- !u!4 &1362581733
 Transform:
   m_ObjectHideFlags: 0

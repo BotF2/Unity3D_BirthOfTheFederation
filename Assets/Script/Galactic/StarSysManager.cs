@@ -189,7 +189,7 @@ namespace Assets.Core
                     {
                         if (aCanvas.name == "CanvasSelectionMarker")
                         {
-                            starSysConroller.OurSelectedMarkerCanvas = aCanvas;
+                            starSysConroller.OurMapTargetMarkerCanvas = aCanvas;
                         }
                     }
                 }

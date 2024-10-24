@@ -877,7 +877,7 @@ GameObject:
   - component: {fileID: 6960916595261874133}
   - component: {fileID: 5559110390423439843}
   m_Layer: 6
-  m_Name: OurSelectedMarkerCanvas
+  m_Name: OurMapTargetMarkerCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1233,7 +1233,7 @@ MonoBehaviour:
   Name: 
   FleetState: 0
   DropLine: {fileID: 2039294588425904161}
-  OurSelectedMarkerCanvas: {fileID: 1311256390793980519}
+  OurMapTargetMarkerCanvas: {fileID: 0}
   shipDropdownOptions: []
   CanvasToolTip: {fileID: 2810528529038315648}
 --- !u!114 &3017837512546761231

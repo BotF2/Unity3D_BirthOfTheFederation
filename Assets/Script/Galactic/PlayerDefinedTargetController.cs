@@ -40,7 +40,7 @@ public class PlayerDefinedTargetController : MonoBehaviour
             //else if (FleetUIManager.Instance.MouseClickSetsDestination == true && this != FleetUIManager.Instance.controller)
             //{
             //    FleetUIManager.Instance.SetAsDestination(hitObject);
-            //    this.OurSelectedMarkerCanvas.gameObject.SetActive(true);
+            //    this.OurMapTargetMarkerCanvas.gameObject.SetActive(true);
             //    //MousePointerChanger.Instance.ResetCursor();
             //    //MousePointerChanger.Instance.HaveGalaxyMapCursor = false;
             //}

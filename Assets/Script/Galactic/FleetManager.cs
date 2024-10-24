@@ -6,6 +6,7 @@ using FischlWorks_FogWar;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 
 
@@ -35,6 +36,9 @@ namespace Assets.Core
         private GameObject fleetGroupPrefab;
         [SerializeField]
         private Sprite unknownfleet;
+        [SerializeField]
+        private GalaxyMapEvents galaxyMapEvents;
+  
        
         private void Awake()
         {
@@ -109,6 +113,7 @@ namespace Assets.Core
                 fleetController.FleetData = fleetData;
                 fleetController.Name = fleetData.Name;
                 fleetController.FleetState = FleetState.FleetStationary;
+                fleetController.GalaxyMapDestinationEvent = galaxyMapEvents;
                 ManagersFleetControllerList.Add(fleetController);
                 fleetNewGameOb.transform.Translate(new Vector3(fleetData.Position.x + 40f,  fleetData.Position.y + 10f, fleetData.Position.z));
                 fleetNewGameOb.transform.SetParent(galaxyCenter.transform, true);
@@ -157,7 +162,7 @@ namespace Assets.Core
                     {
                          if (aCanvas.name == "CanvasSelectionMarker")
                             {
-                                fleetController.OurSelectedMarkerCanvas = aCanvas;
+                                fleetController.OurMapTargetMarkerCanvas = aCanvas;
                             }
                     }
                 }

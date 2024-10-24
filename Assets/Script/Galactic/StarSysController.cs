@@ -15,7 +15,7 @@ namespace Assets.Core
         private StarSysData starSysData;
         public StarSysData StarSysData { get { return starSysData; } set { starSysData = value; } }
         private Camera galaxyEventCamera;
-        public Canvas OurSelectedMarkerCanvas;
+        public Canvas OurMapTargetMarkerCanvas;
         [SerializeField]
         private Canvas canvasToolTip;
         [SerializeField]
@@ -32,7 +32,7 @@ namespace Assets.Core
         {
             galaxyEventCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>() as Camera;
             canvasToolTip.worldCamera = galaxyEventCamera;
-            OurSelectedMarkerCanvas.gameObject.SetActive(false);
+            OurMapTargetMarkerCanvas.gameObject.SetActive(false);
             var CanvasGO = GameObject.Find("CanvasStarSysUI");
             canvasStarSysUI = CanvasGO.GetComponent<Canvas>();
             canvasStarSysUI.worldCamera = galaxyEventCamera;
@@ -79,7 +79,7 @@ namespace Assets.Core
         {
             FleetUIManager.Instance.TurnOffCurrentDestination();
             FleetUIManager.Instance.SetAsDestination(hitObject);
-            this.OurSelectedMarkerCanvas.gameObject.SetActive(true);
+            this.OurMapTargetMarkerCanvas.gameObject.SetActive(true);
         }
 
         public void OnEnable()
@@ -90,15 +90,15 @@ namespace Assets.Core
         {
             TimeManager.Instance.OnRandomSpecialEvent -= DoDisaster;
         }
-        private void DoDisaster(TrekRandomEventSO specialEvent)
+        private void DoDisaster(TrekRandomEventSO randomSpecialEvent)
         {
-            if (specialEvent != null)
+            if (randomSpecialEvent != null)
             {
-                Debug.Log("Special event reached StarSystemController: " + specialEvent.eventName + " on oneInXChance " +
-                    specialEvent.oneInXChance + " TrekRandomEvents: " + specialEvent.trekEventType +
-                    " parameter: " + specialEvent.eventParameter);
+                Debug.Log("Special event reached StarSystemController: " + randomSpecialEvent.eventName + " on oneInXChance " +
+                    randomSpecialEvent.oneInXChance + " TrekRandomEvents: " + randomSpecialEvent.trekEventType +
+                    " parameter: " + randomSpecialEvent.eventParameter);
                 // Add your logic to handle the special event here
-                switch (specialEvent.trekEventType)
+                switch (randomSpecialEvent.trekEventType)
                 {
                     case TrekRandomEvents.AsteroidHit:
                         {

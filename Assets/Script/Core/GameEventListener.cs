@@ -28,6 +28,7 @@ namespace Assets.Core
 
         private void Instance_OnRandomEvent(TrekRandomEventSO specialEvent)
         {
+            #region Not here, it is sent to TimeManager
             //if (specialEvent != null)
             //{
             //    Debug.Log("Special event reached: " + specialEvent.eventName + " on oneInXChance " +
@@ -75,6 +76,7 @@ namespace Assets.Core
             //            break;
             //    }
             //}
+            #endregion
         }
 
         private void OnDisable()
