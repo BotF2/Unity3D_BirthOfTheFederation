@@ -4,7 +4,7 @@ using UnityEngine;
 using Assets.Core;
 using System;
 
-public enum DiplomacyStatusEnum
+public enum DiplomacyStatusEnum // between two civs held in the DiplomacyData
 {
     TotalWar = 0,
     ColdWar = 20,
@@ -14,7 +14,7 @@ public enum DiplomacyStatusEnum
     Allied = 80,
     Unified = 100
 }
-public enum CivTraitsEnum
+public enum CivTraitsEnum // held by the civ
 {
     Scientific,
     Materialistic,
@@ -26,7 +26,7 @@ public enum CivTraitsEnum
     Ruthless,
     Null
 }
-public enum WarLike
+public enum WarLikeEnum // held by the civ
 {
     FireAllWeapons = 0, // intended for 'will come out shooting' on contact without stopping for diplomacy, as in the Borg
     WarLike, // inclined to wars like civs, the Klingons but do not bypass diplomacy UI

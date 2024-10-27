@@ -84,9 +84,9 @@ public class StarSysSOImporter : EditorWindow
         Enum.TryParse(title, out st);
         return st;
     }
-    public static StarSystemType GetMyStarTypeEnum(string title)
+    public static GalaxyObjectType GetMyStarTypeEnum(string title)
     {
-        StarSystemType st;
+        GalaxyObjectType st;
         Enum.TryParse(title, out st);
         return st;
     }

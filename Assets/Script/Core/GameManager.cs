@@ -293,15 +293,16 @@ namespace Assets.Core
         OneMore
     }
 
-    public enum StarSystemType
+    public enum GalaxyObjectType
     {
-        Blue,
-        White,
-        Yellow,
-        Orange,
-        Red,
+        BlueStar,
+        WhiteStar,
+        YellowStar,
+        OrangeStar,
+        RedStar,
         Nebula,
         OmarianNebula,
+        OrionNebula,
         Station,
         UniComplex,
         BlackHole,

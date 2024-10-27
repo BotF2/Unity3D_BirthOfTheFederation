@@ -1,32 +1,34 @@
-using System;
+using Assets.Core;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class GalaxyMapEvents : MonoBehaviour
+[CreateAssetMenu(menuName = "GalaxyMapDestinationEvent")]
+public class GalaxyMapEvents : ScriptableObject
 {
-    public static GalaxyMapEvents current;
-
-    private void Awake()
+    public List<GalaxyMapOurEvent> GalaxyMapEventList = new List<GalaxyMapOurEvent>();
+    // Rise event through different method signatures
+    public void RaiseGalaxyMapEvent()
     {
-        current = this;
-    }
-    public event Action<GameObject> onSetDestination;
-
-    public void DestinationSet(GameObject destination)
-    {
-        if (onSetDestination != null)
+        for (int i = 0; i < GalaxyMapEventList.Count; ++i)
         {
-            onSetDestination(destination);
+            //??? GalaxyMapEventList[i].;
         }
     }
-    public event Action<GameObject> onRemoveDestination;
-    public void RemoveDestination(GameObject destination) 
+    public void RegisterListener(GalaxyMapOurEvent listener)
     {
-        if (onRemoveDestination != null)
+        if (!GalaxyMapEventList.Contains(listener))
         {
-            onRemoveDestination(destination);
+            GalaxyMapEventList.Add(listener);
+        }
+    }
+    public void UnregisterListener(GalaxyMapOurEvent listener)
+    {
+        if (GalaxyMapEventList.Contains(listener))
+        {
+            GalaxyMapEventList.Remove(listener);
         }
     }
 }

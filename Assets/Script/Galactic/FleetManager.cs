@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data.Common;
+using System.Linq;
 using FischlWorks_FogWar;
 using TMPro;
 using Unity.VisualScripting;
@@ -37,7 +38,11 @@ namespace Assets.Core
         [SerializeField]
         private Sprite unknownfleet;
         [SerializeField]
-        private GalaxyMapEvents galaxyMapEvents;
+        private GalaxyMapOurEvent galaxyMapOurEvent;
+        [SerializeField]
+        private int destinationInt = 1;
+        [SerializeField]
+        private List<int> intsInUse = new List<int>() { 0 };
   
        
         private void Awake()
@@ -99,7 +104,7 @@ namespace Assets.Core
         }
         public void InstantiateFleet(FleetData fleetData, Vector3 position)
         {
-            if (fleetData.CivEnum != CivEnum.ZZUNINHABITED10)
+            if (fleetData.CivEnum != CivEnum.ZZUNINHABITED1)
             {
                 GameObject fleetNewGameOb = (GameObject)Instantiate(fleetPrefab, new Vector3(0, 0, 0),
                         Quaternion.identity);
@@ -108,9 +113,10 @@ namespace Assets.Core
 
                 var fleetController = fleetNewGameOb.GetComponentInChildren<FleetController>();
                 fleetController.FleetData = fleetData;
+                fleetController.FleetData.asDestinationInt = GetUniqueIntAsDestination(destinationInt); // not using this yet, what might we use Events for here?
                 fleetController.Name = fleetData.Name;
                 fleetController.FleetState = FleetState.FleetStationary;
-                fleetController.GalaxyMapDestinationEvent = galaxyMapEvents;
+                fleetController.GalaxyMapDestinationEvent = galaxyMapOurEvent;
                 ManagersFleetControllerList.Add(fleetController);
                 fleetNewGameOb.transform.Translate(new Vector3(fleetData.Position.x + 40f,  fleetData.Position.y + 10f, fleetData.Position.z));
                 fleetNewGameOb.transform.SetParent(galaxyCenter.transform, true);
@@ -152,18 +158,7 @@ namespace Assets.Core
                         }
                     }
                 }
-                var canvas = fleetNewGameOb.GetComponentsInChildren<Canvas>();
-                foreach (var aCanvas in canvas)
-                {
-                    if (aCanvas != null)
-                    {
-                         if (aCanvas.name == "CanvasSelectionMarker")
-                            {
-                                fleetController.OurMapTargetMarkerCanvas = aCanvas;
-                            }
-                    }
-                }
-                DropLineMovable ourLineScript = fleetNewGameOb.GetComponentInChildren<DropLineMovable>();
+                MapLineMovable ourLineScript = fleetNewGameOb.GetComponentInChildren<MapLineMovable>();
                 
                 ourLineScript.GetLineRenderer();
                 ourLineScript.transform.SetParent(fleetNewGameOb.transform, false);
@@ -184,7 +179,6 @@ namespace Assets.Core
                 fleetNewGameOb.SetActive(true);
                 
                 ShipManager.Instance.BuildShipsOfFirstFleet(fleetNewGameOb);
-                fleetController.FleetData.CurrentWarpFactor = 0f;
             }
         }
         void RemoveFleetConrollerFromAllControllers(FleetController fleetController)
@@ -240,5 +234,28 @@ namespace Assets.Core
             }
             return null;
         }
+        private int GetUniqueIntAsDestination(int destinationInt)
+        {
+            if (intsInUse.Contains(destinationInt))
+            {
+                destinationInt++;
+                if (!intsInUse.Contains(destinationInt))
+                    return destinationInt;
+            }
+            else 
+            { 
+                intsInUse.Add(destinationInt);
+
+            }
+            return destinationInt;
+                    
+        }
+        public void RemoveFleet(GameObject go, int asDestinationInt)
+        {
+            intsInUse.Remove(asDestinationInt);
+            ManagersFleetControllerList.Remove(go.GetComponent<FleetController>());
+            go.IsDestroyed();
+        }
+                 
     }
 }

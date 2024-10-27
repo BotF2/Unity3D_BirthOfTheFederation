@@ -13,7 +13,7 @@ public class StarSysData
     private CivEnum firstOwner;
     public CivEnum CurrentOwner;
     public CivController CurrentCivController;
-    public StarSystemType StarType;
+    public GalaxyObjectType StarType;
     public Sprite StarSprit;
     public int Population;
     public int PopulationLimit; 

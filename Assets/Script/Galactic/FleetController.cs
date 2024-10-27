@@ -10,6 +10,7 @@ using UnityEngine.UIElements;
 using JetBrains.Annotations;
 using FischlWorks_FogWar;
 using System.ComponentModel;
+using Unity.VisualScripting;
 
 namespace Assets.Core
 {    /// <summary>
@@ -27,10 +28,10 @@ namespace Assets.Core
         // public bool IsArrived = false;
         private float warpFudgeFactor = 10f;
         private Rigidbody rb;
-        public DropLineMovable DropLine;
+        public MapLineMovable DropLine;
         [Header("GalaxyMapDestinationEvent")]
-        public GalaxyMapEvents GalaxyMapDestinationEvent;
-        public Canvas OurMapTargetMarkerCanvas;
+        public GalaxyMapOurEvent GalaxyMapDestinationEvent;
+        //public Canvas CanvasDestination;
         [SerializeField]
         private List<string> shipDropdownOptions;
         private Camera galaxyEventCamera;
@@ -41,9 +42,9 @@ namespace Assets.Core
         {
             rb = GetComponent<Rigidbody>();
             rb.isKinematic = true;
-            GalaxyMapEvents.current.onSetDestination += OnSetDestination;
-            GalaxyMapEvents.current.onRemoveDestination += OnRemoveDestination;
-            OurMapTargetMarkerCanvas.gameObject.SetActive(false);
+            GalaxyMapOurEvent.current.onSetDestination += OnSetDestination; // not really for destination, doing that with onMousDown on fleet...
+            GalaxyMapOurEvent.current.onRemoveDestination += OnRemoveDestination; // We may find a good way to use this C# Event system
+            //CanvasDestination.gameObject.SetActive(false);
             galaxyEventCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
             var CanvasGO = GameObject.Find("CanvasFleetUI");
             FleetUICanvas = CanvasGO.GetComponent<Canvas>();
@@ -102,7 +103,7 @@ namespace Assets.Core
         }
         private void FixedUpdate()
         {
-            if (FleetData.CivEnum != CivEnum.ZZUNINHABITED10) // move
+            if (FleetData.CivEnum != CivEnum.ZZUNINHABITED1) // move
             {
                 if (FleetData.Destination != null && FleetData.CurrentWarpFactor > 0f)
                 {
@@ -121,53 +122,68 @@ namespace Assets.Core
             if (Physics.Raycast(ray, out hit))
             {
                 GameObject hitObject = hit.collider.gameObject;
-                // What a fleet controller does with a hit
-                /// ********** In a real multplayer using 
-                if (GameController.Instance.AreWeLocalPlayer(this.FleetData.CivEnum))
+                // What a fleet ourUIFleetController does with a hit
+                /// ********** In multiplayer game ?? 
+                if (GameController.Instance.AreWeLocalPlayer(this.FleetData.CivEnum)) // this is a local player fleet controller hit
                 {
-                    if (FleetUIManager.Instance.MouseClickSetsDestination == false)
+                    if (FleetUIManager.Instance.MouseClickSetsDestination == false) // the destination mouse pointer is off so open FleetUI for this FleetController
                     {
                         FleetUIManager.Instance.LoadFleetUI(hitObject);
                     }
-                    else
+                    else if (FleetUIManager.Instance.MouseClickSetsDestination == true && hitObject != this )
                     {
-                        SetNewDestination(hitObject);
+                        NewDestination(hitObject);  // one of local player's objects as destination
                     }
                 }
-                else if (FleetUIManager.Instance.MouseClickSetsDestination == true && this != FleetUIManager.Instance.controller)
+                else if (FleetUIManager.Instance.MouseClickSetsDestination == true) // did not hit a local palyer object but do want this as destination
                 {
-                    SetNewDestination(hitObject);
+                    NewDestination(hitObject);
                 }
             }
         }
-        private void OnSetDestination(GameObject destination)
+        private void OnSetDestination(GameObject destination, int destinationInt) // for the C# event system currently not used 
         {
-            if (destination == this.FleetData.Destination) { }
+            if (this == destination.GetComponent<FleetController>()) // are we the new destination?
+            {
+                // not implemented, looking for a good use case
+            }
         }
-        private void OnRemoveDestination(GameObject destination)
+        private void OnRemoveDestination(GameObject destination, int destinationInt)
         {
-            if (destination != this.FleetData.Destination) { }
+            if (destination == this.FleetData.Destination)
+            {
+                // not implemented, looking for a good use case
+            }
         }
-        private void SetNewDestination(GameObject hitObject)
+        private void NewDestination(GameObject hitObject) // here is a destination
         {
-            
-            FleetUIManager.Instance.TurnOffCurrentDestination();
-            FleetUIManager.Instance.SetAsDestination(hitObject);
-           // GalaxyMapDestinationEvent.RaiseGalaxyMapEvent();
-            this.OurMapTargetMarkerCanvas.gameObject.SetActive(true);
+            {
+                // turn off cursor of destination
+                bool isFleet = false;
+                MousePointerChanger.Instance.ResetCursor(); // reset to default cursor because we just got the destination
+                MousePointerChanger.Instance.HaveGalaxyMapCursor = false;
+
+                if (hitObject.GetComponent<FleetController>() != null)
+                {
+                    //hitObject.GetComponent<FleetController>().CanvasDestination.gameObject.SetActive(true);
+                    isFleet = true;
+                }
+
+                FleetUIManager.Instance.SetAsDestination(hitObject, isFleet);
+            }    
         }
         void OnTriggerEnter(Collider collider) // Not using OnCollisionEnter....
         {
-            FleetController fleetController = collider.gameObject.GetComponent<FleetController>();
-            if (fleetController != null) // it is a FleetController and not a StarSystem or other                                                                                                                                                    leetController
+            FleetController hitFleetController = collider.gameObject.GetComponent<FleetController>();// the collider is on the hit gameObject this fleet hit
+            if (hitFleetController != null) // it is a FleetController and not a StarSystem or other with collider                                                                                                                                                    leetController
             {
-                OnFleetEncounteredFleet(fleetController, collider.gameObject);
-                Debug.Log("fleet Controller collided with " + fleetController.gameObject.name);
+                OnFleetEncounteredFleet(this, collider.gameObject);
+                Debug.Log(this.gameObject.name + " fleet Controller collided with " + collider.gameObject.name);
             }
-            StarSysController starSysController = collider.gameObject.GetComponent<StarSysController>();
-            if (starSysController != null)
+            StarSysController hitStarSysController = collider.gameObject.GetComponent<StarSysController>();
+            if (hitStarSysController != null)
             {
-                OnFleetEncounteredStarSys(starSysController, collider.gameObject);
+                OnFleetEncounteredStarSys(hitStarSysController, collider.gameObject); // hitStarSysController and its GO
             }
             PlayerDefinedTargetController playerTargetController = collider.gameObject.GetComponent<PlayerDefinedTargetController>();
             if (playerTargetController != null)
@@ -175,32 +191,36 @@ namespace Assets.Core
                 OnFleetEncounteredPlayerDefinedTarget(playerTargetController);
             }
         }
-        public void OnFleetEncounteredFleet(FleetController fleetController, GameObject hitGO)
+        public void OnFleetEncounteredFleet(FleetController thisFleetController, GameObject hitGO)
         {
             // check if we are at war, combat
 
             // is this fleet we hit our destination
-            if (fleetController.gameObject == this.FleetData.Destination)
+            if (thisFleetController.gameObject == hitGO.GetComponent<FleetController>().FleetData.Destination)
             {
-                var destinationMarker = hitGO.transform.Find("OurMapTargetMarkerCanvas");
-                destinationMarker.gameObject.SetActive(false);
                 FleetUIManager.Instance.ClickCancelDestinationButton();
                 FleetUIManager.Instance.CloseUnLoadFleetUI();
                 StarSysUIManager.Instance.CloseUnLoadStarSysUI();
 
-                OnArrivedAtDestination();//? should we do other stuff here that fleet controller runs? 
+                OnArrivedAtDestination();//? should we do other stuff here that fleet ourUIFleetController runs? 
+            }
+            else if (thisFleetController.FleetData.Destination == hitGO.gameObject)
+            {
+                FleetUIManager.Instance.ClickCancelDestinationButton();
+                FleetUIManager.Instance.CloseUnLoadFleetUI();
+                StarSysUIManager.Instance.CloseUnLoadStarSysUI();
             }
 
-            if (fleetController.FleetData.CivEnum != this.FleetData.CivEnum)
+            if (thisFleetController.FleetData.CivEnum != hitGO.GetComponent<FleetController>().FleetData.CivEnum)
             {
-                DiplomacyManager.Instance.DoDiplomacy(this.fleetData.OurCivController, fleetController.fleetData.OurCivController, hitGO);
+                DiplomacyManager.Instance.DoDiplomacy(this.fleetData.OurCivController, hitGO.GetComponent<FleetController>().FleetData.OurCivController, hitGO);
                 this.FleetState = FleetState.FleetDipolmacy;
             }
             else if (GameController.Instance.AreWeLocalPlayer(this.fleetData.CivEnum))
             {
-                if (this.FleetData.ShipsList.Count >= fleetController.FleetData.ShipsList.Count)
+                if (this.FleetData.ShipsList.Count >= thisFleetController.FleetData.ShipsList.Count)
                 {
-                    //this.FleetData.FleetGroupControllers.Add(fleetController);
+                    //this.FleetData.FleetGroupControllers.Add(thisFleetController);
                     //this.FleetState = FleetState.FleetsInRendezvous;
                     //ToDo: manage to fleets in conjoined for ship exchange and what to do with original fleets, two or more
                 }

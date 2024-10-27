@@ -39,13 +39,17 @@ public class DiplomacyController : MonoBehaviour
         this.DiplomacyData.DiplomacyPointsOfCivs = (int)DiplomacyStatusEnum.Neutral;
         if (GameController.Instance.AreWeLocalPlayer(civPartyOne.CivData.CivEnum)) // temp to fed
         {
+            if(hitGO.GetComponent<FleetController>() != null)
             civPartyTwo.ResetSprites(hitGO);
+            if (hitGO.GetComponent<StarSysController>() != null )
             civPartyTwo.ResetNames(hitGO);
         }
         else if (GameController.Instance.AreWeLocalPlayer(civPartyTwo.CivData.CivEnum))
         {
-            civPartyOne.ResetSprites(hitGO);
-            civPartyOne.ResetNames(hitGO);
+            if (hitGO.GetComponent<FleetController>() != null)
+                civPartyOne.ResetSprites(hitGO);
+            if (hitGO.GetComponent<StarSysController>() != null)
+                civPartyOne.ResetNames(hitGO);
         }
         DiplomacyUIManager.Instance.diplomacyUIRoot.SetActive(true);
     }

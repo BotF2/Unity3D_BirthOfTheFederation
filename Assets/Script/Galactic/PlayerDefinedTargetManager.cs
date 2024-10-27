@@ -79,7 +79,7 @@ namespace Assets.Core
             //        }
             //    }
             //}
-            DropLineFixed ourDropLine = playerDefinedTargetGO.GetComponentInChildren<DropLineFixed>();
+            MapLineFixed ourDropLine = playerDefinedTargetGO.GetComponentInChildren<MapLineFixed>();
 
             ourDropLine.GetLineRenderer();
 

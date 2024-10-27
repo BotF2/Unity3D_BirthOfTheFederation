@@ -14,7 +14,7 @@ namespace Assets.Core
     public class GameEventListener : MonoBehaviour
     {
         //public TrekRandomEventSO trekEventSO;
-        public UnityEvent response; // link method calls in editor by setting to gameobject
+        public UnityEvent response; // link method calls in editor by setting to gameobject, A Unity Event
 
         private void Start()
         {

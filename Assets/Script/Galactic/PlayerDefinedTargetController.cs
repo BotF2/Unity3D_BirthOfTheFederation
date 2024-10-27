@@ -37,10 +37,10 @@ public class PlayerDefinedTargetController : MonoBehaviour
             //        FleetUIManager.Instance.LoadFleetUI(hitObject);
             //    }
             //}
-            //else if (FleetUIManager.Instance.MouseClickSetsDestination == true && this != FleetUIManager.Instance.controller)
+            //else if (FleetUIManager.Instance.MouseClickSetsDestination == true && this != FleetUIManager.Instance.ourUIFleetController)
             //{
             //    FleetUIManager.Instance.SetAsDestination(hitObject);
-            //    this.OurMapTargetMarkerCanvas.gameObject.SetActive(true);
+            //    this.CanvasDestination.gameObject.SetActive(true);
             //    //MousePointerChanger.Instance.ResetCursor();
             //    //MousePointerChanger.Instance.HaveGalaxyMapCursor = false;
             //}

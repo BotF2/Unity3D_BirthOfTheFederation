@@ -52,7 +52,7 @@ namespace Assets.Core
         //}
         public void ResetSprites(GameObject hitGO)
         {
-            var gOs = hitGO.GetComponentsInChildren<RectTransform>(true);
+            var gOs = hitGO.GetComponentsInChildren<RectTransform>(true);//??
             foreach (var gO in gOs)
             {
                 gO.gameObject.SetActive(true);
@@ -64,6 +64,8 @@ namespace Assets.Core
                 {
                     if(oneRenderer.name == "InsigniaUnknown")
                         oneRenderer.gameObject.SetActive(false);
+                    else if (oneRenderer.name == "OwnerInsignia")
+                        oneRenderer.gameObject.SetActive(true);
                     //if (oneRenderer.name == "StarSprite")
                     //    oneRenderer.sprite = hitGO.GetComponent<StarSysController>().StarSysData.StarSprit;
                 }

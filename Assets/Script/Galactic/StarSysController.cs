@@ -15,7 +15,7 @@ namespace Assets.Core
         private StarSysData starSysData;
         public StarSysData StarSysData { get { return starSysData; } set { starSysData = value; } }
         private Camera galaxyEventCamera;
-        public Canvas OurMapTargetMarkerCanvas;
+        //public Canvas CanvasDestination;
         [SerializeField]
         private Canvas canvasToolTip;
         [SerializeField]
@@ -32,7 +32,7 @@ namespace Assets.Core
         {
             galaxyEventCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>() as Camera;
             canvasToolTip.worldCamera = galaxyEventCamera;
-            OurMapTargetMarkerCanvas.gameObject.SetActive(false);
+           // CanvasDestination.gameObject.SetActive(false);
             var CanvasGO = GameObject.Find("CanvasStarSysUI");
             canvasStarSysUI = CanvasGO.GetComponent<Canvas>();
             canvasStarSysUI.worldCamera = galaxyEventCamera;
@@ -58,28 +58,28 @@ namespace Assets.Core
             {
                 GameObject hitObject = hit.collider.gameObject;
                 // what a Star System Controller does with a hit
-                if (GameController.Instance.AreWeLocalPlayer(this.StarSysData.CurrentOwner))
+                if (GameController.Instance.AreWeLocalPlayer(this.StarSysData.CurrentOwner)) // this 'StarSystem' is a local player galaxy object hit
                 {
-                    if (FleetUIManager.Instance.MouseClickSetsDestination == false)
+                    if (FleetUIManager.Instance.MouseClickSetsDestination == false) // not while FleetUIManager was looking for a destination
                     {
                         StarSysUIManager.Instance.LoadStarSysUI(gameObject);
                     }
                     else
                     {
-                        SetNewDestination(hitObject);
+                        NewDestination(hitObject); // one of our systems hit as destination
                     }
                 }
                 else if (FleetUIManager.Instance.MouseClickSetsDestination == true)
                 {
-                    SetNewDestination(hitObject);
+                    NewDestination(hitObject);
                 }
             }
         }
-        private void SetNewDestination(GameObject hitObject) 
+        private void NewDestination(GameObject hitObject) 
         {
-            FleetUIManager.Instance.TurnOffCurrentDestination();
-            FleetUIManager.Instance.SetAsDestination(hitObject);
-            this.OurMapTargetMarkerCanvas.gameObject.SetActive(true);
+            bool isFleet = false;
+            FleetUIManager.Instance.SetAsDestination(hitObject, isFleet);
+            //this.CanvasDestination.gameObject.SetActive(true);
         }
 
         public void OnEnable()

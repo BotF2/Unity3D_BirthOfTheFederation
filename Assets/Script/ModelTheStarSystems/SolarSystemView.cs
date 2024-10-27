@@ -111,19 +111,19 @@ namespace Assets.Core
         //                gameObject.name = "Star";
         //                switch (starColor)
         //                {
-        //                    case "Blue":
+        //                    case "BlueStar":
         //                        renderer.sprite = starSprites[0];
         //                        break;
-        //                    case "Orange":
+        //                    case "OrangeStar":
         //                        renderer.sprite = starSprites[1];
         //                        break;
-        //                    case "Red":
+        //                    case "RedStar":
         //                        renderer.sprite = starSprites[2];
         //                        break;
-        //                    case "White":
+        //                    case "WhiteStar":
         //                        renderer.sprite = starSprites[3];
         //                        break;
-        //                    case "Yellow":
+        //                    case "YellowStar":
         //                        renderer.sprite = starSprites[4];
         //                        break;
         //                    default:

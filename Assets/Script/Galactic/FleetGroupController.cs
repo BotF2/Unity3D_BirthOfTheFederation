@@ -18,7 +18,7 @@ public class FleetGroupController : MonoBehaviour
     private float fudgeFactor = 1f;
     private float dropOutOfWarpDistance = 0.5f; // stop, but should be destination collider?
     private Rigidbody rb;
-    public DropLineMovable dropLine;
+    public MapLineMovable dropLine;
     GameObject fleetGroupDropdownGO;
     public GameObject destinationDropdownGO; // UI dropdown
     public TMP_Dropdown destinationDropdown;
@@ -92,7 +92,7 @@ public class FleetGroupController : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        //if (FleetData.CivEnum != CivEnum.ZZUNINHABITED10)
+        //if (FleetData.CivEnum != CivEnum.ZZUNINHABITED1)
         //{
         //    if (FleetData.Destination != null && FleetData.CurrentWarpFactor > 0f)
         //    {
@@ -241,15 +241,15 @@ public class FleetGroupController : MonoBehaviour
     //    FleetData.CurrentWarpFactor += delta;
     //    FleetData.CurrentWarpFactor += delta;
     //}
-    //public void AddFleetController(FleetController controller) // do we need this?
+    //public void AddFleetController(FleetController ourUIFleetController) // do we need this?
     //{
-    //    if (!FleetManager.Instance.ManagersFleetControllerList.Contains(controller))
-    //        FleetManager.Instance.ManagersFleetControllerList.Add(controller);
+    //    if (!FleetManager.Instance.ManagersFleetControllerList.Contains(ourUIFleetController))
+    //        FleetManager.Instance.ManagersFleetControllerList.Add(ourUIFleetController);
     //}
-    //public void RemoveFleetController(FleetController controller)
+    //public void RemoveFleetController(FleetController ourUIFleetController)
     //{
-    //    if (FleetManager.Instance.ManagersFleetControllerList.Contains(controller))
-    //        FleetManager.Instance.ManagersFleetControllerList.Remove(controller);
+    //    if (FleetManager.Instance.ManagersFleetControllerList.Contains(ourUIFleetController))
+    //        FleetManager.Instance.ManagersFleetControllerList.Remove(ourUIFleetController);
     //}
 }
 

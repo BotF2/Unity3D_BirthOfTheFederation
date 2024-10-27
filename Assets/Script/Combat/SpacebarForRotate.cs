@@ -16,7 +16,7 @@ namespace Assets.Core
         private bool reset = true;
         void Start()
         {
-            spacebarRotate.text = "Red Alert";
+            spacebarRotate.text = "RedStar Alert";
         }
         void Update()
         {
@@ -30,11 +30,11 @@ namespace Assets.Core
                 }
                 else if (dealySeconds > 3)
                 {
-                    spacebarRotate.text = "Red Alert";
+                    spacebarRotate.text = "RedStar Alert";
                 }
                 else
                 {
-                    spacebarRotate.text = "Red Alert";
+                    spacebarRotate.text = "RedStar Alert";
                     reset = false;
                 }
             }

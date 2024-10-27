@@ -153,15 +153,15 @@ namespace Assets.Core
                             //oneRenderer.sprite.GetComponent<MeshFilter>().sharedMesh.RecalculateBounds();
                         }
                         else if (oneRenderer.name == "StarSprite")
-                            if (sysData.StarType != StarSystemType.Yellow && sysData.StarType != StarSystemType.Red
-                                    && sysData.StarType != StarSystemType.White && sysData.StarType != StarSystemType.Orange && sysData.StarType != StarSystemType.Blue)
+                            if (sysData.StarType != GalaxyObjectType.YellowStar && sysData.StarType != GalaxyObjectType.RedStar
+                                    && sysData.StarType != GalaxyObjectType.WhiteStar && sysData.StarType != GalaxyObjectType.OrangeStar && sysData.StarType != GalaxyObjectType.BlueStar)
                                 oneRenderer.sprite = unknowSystem;
                             else
                                 oneRenderer.sprite = sysData.StarSprit;
                     }
                 }
 
-                DropLineFixed ourDropLine = starSystemNewGameOb.GetComponentInChildren<DropLineFixed>();
+                MapLineFixed ourDropLine = starSystemNewGameOb.GetComponentInChildren<MapLineFixed>();
 
                 ourDropLine.GetLineRenderer();
 
@@ -183,16 +183,6 @@ namespace Assets.Core
                 List<StarSysController> listStarSysCon = new List<StarSysController> { starSysConroller };
                 CivManager.Instance.AddSystemToOwnSystemListAndHomeSys(listStarSysCon);
                 var canvases = starSystemNewGameOb.GetComponentsInChildren<Canvas>();
-                foreach (var aCanvas in canvases)
-                {
-                    if (aCanvas != null)
-                    {
-                        if (aCanvas.name == "CanvasSelectionMarker")
-                        {
-                            starSysConroller.OurMapTargetMarkerCanvas = aCanvas;
-                        }
-                    }
-                }
                 starSystemCounter++;
                 if (starSystemCounter == CivManager.Instance.CivControllersInGame.Count)
                 {

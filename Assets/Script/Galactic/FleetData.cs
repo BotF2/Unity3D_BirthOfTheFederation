@@ -19,6 +19,7 @@ namespace Assets.Core
         public string CivLongName;
         public string CivShortName;
         public string Name;
+        public int asDestinationInt;
         private string description;
         public float yAboveGalaxyImage; // used in FleetManager
         public FleetData(FleetSO fleetSO)

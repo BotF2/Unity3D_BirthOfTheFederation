@@ -12,6 +12,8 @@ public class GalaxyCameraDragMoveZoom : MonoBehaviour //, IPointerClickHandler
     [SerializeField]
     private Camera galaxyCam;
     [SerializeField]
+    private GameObject cameraHolder;
+    [SerializeField]
     private float panSpeed = 400f;
     [SerializeField]
     private float zoomSpeed = 400f;
@@ -93,13 +95,27 @@ public class GalaxyCameraDragMoveZoom : MonoBehaviour //, IPointerClickHandler
         }
         if (Input.GetMouseButton(1))
         {
-            var rotation = transform.eulerAngles.x;
-            float delta = (rotation += (Input.mousePosition.y - lastMousePosition.y)/ mouseSpeed);
-           //delta = Mathf.Clamp(delta, -25, 32);
-            transform.eulerAngles = new Vector3(delta, transform.eulerAngles.y, transform.eulerAngles.z);
-           
-            lastMousePosition.y = Input.mousePosition.y;
+            var rotation = cameraHolder.transform.eulerAngles.x;
+            //if(rotation != 0f)
+            //{
+            //    if (rotation > 60)
+            //        cameraHolder.transform.eulerAngles = new Vector3(60f, transform.eulerAngles.y, transform.eulerAngles.z);
+            //    else if (rotation < -45)
+            //        cameraHolder.transform.eulerAngles = new Vector3(-45f, transform.eulerAngles.y, transform.eulerAngles.z);
+            //    else
+            //    {
+            //        float delta = (rotation += (Input.mousePosition.y - lastMousePosition.y) / mouseSpeed);
+            //        cameraHolder.transform.eulerAngles = new Vector3(delta, transform.eulerAngles.y, transform.eulerAngles.z);
+            //    }
+            //}
+            float delta = (rotation += (Input.mousePosition.y - lastMousePosition.y) / mouseSpeed);
+            cameraHolder.transform.eulerAngles = new Vector3(delta, transform.eulerAngles.y, transform.eulerAngles.z);
 
+            //lastMousePosition.y = Input.mousePosition.y;
+            //if (cameraHolder.transform.rotation.x > 60f)
+            //    cameraHolder.transform.eulerAngles = new Vector3(60f, transform.eulerAngles.y, transform.eulerAngles.z);
+            //else if (cameraHolder.transform.rotation.x < -45f)
+            //    cameraHolder.transform.eulerAngles = new Vector3(-45f, transform.eulerAngles.y, transform.eulerAngles.z);
         }
         //var rotation = transform.eulerAngles.x;
         //float scroll = Input.GetAxis("Mouse ScrollWheel");

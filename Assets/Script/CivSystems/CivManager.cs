@@ -189,7 +189,7 @@ namespace Assets.Core
                 civData.CivEnum = civSO.CivEnum;
                 civData.CivLongName = civSO.CivLongName;
                 civData.CivShortName = civSO.CivShortName;
-                civData.WarlikeToPeaseful = (WarLike)civSO.WarlikeToPeaseful; // a scale from most worklike 0 to neutral 3 and most peasful at 5
+                civData.WarlikeToPeaseful = (WarLikeEnum)civSO.WarlikeToPeaseful; // a scale from most worklike 0 to neutral 3 and most peasful at 5
                 civData.TraitOne = civSO.TraitOne;
                 civData.TraitTwo = civSO.TraitTwo;
                 civData.TraitThree = civSO.TraitThree;  
