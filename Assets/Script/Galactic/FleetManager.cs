@@ -51,9 +51,6 @@ namespace Assets.Core
                 Instance = this;
                 DontDestroyOnLoad(gameObject);
             }
-        }
-        private void Update()
-        { 
 
         }
 

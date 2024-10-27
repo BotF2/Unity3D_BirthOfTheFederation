@@ -422,9 +422,9 @@ namespace FischlWorks_FogWar
         {
 
             fogPlane.transform.position = new Vector3(
-                levelMidPoint.position.x, // + (galacticCamHolder.transform.position.x / 5), // correct for paralax from perspective camera moving on x by moving the fog layer too
+                levelMidPoint.position.x, 
                 levelMidPoint.position.y + fogPlaneHeight,
-                levelMidPoint.position.z); // + ((galacticCamHolder.transform.position.z + 820)/3));
+                levelMidPoint.position.z); 
             // The Camera holder is offset to a location of -1100 in the z axis and on a range of movment from -1400 to +500, -820 corresponds to galactic center on z
             //ToDo: get camera to start on home world of local player at same relative position as if Fed
 
