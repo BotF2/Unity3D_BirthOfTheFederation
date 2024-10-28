@@ -6,13 +6,12 @@ using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using Unity.VisualScripting;
+using DG.Tweening;
 
 public class GalaxyCameraDragMoveZoom : MonoBehaviour //, IPointerClickHandler
 {
     [SerializeField]
     private Camera galaxyCam;
-    [SerializeField]
-    private GameObject cameraHolder;
     [SerializeField]
     private float panSpeed = 400f;
     [SerializeField]
@@ -90,38 +89,24 @@ public class GalaxyCameraDragMoveZoom : MonoBehaviour //, IPointerClickHandler
     {
         if (Input.GetMouseButtonDown(1))
         {
-            
             lastMousePosition.y = Input.mousePosition.y;
         }
         if (Input.GetMouseButton(1))
         {
-            var rotation = cameraHolder.transform.eulerAngles.x;
-            //if(rotation != 0f)
-            //{
-            //    if (rotation > 60)
-            //        cameraHolder.transform.eulerAngles = new Vector3(60f, transform.eulerAngles.y, transform.eulerAngles.z);
-            //    else if (rotation < -45)
-            //        cameraHolder.transform.eulerAngles = new Vector3(-45f, transform.eulerAngles.y, transform.eulerAngles.z);
-            //    else
-            //    {
-            //        float delta = (rotation += (Input.mousePosition.y - lastMousePosition.y) / mouseSpeed);
-            //        cameraHolder.transform.eulerAngles = new Vector3(delta, transform.eulerAngles.y, transform.eulerAngles.z);
-            //    }
-            //}
-            float delta = (rotation += (Input.mousePosition.y - lastMousePosition.y) / mouseSpeed);
-            cameraHolder.transform.eulerAngles = new Vector3(delta, transform.eulerAngles.y, transform.eulerAngles.z);
 
-            //lastMousePosition.y = Input.mousePosition.y;
-            //if (cameraHolder.transform.rotation.x > 60f)
-            //    cameraHolder.transform.eulerAngles = new Vector3(60f, transform.eulerAngles.y, transform.eulerAngles.z);
-            //else if (cameraHolder.transform.rotation.x < -45f)
-            //    cameraHolder.transform.eulerAngles = new Vector3(-45f, transform.eulerAngles.y, transform.eulerAngles.z);
+            var rotation = transform.eulerAngles.x;
+            float delta = rotation;
+            if ((Input.mousePosition.y - lastMousePosition.y) != 0f)
+            {
+                delta = rotation += (Input.mousePosition.y - lastMousePosition.y) / (mouseSpeed * 10f);
+            }
+            transform.eulerAngles = new Vector3(delta, transform.eulerAngles.y, transform.eulerAngles.z);
+
+            lastMousePosition = Input.mousePosition;
+            Vector3 currentRotation = transform.eulerAngles;
+            float clampX = Mathf.Clamp((currentRotation.x >180)? currentRotation.x -360: currentRotation.x, -40, 50);
+            transform.eulerAngles = new Vector3(clampX, currentRotation.y, currentRotation.z);
         }
-        //var rotation = transform.eulerAngles.x;
-        //float scroll = Input.GetAxis("Mouse ScrollWheel");
-        //pos.y += scroll * scrollSpeed * Time.deltaTime * 300f;
-        //float xAngle = (pos.y - 300f) * 0.006f; 
-        //transform.eulerAngles = new Vector3(xAngle, transform.eulerAngles.y, transform.eulerAngles.z);
     }
 
     // get keyboard inputs

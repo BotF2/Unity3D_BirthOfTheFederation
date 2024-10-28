@@ -37,8 +37,8 @@ namespace Assets.Core
         private GameObject fleetGroupPrefab;
         [SerializeField]
         private Sprite unknownfleet;
-        [SerializeField]
-        private GalaxyMapOurEvent galaxyMapOurEvent;
+        //[SerializeField]
+        //private GalaxyMapOurEvent galaxyMapOurEvent;
         [SerializeField]
         private int destinationInt = 1;
         [SerializeField]
@@ -116,7 +116,7 @@ namespace Assets.Core
                 fleetController.FleetData.asDestinationInt = GetUniqueIntAsDestination(destinationInt); // not using this yet, what might we use Events for here?
                 fleetController.Name = fleetData.Name;
                 fleetController.FleetState = FleetState.FleetStationary;
-                fleetController.GalaxyMapDestinationEvent = galaxyMapOurEvent;
+                //fleetController.GalaxyMapDestinationEvent = galaxyMapOurEvent;
                 ManagersFleetControllerList.Add(fleetController);
                 fleetNewGameOb.transform.Translate(new Vector3(fleetData.Position.x + 40f,  fleetData.Position.y + 10f, fleetData.Position.z));
                 fleetNewGameOb.transform.SetParent(galaxyCenter.transform, true);

@@ -29,9 +29,8 @@ namespace Assets.Core
         private float warpFudgeFactor = 10f;
         private Rigidbody rb;
         public MapLineMovable DropLine;
-        [Header("GalaxyMapDestinationEvent")]
-        public GalaxyMapOurEvent GalaxyMapDestinationEvent;
-        //public Canvas CanvasDestination;
+        //[Header("GalaxyMapDestinationEvent")]
+        //public GalaxyMapOurEvent GalaxyMapDestinationEvent;
         [SerializeField]
         private List<string> shipDropdownOptions;
         private Camera galaxyEventCamera;
@@ -42,9 +41,9 @@ namespace Assets.Core
         {
             rb = GetComponent<Rigidbody>();
             rb.isKinematic = true;
-            GalaxyMapOurEvent.current.onSetDestination += OnSetDestination; // not really for destination, doing that with onMousDown on fleet...
-            GalaxyMapOurEvent.current.onRemoveDestination += OnRemoveDestination; // We may find a good way to use this C# Event system
-            //CanvasDestination.gameObject.SetActive(false);
+            //GalaxyMapOurEvent.current.onSetDestination += OnSetDestination; // not really for destination, doing that with onMousDown on fleet...
+            //GalaxyMapOurEvent.current.onRemoveDestination += OnRemoveDestination; // We may find a good way to use this C# Event system
+        
             galaxyEventCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
             var CanvasGO = GameObject.Find("CanvasFleetUI");
             FleetUICanvas = CanvasGO.GetComponent<Canvas>();
