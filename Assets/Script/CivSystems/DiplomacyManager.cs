@@ -4,6 +4,7 @@ using UnityEngine;
 using Assets.Core;
 using System;
 
+
 public enum DiplomacyStatusEnum // between two civs held in the DiplomacyData
 {
     TotalWar = 0,
@@ -56,58 +57,80 @@ public class DiplomacyManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
     }
-    public void InstantiateDipolmacy(CivController civPartyOne, CivController civPartyTwo, GameObject hitGO)
+    public void InstantiateDipolmacyController(CivController civPartyOne, CivController civPartyTwo, GameObject hitGO)
     {
+        // instantiation is frist contact
         GameObject DiplomacyNewGameOb = (GameObject)Instantiate(diplomacyPrefab, new Vector3(0, 0, 0),
                 Quaternion.identity);
         var diplomacyController = DiplomacyNewGameOb.GetComponent<DiplomacyController>();
+        diplomacyController.areWePlaceholder = false;
         DiplomacyData ourDiplomacyData = new DiplomacyData();
         diplomacyController.DiplomacyData = ourDiplomacyData;
         diplomacyController.DiplomacyData.CivOne = civPartyOne;
         diplomacyController.DiplomacyData.CivTwo = civPartyTwo;
+        // ToDo: use traits to set diplomacy relation out of the gate and for AI actions
+        diplomacyController.DiplomacyData.DiplomacyEnumOfCivs = DiplomacyStatusEnum.Neutral;
+        diplomacyController.DiplomacyData.DiplomacyPointsOfCivs = 50;
         ManagersDiplomacyControllerList.Add(diplomacyController);
         diplomacyController.FirstContact(civPartyOne, civPartyTwo, hitGO);
         if (GameController.Instance.AreWeLocalPlayer(civPartyOne.CivData.CivEnum) ||
             GameController.Instance.AreWeLocalPlayer(civPartyTwo.CivData.CivEnum))
             DiplomacyUIManager.Instance.LoadDiplomacyUI(diplomacyController);
+        //else if //*********check for human non-local palyers needing to do diplomacy in their UI ()
+        //{
+        //    //do Remote human player diplomacy
+        //}
         else DoDiplomacyForAI(civPartyOne, civPartyTwo, hitGO);
-        
+
     }
     private void DoDiplomacyForAI(CivController civOne, CivController civTwo, GameObject weHitGO)
     {
         //Do some diplomacy without a UI by/for either civ
     }
-    public void DoDiplomacy(CivController civPartyOne, CivController civPartyTwo, GameObject hitGO)
+    public void FistContactDiplomacy(CivController civPartyOne, CivController civPartyTwo, GameObject hitGO)
     {
-        if (ManagersDiplomacyControllerList.Count == 0) 
+        if (!FoundADiplomacyController(civPartyOne, civPartyTwo, hitGO))
         {
             //first contact of game
-            InstantiateDipolmacy(civPartyOne, civPartyTwo, hitGO);
+            InstantiateDipolmacyController(civPartyOne, civPartyTwo, hitGO);
         }
+    }
+    private bool FoundADiplomacyController(CivController civPartyOne, CivController civPartyTwo, GameObject hitGO)
+    {
+        bool found = false;
         foreach (var diplomacyController in ManagersDiplomacyControllerList)
         {
             if (diplomacyController != null)
             {
                 if (diplomacyController.DiplomacyData.CivOne == civPartyOne && diplomacyController.DiplomacyData.CivTwo == civPartyTwo || diplomacyController.DiplomacyData.CivTwo == civPartyOne && diplomacyController.DiplomacyData.CivOne == civPartyTwo)
                 {
-                    diplomacyController.NextDiplomaticContact(diplomacyController);
+                    found = true;
                     break;
                 }
-                else
-                {
-                    // This is frist contact
-                    InstantiateDipolmacy(civPartyOne, civPartyTwo, hitGO);
-                    break;
-                }
-
             }
-            else
-            {
-                // This is frist contact
-                InstantiateDipolmacy(civPartyOne, civPartyTwo, hitGO);
-            }
-            break;
         }
+        return found;
+    }
+    public DiplomacyController GetTheDiplomacyController(CivController civOne, CivController civTwo)
+    {
+        DiplomacyController diplomacyController = new DiplomacyController(true); // true, we are placeholder
+        if (ManagersDiplomacyControllerList.Count == 0) 
+        { 
+            return diplomacyController;
+        }
+        else
+        {
+            foreach (var aDiplomacyController in ManagersDiplomacyControllerList)
+            {
+                if ((aDiplomacyController.DiplomacyData.CivOne == civOne && aDiplomacyController.DiplomacyData.CivTwo) || (aDiplomacyController.DiplomacyData.CivTwo == civTwo && aDiplomacyController.DiplomacyData.CivOne))
+                { 
+                    diplomacyController = aDiplomacyController;
+                }
+            }
+        }
+        return diplomacyController;
+        
+
     }
 }
     

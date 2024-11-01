@@ -9,6 +9,7 @@ public class DiplomacyController : MonoBehaviour
 {
     private DiplomacyData diplomacyData; // holds civOne and two and diplomacy enum
     public DiplomacyData DiplomacyData { get { return diplomacyData; } set { diplomacyData = value; } }
+    public bool areWePlaceholder = false;
     private List<string> diplomaticTransmissions;
     private string declareWar = "The A declares war on the B.";
     private string demandCreditsAvoidWar = "The A demand X credits to avoid a state of war with the B.";
@@ -19,6 +20,14 @@ public class DiplomacyController : MonoBehaviour
     [SerializeField]
     public Canvas DiplomacyUICanvas { get; private set; }
 
+    public DiplomacyController(bool areWePlaceholder)
+    {
+        this.areWePlaceholder = areWePlaceholder;
+        //DiplomacyData ourDiplomacyData = new DiplomacyData();
+        //this.DiplomacyData = ourDiplomacyData;
+        //this.DiplomacyData.CivOne = gameObject.AddComponent<CivController>();
+        //this.DiplomacyData.CivTwo = gameObject.AddComponent<CivController>();
+    }
 
     private void Start()
     {
@@ -51,7 +60,7 @@ public class DiplomacyController : MonoBehaviour
             if (hitGO.GetComponent<StarSysController>() != null)
                 civPartyOne.ResetNames(hitGO);
         }
-        DiplomacyUIManager.Instance.diplomacyUIRoot.SetActive(true);
+        //DiplomacyUIManager.Instance.diplomacyUIRoot.SetActive(true);
     }
     public void NextDiplomaticContact(DiplomacyController controller)
     {

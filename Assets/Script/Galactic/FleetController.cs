@@ -29,6 +29,7 @@ namespace Assets.Core
         private float warpFudgeFactor = 10f;
         private Rigidbody rb;
         public MapLineMovable DropLine;
+        public MapLineMovable DestinationLine;
         //[Header("GalaxyMapDestinationEvent")]
         //public GalaxyMapOurEvent GalaxyMapDestinationEvent;
         [SerializeField]
@@ -107,7 +108,8 @@ namespace Assets.Core
                 if (FleetData.Destination != null && FleetData.CurrentWarpFactor > 0f)
                 {
                     FleetState = FleetState.FleetAtWarp;
-                    MoveToDesitinationGO(); 
+                    MoveToDesitinationGO();
+                    DrawDestinationLine();
                 }
             }
         }
@@ -147,7 +149,7 @@ namespace Assets.Core
                 // not implemented, looking for a good use case
             }
         }
-        private void OnRemoveDestination(GameObject destination, int destinationInt)
+        private void OnRemoveDestination(GameObject destination, int destinationInt) // for the C# event system
         {
             if (destination == this.FleetData.Destination)
             {
@@ -176,13 +178,13 @@ namespace Assets.Core
             FleetController hitFleetController = collider.gameObject.GetComponent<FleetController>();// the collider is on the hit gameObject this fleet hit
             if (hitFleetController != null) // it is a FleetController and not a StarSystem or other with collider                                                                                                                                                    leetController
             {
-                OnFleetEncounteredFleet(this, collider.gameObject);
+                OnFleetEncounteredFleet(collider.gameObject);
                 Debug.Log(this.gameObject.name + " fleet Controller collided with " + collider.gameObject.name);
             }
             StarSysController hitStarSysController = collider.gameObject.GetComponent<StarSysController>();
             if (hitStarSysController != null)
             {
-                OnFleetEncounteredStarSys(hitStarSysController, collider.gameObject); // hitStarSysController and its GO
+                OnFleetEncounteredStarSys(collider.gameObject); // hitStarSysController and its GO
             }
             PlayerDefinedTargetController playerTargetController = collider.gameObject.GetComponent<PlayerDefinedTargetController>();
             if (playerTargetController != null)
@@ -190,40 +192,53 @@ namespace Assets.Core
                 OnFleetEncounteredPlayerDefinedTarget(playerTargetController);
             }
         }
-        public void OnFleetEncounteredFleet(FleetController thisFleetController, GameObject hitGO)
+        public void OnFleetEncounteredFleet(GameObject hitGO)
         {
-            // check if we are at war, combat
-
-            // is this fleet we hit our destination
-            if (thisFleetController.gameObject == hitGO.GetComponent<FleetController>().FleetData.Destination)
+            CivController hitFleetCivController = hitGO.GetComponent<FleetController>().FleetData.OurCivController;
+            if (this.FleetData.CivEnum != hitGO.GetComponent<FleetController>().FleetData.CivEnum)
             {
-                FleetUIManager.Instance.ClickCancelDestinationButton();
-                FleetUIManager.Instance.CloseUnLoadFleetUI();
-                StarSysUIManager.Instance.CloseUnLoadStarSysUI();
-
-                OnArrivedAtDestination();//? should we do other stuff here that fleet ourUIFleetController runs? 
+                DiplomacyController diplomacyController = DiplomacyManager.Instance.GetTheDiplomacyController(this.FleetData.OurCivController, hitFleetCivController);
+                if (diplomacyController.areWePlaceholder)
+                {
+                    // FistContactDiplomacy for both local palyer using the UI and for non local human players using their UI and for AI without a UI
+                    DiplomacyManager.Instance.FistContactDiplomacy(this.FleetData.OurCivController, hitFleetCivController, hitGO);
+                    this.FleetState = FleetState.FleetDipolmacy;
+                }
+                else if (!diplomacyController.areWePlaceholder && diplomacyController.DiplomacyData.DiplomacyEnumOfCivs == DiplomacyStatusEnum.TotalWar)
+                {
+                    //**** Do Combat **
+                    //Do this in combat code, TimeManager.Instance.PauseTime();
+                }
+                // is this fleet we hit our destination
+                if (this.FleetData.Destination == hitGO.gameObject)
+                {
+                    FleetUIManager.Instance.ClickCancelDestinationButton();
+                    FleetUIManager.Instance.CloseUnLoadFleetUI();
+                    StarSysUIManager.Instance.CloseUnLoadStarSysUI();
+                    OnArrivedAtDestination();//? should we do other stuff here for FleetController at destination?
+                }
             }
-            else if (thisFleetController.FleetData.Destination == hitGO.gameObject)
+            else if (GameController.Instance.AreWeLocalPlayer(this.FleetData.CivEnum))
             {
-                FleetUIManager.Instance.ClickCancelDestinationButton();
-                FleetUIManager.Instance.CloseUnLoadFleetUI();
-                StarSysUIManager.Instance.CloseUnLoadStarSysUI();
-            }
-
-            if (thisFleetController.FleetData.CivEnum != hitGO.GetComponent<FleetController>().FleetData.CivEnum)
-            {
-                DiplomacyManager.Instance.DoDiplomacy(this.fleetData.OurCivController, hitGO.GetComponent<FleetController>().FleetData.OurCivController, hitGO);
-                this.FleetState = FleetState.FleetDipolmacy;
-            }
-            else if (GameController.Instance.AreWeLocalPlayer(this.fleetData.CivEnum))
-            {
-                if (this.FleetData.ShipsList.Count >= thisFleetController.FleetData.ShipsList.Count)
+                // local player fleet hits another local player fleet, manage ships?
+                if (this.FleetData.ShipsList.Count >= this.FleetData.ShipsList.Count)
                 {
                     //this.FleetData.FleetGroupControllers.Add(thisFleetController);
                     //this.FleetState = FleetState.FleetsInRendezvous;
                     //ToDo: manage to fleets in conjoined for ship exchange and what to do with original fleets, two or more
                 }
             }
+
+            /// I am thinking that checking the hitGO for reaching the Destination is redundant. If both 
+            /// the controller of the two in a hit are checked above then do not check again.
+            //else if (thisFleetController.gameObject == hitGO.GetComponent<FleetController>().FleetData.Destination)
+            //{
+            //    FleetUIManager.Instance.ClickCancelDestinationButton();
+            //    FleetUIManager.Instance.CloseUnLoadFleetUI();
+            //    StarSysUIManager.Instance.CloseUnLoadStarSysUI();   
+            //}
+
+            // old checklist
             //FleetManager.Instance.
             //1) you get the FleetController of the new fleet GO
             //2) you ask your factionOwner (CivManager) if you already know the civ/faction of the new fleet
@@ -231,28 +246,49 @@ namespace Assets.Core
             //4) ?combat
             //5) ?move ships in and out of fleets
         }
-        public void OnFleetEncounteredStarSys(StarSysController starSysController, GameObject hitGO)
+        public void OnFleetEncounteredStarSys(GameObject hitGO)
         {
-            if (starSysController.gameObject == this.FleetData.Destination)
-            {
-                FleetUIManager.Instance.ClickCancelDestinationButton();
-                FleetUIManager.Instance.CloseUnLoadFleetUI();
-                StarSysUIManager.Instance.CloseUnLoadStarSysUI();
-                OnArrivedAtDestination();
             
-                /// use fleet enum state
-                //this.FleetData.Destination = null;
-                //this.FleetData.war
-                //FleetState = FleetState.FleetInSystem;
-            }
-            int firstUninhabited = (int)CivEnum.ZZUNINHABITED1;
-            if (starSysController.StarSysData.CurrentOwner != this.FleetData.CivEnum && (int)starSysController.StarSysData.CurrentCivController.CivData.CivEnum < firstUninhabited)
+            CivController hitSysCivController = hitGO.GetComponent<StarSysController>().StarSysData.CurrentCivController;
+            CivEnum hitCivEnum = hitGO.GetComponent<StarSysController>().StarSysData.CurrentOwner;
+            if (this.FleetData.CivEnum != hitCivEnum)
             {
-                DiplomacyManager.Instance.DoDiplomacy(this.fleetData.OurCivController, starSysController.StarSysData.CurrentCivController, hitGO);
+                DiplomacyController diplomacyController = DiplomacyManager.Instance.GetTheDiplomacyController(this.FleetData.OurCivController, hitSysCivController);
+                if (diplomacyController.areWePlaceholder)
+                {
+                    // FistContactDiplomacy for both local palyer using the UI and for non local human players using their UI and for AI without a UI
+                    DiplomacyManager.Instance.FistContactDiplomacy(this.FleetData.OurCivController, hitSysCivController, hitGO);
+                    this.FleetState = FleetState.FleetDipolmacy;
+                }
+                else if (!diplomacyController.areWePlaceholder && diplomacyController.DiplomacyData.DiplomacyEnumOfCivs == DiplomacyStatusEnum.TotalWar)
+                {
+                    // is it do combat or do we get an option to blockaid or what???
+                    //**** Do Combat **
+                }
+                // is this fleet we hit our destination
+                if (this.FleetData.Destination == hitGO.gameObject)
+                {
+                    FleetUIManager.Instance.ClickCancelDestinationButton();
+                    FleetUIManager.Instance.CloseUnLoadFleetUI();
+                    StarSysUIManager.Instance.CloseUnLoadStarSysUI();
+                    OnArrivedAtDestination();//? should we do other stuff here for FleetController at destination?
+                    OnEnterStarSystem();
+                }
+            }
+            else if (GameController.Instance.AreWeLocalPlayer(this.FleetData.CivEnum))
+            {
+                // local player fleet hits another local player's system, enter system
+                //OnEnterStarSystem();
+            }
+
+            int firstUninhabited = (int)CivEnum.ZZUNINHABITED1;
+            if (hitCivEnum != this.FleetData.CivEnum && (int)hitSysCivController.CivData.CivEnum < firstUninhabited)
+            {
+                DiplomacyManager.Instance.FistContactDiplomacy(this.fleetData.OurCivController, hitSysCivController, hitGO);
                 this.FleetState = FleetState.FleetDipolmacy;
                 //To Decide, do we use an event to turn on star name or set something up in StarSysData?
             }
-            if ((int)starSysController.StarSysData.CurrentCivController.CivData.CivEnum >= firstUninhabited)
+            if ((int)hitSysCivController.CivData.CivEnum >= firstUninhabited)
             {
                 //ToDo: React to firstUninhabited system contact
             }
@@ -302,6 +338,14 @@ namespace Assets.Core
             DropLine.SetUpLine(points);
             this.FleetState = FleetState.FleetAtWarp;
         }
+        void DrawDestinationLine()
+        {
+            Vector3 destinationPoint = FleetData.Destination.transform.position;
+            Vector3[] points = { transform.position, destinationPoint };
+            DestinationLine.SetUpLine(points);
+
+   
+        }
         void OnArrivedAtDestination()
         {
             // Logic to handle what happens when the fleet arrives at the destination
@@ -309,6 +353,10 @@ namespace Assets.Core
            // Debug.Log("Arrived at destination: " + this.FleetData.Destination.name);
             // Example: Stop the fleet, update UI, trigger events, etc.
           
+        }
+        void OnEnterStarSystem()
+        {
+            // do stuff
         }
         public void AddToShipList(ShipController shipController)
         {

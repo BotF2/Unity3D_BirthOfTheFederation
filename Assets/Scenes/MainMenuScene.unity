@@ -15397,7 +15397,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 1030, y: 80}
+  m_AnchoredPosition: {x: 1300, y: 120}
   m_SizeDelta: {x: 2000, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &813977517
@@ -15420,9 +15420,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Galaxy Map Camera: Forward = W, Backward = S, Left = A, Right = D, Zoom
-    = Mouse Wheel or Q or E, \nRotate Up/Down = Hold + Drag Right Mouse Button,\nDrage
-    Camera/Map = Hold + Drag Left Mouse Button"
+  m_text: "Move Galaxy Camera: Forward = W, Backward = S, Left = A, Right = D, \nCamera
+    Zoom = Mouse Wheel or Q out or E in, \nCamera Rotate Up/Down = Hold + Drag Right
+    Mouse Button,\nDrage Camera/Map = Hold + Drag Left Mouse Button"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -26917,7 +26917,6 @@ MonoBehaviour:
   FleetGOList: []
   fleetGroupPrefab: {fileID: 3717699476320669143, guid: 724c5663d5780da4a9ab08bdbf7ccc98, type: 3}
   unknownfleet: {fileID: 21300000, guid: 27c860ebab275d645b0a07e61cafa11f, type: 3}
-  destinationInt: 1
   intsInUse: 00000000
 --- !u!4 &1362581733
 Transform:

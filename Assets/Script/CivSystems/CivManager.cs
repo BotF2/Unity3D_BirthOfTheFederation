@@ -46,7 +46,7 @@ namespace Assets.Core
         //public bool nowCivsCanJoinTheFederation = true; // for use with testing a muliple star system Federation
         private int HoldCivSize = 0;// used in testing of a multiStarSystem civilization/faction
         [SerializeField]
-        private GameObject civFolder;
+        private GameObject civFolder; // hold civs
         [SerializeField]
         private GameObject civPrefab;
         private void Awake()

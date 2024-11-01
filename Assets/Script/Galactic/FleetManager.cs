@@ -40,8 +40,6 @@ namespace Assets.Core
         //[SerializeField]
         //private GalaxyMapOurEvent galaxyMapOurEvent;
         [SerializeField]
-        private int destinationInt = 1;
-        [SerializeField]
         private List<int> intsInUse = new List<int>() { 0 };
   
        
@@ -113,7 +111,6 @@ namespace Assets.Core
 
                 var fleetController = fleetNewGameOb.GetComponentInChildren<FleetController>();
                 fleetController.FleetData = fleetData;
-                fleetController.FleetData.asDestinationInt = GetUniqueIntAsDestination(destinationInt); // not using this yet, what might we use Events for here?
                 fleetController.Name = fleetData.Name;
                 fleetController.FleetState = FleetState.FleetStationary;
                 //fleetController.GalaxyMapDestinationEvent = galaxyMapOurEvent;
@@ -158,16 +155,36 @@ namespace Assets.Core
                         }
                     }
                 }
-                MapLineMovable ourLineScript = fleetNewGameOb.GetComponentInChildren<MapLineMovable>();
-                
-                ourLineScript.GetLineRenderer();
-                ourLineScript.transform.SetParent(fleetNewGameOb.transform, false);
-                Vector3 galaxyPlanePoint = new Vector3(fleetNewGameOb.transform.position.x,
-                    galaxyImage.transform.position.y, fleetNewGameOb.transform.position.z);
-                Vector3[] points = { fleetNewGameOb.transform.position, galaxyPlanePoint };
-                ourLineScript.SetUpLine(points);
-                fleetController.FleetData.yAboveGalaxyImage = galaxyCenter.transform.position.y - galaxyPlanePoint.y;
-                fleetController.DropLine = ourLineScript;
+                // The line from Fleet to underlying galaxy image and to destination
+                MapLineMovable[] ourLineToGalaxyImageScript = fleetNewGameOb.GetComponentsInChildren<MapLineMovable>();
+                foreach (var itemMapLineScript in ourLineToGalaxyImageScript)
+                {
+                    if (itemMapLineScript.name == "DropLine")
+                    {
+                        itemMapLineScript.GetLineRenderer();
+                        itemMapLineScript.transform.SetParent(fleetNewGameOb.transform, false);
+                        Vector3 galaxyPlanePoint = new Vector3(fleetNewGameOb.transform.position.x,
+                            galaxyImage.transform.position.y, fleetNewGameOb.transform.position.z);
+                        Vector3[] points = { fleetNewGameOb.transform.position, galaxyPlanePoint };
+                        itemMapLineScript.SetUpLine(points);
+                        fleetController.FleetData.yAboveGalaxyImage = galaxyCenter.transform.position.y - galaxyPlanePoint.y;
+                        fleetController.DropLine = itemMapLineScript;
+                    }
+
+                    else if (itemMapLineScript.name == "DestinationLine")
+                    {
+                        itemMapLineScript.GetLineRenderer();
+                        itemMapLineScript.transform.SetParent(fleetNewGameOb.transform, false);
+                        fleetController.DestinationLine = itemMapLineScript;                  
+                        //Vector3 destinationPoint = new Vector3(fleetNewGameOb.transform.position.x,
+                        //    galaxyImage.transform.position.y, fleetNewGameOb.transform.position.z);
+                        //Vector3[] points = { fleetNewGameOb.transform.position, destinationPoint };
+                        //itemMapLineScript.SetUpLine(points);
+                        //fleetController.FleetData.yAboveGalaxyImage = galaxyCenter.transform.position.y - destinationPoint.y;
+                        //fleetController.DropLine = itemMapLineScript;
+                    }
+                }
+
                 fleetController.FleetData.ShipsList.Clear();
                 foreach (var civCon in CivManager.Instance.CivControllersInGame)
                 {

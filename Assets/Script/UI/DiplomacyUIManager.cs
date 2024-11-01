@@ -61,11 +61,12 @@ public class DiplomacyUIManager: MonoBehaviour
         StarSysUIManager.Instance.CloseUnLoadStarSysUI();
         FleetUIManager.Instance.CloseUnLoadFleetUI();
         FleetSelectionUI.Instance.UnLoadShipManagerUI();
-        diplomacyUIRoot.SetActive(true);
         if (GameController.Instance.AreWeLocalPlayer(ourDiplomacyController.DiplomacyData.CivOne.CivData.CivEnum))
             LoadCivDataInUI(ourDiplomacyController.DiplomacyData.CivTwo, ourDiplomacyController);
         else if (GameController.Instance.AreWeLocalPlayer(ourDiplomacyController.DiplomacyData.CivTwo.CivData.CivEnum))
             LoadCivDataInUI(ourDiplomacyController.DiplomacyData.CivOne, ourDiplomacyController);
+        diplomacyUIRoot.SetActive(true);
+
     }
     private void LoadCivDataInUI(CivController othersController, DiplomacyController ourDiplomacyController)
     {
