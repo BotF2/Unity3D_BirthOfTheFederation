@@ -11,6 +11,7 @@ using JetBrains.Annotations;
 using FischlWorks_FogWar;
 using System.ComponentModel;
 using Unity.VisualScripting;
+using System.Linq;
 
 namespace Assets.Core
 {    /// <summary>
@@ -229,8 +230,8 @@ namespace Assets.Core
                 }
             }
 
-            /// I am thinking that checking the hitGO for reaching the Destination is redundant. If both 
-            /// the controller of the two in a hit are checked above then do not check again.
+            /// I am thinking that checking the hitGO for reaching the Destination is redundant. If all controllers are checking the both of
+            /// the controllers for the two in a hit are checked above so do not check again.
             //else if (thisFleetController.gameObject == hitGO.GetComponent<FleetController>().FleetData.Destination)
             //{
             //    FleetUIManager.Instance.ClickCancelDestinationButton();
@@ -251,15 +252,29 @@ namespace Assets.Core
             
             CivController hitSysCivController = hitGO.GetComponent<StarSysController>().StarSysData.CurrentCivController;
             CivEnum hitCivEnum = hitGO.GetComponent<StarSysController>().StarSysData.CurrentOwner;
+            int firstUninhabited = (int)CivEnum.ZZUNINHABITED1;
             if (this.FleetData.CivEnum != hitCivEnum)
             {
                 DiplomacyController diplomacyController = DiplomacyManager.Instance.GetTheDiplomacyController(this.FleetData.OurCivController, hitSysCivController);
-                if (diplomacyController.areWePlaceholder)
+                if (diplomacyController.areWePlaceholder && (int)hitSysCivController.CivData.CivEnum < firstUninhabited)
                 {
                     // FistContactDiplomacy for both local palyer using the UI and for non local human players using their UI and for AI without a UI
                     DiplomacyManager.Instance.FistContactDiplomacy(this.FleetData.OurCivController, hitSysCivController, hitGO);
                     this.FleetState = FleetState.FleetDipolmacy;
                 }
+                // If an uninhabited system
+                else if ((int)hitSysCivController.CivData.CivEnum >= firstUninhabited)
+                {
+                    //React to firstUninhabited system contact
+                    foreach ( ShipController shipController in this.FleetData.GetShipList())
+                    {
+                        if (shipController.ShipData.ShipType == ShipType.Transport)
+                        {
+                            // ToDo: Colonies Opption/ UI?
+                        }
+                    }
+                }
+                
                 else if (!diplomacyController.areWePlaceholder && diplomacyController.DiplomacyData.DiplomacyEnumOfCivs == DiplomacyStatusEnum.TotalWar)
                 {
                     // is it do combat or do we get an option to blockaid or what???
@@ -275,23 +290,12 @@ namespace Assets.Core
                     OnEnterStarSystem();
                 }
             }
-            else if (GameController.Instance.AreWeLocalPlayer(this.FleetData.CivEnum))
+            else if (GameController.Instance.AreWeLocalPlayer(this.FleetData.CivEnum)) // is our civ's system and we are local player
             {
-                // local player fleet hits another local player's system, enter system
-                //OnEnterStarSystem();
+                // local player fleet hits another local player system, enter system
+                //**** OnEnterStarSystem();
             }
 
-            int firstUninhabited = (int)CivEnum.ZZUNINHABITED1;
-            if (hitCivEnum != this.FleetData.CivEnum && (int)hitSysCivController.CivData.CivEnum < firstUninhabited)
-            {
-                DiplomacyManager.Instance.FistContactDiplomacy(this.fleetData.OurCivController, hitSysCivController, hitGO);
-                this.FleetState = FleetState.FleetDipolmacy;
-                //To Decide, do we use an event to turn on star name or set something up in StarSysData?
-            }
-            if ((int)hitSysCivController.CivData.CivEnum >= firstUninhabited)
-            {
-                //ToDo: React to firstUninhabited system contact
-            }
             //1) you get the FleetController of the new fleet GO
             //2) you ask your factionOwner (CivManager) if you already know the faction of the new fleet
             //3) ?first contatact > what kind of hail, diplomacy vs firstUninhabited ?colonize vs terraform a rock vs do fleet busness in our system

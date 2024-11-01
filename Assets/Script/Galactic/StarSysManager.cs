@@ -14,6 +14,12 @@ namespace Assets.Core
 {
     /// <summary>
     /// Instantiates the star system (a StarSysController and a StarSysData) using StarSysSO
+    ///     /// <summary>
+    /// This is a type of galactic object that is a 'StarSystem' class (Manager/Controller/Data and can have a habitable 'planet') 
+    /// with a real star or a nebula or a complex as in the Borg Unicomplex)
+    /// Other galactic objects not described by StarSys (will have their own classes (ToDo: Managers/Controllers/Data) for stations (one class),
+    /// and blackholes/wormholes (one class.)
+    /// </summary> 
     /// </summary>
     public class StarSysManager : MonoBehaviour
     {
@@ -59,7 +65,7 @@ namespace Assets.Core
                 StarSysSO starSysSO = GetStarSObyInt(civSO.CivInt);
                 SysData = new StarSysData(starSysSO);               
                 SysData.CurrentOwner = starSysSO.FirstOwner;
-                SysData.StarType = starSysSO.StarType;
+                SysData.SystemType = starSysSO.StarType;
                 SysData.StarSprit = starSysSO.StarSprit;
                 SysData.Population = starSysSO.Population;
                 SysData.Description = "description here";
@@ -140,23 +146,15 @@ namespace Assets.Core
                 {
                     if (oneRenderer != null)
                     {
-                        //if (oneRenderer.CivName == "CivRaceSprite")
-                        //{
-                        //    oneRenderer.sprite = civSO.CivImageSprite; // ok
-                        //}
-
+                        int lastStarSystem = (int)GalaxyObjectType.UniComplex;
                         if (oneRenderer.name == "OwnerInsignia")
                         {
                             //var ImageRenderers = starSystemNewGameOb.GetComponentsInChildren<SpriteRenderer>();
-            
+
                             oneRenderer.sprite = civSO.Insignia;
                             //oneRenderer.sprite.GetComponent<MeshFilter>().sharedMesh.RecalculateBounds();
                         }
                         else if (oneRenderer.name == "StarSprite")
-                            if (sysData.StarType != GalaxyObjectType.YellowStar && sysData.StarType != GalaxyObjectType.RedStar
-                                    && sysData.StarType != GalaxyObjectType.WhiteStar && sysData.StarType != GalaxyObjectType.OrangeStar && sysData.StarType != GalaxyObjectType.BlueStar)
-                                oneRenderer.sprite = unknowSystem;
-                            else
                                 oneRenderer.sprite = sysData.StarSprit;
                     }
                 }

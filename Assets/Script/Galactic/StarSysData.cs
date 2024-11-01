@@ -5,6 +5,12 @@ using Assets.Core;
 
 public class StarSysData
 {
+    /// <summary>
+    /// This is a type of galactic object that is a 'StarSystem' class (Manager/Controller/Data and can have a habitable 'planet') 
+    /// with a real star or a nebula or a complex as in the Borg Unicomplex)
+    /// Other galactic objects not described by StarSys (will have their own classes (ToDo: Managers/Controllers/Data) for stations (one class),
+    /// and blackholes/wormholes (one class.)
+    /// </summary>
     private int starSysInt;
     private Vector3 position;
     public GameObject SysGameObject;
@@ -13,7 +19,7 @@ public class StarSysData
     private CivEnum firstOwner;
     public CivEnum CurrentOwner;
     public CivController CurrentCivController;
-    public GalaxyObjectType StarType;
+    public GalaxyObjectType SystemType;
     public Sprite StarSprit;
     public int Population;
     public int PopulationLimit; 

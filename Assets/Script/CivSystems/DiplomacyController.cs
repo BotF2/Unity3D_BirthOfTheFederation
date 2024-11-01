@@ -23,10 +23,6 @@ public class DiplomacyController : MonoBehaviour
     public DiplomacyController(bool areWePlaceholder)
     {
         this.areWePlaceholder = areWePlaceholder;
-        //DiplomacyData ourDiplomacyData = new DiplomacyData();
-        //this.DiplomacyData = ourDiplomacyData;
-        //this.DiplomacyData.CivOne = gameObject.AddComponent<CivController>();
-        //this.DiplomacyData.CivTwo = gameObject.AddComponent<CivController>();
     }
 
     private void Start()

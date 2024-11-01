@@ -295,6 +295,13 @@ namespace Assets.Core
 
     public enum GalaxyObjectType
     {
+        /// <summary>
+        /// These galactic objects can be a 'system' 
+        /// ( BlueStar through Nebulas and down to the UniComplex) 
+        /// These GalaxyObjectTypes are habitable with a planet or are planet like in the case of the UniComplex. 
+        /// The station will be treated as its own class with fields/properties, yet to be implemented 
+        /// and the galactic objects blackholes and wormholes will have their own class with fields and/properties
+        /// </summary>
         BlueStar,
         WhiteStar,
         YellowStar,
@@ -303,8 +310,8 @@ namespace Assets.Core
         Nebula,
         OmarianNebula,
         OrionNebula,
-        Station,
         UniComplex,
+        Station,
         BlackHole,
         WormHole,//???
 
