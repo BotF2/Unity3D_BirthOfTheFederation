@@ -1,13 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using Unity.VisualScripting;
-using TMPro;
+
 
 
 namespace Assets.Core
@@ -298,9 +292,11 @@ namespace Assets.Core
         /// <summary>
         /// These galactic objects can be a 'system' 
         /// ( BlueStar through Nebulas and down to the UniComplex) 
-        /// These GalaxyObjectTypes are habitable with a planet or are planet like in the case of the UniComplex. 
-        /// The station will be treated as its own class with fields/properties, yet to be implemented 
-        /// and the galactic objects blackholes and wormholes will have their own class with fields and/properties
+        /// system GalaxyObjectTypes are inhabited with a planet or are planet like in the case of the UniComplex. 
+        /// Also, system can be uninhabited star systems or nebulas with habitable planet so available for colonization by a transport ship in a visiting fleet
+        /// The station will be treated as its own class with fields/properties, but like a fleet that does not move 
+        /// The galactic objects blackholes and wormholes will have their own class with fields and/properties
+        /// The Target Destination is user defined location in deep space.
         /// </summary>
         BlueStar,
         WhiteStar,
@@ -313,7 +309,8 @@ namespace Assets.Core
         UniComplex,
         Station,
         BlackHole,
-        WormHole,//???
+        WormHole,
+        TargetDestination
 
     }
     public enum PlanetType

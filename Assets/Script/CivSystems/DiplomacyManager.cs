@@ -83,6 +83,14 @@ public class DiplomacyManager : MonoBehaviour
         else DoDiplomacyForAI(civPartyOne, civPartyTwo, hitGO);
 
     }
+    private DiplomacyController InstantiatePlaceHolder(CivController civPartyOne, CivController civPartyTwo)
+    {
+        GameObject DiplomacyNewGameOb = (GameObject)Instantiate(diplomacyPrefab, new Vector3(0, 0, 0),
+        Quaternion.identity);
+        var diplomacyController = DiplomacyNewGameOb.GetComponent<DiplomacyController>();
+        diplomacyController.areWePlaceholder = true;
+        return diplomacyController;
+    }
     private void DoDiplomacyForAI(CivController civOne, CivController civTwo, GameObject weHitGO)
     {
         //Do some diplomacy without a UI by/for either civ
@@ -111,9 +119,10 @@ public class DiplomacyManager : MonoBehaviour
         }
         return found;
     }
-    public DiplomacyController GetTheDiplomacyController(CivController civOne, CivController civTwo)
+    public DiplomacyController GetTheDiplomacyController(CivController civOne, CivController civTwo) 
     {
-        DiplomacyController diplomacyController = new DiplomacyController(true); // true, we are placeholder
+        DiplomacyController diplomacyController = InstantiatePlaceHolder(civOne, civTwo);
+        diplomacyController.areWePlaceholder = true;
         if (ManagersDiplomacyControllerList.Count == 0) 
         { 
             return diplomacyController;
@@ -122,7 +131,7 @@ public class DiplomacyManager : MonoBehaviour
         {
             foreach (var aDiplomacyController in ManagersDiplomacyControllerList)
             {
-                if ((aDiplomacyController.DiplomacyData.CivOne == civOne && aDiplomacyController.DiplomacyData.CivTwo) || (aDiplomacyController.DiplomacyData.CivTwo == civTwo && aDiplomacyController.DiplomacyData.CivOne))
+                if ((aDiplomacyController.DiplomacyData.CivOne == civOne && aDiplomacyController.DiplomacyData.CivTwo == civTwo) || (aDiplomacyController.DiplomacyData.CivOne == civTwo && aDiplomacyController.DiplomacyData.CivTwo == civOne))
                 { 
                     diplomacyController = aDiplomacyController;
                 }

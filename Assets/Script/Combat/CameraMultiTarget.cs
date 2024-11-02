@@ -59,7 +59,7 @@ namespace Assets.Core
 
 		private void Awake()
 		{
-			_camera = Camera.main; // give gameObject(galaxyEventCamera) and unity Camera.main the same position and rotation at end of LateUpdate		
+			_camera = Camera.main; // give gameObject(GalaxyEventCamera) and unity Camera.main the same position and rotation at end of LateUpdate		
 			_debugProjection = DebugProjection.ROTATED;
 			_shipCameraFieldOfView = _shipCamera.fieldOfView;
 		}

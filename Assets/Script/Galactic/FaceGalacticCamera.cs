@@ -9,6 +9,6 @@ namespace Assets.Core
 {
     internal class FaceGalacticCamera : MonoBehaviour
     {
-        //public new Camera galaxyEventCamera;
+        //public new Camera GalaxyEventCamera;
     }
 }

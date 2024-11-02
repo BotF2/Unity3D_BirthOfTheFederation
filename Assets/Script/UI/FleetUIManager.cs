@@ -161,9 +161,14 @@ public class FleetUIManager : MonoBehaviour
         CivEnum civ = CivEnum.ZZUNINHABITED53; // star civ as uninhabited
         bool weKnowThem = false;
         bool isFleet = aFleet;
-        destinationCoordinates.text = "X " + (hitObject.transform.position.x).ToString() + "Y " + (hitObject.transform.position.y).ToString() + "Z " + (hitObject.transform.position.z).ToString();
+        int typeOfDestination =0;
+        destinationCoordinates.text = "X " + (hitObject.transform.position.x).ToString() + " / Y " + (hitObject.transform.position.y).ToString() + " / Z " + (hitObject.transform.position.z).ToString();
         if (hitObject.GetComponent<StarSysController>() != null)
-            civ = hitObject.GetComponent<StarSysController>().StarSysData.CurrentOwner;
+        {
+            StarSysController starSysController = hitObject.GetComponent<StarSysController>();
+            civ = starSysController.StarSysData.CurrentOwner;
+            typeOfDestination = (int)starSysController.StarSysData.SystemType;
+        }
         else if (hitObject.GetComponent<FleetController>() != null)
             civ = hitObject.GetComponent<FleetController>().FleetData.CivEnum;
         if (CivManager.Instance.LocalPlayerCivContoller.CivData.CivEnumsWeKnow.Contains(civ))
@@ -175,26 +180,32 @@ public class FleetUIManager : MonoBehaviour
         {
             if (isFleet)
                 destinationName.text = "Warp Signture";
-            else
-                destinationName.text = "Stella Object";
+            else if (typeOfDestination <= (int)GalaxyObjectType.RedStar)
+            {
+                destinationName.text = "Star at";
+            }
+            else if (typeOfDestination >= (int)GalaxyObjectType.Nebula && typeOfDestination <= (int)GalaxyObjectType.OrionNebula)
+            {
+                destinationName.text = "Nebula at";
+            }
+            else if (typeOfDestination == (int)GalaxyObjectType.Station)
+            {
+                destinationName.text = "Station at";
+            }
+            else if (typeOfDestination == (int)GalaxyObjectType.BlackHole || typeOfDestination == (int)GalaxyObjectType.WormHole)
+            {
+                destinationName.text = "Black Hole at";
+            }
+            else if (typeOfDestination == (int)GalaxyObjectType.TargetDestination)
+            {
+                destinationName.text = "Selected Destination";
+            }
+
         }
         MouseClickSetsDestination = false;
         cancelDestinationButtonGO.SetActive(true);
     }
-    public void TurnOffCurrentMapDestination()
-    {
-        if (ourUIFleetController.FleetData.Destination != null)
-        {
-            var canvases = ourUIFleetController.FleetData.Destination.GetComponentsInChildren<Canvas>();
-            foreach (Canvas c in canvases)
-            {
-                if (c.name == "CanvasDestination")
-                {
-                    c.gameObject.SetActive(false);
-                }
-            }
-        }
-    }
+
     public void OnClickShipManager()
     {
         FleetSelectionUI.Instance.LoadShipUIManager(ourUIFleetController);
@@ -209,6 +220,7 @@ public class FleetUIManager : MonoBehaviour
         List<string> listings = new List<string>();
 
         ourUIFleetController = rayHitGO.GetComponent<FleetController>();
+        cancelDestinationButtonGO.SetActive(false );
         FleetName.text = ourUIFleetController.FleetData.Name;
         PlayerDefinedTargetManager.instance.nameOfLocalFleet = FleetName.text;
         WarpSliderChange(0f);

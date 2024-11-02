@@ -12,7 +12,7 @@ namespace Assets.Core
 	 * https://github.com/Unity-Technologies/UniversalRenderingExamples/tree/master/Assets/Scripts/Runtime/RenderPasses
 	 * 
 	 * Extended to allow for :
-	 * - Specific access to selecting a source and _destination (via current galaxyEventCamera's color / texture id / render texture object
+	 * - Specific access to selecting a source and _destination (via current GalaxyEventCamera's color / texture id / render texture object
 	 * - Automatic switching to using _AfterPostProcessTexture for After Rendering event, in order to correctly handle the blit after post processing is applied
 	 * - Setting a _InverseView matrix (cameraToWorldMatrix), for shaders that might need it to handle calculations from screen space to world.
 	 * 		e.g. Reconstruct world pos from depth : https://www.cyanilux.com/tutorials/depth/#blit-perspective 

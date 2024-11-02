@@ -146,14 +146,11 @@ namespace Assets.Core
                 {
                     if (oneRenderer != null)
                     {
-                        int lastStarSystem = (int)GalaxyObjectType.UniComplex;
                         if (oneRenderer.name == "OwnerInsignia")
                         {
-                            //var ImageRenderers = starSystemNewGameOb.GetComponentsInChildren<SpriteRenderer>();
-
                             oneRenderer.sprite = civSO.Insignia;
                             //oneRenderer.sprite.GetComponent<MeshFilter>().sharedMesh.RecalculateBounds();
-                        }
+                        } // ToDo: random map with random sprites on nebula, wormholes
                         else if (oneRenderer.name == "StarSprite")
                                 oneRenderer.sprite = sysData.StarSprit;
                     }

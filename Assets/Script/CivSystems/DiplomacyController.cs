@@ -16,21 +16,21 @@ public class DiplomacyController : MonoBehaviour
     private string offerCreditsImproveRelations = "The A offers the B X credits to improve relations by 200 points.";
     private string demandCredits = "The A demand X credits from the B.";
     private string requestCrditsImproveRelations = "The A request X credits from the B to improve relations by 200 points.";
-    private Camera galaxyEventCamera;
+    public Camera GalaxyEventCamera;
     [SerializeField]
     public Canvas DiplomacyUICanvas { get; private set; }
 
-    public DiplomacyController(bool areWePlaceholder)
-    {
-        this.areWePlaceholder = areWePlaceholder;
-    }
+    //public DiplomacyController(bool areWePlaceholder)
+    //{
+    //    this.areWePlaceholder = areWePlaceholder;
+    //}
 
     private void Start()
     {
-        galaxyEventCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>() as Camera;
+        GalaxyEventCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>() as Camera;
         var CanvasGO = GameObject.Find("CanvasDiplomacyUI");
         DiplomacyUICanvas = CanvasGO.GetComponent<Canvas>();
-        DiplomacyUICanvas.worldCamera = galaxyEventCamera;
+        DiplomacyUICanvas.worldCamera = GalaxyEventCamera;
         diplomaticTransmissions = new List<string>() {
             declareWar,demandCreditsAvoidWar,offerCreditsImproveRelations,demandCredits, requestCrditsImproveRelations};
     }

@@ -10,7 +10,7 @@ namespace Assets.Core
     {
         public static PlayerDefinedTargetManager instance;
         [SerializeField]
-        private GameObject playerDefinedTargetPrefab;
+        private GameObject playerTargetPrefab;
         public GameObject galaxyImage;
         public GameObject galaxyCenter;
         public string nameOfLocalFleet;
@@ -36,7 +36,7 @@ namespace Assets.Core
         }
         void Start()
         {
-            //galaxyEventCamera = GameObject.FindGameObjectWithTag("Galactic Camera").GetComponent<Camera>();
+            //GalaxyEventCamera = GameObject.FindGameObjectWithTag("Galactic Camera").GetComponent<Camera>();
         }
         private void OnMouseDown()
         {
@@ -55,7 +55,7 @@ namespace Assets.Core
         public void InstantiatePlayerTarget(string fleetName, Vector3 position)
         {
 
-            GameObject playerDefinedTargetGO = (GameObject)Instantiate(playerDefinedTargetPrefab, new Vector3(0, 0, 0),
+            GameObject playerDefinedTargetGO = (GameObject)Instantiate(playerTargetPrefab, new Vector3(0, 0, 0),
                     Quaternion.identity);
             // ***** ToDo: Get position defined by player
 

@@ -39,11 +39,11 @@ public class FleetGroupController : MonoBehaviour
     {
         //rb = GetComponent<Rigidbody>();
         //rb.isKinematic = true;
-        //galaxyEventCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        //GalaxyEventCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         //var CanvasGO = GameObject.Find("CanvasFleetUI");
         //DiplomacyUICanvas = CanvasGO.GetComponent<canvas>();
-        //DiplomacyUICanvas.worldCamera = galaxyEventCamera;
-        //CanvasToolTip.worldCamera = galaxyEventCamera;
+        //DiplomacyUICanvas.worldCamera = GalaxyEventCamera;
+        //CanvasToolTip.worldCamera = GalaxyEventCamera;
         //FleetData.CurrentWarpFactor = 0f;
         //Name = FleetData.CivShortName + " Fleet " + FleetData.Name;
         //FleetState = FleetState.FleetStationary;

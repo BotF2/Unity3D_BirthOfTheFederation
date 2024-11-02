@@ -57,6 +57,7 @@ public class DiplomacyUIManager: MonoBehaviour
     public void LoadDiplomacyUI(DiplomacyController ourDiplomacyController)
     {
         controller = ourDiplomacyController;
+        controller.GalaxyEventCamera = galaxyEventCamera.GetComponent<Camera>();
         TimeManager.Instance.PauseTime();
         StarSysUIManager.Instance.CloseUnLoadStarSysUI();
         FleetUIManager.Instance.CloseUnLoadFleetUI();

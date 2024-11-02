@@ -1,10 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 using Assets.Core;
 
+[CreateAssetMenu(menuName = "Galaxy/PlayerTargetSO")]
 public class PlayerDefinedTargetSO : ScriptableObject
 {
+
     public int CivIndex;
     public Sprite Insignia;
     public CivEnum CivOwnerEnum;

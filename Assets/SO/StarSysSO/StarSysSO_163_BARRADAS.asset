@@ -17,8 +17,8 @@ MonoBehaviour:
   SysName: BARRADAS
   FirstOwner: 164
   CurrentOwner: 164
-  StarType: 3
-  StarSprit: {fileID: 21300000, guid: f46fc7ae4eec69d40aa8026ba9da085d, type: 3}
+  StarType: 5
+  StarSprit: {fileID: 21300000, guid: 296845707e761ad44b428d41ab202d7b, type: 3}
   Population: 0
   PopulationLimit: 10
   Farms: 0
