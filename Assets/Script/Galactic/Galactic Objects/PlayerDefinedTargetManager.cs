@@ -16,7 +16,7 @@ namespace Assets.Core
         private GameObject galaxyImageGO;
         public GameObject galaxyCenter;
         public string nameDestination;
-        public KeyCode heldKeyForMouseDown = KeyCode.Space;
+        //public KeyCode heldKeyForMouseDown = KeyCode.Space;
         [SerializeField]
         private PlayerDefinedTargetSO playerDefinedTargetSO;
         [SerializeField]
