@@ -24,13 +24,15 @@ namespace Assets.Core
         //Fields
         private FleetData fleetData;
         public FleetData FleetData { get { return fleetData; } set { fleetData = value; } }
+        [SerializeField]
+        private PlayerDefinedTargetController PlayerDefinedTargetController;
         public string Name;
         public FleetState FleetState;
-        // public bool IsArrived = false;
         private float warpFudgeFactor = 10f;
         private Rigidbody rb;
         public MapLineMovable DropLine;
         public MapLineMovable DestinationLine;
+        public GameObject BackgroundGalaxyImage;
         //[Header("GalaxyMapDestinationEvent")]
         //public GalaxyMapOurEvent GalaxyMapDestinationEvent;
         [SerializeField]
@@ -118,28 +120,25 @@ namespace Assets.Core
 
         private void OnMouseDown()
         {
-            Ray ray = galaxyEventCamera.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit))
+            if (GameController.Instance.AreWeLocalPlayer(this.FleetData.CivEnum))
             {
-                GameObject hitObject = hit.collider.gameObject;
-                // What a fleet ourUIFleetController does with a hit
-                /// ********** In multiplayer game ?? 
-                if (GameController.Instance.AreWeLocalPlayer(this.FleetData.CivEnum)) // this is a local player fleet controller hit
+                Ray ray = galaxyEventCamera.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
+
+                if (Physics.Raycast(ray, out hit))
                 {
+                    GameObject hitObject = hit.collider.gameObject;
+                    // What a fleet ourUIFleetController does with a hit
+                    /// ********** In multiplayer game ?? 
+
                     if (FleetUIManager.Instance.MouseClickSetsDestination == false) // the destination mouse pointer is off so open FleetUI for this FleetController
                     {
                         FleetUIManager.Instance.LoadFleetUI(hitObject);
                     }
-                    else if (FleetUIManager.Instance.MouseClickSetsDestination == true && hitObject != this )
+                    else if (FleetUIManager.Instance.MouseClickSetsDestination == true && hitObject != this)
                     {
                         NewDestination(hitObject);  // one of local player's objects as destination
                     }
-                }
-                else if (FleetUIManager.Instance.MouseClickSetsDestination == true) // did not hit a local palyer object but do want this as destination
-                {
-                    NewDestination(hitObject);
                 }
             }
         }
@@ -170,7 +169,6 @@ namespace Assets.Core
                     //hitObject.GetComponent<FleetController>().CanvasDestination.gameObject.SetActive(true);
                     isFleet = true;
                 }
-
                 FleetUIManager.Instance.SetAsDestination(hitObject, isFleet);
             }    
         }

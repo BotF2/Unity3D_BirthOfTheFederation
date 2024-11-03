@@ -1,8 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 using Assets.Core;
 using TMPro;
+using UnityEngine.InputSystem;
+
 
 public class PlayerDefinedTargetController : MonoBehaviour
 {
@@ -11,41 +12,50 @@ public class PlayerDefinedTargetController : MonoBehaviour
     public CivEnum CivOwnerEnum;
     public Vector3 Position;
     private TMP_Text ourDestination;
-    private Camera galaxyEventCamera;
+    public Camera galaxyEventCamera;
+    //public InputAction actionPlayerTargetDestination;  
+   
+    public GameObject galaxyBackgroundImage;
     [SerializeField]
     private Canvas CanvasToolTip;
     public string Name;
 
     void Start()
     {
-        galaxyEventCamera = GameObject.FindGameObjectWithTag("Galactic Camera").GetComponent<Camera>();
+        galaxyEventCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
     }
-    private void OnMouseDown()
-    {
-        Ray ray = galaxyEventCamera.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
+    //private void Update()
+    //{
+    //    if (Input.GetMouseButtonDown(0))
+    //    {
 
-        if (Physics.Raycast(ray, out hit))
-        {
-            GameObject hitObject = hit.collider.gameObject;
+    //    }
+    //}
+    //private void OnMouseDown()// not being hit for some reason??
+    //{
+    //    Ray ray = galaxyEventCamera.ScreenPointToRay(Input.mousePosition);
+    //    RaycastHit hit;
 
+    //    if (Physics.Raycast(ray, out hit))
+    //    {
+    //        GameObject hitObject = hit.collider.gameObject;
 
-            //if (this.FleetData.CivEnum == GameManager.Instance.GameData.LocalPlayerCivEnum)
-            //{
-            //    if (FleetUIManager.Instance.MouseClickSetsDestination == false)
-            //    {
-            //        FleetUIManager.Instance.LoadFleetUI(hitObject);
-            //    }
-            //}
-            //else if (FleetUIManager.Instance.MouseClickSetsDestination == true && this != FleetUIManager.Instance.ourUIFleetController)
-            //{
-            //    FleetUIManager.Instance.SetAsDestination(hitObject);
-            //    this.CanvasDestination.gameObject.SetActive(true);
-            //    //MousePointerChanger.Instance.ResetCursor();
-            //    //MousePointerChanger.Instance.HaveGalaxyMapCursor = false;
-            //}
-        }
-    }
+    //        //if (this.Fl == GameManager.Instance.GameData.LocalPlayerCivEnum)
+    //        //{
+    //        //    if (FleetUIManager.Instance.MouseClickSetsDestination == false)
+    //        //    {
+    //        //        FleetUIManager.Instance.LoadFleetUI(hitObject);
+    //        //    }
+    //        //}
+    //        //else if (FleetUIManager.Instance.MouseClickSetsDestination == true && this != FleetUIManager.Instance.ourUIFleetController)
+    //        //{
+    //        //    FleetUIManager.Instance.SetAsDestination(hitObject);
+    //        //    this.CanvasDestination.gameObject.SetActive(true);
+    //        //    //MousePointerChanger.Instance.ResetCursor();
+    //        //    //MousePointerChanger.Instance.HaveGalaxyMapCursor = false;
+    //        //}
+    //    }
+    //}
     void OnTriggerEnter(Collider collider)
     {
 

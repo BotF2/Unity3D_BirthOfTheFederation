@@ -53,6 +53,8 @@ public class FleetUIManager : MonoBehaviour
     [SerializeField]
     private GameObject cancelDestinationButtonGO;
     [SerializeField]
+    private GameObject setDestinationButtonGO;
+    [SerializeField]
     private TMP_Text selectDestinationBttonText;
 
     public bool MouseClickSetsDestination = false;// used by FleetController and StarSysController
@@ -205,7 +207,10 @@ public class FleetUIManager : MonoBehaviour
         MouseClickSetsDestination = false;
         cancelDestinationButtonGO.SetActive(true);
     }
-
+    public void GetPlayerDefinedTargetDestination()
+    {
+        PlayerDefinedTargetManager.instance.PlayerTargetFromData(ourUIFleetController.gameObject);
+    }
     public void OnClickShipManager()
     {
         FleetSelectionUI.Instance.LoadShipUIManager(ourUIFleetController);
@@ -222,7 +227,7 @@ public class FleetUIManager : MonoBehaviour
         ourUIFleetController = rayHitGO.GetComponent<FleetController>();
         cancelDestinationButtonGO.SetActive(false );
         FleetName.text = ourUIFleetController.FleetData.Name;
-        PlayerDefinedTargetManager.instance.nameOfLocalFleet = FleetName.text;
+        PlayerDefinedTargetManager.instance.nameDestination = FleetName.text;
         WarpSliderChange(0f);
        
         //ship dropdown

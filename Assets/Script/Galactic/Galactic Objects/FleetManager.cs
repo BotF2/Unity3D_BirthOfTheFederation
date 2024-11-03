@@ -1,8 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Data.Common;
-using System.Linq;
 using FischlWorks_FogWar;
 using TMPro;
 using Unity.VisualScripting;
@@ -110,6 +108,7 @@ namespace Assets.Core
                 fleetNewGameOb.layer = 6; // galaxy layer
 
                 var fleetController = fleetNewGameOb.GetComponentInChildren<FleetController>();
+                fleetController.BackgroundGalaxyImage = galaxyImage;
                 fleetController.FleetData = fleetData;
                 fleetController.Name = fleetData.Name;
                 fleetController.FleetState = FleetState.FleetStationary;
@@ -177,7 +176,7 @@ namespace Assets.Core
                         itemMapLineScript.transform.SetParent(fleetNewGameOb.transform, false);
                         fleetController.DestinationLine = itemMapLineScript;                  
                         //Vector3 destinationPoint = new Vector3(fleetNewGameOb.transform.position.x,
-                        //    galaxyImage.transform.position.y, fleetNewGameOb.transform.position.z);
+                        //    galaxyImageGO.transform.position.y, fleetNewGameOb.transform.position.z);
                         //Vector3[] points = { fleetNewGameOb.transform.position, destinationPoint };
                         //itemMapLineScript.SetUpLine(points);
                         //fleetController.FleetData.yAboveGalaxyImage = galaxyCenter.transform.position.y - destinationPoint.y;
