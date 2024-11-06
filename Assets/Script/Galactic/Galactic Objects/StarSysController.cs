@@ -51,14 +51,13 @@ namespace Assets.Core
         }
         private void OnMouseDown()
         {
-
             Ray ray = galaxyEventCamera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
                 GameObject hitObject = hit.collider.gameObject;
                 // what a Star System Controller does with a hit
-                if (GameController.Instance.AreWeLocalPlayer(this.StarSysData.CurrentOwner)) // this 'StarSystem' is a local player galaxy object hit
+                if (hitObject.tag != "GalaxyImage" && GameController.Instance.AreWeLocalPlayer(this.StarSysData.CurrentOwner)) // this 'StarSystem' is a local player galaxy object hit
                 {
                     if (FleetUIManager.Instance.MouseClickSetsDestination == false) // not while FleetUIManager was looking for a destination
                     {
@@ -73,7 +72,7 @@ namespace Assets.Core
                 {
                     NewDestination(hitObject);
                 }
-            }
+            } 
         }
         private void NewDestination(GameObject hitObject) 
         {

@@ -20,7 +20,7 @@ namespace Assets.Core
         public string CivShortName;
         public string Name;
         private string description;
-        public float yAboveGalaxyImage; // used in FleetManager
+        //public float yAboveGalaxyImage; // used in FleetManager
         public FleetData(FleetSO fleetSO)
         {
             Insignia = fleetSO.Insignia;

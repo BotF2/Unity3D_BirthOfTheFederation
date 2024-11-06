@@ -40,7 +40,8 @@ public class GalaxyCameraDragMoveZoom : MonoBehaviour //, IPointerClickHandler
     {
         DoZoom();
         KeyboardInputs();
-        DrageCameraWithLeftMouse();
+        if (!Input.GetKey(KeyCode.Space))
+            DrageCameraWithLeftMouse();
         RotateCamerWithRightMouse();
         CameraMoveLimits();   
     }
@@ -68,11 +69,11 @@ public class GalaxyCameraDragMoveZoom : MonoBehaviour //, IPointerClickHandler
 
     void DrageCameraWithLeftMouse()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0)) // && !Input.GetKey(KeyCode.Space)) done in Update
         {
             lastMousePosition = Input.mousePosition;
         }
-        else if (Input.GetMouseButton(0))
+        else if (Input.GetMouseButton(0)) // && !Input.GetKey(KeyCode.Space))
         {
             if (EventSystem.current != null)
             {
@@ -87,11 +88,11 @@ public class GalaxyCameraDragMoveZoom : MonoBehaviour //, IPointerClickHandler
     }
     void RotateCamerWithRightMouse()
     {
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1) && !Input.GetKey(KeyCode.Space))
         {
             lastMousePosition.y = Input.mousePosition.y;
         }
-        if (Input.GetMouseButton(1))
+        if (Input.GetMouseButton(1) && !Input.GetKey(KeyCode.Space))
         {
 
             var rotation = transform.eulerAngles.x;

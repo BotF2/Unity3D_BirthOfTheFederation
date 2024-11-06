@@ -33,6 +33,7 @@ TagManager:
   - ROM_SCOUT_III(CLONE)
   - PreFabGalaxyDestinationDropdown
   - DestroyTemp
+  - GalaxyImage
   layers:
   - Default
   - TransparentFX

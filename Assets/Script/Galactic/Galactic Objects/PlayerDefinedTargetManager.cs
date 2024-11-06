@@ -45,23 +45,27 @@ namespace Assets.Core
 
         public void PlayerTargetFromData(GameObject fleetGO)
         {
-            PlayerDefinedTargetData playerTargetData = new PlayerDefinedTargetData();
-            playerTargetData.Insignia = playerDefinedTargetSO.Insignia;
-            playerTargetData.Description = playerDefinedTargetSO.Description;
-            this.InstantiatePlayerTarget(playerTargetData, fleetGO.transform.position);
+            if (fleetGO.GetComponent<FleetController>().FleetData.CivEnum == GameController.Instance.GameData.LocalPlayerCivEnum)
+            {
+                PlayerDefinedTargetData playerTargetData = new PlayerDefinedTargetData();
+                playerTargetData.Insignia = playerDefinedTargetSO.Insignia;
+                playerTargetData.Description = playerDefinedTargetSO.Description;
+                playerTargetData.CivOwnerEnum = GameController.Instance.GameData.LocalPlayerCivEnum;
+                this.InstantiatePlayerTarget(playerTargetData, fleetGO );
+            }
         }
-        public void InstantiatePlayerTarget(PlayerDefinedTargetData playerTargetData, Vector3 position)
+        public void InstantiatePlayerTarget(PlayerDefinedTargetData playerTargetData, GameObject fleetGO)
         {
-
+            Vector3 position = fleetGO.transform.position;
             GameObject playerDefinedTargetGO = (GameObject)Instantiate(playerTargetPrefab, new Vector3(0, 0, 0),
                     Quaternion.identity);
             var playerController = playerDefinedTargetGO.GetComponentInChildren<PlayerDefinedTargetController>();
             playerController.galaxyEventCamera = galaxyEventCamera;
             playerController.galaxyBackgroundImage = galaxyImageGO;
-            playerController.playerTargetData = playerTargetData;
+            playerController.PlayerTargetData = playerTargetData;
             //playerController.Name ToDo: number the destinations
             // Get position x and y defined by player
-            playerDefinedTargetGO.transform.Translate(new Vector3(position.x + 5f, position.y +20f, position.z));
+            playerDefinedTargetGO.transform.Translate(new Vector3(position.x + 20f, position.y, position.z));
             playerDefinedTargetGO.transform.SetParent(galaxyCenter.transform, true);
 
             playerDefinedTargetGO.transform.localScale = new Vector3(1, 1, 1);
@@ -70,14 +74,23 @@ namespace Assets.Core
             PlayerTargetGOList.Add(playerDefinedTargetGO);
             AddPlayerControllerToAllControllers(playerController);
 
-            MapLineMovable ourLineToGalaxyImageScript = playerDefinedTargetGO.GetComponentInChildren<MapLineMovable>();
+            //MapLineMovable ourLineToGalaxyImageScript = playerDefinedTargetGO.GetComponentInChildren<MapLineMovable>();
 
-            ourLineToGalaxyImageScript.GetLineRenderer();
-            ourLineToGalaxyImageScript.transform.SetParent(playerDefinedTargetGO.transform, false);
+            //ourLineToGalaxyImageScript.GetLineRenderer();
+            //ourLineToGalaxyImageScript.transform.SetParent(playerDefinedTargetGO.transform, false);
+            // The line from Fleet to underlying galaxy image and to destination
+            MapLineMovable itemMapLineScript = playerDefinedTargetGO.GetComponentInChildren<MapLineMovable>();
+
+            itemMapLineScript.GetLineRenderer();
+            itemMapLineScript.transform.SetParent(playerDefinedTargetGO.transform, false);
             Vector3 galaxyPlanePoint = new Vector3(playerDefinedTargetGO.transform.position.x,
                 galaxyImageGO.transform.position.y, playerDefinedTargetGO.transform.position.z);
             Vector3[] points = { playerDefinedTargetGO.transform.position, galaxyPlanePoint };
-            ourLineToGalaxyImageScript.SetUpLine(points);
+            itemMapLineScript.SetUpLine(points);
+            //fleetController.FleetData.yAboveGalaxyImage = galaxyCenter.transform.position.y - galaxyPlanePoint.y;
+            playerController.DropLine = itemMapLineScript;
+
+            fleetGO.GetComponent<FleetController>().TargetController = playerController;
      
         }
         void AddPlayerControllerToAllControllers(PlayerDefinedTargetController playerTargetController)

@@ -12039,6 +12039,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7f173683bb120848886c27dc5b21230, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GalaxyMapEventList: []
 --- !u!1 &630342462
 GameObject:
   m_ObjectHideFlags: 0
@@ -14224,8 +14225,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0, y: -27}
-  m_SizeDelta: {x: 370, y: 25}
+  m_AnchoredPosition: {x: 45.3907, y: -27}
+  m_SizeDelta: {x: 362.7816, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &748006318
 MonoBehaviour:
@@ -16051,7 +16052,7 @@ GameObject:
   - component: {fileID: 843799569}
   m_Layer: 6
   m_Name: GalaxyMangersAndImagePlane
-  m_TagString: Untagged
+  m_TagString: GalaxyImage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27409,7 +27410,6 @@ MonoBehaviour:
   galaxyImageGO: {fileID: 843799567}
   galaxyCenter: {fileID: 564492290}
   nameDestination: 
-  heldKeyForMouseDown: 32
   playerDefinedTargetSO: {fileID: 11400000, guid: c146b5fd7be784a4889415dea37a3b23, type: 2}
   galaxyEventCamera: {fileID: 963194234}
   PlayerTargetGOList: []

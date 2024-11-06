@@ -7,14 +7,18 @@ using UnityEngine.InputSystem;
 
 public class PlayerDefinedTargetController : MonoBehaviour
 {
-    public PlayerDefinedTargetData playerTargetData;
+    public PlayerDefinedTargetData PlayerTargetData;
     public Sprite Insignia;
     public CivEnum CivOwnerEnum;
     public Vector3 Position;
+    private Vector3 lastMousePosition;
+    [SerializeField]
+    private float mouseSpeed = 2f;
+    private Rigidbody rb;
+    public MapLineMovable DropLine;
     private TMP_Text ourDestination;
     public Camera galaxyEventCamera;
     //public InputAction actionPlayerTargetDestination;  
-   
     public GameObject galaxyBackgroundImage;
     [SerializeField]
     private Canvas CanvasToolTip;
@@ -23,53 +27,75 @@ public class PlayerDefinedTargetController : MonoBehaviour
     void Start()
     {
         galaxyEventCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        rb = GetComponent<Rigidbody>();
+        rb.isKinematic = true;
     }
-    //private void Update()
-    //{
-    //    if (Input.GetMouseButtonDown(0))
-    //    {
-
-    //    }
-    //}
-    //private void OnMouseDown()// not being hit for some reason??
-    //{
-    //    Ray ray = galaxyEventCamera.ScreenPointToRay(Input.mousePosition);
-    //    RaycastHit hit;
-
-    //    if (Physics.Raycast(ray, out hit))
-    //    {
-    //        GameObject hitObject = hit.collider.gameObject;
-
-    //        //if (this.Fl == GameManager.Instance.GameData.LocalPlayerCivEnum)
-    //        //{
-    //        //    if (FleetUIManager.Instance.MouseClickSetsDestination == false)
-    //        //    {
-    //        //        FleetUIManager.Instance.LoadFleetUI(hitObject);
-    //        //    }
-    //        //}
-    //        //else if (FleetUIManager.Instance.MouseClickSetsDestination == true && this != FleetUIManager.Instance.ourUIFleetController)
-    //        //{
-    //        //    FleetUIManager.Instance.SetAsDestination(hitObject);
-    //        //    this.CanvasDestination.gameObject.SetActive(true);
-    //        //    //MousePointerChanger.Instance.ResetCursor();
-    //        //    //MousePointerChanger.Instance.HaveGalaxyMapCursor = false;
-    //        //}
-    //    }
-    //}
-    void OnTriggerEnter(Collider collider)
+    private void Update()
     {
-
-        FleetController fleetController = collider.gameObject.GetComponent<FleetController>();
-        if (fleetController != null) // it is a FleetController
+        DragWithLeftMouse();
+    }
+    private void DragWithLeftMouse()
+    {
+        if (Input.GetMouseButtonDown(0))
         {
-            OnFleetEncounteredFleet(fleetController);
-            Debug.Log("fleet Controller collided with " + fleetController.gameObject.name);
+            lastMousePosition = Input.mousePosition;
+            if (FleetUIManager.Instance.MouseClickSetsDestination)
+            {
+                Ray ray = galaxyEventCamera.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
+                if (Physics.Raycast(ray, out hit))
+                {
+                    GameObject hitObject = hit.collider.gameObject;
+                    if (hitObject.tag != "GalaxyImage" &&
+                        GameController.Instance.AreWeLocalPlayer(this.PlayerTargetData.CivOwnerEnum))
+                    {
+                        if (FleetUIManager.Instance.MouseClickSetsDestination == true) // while FleetUIManager was looking for a destination
+                        {
+                            NewDestination(hitObject); // target hit as destination
+                        }
+                    }
+                }
+            }
+        }
+        else if (Input.GetMouseButton(0) && Input.GetKey(KeyCode.Space))
+        {
+            Vector3 delta = (Input.mousePosition - lastMousePosition) / mouseSpeed;
+            MoveTarget(delta.x, delta.y);
+            lastMousePosition = Input.mousePosition;
+            rb.MovePosition(transform.position); // kinematic with physics movement
+            rb.velocity = Vector3.zero;
+            // update drop line
+            Vector3 galaxyPlanePoint = new Vector3(rb.position.x, -60f, rb.position.z);
+            Vector3[] points = { rb.position, galaxyPlanePoint };
+            DropLine.SetUpLine(points);
         }
     }
-    public void OnFleetEncounteredFleet(FleetController fleetController)
+    private void MoveTarget(float xInput, float zInput)
     {
-        //FleetManager.Instance.
-        //1) you get the FleetController of the new fleet GO
-        //2) you will need to apply different logics depending of the answer
+        float zMove = Mathf.Cos(transform.eulerAngles.y * Mathf.PI / 180) * zInput + Mathf.Sin(transform.eulerAngles.y * Mathf.PI / 180) * xInput;
+        float xMove = Mathf.Sin(transform.eulerAngles.y * Mathf.PI / 180) * zInput + Mathf.Cos(transform.eulerAngles.y * Mathf.PI / 180) * xInput;
+        transform.position = transform.position + new Vector3(xMove, 0, zMove);
     }
+    private void NewDestination(GameObject hitObject)
+    {
+        bool isFleet = false;
+        FleetUIManager.Instance.SetAsDestination(hitObject, isFleet);
+        //this.CanvasDestination.gameObject.SetActive(true);
+    }
+    //void OnTriggerEnter(Collider collider)
+    //{
+
+    //    FleetController fleetController = collider.gameObject.GetComponent<FleetController>();
+    //    if (fleetController != null) // it is a FleetController
+    //    {
+    //        OnFleetEncounteredFleet(fleetController);
+    //        Debug.Log("fleet Controller collided with " + fleetController.gameObject.name);
+    //    }
+    //}
+    //public void OnFleetEncounteredFleet(FleetController fleetController)
+    //{
+    //    //FleetManager.Instance.
+    //    //1) you get the FleetController of the new fleet GO
+    //    //2) you will need to apply different logics depending of the answer
+    //}
 }

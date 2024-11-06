@@ -166,7 +166,7 @@ namespace Assets.Core
                             galaxyImage.transform.position.y, fleetNewGameOb.transform.position.z);
                         Vector3[] points = { fleetNewGameOb.transform.position, galaxyPlanePoint };
                         itemMapLineScript.SetUpLine(points);
-                        fleetController.FleetData.yAboveGalaxyImage = galaxyCenter.transform.position.y - galaxyPlanePoint.y;
+                        //fleetController.FleetData.yAboveGalaxyImage = galaxyCenter.transform.position.y - galaxyPlanePoint.y;
                         fleetController.DropLine = itemMapLineScript;
                     }
 

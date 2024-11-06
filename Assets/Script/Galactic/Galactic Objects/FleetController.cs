@@ -40,6 +40,9 @@ namespace Assets.Core
         private Camera galaxyEventCamera;
         public Canvas FleetUICanvas { get; private set; }
         public Canvas CanvasToolTip;
+        public PlayerDefinedTargetController TargetController;
+        private Vector3 vectorOffset;
+        private float ourZCoordinate;
 
         private void Start()
         {
@@ -120,8 +123,7 @@ namespace Assets.Core
 
         private void OnMouseDown()
         {
-            if (GameController.Instance.AreWeLocalPlayer(this.FleetData.CivEnum))
-            {
+
                 Ray ray = galaxyEventCamera.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
 
@@ -133,14 +135,32 @@ namespace Assets.Core
 
                     if (FleetUIManager.Instance.MouseClickSetsDestination == false) // the destination mouse pointer is off so open FleetUI for this FleetController
                     {
-                        FleetUIManager.Instance.LoadFleetUI(hitObject);
+                        if (GameController.Instance.AreWeLocalPlayer(this.FleetData.CivEnum))
+                            FleetUIManager.Instance.LoadFleetUI(hitObject);
                     }
                     else if (FleetUIManager.Instance.MouseClickSetsDestination == true && hitObject != this)
                     {
                         NewDestination(hitObject);  // one of local player's objects as destination
                     }
                 }
+            
+        }
+        private void OnMouseDrag()
+        {
+            if (this.TargetController != null)
+            {
+                this.TargetController.gameObject.transform.position = GetMouseWorldPosition() + vectorOffset;
             }
+        }
+        private Vector3 GetMouseWorldPosition()
+        {
+            // pixel coordinates (x,y)
+            Vector3 mousePoint = Input.mousePosition;
+
+            //z coordiante of game object on screen
+            mousePoint.z = ourZCoordinate;
+
+            return galaxyEventCamera.ScreenToWorldPoint(mousePoint);
         }
         private void OnSetDestination(GameObject destination, int destinationInt) // for the C# event system currently not used 
         {
@@ -169,7 +189,19 @@ namespace Assets.Core
                     //hitObject.GetComponent<FleetController>().CanvasDestination.gameObject.SetActive(true);
                     isFleet = true;
                 }
-                FleetUIManager.Instance.SetAsDestination(hitObject, isFleet);
+                //if (hitObject.GetComponent<PlayerDefinedTargetController>() != null)
+                //    if (this.TargetController == hitObject.GetComponent<PlayerDefinedTargetController>())
+                //    {
+                //        ourZCoordinate = galaxyEventCamera.WorldToScreenPoint(gameObject.transform.position).z;
+                //        // store offset = gameobject world pos - mouse world pos
+                //        vectorOffset = gameObject.transform.position - GetMouseWorldPosition();
+                //        //if (FleetUIManager.Instance.MouseClickSetsDestination == false)
+                //        //{
+                //        //    FleetUIManager.Instance.LoadFleetUI(hitObject);
+                //        //}
+                //    }
+                //else
+                    FleetUIManager.Instance.SetAsDestination(hitObject, isFleet);
             }    
         }
         void OnTriggerEnter(Collider collider) // Not using OnCollisionEnter....

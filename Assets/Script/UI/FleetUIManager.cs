@@ -123,13 +123,17 @@ public class FleetUIManager : MonoBehaviour
     {
         if (MousePointerChanger.Instance.HaveGalaxyMapCursor == false)
         {
-
+            setDestinationButtonGO.SetActive(false);
             selectDestinationBttonText.text = "Select Destination";
             MouseClickSetsDestination = true;
             MousePointerChanger.Instance.ChangeToGalaxyMapCursor();
             MousePointerChanger.Instance.HaveGalaxyMapCursor = true;
             if (ourUIFleetController.FleetData.Destination != null)
+            {
                 cancelDestinationButtonGO.SetActive(true);
+                setDestinationButtonGO.SetActive(false);
+            }
+
             selectDestinationCursorButtonGO.SetActive(true);
         }
     }
@@ -155,10 +159,12 @@ public class FleetUIManager : MonoBehaviour
         MouseClickSetsDestination = false;
         cancelDestinationButtonGO.SetActive(false);
         selectDestinationCursorButtonGO.SetActive(true);
+        setDestinationButtonGO.SetActive(true);
     }
     public void SetAsDestination(GameObject hitObject, bool aFleet)
     {
         //this.TurnOffCurrentMapDestination();
+       
         ourUIFleetController.FleetData.Destination = hitObject;
         CivEnum civ = CivEnum.ZZUNINHABITED53; // star civ as uninhabited
         bool weKnowThem = false;
@@ -172,37 +178,54 @@ public class FleetUIManager : MonoBehaviour
             typeOfDestination = (int)starSysController.StarSysData.SystemType;
         }
         else if (hitObject.GetComponent<FleetController>() != null)
+        {
+            isFleet = true;
             civ = hitObject.GetComponent<FleetController>().FleetData.CivEnum;
+        }
+        else if (hitObject.GetComponent<PlayerDefinedTargetController>() != null)
+        {
+            PlayerDefinedTargetController playerTargetController = hitObject.GetComponent<PlayerDefinedTargetController>();
+            civ = playerTargetController.PlayerTargetData.CivOwnerEnum;
+            typeOfDestination = (int)playerTargetController.PlayerTargetData.GalaxyObjectType;
+        }
+        // Fix this
         if (CivManager.Instance.LocalPlayerCivContoller.CivData.CivEnumsWeKnow.Contains(civ))
         {
             weKnowThem = true;
-            destinationName.text = hitObject.name;
         }
+        if (isFleet)
+            destinationName.text = "Warp Signture";
         else
         {
-            if (isFleet)
-                destinationName.text = "Warp Signture";
-            else if (typeOfDestination <= (int)GalaxyObjectType.RedStar)
+            switch (typeOfDestination)
             {
-                destinationName.text = "Star at";
+                case (int)GalaxyObjectType.BlueStar:
+                case (int)GalaxyObjectType.WhiteStar:
+                case (int)GalaxyObjectType.YellowStar:
+                case (int)GalaxyObjectType.OrangeStar:
+                case (int)GalaxyObjectType.RedStar:
+                    destinationName.text = "Star at";
+                    break;
+                case (int)GalaxyObjectType.Nebula:
+                case (int)GalaxyObjectType.OmarianNebula:
+                case (int)GalaxyObjectType.OrionNebula:
+                    destinationName.text = "Nebula at";
+                    break;
+                case (int)GalaxyObjectType.Station:
+                    destinationName.text = "Station at";
+                    break;
+                case (int)GalaxyObjectType.BlackHole:
+                    destinationName.text = "Black Hole at";
+                    break;
+                case (int)GalaxyObjectType.WormHole:
+                    destinationName.text = "WormHole at";
+                    break;
+                case (int)GalaxyObjectType.TargetDestination:
+                    destinationName.text = "Target at";
+                    break;
+                default:
+                    break;
             }
-            else if (typeOfDestination >= (int)GalaxyObjectType.Nebula && typeOfDestination <= (int)GalaxyObjectType.OrionNebula)
-            {
-                destinationName.text = "Nebula at";
-            }
-            else if (typeOfDestination == (int)GalaxyObjectType.Station)
-            {
-                destinationName.text = "Station at";
-            }
-            else if (typeOfDestination == (int)GalaxyObjectType.BlackHole || typeOfDestination == (int)GalaxyObjectType.WormHole)
-            {
-                destinationName.text = "Black Hole at";
-            }
-            else if (typeOfDestination == (int)GalaxyObjectType.TargetDestination)
-            {
-                destinationName.text = "Selected Destination";
-            }
-
         }
         MouseClickSetsDestination = false;
         cancelDestinationButtonGO.SetActive(true);
