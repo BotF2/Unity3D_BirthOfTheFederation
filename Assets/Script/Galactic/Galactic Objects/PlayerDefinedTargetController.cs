@@ -82,20 +82,24 @@ public class PlayerDefinedTargetController : MonoBehaviour
         FleetUIManager.Instance.SetAsDestination(hitObject, isFleet);
         //this.CanvasDestination.gameObject.SetActive(true);
     }
+    ///
+    /// Doing trigger collider in the fleetController for now, sort by type of controller on hit object
+    /// 
+
     //void OnTriggerEnter(Collider collider)
     //{
 
     //    FleetController fleetController = collider.gameObject.GetComponent<FleetController>();
     //    if (fleetController != null) // it is a FleetController
     //    {
-    //        OnFleetEncounteredFleet(fleetController);
-    //        Debug.Log("fleet Controller collided with " + fleetController.gameObject.name);
+    //        OnEncounteredByFleet(fleetController);
     //    }
     //}
-    //public void OnFleetEncounteredFleet(FleetController fleetController)
+    //public void OnEncounteredByFleet(FleetController fleetController)
     //{
-    //    //FleetManager.Instance.
-    //    //1) you get the FleetController of the new fleet GO
-    //    //2) you will need to apply different logics depending of the answer
+    //    if (fleetController.FleetData.Destination == this)
+    //    {
+    //        fleetController.FleetData.Destination = null;
+    //    }
     //}
 }

@@ -24,8 +24,6 @@ namespace Assets.Core
         //Fields
         private FleetData fleetData;
         public FleetData FleetData { get { return fleetData; } set { fleetData = value; } }
-        [SerializeField]
-        private PlayerDefinedTargetController PlayerDefinedTargetController;
         public string Name;
         public FleetState FleetState;
         private float warpFudgeFactor = 10f;
@@ -230,8 +228,7 @@ namespace Assets.Core
             if (this.FleetData.Destination == hitGO)
             {  
                 if (this.FleetData.CivEnum != hitGO.GetComponent<FleetController>().FleetData.CivEnum)
-                {
-                    
+                {  
                     if (diplomacyController.areWePlaceholder)
                     {
                         // FistContactDiplomacy for both local palyer using the UI and for non local human players using their UI and for AI without a UI
@@ -396,9 +393,8 @@ namespace Assets.Core
         {
             Vector3 destinationPoint = FleetData.Destination.transform.position;
             Vector3[] points = { transform.position, destinationPoint };
+            DestinationLine.gameObject.SetActive(true);
             DestinationLine.SetUpLine(points);
-
-   
         }
         void OnArrivedAtDestination()
         {

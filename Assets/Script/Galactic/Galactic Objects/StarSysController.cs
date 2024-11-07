@@ -15,14 +15,12 @@ namespace Assets.Core
         private StarSysData starSysData;
         public StarSysData StarSysData { get { return starSysData; } set { starSysData = value; } }
         private Camera galaxyEventCamera;
-        //public Canvas CanvasDestination;
         [SerializeField]
         private Canvas canvasToolTip;
         [SerializeField]
         private Canvas canvasStarSysUI;
         public static event Action<TrekRandomEventSO> TrekEventDisasters;
         //public TrekRandomEventSO trekEventSO;
-
 
         public StarSysController(string name)
         {

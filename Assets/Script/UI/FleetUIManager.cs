@@ -139,27 +139,22 @@ public class FleetUIManager : MonoBehaviour
     }
     public void ClickCancelDestinationButton()
     {
-        if (ourUIFleetController.FleetData.Destination != null)
-        {
-            var canvases = ourUIFleetController.FleetData.Destination.GetComponentsInChildren<Canvas>();
-            foreach (Canvas c in canvases)
-            {
-                if (c.name == "CanvasDestination")
-                {
-                    c.gameObject.SetActive(false);
-                }
-
-            }
-            ourUIFleetController.FleetData.Destination = null;
-        }
         MousePointerChanger.Instance.ResetCursor();
         MousePointerChanger.Instance.HaveGalaxyMapCursor = false;
         destinationName.text = "No Destination";
         destinationCoordinates.text = "";
         MouseClickSetsDestination = false;
-        cancelDestinationButtonGO.SetActive(false);
         selectDestinationCursorButtonGO.SetActive(true);
         setDestinationButtonGO.SetActive(true);
+        if (ourUIFleetController.FleetData.Destination != null)
+        {
+            ourUIFleetController.FleetData.Destination = null;
+            ourUIFleetController.DestinationLine.gameObject.SetActive(false);
+        }
+        else
+        {
+            cancelDestinationButtonGO.SetActive(false);
+        }
     }
     public void SetAsDestination(GameObject hitObject, bool aFleet)
     {
