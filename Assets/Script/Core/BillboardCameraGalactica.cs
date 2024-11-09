@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets.Core 
+namespace Assets.Core
 {
     public class BillboardCameraGalactica : MonoBehaviour
     {

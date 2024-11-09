@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 
 namespace Assets.Core
 {
 
-    public class MapLineFixed: MonoBehaviour
+    public class MapLineFixed : MonoBehaviour
     {
         private LineRenderer lineRenderer;
         private Vector3[] points;

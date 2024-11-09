@@ -8,13 +8,11 @@
  */
 
 using System;                       // Convert
+using System.Collections.Generic;   // List
 using System.IO;                    // Directory
 using System.Linq;                  // Enumerable
-using System.Collections.Generic;   // List
-using UnityEngine;                  // Monobehaviour
 using UnityEditor;                  // Handles
-using Assets.Core;
-using Unity.VisualScripting;
+using UnityEngine;                  // Monobehaviour
 
 
 
@@ -53,8 +51,8 @@ namespace FischlWorks_FogWar
                 Instance = this;
                 DontDestroyOnLoad(gameObject);
             }
-            
-            
+
+
         }
 
         [System.Serializable]
@@ -66,8 +64,10 @@ namespace FischlWorks_FogWar
             }
 
             // Indexer definition
-            public LevelColumn this[int index] {
-                get {
+            public LevelColumn this[int index]
+            {
+                get
+                {
                     if (index >= 0 && index < levelRow.Count)
                     {
                         return levelRow[index];
@@ -79,7 +79,8 @@ namespace FischlWorks_FogWar
                         return null;
                     }
                 }
-                set {
+                set
+                {
                     if (index >= 0 && index < levelRow.Count)
                     {
                         levelRow[index] = value;
@@ -96,7 +97,7 @@ namespace FischlWorks_FogWar
             // Adding private getter / setters are not allowed for serialization
             public int levelDimensionX = 0;
             public int levelDimensionY = 0;
-            public float unitScale = 0; 
+            public float unitScale = 0;
             public float scanSpacingPerUnit = 0;
 
             [SerializeField]
@@ -121,8 +122,10 @@ namespace FischlWorks_FogWar
             }
 
             // Indexer definition
-            public ETileState this[int index] {
-                get {
+            public ETileState this[int index]
+            {
+                get
+                {
                     if (index >= 0 && index < levelColumn.Count)
                     {
                         return levelColumn[index];
@@ -134,7 +137,8 @@ namespace FischlWorks_FogWar
                         return ETileState.Empty;
                     }
                 }
-                set {
+                set
+                {
                     if (index >= 0 && index < levelColumn.Count)
                     {
                         levelColumn[index] = value;
@@ -158,7 +162,7 @@ namespace FischlWorks_FogWar
         public class FogRevealer
         {
             Transform camTransform = csFogWar.Instance.galacticCamHolder.transform;
-            
+
 
             public FogRevealer(Transform revealerTransform, int sightRange, bool updateOnlyOnMove)
             {
@@ -173,7 +177,7 @@ namespace FischlWorks_FogWar
                 float zCam = camTransform.position.z;
                 currentLevelCoordinates = new Vector2Int(
                 fogWar.GetUnitX(revealerTransform.position.x), // - (camTransform.transform.position.x / 5)), // adjust for camera position moving the fog layer, move the revealer too
-                fogWar.GetUnitY(revealerTransform.position.z));  
+                fogWar.GetUnitY(revealerTransform.position.z));
 
                 return currentLevelCoordinates;
             }
@@ -193,8 +197,10 @@ namespace FischlWorks_FogWar
             public bool _UpdateOnlyOnMove => updateOnlyOnMove;
 
             private Vector2Int currentLevelCoordinates = new Vector2Int();
-            public Vector2Int _CurrentLevelCoordinates {
-                get {
+            public Vector2Int _CurrentLevelCoordinates
+            {
+                get
+                {
                     lastSeenAt = currentLevelCoordinates;
 
                     return currentLevelCoordinates;
@@ -213,7 +219,7 @@ namespace FischlWorks_FogWar
         private List<FogRevealer> fogRevealers = null;
         public List<FogRevealer> _FogRevealers => fogRevealers;
         [SerializeField]
-        private Transform levelMidPoint = null; 
+        private Transform levelMidPoint = null;
         public Transform _LevelMidPoint => levelMidPoint;
         [SerializeField]
         [Range(1, 30)]
@@ -225,7 +231,7 @@ namespace FischlWorks_FogWar
         private float fogPlaneHeight = -55;// put it over the background image at -60, 0 is world space of the galaxy stars in 3D space. Other ships are not seen in the shadow, not directly line of sight in the 3D camera view
         [SerializeField]
         private Material fogPlaneMaterial = null;
-       
+
         [SerializeField]
         private Color fogColor = new Color32(5, 15, 25, 255);
         [SerializeField]
@@ -291,42 +297,42 @@ namespace FischlWorks_FogWar
 
         //private void Start()
         public void RunFogOfWar()
-        {    
+        {
             csFogWar.Instance.
                 CheckProperties();
 
-                InitializeVariables();
+            InitializeVariables();
 
-                if (LevelDataToLoad == null)
+            if (LevelDataToLoad == null)
+            {
+                ScanLevel();
+
+                if (saveDataOnScan == true)
                 {
-                    ScanLevel();
-
-                    if (saveDataOnScan == true)
-                    {
-                        // Preprocessor definitions are used because the save function code will be stripped out on build
+                    // Preprocessor definitions are used because the save function code will be stripped out on build
 #if UNITY_EDITOR
-                        SaveScanAsLevelData();
+                    SaveScanAsLevelData();
 #endif
-                    }
                 }
-                else
-                {
-                    LoadLevelData();
-                }
+            }
+            else
+            {
+                LoadLevelData();
+            }
 
-                InitializeFog();
+            InitializeFog();
 
-                // This part passes the needed references to the shadowcaster
-                shadowcaster.Initialize(this);
+            // This part passes the needed references to the shadowcaster
+            shadowcaster.Initialize(this);
 
-                // This is needed because we do not update the fog when there's no unit-scale movement of each fogRevealer
-                ForceUpdateFog();
-                fogReady = true;
+            // This is needed because we do not update the fog when there's no unit-scale movement of each fogRevealer
+            ForceUpdateFog();
+            fogReady = true;
         }
 
         private void Update()
         {
-            if(fogPlane != null && fogReady)
+            if (fogPlane != null && fogReady)
                 UpdateFog();
         }
 
@@ -383,7 +389,7 @@ namespace FischlWorks_FogWar
             fogPlane = GameObject.CreatePrimitive(PrimitiveType.Plane);
             fogPlane.layer = 8; // Fog of War Plane for ray hits
             fogPlane.name = "[RUNTIME] Fog_Plane";
-            
+
             fogPlane.transform.position = new Vector3(
                 levelMidPoint.position.x,
                 levelMidPoint.position.y + fogPlaneHeight,
@@ -422,9 +428,9 @@ namespace FischlWorks_FogWar
         {
 
             fogPlane.transform.position = new Vector3(
-                levelMidPoint.position.x, 
+                levelMidPoint.position.x,
                 levelMidPoint.position.y + fogPlaneHeight,
-                levelMidPoint.position.z); 
+                levelMidPoint.position.z);
             // The Camera holder is offset to a location of -1100 in the z axis and on a range of movment from -1400 to +500, -820 corresponds to galactic center on z
             //ToDo: get camera to start on home world of local player at same relative position as if Fed
 
@@ -676,7 +682,7 @@ namespace FischlWorks_FogWar
 
             if (additionalRadius == 0)
             {
-                return shadowcaster.fogField[levelCoordinates.x][levelCoordinates.y] == 
+                return shadowcaster.fogField[levelCoordinates.x][levelCoordinates.y] ==
                     Shadowcaster.LevelColumn.ETileVisibility.Revealed;
             }
 
@@ -687,7 +693,7 @@ namespace FischlWorks_FogWar
                 for (int yIterator = -1; yIterator < additionalRadius + 1; yIterator++)
                 {
                     if (CheckLevelGridRange(new Vector2Int(
-                        levelCoordinates.x + xIterator, 
+                        levelCoordinates.x + xIterator,
                         levelCoordinates.y + yIterator)) == false)
                     {
                         scanResult = 0;
@@ -696,7 +702,7 @@ namespace FischlWorks_FogWar
                     }
 
                     scanResult += Convert.ToInt32(
-                        shadowcaster.fogField[levelCoordinates.x + xIterator][levelCoordinates.y + yIterator] == 
+                        shadowcaster.fogField[levelCoordinates.x + xIterator][levelCoordinates.y + yIterator] ==
                         Shadowcaster.LevelColumn.ETileVisibility.Revealed);
                 }
             }
@@ -727,8 +733,8 @@ namespace FischlWorks_FogWar
         public Vector3 GetWorldVector(Vector2Int worldCoordinates)
         {
             return new Vector3(
-                GetWorldX(worldCoordinates.x + (levelDimensionX / 2)), 
-                0, 
+                GetWorldX(worldCoordinates.x + (levelDimensionX / 2)),
+                0,
                 GetWorldY(worldCoordinates.y + (levelDimensionY / 2)));
         }
 
@@ -858,7 +864,8 @@ namespace FischlWorks_FogWar
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = true, Inherited = true)]
     public class ShowIfAttribute : PropertyAttribute
     {
-        public string _BaseCondition {
+        public string _BaseCondition
+        {
             get { return mBaseCondition; }
         }
 
@@ -875,7 +882,8 @@ namespace FischlWorks_FogWar
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = true, Inherited = true)]
     public class BigHeaderAttribute : PropertyAttribute
     {
-        public string _Text {
+        public string _Text
+        {
             get { return mText; }
         }
 

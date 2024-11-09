@@ -1,11 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
-using System;
 using UnityEngine;
 
 namespace Assets.Core
 {
-   
+
     public class F_Animator1 : MonoBehaviour
     {
         // must CivName class and file the same

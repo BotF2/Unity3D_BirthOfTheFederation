@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -9,7 +6,7 @@ namespace Assets.Core
     [System.Serializable]
     public class CustomGameEvent : UnityEvent<Component, object>
     {
-        
+
     }
     public class GameEventListener : MonoBehaviour
     {
@@ -22,8 +19,8 @@ namespace Assets.Core
         }
         private void OnEnable()
         {
-            if(TimeManager.Instance != null)
-            TimeManager.Instance.OnRandomSpecialEvent += Instance_OnRandomEvent;
+            if (TimeManager.Instance != null)
+                TimeManager.Instance.OnRandomSpecialEvent += Instance_OnRandomEvent;
         }
 
         private void Instance_OnRandomEvent(TrekRandomEventSO specialEvent)
@@ -88,6 +85,6 @@ namespace Assets.Core
             response.Invoke();
         }
     }
-    
+
 }
 

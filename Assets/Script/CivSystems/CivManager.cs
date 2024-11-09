@@ -1,11 +1,6 @@
-using JetBrains.Annotations;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Data.Common;
 using System.Linq;
-using System.Net.Http.Headers;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Assets.Core
@@ -37,12 +32,12 @@ namespace Assets.Core
         public List<CivEnum> CivSOInGame;
         public List<CivData> CivDataInGameList = new List<CivData> { new CivData() };
         public List<CivController> CivControllersInGame;
-        
+
         //public CivData LocalPlayerCivEnum;// This will be set by NetCode checking if NetworkObject belongs to the local player by comparing the NetworkObject.OwnerClientId with NetworkManager.Singleton.LocalClientId. 
         public bool isSinglePlayer;
         public List<CivEnum> InGamePlayableCivs;
         public CivController LocalPlayerCivContoller;
-      
+
         //public bool nowCivsCanJoinTheFederation = true; // for use with testing a muliple star system Federation
         private int HoldCivSize = 0;// used in testing of a multiStarSystem civilization/faction
         [SerializeField]
@@ -169,9 +164,9 @@ namespace Assets.Core
                             j++;
                     }
                 }
-            }            
+            }
         }
-    public void CreateNewGameBySelections( int sizeGame, int gameTechLevel, int galaxyType, int localPlayerCivInt, bool isSingleVsMultiplayer)
+        public void CreateNewGameBySelections(int sizeGame, int gameTechLevel, int galaxyType, int localPlayerCivInt, bool isSingleVsMultiplayer)
         {
             MainMenuUIController.Instance.MainMenuData.SelectedGalaxySize = (GalaxySize)sizeGame;
             MainMenuUIController.Instance.MainMenuData.SelectedTechLevel = (TechLevel)gameTechLevel;
@@ -192,7 +187,7 @@ namespace Assets.Core
                 civData.WarlikeToPeaseful = (WarLikeEnum)civSO.WarlikeToPeaseful; // a scale from most worklike 0 to neutral 3 and most peasful at 5
                 civData.TraitOne = civSO.TraitOne;
                 civData.TraitTwo = civSO.TraitTwo;
-                civData.TraitThree = civSO.TraitThree;  
+                civData.TraitThree = civSO.TraitThree;
                 civData.CivImageSprite = civSO.CivImage;
                 civData.InsigniaSprite = civSO.Insignia;
                 civData.Population = civSO.Population;
@@ -232,25 +227,25 @@ namespace Assets.Core
             civController.CivData = civData;
             civController.CivShortName = civData.CivShortName;
             CivControllersInGame.Add(civController);
-            civController.CivData.CivControllersWeKnow = new List<CivController>() { civController};
-            civController.CivData.CivEnumsWeKnow = new List<CivEnum>() { civController.CivData.CivEnum};
+            civController.CivData.CivControllersWeKnow = new List<CivController>() { civController };
+            civController.CivData.CivEnumsWeKnow = new List<CivEnum>() { civController.CivData.CivEnum };
             civNewGameOb.transform.SetParent(civFolder.transform, true);
             civNewGameOb.name = civData.CivShortName.ToString();
             //********** We are just assuming Fed is local player, need to do a check for 
             // NetCode, NetworkObject belongs to the local player
             if (GameController.Instance.AreWeLocalPlayer(civController.CivData.CivEnum)) // *** this is temp
-                
+
             {
                 SetLocalPlayerCivController(civController);
             }
-                
+
         }
 
         void CreateStarSystemsWeOwnList(List<CivSO> list)
         {
             //for (int i = 0; i < .Count; i++)
             //{
-            
+
             //}
         }
         void CreateCivEnumList(List<CivSO> listOfCivSO)
@@ -293,18 +288,18 @@ namespace Assets.Core
         }
         public void OnNewGameButtonClicked(int gameSize, int gameTechLevel, int galaxyType, int selectedLocalCiv, bool isSingle)
         {
-            CreateNewGameBySelections(gameSize, gameTechLevel, galaxyType, selectedLocalCiv, isSingle);            
+            CreateNewGameBySelections(gameSize, gameTechLevel, galaxyType, selectedLocalCiv, isSingle);
         }
 
         public CivController GetCivControllerByEnum(CivEnum civEnum)
         {
             GameObject aCivGO = (GameObject)Instantiate(civPrefab, new Vector3(0, 0, 0), Quaternion.identity);
             CivController aCiv = aCivGO.GetComponent<CivController>();
-            foreach(var civ in CivControllersInGame)
+            foreach (var civ in CivControllersInGame)
             {
-                if(civEnum == civ.CivData.CivEnum)
+                if (civEnum == civ.CivData.CivEnum)
                 {
-                   aCiv = civ;
+                    aCiv = civ;
                 }
             }
             return aCiv;

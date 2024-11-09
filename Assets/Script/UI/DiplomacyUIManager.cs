@@ -1,14 +1,13 @@
 using Assets.Core;
 using TMPro;
 //using UnityEditor.Animations;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 //using UnityEditor.ShaderGraph.Internal;
 
 
 
-public class DiplomacyUIManager: MonoBehaviour
+public class DiplomacyUIManager : MonoBehaviour
 {
     public static DiplomacyUIManager Instance;
     private Camera galaxyEventCamera;
@@ -80,7 +79,7 @@ public class DiplomacyUIManager: MonoBehaviour
     }
     public void CloseUnLoadFleetUI()
     {
-       diplomacyUIRoot.SetActive(false);
-       TimeManager.Instance.ResumeTime();    
+        diplomacyUIRoot.SetActive(false);
+        TimeManager.Instance.ResumeTime();
     }
 }

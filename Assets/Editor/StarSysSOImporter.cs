@@ -1,11 +1,13 @@
-using UnityEngine;
-using UnityEditor;
-using System.IO;
 using Assets.Core;
 using System;
+using System.IO;
+using UnityEditor;
+using UnityEngine;
 
 public class StarSysSOImporter : EditorWindow
 {
+#if UNITY_EDITOR
+
     [MenuItem("Tools/Import StarSysSO CSV")]
     public static void ShowWindow()
     {
@@ -40,7 +42,7 @@ public class StarSysSOImporter : EditorWindow
         {
             string[] fields = line.Split(',');
 
-             if (fields.Length > 7) // Ensure there are enough fields
+            if (fields.Length > 7) // Ensure there are enough fields
             {
                 string imageString = fields[6];
                 foreach (string file in Directory.GetFiles($"Assets/Resources/Stars/", "*.png"))
@@ -57,13 +59,13 @@ public class StarSysSOImporter : EditorWindow
                     StarSysSO StarSysSO = CreateInstance<StarSysSO>();
                     ////StarSysInt	,	StarSysSO Enum	,	StarSysSO Short Name	,	StarSysSO Long Name	,	Home System	,	Triat One	,	Trait Two	,	StarSysSO Image	,	Insginia	,	Population	,	Credits	,	TechLevel Points
                     StarSysSO.StarSysInt = int.Parse(fields[0]);
-                    StarSysSO.Position = new Vector3((int.Parse(fields[1]))/10, (int.Parse(fields[2]))/10, (int.Parse(fields[3]))/10);
+                    StarSysSO.Position = new Vector3((int.Parse(fields[1])) / 10, (int.Parse(fields[2])) / 10, (int.Parse(fields[3])) / 10);
                     StarSysSO.SysName = fields[4];
                     StarSysSO.FirstOwner = GetMyCivEnum(fields[5]);
                     StarSysSO.CurrentOwner = GetMyCivEnum(fields[5]);
                     StarSysSO.StarType = GetMyStarTypeEnum(fields[6]);
                     StarSysSO.StarSprit = Resources.Load<Sprite>(imageString);
-                    StarSysSO.Population = int.Parse(fields[7]);                    
+                    StarSysSO.Population = int.Parse(fields[7]);
                     StarSysSO.PopulationLimit = int.Parse(fields[8]);
                     StarSysSO.Farms = int.Parse(fields[9]);
                     StarSysSO.PowerStations = int.Parse(fields[10]);
@@ -90,4 +92,6 @@ public class StarSysSOImporter : EditorWindow
         Enum.TryParse(title, out st);
         return st;
     }
+
+#endif
 }

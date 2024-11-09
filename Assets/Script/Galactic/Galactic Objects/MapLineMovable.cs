@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 //using BOTF3D_Core;
 //using BOTF3D_Combat;
@@ -8,8 +6,8 @@ using UnityEngine;
 namespace Assets.Core
 {
 
-    public class MapLineMovable: MonoBehaviour
-    {                 
+    public class MapLineMovable : MonoBehaviour
+    {
         private LineRenderer lineRenderer;
         private Vector3[] points;
 

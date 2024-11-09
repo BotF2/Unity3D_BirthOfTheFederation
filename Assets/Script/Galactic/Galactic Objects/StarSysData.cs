@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using Assets.Core;
+using UnityEngine;
 
 public class StarSysData
 {
@@ -22,7 +20,7 @@ public class StarSysData
     public GalaxyObjectType SystemType;
     public Sprite StarSprit;
     public int Population;
-    public int PopulationLimit; 
+    public int PopulationLimit;
     public int Farms;
     public int PowerStations;
     public int Factories;

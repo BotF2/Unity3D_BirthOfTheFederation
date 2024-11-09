@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using Assets.Core;
+using UnityEngine;
 
 [CreateAssetMenu(menuName = "Galaxy/StarSysSO")]
 public class StarSysSO : ScriptableObject

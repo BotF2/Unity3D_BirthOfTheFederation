@@ -1,5 +1,3 @@
-
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,7 +16,7 @@ namespace Assets.Core
         public float MaxWarpFactor = 0f;
         public float CurrentWarpFactor = 0f;
         public string Name;
-        public string Description;      
+        public string Description;
         public GameObject Destination;
     }
 }

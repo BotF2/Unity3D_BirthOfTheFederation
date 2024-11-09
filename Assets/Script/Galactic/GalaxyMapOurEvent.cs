@@ -1,8 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class GalaxyMapOurEvent : MonoBehaviour
 {
@@ -26,7 +23,7 @@ public class GalaxyMapOurEvent : MonoBehaviour
         onSetDestination?.Invoke(destination, destinationInt); // delegate action invocation with gameObject destination, (?)if registered (so is not null) then do it
     }
 
-    public void RemoveDestination(GameObject destination, int destinationInt) 
+    public void RemoveDestination(GameObject destination, int destinationInt)
     {
         onRemoveDestination?.Invoke(destination, destinationInt);
     }

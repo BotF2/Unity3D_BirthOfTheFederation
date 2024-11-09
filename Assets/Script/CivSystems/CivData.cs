@@ -1,5 +1,3 @@
-using Assets.Core;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 namespace Assets.Core
@@ -21,7 +19,7 @@ namespace Assets.Core
         public Sprite InsigniaSprite;
         public int Population = 5;
         public int Credits = 100;
-        public int TechPoints =10; // 10 for pre warp and playable get 90 more to be tech level early at 100; 
+        public int TechPoints = 10; // 10 for pre warp and playable get 90 more to be tech level early at 100; 
         public TechLevel CivTechLevel; // all cis have tech points and the techlevel enum value sets a level threashold
         public bool Playable;
         public bool PlayedByAI = true;
@@ -34,7 +32,7 @@ namespace Assets.Core
         //public float TaxRate; // universal or variable by civ/sys??
         //public float GrowthRate; // universal or variable by civ/sys??
         public float IntelPoints;
-        
+
         public void AddToCivControllersWeKnow(CivController civControllerWeFound)
         {
             CivControllersWeKnow.Add(civControllerWeFound);

@@ -7,13 +7,6 @@
  * All Content (C) 2022 Unlimited Fischl Works, all rights reserved.
  */
 
-
-
-using UnityEngine;  // GUILayout
-using UnityEditor;  // Editor
-
-
-
 namespace FischlWorks_FogWar
 {
     /// Not in Use

@@ -1,13 +1,8 @@
-using System;
-using System.Collections.Generic;
-using UnityEngine;
-using TMPro;
-using UnityEngine.UI;
 using Assets.Core;
-using Unity.VisualScripting;
+using System.Collections.Generic;
 using System.Diagnostics;
-using UnityEngine.Rendering;
-using System.Linq;
+using TMPro;
+using UnityEngine;
 
 [DebuggerDisplay("{" + nameof(GetDebuggerDisplay) + "(),nq}")]
 public class StarSysUIManager : MonoBehaviour
@@ -70,7 +65,7 @@ public class StarSysUIManager : MonoBehaviour
         //destinationDropdown.value = 0;
     }
 
-    public void LoadStarSysUI(GameObject go) 
+    public void LoadStarSysUI(GameObject go)
     {
         FleetUIManager.Instance.CloseUnLoadFleetUI();
         FleetSelectionUI.Instance.UnLoadShipManagerUI();
@@ -85,7 +80,7 @@ public class StarSysUIManager : MonoBehaviour
     }
     private void LoadSystemsList(CivEnum civEnum)
     {
-        sysControllerList.Clear(); 
+        sysControllerList.Clear();
         foreach (var sysController in StarSysManager.Instance.ManagersStarSysControllerList)
         {
             if (sysController.StarSysData.CurrentOwner == civEnum)
@@ -97,11 +92,11 @@ public class StarSysUIManager : MonoBehaviour
         {
             for (int i = 0; i < starSysListGO.transform.childCount; i++)
             {
-                UnityEngine.Object.Destroy(starSysListGO.transform.GetChild(i).gameObject); 
+                UnityEngine.Object.Destroy(starSysListGO.transform.GetChild(i).gameObject);
             }
         }
         List<string> nameOfSys = new List<string>();
-        foreach(var tmp in starSysListGO.GetComponentsInChildren<TextMeshProUGUI>())
+        foreach (var tmp in starSysListGO.GetComponentsInChildren<TextMeshProUGUI>())
         {
             nameOfSys.Add(tmp.text);
         }
@@ -113,11 +108,11 @@ public class StarSysUIManager : MonoBehaviour
         int t_Factories = 0;
         int t_Tech = 0;
         int t_Research = 0;
-        
+
         for (var i = 0; i < sysControllerList.Count; i++)
         {
             if (!nameOfSys.Contains(sysControllerList[i].StarSysData.SysName))
-            { 
+            {
                 var sysController = sysControllerList[i];
                 GameObject starSysPanel = (GameObject)Instantiate(starSysPanelPrefab, starSysListGO.transform);
                 starSysPanel.transform.SetParent(starSysListGO.transform, true);
@@ -126,12 +121,12 @@ public class StarSysUIManager : MonoBehaviour
                 sysTMPs[1].text = sysController.StarSysData.Population.ToString();
                 sysTMPs[2].text = sysController.StarSysData.Farms.ToString();
                 sysTMPs[3].text = sysController.StarSysData.power.ToString();
-                sysTMPs[4].text = sysController.StarSysData.PowerStations.ToString();               
+                sysTMPs[4].text = sysController.StarSysData.PowerStations.ToString();
                 sysTMPs[5].text = sysController.StarSysData.production.ToString();
                 sysTMPs[6].text = sysController.StarSysData.Factories.ToString();
                 sysTMPs[7].text = sysController.StarSysData.tech.ToString();
                 sysTMPs[8].text = sysController.StarSysData.Research.ToString();
-                
+
                 // ToDo: ship lists, bunkers, orbital batteries
                 t_Pop += sysController.StarSysData.Population;
                 t_Farms += sysController.StarSysData.Farms;
@@ -140,7 +135,7 @@ public class StarSysUIManager : MonoBehaviour
                 t_Production += sysController.StarSysData.production;
                 t_Factories += sysController.StarSysData.Factories;
                 t_Tech += sysController.StarSysData.tech;
-                t_Research += sysController.StarSysData.Research; 
+                t_Research += sysController.StarSysData.Research;
             }
             tPopulation.text = t_Pop.ToString();
             tPopulation.maskable = false;

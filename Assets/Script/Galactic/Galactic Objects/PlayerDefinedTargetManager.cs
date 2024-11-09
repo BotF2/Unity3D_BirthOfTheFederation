@@ -1,9 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Unity.VisualScripting;
-using Assets.Core;
-using TMPro;
 
 namespace Assets.Core
 {
@@ -21,7 +17,7 @@ namespace Assets.Core
         private PlayerDefinedTargetSO playerDefinedTargetSO;
         [SerializeField]
         private Camera galaxyEventCamera;
-      //  public List<PlayerDefinedTargetController> ManagersPlayerTargetControllerList;
+        //  public List<PlayerDefinedTargetController> ManagersPlayerTargetControllerList;
         public List<GameObject> PlayerTargetGOList = new List<GameObject>(); // all player Defined GOs made
 
         private void Awake()
@@ -51,7 +47,7 @@ namespace Assets.Core
                 playerTargetData.Insignia = playerDefinedTargetSO.Insignia;
                 playerTargetData.Description = playerDefinedTargetSO.Description;
                 playerTargetData.CivOwnerEnum = GameController.Instance.GameData.LocalPlayerCivEnum;
-                this.InstantiatePlayerTarget(playerTargetData, fleetGO );
+                this.InstantiatePlayerTarget(playerTargetData, fleetGO);
             }
         }
         public void InstantiatePlayerTarget(PlayerDefinedTargetData playerTargetData, GameObject fleetGO)
@@ -91,15 +87,15 @@ namespace Assets.Core
             playerController.DropLine = itemMapLineScript;
 
             fleetGO.GetComponent<FleetController>().TargetController = playerController;
-     
+
         }
         void AddPlayerControllerToAllControllers(PlayerDefinedTargetController playerTargetController)
         {
-           // ManagersPlayerTargetControllerList.Add(playerTargetController);
+            // ManagersPlayerTargetControllerList.Add(playerTargetController);
         }
         void RemovePlayerControllerToAllControllers(PlayerDefinedTargetController playerTargetController)
         {
-           // ManagersPlayerTargetControllerList.Remove(playerTargetController);
+            // ManagersPlayerTargetControllerList.Remove(playerTargetController);
         }
     }
 }

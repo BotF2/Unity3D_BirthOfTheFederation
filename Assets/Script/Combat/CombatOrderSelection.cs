@@ -1,9 +1,5 @@
-using System;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
-using System.Collections.Generic;
 
 namespace Assets.Core
 {
@@ -22,7 +18,7 @@ namespace Assets.Core
         //}
         //private void Update()
         //{
-            
+
         //    foreach (var toggle in toggleOrderList)
         //    {
         //        if (toggle.isOn)

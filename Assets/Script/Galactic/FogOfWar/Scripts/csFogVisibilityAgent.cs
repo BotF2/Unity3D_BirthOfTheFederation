@@ -15,10 +15,9 @@
 
 
 
-using UnityEngine;                  // Monobehaviour
 using System.Collections.Generic;   // List
 using System.Linq;
-using Assets.Core;
+using UnityEngine;                  // Monobehaviour
 
 namespace FischlWorks_FogWar
 {

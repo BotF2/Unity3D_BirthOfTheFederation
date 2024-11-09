@@ -7,13 +7,13 @@ namespace Assets.Plugins.YAFSM
     [System.Serializable]
     public abstract class MachineState : State, IMachineBehaviour
     {
-        public string Name { get; internal set;  }
+        public string Name { get; internal set; }
         private IState _currentState;
         private IState _nextState;
         private IState _initialState;
         private IState _previousState;
 
-        private Dictionary<Type, IState> _states = new ();
+        private Dictionary<Type, IState> _states = new();
 
         private bool _onEnter;
         private bool _onExit;

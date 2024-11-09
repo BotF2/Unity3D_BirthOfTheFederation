@@ -1,14 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
-using System;
 using UnityEngine;
 
 namespace Assets.Core
 {
-   
-    public class E_Animator3 : MonoBehaviour  
+
+    public class E_Animator3 : MonoBehaviour
     {
-       // public bool _warpingInOver = false;
+        // public bool _warpingInOver = false;
         public Animator anim;
         public AudioSource warpAudioSource_0;
         //private SetShipLayerByAnimaStat shipLayerSetup;
@@ -18,7 +15,7 @@ namespace Assets.Core
         void Start()
         {
             anim = GetComponent<Animator>();
-           // cameraMultiTarget = GetComponent<CameraMultiTarget>();
+            // cameraMultiTarget = GetComponent<CameraMultiTarget>();
         }
 
         // Update is called once per frame  

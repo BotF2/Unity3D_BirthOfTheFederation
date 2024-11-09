@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Assets.Core;
 
 public class FindEventCamera : MonoBehaviour
 {
@@ -23,7 +20,7 @@ public class FindEventCamera : MonoBehaviour
             //goName = hitObject.name;
             if (hitObject == gameObject)
             {
-               //??????????? FleetUIManager.Instance.LoadFleetUI(gameObject);
+                //??????????? FleetUIManager.Instance.LoadFleetUI(gameObject);
             }
         }
 

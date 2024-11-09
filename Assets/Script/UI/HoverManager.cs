@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
-using UnityEngine.UIElements;
+using UnityEngine;
 
 public class HoverManager : MonoBehaviour
 {
@@ -13,7 +10,7 @@ public class HoverManager : MonoBehaviour
     //public TextMeshProUGUI description;
 
     private void Awake()
-    {    
+    {
         if (Instance != null)
         {
             Destroy(gameObject);
@@ -25,12 +22,12 @@ public class HoverManager : MonoBehaviour
         }
     }
 
-    public void ShowTip(string name) 
+    public void ShowTip(string name)
     {
         ToolTipTrans.gameObject.SetActive(true);
         Name.text = name;
     }
-    public void HidTip() 
+    public void HidTip()
     {
         Name.text = string.Empty;
         ToolTipTrans.gameObject.SetActive(false);

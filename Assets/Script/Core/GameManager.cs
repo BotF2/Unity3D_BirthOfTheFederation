@@ -1,6 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 
 
@@ -242,10 +240,10 @@ namespace Assets.Core
     }
     public enum TechLevel
     {
-        EARLY =100,
-        DEVELOPED =300,
-        ADVANCED =600,
-        SUPREME= 900
+        EARLY = 100,
+        DEVELOPED = 300,
+        ADVANCED = 600,
+        SUPREME = 900
     }
 
     public enum SystemData
@@ -321,7 +319,7 @@ namespace Assets.Core
         L_marginalForLife,
         K_marsLike,
         Moon
-       
+
     }
     public enum Orders
     {
@@ -429,18 +427,26 @@ namespace Assets.Core
 
         private void Awake()
         {
-            Instance = this; // static reference to single GameManager
+            if (Instance != null)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                Instance = this;
+                DontDestroyOnLoad(gameObject);
+            }
             InitializeGameManagerWithMainMenuUIController();
         }
 
         //  MARC CODE
         public GameObject UICamera;
         public GameObject GalaxyCamera;
-        
+
         public void SetCameraTargets() // ToDo: re-implement in combat
-         {
+        {
             //List<GameObject> _cameraTargets = new List<GameObject>() { Friend_0, Enemy_0}; // dummies
-           
+
             //List<GameObject> multiTargets = instantiateCombatShips.GetCameraTargets(); // get list - array for CameraMultiTarget
             //List<GameObject> survivingTargets = new List<GameObject>();
             //if (multiTargets.Count() > 0)
@@ -452,10 +458,10 @@ namespace Assets.Core
             //            survivingTargets.Add(multiTargets[i]);
             //        }
             //    }
-                
+
             //    _cameraTargets.AddRange(survivingTargets);
             //}
-          
+
             //cameraMultiTarget.SetTargets(_cameraTargets.ToArray()); // start multiCamera - main camers before warp in of ships
         }
         //public void ProvideFriendCombatShips(int numIndex, GameObject daObject)
@@ -478,12 +484,12 @@ namespace Assets.Core
             //{
             //    allDaShipObjectInCombat.Add(EnemyShips[i]);
             //}
-            
+
             //foreach (var shipGameObject in allDaShipObjectInCombat)
             //{
             //    var arrayOfName = shipGameObject.name.ToUpper().Split('_');
             //    shipGameObject.layer = SetShipLayer(arrayOfName[0]);
-                
+
             //} 
         }
 
@@ -530,6 +536,6 @@ namespace Assets.Core
                     return 10;
 
             }
-        }    
+        }
     }
 }

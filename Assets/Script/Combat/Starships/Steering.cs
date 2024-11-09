@@ -54,7 +54,7 @@ namespace Assets.SpaceCombat.AutoBattle.Scripts.Starships
 
                 var targetRotation = Quaternion.LookRotation(StarshipController.CurrentTarget.transform.position - StarshipController.transform.position);
                 var turningStrength = Mathf.Min(_turnRate * Time.deltaTime, 1);
-                
+
                 StarshipController.transform.rotation = Quaternion.Lerp(StarshipController.transform.rotation, targetRotation, turningStrength);
             }
         }

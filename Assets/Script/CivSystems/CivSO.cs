@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 //using UnityEditor.Build.Reporting;
 using UnityEngine;
-using UnityEngine.Analytics;
 
 namespace Assets.Core
 {
@@ -15,7 +12,7 @@ namespace Assets.Core
         public string CivLongName;
         public string CivHomeSystem; //best way???
         public int WarlikeToPeaseful;// a scale from most worklike 0 (attacks on contact) to neutral 3 and most peasful at 5
-        public CivTraitsEnum TraitOne; 
+        public CivTraitsEnum TraitOne;
         public CivTraitsEnum TraitTwo;
         public CivTraitsEnum TraitThree;
         public Sprite CivImage;

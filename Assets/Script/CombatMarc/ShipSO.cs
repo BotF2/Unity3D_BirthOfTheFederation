@@ -1,5 +1,5 @@
-using UnityEngine;
 using Assets.Core;
+using UnityEngine;
 
 [CreateAssetMenu(fileName = "ShipSO", menuName = "ShipSO", order = 1)]
 public class ShipSO : ScriptableObject

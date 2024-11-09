@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Assets.Core;
-using TMPro;
 
 public class ShipController : MonoBehaviour
 {

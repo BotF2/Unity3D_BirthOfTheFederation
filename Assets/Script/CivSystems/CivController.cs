@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 //using Unity.Netcode; //********** install for Multiplayer
@@ -62,7 +60,7 @@ namespace Assets.Core
             {
                 if (oneRenderer != null)
                 {
-                    if(oneRenderer.name == "InsigniaUnknown")
+                    if (oneRenderer.name == "InsigniaUnknown")
                         oneRenderer.gameObject.SetActive(false);
                     else if (oneRenderer.name == "OwnerInsignia")
                         oneRenderer.gameObject.SetActive(true);
@@ -71,7 +69,7 @@ namespace Assets.Core
                 }
             }
         }
-        public void ResetNames( GameObject hitGO)
+        public void ResetNames(GameObject hitGO)
         {
             TextMeshProUGUI[] TheText = hitGO.GetComponentsInChildren<TextMeshProUGUI>();
             foreach (var OneTMPtest in TheText)
@@ -81,7 +79,7 @@ namespace Assets.Core
                 {
                     if (!GameController.Instance.AreWeLocalPlayer(hitGO.GetComponent<StarSysController>().StarSysData.CurrentOwner)) // **** LocalPlayerCivEnum by NetCode check)
 
-                     OneTMPtest.text = hitGO.GetComponent<StarSysController>().StarSysData.SysName;
+                        OneTMPtest.text = hitGO.GetComponent<StarSysController>().StarSysData.SysName;
                 }
                 else if (OneTMPtest != null && OneTMPtest.name == "SysDescription (TMP)")
                     OneTMPtest.text = hitGO.GetComponent<StarSysController>().StarSysData.Description;

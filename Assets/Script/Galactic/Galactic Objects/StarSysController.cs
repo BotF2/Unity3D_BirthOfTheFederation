@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using System;
+using UnityEngine;
 
 namespace Assets.Core
 {
@@ -30,7 +28,7 @@ namespace Assets.Core
         {
             galaxyEventCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>() as Camera;
             canvasToolTip.worldCamera = galaxyEventCamera;
-           // CanvasDestination.gameObject.SetActive(false);
+            // CanvasDestination.gameObject.SetActive(false);
             var CanvasGO = GameObject.Find("CanvasStarSysUI");
             canvasStarSysUI = CanvasGO.GetComponent<Canvas>();
             canvasStarSysUI.worldCamera = galaxyEventCamera;
@@ -70,9 +68,9 @@ namespace Assets.Core
                 {
                     NewDestination(hitObject);
                 }
-            } 
+            }
         }
-        private void NewDestination(GameObject hitObject) 
+        private void NewDestination(GameObject hitObject)
         {
             bool isFleet = false;
             FleetUIManager.Instance.SetAsDestination(hitObject, isFleet);

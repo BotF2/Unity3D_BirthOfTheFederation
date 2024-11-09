@@ -1,6 +1,6 @@
 
-using UnityEngine;
 using Assets.Core;
+using UnityEngine;
 
 [CreateAssetMenu(menuName = "Galaxy/PlayerTargetSO")]
 public class PlayerDefinedTargetSO : ScriptableObject

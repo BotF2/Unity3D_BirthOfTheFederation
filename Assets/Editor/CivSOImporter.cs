@@ -1,13 +1,14 @@
-using UnityEngine;
-using UnityEditor;
-using System.IO;
 using Assets.Core;
 using System;
-using Unity.VisualScripting;
-using System.Diagnostics.Eventing.Reader;
+using System.IO;
+using UnityEditor;
+using UnityEngine;
 
 public class CivSOImporter : EditorWindow
 {
+#if UNITY_EDITOR
+
+
     [MenuItem("Tools/Import CivSO CSV")]
     public static void ShowWindow()
     {
@@ -43,12 +44,12 @@ public class CivSOImporter : EditorWindow
         {
             string[] fields = line.Split(',');
 
-            if (fields.Length >8)
+            if (fields.Length > 8)
             {
                 CivSO civSO = CreateInstance<CivSO>();
                 civSO.CivInt = int.Parse(fields[0]);
                 civSO.CivEnum = GetMyCivEnum(fields[1]);
-                civSO.CivShortName= fields[2];
+                civSO.CivShortName = fields[2];
                 civSO.CivLongName = fields[3];
                 civSO.CivHomeSystem = fields[4];
                 civSO.WarlikeToPeaseful = int.Parse(fields[5]);
@@ -96,8 +97,8 @@ public class CivSOImporter : EditorWindow
         else if (ourString == switchTraits[8])
             return CivTraitsEnum.Null;
         else return CivTraitsEnum.Null;
-           
-        
+
+
     }
     public static CivEnum GetMyCivEnum(string title)
     {
@@ -105,4 +106,6 @@ public class CivSOImporter : EditorWindow
         Enum.TryParse(title, out st);
         return st;
     }
-} 
+#endif
+}
+

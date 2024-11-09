@@ -1,9 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEditor;
-using Assets.Core;
-
 public class GameObjectMenuDragTarget // : Editor
 {
     //public override void OnInspectorGUI()

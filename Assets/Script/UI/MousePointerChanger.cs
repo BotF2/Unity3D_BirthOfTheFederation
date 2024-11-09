@@ -1,6 +1,4 @@
 using Assets.Core;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MousePointerChanger : MonoBehaviour
@@ -44,7 +42,7 @@ public class MousePointerChanger : MonoBehaviour
     // Call this function to change the cursor
     public void ChangeToGalaxyMapCursor()
     {
-        if(GameController.Instance.AreWeLocalPlayer(CivEnum.FED))
+        if (GameController.Instance.AreWeLocalPlayer(CivEnum.FED))
             ChangeCursor(galaxyMapCursorFed, hotSpot, cursorMode);
         else if (GameController.Instance.AreWeLocalPlayer(CivEnum.ROM))
             ChangeCursor(galaxyMapCursorRom, hotSpot, cursorMode);
