@@ -8,7 +8,8 @@ public class LocaleManager : MonoBehaviour
 
     public void ChangeLanguage(Locale newLocale)
     {
-        LocalizationSettings.SelectedLocale = newLocale;
+        if(Application.isPlaying)
+            LocalizationSettings.SelectedLocale = newLocale;
     }
     /// 
     /// I do not know why the code below does not work but above does work!
