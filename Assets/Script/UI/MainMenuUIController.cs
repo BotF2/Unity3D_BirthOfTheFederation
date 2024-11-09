@@ -1,15 +1,9 @@
-using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using TMPro;
 using UnityEngine;
-using UnityEngine.Analytics;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
-using System.Linq;
-using System;
-using TMPro;
-using FischlWorks_FogWar;
-using Unity.VisualScripting;
 //using UnityEditor.UIElements;
 
 namespace Assets.Core
@@ -33,7 +27,7 @@ namespace Assets.Core
         /// </summary>
         public static MainMenuUIController Instance;
 
-        public MainMenuData MainMenuData = new MainMenuData(); 
+        public MainMenuData MainMenuData = new MainMenuData();
         [SerializeField]
         private GameObject mainMenuCanvas;
         [SerializeField]
@@ -44,7 +38,7 @@ namespace Assets.Core
         private GameObject uiCameraGO;
         [SerializeField]
         private GameObject galaxyCenter;
- 
+
         //ToDo for multiplayer lobby
         //public CivEnum SelectedRemote0CivEnum;
         //public CivEnum SelectedRemote1CivEnum;
@@ -85,7 +79,7 @@ namespace Assets.Core
         //private Toggle _activeRemote6;
         public Toggle FedLocalPalyerToggle, RomLocalPlayerToggle, KlingLocalPlayerToggle, CardLocalPlayerToggle,
             DomLocalPlayerToggle, BorgLocalPlayerToggle, TerranLocalPlayerToggle;
-        
+
         public ToggleGroup SinglePlayerCivilizationGroup;
         //public ToggleGroup MultiplayerCivilizationGroup;// Can and should this be a group in the multiplayer setting, maybe.
         public Toggle FedOnOff, RomOnOff, KlingOnOff, CardOnOff, DomOnOff, BorgOnOff, TerranOnOff;
@@ -179,8 +173,8 @@ namespace Assets.Core
             DomLocalPlayerToggle.isOn = false;
             BorgLocalPlayerToggle.isOn = false;
             TerranLocalPlayerToggle.isOn = false;
-            OnOffToggles.Add(FedOnOff); 
-            OnOffToggles.Add(RomOnOff); 
+            OnOffToggles.Add(FedOnOff);
+            OnOffToggles.Add(RomOnOff);
             OnOffToggles.Add(KlingOnOff);
             OnOffToggles.Add(CardOnOff);
             OnOffToggles.Add(DomOnOff);
@@ -263,7 +257,7 @@ namespace Assets.Core
             #endregion Multiplayer toggle group
         }
         public void UpdateMapSelection()
-        { 
+        {
             activeMapToggle = MapToggleGroup.ActiveToggles().ToArray().FirstOrDefault();
             if (activeMapToggle != null)
             {
@@ -318,7 +312,7 @@ namespace Assets.Core
                         default:
                             break;
                     }
-                }   
+                }
             }
         }
 
@@ -354,7 +348,7 @@ namespace Assets.Core
                     GameManager.Instance.GameController.GameData.LocalPlayerCivEnum = CivEnum.KLING;
                     break;
                 case "TOGGLE_CARD":
-                    CardOnOff.isOn = true; 
+                    CardOnOff.isOn = true;
                     CardOnOff.OnSelect(null);
                     CardLocalPlayerToggle = activeLocalPlayerToggle;
                     Debug.Log("Active CardLocalPlayerToggle.");
@@ -415,7 +409,7 @@ namespace Assets.Core
                     RingToggle.isOn = true;
                     RingToggle.OnSelect(null);
                     RingToggle = activeMapToggle;
-                   // RingToggle.GetComponent<Image>().color = activeColor;
+                    // RingToggle.GetComponent<Image>().color = activeColor;
                     SetMapGalaxyType((int)(GalaxyMapType.RING));
                     break;
                 default:
@@ -515,40 +509,40 @@ namespace Assets.Core
                     break;
             }
         }
-              
+
         private void ResetPlayers()
         {
             if (playerFed.text == you)
                 playerFed.text = computer;
             if (playerRom.text == you)
-                playerRom.text = computer;                 
+                playerRom.text = computer;
             if (playerKling.text == you)
-                playerKling.text = computer;              
+                playerKling.text = computer;
             if (playerCard.text == you)
-                playerCard.text = computer;               
+                playerCard.text = computer;
             if (playerDom.text == you)
-                playerDom.text = computer;                  
+                playerDom.text = computer;
             if (playerBorg.text == you)
-                playerBorg.text = computer;                  
-            if(playerTerran.text == you)
+                playerBorg.text = computer;
+            if (playerTerran.text == you)
                 playerTerran.text = computer;
         }
         private void SetSingleVsMultiplayer(bool singleMultiSelection)
         {
             IsSinglePlayer = singleMultiSelection;
-            panelLobby.SetActive(false); 
+            panelLobby.SetActive(false);
             panelMuliplayer.SetActive(!singleMultiSelection);
             panelCivSelection.SetActive(singleMultiSelection);
             singlePlayToggleGroup.SetActive(true);
         }
         private void FedOnOffToggleReset()
-        { 
-            if(FedLocalPalyerToggle.isOn == true)
+        {
+            if (FedLocalPalyerToggle.isOn == true)
                 FedOnOff.isOn = true;
         }
         private void RomOnOffToggleReset()
         {
-            if(RomLocalPlayerToggle.isOn == true)
+            if (RomLocalPlayerToggle.isOn == true)
                 RomOnOff.isOn = true;
         }
         private void KlinOnOffToggleReset()
@@ -558,59 +552,59 @@ namespace Assets.Core
         }
         private void CardOnOffToggleReset()
         {
-            if(CardLocalPlayerToggle.isOn == true)
+            if (CardLocalPlayerToggle.isOn == true)
                 CardOnOff.isOn = true;
         }
         private void DomOnOffToggleReset()
         {
-            if(DomLocalPlayerToggle.isOn == true)
+            if (DomLocalPlayerToggle.isOn == true)
                 DomOnOff.isOn = true;
         }
         private void BorgOnOffToggleReset()
         {
-            if(BorgLocalPlayerToggle.isOn == true)
+            if (BorgLocalPlayerToggle.isOn == true)
                 BorgOnOff.isOn = true;
         }
         private void TerranOnOffToggleReset()
         {
-            if(TerranLocalPlayerToggle.isOn == true)
+            if (TerranLocalPlayerToggle.isOn == true)
                 TerranOnOff.isOn = true;
         }
 
         private void FedPlayToggleReset()
         {
-            if (FedOnOff.isOn == false && FedLocalPalyerToggle.isOn == true)        
+            if (FedOnOff.isOn == false && FedLocalPalyerToggle.isOn == true)
                 RomLocalPlayerToggle.isOn = true;
         }
         private void RomPlayToggleReset()
         {
-            if(RomOnOff.isOn == false && RomLocalPlayerToggle.isOn == true)
+            if (RomOnOff.isOn == false && RomLocalPlayerToggle.isOn == true)
                 KlingLocalPlayerToggle.isOn = true;
         }
         private void KlingPlayToggleReset()
         {
-            if(KlingOnOff.isOn == false && KlingLocalPlayerToggle.isOn == true)
+            if (KlingOnOff.isOn == false && KlingLocalPlayerToggle.isOn == true)
                 CardLocalPlayerToggle.isOn = true;
         }
         private void CardPlayToggleReset()
         {
-            if(CardOnOff.isOn == false && CardLocalPlayerToggle.isOn == true)
+            if (CardOnOff.isOn == false && CardLocalPlayerToggle.isOn == true)
                 DomLocalPlayerToggle.isOn = true;
         }
         private void DomPlayToggleReset()
         {
-            if(DomOnOff.isOn == false && DomLocalPlayerToggle.isOn == true)
+            if (DomOnOff.isOn == false && DomLocalPlayerToggle.isOn == true)
                 BorgLocalPlayerToggle.isOn = true;
         }
         private void BorgPlayerToggleReset()
         {
-            if(BorgOnOff.isOn == false && BorgLocalPlayerToggle.isOn == true)
+            if (BorgOnOff.isOn == false && BorgLocalPlayerToggle.isOn == true)
                 TerranLocalPlayerToggle.isOn = true;
         }
         private void TerranPlayerToggleReset()
         {
-            if(TerranOnOff.isOn==false && TerranLocalPlayerToggle.isOn == true)
-               FedLocalPalyerToggle.isOn=true;
+            if (TerranOnOff.isOn == false && TerranLocalPlayerToggle.isOn == true)
+                FedLocalPalyerToggle.isOn = true;
         }
         private void LoadSavedGame()
         {
@@ -692,7 +686,7 @@ namespace Assets.Core
             SceneManager.LoadScene("GalaxyScene", LoadSceneMode.Additive);
             CivManager.Instance.OnNewGameButtonClicked((int)MainMenuData.SelectedGalaxySize, (int)MainMenuData.SelectedTechLevel, (int)MainMenuData.SelectedGalaxyType,
                 (int)GameManager.Instance.GameController.GameData.LocalPlayerCivEnum, IsSinglePlayer);
-         
+
         }
         private void PlayableCivOffInGameList()
         {

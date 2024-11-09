@@ -15,23 +15,27 @@ MonoBehaviour:
   m_GroupName: Localization-String-Tables-English (en)
   m_Data:
     m_SerializedData: []
-  m_GUID: cfa0c469d239e35419ce2db378f3addb
+  m_GUID: 326ca9a5cfdbf2743b18ef1363ae3205
   m_SerializeEntries:
-  - m_GUID: 9e56864a3acf4f348a460d4f67686593
-    m_Address: StringTable_en
+  - m_GUID: 2819ab3aa1c55f5438561e94d1c17c10
+    m_Address: Global Variables Sample_en
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en
-    - Preload
-  - m_GUID: 765bf757586d0164b8ad3ab37c6719c9
-    m_Address: EnglishUSFrenchCAGermanDETable_en
+  - m_GUID: 9c045014c75799144b1716f552861afe
+    m_Address: Gender Sample_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+  - m_GUID: ce2edf42974f7da419eedc476e9520a5
+    m_Address: StringTable3_en
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en
     - Preload
   m_ReadOnly: 1
-  m_Settings: {fileID: 11400000, guid: 216fb8cbd75656947a647e55ffcea2d7, type: 2}
+  m_Settings: {fileID: 11400000, guid: dc6ce6bc432f372418825e8ebe0f1220, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: f13724fe21a0fff469c0319f9d4fbfb7, type: 2}
-    - {fileID: 11400000, guid: 8640ca06cd4e69446a5e01a4944b80ad, type: 2}
+    - {fileID: 11400000, guid: db20f860db09a6a4386ca29d2840b0e7, type: 2}
+    - {fileID: 11400000, guid: 3a5fab3fa79cb61468baf2763f1a613f, type: 2}

@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Core
@@ -22,12 +19,12 @@ namespace Assets.Core
         public float nearZoomLimit = 2f;
         public float farZoomLimit = 16f;
         public float startingZoom = 5f;
-        
+
         IZoomStrategy zoomStrategy;
         Vector3 frameMove;
         float frameRotate;
         float frameZoom;
-        Camera cam; 
+        Camera cam;
 
         private void Awake()
         {
@@ -80,7 +77,7 @@ namespace Assets.Core
                 Vector3 speedModFrameMove = new Vector3(frameMove.x * lateralSpeed, frameMove.y * inOutSpeed, frameMove.z * upDownSpeed);
                 transform.position += transform.TransformDirection(speedModFrameMove) * Time.deltaTime;
                 LockPositionInBounds();
-                frameMove = Vector3.zero; 
+                frameMove = Vector3.zero;
             }
             if (frameRotate != 0f)
             {

@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Unity.VisualScripting;
-using UnityEngine;
-using UnityEngine.Rendering;
-
-namespace Assets.Core
+﻿namespace Assets.Core
 {
     internal class Planet : OrbitalGalactic
     {
@@ -17,19 +8,19 @@ namespace Assets.Core
         public void LoadPlanet(Planet myPlanet, string[] systemData, int i)
         {
             // this.OrbitalDistance = (ulong)(100 +(i*100) * 1000000 * 1000);
-            myPlanet.OrbitalDistance = (myPlanet.OrbitalDistance) + ((ulong)i * (myPlanet.OrbitalDistance *(ulong)2));//80000000000)/8);
+            myPlanet.OrbitalDistance = (myPlanet.OrbitalDistance) + ((ulong)i * (myPlanet.OrbitalDistance * (ulong)2));//80000000000)/8);
             OrbitalGalactic myOrbital = new OrbitalGalactic();
             this.TimeToOrbit = myOrbital.OrbitTime() + ((ulong)i * myOrbital.OrbitTime());// 365 * 24 * 60 * 60/5);
-            string pType = systemData[8 + (i*2)];
+            string pType = systemData[8 + (i * 2)];
             switch (pType)
             {
                 case "H":
                     this.planteType = PlanetType.H_uninhabitable;
-                    this.GraphicID = (int)PlanetType.H_uninhabitable +1; 
+                    this.GraphicID = (int)PlanetType.H_uninhabitable + 1;
                     break;
                 case "J":
                     this.planteType = PlanetType.J_gasGiant;
-                    this.GraphicID = (int)PlanetType.J_gasGiant +1;
+                    this.GraphicID = (int)PlanetType.J_gasGiant + 1;
                     break;
                 case "M":
                     this.planteType = PlanetType.M_habitable;
@@ -45,10 +36,10 @@ namespace Assets.Core
                     break;
                 default:
                     this.planteType = PlanetType.K_marsLike;
-                    this.GraphicID = (int)PlanetType.K_marsLike +1;
+                    this.GraphicID = (int)PlanetType.K_marsLike + 1;
                     break;
             }
-            
+
         }
         public Planet()
         {
@@ -60,9 +51,9 @@ namespace Assets.Core
             {
                 OrbitalGalactic moon = new OrbitalGalactic();
                 planet.AddChild(moon);
-                moon.OrbitalDistance = 5000000000 + (ulong)(5000000000 * i/5);
-                moon.TimeToOrbit = (moon.OrbitTime() + ((ulong)i * moon.OrbitTime()/ 4));
-                moon.GraphicID = (int)PlanetType.Moon +1;
+                moon.OrbitalDistance = 5000000000 + (ulong)(5000000000 * i / 5);
+                moon.TimeToOrbit = (moon.OrbitTime() + ((ulong)i * moon.OrbitTime() / 4));
+                moon.GraphicID = (int)PlanetType.Moon + 1;
             }
         }
         //public void Generate(int maxMoons)

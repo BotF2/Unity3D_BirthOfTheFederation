@@ -1,8 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 namespace Assets.Core
 {
     public class SolarSystem : OrbitalGalactic
@@ -14,25 +9,25 @@ namespace Assets.Core
         {
             OrbitalGalactic myStar = new OrbitalGalactic(); // empty for our planets to orbit, not monobehavior
             myStar.GraphicID = 0; // StarGraphicID;
-            this.AddChild(myStar);           
+            this.AddChild(myStar);
             for (int i = 0; i < 8; i++) // all systems have 8 planets for now
             {
                 Planet planet = new Planet();
                 planet.LoadPlanet(planet, systemData, i);
                 myStar.AddChild(planet);
-                int numMoons = int.Parse(systemData[9 + (i*2)]);
+                int numMoons = int.Parse(systemData[9 + (i * 2)]);
                 switch (numMoons)
                 {
                     case 0:
-                        break; 
+                        break;
                     case 1:
-                        planet.LoadMoons(planet,1);
+                        planet.LoadMoons(planet, 1);
                         break;
                     case 2:
                         planet.LoadMoons(planet, 2);
                         break;
                     case 3:
-                        planet.LoadMoons(planet,3);
+                        planet.LoadMoons(planet, 3);
                         break;
                 }
 
@@ -43,7 +38,7 @@ namespace Assets.Core
         {
             // make a solar system, myStar is a child of the system and myStar has child planets...
             // That is all we do here so far, consider random generate locations 
-            
+
             OrbitalGalactic myStar = new OrbitalGalactic();
             myStar.GraphicID = 0; // StarGraphicID;
             this.AddChild(myStar);
@@ -53,7 +48,7 @@ namespace Assets.Core
         {
             OrbitalGalactic myStar = new OrbitalGalactic();
             myStar.GraphicID = 0; // StarGraphicID; 
-            
+
             return this;
         }
     }

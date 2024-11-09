@@ -12,4 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/GalaxyScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: acb276fc2875d8848870078480604927, type: 2}
     com.unity.input.settings: {fileID: 11400000, guid: ba572165f62474d40b03508a221d0cc0, type: 2}
+    com.unity.localization.settings: {fileID: 11400000, guid: e2b5d145e2536284d99033a9885a8417, type: 2}

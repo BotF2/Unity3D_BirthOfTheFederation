@@ -1,11 +1,8 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using FischlWorks_FogWar;
+using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Events;
 
 
 
@@ -39,8 +36,8 @@ namespace Assets.Core
         //private GalaxyMapOurEvent galaxyMapOurEvent;
         [SerializeField]
         private List<int> intsInUse = new List<int>() { 0 };
-  
-       
+
+
         private void Awake()
         {
             if (Instance != null)
@@ -79,7 +76,7 @@ namespace Assets.Core
                 //        BuildFirstFleets(xyzBump, civSO, position);
                 //        break;
                 //}
-            }           
+            }
         }
         private void BuildFirstFleets(int myInt, CivSO civSO, Vector3 position)
         {
@@ -94,7 +91,7 @@ namespace Assets.Core
                 fleetData.CurrentWarpFactor = 9f;
                 fleetData.CivLongName = civSO.CivLongName;
                 fleetData.CivShortName = civSO.CivShortName;
-                fleetData.Name = (myInt -i).ToString();
+                fleetData.Name = (myInt - i).ToString();
                 InstantiateFleet(fleetData, position);
             }
         }
@@ -114,7 +111,7 @@ namespace Assets.Core
                 fleetController.FleetState = FleetState.FleetStationary;
                 //fleetController.GalaxyMapDestinationEvent = galaxyMapOurEvent;
                 ManagersFleetControllerList.Add(fleetController);
-                fleetNewGameOb.transform.Translate(new Vector3(fleetData.Position.x + 40f,  fleetData.Position.y + 10f, fleetData.Position.z));
+                fleetNewGameOb.transform.Translate(new Vector3(fleetData.Position.x + 40f, fleetData.Position.y + 10f, fleetData.Position.z));
                 fleetNewGameOb.transform.SetParent(galaxyCenter.transform, true);
                 fleetNewGameOb.transform.localScale = new Vector3(0.7f, 0.7f, 1); // scale ship insignia here
                 fleetNewGameOb.name = fleetData.CivShortName.ToString() + " Fleet " + fleetData.Name; // name game object
@@ -174,7 +171,7 @@ namespace Assets.Core
                     {
                         itemMapLineScript.GetLineRenderer();
                         itemMapLineScript.transform.SetParent(fleetNewGameOb.transform, false);
-                        fleetController.DestinationLine = itemMapLineScript;                  
+                        fleetController.DestinationLine = itemMapLineScript;
                         //Vector3 destinationPoint = new Vector3(fleetNewGameOb.transform.position.x,
                         //    galaxyImageGO.transform.position.y, fleetNewGameOb.transform.position.z);
                         //Vector3[] points = { fleetNewGameOb.transform.position, destinationPoint };
@@ -190,10 +187,10 @@ namespace Assets.Core
                     if (civCon.CivData.CivEnum == fleetData.CivEnum)
                         fleetData.OurCivController = civCon;
                 }
-                List<FleetController> list = new List<FleetController>() { fleetController}; 
+                List<FleetController> list = new List<FleetController>() { fleetController };
                 fleetController.FleetData.FleetGroupControllers = list;
                 fleetNewGameOb.SetActive(true);
-                
+
                 ShipManager.Instance.BuildShipsOfFirstFleet(fleetNewGameOb);
             }
         }
@@ -243,10 +240,10 @@ namespace Assets.Core
         public static GameObject FindGameObjectInChildrenWithTag(GameObject parent, string tag)
         {
             Transform t = parent.transform;
-            for (int i = 0; i< t.childCount; i++)
+            for (int i = 0; i < t.childCount; i++)
             {
-                if(t.GetChild(i).gameObject.tag == tag)
-                return t.GetChild(i).gameObject;
+                if (t.GetChild(i).gameObject.tag == tag)
+                    return t.GetChild(i).gameObject;
             }
             return null;
         }
@@ -258,13 +255,13 @@ namespace Assets.Core
                 if (!intsInUse.Contains(destinationInt))
                     return destinationInt;
             }
-            else 
-            { 
+            else
+            {
                 intsInUse.Add(destinationInt);
 
             }
             return destinationInt;
-                    
+
         }
         public void RemoveFleet(GameObject go, int asDestinationInt)
         {
@@ -272,6 +269,6 @@ namespace Assets.Core
             ManagersFleetControllerList.Remove(go.GetComponent<FleetController>());
             go.IsDestroyed();
         }
-                 
+
     }
 }

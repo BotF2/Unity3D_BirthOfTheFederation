@@ -1,8 +1,6 @@
-using System.Collections;
+using Assets.Core;
 using System.Collections.Generic;
 using UnityEngine;
-using Assets.Core;
-using System;
 
 
 public enum DiplomacyStatusEnum // between two civs held in the DiplomacyData
@@ -119,12 +117,12 @@ public class DiplomacyManager : MonoBehaviour
         }
         return found;
     }
-    public DiplomacyController GetTheDiplomacyController(CivController civOne, CivController civTwo) 
+    public DiplomacyController GetTheDiplomacyController(CivController civOne, CivController civTwo)
     {
         DiplomacyController diplomacyController = InstantiatePlaceHolder(civOne, civTwo);
         diplomacyController.areWePlaceholder = true;
-        if (ManagersDiplomacyControllerList.Count == 0) 
-        { 
+        if (ManagersDiplomacyControllerList.Count == 0)
+        {
             return diplomacyController;
         }
         else
@@ -132,15 +130,15 @@ public class DiplomacyManager : MonoBehaviour
             foreach (var aDiplomacyController in ManagersDiplomacyControllerList)
             {
                 if ((aDiplomacyController.DiplomacyData.CivOne == civOne && aDiplomacyController.DiplomacyData.CivTwo == civTwo) || (aDiplomacyController.DiplomacyData.CivOne == civTwo && aDiplomacyController.DiplomacyData.CivTwo == civOne))
-                { 
+                {
                     diplomacyController = aDiplomacyController;
                 }
             }
         }
         return diplomacyController;
-        
+
 
     }
 }
-    
+
 

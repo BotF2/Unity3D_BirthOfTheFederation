@@ -1,9 +1,6 @@
-using System.Collections;
+using Assets.Core;
 using System.Collections.Generic;
 using UnityEngine;
-using Assets.Core;
-using System.Diagnostics.CodeAnalysis;
-using Unity.VisualScripting;
 
 public class ShipManager : MonoBehaviour
 {
@@ -27,7 +24,7 @@ public class ShipManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-        }     
+        }
     }
 
     public List<GameObject> ShipDataFromSO(List<ShipSO> shipSOList)
@@ -84,10 +81,10 @@ public class ShipManager : MonoBehaviour
                 {
                     shipGO.transform.SetParent(fleetGO.transform);
                     fleetCon.FleetData.ShipsList.Add(shipGO.GetComponent<ShipController>());
-                }           
+                }
             }
         }
-            
+
         fleetCon.UpdateMaxWarp();
         //fleetCon.FleetData.CurrentWarpFactor = 0f;
     }
@@ -99,7 +96,7 @@ public class ShipManager : MonoBehaviour
             case 0:
                 foreach (var shipSO in ShipSOListTech0)
                 {
-                    if(shipSO.CivEnum == civ)
+                    if (shipSO.CivEnum == civ)
                     {
                         listOfShipSOs.Add(shipSO);
                     }
@@ -117,7 +114,8 @@ public class ShipManager : MonoBehaviour
             case 2:
                 foreach (var shipSO in ShipSOListTech2)
                 {
-                    if (shipSO.CivEnum == civ)                    {
+                    if (shipSO.CivEnum == civ)
+                    {
                         listOfShipSOs.Add(shipSO);
                     }
                 }

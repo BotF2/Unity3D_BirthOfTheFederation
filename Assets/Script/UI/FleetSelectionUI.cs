@@ -1,12 +1,7 @@
-using System;
-using System.Collections.Generic;
-using UnityEngine;
-using TMPro;
-using UnityEngine.UI;
 using Assets.Core;
-using Unity.VisualScripting;
-using System.Diagnostics;
-using UnityEngine.Rendering;
+using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
 
 public class FleetSelectionUI : MonoBehaviour
 {
@@ -48,7 +43,7 @@ public class FleetSelectionUI : MonoBehaviour
     }
 
 
-    public void LoadShipUIManager(FleetController fleetController) 
+    public void LoadShipUIManager(FleetController fleetController)
     {
         StarSysUIManager.Instance.CloseUnLoadStarSysUI();
         FleetUIManager.Instance.CloseUnLoadFleetUI();

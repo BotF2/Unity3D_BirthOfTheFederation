@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using Assets.Core;
+using System.Collections.Generic;
 using TMPro;
+using UnityEngine;
 
 public class FleetGroupController : MonoBehaviour
 {

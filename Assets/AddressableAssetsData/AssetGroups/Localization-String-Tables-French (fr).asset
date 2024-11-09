@@ -15,23 +15,17 @@ MonoBehaviour:
   m_GroupName: Localization-String-Tables-French (fr)
   m_Data:
     m_SerializedData: []
-  m_GUID: 3261a1c28097bb341886c0ee67a0842d
+  m_GUID: 1e7b781c0c603504e888487b48352a7d
   m_SerializeEntries:
-  - m_GUID: a5cb2f45859d0fc4eb7eaf21bf08a56b
-    m_Address: StringTable_fr
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale-fr
-    - Preload
-  - m_GUID: b9d267327e700ba4f93600189b893e3e
-    m_Address: EnglishUSFrenchCAGermanDETable_fr
+  - m_GUID: ea864335e7c15ca498df781fb2956c26
+    m_Address: StringTable3_fr
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-fr
     - Preload
   m_ReadOnly: 1
-  m_Settings: {fileID: 11400000, guid: 216fb8cbd75656947a647e55ffcea2d7, type: 2}
+  m_Settings: {fileID: 11400000, guid: dc6ce6bc432f372418825e8ebe0f1220, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 5f19556076e4bdc478fb77e5b4b8e6da, type: 2}
-    - {fileID: 11400000, guid: c8e46f955a5bf6545a1a371a941c8157, type: 2}
+    - {fileID: 11400000, guid: bf30046827cdc2c4fbbfb4886a59f86f, type: 2}
+    - {fileID: 11400000, guid: 4f73c902bae54f64b9eb37372ddba850, type: 2}

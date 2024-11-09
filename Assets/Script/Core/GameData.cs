@@ -1,8 +1,3 @@
-using Assets.Core;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 namespace Assets.Core
 {
     public class GameData
@@ -13,7 +8,7 @@ namespace Assets.Core
         // in CivManager but need in a Data file for save game ?
         public CivEnum LocalPlayerCivEnum; // temp set to fed for now
 
-                                           
+
         //public CivController LocalPlayerCivController;
 
     }

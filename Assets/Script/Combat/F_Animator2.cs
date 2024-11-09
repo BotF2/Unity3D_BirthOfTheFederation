@@ -1,19 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
-using System;
 using UnityEngine;
 
 namespace Assets.Core
 {
-   
+
     public class F_Animator2 : MonoBehaviour
     {
         // must CivName class and file the same
         public Animator anim;
         public AudioSource warpAudioSource_0;
-       // private SetShipLayerByAnimaStat shipLayerSetup;
+        // private SetShipLayerByAnimaStat shipLayerSetup;
         int once = 0;
-  
+
         void Start()
         {
             anim = GetComponent<Animator>();

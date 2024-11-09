@@ -17,8 +17,8 @@
 
 
 
-using System.Linq;                  // Enumerable
 using System.Collections.Generic;   // List
+using System.Linq;                  // Enumerable
 using UnityEngine;                  // Vector2
 
 
@@ -82,8 +82,10 @@ namespace FischlWorks_FogWar
             }
 
             // Indexer definition
-            public LevelColumn this[int index] {
-                get {
+            public LevelColumn this[int index]
+            {
+                get
+                {
                     if (index >= 0 && index < levelRow.Count)
                     {
                         return levelRow[index];
@@ -95,7 +97,8 @@ namespace FischlWorks_FogWar
                         return null;
                     }
                 }
-                set {
+                set
+                {
                     if (index >= 0 && index < levelRow.Count)
                     {
                         levelRow[index] = value;
@@ -145,8 +148,10 @@ namespace FischlWorks_FogWar
             }
 
             // Indexer definition
-            public ETileVisibility this[int index] {
-                get {
+            public ETileVisibility this[int index]
+            {
+                get
+                {
                     if (index >= 0 && index < levelColumn.Count)
                     {
                         return levelColumn[index];
@@ -158,7 +163,8 @@ namespace FischlWorks_FogWar
                         return ETileVisibility.Hidden;
                     }
                 }
-                set {
+                set
+                {
                     if (index >= 0 && index < levelColumn.Count)
                     {
                         levelColumn[index] = value;
@@ -210,7 +216,7 @@ namespace FischlWorks_FogWar
                         quadrantPoint = new Vector2Int(originPoint.x - quadrantVector.y, originPoint.y + quadrantVector.x);
                         break;
                     case ECardinal.West:
-                        quadrantPoint =  new Vector2Int(originPoint.x - quadrantVector.x, originPoint.y - quadrantVector.y);
+                        quadrantPoint = new Vector2Int(originPoint.x - quadrantVector.x, originPoint.y - quadrantVector.y);
                         break;
                     case ECardinal.South:
                         quadrantPoint = new Vector2Int(originPoint.x + quadrantVector.y, originPoint.y - quadrantVector.x);

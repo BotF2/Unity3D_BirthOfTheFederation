@@ -1,11 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using TMPro;
-using UnityEngine.EventSystems;
-using UnityEngine.UI;
 using Assets.Core;
-using Unity.VisualScripting;
+using TMPro;
+using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class ToolTipController : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
@@ -29,10 +25,10 @@ public class ToolTipController : MonoBehaviour, IPointerEnterHandler, IPointerEx
                     break;
                 }
             }
-            
+
             if (Name.text.Contains(localPlayerCivCon.CivShortName))
             {
-                HoverManager.Instance.ShowTip(Name.text);               
+                HoverManager.Instance.ShowTip(Name.text);
             }
             ///***** ToDo maybe - also see civs we know?
             //else
@@ -48,6 +44,6 @@ public class ToolTipController : MonoBehaviour, IPointerEnterHandler, IPointerEx
     void IPointerExitHandler.OnPointerExit(PointerEventData eventData)
     {
         if (HoverManager.Instance != null)
-        HoverManager.Instance.HidTip();
+            HoverManager.Instance.HidTip();
     }
 }

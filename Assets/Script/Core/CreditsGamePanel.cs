@@ -1,6 +1,3 @@
-using Assets.Core;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Core
@@ -15,7 +12,7 @@ namespace Assets.Core
         }
         public void OpenPanel()
         {
-            if(Panel != null)
+            if (Panel != null)
             {
                 Panel.SetActive(true);
             }

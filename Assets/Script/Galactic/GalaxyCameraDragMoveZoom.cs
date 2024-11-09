@@ -1,12 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.InputSystem;
-using UnityEngine.UI;
-using Unity.VisualScripting;
-using DG.Tweening;
 
 public class GalaxyCameraDragMoveZoom : MonoBehaviour //, IPointerClickHandler
 {
@@ -31,7 +25,7 @@ public class GalaxyCameraDragMoveZoom : MonoBehaviour //, IPointerClickHandler
     [SerializeField]
     private float maxZ = 500f;
 
-   // private Vector3 dragOrigin;
+    // private Vector3 dragOrigin;
     //private Vector3 cameraDragOrigin;
     //private Vector3 currentPosition;
     private Vector3 lastMousePosition;
@@ -40,10 +34,10 @@ public class GalaxyCameraDragMoveZoom : MonoBehaviour //, IPointerClickHandler
     {
         DoZoom();
         KeyboardInputs();
-        if (!Input.GetKey(KeyCode.Space))
+        if (!Input.GetKey(KeyCode.Space) && Application.isPlayer)
             DrageCameraWithLeftMouse();
         RotateCamerWithRightMouse();
-        CameraMoveLimits();   
+        CameraMoveLimits();
     }
 
     private void MoveCamera(float xInput, float zInput)
@@ -105,7 +99,7 @@ public class GalaxyCameraDragMoveZoom : MonoBehaviour //, IPointerClickHandler
 
             lastMousePosition = Input.mousePosition;
             Vector3 currentRotation = transform.eulerAngles;
-            float clampX = Mathf.Clamp((currentRotation.x >180)? currentRotation.x -360: currentRotation.x, -40, 50);
+            float clampX = Mathf.Clamp((currentRotation.x > 180) ? currentRotation.x - 360 : currentRotation.x, -40, 50);
             transform.eulerAngles = new Vector3(clampX, currentRotation.y, currentRotation.z);
         }
     }

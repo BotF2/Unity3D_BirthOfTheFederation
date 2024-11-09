@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using Assets.Core;
-using UnityEngine.SocialPlatforms;
+using UnityEngine;
 //using UnityEditorInternal;
 
 public class GameController : MonoBehaviour
@@ -32,7 +29,7 @@ public class GameController : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
-   
+
     }
     public bool DoWeBelongToLocalPlayer(GameObject go)
     {

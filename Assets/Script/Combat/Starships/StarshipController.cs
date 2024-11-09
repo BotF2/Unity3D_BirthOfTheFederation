@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
-using Assets.Plugins.YAFSM;
+﻿using Assets.Plugins.YAFSM;
 using Assets.SpaceCombat.AutoBattle.Scripts.Starships.States;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.SpaceCombat.AutoBattle.Scripts.Starships
@@ -14,10 +14,10 @@ namespace Assets.SpaceCombat.AutoBattle.Scripts.Starships
         public float Radius { get; private set; }
         public Rigidbody Rigidbody { get; private set; }
 
-        public int HitPoints { get; set;  } = 100;
+        public int HitPoints { get; set; } = 100;
 
         public WeaponsManager WeaponsManager { get; private set; }
-        
+
 
         public override void Awake()
         {

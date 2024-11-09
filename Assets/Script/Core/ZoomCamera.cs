@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Core
@@ -63,7 +61,7 @@ namespace Assets.Core
         {
             _startZoomerUpdate = false;
             _doneWithWideAngle = false;
-        }         
-      
+        }
+
     }
 }

@@ -1,11 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
-using System;
 using UnityEngine;
 
 namespace Assets.Core
 {
-   
+
     public class E_Animator2 : MonoBehaviour
     {
         public Animator anim;
@@ -30,7 +27,7 @@ namespace Assets.Core
                 //    shipLayerSetup.OnStateEnter(anim, anim.GetCurrentAnimatorStateInfo(anim.GetLayerIndex(anim.CivName)), anim.GetLayerIndex(anim.CivName));
                 //    once = 1;
                 //}
-            } 
+            }
             // lets warp animation run
         }
         public void PlayWarp() // called in animation - warp

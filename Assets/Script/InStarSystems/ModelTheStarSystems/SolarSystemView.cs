@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.IO;
-using Unity.VisualScripting;
-using UnityEngine;
-using System.Linq;
-using System.Net;
+﻿using UnityEngine;
 
 namespace Assets.Core
 {
-    public class SolarSystemView : MonoBehaviour 
+    public class SolarSystemView : MonoBehaviour
     {
         //private GameManager gameManager;
         ////public GameObject emptyGO;

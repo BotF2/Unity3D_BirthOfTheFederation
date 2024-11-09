@@ -1,5 +1,3 @@
-using Assets.Core;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,7 +16,7 @@ namespace Assets.Core
 
         private void Start()
         {
-           
+
             //if (GameManager.Instance._statePassedMain_Init) // ToDo: how do we know if combat is over? && GameManager.Instance.FriendShips.Count > 0)
             //{
             //    string whoTorpedo = gameObject.CivName.Substring(0, 3);

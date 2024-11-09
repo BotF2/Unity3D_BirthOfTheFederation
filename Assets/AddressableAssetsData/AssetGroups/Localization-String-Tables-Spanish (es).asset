@@ -15,23 +15,17 @@ MonoBehaviour:
   m_GroupName: Localization-String-Tables-Spanish (es)
   m_Data:
     m_SerializedData: []
-  m_GUID: ef219e2016a74af4f8c28fb88b739f4c
+  m_GUID: db42ff8cc1add764dae98bb5c2fb9b43
   m_SerializeEntries:
-  - m_GUID: 250bd0dd45876b74c96c6ffbfcb494a2
-    m_Address: StringTable_es
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale-es
-    - Preload
-  - m_GUID: d9b6d76b86f19cf4da42ac0bbcbccbdb
-    m_Address: EnglishUSFrenchCAGermanDETable_es
+  - m_GUID: 2f274fa5b9c5dbe4e8e63fa6c57bd7e3
+    m_Address: Gender Sample_es
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-es
     - Preload
   m_ReadOnly: 1
-  m_Settings: {fileID: 11400000, guid: 216fb8cbd75656947a647e55ffcea2d7, type: 2}
+  m_Settings: {fileID: 11400000, guid: dc6ce6bc432f372418825e8ebe0f1220, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: b2a97a10be88a094ba93fcbdc31f9c80, type: 2}
-    - {fileID: 11400000, guid: 2a0690316b80ecc4084873f2ddd010c6, type: 2}
+    - {fileID: 11400000, guid: 0e9f7879efc79684fbee29fa90768c2c, type: 2}
+    - {fileID: 11400000, guid: 37d102a8fcb7c6e41a781b2a3c4c4cea, type: 2}

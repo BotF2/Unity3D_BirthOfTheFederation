@@ -1,17 +1,8 @@
-using System;
-using System.Collections.Generic;
-using UnityEngine;
-using TMPro;
-using UnityEngine.UI;
 using Assets.Core;
-using Unity.VisualScripting;
-using System.Diagnostics;
-using UnityEngine.Rendering;
-using static System.Net.Mime.MediaTypeNames;
-using System.Linq;
-using UnityEngine.PlayerLoop;
-using UnityEngine.EventSystems;
-using UnityEngine.Events;
+using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
 
 
 public class FleetUIManager : MonoBehaviour
@@ -98,12 +89,13 @@ public class FleetUIManager : MonoBehaviour
     {
         float localValue = value * maxSliderValue;
         warpSliderText.text = localValue.ToString("0.0");
-        ourUIFleetController.FleetData.CurrentWarpFactor = localValue;
+        if (ourUIFleetController != null)
+            ourUIFleetController.FleetData.CurrentWarpFactor = localValue;
     }
     public void ResetWarpSlider(float value)
     {
-        maxSliderValue =ourUIFleetController.FleetData.MaxWarpFactor;
-        warpSlider.value = value/maxSliderValue;
+        maxSliderValue = ourUIFleetController.FleetData.MaxWarpFactor;
+        warpSlider.value = value / maxSliderValue;
         warpSliderText.text = value.ToString("0.0");
     }
 
@@ -159,12 +151,12 @@ public class FleetUIManager : MonoBehaviour
     public void SetAsDestination(GameObject hitObject, bool aFleet)
     {
         //this.TurnOffCurrentMapDestination();
-       
+
         ourUIFleetController.FleetData.Destination = hitObject;
         CivEnum civ = CivEnum.ZZUNINHABITED53; // star civ as uninhabited
         bool weKnowThem = false;
         bool isFleet = aFleet;
-        int typeOfDestination =0;
+        int typeOfDestination = 0;
         destinationCoordinates.text = "X " + (hitObject.transform.position.x).ToString() + " / Y " + (hitObject.transform.position.y).ToString() + " / Z " + (hitObject.transform.position.z).ToString();
         if (hitObject.GetComponent<StarSysController>() != null)
         {
@@ -233,21 +225,21 @@ public class FleetUIManager : MonoBehaviour
     {
         FleetSelectionUI.Instance.LoadShipUIManager(ourUIFleetController);
     }
-    public void LoadFleetUI(GameObject rayHitGO) 
+    public void LoadFleetUI(GameObject rayHitGO)
     {
         StarSysUIManager.Instance.CloseUnLoadStarSysUI();
         DiplomacyUIManager.Instance.CloseUnLoadFleetUI();
         FleetSelectionUI.Instance.UnLoadShipManagerUI();
         fleetUIRoot.SetActive(true);
-        
+
         List<string> listings = new List<string>();
 
         ourUIFleetController = rayHitGO.GetComponent<FleetController>();
-        cancelDestinationButtonGO.SetActive(false );
+        cancelDestinationButtonGO.SetActive(false);
         FleetName.text = ourUIFleetController.FleetData.Name;
         PlayerDefinedTargetManager.instance.nameDestination = FleetName.text;
         WarpSliderChange(0f);
-       
+
         //ship dropdown
         var shipDropdown = ShipDropdownGO.GetComponent<TMP_Dropdown>();
         shipDropdown.options.Clear();

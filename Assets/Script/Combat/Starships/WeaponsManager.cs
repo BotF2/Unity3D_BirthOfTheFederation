@@ -1,6 +1,6 @@
-﻿using System.Collections;
+﻿using Assets.SpaceCombat.AutoBattle.Scripts.Audio;
+using System.Collections;
 using System.Collections.Generic;
-using Assets.SpaceCombat.AutoBattle.Scripts.Audio;
 using UnityEngine;
 
 namespace Assets.SpaceCombat.AutoBattle.Scripts.Starships

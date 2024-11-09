@@ -1,12 +1,14 @@
-using UnityEngine;
-using UnityEditor;
-using System.IO;
 using Assets.Core;
 using System;
+using System.IO;
+using UnityEditor;
+using UnityEngine;
 
 
 public class ShipSOImporter : EditorWindow
 {
+#if UNITY_EDITOR
+
     [MenuItem("Tools/Import ShipSO CSV")]
     public static void ShowWindow()
     {
@@ -114,17 +116,18 @@ public class ShipSOImporter : EditorWindow
             case "SCOUT":
                 return ShipType.Scout;
             case "DESTROYER":
-                return ShipType.Destroyer;    
+                return ShipType.Destroyer;
             case "CRUISER":
-                return ShipType.Cruiser;        
+                return ShipType.Cruiser;
             case "LTCRUISER":
-                return ShipType.LtCruiser;          
+                return ShipType.LtCruiser;
             case "HVYCRUISER":
-                return ShipType.Transport; 
+                return ShipType.Transport;
             case "ONEMORE":
-                return ShipType.OneMore; 
+                return ShipType.OneMore;
             default:
-                return ShipType.Scout;  
+                return ShipType.Scout;
         }
     }
+#endif
 }

@@ -1,14 +1,7 @@
-using DG.Tweening.Core.Easing;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.SceneManagement;
-using TMPro;
 using FischlWorks_FogWar;
-using Unity.VisualScripting;
+using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
-using UnityEditor;
-using UnityEngine.UI;
-using UnityEngine.Rendering.VirtualTexturing;
 
 namespace Assets.Core
 {
@@ -63,7 +56,7 @@ namespace Assets.Core
             foreach (var civSO in civSOList)
             {
                 StarSysSO starSysSO = GetStarSObyInt(civSO.CivInt);
-                SysData = new StarSysData(starSysSO);               
+                SysData = new StarSysData(starSysSO);
                 SysData.CurrentOwner = starSysSO.FirstOwner;
                 SysData.SystemType = starSysSO.StarType;
                 SysData.StarSprit = starSysSO.StarSprit;
@@ -77,7 +70,7 @@ namespace Assets.Core
                 SysData.production = starSysSO.Factories;
                 SysData.Research = starSysSO.Research;
                 SysData.tech = 0;
-               
+
                 //SysData.food;
                 //SysData.power;
                 //SysData.production;
@@ -152,7 +145,7 @@ namespace Assets.Core
                             //oneRenderer.sprite.GetComponent<MeshFilter>().sharedMesh.RecalculateBounds();
                         } // ToDo: random map with random sprites on nebula, wormholes
                         else if (oneRenderer.name == "StarSprite")
-                                oneRenderer.sprite = sysData.StarSprit;
+                            oneRenderer.sprite = sysData.StarSprit;
                     }
                 }
 
@@ -182,7 +175,7 @@ namespace Assets.Core
                 if (starSystemCounter == CivManager.Instance.CivControllersInGame.Count)
                 {
                     csFogWar.Instance.RunFogOfWar(); // star systems are in place so time to scan for the fog
-                    
+
                 }
 
 
@@ -234,9 +227,9 @@ namespace Assets.Core
         }
         public void UpdateStarSystemOwner(CivEnum civCurrent, CivEnum civNew)
         {
-            foreach (var sysCon in ManagersStarSysControllerList) 
+            foreach (var sysCon in ManagersStarSysControllerList)
             {
-              if(sysCon.StarSysData.GetFirstOwner() == civCurrent)
+                if (sysCon.StarSysData.GetFirstOwner() == civCurrent)
                     sysCon.StarSysData.CurrentOwner = civNew;
             }
         }

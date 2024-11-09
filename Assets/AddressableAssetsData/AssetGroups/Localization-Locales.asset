@@ -15,51 +15,26 @@ MonoBehaviour:
   m_GroupName: Localization-Locales
   m_Data:
     m_SerializedData: []
-  m_GUID: 6d2b894a08f52904f802d5e7ec6d76a0
+  m_GUID: 387727700960a7847adfc97024847a0d
   m_SerializeEntries:
-  - m_GUID: e2d6203bb65203c40be5afd61288c4d8
-    m_Address: German (de)
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale
-  - m_GUID: 922ed7e625db0b74283afd0a4e4111b1
-    m_Address: English (en)
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale
-  - m_GUID: bac92a1621d0a514385f314029930cec
-    m_Address: Spanish (es)
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale
-  - m_GUID: 8b06fb2ef0e05724ea9960db10e3da20
+  - m_GUID: 9b1dca47c3e050248819584bf343b357
     m_Address: French (fr)
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale
-  - m_GUID: 7964942d88701ea42abba7e38536b1c8
-    m_Address: German (Germany) (de-DE)
+  - m_GUID: b2a1b389e42b0a14fb7baeb89b9b9b2f
+    m_Address: German (de)
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale
-  - m_GUID: 72ad294c29b35964ebd15087846835e8
-    m_Address: English (United States) (en-US)
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale
-  - m_GUID: c8a1a108566b6b54a8faa397c308a222
-    m_Address: French (France) (fr-FR)
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale
-  - m_GUID: 556799c6722f0ce449e3aa7cee7493fd
-    m_Address: French (Canada) (fr-CA)
+  - m_GUID: 54254cf4440a0934ebfcfd186b87de8c
+    m_Address: English (en)
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale
   m_ReadOnly: 1
-  m_Settings: {fileID: 11400000, guid: 216fb8cbd75656947a647e55ffcea2d7, type: 2}
+  m_Settings: {fileID: 11400000, guid: dc6ce6bc432f372418825e8ebe0f1220, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: b4168341b8f6f9a428362391e4375152, type: 2}
-    - {fileID: 11400000, guid: c8865958415e30846845e4a1b7512a27, type: 2}
+    - {fileID: 11400000, guid: 22f149bae7ac7c34a9f7935a2cf14558, type: 2}
+    - {fileID: 11400000, guid: a901679b8fb099e42be538f69c589b38, type: 2}

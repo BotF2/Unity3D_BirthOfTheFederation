@@ -1,14 +1,12 @@
-using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.Events;
+using Assets.Core;
 using System;
 using System.Collections.Generic;
-using Assets.Core;
+using UnityEngine;
 
 public class TimeManager : MonoBehaviour
 {
     public static TimeManager Instance;
-    
+
     public event Action<TrekRandomEventSO> onRandomSpecialEvent; // 
     public Action<TrekRandomEventSO> OnRandomSpecialEvent; // Instance of the delegate Action 
     public event Action<TrekStardateEventSO> onStardateSpecialEvent; // 
@@ -50,7 +48,7 @@ public class TimeManager : MonoBehaviour
     private System.Collections.IEnumerator TimeProgression()
     {
 
-        while (timeRunning) 
+        while (timeRunning)
         {
             yield return new WaitForSeconds(10f / timeSpeedReducer); // 10 seconds in game = 1 oneInXChance
             currentStardate++;
@@ -58,7 +56,7 @@ public class TimeManager : MonoBehaviour
 
             // Check for special events
             CheckSpecialEvents();
-        }        
+        }
     }
 
     // Check for special events and trigger corresponding actions
@@ -115,7 +113,7 @@ public class TimeManager : MonoBehaviour
     {
         timeRunning = true;
         timeCoroutine = StartCoroutine(TimeProgression());
-        
+
     }
 
     // Method to get current oneInXChance

@@ -1,8 +1,6 @@
-using System.Collections;
+using Assets.Core;
 using System.Collections.Generic;
 using UnityEngine;
-using Assets.Core;
-using UnityEditor;
 
 
 public class DiplomacyController : MonoBehaviour
@@ -44,10 +42,10 @@ public class DiplomacyController : MonoBehaviour
         this.DiplomacyData.DiplomacyPointsOfCivs = (int)DiplomacyStatusEnum.Neutral;
         if (GameController.Instance.AreWeLocalPlayer(civPartyOne.CivData.CivEnum)) // temp to fed
         {
-            if(hitGO.GetComponent<FleetController>() != null)
-            civPartyTwo.ResetSprites(hitGO);
-            if (hitGO.GetComponent<StarSysController>() != null )
-            civPartyTwo.ResetNames(hitGO);
+            if (hitGO.GetComponent<FleetController>() != null)
+                civPartyTwo.ResetSprites(hitGO);
+            if (hitGO.GetComponent<StarSysController>() != null)
+                civPartyTwo.ResetNames(hitGO);
         }
         else if (GameController.Instance.AreWeLocalPlayer(civPartyTwo.CivData.CivEnum))
         {
@@ -71,7 +69,7 @@ public class DiplomacyController : MonoBehaviour
     public void AddDiplomaticPoints(int points)
     {
         this.DiplomacyData.DiplomacyPointsOfCivs += points;
-        ChangedDiplomacyStatus(this.DiplomacyData.DiplomacyPointsOfCivs);   
+        ChangedDiplomacyStatus(this.DiplomacyData.DiplomacyPointsOfCivs);
     }
     public void SubtractDiplomaticPoints(int points)
     {

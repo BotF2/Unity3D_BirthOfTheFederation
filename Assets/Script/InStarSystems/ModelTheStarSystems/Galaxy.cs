@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -18,12 +17,12 @@ namespace Assets.Core
         public bool GalaxyNotNull = false;
         public int NumberOfStars;
         public SolarSystem galaxyCenter = new SolarSystem();
-        public Dictionary<Vector3, SolarSystem> SolarSystemsMap; 
+        public Dictionary<Vector3, SolarSystem> SolarSystemsMap;
         public void GalaxyInit()
         {
             Galaxy galaxy = new Galaxy();
             theGalaxy = this;
-           // GameManager.Instance.Galaxy = galaxy;
+            // GameManager.Instance.Galaxy = galaxy;
 
             // For now, we set a SEED for the random number generator, so that it
             // starts from the same Galaxy every time, see planet.cs random is now not so random
@@ -58,7 +57,7 @@ namespace Assets.Core
             SolarSystem ss = new SolarSystem();
             ss.Generate();
             //result.Add(ss);
-            
+
             return ss;
         }
         public List<SolarSystem> GenerateSystems(int numberOfStars) // ToDo: load SystemDate.txt instead of generate

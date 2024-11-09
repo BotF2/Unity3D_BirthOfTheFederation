@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -28,7 +27,7 @@ namespace Assets.Core
             MaxWarpFactor = fleetSO.MaxWarpFactor;
             description = fleetSO.Description;
         }
-       public FleetData(string name)
+        public FleetData(string name)
         {
             Name = name;
         }
