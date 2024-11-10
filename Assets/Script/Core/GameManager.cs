@@ -424,7 +424,6 @@ namespace Assets.Core
             mainMenuUIController.LoadDefault();
             this.GameController.GameData.LocalPlayerCivEnum = CivEnum.FED;
         }
-
         private void Awake()
         {
             if (Instance != null)
