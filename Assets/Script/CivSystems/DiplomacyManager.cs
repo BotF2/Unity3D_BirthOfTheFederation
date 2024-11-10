@@ -41,6 +41,8 @@ public class DiplomacyManager : MonoBehaviour
     public List<DiplomacyController> ManagersDiplomacyControllerList;
     public GameObject diplomacyPrefab;
     public GameObject diplomacyUIGO;
+    [SerializeField]
+    private Canvas canvasTherStarSysUI;
 
 
     private void Awake()
@@ -63,6 +65,7 @@ public class DiplomacyManager : MonoBehaviour
         var diplomacyController = DiplomacyNewGameOb.GetComponent<DiplomacyController>();
         diplomacyController.areWePlaceholder = false;
         DiplomacyData ourDiplomacyData = new DiplomacyData();
+        diplomacyController.DiplomacyUICanvas = canvasTherStarSysUI;
         diplomacyController.DiplomacyData = ourDiplomacyData;
         diplomacyController.DiplomacyData.CivOne = civPartyOne;
         diplomacyController.DiplomacyData.CivTwo = civPartyTwo;

@@ -15,8 +15,8 @@ namespace Assets.Core
         private Camera galaxyEventCamera;
         [SerializeField]
         private Canvas canvasToolTip;
-        [SerializeField]
-        private Canvas canvasStarSysUI;
+        
+        public Canvas canvasYourStarSysUI;
         public static event Action<TrekRandomEventSO> TrekEventDisasters;
         //public TrekRandomEventSO trekEventSO;
 
@@ -28,10 +28,7 @@ namespace Assets.Core
         {
             galaxyEventCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>() as Camera;
             canvasToolTip.worldCamera = galaxyEventCamera;
-            // CanvasDestination.gameObject.SetActive(false);
-            var CanvasGO = GameObject.Find("CanvasStarSysUI");
-            canvasStarSysUI = CanvasGO.GetComponent<Canvas>();
-            canvasStarSysUI.worldCamera = galaxyEventCamera;
+            canvasYourStarSysUI.worldCamera = galaxyEventCamera;
             TimeManager.Instance.OnRandomSpecialEvent = DoDisaster;
         }
         public void UpdatePopulation(int delatPopulation)

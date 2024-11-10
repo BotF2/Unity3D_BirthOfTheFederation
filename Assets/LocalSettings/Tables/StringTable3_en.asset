@@ -22,6 +22,18 @@ MonoBehaviour:
     m_Localized: English
     m_Metadata:
       m_Items: []
+  - m_Id: 148156607111168
+    m_Localized: Single Player
+    m_Metadata:
+      m_Items: []
+  - m_Id: 148836977745920
+    m_Localized: Mulit-Player
+    m_Metadata:
+      m_Items: []
+  - m_Id: 149255820943360
+    m_Localized: Load Saved Game
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

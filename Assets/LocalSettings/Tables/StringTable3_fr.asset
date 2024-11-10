@@ -22,6 +22,18 @@ MonoBehaviour:
     m_Localized: Francais
     m_Metadata:
       m_Items: []
+  - m_Id: 148156607111168
+    m_Localized: Un Jouuer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 148836977745920
+    m_Localized: Multijoueur
+    m_Metadata:
+      m_Items: []
+  - m_Id: 149255820943360
+    m_Localized: Charger La Parie Sauvegardee
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

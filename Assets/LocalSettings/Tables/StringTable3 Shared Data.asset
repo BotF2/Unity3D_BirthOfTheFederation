@@ -19,6 +19,18 @@ MonoBehaviour:
     m_Key: language
     m_Metadata:
       m_Items: []
+  - m_Id: 148156607111168
+    m_Key: singlePlayer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 148836977745920
+    m_Key: mulitPlayer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 149255820943360
+    m_Key: loadSavedGame
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

@@ -12,7 +12,7 @@ public class LocaleManager : MonoBehaviour
             LocalizationSettings.SelectedLocale = newLocale;
     }
     /// 
-    /// I do not know why the code below does not work but above does work!
+    /// I do not know why the code below does not work but the above does work.
     /// 
     //private bool active = false; // press button only once
     //public void ChangeLocale(int localeID)
