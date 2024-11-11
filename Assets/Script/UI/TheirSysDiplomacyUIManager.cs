@@ -53,7 +53,7 @@ public class TheirSysDiplomacyUIManager : MonoBehaviour
         parentCanvas.worldCamera = galaxyEventCamera;
     }
 
-    public void LoadDiplomacyUI(DiplomacyController ourDiplomacyController)
+    public void LoadTheirSysDiplomacyUI(DiplomacyController ourDiplomacyController)
     {
         controller = ourDiplomacyController;
         controller.GalaxyEventCamera = galaxyEventCamera.GetComponent<Camera>();

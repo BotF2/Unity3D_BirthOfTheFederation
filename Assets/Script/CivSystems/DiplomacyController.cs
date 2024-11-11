@@ -56,7 +56,7 @@ public class DiplomacyController : MonoBehaviour
     }
     public void NextDiplomaticContact(DiplomacyController controller)
     {
-        TheirSysDiplomacyUIManager.Instance.LoadDiplomacyUI(controller);
+       // ToDo: New UI for ongoing diplomacy
 
     }
     public void CloseUnLoadDipolmacyUI()
