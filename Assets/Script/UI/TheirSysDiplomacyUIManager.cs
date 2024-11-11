@@ -7,14 +7,14 @@ using UnityEngine.UI;
 
 
 
-public class DiplomacyUIManager : MonoBehaviour
+public class TheirSysDiplomacyUIManager : MonoBehaviour
 {
-    public static DiplomacyUIManager Instance;
+    public static TheirSysDiplomacyUIManager Instance;
     private Camera galaxyEventCamera;
     [SerializeField]
     private Canvas parentCanvas;
     private DiplomacyController controller;
-    public GameObject diplomacyUIRoot; // GameObject controlles this active UI on/off
+    public GameObject diplomacyUIToggle; // GameObject controlles this active UI on/off
     [SerializeField]
     private TMP_Text theirNameTMP;
     [SerializeField]
@@ -48,7 +48,7 @@ public class DiplomacyUIManager : MonoBehaviour
 
     private void Start()
     {
-        diplomacyUIRoot.SetActive(false);
+        diplomacyUIToggle.SetActive(false);
         galaxyEventCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>() as Camera;
         parentCanvas.worldCamera = galaxyEventCamera;
     }
@@ -57,15 +57,15 @@ public class DiplomacyUIManager : MonoBehaviour
     {
         controller = ourDiplomacyController;
         controller.GalaxyEventCamera = galaxyEventCamera.GetComponent<Camera>();
-        TimeManager.Instance.PauseTime();
-        StarSysUIManager.Instance.CloseUnLoadStarSysUI();
+        TimeManager.Instance.PauseTime(); // ToDo: put a pause indicator on screen
+        YourStarSysUIManager.Instance.CloseUnLoadStarSysUI();
         FleetUIManager.Instance.CloseUnLoadFleetUI();
         FleetSelectionUI.Instance.UnLoadShipManagerUI();
         if (GameController.Instance.AreWeLocalPlayer(ourDiplomacyController.DiplomacyData.CivOne.CivData.CivEnum))
             LoadCivDataInUI(ourDiplomacyController.DiplomacyData.CivTwo, ourDiplomacyController);
         else if (GameController.Instance.AreWeLocalPlayer(ourDiplomacyController.DiplomacyData.CivTwo.CivData.CivEnum))
             LoadCivDataInUI(ourDiplomacyController.DiplomacyData.CivOne, ourDiplomacyController);
-        diplomacyUIRoot.SetActive(true);
+        diplomacyUIToggle.SetActive(true);
 
     }
     private void LoadCivDataInUI(CivController othersController, DiplomacyController ourDiplomacyController)
@@ -79,7 +79,7 @@ public class DiplomacyUIManager : MonoBehaviour
     }
     public void CloseUnLoadFleetUI()
     {
-        diplomacyUIRoot.SetActive(false);
+        diplomacyUIToggle.SetActive(false);
         TimeManager.Instance.ResumeTime();
     }
 }

@@ -56,6 +56,9 @@ public class CivSOImporter : EditorWindow
                 civSO.TraitOne = GetCivTraitsEnum(fields[6]);
                 civSO.TraitTwo = GetCivTraitsEnum(fields[7]);
                 civSO.TraitThree = GetCivTraitsEnum(fields[8]);
+                Sprite race = Resources.Load<Sprite>("Races/" + fields[9].ToLower());
+                if (race == null) { race = Resources.Load<Sprite>("Races/" + fields[9].ToLower() + "s"); }
+                civSO.CivImage = race;
                 var name = Resources.Load<Sprite>("Insignias/" + fields[2].ToUpper());
                 if (name == null) { name = Resources.Load<Sprite>("Insignias/" + fields[2].ToUpper() + "S"); }
                 civSO.Insignia = name;

@@ -13,7 +13,7 @@ public class FleetSelectionUI : MonoBehaviour
     public FleetController clickedFleetController;
     public Canvas parentCanvas;
     [SerializeField]
-    private GameObject ShipManagerUIRoot;
+    private GameObject FleetsManagerUIToggle;
     public List<ShipController> shipControllerList;
 
     public GameObject fleetGroupDropdownGO;
@@ -37,7 +37,7 @@ public class FleetSelectionUI : MonoBehaviour
     }
     private void Start()
     {
-        ShipManagerUIRoot.SetActive(false);
+        FleetsManagerUIToggle.SetActive(false);
         galaxyEventCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>() as Camera;
         parentCanvas.worldCamera = galaxyEventCamera;
     }
@@ -45,16 +45,16 @@ public class FleetSelectionUI : MonoBehaviour
 
     public void LoadShipUIManager(FleetController fleetController)
     {
-        StarSysUIManager.Instance.CloseUnLoadStarSysUI();
+        YourStarSysUIManager.Instance.CloseUnLoadStarSysUI();
         FleetUIManager.Instance.CloseUnLoadFleetUI();
-        ShipManagerUIRoot.SetActive(true);
+        FleetsManagerUIToggle.SetActive(true);
         clickedFleetController = fleetController;
         CivName.text = clickedFleetController.FleetData.CivLongName;
     }
 
     public void UnLoadShipManagerUI()
     {
-        ShipManagerUIRoot.SetActive(false);
+        FleetsManagerUIToggle.SetActive(false);
     }
 
 

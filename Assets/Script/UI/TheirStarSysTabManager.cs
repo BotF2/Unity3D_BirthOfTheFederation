@@ -8,8 +8,6 @@ public class TheirStarSysTabManager : MonoBehaviour
 {
     public GameObject[] TabUIs;
     public Image[] TabButtonMasks;
-    //public Sprite InactiveTabBackground, ActiveTabBackbround;
-    public Vector3 InactiveTabButtonSize, ActiveTabButtonSize;
 
     public void SwitchToTab(int TabID)
     {

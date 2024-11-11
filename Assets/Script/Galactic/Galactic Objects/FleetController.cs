@@ -233,7 +233,7 @@ namespace Assets.Core
                     {
                         FleetUIManager.Instance.ClickCancelDestinationButton();
                         FleetUIManager.Instance.CloseUnLoadFleetUI();
-                        StarSysUIManager.Instance.CloseUnLoadStarSysUI();
+                        YourStarSysUIManager.Instance.CloseUnLoadStarSysUI();
                         OnArrivedAtDestination();//? should we do other stuff here for FleetController at destination?
                     }
                 }
@@ -259,7 +259,7 @@ namespace Assets.Core
             //{
             //    FleetUIManager.Instance.ClickCancelDestinationButton();
             //    FleetUIManager.Instance.CloseUnLoadFleetUI();
-            //    StarSysUIManager.Instance.CloseUnLoadStarSysUI();   
+            //    YourStarSysUIManager.Instance.CloseUnLoadStarSysUI();   
             //}
 
             // old checklist
@@ -277,7 +277,7 @@ namespace Assets.Core
             CivEnum hitCivEnum = hitGO.GetComponent<StarSysController>().StarSysData.CurrentOwner;
             if (this.FleetData.Destination == hitGO)
             {
-                int firstUninhabited = (int)CivEnum.ZZUNINHABITED1; // all lower than this are inhabited including Borg UniComplex and inhabitable Nebulas
+                int firstUninhabited = (int)CivEnum.ZZUNINHABITED1; // all lower than this are inhabited (including Borg UniComplex and inhabitable Nebulas)
                 if (this.FleetData.CivEnum != hitCivEnum)
                 {
                     DiplomacyController diplomacyController = DiplomacyManager.Instance.GetTheDiplomacyController(this.FleetData.OurCivController, hitSysCivController);
@@ -314,7 +314,7 @@ namespace Assets.Core
                     {
                         FleetUIManager.Instance.ClickCancelDestinationButton();
                         FleetUIManager.Instance.CloseUnLoadFleetUI();
-                        StarSysUIManager.Instance.CloseUnLoadStarSysUI();
+                        YourStarSysUIManager.Instance.CloseUnLoadStarSysUI();
                         OnArrivedAtDestination();//? should we do other stuff here for FleetController at destination?
                         OnEnterStarSystem();
                     }

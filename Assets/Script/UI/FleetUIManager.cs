@@ -13,7 +13,7 @@ public class FleetUIManager : MonoBehaviour
     [SerializeField]
     private Canvas parentCanvas;
     [SerializeField]
-    private GameObject fleetUIRoot;// GameObject controlles this active UI on/off
+    private GameObject fleetUIToggle;// GameObject controlles this active UI on/off
     [SerializeField]
     private Slider warpSlider;
     [SerializeField]
@@ -71,7 +71,7 @@ public class FleetUIManager : MonoBehaviour
     }
     private void Start()
     {
-        fleetUIRoot.SetActive(false);
+        fleetUIToggle.SetActive(false);
         galaxyEventCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>() as Camera;
         parentCanvas.worldCamera = galaxyEventCamera;
 
@@ -227,10 +227,10 @@ public class FleetUIManager : MonoBehaviour
     }
     public void LoadFleetUI(GameObject rayHitGO)
     {
-        StarSysUIManager.Instance.CloseUnLoadStarSysUI();
-        DiplomacyUIManager.Instance.CloseUnLoadFleetUI();
+        YourStarSysUIManager.Instance.CloseUnLoadStarSysUI();
+        TheirSysDiplomacyUIManager.Instance.CloseUnLoadFleetUI();
         FleetSelectionUI.Instance.UnLoadShipManagerUI();
-        fleetUIRoot.SetActive(true);
+        fleetUIToggle.SetActive(true);
 
         List<string> listings = new List<string>();
 
@@ -274,7 +274,7 @@ public class FleetUIManager : MonoBehaviour
     {
         MouseClickSetsDestination = false;
         MousePointerChanger.Instance.ResetCursor();
-        fleetUIRoot.SetActive(false);
+        fleetUIToggle.SetActive(false);
     }
     private string GetDebuggerDisplay()
     {

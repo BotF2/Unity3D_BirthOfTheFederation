@@ -21,7 +21,7 @@ MonoBehaviour:
   TraitOne: 8
   TraitTwo: 8
   TraitThree: 8
-  CivImage: {fileID: 0}
+  CivImage: {fileID: 21300000, guid: 368b9d68015434a41994e770c179d2ca, type: 3}
   Insignia: {fileID: 21300000, guid: 136d3ab9569170140b298adb6a168f83, type: 3}
   Population: 0
   Credits: 0

@@ -54,7 +54,7 @@ namespace Assets.Core
                 {
                     if (FleetUIManager.Instance.MouseClickSetsDestination == false) // not while FleetUIManager was looking for a destination
                     {
-                        StarSysUIManager.Instance.LoadStarSysUI(gameObject);
+                        YourStarSysUIManager.Instance.LoadStarSysUI(gameObject);
                     }
                     else
                     {

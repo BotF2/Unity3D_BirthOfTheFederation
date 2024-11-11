@@ -5,13 +5,13 @@ using TMPro;
 using UnityEngine;
 
 [DebuggerDisplay("{" + nameof(GetDebuggerDisplay) + "(),nq}")]
-public class StarSysUIManager : MonoBehaviour
+public class YourStarSysUIManager : MonoBehaviour
 {
-    public static StarSysUIManager Instance;
+    public static YourStarSysUIManager Instance;
     public StarSysController controller; // system we clicked
     public Canvas parentCanvas;
     [SerializeField]
-    private GameObject starSysUIRoot;
+    private GameObject starSysUIToggle;
     [SerializeField]
     private GameObject starSysPanelPrefab;
     [SerializeField]
@@ -59,7 +59,7 @@ public class StarSysUIManager : MonoBehaviour
     }
     private void Start()
     {
-        starSysUIRoot.SetActive(false);
+        starSysUIToggle.SetActive(false);
         galaxyEventCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>() as Camera;
         //parentCanvas.worldCamera = GalaxyEventCamera; not working
         //destinationDropdown.value = 0;
@@ -69,7 +69,7 @@ public class StarSysUIManager : MonoBehaviour
     {
         FleetUIManager.Instance.CloseUnLoadFleetUI();
         FleetSelectionUI.Instance.UnLoadShipManagerUI();
-        starSysUIRoot.SetActive(true);
+        starSysUIToggle.SetActive(true);
 
         controller = go.GetComponent<StarSysController>();
         var civEnum = controller.StarSysData.CurrentOwner;
@@ -153,7 +153,7 @@ public class StarSysUIManager : MonoBehaviour
     }
     public void CloseUnLoadStarSysUI()
     {
-        starSysUIRoot.SetActive(false);
+        starSysUIToggle.SetActive(false);
     }
     private string GetDebuggerDisplay()
     {

@@ -52,17 +52,17 @@ public class DiplomacyController : MonoBehaviour
             if (hitGO.GetComponent<StarSysController>() != null)
                 civPartyOne.ResetNames(hitGO);
         }
-        //DiplomacyUIManager.Instance.diplomacyUIRoot.SetActive(true);
+        //TheirSysDiplomacyUIManager.Instance.diplomacyUIToggle.SetActive(true);
     }
     public void NextDiplomaticContact(DiplomacyController controller)
     {
-        DiplomacyUIManager.Instance.LoadDiplomacyUI(controller);
+        TheirSysDiplomacyUIManager.Instance.LoadDiplomacyUI(controller);
 
     }
     public void CloseUnLoadDipolmacyUI()
     {
 
-        DiplomacyUIManager.Instance.diplomacyUIRoot.SetActive(false);
+        TheirSysDiplomacyUIManager.Instance.diplomacyUIToggle.SetActive(false);
     }
     public void AddDiplomaticPoints(int points)
     {

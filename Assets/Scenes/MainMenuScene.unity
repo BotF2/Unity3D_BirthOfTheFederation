@@ -562,12 +562,14 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1043277461}
+  - {fileID: 1713674199}
+  - {fileID: 881097793}
   m_Father: {fileID: 231755922}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -890, y: 70}
+  m_AnchoredPosition: {x: -890, y: 65}
   m_SizeDelta: {x: 165, y: 30}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &20214048
@@ -1868,11 +1870,11 @@ RectTransform:
   m_Children:
   - {fileID: 2097382631}
   m_Father: {fileID: 231755922}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -620, y: 70}
+  m_AnchoredPosition: {x: -575, y: 65}
   m_SizeDelta: {x: 100, y: 30}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &78025060
@@ -3661,7 +3663,6 @@ RectTransform:
   m_Children:
   - {fileID: 548706236}
   - {fileID: 20214047}
-  - {fileID: 1713674199}
   - {fileID: 78025059}
   - {fileID: 291019337}
   - {fileID: 1367508106}
@@ -4641,11 +4642,11 @@ RectTransform:
   m_Children:
   - {fileID: 745540937}
   m_Father: {fileID: 231755922}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -474, y: 70}
+  m_AnchoredPosition: {x: -428, y: 65}
   m_SizeDelta: {x: 135, y: 30}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &291019338
@@ -4668,9 +4669,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Regard Points
-
-'
+  m_text: Regard
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
@@ -4697,8 +4696,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18.7
-  m_fontSizeBase: 14
+  m_fontSize: 26.85
+  m_fontSizeBase: 26.85
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
@@ -17281,7 +17280,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ourUIFleetController: {fileID: 0}
   parentCanvas: {fileID: 1423239687}
-  fleetUIRoot: {fileID: 1512066706}
+  fleetUIToggle: {fileID: 1512066706}
   warpSlider: {fileID: 1534032025}
   warpSliderText: {fileID: 1295497451}
   maxSliderValue: 9.8
@@ -18681,6 +18680,82 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 880019433}
   m_CullTransparentMesh: 1
+--- !u!1 &881097792
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 881097793}
+  - component: {fileID: 881097795}
+  - component: {fileID: 881097794}
+  m_Layer: 5
+  m_Name: Race
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &881097793
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 881097792}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 20214047}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 255, y: -50}
+  m_SizeDelta: {x: 35, y: 35}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &881097794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 881097792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: acca6070e494abf43a40eed03ba56309, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &881097795
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 881097792}
+  m_CullTransparentMesh: 1
 --- !u!1 &884119092
 GameObject:
   m_ObjectHideFlags: 0
@@ -18715,7 +18790,7 @@ RectTransform:
   - {fileID: 1728025381}
   - {fileID: 59040669}
   m_Father: {fileID: 1848468876}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
@@ -20204,7 +20279,7 @@ RectTransform:
   m_Children:
   - {fileID: 885686243}
   m_Father: {fileID: 231755922}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -22401,7 +22476,7 @@ GameObject:
   m_Component:
   - component: {fileID: 994957159}
   m_Layer: 5
-  m_Name: TabsUI
+  m_Name: UserInterfaces
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22424,7 +22499,7 @@ RectTransform:
   - {fileID: 925665325}
   - {fileID: 1939693322}
   m_Father: {fileID: 1848468876}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -23521,9 +23596,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentCanvas: {fileID: 1753412985}
-  diplomacyUIRoot: {fileID: 1848468875}
+  diplomacyUIToggle: {fileID: 1848468875}
   theirNameTMP: {fileID: 1043277462}
-  theirInsigniaGO: {fileID: 0}
+  theirInsigniaGO: {fileID: 1848468875}
   theirInsignia: {fileID: 1713674201}
   relationTMP: {fileID: 2097382632}
   relationPointsTMP: {fileID: 745540938}
@@ -23561,9 +23636,9 @@ RectTransform:
   m_Father: {fileID: 20214047}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 10, y: -40}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 85, y: -50}
   m_SizeDelta: {x: 200, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1043277462
@@ -25048,7 +25123,7 @@ RectTransform:
   - {fileID: 992689099}
   - {fileID: 1255532939}
   m_Father: {fileID: 231755922}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -28042,7 +28117,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 0}
   parentCanvas: {fileID: 449831070}
-  starSysUIRoot: {fileID: 1401885898}
+  starSysUIToggle: {fileID: 1401885898}
   starSysPanelPrefab: {fileID: 9042168811146900399, guid: 26c525ae50331f346a8a611f49b4bfe2, type: 3}
   starSysListGO: {fileID: 1530623272}
   sysControllerList: []
@@ -28554,7 +28629,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clickedFleetController: {fileID: 0}
   parentCanvas: {fileID: 580266235}
-  ShipManagerUIRoot: {fileID: 2065411579}
+  FleetsManagerUIToggle: {fileID: 2065411579}
   shipControllerList: []
   fleetGroupDropdownGO: {fileID: 1447317994}
   fleetGroupDropdown: {fileID: 1447317996}
@@ -30305,7 +30380,7 @@ RectTransform:
   - {fileID: 1295615076}
   - {fileID: 1873686489}
   m_Father: {fileID: 1848468876}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
@@ -31155,11 +31230,11 @@ RectTransform:
   m_Children:
   - {fileID: 1503673977}
   m_Father: {fileID: 231755922}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -310, y: 70}
+  m_AnchoredPosition: {x: -270, y: 65}
   m_SizeDelta: {x: 350, y: 30}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1367508107
@@ -31387,7 +31462,7 @@ RectTransform:
   - {fileID: 760264173}
   - {fileID: 2042110405}
   m_Father: {fileID: 1848468876}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
@@ -31834,7 +31909,7 @@ GameObject:
   - component: {fileID: 1401885901}
   - component: {fileID: 1401885900}
   m_Layer: 5
-  m_Name: StarSysUIRoot
+  m_Name: StarSysUIToggle
   m_TagString: fleetUIRoot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34195,7 +34270,7 @@ RectTransform:
   - {fileID: 924429285}
   - {fileID: 1318781811}
   m_Father: {fileID: 1848468876}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
@@ -34308,7 +34383,7 @@ GameObject:
   - component: {fileID: 1512066709}
   - component: {fileID: 1512066708}
   m_Layer: 5
-  m_Name: FleetUIRoot
+  m_Name: FleetUIToggle
   m_TagString: fleetUIRoot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37710,12 +37785,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 231755922}
-  m_RootOrder: 2
+  m_Father: {fileID: 20214047}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -691, y: 30}
+  m_AnchoredPosition: {x: 200, y: -33}
   m_SizeDelta: {x: 35, y: 35}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &1713674200
@@ -38882,8 +38957,6 @@ MonoBehaviour:
   - {fileID: 2042110403}
   - {fileID: 1873686487}
   - {fileID: 1318781812}
-  InactiveTabButtonSize: {x: 0, y: 0, z: 0}
-  ActiveTabButtonSize: {x: 0, y: 0, z: 0}
 --- !u!224 &1770337020
 RectTransform:
   m_ObjectHideFlags: 0
@@ -40931,7 +41004,7 @@ GameObject:
   - component: {fileID: 1848468878}
   - component: {fileID: 1848468877}
   m_Layer: 5
-  m_Name: TheirSystemUIRoot
+  m_Name: TheirSystemUIToggle
   m_TagString: fleetUIRoot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40949,11 +41022,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 994957159}
   - {fileID: 884119093}
   - {fileID: 1368112956}
   - {fileID: 1338370445}
   - {fileID: 1504880613}
-  - {fileID: 994957159}
   m_Father: {fileID: 1039231003}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -46718,7 +46791,7 @@ GameObject:
   - component: {fileID: 2065411582}
   - component: {fileID: 2065411581}
   m_Layer: 5
-  m_Name: FleetSelectionRoot
+  m_Name: FleetSelectionToggle
   m_TagString: fleetUIRoot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
