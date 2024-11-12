@@ -1,10 +1,7 @@
 using Assets.Core;
 using TMPro;
-//using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.UI;
-//using UnityEditor.ShaderGraph.Internal;
-
 
 
 public class TheirSysDiplomacyUIManager : MonoBehaviour
@@ -29,6 +26,10 @@ public class TheirSysDiplomacyUIManager : MonoBehaviour
     private TMP_Text relationPointsTMP;
     [SerializeField]
     private TMP_Text transmissionTMP;
+    [SerializeField]
+    private GameObject[] TabUIs;
+    [SerializeField]
+    private Image[] TabButtonMasks;
 
     private void Awake()
     {
@@ -82,7 +83,23 @@ public class TheirSysDiplomacyUIManager : MonoBehaviour
     }
     public void CloseUnLoadFleetUI()
     {
+        SwitchToTab(0);
         diplomacyUIToggle.SetActive(false);
         TimeManager.Instance.ResumeTime();
+    }
+    public void SwitchToTab(int TabID)
+    {
+        foreach (GameObject tabGO in TabUIs)
+        {
+            tabGO.SetActive(false);
+        }
+        TabUIs[TabID].SetActive(true);
+
+        foreach (Image image in TabButtonMasks)
+        {
+            image.gameObject.SetActive(true);
+        }
+        TabButtonMasks[TabID].gameObject.SetActive(false);
+
     }
 }
