@@ -22,6 +22,8 @@ public class TheirSysDiplomacyUIManager : MonoBehaviour
     [SerializeField]
     private Image theirInsignia;
     [SerializeField]
+    private Image theirRaceImage;
+    [SerializeField]
     private TMP_Text relationTMP;
     [SerializeField]
     private TMP_Text relationPointsTMP;
@@ -72,6 +74,7 @@ public class TheirSysDiplomacyUIManager : MonoBehaviour
     {
         theirNameTMP.text = othersController.CivData.CivShortName;
         theirInsignia.sprite = othersController.CivData.InsigniaSprite;
+        theirRaceImage.sprite = othersController.CivData.CivRaceSprite;
         relationTMP.text = ourDiplomacyController.DiplomacyData.DiplomacyEnumOfCivs.ToString();
         relationPointsTMP.text = ourDiplomacyController.DiplomacyData.DiplomacyPointsOfCivs.ToString();
         transmissionTMP.text = othersController.CivData.Decription;

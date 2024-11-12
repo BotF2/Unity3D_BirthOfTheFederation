@@ -15,7 +15,7 @@ namespace Assets.Core
         public CivTraitsEnum TraitOne; // CivTraitsEnum
         public CivTraitsEnum TraitTwo; //CivTraitsEnum
         public CivTraitsEnum TraitThree; //CivTraitsEnum
-        public Sprite CivImageSprite;
+        public Sprite CivRaceSprite;
         public Sprite InsigniaSprite;
         public int Population = 5;
         public int Credits = 100;
