@@ -17,10 +17,10 @@ MonoBehaviour:
   CivShortName: ALGOLIANS
   CivLongName: ALGOLIANS
   CivHomeSystem: ALGOL
-  WarlikeToPeaseful: 4
-  TraitOne: 7
-  TraitTwo: 8
-  TraitThree: 8
+  WarLikeEnum: 3
+  XenophbiaEnum: 3
+  RuthlessEnum: 3
+  GreedyEnum: 0
   CivImage: {fileID: 21300000, guid: 798ee9895f369aa4a8eb37598942c5f8, type: 3}
   Insignia: {fileID: 21300000, guid: f22ba3c2d1c6cda47b7c99448aab4a5b, type: 3}
   Population: 0

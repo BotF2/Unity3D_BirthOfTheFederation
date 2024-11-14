@@ -17,10 +17,10 @@ MonoBehaviour:
   CivShortName: AXANAR
   CivLongName: AXANAR
   CivHomeSystem: AXANAR
-  WarlikeToPeaseful: 1
-  TraitOne: 7
-  TraitTwo: 8
-  TraitThree: 8
+  WarLikeEnum: 2
+  XenophbiaEnum: 2
+  RuthlessEnum: 2
+  GreedyEnum: 2
   CivImage: {fileID: 21300000, guid: 8b8e14073077ed44d97e4489faf3312a, type: 3}
   Insignia: {fileID: 21300000, guid: acc50ce06f5548a4da44e35967757a72, type: 3}
   Population: 0

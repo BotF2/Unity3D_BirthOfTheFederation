@@ -17,10 +17,10 @@ MonoBehaviour:
   CivShortName: ANTEDEANS
   CivLongName: ANTEDEANS
   CivHomeSystem: ANTEDEA
-  WarlikeToPeaseful: 3
-  TraitOne: 0
-  TraitTwo: 8
-  TraitThree: 8
+  WarLikeEnum: 2
+  XenophbiaEnum: 0
+  RuthlessEnum: 1
+  GreedyEnum: 0
   CivImage: {fileID: 21300000, guid: 2207fd8c604698d4ba4ac400883e90d4, type: 3}
   Insignia: {fileID: 21300000, guid: 8b6c150289e584e45adc403e9413bd78, type: 3}
   Population: 0

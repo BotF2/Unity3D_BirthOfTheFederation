@@ -17,10 +17,10 @@ MonoBehaviour:
   CivShortName: ALDEANS
   CivLongName: ALDEANS
   CivHomeSystem: ALDEA
-  WarlikeToPeaseful: 2
-  TraitOne: 7
-  TraitTwo: 8
-  TraitThree: 8
+  WarLikeEnum: 3
+  XenophbiaEnum: 1
+  RuthlessEnum: 4
+  GreedyEnum: 4
   CivImage: {fileID: 21300000, guid: 0c602363a2c025447bbfda6c0786908c, type: 3}
   Insignia: {fileID: 21300000, guid: 499abd72fadb6914a852681081919460, type: 3}
   Population: 0

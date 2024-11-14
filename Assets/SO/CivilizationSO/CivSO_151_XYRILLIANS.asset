@@ -17,10 +17,10 @@ MonoBehaviour:
   CivShortName: XYRILLIANS
   CivLongName: XYRILLIANS
   CivHomeSystem: XYRILLIA
-  WarlikeToPeaseful: 3
-  TraitOne: 7
-  TraitTwo: 8
-  TraitThree: 8
+  WarLikeEnum: 3
+  XenophbiaEnum: 3
+  RuthlessEnum: 3
+  GreedyEnum: 0
   CivImage: {fileID: 21300000, guid: 6cc3c2c9a47d4c1429df58ae9a84531d, type: 3}
   Insignia: {fileID: 21300000, guid: 56b753e80b338af4abb23c11c144f401, type: 3}
   Population: 0

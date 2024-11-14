@@ -17,10 +17,10 @@ MonoBehaviour:
   CivShortName: SKRREEA
   CivLongName: SKRREEA
   CivHomeSystem: SKRREEA
-  WarlikeToPeaseful: 3
-  TraitOne: 6
-  TraitTwo: 8
-  TraitThree: 8
+  WarLikeEnum: 2
+  XenophbiaEnum: 3
+  RuthlessEnum: 3
+  GreedyEnum: 2
   CivImage: {fileID: 21300000, guid: 4cac727b3ff41c2499876d8834a0c8ef, type: 3}
   Insignia: {fileID: 0}
   Population: 0

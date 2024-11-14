@@ -17,10 +17,10 @@ MonoBehaviour:
   CivShortName: ZALKONIANS
   CivLongName: ZALKONIANS
   CivHomeSystem: ZALKONIA
-  WarlikeToPeaseful: 3
-  TraitOne: 0
-  TraitTwo: 8
-  TraitThree: 8
+  WarLikeEnum: 1
+  XenophbiaEnum: 0
+  RuthlessEnum: 1
+  GreedyEnum: 1
   CivImage: {fileID: 21300000, guid: a11e3ef4966f2944faff94a7faa827dd, type: 3}
   Insignia: {fileID: 21300000, guid: 74c67a4c6be620f4684e29a3dfd39a18, type: 3}
   Population: 0

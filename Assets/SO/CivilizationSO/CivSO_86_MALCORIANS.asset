@@ -17,10 +17,10 @@ MonoBehaviour:
   CivShortName: MALCORIANS
   CivLongName: MALCORIANS
   CivHomeSystem: MALCORIA
-  WarlikeToPeaseful: 2
-  TraitOne: 1
-  TraitTwo: 8
-  TraitThree: 8
+  WarLikeEnum: 3
+  XenophbiaEnum: 0
+  RuthlessEnum: 2
+  GreedyEnum: 0
   CivImage: {fileID: 21300000, guid: 7de045fa038375e47b58b5283fe65cda, type: 3}
   Insignia: {fileID: 21300000, guid: ffb8b003639eeaa49aabc771e20be4e2, type: 3}
   Population: 0

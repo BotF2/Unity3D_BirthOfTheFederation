@@ -17,10 +17,10 @@ MonoBehaviour:
   CivShortName: IYAARANS
   CivLongName: IYAARANS
   CivHomeSystem: IYAARA
-  WarlikeToPeaseful: 2
-  TraitOne: 7
-  TraitTwo: 0
-  TraitThree: 8
+  WarLikeEnum: 3
+  XenophbiaEnum: 4
+  RuthlessEnum: 3
+  GreedyEnum: 0
   CivImage: {fileID: 21300000, guid: 8ab0e87e3afdbed4aaec51c3d07d91f5, type: 3}
   Insignia: {fileID: 21300000, guid: 051bf7f02292ae1449587a0fac11a917, type: 3}
   Population: 0

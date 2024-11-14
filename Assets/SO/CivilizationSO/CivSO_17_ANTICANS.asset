@@ -17,10 +17,10 @@ MonoBehaviour:
   CivShortName: ANTICANS
   CivLongName: ANTICANS
   CivHomeSystem: ANTICA
-  WarlikeToPeaseful: 3
-  TraitOne: 8
-  TraitTwo: 8
-  TraitThree: 8
+  WarLikeEnum: 1
+  XenophbiaEnum: 1
+  RuthlessEnum: 1
+  GreedyEnum: 2
   CivImage: {fileID: 21300000, guid: 0ee764337b87bae48a9c89f42412fd33, type: 3}
   Insignia: {fileID: 21300000, guid: bfe23d24cb25e3d4c96e0b595a542fe1, type: 3}
   Population: 0

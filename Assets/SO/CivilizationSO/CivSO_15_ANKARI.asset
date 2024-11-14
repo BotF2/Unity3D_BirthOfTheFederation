@@ -17,10 +17,10 @@ MonoBehaviour:
   CivShortName: ANKARI
   CivLongName: ANKARI
   CivHomeSystem: ANKARI
-  WarlikeToPeaseful: 3
-  TraitOne: 0
-  TraitTwo: 2
-  TraitThree: 8
+  WarLikeEnum: 4
+  XenophbiaEnum: 4
+  RuthlessEnum: 2
+  GreedyEnum: 0
   CivImage: {fileID: 21300000, guid: 4ad86cb9bcc7a90429458f0372f52552, type: 3}
   Insignia: {fileID: 21300000, guid: 6d1d7ced7f1f10044a0b1f3284aea7f5, type: 3}
   Population: 0

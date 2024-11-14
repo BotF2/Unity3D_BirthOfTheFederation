@@ -17,10 +17,10 @@ MonoBehaviour:
   CivShortName: LISSEPIANS
   CivLongName: LISSEPIANS
   CivHomeSystem: LISSEPIA
-  WarlikeToPeaseful: 3
-  TraitOne: 1
-  TraitTwo: 8
-  TraitThree: 8
+  WarLikeEnum: 2
+  XenophbiaEnum: 1
+  RuthlessEnum: 0
+  GreedyEnum: 0
   CivImage: {fileID: 21300000, guid: 833a8fef929c7764e830836d2c8eed55, type: 3}
   Insignia: {fileID: 21300000, guid: 14cf8a9ad2d3c1145aee1755b48d3a9b, type: 3}
   Population: 0

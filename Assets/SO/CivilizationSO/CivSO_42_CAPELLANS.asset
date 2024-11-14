@@ -17,10 +17,10 @@ MonoBehaviour:
   CivShortName: CAPELLANS
   CivLongName: CAPELLANS
   CivHomeSystem: CAPELLA
-  WarlikeToPeaseful: 1
-  TraitOne: 8
-  TraitTwo: 8
-  TraitThree: 8
+  WarLikeEnum: 0
+  XenophbiaEnum: 1
+  RuthlessEnum: 4
+  GreedyEnum: 1
   CivImage: {fileID: 21300000, guid: 368b9d68015434a41994e770c179d2ca, type: 3}
   Insignia: {fileID: 21300000, guid: 136d3ab9569170140b298adb6a168f83, type: 3}
   Population: 0

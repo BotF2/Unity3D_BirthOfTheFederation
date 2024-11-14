@@ -17,10 +17,10 @@ MonoBehaviour:
   CivShortName: BOLIANS
   CivLongName: BOLIANS
   CivHomeSystem: BOLIA
-  WarlikeToPeaseful: 3
-  TraitOne: 7
-  TraitTwo: 8
-  TraitThree: 8
+  WarLikeEnum: 3
+  XenophbiaEnum: 4
+  RuthlessEnum: 3
+  GreedyEnum: 0
   CivImage: {fileID: 21300000, guid: 85930c29bb66cf346957a40ecff0abd0, type: 3}
   Insignia: {fileID: 21300000, guid: 737c154f34db81a4d907f4736dd51866, type: 3}
   Population: 0

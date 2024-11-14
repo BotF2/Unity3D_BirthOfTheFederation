@@ -17,10 +17,10 @@ MonoBehaviour:
   CivShortName: VISSIANS
   CivLongName: VISSIANS
   CivHomeSystem: VISSIA
-  WarlikeToPeaseful: 2
-  TraitOne: 7
-  TraitTwo: 8
-  TraitThree: 8
+  WarLikeEnum: 3
+  XenophbiaEnum: 4
+  RuthlessEnum: 3
+  GreedyEnum: 0
   CivImage: {fileID: 21300000, guid: 694e5f99b5f187f4d9237e61e0574b8d, type: 3}
   Insignia: {fileID: 21300000, guid: e003f8cb9c4b9d54bbc42ce66d3318db, type: 3}
   Population: 0

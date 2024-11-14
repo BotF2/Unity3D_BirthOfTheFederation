@@ -17,10 +17,10 @@ MonoBehaviour:
   CivShortName: HORTA
   CivLongName: HORTA
   CivHomeSystem: HORTA
-  WarlikeToPeaseful: 4
-  TraitOne: 6
-  TraitTwo: 8
-  TraitThree: 8
+  WarLikeEnum: 1
+  XenophbiaEnum: 2
+  RuthlessEnum: 2
+  GreedyEnum: 2
   CivImage: {fileID: 21300000, guid: 1194361b34f7e734d8ec083399971878, type: 3}
   Insignia: {fileID: 21300000, guid: f38d43d8b2f0f6a40a7815b56594be8e, type: 3}
   Population: 0

@@ -17,10 +17,10 @@ MonoBehaviour:
   CivShortName: VIDIIANS
   CivLongName: VIDIIANS
   CivHomeSystem: VIDIIA
-  WarlikeToPeaseful: 0
-  TraitOne: 7
-  TraitTwo: 8
-  TraitThree: 8
+  WarLikeEnum: 1
+  XenophbiaEnum: 1
+  RuthlessEnum: 0
+  GreedyEnum: 0
   CivImage: {fileID: 21300000, guid: 821ee0593fc2a554e886d5fc4062586a, type: 3}
   Insignia: {fileID: 21300000, guid: e53d33a6477d198418145336311133af, type: 3}
   Population: 0

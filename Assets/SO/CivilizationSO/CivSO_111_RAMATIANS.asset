@@ -17,10 +17,10 @@ MonoBehaviour:
   CivShortName: RAMATIANS
   CivLongName: RAMATIANS
   CivHomeSystem: RAMATIA
-  WarlikeToPeaseful: 1
-  TraitOne: 7
-  TraitTwo: 8
-  TraitThree: 8
+  WarLikeEnum: 3
+  XenophbiaEnum: 4
+  RuthlessEnum: 4
+  GreedyEnum: 0
   CivImage: {fileID: 21300000, guid: fbcc049ed9744fc408cf8e866bb534be, type: 3}
   Insignia: {fileID: 0}
   Population: 0

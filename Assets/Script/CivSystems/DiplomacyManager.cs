@@ -15,12 +15,11 @@ public enum DiplomacyStatusEnum // between two civs held in the DiplomacyData
 }
 public enum WarLikeEnum // held by the civ
 {
-    FireAllWeapons = 0, // intended for 'will come out shooting' on contact without stopping for diplomacy, as in the Borg
-    WarLike, // inclined to wars like civs, the Klingons but do not bypass diplomacy UI
-    Hostile,
+    Warlike,
+    Aggressive,
     Neutral,
-    Friendly,
-    PeaceLoving // will give 'ground' to keep the peace. appeasement
+    Peaceful,
+    Pacifist
 }
 public enum XenophobiaEnum // held by the civ
 {

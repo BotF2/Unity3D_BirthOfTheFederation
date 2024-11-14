@@ -17,10 +17,10 @@ MonoBehaviour:
   CivShortName: ARGRATHI
   CivLongName: ARGRATHI
   CivHomeSystem: ARGRATHI
-  WarlikeToPeaseful: 3
-  TraitOne: 6
-  TraitTwo: 8
-  TraitThree: 8
+  WarLikeEnum: 3
+  XenophbiaEnum: 1
+  RuthlessEnum: 0
+  GreedyEnum: 2
   CivImage: {fileID: 21300000, guid: e55e8c77b360f0d40bb2ca7a03bd3205, type: 3}
   Insignia: {fileID: 0}
   Population: 0

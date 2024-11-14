@@ -17,10 +17,10 @@ MonoBehaviour:
   CivShortName: TAKARANS
   CivLongName: TAKARANS
   CivHomeSystem: TAKARA
-  WarlikeToPeaseful: 3
-  TraitOne: 7
-  TraitTwo: 8
-  TraitThree: 8
+  WarLikeEnum: 2
+  XenophbiaEnum: 3
+  RuthlessEnum: 3
+  GreedyEnum: 0
   CivImage: {fileID: 21300000, guid: b9ba4438b9b49e24a93e87d856b3e5d4, type: 3}
   Insignia: {fileID: 21300000, guid: 16afd7ac189d6a04bbdd9e3e8784ac7b, type: 3}
   Population: 0

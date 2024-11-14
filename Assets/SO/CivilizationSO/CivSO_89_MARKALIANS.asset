@@ -17,10 +17,10 @@ MonoBehaviour:
   CivShortName: MARKALIANS
   CivLongName: MARKALIANS
   CivHomeSystem: MARKALIA
-  WarlikeToPeaseful: 3
-  TraitOne: 7
-  TraitTwo: 8
-  TraitThree: 8
+  WarLikeEnum: 1
+  XenophbiaEnum: 1
+  RuthlessEnum: 0
+  GreedyEnum: 0
   CivImage: {fileID: 21300000, guid: ec0e37f78b0324241a42b51d567a332f, type: 3}
   Insignia: {fileID: 21300000, guid: ad83ffc0032c59a44b650a4e15b9e94e, type: 3}
   Population: 0

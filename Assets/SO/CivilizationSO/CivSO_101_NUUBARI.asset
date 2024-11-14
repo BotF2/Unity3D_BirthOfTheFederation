@@ -17,10 +17,10 @@ MonoBehaviour:
   CivShortName: NUUBARI
   CivLongName: NUUBARI
   CivHomeSystem: NUUBARI
-  WarlikeToPeaseful: 1
-  TraitOne: 7
-  TraitTwo: 8
-  TraitThree: 8
+  WarLikeEnum: 2
+  XenophbiaEnum: 2
+  RuthlessEnum: 2
+  GreedyEnum: 2
   CivImage: {fileID: 21300000, guid: 7d65d6fe83d5d6f40babe4aca3df211c, type: 3}
   Insignia: {fileID: 21300000, guid: f09cae8a0dbf4eb4684f8d0b7a86f4ca, type: 3}
   Population: 0

@@ -17,10 +17,10 @@ MonoBehaviour:
   CivShortName: TROGORANS
   CivLongName: TROGORANS
   CivHomeSystem: TROGORA
-  WarlikeToPeaseful: 1
-  TraitOne: 1
-  TraitTwo: 8
-  TraitThree: 8
+  WarLikeEnum: 2
+  XenophbiaEnum: 2
+  RuthlessEnum: 2
+  GreedyEnum: 2
   CivImage: {fileID: 21300000, guid: 7e42fa55f178c3b468b7da8d6b29d6e9, type: 3}
   Insignia: {fileID: 21300000, guid: fbadf7502f79b9a479932b123f16d6a1, type: 3}
   Population: 0

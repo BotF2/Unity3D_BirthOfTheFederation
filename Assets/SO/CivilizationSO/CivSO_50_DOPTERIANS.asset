@@ -17,10 +17,10 @@ MonoBehaviour:
   CivShortName: DOPTERIANS
   CivLongName: DOPTERIANS
   CivHomeSystem: DOPTERIA
-  WarlikeToPeaseful: 3
-  TraitOne: 5
-  TraitTwo: 8
-  TraitThree: 8
+  WarLikeEnum: 2
+  XenophbiaEnum: 1
+  RuthlessEnum: 0
+  GreedyEnum: 0
   CivImage: {fileID: 21300000, guid: 0bfa41fd23bf32348afa5c3d26b1e44f, type: 3}
   Insignia: {fileID: 21300000, guid: 0f4069d62d788d34abdd1084ba991f57, type: 3}
   Population: 0

@@ -17,10 +17,10 @@ MonoBehaviour:
   CivShortName: KELLERUN
   CivLongName: KELLERUN
   CivHomeSystem: KELLERUN
-  WarlikeToPeaseful: 1
-  TraitOne: 7
-  TraitTwo: 8
-  TraitThree: 8
+  WarLikeEnum: 2
+  XenophbiaEnum: 2
+  RuthlessEnum: 2
+  GreedyEnum: 2
   CivImage: {fileID: 21300000, guid: 00f58dd0856c7d042972e7521f66f3ae, type: 3}
   Insignia: {fileID: 21300000, guid: 3bf40960c567db94da01589adcc31585, type: 3}
   Population: 0

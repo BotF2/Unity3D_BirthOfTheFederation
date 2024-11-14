@@ -17,10 +17,10 @@ MonoBehaviour:
   CivShortName: TALAXIANS
   CivLongName: TALAXIANS
   CivHomeSystem: TALAX
-  WarlikeToPeaseful: 4
-  TraitOne: 5
-  TraitTwo: 8
-  TraitThree: 8
+  WarLikeEnum: 3
+  XenophbiaEnum: 3
+  RuthlessEnum: 3
+  GreedyEnum: 0
   CivImage: {fileID: 21300000, guid: fdef1945ccbaf7545b9681699afeec7c, type: 3}
   Insignia: {fileID: 21300000, guid: 4a0e1fe1e81bdd14993713f63ff98fb1, type: 3}
   Population: 0
