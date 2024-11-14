@@ -79,7 +79,6 @@ public class TheirSysDiplomacyUIManager : MonoBehaviour
         relationTMP.text = ourDiplomacyController.DiplomacyData.DiplomacyEnumOfCivs.ToString();
         relationPointsTMP.text = ourDiplomacyController.DiplomacyData.DiplomacyPointsOfCivs.ToString();
         transmissionTMP.text = othersController.CivData.Decription;
-
     }
     public void CloseUnLoadFleetUI()
     {
