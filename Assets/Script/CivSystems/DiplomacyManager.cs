@@ -13,18 +13,6 @@ public enum DiplomacyStatusEnum // between two civs held in the DiplomacyData
     Allied = 80,
     Unified = 100
 }
-public enum CivTraitsEnum // held by the civ
-{
-    Scientific,
-    Materialistic,
-    Fanatic,
-    Xenophobia,
-    Indifferent,
-    Compassion,
-    Honorable,
-    Ruthless,
-    Null
-}
 public enum WarLikeEnum // held by the civ
 {
     FireAllWeapons = 0, // intended for 'will come out shooting' on contact without stopping for diplomacy, as in the Borg
@@ -34,6 +22,31 @@ public enum WarLikeEnum // held by the civ
     Friendly,
     PeaceLoving // will give 'ground' to keep the peace. appeasement
 }
+public enum XenophobiaEnum // held by the civ
+{
+    Xenophobia,
+    Intolerant,
+    Indifferent,
+    Sympathetic,
+    Compassion
+}
+public enum RuthlessEnum
+{
+    Ruthless,
+    Callous,
+    Regulated,
+    Ethical,
+    Honorable
+}
+public enum GreedyEnum
+{
+    Greedy,
+    Materialistic,
+    Transactional,
+    Egaliterian,
+    Idealistic
+}
+
 
 public class DiplomacyManager : MonoBehaviour
 {

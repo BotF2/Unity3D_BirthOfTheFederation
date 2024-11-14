@@ -73,7 +73,7 @@ namespace Assets.Core
             //            civCon.CivData.CivHomeSystem = CivControllersInGame[0].CivData.CivHomeSystem;
             //            civCon.CivData.TraitOne = CivControllersInGame[0].CivData.TraitOne;
             //            civCon.CivData.TraitTwo = CivControllersInGame[0].CivData.TraitTwo;
-            //            civCon.CivData.CivImageSprite = CivControllersInGame[0].CivData.CivImageSprite;
+            //            civCon.CivData.CivRaceSprite = CivControllersInGame[0].CivData.CivRaceSprite;
             //            civCon.CivData.InsigniaSprite = CivControllersInGame[0].CivData.InsigniaSprite;
             //            civCon.CivData.Playable = true;
             //            civCon.CivData.PlayedByAI = true;
@@ -184,11 +184,11 @@ namespace Assets.Core
                 civData.CivEnum = civSO.CivEnum;
                 civData.CivLongName = civSO.CivLongName;
                 civData.CivShortName = civSO.CivShortName;
-                civData.WarlikeToPeaseful = (WarLikeEnum)civSO.WarlikeToPeaseful; // a scale from most worklike 0 to neutral 3 and most peasful at 5
-                civData.TraitOne = civSO.TraitOne;
-                civData.TraitTwo = civSO.TraitTwo;
-                civData.TraitThree = civSO.TraitThree;
-                civData.CivImageSprite = civSO.CivImage;
+                civData.Warlike = (WarLikeEnum)civSO.WarLikeEnum; // a scale from most worklike 0 to neutral 3 and most peasful at 5
+                civData.Xenophbia = civSO.XenophbiaEnum;
+                civData.Ruthelss = civSO.RuthlessEnum;
+                civData.Greedy = civSO.GreedyEnum;
+                civData.CivRaceSprite = civSO.CivImage;
                 civData.InsigniaSprite = civSO.Insignia;
                 civData.Population = civSO.Population;
                 civData.Credits = civSO.Credits;

@@ -52,10 +52,10 @@ public class CivSOImporter : EditorWindow
                 civSO.CivShortName = fields[2];
                 civSO.CivLongName = fields[3];
                 civSO.CivHomeSystem = fields[4];
-                civSO.WarlikeToPeaseful = int.Parse(fields[5]);
-                civSO.TraitOne = GetCivTraitsEnum(fields[6]);
-                civSO.TraitTwo = GetCivTraitsEnum(fields[7]);
-                civSO.TraitThree = GetCivTraitsEnum(fields[8]);
+                civSO.WarLikeEnum = GetWarLikeEnum(fields[5]);
+                civSO.XenophbiaEnum = GetXenophobiaEnum(fields[6]);
+                civSO.RuthlessEnum = GetRuthlessEnum(fields[7]);
+                civSO.GreedyEnum = GetGreedyEnum(fields[8]);
                 Sprite race = Resources.Load<Sprite>("Races/" + fields[9].ToLower());
                 if (race == null) { race = Resources.Load<Sprite>("Races/" + fields[9].ToLower() + "s"); }
                 civSO.CivImage = race;
@@ -66,8 +66,6 @@ public class CivSOImporter : EditorWindow
                 civSO.HasWarp = bool.Parse(fields[11]);
                 civSO.Playable = bool.Parse(fields[12]);
                 civSO.Decription = "ToDo, connect to libaray of civSO descriptions";
-                //civSO.StarSysOwned = new System.Collections.Generic.List<StarSysController> { new StarSysController("Place Holder") };
-                //civSO.ContactList = new System.Collections.Generic.List<CivData>(); // we know our self + maybe a 'Vulcans' for each major??
                 string assetPath = $"Assets/SO/CivilizationSO/CivSO_{civSO.CivInt}_{civSO.CivShortName}.asset";
                 AssetDatabase.CreateAsset(civSO, assetPath);
                 AssetDatabase.SaveAssets();
@@ -77,38 +75,37 @@ public class CivSOImporter : EditorWindow
         Debug.Log("CivSOImporter Import Complete");
     }
 
-    private static CivTraitsEnum GetCivTraitsEnum(string ourString)
-    {
-        string[] switchTraits = new string[] {"Scientific","Materialistic",
-                "Fanatic","Xenophobic","Indifferent","Compassion","Honorable","Ruthless", "Null"};
-        if (ourString == switchTraits[0])
-            return CivTraitsEnum.Scientific;
-        else if (ourString == switchTraits[1])
-            return CivTraitsEnum.Materialistic;
-        else if (ourString == switchTraits[2])
-            return CivTraitsEnum.Fanatic;
-        else if (ourString == switchTraits[3])
-            return CivTraitsEnum.Xenophobia;
-        else if (ourString == switchTraits[4])
-            return CivTraitsEnum.Indifferent;
-        else if (ourString == switchTraits[5])
-            return CivTraitsEnum.Compassion;
-        else if (ourString == switchTraits[6])
-            return CivTraitsEnum.Honorable;
-        else if (ourString == switchTraits[7])
-            return CivTraitsEnum.Ruthless;
-        else if (ourString == switchTraits[8])
-            return CivTraitsEnum.Null;
-        else return CivTraitsEnum.Null;
-
-
-    }
     public static CivEnum GetMyCivEnum(string title)
     {
         CivEnum st;
         Enum.TryParse(title, out st);
         return st;
     }
+    public static WarLikeEnum GetWarLikeEnum(string title)
+    {
+        WarLikeEnum st;
+        Enum.TryParse(title, out st);
+        return st;
+    }
+    public static XenophobiaEnum GetXenophobiaEnum(string title)
+    {
+        XenophobiaEnum st;
+        Enum.TryParse(title, out st);
+        return st;
+    }
+    public static RuthlessEnum GetRuthlessEnum(string title)
+    {
+        RuthlessEnum st;
+        Enum.TryParse(title, out st);
+        return st;
+    }
+    public static GreedyEnum GetGreedyEnum(string title)
+    {
+        GreedyEnum st;
+        Enum.TryParse(title, out st);
+        return st;
+    }
+
 #endif
 }
 

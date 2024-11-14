@@ -11,11 +11,11 @@ namespace Assets.Core
         public string CivShortName;
         public string CivLongName;
         public string CivHomeSystem;
-        public WarLikeEnum WarlikeToPeaseful;// a enum scale from most worklike 0 to neutral 3 and most peasful 5
-        public CivTraitsEnum TraitOne; // CivTraitsEnum
-        public CivTraitsEnum TraitTwo; //CivTraitsEnum
-        public CivTraitsEnum TraitThree; //CivTraitsEnum
-        public Sprite CivImageSprite;
+        public WarLikeEnum Warlike;// a enum scale from most worklike 0 to neutral 3 and most peasful 5
+        public XenophobiaEnum Xenophbia; // XenophobiaEnum
+        public RuthlessEnum Ruthelss; //XenophobiaEnum
+        public GreedyEnum Greedy; //XenophobiaEnum
+        public Sprite CivRaceSprite;
         public Sprite InsigniaSprite;
         public int Population = 5;
         public int Credits = 100;
