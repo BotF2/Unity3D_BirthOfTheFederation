@@ -1,10 +1,7 @@
 using Assets.Core;
 using TMPro;
-//using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.UI;
-//using UnityEditor.ShaderGraph.Internal;
-
 
 
 public class TheirSysDiplomacyUIManager : MonoBehaviour
@@ -22,11 +19,17 @@ public class TheirSysDiplomacyUIManager : MonoBehaviour
     [SerializeField]
     private Image theirInsignia;
     [SerializeField]
+    private Image theirRaceImage;
+    [SerializeField]
     private TMP_Text relationTMP;
     [SerializeField]
     private TMP_Text relationPointsTMP;
     [SerializeField]
     private TMP_Text transmissionTMP;
+    [SerializeField]
+    private GameObject[] TabUIs;
+    [SerializeField]
+    private Image[] TabButtonMasks;
 
     private void Awake()
     {
@@ -72,7 +75,7 @@ public class TheirSysDiplomacyUIManager : MonoBehaviour
     {
         theirNameTMP.text = othersController.CivData.CivShortName;
         theirInsignia.sprite = othersController.CivData.InsigniaSprite;
-        theirRace.sprite = othersController.CivData.CivRaceSprite;
+        theirRaceImage.sprite = othersController.CivData.CivRaceSprite;
         relationTMP.text = ourDiplomacyController.DiplomacyData.DiplomacyEnumOfCivs.ToString();
         relationPointsTMP.text = ourDiplomacyController.DiplomacyData.DiplomacyPointsOfCivs.ToString();
         transmissionTMP.text = othersController.CivData.Decription;
@@ -80,7 +83,23 @@ public class TheirSysDiplomacyUIManager : MonoBehaviour
     }
     public void CloseUnLoadFleetUI()
     {
+        SwitchToTab(0);
         diplomacyUIToggle.SetActive(false);
         TimeManager.Instance.ResumeTime();
+    }
+    public void SwitchToTab(int TabID)
+    {
+        foreach (GameObject tabGO in TabUIs)
+        {
+            tabGO.SetActive(false);
+        }
+        TabUIs[TabID].SetActive(true);
+
+        foreach (Image image in TabButtonMasks)
+        {
+            image.gameObject.SetActive(true);
+        }
+        TabButtonMasks[TabID].gameObject.SetActive(false);
+
     }
 }
