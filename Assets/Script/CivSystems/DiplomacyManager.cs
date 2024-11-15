@@ -77,7 +77,6 @@ public class DiplomacyManager : MonoBehaviour
         var diplomacyController = DiplomacyNewGameOb.GetComponent<DiplomacyController>();
         diplomacyController.areWePlaceholder = false;
         DiplomacyData ourDiplomacyData = new DiplomacyData();
-        diplomacyController.DiplomacyUICanvas = canvasTherStarSysUI;
         diplomacyController.DiplomacyData = ourDiplomacyData;
         diplomacyController.DiplomacyData.CivOne = civPartyOne;
         diplomacyController.DiplomacyData.CivTwo = civPartyTwo;
@@ -88,7 +87,7 @@ public class DiplomacyManager : MonoBehaviour
         diplomacyController.FirstContact(civPartyOne, civPartyTwo, hitGO);
         if (GameController.Instance.AreWeLocalPlayer(civPartyOne.CivData.CivEnum) ||
             GameController.Instance.AreWeLocalPlayer(civPartyTwo.CivData.CivEnum))
-            TheirSysDiplomacyUIManager.Instance.LoadTheirSysDiplomacyUI(diplomacyController);
+            FirstContactUIManager.Instance.LoadFirstContactUI(diplomacyController);
         //else if //*********check for human non-local palyers needing to do diplomacy in their UI ()
         //{
         //    //do Remote human player diplomacy

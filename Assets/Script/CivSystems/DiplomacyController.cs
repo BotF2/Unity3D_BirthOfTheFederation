@@ -14,19 +14,12 @@ public class DiplomacyController : MonoBehaviour
     private string offerCreditsImproveRelations = "The A offers the B X credits to improve relations by 200 points.";
     private string demandCredits = "The A demand X credits from the B.";
     private string requestCrditsImproveRelations = "The A request X credits from the B to improve relations by 200 points.";
-    public Camera GalaxyEventCamera;
-    [SerializeField]
-    public Canvas DiplomacyUICanvas { get; set; }
 
-    //public DiplomacyController(bool areWePlaceholder)
-    //{
-    //    this.areWePlaceholder = areWePlaceholder;
-    //}
 
     private void Start()
     {
-        GalaxyEventCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>() as Camera;
-        DiplomacyUICanvas.worldCamera = GalaxyEventCamera;
+        //GalaxyEventCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>() as Camera;
+        //DiplomacyUICanvas.worldCamera = GalaxyEventCamera;
         diplomaticTransmissions = new List<string>() {
             declareWar,demandCreditsAvoidWar,offerCreditsImproveRelations,demandCredits, requestCrditsImproveRelations};
     }
@@ -52,7 +45,7 @@ public class DiplomacyController : MonoBehaviour
             if (hitGO.GetComponent<StarSysController>() != null)
                 civPartyOne.ResetNames(hitGO);
         }
-        //TheirSysDiplomacyUIManager.Instance.diplomacyUIToggle.SetActive(true);
+        //FirstContactUIManager.Instance.FirstContactUIToggle.SetActive(true);
     }
     public void NextDiplomaticContact(DiplomacyController controller)
     {
@@ -62,7 +55,7 @@ public class DiplomacyController : MonoBehaviour
     public void CloseUnLoadDipolmacyUI()
     {
 
-        TheirSysDiplomacyUIManager.Instance.diplomacyUIToggle.SetActive(false);
+        FirstContactUIManager.Instance.FirstContactUIToggle.SetActive(false);
     }
     public void AddDiplomaticPoints(int points)
     {

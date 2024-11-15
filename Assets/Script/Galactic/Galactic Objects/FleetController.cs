@@ -258,7 +258,7 @@ namespace Assets.Core
             //else if (thisFleetController.gameObject == hitGO.GetComponent<FleetController>().FleetData.Destination)
             //{
             //    FleetUIManager.Instance.ClickCancelDestinationButton();
-            //    FleetUIManager.Instance.CloseUnLoadFleetUI();
+            //    FleetUIManager.Instance.CloseUnLoadFirstContactUI();
             //    YourStarSysUIManager.Instance.CloseUnLoadStarSysUI();   
             //}
 
@@ -282,9 +282,9 @@ namespace Assets.Core
                 {
                     DiplomacyController diplomacyController = DiplomacyManager.Instance.GetTheDiplomacyController(this.FleetData.OurCivController, hitSysCivController);
                     if (diplomacyController.areWePlaceholder && (int)hitSysCivController.CivData.CivEnum < firstUninhabited)
-                    {
+                    {   // First Contact
                         Destroy(diplomacyController.gameObject);
-                        // ToDo: FistContactDiplomacy for both local palyer using the UI and for non local human players using their UI and for AI without a UI
+                        // ToDo: FirstContactDiplomacy for both local palyer using the UI and for non local human players using their UI and for AI without a UI
                         DiplomacyManager.Instance.FistContactDiplomacy(this.FleetData.OurCivController, hitSysCivController, hitGO);
                         this.FleetState = FleetState.FleetDipolmacy;
 
@@ -292,9 +292,10 @@ namespace Assets.Core
                     // If an uninhabited system
                     else if (diplomacyController.areWePlaceholder && (int)hitSysCivController.CivData.CivEnum >= firstUninhabited)
                     {
+                        //React to Uninhabited system contact
                         Destroy(diplomacyController.gameObject);
-                        // ***** ToDo new UI for uninhabited inhabitable system
-                        //React to firstUninhabited system contact
+                        if (GameController.Instance.AreWeLocalPlayer(this.FleetData.CivEnum))
+                            hitGO.GetComponent<StarSysController>().DoHabitalbeSystemUI(this);
                         foreach (ShipController shipController in this.FleetData.GetShipList())
                         {
                             if (shipController.ShipData.ShipType == ShipType.Transport)

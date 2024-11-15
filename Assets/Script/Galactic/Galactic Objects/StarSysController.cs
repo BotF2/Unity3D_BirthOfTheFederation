@@ -31,6 +31,13 @@ namespace Assets.Core
             canvasYourStarSysUI.worldCamera = galaxyEventCamera;
             TimeManager.Instance.OnRandomSpecialEvent = DoDisaster;
         }
+        public void DoHabitalbeSystemUI(FleetController discoveringFleetCon)
+        {
+            if (discoveringFleetCon != null)
+            {
+                HabitableSysUIManager.Instance.LoadHabitableSysUI(this, discoveringFleetCon);
+            } 
+        }
         public void UpdatePopulation(int delatPopulation)
         {
             if (starSysData.Population + delatPopulation < 0)

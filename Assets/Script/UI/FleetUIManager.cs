@@ -228,7 +228,7 @@ public class FleetUIManager : MonoBehaviour
     public void LoadFleetUI(GameObject rayHitGO)
     {
         YourStarSysUIManager.Instance.CloseUnLoadStarSysUI();
-        TheirSysDiplomacyUIManager.Instance.CloseUnLoadFleetUI();
+        FirstContactUIManager.Instance.CloseUnLoadFirstContactUI();
         FleetSelectionUI.Instance.UnLoadShipManagerUI();
         fleetUIToggle.SetActive(true);
 

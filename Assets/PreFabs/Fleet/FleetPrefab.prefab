@@ -1032,7 +1032,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 375c4de48bdc9b846863cda91b3ffa25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerDefinedTargetController: {fileID: 0}
   Name: 
   FleetState: 0
   DropLine: {fileID: 0}
@@ -1148,7 +1147,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4f4d2172a7f91764881ddde12e3c16ba, type: 2}
+  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1192,9 +1191,9 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 1}
-      key1: {r: 1, g: 1, b: 1, a: 1}
-      key2: {r: 0, g: 0, b: 0, a: 0}
+      key0: {r: 0.9339623, g: 0.09251513, b: 0.9182885, a: 1}
+      key1: {r: 0.9339623, g: 0.083704144, b: 0.9339623, a: 1}
+      key2: {r: 0.23529412, g: 0.23529412, b: 0.23529412, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
       key5: {r: 0, g: 0, b: 0, a: 0}
@@ -1202,7 +1201,7 @@ LineRenderer:
       key7: {r: 0, g: 0, b: 0, a: 0}
       ctime0: 0
       ctime1: 65535
-      ctime2: 0
+      ctime2: 65535
       ctime3: 0
       ctime4: 0
       ctime5: 0
