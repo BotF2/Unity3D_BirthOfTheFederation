@@ -5,9 +5,9 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class FleetUIManager : MonoBehaviour
+public class FleetUIController : MonoBehaviour
 {
-    public static FleetUIManager Instance;
+    public static FleetUIController Instance;
     public FleetController ourUIFleetController;
     private Camera galaxyEventCamera;
     [SerializeField]
@@ -44,7 +44,7 @@ public class FleetUIManager : MonoBehaviour
     [SerializeField]
     private GameObject cancelDestinationButtonGO;
     [SerializeField]
-    private GameObject setDestinationButtonGO;
+    private GameObject getDestinationButtonGO;
     [SerializeField]
     private TMP_Text selectDestinationBttonText;
 
@@ -115,7 +115,7 @@ public class FleetUIManager : MonoBehaviour
     {
         if (MousePointerChanger.Instance.HaveGalaxyMapCursor == false)
         {
-            setDestinationButtonGO.SetActive(false);
+            getDestinationButtonGO.SetActive(false);
             selectDestinationBttonText.text = "Select Destination";
             MouseClickSetsDestination = true;
             MousePointerChanger.Instance.ChangeToGalaxyMapCursor();
@@ -123,7 +123,7 @@ public class FleetUIManager : MonoBehaviour
             if (ourUIFleetController.FleetData.Destination != null)
             {
                 cancelDestinationButtonGO.SetActive(true);
-                setDestinationButtonGO.SetActive(false);
+                getDestinationButtonGO.SetActive(false);
             }
 
             selectDestinationCursorButtonGO.SetActive(true);
@@ -137,7 +137,7 @@ public class FleetUIManager : MonoBehaviour
         destinationCoordinates.text = "";
         MouseClickSetsDestination = false;
         selectDestinationCursorButtonGO.SetActive(true);
-        setDestinationButtonGO.SetActive(true);
+        getDestinationButtonGO.SetActive(true);
         if (ourUIFleetController.FleetData.Destination != null)
         {
             ourUIFleetController.FleetData.Destination = null;
@@ -147,6 +147,7 @@ public class FleetUIManager : MonoBehaviour
         {
             cancelDestinationButtonGO.SetActive(false);
         }
+        // Consider destroying a target destination if it was fleet destination when destination is cancelled
     }
     public void SetAsDestination(GameObject hitObject, bool aFleet)
     {
@@ -187,11 +188,19 @@ public class FleetUIManager : MonoBehaviour
             switch (typeOfDestination)
             {
                 case (int)GalaxyObjectType.BlueStar:
+                    destinationName.text = "Blue Star at";
+                    break;
                 case (int)GalaxyObjectType.WhiteStar:
+                    destinationName.text = "White Star at";
+                    break;
                 case (int)GalaxyObjectType.YellowStar:
+                    destinationName.text = "Yellow Star at";
+                    break;
                 case (int)GalaxyObjectType.OrangeStar:
+                    destinationName.text = "Orange Star at";
+                    break;
                 case (int)GalaxyObjectType.RedStar:
-                    destinationName.text = "Star at";
+                    destinationName.text = "Red Star at";
                     break;
                 case (int)GalaxyObjectType.Nebula:
                 case (int)GalaxyObjectType.OmarianNebula:
@@ -216,6 +225,9 @@ public class FleetUIManager : MonoBehaviour
         }
         MouseClickSetsDestination = false;
         cancelDestinationButtonGO.SetActive(true);
+        getDestinationButtonGO.SetActive(false);
+ 
+
     }
     public void GetPlayerDefinedTargetDestination()
     {
@@ -228,7 +240,7 @@ public class FleetUIManager : MonoBehaviour
     public void LoadFleetUI(GameObject rayHitGO)
     {
         YourStarSysUIManager.Instance.CloseUnLoadStarSysUI();
-        FirstContactUIManager.Instance.CloseUnLoadFirstContactUI();
+        FirstContactUIController.Instance.CloseUnLoadFirstContactUI();
         FleetSelectionUI.Instance.UnLoadShipManagerUI();
         fleetUIToggle.SetActive(true);
 

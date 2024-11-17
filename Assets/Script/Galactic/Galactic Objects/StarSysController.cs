@@ -3,12 +3,13 @@ using UnityEngine;
 
 namespace Assets.Core
 {
+    /// <summary>
+    /// Controlling Star System interactions while the matching StarSystemData class
+    /// holds key info on status and for save game
+    /// </summary>
     public class StarSysController : MonoBehaviour
     {
-        /// <summary>
-        /// Controlling Star System interactions while the matching StarSystemData class
-        /// holds key info on status and for save game
-        /// </summary>
+
         //Fields
         private StarSysData starSysData;
         public StarSysData StarSysData { get { return starSysData; } set { starSysData = value; } }
@@ -35,7 +36,7 @@ namespace Assets.Core
         {
             if (discoveringFleetCon != null)
             {
-                HabitableSysUIManager.Instance.LoadHabitableSysUI(this, discoveringFleetCon);
+                HabitableSysUIController.Instance.LoadHabitableSysUI(this, discoveringFleetCon);
             } 
         }
         public void UpdatePopulation(int delatPopulation)
@@ -59,7 +60,7 @@ namespace Assets.Core
                 // what a Star System Controller does with a hit
                 if (hitObject.tag != "GalaxyImage" && GameController.Instance.AreWeLocalPlayer(this.StarSysData.CurrentOwner)) // this 'StarSystem' is a local player galaxy object hit
                 {
-                    if (FleetUIManager.Instance.MouseClickSetsDestination == false) // not while FleetUIManager was looking for a destination
+                    if (FleetUIController.Instance.MouseClickSetsDestination == false) // not while FleetUIController was looking for a destination
                     {
                         YourStarSysUIManager.Instance.LoadStarSysUI(gameObject);
                     }
@@ -68,7 +69,7 @@ namespace Assets.Core
                         NewDestination(hitObject); // one of our systems hit as destination
                     }
                 }
-                else if (FleetUIManager.Instance.MouseClickSetsDestination == true)
+                else if (FleetUIController.Instance.MouseClickSetsDestination == true)
                 {
                     NewDestination(hitObject);
                 }
@@ -77,7 +78,7 @@ namespace Assets.Core
         private void NewDestination(GameObject hitObject)
         {
             bool isFleet = false;
-            FleetUIManager.Instance.SetAsDestination(hitObject, isFleet);
+            FleetUIController.Instance.SetAsDestination(hitObject, isFleet);
             //this.CanvasDestination.gameObject.SetActive(true);
         }
 

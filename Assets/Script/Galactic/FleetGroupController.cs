@@ -114,7 +114,7 @@ public class FleetGroupController : MonoBehaviour
             //goName = hitObject.name;
             if (hitObject == gameObject)
             {
-                FleetUIManager.Instance.LoadFleetUI(gameObject);
+                FleetUIController.Instance.LoadFleetUI(gameObject);
             }
         }
 

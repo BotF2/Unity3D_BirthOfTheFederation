@@ -1,14 +1,14 @@
 using Assets.Core;
 using UnityEngine;
-
+/// <summary>
+/// This is a type of galactic object that is a 'StarSystem' class (Manager/Controller/Data and can have a habitable 'planet') 
+/// with a real star or a nebula or a complex as in the Borg Unicomplex)
+/// Other galactic objects not described by StarSys (will have their own classes (ToDo: Managers/Controllers/Data) for stations (one class),
+/// and blackholes/wormholes (one class.)
+/// </summary>
 public class StarSysData
 {
-    /// <summary>
-    /// This is a type of galactic object that is a 'StarSystem' class (Manager/Controller/Data and can have a habitable 'planet') 
-    /// with a real star or a nebula or a complex as in the Borg Unicomplex)
-    /// Other galactic objects not described by StarSys (will have their own classes (ToDo: Managers/Controllers/Data) for stations (one class),
-    /// and blackholes/wormholes (one class.)
-    /// </summary>
+
     private int starSysInt;
     private Vector3 position;
     public GameObject SysGameObject;

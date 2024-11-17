@@ -2,11 +2,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Core
-{    /// <summary>
-     /// Controlling fleet movement and interactions while the matching FeetData class
-     /// holds key info on status and for save game
-     /// </summary>
+{    
     public enum FleetState { FleetCombat, FleetDipolmacy, FleetInSystem, FleetsInRendezvous, FleetStationary, FleetAtWarp }
+    /// <summary>
+    /// Controlling fleet movement and interactions while the matching FeetData class
+    /// holds key info on status and for save game
+    /// </summary>
     public class FleetController : MonoBehaviour
     {
         //Fields
@@ -119,12 +120,12 @@ namespace Assets.Core
                 // What a fleet ourUIFleetController does with a hit
                 /// ********** In multiplayer game ?? 
 
-                if (FleetUIManager.Instance.MouseClickSetsDestination == false) // the destination mouse pointer is off so open FleetUI for this FleetController
+                if (FleetUIController.Instance.MouseClickSetsDestination == false) // the destination mouse pointer is off so open FleetUI for this FleetController
                 {
                     if (GameController.Instance.AreWeLocalPlayer(this.FleetData.CivEnum))
-                        FleetUIManager.Instance.LoadFleetUI(hitObject);
+                        FleetUIController.Instance.LoadFleetUI(hitObject);
                 }
-                else if (FleetUIManager.Instance.MouseClickSetsDestination == true && hitObject != this)
+                else if (FleetUIController.Instance.MouseClickSetsDestination == true && hitObject != this)
                 {
                     NewDestination(hitObject);  // one of local player's objects as destination
                 }
@@ -181,13 +182,13 @@ namespace Assets.Core
                 //        ourZCoordinate = galaxyEventCamera.WorldToScreenPoint(gameObject.transform.position).z;
                 //        // store offset = gameobject world pos - mouse world pos
                 //        vectorOffset = gameObject.transform.position - GetMouseWorldPosition();
-                //        //if (FleetUIManager.Instance.MouseClickSetsDestination == false)
+                //        //if (FleetUIController.Instance.MouseClickSetsDestination == false)
                 //        //{
-                //        //    FleetUIManager.Instance.LoadFleetUI(hitObject);
+                //        //    FleetUIController.Instance.LoadFleetUI(hitObject);
                 //        //}
                 //    }
                 //else
-                FleetUIManager.Instance.SetAsDestination(hitObject, isFleet);
+                FleetUIController.Instance.SetAsDestination(hitObject, isFleet);
             }
         }
         void OnTriggerEnter(Collider collider) // Not using OnCollisionEnter....
@@ -231,8 +232,8 @@ namespace Assets.Core
                     // is this fleet we hit our destination
                     if (this.FleetData.Destination == hitGO.gameObject)
                     {
-                        FleetUIManager.Instance.ClickCancelDestinationButton();
-                        FleetUIManager.Instance.CloseUnLoadFleetUI();
+                        FleetUIController.Instance.ClickCancelDestinationButton();
+                        FleetUIController.Instance.CloseUnLoadFleetUI();
                         YourStarSysUIManager.Instance.CloseUnLoadStarSysUI();
                         OnArrivedAtDestination();//? should we do other stuff here for FleetController at destination?
                     }
@@ -257,8 +258,8 @@ namespace Assets.Core
             /// the controllers for the two in a hit are checked above so do not check again.
             //else if (thisFleetController.gameObject == hitGO.GetComponent<FleetController>().FleetData.Destination)
             //{
-            //    FleetUIManager.Instance.ClickCancelDestinationButton();
-            //    FleetUIManager.Instance.CloseUnLoadFirstContactUI();
+            //    FleetUIController.Instance.ClickCancelDestinationButton();
+            //    FleetUIController.Instance.CloseUnLoadFirstContactUI();
             //    YourStarSysUIManager.Instance.CloseUnLoadStarSysUI();   
             //}
 
@@ -313,9 +314,8 @@ namespace Assets.Core
                     // is this fleet we hit our destination
                     if (this.FleetData.Destination == hitGO.gameObject)
                     {
-                        FleetUIManager.Instance.ClickCancelDestinationButton();
-                        FleetUIManager.Instance.CloseUnLoadFleetUI();
-                        YourStarSysUIManager.Instance.CloseUnLoadStarSysUI();
+                        FleetUIController.Instance.ClickCancelDestinationButton();
+                        FleetUIController.Instance.CloseUnLoadFleetUI();
                         OnArrivedAtDestination();//? should we do other stuff here for FleetController at destination?
                         OnEnterStarSystem();
                     }
@@ -339,6 +339,13 @@ namespace Assets.Core
         }
         public void OnFleetEncounteredPlayerDefinedTarget(PlayerDefinedTargetController playerTargetController)
         {
+            if (this.FleetData.Destination == playerTargetController.gameObject)
+            {
+                FleetUIController.Instance.ClickCancelDestinationButton();
+                Destroy(playerTargetController.gameObject);
+                DestinationLine.lineRenderer.positionCount = 0;
+                FleetUIController.Instance.CloseUnLoadFleetUI();
+            }
             //????PlayerDefinedTargetManager.Instance.
             //FleetManager.Instance.
             //1) you get the FleetController of the new fleet GO
@@ -388,7 +395,7 @@ namespace Assets.Core
         void OnArrivedAtDestination()
         {
             // Logic to handle what happens when the fleet arrives at the destination
-            ;           //FleetUIManager.Instance.ClickCancelDestinationButton(); 
+            ;           //FleetUIController.Instance.ClickCancelDestinationButton(); 
                         // Debug.Log("Arrived at destination: " + this.FleetData.Destination.name);
                         // Example: Stop the fleet, update UI, trigger events, etc.
 

@@ -5,9 +5,9 @@ using Assets.Core;
 using TMPro;
 using UnityEngine.UI;
 
-public class HabitableSysUIManager: MonoBehaviour
+public class HabitableSysUIController: MonoBehaviour
 {
-    public static HabitableSysUIManager Instance;
+    public static HabitableSysUIController Instance;
     private Camera galaxyEventCamera;
     private StarSysController starSysController;
     [SerializeField]
@@ -48,9 +48,9 @@ public class HabitableSysUIManager: MonoBehaviour
             TimeManager.Instance.PauseTime(); // ToDo: put a pause indicator on screen
             //ToDo: manage open UIs so we keep a UI with interaction pending when a fleet reaches a new target and you need more than one UI still open
             YourStarSysUIManager.Instance.CloseUnLoadStarSysUI();
-            FleetUIManager.Instance.CloseUnLoadFleetUI();
+            FleetUIController.Instance.CloseUnLoadFleetUI();
             FleetSelectionUI.Instance.UnLoadShipManagerUI();
-            FirstContactUIManager.Instance.CloseUnLoadFirstContactUI();
+            FirstContactUIController.Instance.CloseUnLoadFirstContactUI();
             HabitableSysUIToggle.SetActive(true);
             visitingFleetCivEnum = discoveringFleetController.FleetData.CivEnum;
         }

@@ -2,13 +2,13 @@ using Assets.Core;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-
+/// <summary>
+/// This is inteneded as a UI to manage all your fleets in one location.
+/// ToDo: make it work
+/// </summary>
 public class FleetSelectionUI : MonoBehaviour
 {
-    /// <summary>
-    /// This is inteneded as a UI to manage all your fleets in one location.
-    /// ToDo: make it work
-    /// </summary>
+
     public static FleetSelectionUI Instance;
     public FleetController clickedFleetController;
     public Canvas parentCanvas;
@@ -46,7 +46,7 @@ public class FleetSelectionUI : MonoBehaviour
     public void LoadShipUIManager(FleetController fleetController)
     {
         YourStarSysUIManager.Instance.CloseUnLoadStarSysUI();
-        FleetUIManager.Instance.CloseUnLoadFleetUI();
+        FleetUIController.Instance.CloseUnLoadFleetUI();
         FleetsManagerUIToggle.SetActive(true);
         clickedFleetController = fleetController;
         CivName.text = clickedFleetController.FleetData.CivLongName;

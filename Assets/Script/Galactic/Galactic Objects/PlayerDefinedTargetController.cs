@@ -38,7 +38,7 @@ public class PlayerDefinedTargetController : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             lastMousePosition = Input.mousePosition;
-            if (FleetUIManager.Instance.MouseClickSetsDestination)
+            if (FleetUIController.Instance.MouseClickSetsDestination)
             {
                 Ray ray = galaxyEventCamera.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
@@ -48,7 +48,7 @@ public class PlayerDefinedTargetController : MonoBehaviour
                     if (hitObject.tag != "GalaxyImage" &&
                         GameController.Instance.AreWeLocalPlayer(this.PlayerTargetData.CivOwnerEnum))
                     {
-                        if (FleetUIManager.Instance.MouseClickSetsDestination == true) // while FleetUIManager was looking for a destination
+                        if (FleetUIController.Instance.MouseClickSetsDestination == true) // while FleetUIController was looking for a destination
                         {
                             NewDestination(hitObject); // target hit as destination
                         }
@@ -78,7 +78,7 @@ public class PlayerDefinedTargetController : MonoBehaviour
     private void NewDestination(GameObject hitObject)
     {
         bool isFleet = false;
-        FleetUIManager.Instance.SetAsDestination(hitObject, isFleet);
+        FleetUIController.Instance.SetAsDestination(hitObject, isFleet);
         //this.CanvasDestination.gameObject.SetActive(true);
     }
     ///

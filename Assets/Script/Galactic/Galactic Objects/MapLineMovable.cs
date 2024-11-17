@@ -8,7 +8,7 @@ namespace Assets.Core
 
     public class MapLineMovable : MonoBehaviour
     {
-        private LineRenderer lineRenderer;
+        public LineRenderer lineRenderer;
         private Vector3[] points;
 
         public void GetLineRenderer()

@@ -60,7 +60,7 @@ public class MousePointerChanger : MonoBehaviour
     // Function to change the cursor
     private void ChangeCursor(Texture2D cursorTexture, Vector2 hotSpot, CursorMode cursorMode)
     {
-        HaveGalaxyMapCursor = true; // used by FleetUIManager
+        HaveGalaxyMapCursor = true; // used by FleetUIController
         Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
     }
 

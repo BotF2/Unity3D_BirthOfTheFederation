@@ -30,6 +30,8 @@ namespace Assets.Core
         public MainMenuData MainMenuData = new MainMenuData();
         [SerializeField]
         private GameObject mainMenuCanvas;
+        [SerializeField] 
+        private GameObject galaxyMenuGO;     
         [SerializeField]
         private GameObject TipCanvas;
         [SerializeField]
@@ -682,10 +684,10 @@ namespace Assets.Core
             mainMenuCanvas.SetActive(false);
             uiCameraGO.SetActive(false);
             galaxyCenter.SetActive(true);
-            //TimeManager.Instance.ResumeTime();
             SceneManager.LoadScene("GalaxyScene", LoadSceneMode.Additive);
             CivManager.Instance.OnNewGameButtonClicked((int)MainMenuData.SelectedGalaxySize, (int)MainMenuData.SelectedTechLevel, (int)MainMenuData.SelectedGalaxyType,
                 (int)GameManager.Instance.GameController.GameData.LocalPlayerCivEnum, IsSinglePlayer);
+            galaxyMenuGO.SetActive(true);
 
         }
         private void PlayableCivOffInGameList()

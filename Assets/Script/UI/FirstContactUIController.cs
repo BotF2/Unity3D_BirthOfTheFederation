@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class FirstContactUIManager : MonoBehaviour
+public class FirstContactUIController : MonoBehaviour
 {
-    public static FirstContactUIManager Instance;
+    public static FirstContactUIController Instance;
     private Camera galaxyEventCamera;
     [SerializeField]
     private Canvas parentCanvas;
@@ -14,8 +14,6 @@ public class FirstContactUIManager : MonoBehaviour
     public GameObject FirstContactUIToggle; // GameObject controlles this active UI on/off
     [SerializeField]
     private TMP_Text theirNameTMP;
-    [SerializeField]
-    private Image theirRace;
     [SerializeField]
     private Image theirInsignia;
     [SerializeField]
@@ -27,7 +25,7 @@ public class FirstContactUIManager : MonoBehaviour
     [SerializeField]
     private TMP_Text transmissionTMP;
     [SerializeField]
-    private GameObject[] TabUIs;
+    private GameObject[] UI_PanelGOs;
     [SerializeField]
     private Image[] TabButtonMasks;
 
@@ -49,16 +47,15 @@ public class FirstContactUIManager : MonoBehaviour
         FirstContactUIToggle.SetActive(false);
         galaxyEventCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>() as Camera;
         parentCanvas.worldCamera = galaxyEventCamera;
+
     }
 
     public void LoadFirstContactUI(DiplomacyController ourDiplomacyController)
     {
         controller = ourDiplomacyController;
-        //starSysController.GalaxyEventCamera = galaxyEventCamera.GetComponent<Camera>();
         TimeManager.Instance.PauseTime(); // ToDo: put a pause indicator on screen
-        //ToDo: manage open UIs so we keep a UI with interaction pending when a fleet reaches a new target and you need more than one UI still open
         YourStarSysUIManager.Instance.CloseUnLoadStarSysUI();
-        FleetUIManager.Instance.CloseUnLoadFleetUI();
+        FleetUIController.Instance.CloseUnLoadFleetUI();
         FleetSelectionUI.Instance.UnLoadShipManagerUI();
         if (GameController.Instance.AreWeLocalPlayer(ourDiplomacyController.DiplomacyData.CivOne.CivData.CivEnum))
             LoadCivDataInUI(ourDiplomacyController.DiplomacyData.CivTwo, ourDiplomacyController);
@@ -84,11 +81,11 @@ public class FirstContactUIManager : MonoBehaviour
     }
     public void SwitchToTab(int TabID)
     {
-        foreach (GameObject tabGO in TabUIs)
+        foreach (GameObject tabGO in UI_PanelGOs)
         {
             tabGO.SetActive(false);
         }
-        TabUIs[TabID].SetActive(true);
+        UI_PanelGOs[TabID].SetActive(true);
 
         foreach (Image image in TabButtonMasks)
         {

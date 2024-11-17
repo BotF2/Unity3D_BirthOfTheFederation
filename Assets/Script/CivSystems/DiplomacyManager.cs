@@ -87,7 +87,7 @@ public class DiplomacyManager : MonoBehaviour
         diplomacyController.FirstContact(civPartyOne, civPartyTwo, hitGO);
         if (GameController.Instance.AreWeLocalPlayer(civPartyOne.CivData.CivEnum) ||
             GameController.Instance.AreWeLocalPlayer(civPartyTwo.CivData.CivEnum))
-            FirstContactUIManager.Instance.LoadFirstContactUI(diplomacyController);
+            FirstContactUIController.Instance.LoadFirstContactUI(diplomacyController);
         //else if //*********check for human non-local palyers needing to do diplomacy in their UI ()
         //{
         //    //do Remote human player diplomacy

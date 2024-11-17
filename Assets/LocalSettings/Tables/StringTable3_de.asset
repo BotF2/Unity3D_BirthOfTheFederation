@@ -27,11 +27,15 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 148836977745920
-    m_Localized: Mehrsieler
+    m_Localized: Mehrspieler
     m_Metadata:
       m_Items: []
   - m_Id: 149255820943360
     m_Localized: Gespeichertes Spiel laden
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2322832259293184
+    m_Localized: auf Entdeckungsreise gehen...
     m_Metadata:
       m_Items: []
   references:

@@ -34,6 +34,10 @@ MonoBehaviour:
     m_Localized: Charger La Parie Sauvegardee
     m_Metadata:
       m_Items: []
+  - m_Id: 2322832259293184
+    m_Localized: Aller Hardiment...
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -27,11 +27,15 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 148836977745920
-    m_Localized: Mulit-Player
+    m_Localized: Multi Player
     m_Metadata:
       m_Items: []
   - m_Id: 149255820943360
     m_Localized: Load Saved Game
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2322832259293184
+    m_Localized: To Boldly Go...
     m_Metadata:
       m_Items: []
   references:
