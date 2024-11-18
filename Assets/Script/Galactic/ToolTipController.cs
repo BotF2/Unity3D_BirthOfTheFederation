@@ -31,13 +31,13 @@ public class ToolTipController : MonoBehaviour, IPointerEnterHandler, IPointerEx
                 HoverManager.Instance.ShowTip(Name.text);
             }
             ///***** ToDo maybe - also see civs we know?
-            //else
-            //{
-            //    foreach (CivController civCon in localPlayerCivCon.CivData.CivControllersWeKnow)
-            //    {
-            //        //if (Name.text.Contains(civCon.CivData.))
-            //    }
-            //}
+            else
+            {
+                foreach (CivController civCon in localPlayerCivCon.CivData.CivControllersWeKnow)
+                {
+                    HoverManager.Instance.ShowTip(Name.text);
+                }
+            }
         }
     }
 

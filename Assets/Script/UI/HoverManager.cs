@@ -7,7 +7,6 @@ public class HoverManager : MonoBehaviour
     public Canvas parentCanvas;
     public Transform ToolTipTrans;
     public TextMeshProUGUI Name;
-    //public TextMeshProUGUI description;
 
     private void Awake()
     {
