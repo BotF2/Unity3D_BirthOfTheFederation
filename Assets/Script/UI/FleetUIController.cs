@@ -241,7 +241,7 @@ public class FleetUIController : MonoBehaviour
     {
         YourStarSysUIManager.Instance.CloseUnLoadStarSysUI();
         FirstContactUIController.Instance.CloseUnLoadFirstContactUI();
-        FleetSelectionUI.Instance.UnLoadShipManagerUI();
+        //FleetSelectionUI.Instance.UnLoadShipManagerUI();
         fleetUIToggle.SetActive(true);
 
         List<string> listings = new List<string>();
