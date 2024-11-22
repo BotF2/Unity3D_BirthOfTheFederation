@@ -15,7 +15,7 @@ public class TimeManager : MonoBehaviour
     private float timer;
     public int currentStardate { get; private set; }
     private Coroutine timeCoroutine;
-    private float timeSpeedReducer = 1f;
+    private float timeSpeedup = 1f;// lower number is slower time
     public List<TrekRandomEventSO> RandomEvents;
     public List<TrekStardateEventSO> StardateEvents;
     public bool timeRunning = false;
@@ -32,7 +32,7 @@ public class TimeManager : MonoBehaviour
     private void Start()
     {
         GameManager.Instance.TimeManager = this;
-        timer = timeSpeedReducer;
+        timer = timeSpeedup;
         //timeCoroutine = StartCoroutine(TimeProgression());
         currentStardate = 1010;
     }
@@ -50,7 +50,7 @@ public class TimeManager : MonoBehaviour
 
         while (timeRunning)
         {
-            yield return new WaitForSeconds(10f / timeSpeedReducer); // 10 seconds in game = 1 oneInXChance
+            yield return new WaitForSeconds(10f / timeSpeedup); // 10 seconds in game = 1 oneInXChance
             currentStardate++;
             OnStardateChanged?.Invoke();
 
@@ -87,7 +87,7 @@ public class TimeManager : MonoBehaviour
     public void SetTimeSpeedMultiplier(float multiplier)
     {
         if (multiplier > 0)
-            timeSpeedReducer = multiplier;
+            timeSpeedup = multiplier;
 
         // Restart time progression coroutine with new speed multiplier
         if (timeCoroutine != null)
