@@ -118,24 +118,24 @@ public class YourStarSysUIManager : MonoBehaviour
                 starSysPanel.transform.SetParent(starSysListGO.transform, true);
                 var sysTMPs = starSysPanel.GetComponentsInChildren<TextMeshProUGUI>();
                 sysTMPs[0].text = sysController.StarSysData.SysName;
-                sysTMPs[1].text = sysController.StarSysData.Population.ToString();
-                sysTMPs[2].text = sysController.StarSysData.Farms.ToString();
-                sysTMPs[3].text = sysController.StarSysData.power.ToString();
+                //sysTMPs[1].text = sysController.StarSysData.Population.ToString();
+                //sysTMPs[2].text = sysController.StarSysData.Farms.ToString();
+                //sysTMPs[3].text = sysController.StarSysData.power.ToString();
                 sysTMPs[4].text = sysController.StarSysData.PowerStations.ToString();
-                sysTMPs[5].text = sysController.StarSysData.production.ToString();
+                //sysTMPs[5].text = sysController.StarSysData.production.ToString();
                 sysTMPs[6].text = sysController.StarSysData.Factories.ToString();
-                sysTMPs[7].text = sysController.StarSysData.tech.ToString();
-                sysTMPs[8].text = sysController.StarSysData.Research.ToString();
+                //sysTMPs[7].text = sysController.StarSysData.tech.ToString();
+                //sysTMPs[8].text = sysController.StarSysData.Research.ToString();
 
                 // ToDo: ship lists, bunkers, orbital batteries
-                t_Pop += sysController.StarSysData.Population;
-                t_Farms += sysController.StarSysData.Farms;
-                t_Power += sysController.StarSysData.power;
+                //t_Pop += sysController.StarSysData.Population;
+                //t_Farms += sysController.StarSysData.Farms;
+                //t_Power += sysController.StarSysData.power;
                 t_Stations += sysController.StarSysData.PowerStations;
-                t_Production += sysController.StarSysData.production;
+                //t_Production += sysController.StarSysData.production;
                 t_Factories += sysController.StarSysData.Factories;
-                t_Tech += sysController.StarSysData.tech;
-                t_Research += sysController.StarSysData.Research;
+                //t_Tech += sysController.StarSysData.tech;
+                //t_Research += sysController.StarSysData.Research;
             }
             tPopulation.text = t_Pop.ToString();
             tPopulation.maskable = false;

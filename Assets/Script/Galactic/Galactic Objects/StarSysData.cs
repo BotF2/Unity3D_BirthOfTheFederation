@@ -18,17 +18,17 @@ public class StarSysData
     public CivEnum CurrentOwner;
     public CivController CurrentCivController;
     public GalaxyObjectType SystemType;
+    public TechLevel TechLevel;
+    public int TechUnits;
     public Sprite StarSprit;
-    public int Population;
-    public int PopulationLimit;
-    public int Farms;
     public int PowerStations;
     public int Factories;
-    public int Research;
-    public int food;
-    public int power;
-    public int production;
-    public int tech;
+    public int ResearchCenters;
+    public int Shipyards;
+    public int PowerUnits;
+    public int ShieldGenerators;
+    public int OrbitalBatteries;
+
     public string Description;
     private string v;
 

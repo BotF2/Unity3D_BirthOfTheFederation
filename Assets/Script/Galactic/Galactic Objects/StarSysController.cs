@@ -39,13 +39,13 @@ namespace Assets.Core
                 HabitableSysUIController.Instance.LoadHabitableSysUI(this, discoveringFleetCon);
             } 
         }
-        public void UpdatePopulation(int delatPopulation)
-        {
-            if (starSysData.Population + delatPopulation < 0)
-                starSysData.Population = 0;
-            else
-                starSysData.Population += delatPopulation;// population delta code, starSysData += xyz things happen;
-        }
+        //public void UpdatePopulation(int delatPopulation)
+        //{
+        //    if (starSysData.Population + delatPopulation < 0)
+        //        starSysData.Population = 0;
+        //    else
+        //        starSysData.Population += delatPopulation;// population delta code, starSysData += xyz things happen;
+        //}
         public void UpdateOwner(CivEnum newOwner) // system captured or colonized
         {
             starSysData.CurrentOwner = newOwner;

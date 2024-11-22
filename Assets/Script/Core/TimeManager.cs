@@ -15,7 +15,7 @@ public class TimeManager : MonoBehaviour
     private float timer;
     public int currentStardate { get; private set; }
     private Coroutine timeCoroutine;
-    private float timeSpeedReducer = 10f;
+    private float timeSpeedReducer = 1f;
     public List<TrekRandomEventSO> RandomEvents;
     public List<TrekStardateEventSO> StardateEvents;
     public bool timeRunning = false;

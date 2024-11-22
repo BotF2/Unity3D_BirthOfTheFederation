@@ -98,6 +98,10 @@ namespace Assets.Core
         public ToggleGroup TechLevelToggleGroup;
         public Toggle EarlyToggle, DevelopedToggle, AdvancedToggle, SupremeToggle;
         public List<Toggle> TechLevelToggles;
+        [SerializeField]
+        private GameObject settingsMenuView;
+        [SerializeField]
+        private GameObject closeSettingsButton;
 
         private void Awake()
         {
@@ -629,14 +633,15 @@ namespace Assets.Core
             panelCivSelection.SetActive(false);
             panelGamePara.SetActive(true);
         }
-        private void NextButton()
+        public void OpenSettingButton()
         {
-            //ToDo ***Mulitplayer NEXT Turned off for now
-            //panelLobby.SetActive(false);
-            //panelMuliplayer.SetActive(false);
-            //panelCivSelection.SetActive(true);
-            //mulitplayerToggleGroup.SetActive(true); //**** currently set to mulitplayer toggle, not single player
-            //panelGamePara.SetActive(false);
+            settingsMenuView.SetActive(true);
+            closeSettingsButton.SetActive(true);
+        }
+        public void CloseSettingsMenu()
+        {
+            settingsMenuView.SetActive(false);
+            closeSettingsButton.SetActive(false);
         }
         private void ReturnButton()
         {

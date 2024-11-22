@@ -59,24 +59,11 @@ namespace Assets.Core
                 SysData.CurrentOwner = starSysSO.FirstOwner;
                 SysData.SystemType = starSysSO.StarType;
                 SysData.StarSprit = starSysSO.StarSprit;
-                SysData.Population = starSysSO.Population;
                 SysData.Description = "description here";
-                SysData.PopulationLimit = starSysSO.PopulationLimit;
-                SysData.Farms = starSysSO.Farms;
                 SysData.PowerStations = starSysSO.PowerStations;
-                SysData.power = starSysSO.PowerStations;
                 SysData.Factories = starSysSO.Factories;
-                SysData.production = starSysSO.Factories;
-                SysData.Research = starSysSO.Research;
-                SysData.tech = 0;
-
-                //SysData.food;
-                //SysData.power;
-                //SysData.production;
-                //SysData.tech;
-                //SysData.Description;
-                //SysData.v;
-                //public List<GameObject> _fleetsInSystem;
+                SysData.ResearchCenters = starSysSO.Research;
+                SysData.TechUnits = 0;
 
                 //starSysDatas.Add(SysData);
                 InstantiateSystem(SysData, civSO);
