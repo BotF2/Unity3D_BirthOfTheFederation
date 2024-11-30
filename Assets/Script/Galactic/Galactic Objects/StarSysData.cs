@@ -1,4 +1,5 @@
 using Assets.Core;
+using System.Collections.Generic;
 using UnityEngine;
 /// <summary>
 /// This is a type of galactic object that is a 'StarSystem' class (Manager/Controller/Data and can have a habitable 'planet') 
@@ -8,7 +9,6 @@ using UnityEngine;
 /// </summary>
 public class StarSysData
 {
-
     private int starSysInt;
     private Vector3 position;
     public GameObject SysGameObject;
@@ -19,12 +19,14 @@ public class StarSysData
     public CivController CurrentCivController;
     public GalaxyObjectType SystemType;
     public TechLevel TechLevel;
-    public int TechUnits;
     public Sprite StarSprit;
     public int PowerStations;
     public int Factories;
+    public List<GameObject> FacilitiesQueue;
     public int ResearchCenters;
+    public int TechUnits;
     public int Shipyards;
+    public List<ShipData> ShipyardQueue;
     public int PowerUnits;
     public int ShieldGenerators;
     public int OrbitalBatteries;

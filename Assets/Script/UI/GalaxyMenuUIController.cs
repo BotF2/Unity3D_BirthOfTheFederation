@@ -32,8 +32,6 @@ public class GalaxyMenuUIController : MonoBehaviour
     private GameObject EncyclopediaBackground;
 
 
-
-
     private void Awake()
     {
         if (Instance != null)
@@ -63,7 +61,7 @@ public class GalaxyMenuUIController : MonoBehaviour
        // SettingBackground.SetActive(false);
     }
 
-    public void CloseOpenGalaxyUI()
+    public void CloseAnOpenGalaxyUI()
     {
         sysMenuView.SetActive(false);
         fleetsMenuView.SetActive(false);
@@ -71,7 +69,7 @@ public class GalaxyMenuUIController : MonoBehaviour
         intelMenuView.SetActive(false);
         encyclopediaMenuView.SetActive(false);
        // settingsMenuView.SetActive(false);
-        closeOpenMenuButton.SetActive(false);
+        //closeOpenMenuButton.SetActive(false);
         SysBackground.SetActive(false);
         FleetBackground.SetActive(false);
         DiplomacyBackground.SetActive(false);
@@ -82,116 +80,137 @@ public class GalaxyMenuUIController : MonoBehaviour
     }
     public void OpenSystems()
     {
-        sysMenuView.SetActive(true);
-        SysBackground.SetActive(true);
-        fleetsMenuView.SetActive(false);
-        diplomacyMenuView.SetActive(false);
-        intelMenuView.SetActive(false);
-        encyclopediaMenuView.SetActive(false);
-       // settingsMenuView.SetActive(false);
-        closeOpenMenuButton.SetActive(true);
-        FleetBackground.SetActive(false);
-        DiplomacyBackground.SetActive(false);
-        IntelBackground.SetActive(false);
-        EncyclopediaBackground.SetActive(false);
-       // SettingBackground.SetActive(false);
-        FirstContactUIController.Instance.CloseUnLoadFirstContactUI();
-        FleetUIController.Instance.CloseUnLoadFleetUI();    
+        if (!sysMenuView.activeSelf)
+        { 
+            sysMenuView.SetActive(true);
+            SysBackground.SetActive(true);
+            fleetsMenuView.SetActive(false);
+            diplomacyMenuView.SetActive(false);
+            intelMenuView.SetActive(false);
+            encyclopediaMenuView.SetActive(false);
+            // settingsMenuView.SetActive(false);
+            closeOpenMenuButton.SetActive(true);
+            FleetBackground.SetActive(false);
+            DiplomacyBackground.SetActive(false);
+            IntelBackground.SetActive(false);
+            EncyclopediaBackground.SetActive(false);
+            // SettingBackground.SetActive(false);
+            FirstContactUIController.Instance.CloseUnLoadFirstContactUI();
+            FleetUIController.Instance.CloseUnLoadFleetUI();
+        }
+        else
+        {
+            sysMenuView.SetActive(false);
+            SysBackground.SetActive(false);
+
+        }
     }
 
     public void OpenFleets()
     {
-        sysMenuView.SetActive(false);
-        fleetsMenuView.SetActive(true);
-        FleetBackground.SetActive(true);
-        diplomacyMenuView.SetActive(false);
-        intelMenuView.SetActive(false);
-        encyclopediaMenuView.SetActive(false);
-      //  settingsMenuView.SetActive(false);
-        closeOpenMenuButton.SetActive(true);
-        SysBackground.SetActive(false);
-        DiplomacyBackground.SetActive(false);
-        IntelBackground.SetActive(false);
-        EncyclopediaBackground.SetActive(false);
-      //  SettingBackground.SetActive(false);
-        FirstContactUIController.Instance.CloseUnLoadFirstContactUI();
-        FleetUIController.Instance.CloseUnLoadFleetUI();
+        if (!fleetsMenuView.activeSelf)
+        {
+            sysMenuView.SetActive(false);
+            fleetsMenuView.SetActive(true);
+            FleetBackground.SetActive(true);
+            diplomacyMenuView.SetActive(false);
+            intelMenuView.SetActive(false);
+            encyclopediaMenuView.SetActive(false);
+            //  settingsMenuView.SetActive(false);
+            closeOpenMenuButton.SetActive(true);
+            SysBackground.SetActive(false);
+            DiplomacyBackground.SetActive(false);
+            IntelBackground.SetActive(false);
+            EncyclopediaBackground.SetActive(false);
+            //  SettingBackground.SetActive(false);
+            FirstContactUIController.Instance.CloseUnLoadFirstContactUI();
+            FleetUIController.Instance.CloseUnLoadFleetUI();
+        }
+        else
+        {
+            fleetsMenuView.SetActive(false);
+            FleetBackground.SetActive(false);
+        }
     }
     public void OpenDiplomacy()
     {
-        sysMenuView.SetActive(false);
-        fleetsMenuView.SetActive(false);
-        diplomacyMenuView.SetActive(true);
-        DiplomacyBackground.SetActive(true);
-        intelMenuView.SetActive(false);
-        encyclopediaMenuView.SetActive(false);
-       // settingsMenuView.SetActive(false);
-        closeOpenMenuButton.SetActive(true);
-        SysBackground.SetActive(false);
-        FleetBackground.SetActive(false);
-        IntelBackground.SetActive(false);
-        EncyclopediaBackground.SetActive(false);
-       // SettingBackground.SetActive(false);
-        FirstContactUIController.Instance.CloseUnLoadFirstContactUI();
-        FleetUIController.Instance.CloseUnLoadFleetUI();
+        if (!diplomacyMenuView.activeSelf)
+        {
+            sysMenuView.SetActive(false);
+            fleetsMenuView.SetActive(false);
+            diplomacyMenuView.SetActive(true);
+            DiplomacyBackground.SetActive(true);
+            intelMenuView.SetActive(false);
+            encyclopediaMenuView.SetActive(false);
+            // settingsMenuView.SetActive(false);
+            closeOpenMenuButton.SetActive(true);
+            SysBackground.SetActive(false);
+            FleetBackground.SetActive(false);
+            IntelBackground.SetActive(false);
+            EncyclopediaBackground.SetActive(false);
+            // SettingBackground.SetActive(false);
+            FirstContactUIController.Instance.CloseUnLoadFirstContactUI();
+            FleetUIController.Instance.CloseUnLoadFleetUI();
+        } 
+        else 
+        {
+            diplomacyMenuView.SetActive(false);
+            DiplomacyBackground.SetActive(false);
+        }
     }
 
     public void OpenIntel()
     {
-        sysMenuView.SetActive(false);
-        fleetsMenuView.SetActive(false);
-        diplomacyMenuView.SetActive(false);
-        intelMenuView.SetActive(true);
-        IntelBackground.SetActive(true);
-        encyclopediaMenuView.SetActive(false);
-       // settingsMenuView.SetActive(false);
-        closeOpenMenuButton.SetActive(true);
-        SysBackground.SetActive(false);
-        FleetBackground.SetActive(false);
-        DiplomacyBackground.SetActive(false);
-        EncyclopediaBackground.SetActive(false);
-       // SettingBackground.SetActive(false);
-        FirstContactUIController.Instance.CloseUnLoadFirstContactUI();
-        FleetUIController.Instance.CloseUnLoadFleetUI();
+        if (!intelMenuView.activeSelf)
+        {
+            sysMenuView.SetActive(false);
+            fleetsMenuView.SetActive(false);
+            diplomacyMenuView.SetActive(false);
+            intelMenuView.SetActive(true);
+            IntelBackground.SetActive(true);
+            encyclopediaMenuView.SetActive(false);
+            // settingsMenuView.SetActive(false);
+            closeOpenMenuButton.SetActive(true);
+            SysBackground.SetActive(false);
+            FleetBackground.SetActive(false);
+            DiplomacyBackground.SetActive(false);
+            EncyclopediaBackground.SetActive(false);
+            // SettingBackground.SetActive(false);
+            FirstContactUIController.Instance.CloseUnLoadFirstContactUI();
+            FleetUIController.Instance.CloseUnLoadFleetUI();
+        }
+        else 
+        {
+            intelMenuView.SetActive(false);
+            IntelBackground.SetActive(false);
+        }
+
     }
 
     public void OpenEncyclopedia()
     {
-        sysMenuView.SetActive(false);
-        fleetsMenuView.SetActive(false);
-        diplomacyMenuView.SetActive(false);
-        intelMenuView.SetActive(false);
-        encyclopediaMenuView.SetActive(true);
-        EncyclopediaBackground.SetActive(true);
-      //  settingsMenuView.SetActive(false);
-        closeOpenMenuButton.SetActive(true);
-        SysBackground.SetActive(false);
-        FleetBackground.SetActive(false);
-        DiplomacyBackground.SetActive(false);
-        IntelBackground.SetActive(false);
-       // SettingBackground.SetActive(false);
-        FirstContactUIController.Instance.CloseUnLoadFirstContactUI();
-        FleetUIController.Instance.CloseUnLoadFleetUI();
+        if (!encyclopediaMenuView.activeSelf)
+        {
+            sysMenuView.SetActive(false);
+            fleetsMenuView.SetActive(false);
+            diplomacyMenuView.SetActive(false);
+            intelMenuView.SetActive(false);
+            encyclopediaMenuView.SetActive(true);
+            EncyclopediaBackground.SetActive(true);
+            //  settingsMenuView.SetActive(false);
+            closeOpenMenuButton.SetActive(true);
+            SysBackground.SetActive(false);
+            FleetBackground.SetActive(false);
+            DiplomacyBackground.SetActive(false);
+            IntelBackground.SetActive(false);
+            // SettingBackground.SetActive(false);
+            FirstContactUIController.Instance.CloseUnLoadFirstContactUI();
+            FleetUIController.Instance.CloseUnLoadFleetUI();
+        }
+        else 
+        {
+            encyclopediaMenuView.SetActive(false);
+            EncyclopediaBackground.SetActive(false);
+        }
     }
-
-    //public void OpenSettings()
-    //{
-    //    sysMenuView.SetActive(false);
-    //    fleetsMenuView.SetActive(false);
-    //    diplomacyMenuView.SetActive(false);
-    //    intelMenuView.SetActive(false);
-    //    encyclopediaMenuView.SetActive(false);
-    //    settingsMenuView.SetActive(true);
-    //    SettingBackground.SetActive(true);
-    //    closeOpenMenuButton.SetActive(true);
-    //    SysBackground.SetActive(false);
-    //    FleetBackground.SetActive(false);
-    //    DiplomacyBackground.SetActive(false);
-    //    IntelBackground.SetActive(false);
-    //    EncyclopediaBackground.SetActive(false);
-    //    FirstContactUIController.Instance.CloseUnLoadFirstContactUI();
-    //    FleetUIController.Instance.CloseUnLoadFleetUI();
-    //}
-
-
 }

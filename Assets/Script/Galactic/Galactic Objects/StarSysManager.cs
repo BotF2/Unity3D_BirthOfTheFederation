@@ -1,13 +1,13 @@
 using FischlWorks_FogWar;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 
 namespace Assets.Core
 {
     /// <summary>
-    /// Instantiates the star system (a StarSysController and a StarSysData) using StarSysSO
-    ///     /// <summary>
+    /// Instantiates the star system (a StarSysController and a StarSysData) using StarSysSO.
     /// This is a type of galactic object that is a 'StarSystem' class (Manager/Controller/Data and can have a habitable 'planet') 
     /// with a real star or a nebula or a complex as in the Borg Unicomplex)
     /// Other galactic objects not described by StarSys (will have their own classes (ToDo: Managers/Controllers/Data) for stations (one class),
@@ -22,6 +22,7 @@ namespace Assets.Core
         [SerializeField]
         private GameObject sysPrefab;
         public List<StarSysController> ManagersStarSysControllerList;
+        public List<GameObject> StarSysPrefabFacilities;
         [SerializeField]
         private GameObject galaxyImage;
         [SerializeField]

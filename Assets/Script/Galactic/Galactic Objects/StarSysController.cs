@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Core
@@ -16,10 +17,10 @@ namespace Assets.Core
         private Camera galaxyEventCamera;
         [SerializeField]
         private Canvas canvasToolTip;
-        
         public Canvas canvasYourStarSysUI;
         public static event Action<TrekRandomEventSO> TrekEventDisasters;
-        //public TrekRandomEventSO trekEventSO;
+        private int stardate;
+       
 
         public StarSysController(string name)
         {
@@ -32,6 +33,24 @@ namespace Assets.Core
             canvasYourStarSysUI.worldCamera = galaxyEventCamera;
             TimeManager.Instance.OnRandomSpecialEvent = DoDisaster;
         }
+        private void Update()
+        {
+            stardate = TimeManager.Instance.currentStardate;
+        }
+        public void AddToFactoryQueue(GameObject facilityPrefab)
+        {
+            GameObject systemFacilityGO = (GameObject)Instantiate(facilityPrefab, new Vector3(0, 0, 0),
+                Quaternion.identity);
+            this.StarSysData.FacilitiesQueue.Add(systemFacilityGO);
+        }
+        public void CompletePowerPlant(GameObject sysFaciltyGO)
+        { 
+            
+        }
+        public void AddToShipyardQueue(StarSysController theSystem, ShipData shipData)
+        {
+            this.StarSysData.ShipyardQueue.Add(shipData);
+        }
         public void DoHabitalbeSystemUI(FleetController discoveringFleetCon)
         {
             if (discoveringFleetCon != null)
@@ -39,13 +58,7 @@ namespace Assets.Core
                 HabitableSysUIController.Instance.LoadHabitableSysUI(this, discoveringFleetCon);
             } 
         }
-        //public void UpdatePopulation(int delatPopulation)
-        //{
-        //    if (starSysData.Population + delatPopulation < 0)
-        //        starSysData.Population = 0;
-        //    else
-        //        starSysData.Population += delatPopulation;// population delta code, starSysData += xyz things happen;
-        //}
+
         public void UpdateOwner(CivEnum newOwner) // system captured or colonized
         {
             starSysData.CurrentOwner = newOwner;
