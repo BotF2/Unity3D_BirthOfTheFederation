@@ -131,9 +131,9 @@ public class YourStarSysUIManager : MonoBehaviour
                 //t_Pop += sysController.StarSysData.Population;
                 //t_Farms += sysController.StarSysData.Farms;
                 //t_Power += sysController.StarSysData.power;
-                t_Stations += sysController.StarSysData.PowerStations;
+                t_Stations += sysController.StarSysData.PowerStations.Count;
                 //t_Production += sysController.StarSysData.production;
-                t_Factories += sysController.StarSysData.Factories;
+                t_Factories += sysController.StarSysData.Factories.Count;
                 //t_Tech += sysController.StarSysData.tech;
                 //t_Research += sysController.StarSysData.Research;
             }

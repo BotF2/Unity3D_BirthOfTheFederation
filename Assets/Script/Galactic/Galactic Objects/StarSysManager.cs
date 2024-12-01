@@ -22,7 +22,12 @@ namespace Assets.Core
         [SerializeField]
         private GameObject sysPrefab;
         public List<StarSysController> ManagersStarSysControllerList;
-        public List<GameObject> StarSysPrefabFacilities;
+        public GameObject PowerPlantPrefab;
+        public GameObject FactoryPrefab;
+        public GameObject ShipyardPrefab;
+        public GameObject ShieldGeneratorPrefab;
+        public GameObject OrbitalBatteryPlantPrefab;
+        public GameObject ResearchCenterPlantPrefab;
         [SerializeField]
         private GameObject galaxyImage;
         [SerializeField]
@@ -61,10 +66,11 @@ namespace Assets.Core
                 SysData.SystemType = starSysSO.StarType;
                 SysData.StarSprit = starSysSO.StarSprit;
                 SysData.Description = "description here";
-                SysData.PowerStations = starSysSO.PowerStations;
-                SysData.Factories = starSysSO.Factories;
-                SysData.ResearchCenters = starSysSO.Research;
-                SysData.TechUnits = 0;
+                SysData.PowerStations = GetSystemFacilities(starSysSO.PowerStations, PowerPlantPrefab);
+                SysData.Factories = GetSystemFacilities(starSysSO.Factories, FactoryPrefab);
+                SysData.ResearchCenters = GetSystemFacilities(starSysSO.Research, ResearchCenterPlantPrefab);
+               // SysData.Shipyards = GetSystemFacilities(starSysSO.Shipyards, ShipyardPrefab);
+                //SysData.TechUnits = 0;
 
                 //starSysDatas.Add(SysData);
                 InstantiateSystem(SysData, civSO);
@@ -78,8 +84,6 @@ namespace Assets.Core
         }
         public void InstantiateSystem(StarSysData sysData, CivSO civSO)
         {
-
-
             if (MainMenuUIController.Instance.MainMenuData.SelectedGalaxyType == GalaxyMapType.RANDOM)
             { // do something random with sysData.position
             }
@@ -175,7 +179,18 @@ namespace Assets.Core
                 //}
             }
         }
+        public List<GameObject> GetSystemFacilities(int num, GameObject prefab)
+        {
+            List<GameObject> list = new List<GameObject>();
+            for (int i = 0; i < num; i++)
+            {
+                GameObject newGO = (GameObject)Instantiate(prefab, new Vector3(0, 0, 0),
+                    Quaternion.identity);
+                list.Add(newGO);
+            }
 
+            return list;
+        }
         public StarSysSO GetStarSObyInt(int sysInt)
         {
 

@@ -66774,13 +66774,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e6587b1609f50fb4e9da2dc14dafe416, type: 2}
   sysPrefab: {fileID: 6000483729355016117, guid: 06f0b4bc75ea46440939b026367c3da3, type: 3}
   ManagersStarSysControllerList: []
-  StarSysPrefabFacilities:
-  - {fileID: 6352246214134023823, guid: 60da8ed504050aa45839a948c0cbdebe, type: 3}
-  - {fileID: 5454051914275515245, guid: d3ffd69f497d6db498b7847ffec0b573, type: 3}
-  - {fileID: 3951996713806300590, guid: 53bf0f8c8773c994f8331ada5c7ee1a7, type: 3}
-  - {fileID: 8721351806507026755, guid: b0545075bb36c2c499e0801a9a598f68, type: 3}
-  - {fileID: 5169689008362311750, guid: 65d737d397bc9294588f248ba029949b, type: 3}
-  - {fileID: 3385001668930454785, guid: e08024a6cdf269e4096d554d8fa1dd0b, type: 3}
+  PowerPlantPrefab: {fileID: 3951996713806300590, guid: 53bf0f8c8773c994f8331ada5c7ee1a7, type: 3}
+  FactoryPrefab: {fileID: 6352246214134023823, guid: 60da8ed504050aa45839a948c0cbdebe, type: 3}
+  ShipyardPrefab: {fileID: 5169689008362311750, guid: 65d737d397bc9294588f248ba029949b, type: 3}
+  ShieldGeneratorPrefab: {fileID: 8721351806507026755, guid: b0545075bb36c2c499e0801a9a598f68, type: 3}
+  OrbitalBatteryPlantPrefab: {fileID: 5454051914275515245, guid: d3ffd69f497d6db498b7847ffec0b573, type: 3}
+  ResearchCenterPlantPrefab: {fileID: 3385001668930454785, guid: e08024a6cdf269e4096d554d8fa1dd0b, type: 3}
   galaxyImage: {fileID: 843799567}
   unknowSystem: {fileID: 21300000, guid: 4d704142da734fb46b88fe56645880c0, type: 3}
   galaxyCenter: {fileID: 564492290}

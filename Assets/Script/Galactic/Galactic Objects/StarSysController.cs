@@ -43,10 +43,7 @@ namespace Assets.Core
                 Quaternion.identity);
             this.StarSysData.FacilitiesQueue.Add(systemFacilityGO);
         }
-        public void CompletePowerPlant(GameObject sysFaciltyGO)
-        { 
-            
-        }
+
         public void AddToShipyardQueue(StarSysController theSystem, ShipData shipData)
         {
             this.StarSysData.ShipyardQueue.Add(shipData);

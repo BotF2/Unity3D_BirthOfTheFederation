@@ -19,6 +19,7 @@ public class StarSysSO : ScriptableObject
     public int Farms;
     public int PowerStations;
     public int Factories;
+    public int Factions;
     public int Research;
     public string Description;
     private string v;

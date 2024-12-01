@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PowerPlant
+public class PowerPlantData : MonoBehaviour
 {
     public int startStarDate;
     public int buildDuration;

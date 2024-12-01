@@ -18,18 +18,18 @@ public class StarSysData
     public CivEnum CurrentOwner;
     public CivController CurrentCivController;
     public GalaxyObjectType SystemType;
-    public TechLevel TechLevel;
+    //public TechLevel TechLevel; // This is a civ level value, not a system data value.
+    //public int TechUnits; // Research centers provide tech output units that feed a civ level value.
     public Sprite StarSprit;
-    public int PowerStations;
-    public int Factories;
+    public List<GameObject> PowerStations;
+    public List<GameObject> Factories;
     public List<GameObject> FacilitiesQueue;
-    public int ResearchCenters;
-    public int TechUnits;
-    public int Shipyards;
+    public List<GameObject> ResearchCenters;
+    public List<GameObject> Shipyards;
     public List<ShipData> ShipyardQueue;
-    public int PowerUnits;
-    public int ShieldGenerators;
-    public int OrbitalBatteries;
+    public List<GameObject> PowerUnits;
+    public List<GameObject> ShieldGenerators;
+    public List<GameObject> OrbitalBatteries;
 
     public string Description;
     private string v;

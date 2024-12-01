@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Assets.Core;
 
-public class ShieldGenerator
+public class OrbitalBatteryData : MonoBehaviour
 {
     public int startStarDate;
     public int buildDuration;

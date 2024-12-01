@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// This is a type of star system asset/object that can be built in the factory queue.
 /// </summary>
-public class Factory: MonoBehaviour
+public class FactoryData : MonoBehaviour
 {
     public int startStarDate;
     public int buildDuration;

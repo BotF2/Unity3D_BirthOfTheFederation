@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shipyard
+public class ResearchCenterData : MonoBehaviour
 {
     public int startStarDate;
     public int buildDuration;
     public int powerIn;
-    public int productionUnits;
+    public int techUnitsOut;
 }
