@@ -7,10 +7,16 @@ using UnityEngine;
 /// </summary>
 public class FactoryData : MonoBehaviour
 {
-    public int startStarDate;
-    public int buildDuration;
-    public int powerIn;
-    public int productionUnits;
-
+    private int startStarDate;
+    private int buildDuration;
+    private int powerIn;
+    private int productionUnits;
+    //public Canvas Canvas;
+    
+    //private void Start()
+    //{
+    //    Canvas = GetComponent<Canvas>();
+    //    Canvas.enabled = false;      
+    //}
 
 }

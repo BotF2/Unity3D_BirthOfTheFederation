@@ -41,7 +41,7 @@ namespace Assets.Core
         {
             GameObject systemFacilityGO = (GameObject)Instantiate(facilityPrefab, new Vector3(0, 0, 0),
                 Quaternion.identity);
-            this.StarSysData.FacilitiesQueue.Add(systemFacilityGO);
+            this.StarSysData.FactoryBuildQueue.Add(systemFacilityGO);
         }
 
         public void AddToShipyardQueue(StarSysController theSystem, ShipData shipData)

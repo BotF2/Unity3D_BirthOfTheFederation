@@ -66759,27 +66759,27 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 28dc105f75257884fb00c4fcc5588586, type: 2}
   - {fileID: 11400000, guid: b4ac059143ce6a746aa8848ae4d70726, type: 2}
   - {fileID: 11400000, guid: a782c91712d87cd4484737e735ae0b2e, type: 2}
-  - {fileID: 11400000, guid: c614687eb6c68bf43a7981fdc3eb9380, type: 2}
-  - {fileID: 11400000, guid: 74579f86e81ad2f47a1baee88f0ab5e4, type: 2}
-  - {fileID: 11400000, guid: ada3a810ffb98b14a87b66a19ae07180, type: 2}
-  - {fileID: 11400000, guid: 4daf5771742dad549b2e240fbce2f33b, type: 2}
-  - {fileID: 11400000, guid: 6aeee8abfdec17e44b0913b681b862c5, type: 2}
-  - {fileID: 11400000, guid: e2a223677e09b6d4daa166d69d21433d, type: 2}
-  - {fileID: 11400000, guid: d8edf7c592c4c4941a8620b9cd041e97, type: 2}
-  - {fileID: 11400000, guid: c420375387b25be40ab4277de1c19b95, type: 2}
-  - {fileID: 11400000, guid: d6ed1e0263562fd4889eb16ffebee5f4, type: 2}
-  - {fileID: 11400000, guid: c7ef57d2d633df340befb5204dea0088, type: 2}
-  - {fileID: 11400000, guid: 22f977a5afd6b1f4babaa3d04c987d0c, type: 2}
-  - {fileID: 11400000, guid: 43092946916a1294ea85d34c1aaf00e7, type: 2}
-  - {fileID: 11400000, guid: e6587b1609f50fb4e9da2dc14dafe416, type: 2}
+  - {fileID: 11400000, guid: e65a098f550606141ac6423b313fe741, type: 2}
+  - {fileID: 11400000, guid: f8b1650f35cbf37459b562bf77052396, type: 2}
+  - {fileID: 11400000, guid: 0ba3b1d9c3d5c3e49b787427ab6014ce, type: 2}
+  - {fileID: 11400000, guid: 2ce7df4c0307c80439760418ce206d39, type: 2}
+  - {fileID: 11400000, guid: 8b063f916f63b9048a3b39b9f70e5bd7, type: 2}
+  - {fileID: 11400000, guid: d4ae4c5458e6ca543bc8fe8a168ed11f, type: 2}
+  - {fileID: 11400000, guid: b422f9a72e780e44cb36f8c46dfaa3af, type: 2}
+  - {fileID: 11400000, guid: 9b7558c0ab2106e40a8aace939be543f, type: 2}
+  - {fileID: 11400000, guid: 896f50af4dbd23044921825296b6297a, type: 2}
+  - {fileID: 11400000, guid: a069020f35cd2ee4598bc8cadc41d686, type: 2}
+  - {fileID: 11400000, guid: 5be12cf191101484d985497abe5be640, type: 2}
+  - {fileID: 11400000, guid: ad9d87d22e76100478a2067dde22d8f9, type: 2}
+  - {fileID: 11400000, guid: e54f7300c7d2adb4c8929726d9783d3c, type: 2}
   sysPrefab: {fileID: 6000483729355016117, guid: 06f0b4bc75ea46440939b026367c3da3, type: 3}
   ManagersStarSysControllerList: []
   PowerPlantPrefab: {fileID: 3951996713806300590, guid: 53bf0f8c8773c994f8331ada5c7ee1a7, type: 3}
   FactoryPrefab: {fileID: 6352246214134023823, guid: 60da8ed504050aa45839a948c0cbdebe, type: 3}
   ShipyardPrefab: {fileID: 5169689008362311750, guid: 65d737d397bc9294588f248ba029949b, type: 3}
   ShieldGeneratorPrefab: {fileID: 8721351806507026755, guid: b0545075bb36c2c499e0801a9a598f68, type: 3}
-  OrbitalBatteryPlantPrefab: {fileID: 5454051914275515245, guid: d3ffd69f497d6db498b7847ffec0b573, type: 3}
-  ResearchCenterPlantPrefab: {fileID: 3385001668930454785, guid: e08024a6cdf269e4096d554d8fa1dd0b, type: 3}
+  OrbitalBatteryPrefab: {fileID: 5454051914275515245, guid: d3ffd69f497d6db498b7847ffec0b573, type: 3}
+  ResearchCenterPrefab: {fileID: 3385001668930454785, guid: e08024a6cdf269e4096d554d8fa1dd0b, type: 3}
   galaxyImage: {fileID: 843799567}
   unknowSystem: {fileID: 21300000, guid: 4d704142da734fb46b88fe56645880c0, type: 3}
   galaxyCenter: {fileID: 564492290}

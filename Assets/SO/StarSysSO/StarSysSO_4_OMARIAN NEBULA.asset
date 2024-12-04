@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_4_OMARIAN NEBULA
   m_EditorClassIdentifier: 
   StarSysInt: 4
-  Position: {x: -310, y: 30, z: 490}
+  Position: {x: -567, y: 30, z: 584}
   SysName: OMARIAN NEBULA
   FirstOwner: 4
   CurrentOwner: 4
@@ -22,7 +22,10 @@ MonoBehaviour:
   Population: 30
   PopulationLimit: 60
   Farms: 15
-  PowerStations: 15
-  Factories: 15
-  Research: 10
+  PowerStations: 2
+  Factories: 2
+  ResearchCenters: 2
+  Shipyards: 1
+  ShieldGenerators: 2
+  OrbitalBatteries: 10
   Description: descrition here...

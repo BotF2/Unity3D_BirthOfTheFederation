@@ -8,4 +8,11 @@ public class ResearchCenterData : MonoBehaviour
     public int buildDuration;
     public int powerIn;
     public int techUnitsOut;
+    //public Canvas Canvas;
+
+    //private void Start()
+    //{
+    //    Canvas = GetComponent<Canvas>();
+    //    Canvas.enabled = false;
+    //}
 }

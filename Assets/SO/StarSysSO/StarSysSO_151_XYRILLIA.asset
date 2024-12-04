@@ -17,12 +17,15 @@ MonoBehaviour:
   SysName: XYRILLIA
   FirstOwner: 152
   CurrentOwner: 152
-  StarType: 3
+  StarType: 0
   StarSprit: {fileID: 21300000, guid: f46fc7ae4eec69d40aa8026ba9da085d, type: 3}
   Population: 10
   PopulationLimit: 20
   Farms: 5
-  PowerStations: 5
-  Factories: 5
-  Research: 5
+  PowerStations: 1
+  Factories: 1
+  ResearchCenters: 1
+  Shipyards: 1
+  ShieldGenerators: 2
+  OrbitalBatteries: 5
   Description: descrition here...

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_132_TILONIA
   m_EditorClassIdentifier: 
   StarSysInt: 132
-  Position: {x: 483, y: -23, z: -433}
+  Position: {x: 110, y: -23, z: -840}
   SysName: TILONIA
   FirstOwner: 133
   CurrentOwner: 133
@@ -22,7 +22,10 @@ MonoBehaviour:
   Population: 10
   PopulationLimit: 20
   Farms: 5
-  PowerStations: 5
-  Factories: 5
-  Research: 5
+  PowerStations: 1
+  Factories: 1
+  ResearchCenters: 1
+  Shipyards: 1
+  ShieldGenerators: 2
+  OrbitalBatteries: 5
   Description: descrition here...

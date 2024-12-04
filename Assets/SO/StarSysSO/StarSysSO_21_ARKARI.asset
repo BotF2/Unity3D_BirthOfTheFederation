@@ -17,12 +17,15 @@ MonoBehaviour:
   SysName: ARKARI
   FirstOwner: 21
   CurrentOwner: 21
-  StarType: 2
+  StarType: 0
   StarSprit: {fileID: 21300000, guid: a71196654f476ea4db890e76192307fa, type: 3}
   Population: 10
   PopulationLimit: 20
   Farms: 5
-  PowerStations: 5
-  Factories: 5
-  Research: 5
+  PowerStations: 1
+  Factories: 1
+  ResearchCenters: 1
+  Shipyards: 1
+  ShieldGenerators: 2
+  OrbitalBatteries: 5
   Description: descrition here...

@@ -8,4 +8,11 @@ public class ShipyardData : MonoBehaviour
     public int buildDuration;
     public int powerIn;
     public int productionUnits;
+    //public Canvas Canvas;
+
+    //private void Start()
+    //{
+    //    Canvas = GetComponent<Canvas>();
+    //    Canvas.enabled = false;
+    //}
 }

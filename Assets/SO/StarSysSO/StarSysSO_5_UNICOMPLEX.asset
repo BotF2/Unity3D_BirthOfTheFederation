@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_5_UNICOMPLEX
   m_EditorClassIdentifier: 
   StarSysInt: 5
-  Position: {x: 550, y: 10, z: 490}
+  Position: {x: 550, y: 10, z: 800}
   SysName: UNICOMPLEX
   FirstOwner: 5
   CurrentOwner: 5
@@ -22,7 +22,10 @@ MonoBehaviour:
   Population: 40
   PopulationLimit: 80
   Farms: 20
-  PowerStations: 20
-  Factories: 20
-  Research: 10
+  PowerStations: 2
+  Factories: 2
+  ResearchCenters: 2
+  Shipyards: 1
+  ShieldGenerators: 2
+  OrbitalBatteries: 10
   Description: descrition here...

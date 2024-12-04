@@ -125,7 +125,7 @@ public class YourStarSysUIManager : MonoBehaviour
                 //sysTMPs[5].text = sysController.StarSysData.production.ToString();
                 sysTMPs[6].text = sysController.StarSysData.Factories.ToString();
                 //sysTMPs[7].text = sysController.StarSysData.tech.ToString();
-                //sysTMPs[8].text = sysController.StarSysData.Research.ToString();
+                //sysTMPs[8].text = sysController.StarSysData.ResearchCenters.ToString();
 
                 // ToDo: ship lists, bunkers, orbital batteries
                 //t_Pop += sysController.StarSysData.Population;
@@ -135,7 +135,7 @@ public class YourStarSysUIManager : MonoBehaviour
                 //t_Production += sysController.StarSysData.production;
                 t_Factories += sysController.StarSysData.Factories.Count;
                 //t_Tech += sysController.StarSysData.tech;
-                //t_Research += sysController.StarSysData.Research;
+                //t_Research += sysController.StarSysData.ResearchCenters;
             }
             tPopulation.text = t_Pop.ToString();
             tPopulation.maskable = false;

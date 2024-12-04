@@ -13,16 +13,19 @@ MonoBehaviour:
   m_Name: StarSysSO_2_KRONOS
   m_EditorClassIdentifier: 
   StarSysInt: 2
-  Position: {x: 310, y: -25, z: -620}
+  Position: {x: 140, y: -25, z: -667}
   SysName: KRONOS
   FirstOwner: 2
   CurrentOwner: 2
-  StarType: 4
+  StarType: 0
   StarSprit: {fileID: 21300000, guid: 782d452083d14404d83e94f7ce7ee92e, type: 3}
   Population: 20
   PopulationLimit: 40
   Farms: 10
-  PowerStations: 10
-  Factories: 10
-  Research: 10
+  PowerStations: 2
+  Factories: 2
+  ResearchCenters: 2
+  Shipyards: 1
+  ShieldGenerators: 2
+  OrbitalBatteries: 10
   Description: descrition here...

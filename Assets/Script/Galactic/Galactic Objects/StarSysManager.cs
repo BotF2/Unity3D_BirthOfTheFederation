@@ -26,8 +26,8 @@ namespace Assets.Core
         public GameObject FactoryPrefab;
         public GameObject ShipyardPrefab;
         public GameObject ShieldGeneratorPrefab;
-        public GameObject OrbitalBatteryPlantPrefab;
-        public GameObject ResearchCenterPlantPrefab;
+        public GameObject OrbitalBatteryPrefab;
+        public GameObject ResearchCenterPrefab;
         [SerializeField]
         private GameObject galaxyImage;
         [SerializeField]
@@ -68,10 +68,11 @@ namespace Assets.Core
                 SysData.Description = "description here";
                 SysData.PowerStations = GetSystemFacilities(starSysSO.PowerStations, PowerPlantPrefab);
                 SysData.Factories = GetSystemFacilities(starSysSO.Factories, FactoryPrefab);
-                SysData.ResearchCenters = GetSystemFacilities(starSysSO.Research, ResearchCenterPlantPrefab);
-               // SysData.Shipyards = GetSystemFacilities(starSysSO.Shipyards, ShipyardPrefab);
+                SysData.ResearchCenters = GetSystemFacilities(starSysSO.ResearchCenters, ResearchCenterPrefab);
+                SysData.Shipyards = GetSystemFacilities(starSysSO.Shipyards, ShipyardPrefab);
+                SysData.ShieldGenerators = GetSystemFacilities(starSysSO.ShieldGenerators, ShieldGeneratorPrefab);
+                SysData.OrbitalBatteries = GetSystemFacilities(starSysSO.OrbitalBatteries, OrbitalBatteryPrefab);
                 //SysData.TechUnits = 0;
-
                 //starSysDatas.Add(SysData);
                 InstantiateSystem(SysData, civSO);
                 if (civSO.HasWarp)
@@ -98,9 +99,9 @@ namespace Assets.Core
                 starSystemNewGameOb.layer = 4; // water layer (also used by fog of war for obsticles with shows to line of sight
                 starSystemNewGameOb.transform.Translate(new Vector3(sysData.GetPosition().x,
                     sysData.GetPosition().y, sysData.GetPosition().z));
-
                 starSystemNewGameOb.transform.SetParent(galaxyCenter.transform, true);
                 starSystemNewGameOb.transform.localScale = new Vector3(1, 1, 1);
+                SetParentForFacilities(starSystemNewGameOb, sysData);
                 Transform fogObsticleTransform = starSystemNewGameOb.transform.Find("FogObstacle");
                 fogObsticleTransform.SetParent(galaxyCenter.transform, false);
                 fogObsticleTransform.Translate(new Vector3(sysData.GetPosition().x, -55f, sysData.GetPosition().z));
@@ -179,7 +180,38 @@ namespace Assets.Core
                 //}
             }
         }
-        public List<GameObject> GetSystemFacilities(int num, GameObject prefab)
+        private void SetParentForFacilities(GameObject parent, StarSysData starSysData)
+        {
+            foreach (var go in starSysData.PowerStations)
+            {
+                go.transform.SetParent(parent.transform, false);
+            }
+            foreach (var go in starSysData.Factories)
+            {
+                go.transform.SetParent(parent.transform, false);
+            }
+            foreach (var go in starSysData.OrbitalBatteries)
+            {
+                go.transform.SetParent(parent.transform, false);
+            }
+            foreach (var go in starSysData.ResearchCenters)
+            {
+                go.transform.SetParent(parent.transform, false);
+            }
+            foreach (var go in starSysData.Shipyards)
+            {
+                go.transform.SetParent(parent.transform, false);
+            }
+            foreach (var go in starSysData.ShieldGenerators)
+            {
+                go.transform.SetParent(parent.transform, false);
+            }
+            foreach (var go in starSysData.OrbitalBatteries)
+            {
+                go.transform.SetParent(parent.transform, false);
+            }
+        }
+        private List<GameObject> GetSystemFacilities(int num, GameObject prefab)
         {
             List<GameObject> list = new List<GameObject>();
             for (int i = 0; i < num; i++)
@@ -193,20 +225,15 @@ namespace Assets.Core
         }
         public StarSysSO GetStarSObyInt(int sysInt)
         {
-
             StarSysSO result = null;
-
 
             foreach (var starSO in starSysSOList)
             {
-
                 if (starSO.StarSysInt == sysInt)
                 {
                     result = starSO;
                     break;
                 }
-
-
             }
             return result;
 

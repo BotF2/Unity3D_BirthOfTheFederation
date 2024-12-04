@@ -70,7 +70,10 @@ public class StarSysSOImporter : EditorWindow
                     StarSysSO.Farms = int.Parse(fields[9]);
                     StarSysSO.PowerStations = int.Parse(fields[10]);
                     StarSysSO.Factories = int.Parse(fields[11]);
-                    StarSysSO.Research = int.Parse(fields[12]);
+                    StarSysSO.Shipyards = int.Parse(fields[12]);
+                    StarSysSO.ResearchCenters = int.Parse(fields[13]);
+                    StarSysSO.ShieldGenerators = int.Parse(fields[14]);
+                    StarSysSO.OrbitalBatteries = int.Parse(fields[15]);
                     StarSysSO.Description = "descrition here...";
                     string assetPath = $"Assets/SO/StarSysSO/StarSysSO_{StarSysSO.StarSysInt}_{StarSysSO.SysName}.asset";
                     AssetDatabase.CreateAsset(StarSysSO, assetPath);

@@ -17,12 +17,15 @@ MonoBehaviour:
   SysName: ROMULUS
   FirstOwner: 1
   CurrentOwner: 1
-  StarType: 3
+  StarType: 0
   StarSprit: {fileID: 21300000, guid: f46fc7ae4eec69d40aa8026ba9da085d, type: 3}
   Population: 20
   PopulationLimit: 40
   Farms: 10
-  PowerStations: 10
-  Factories: 10
-  Research: 10
+  PowerStations: 2
+  Factories: 2
+  ResearchCenters: 2
+  Shipyards: 1
+  ShieldGenerators: 2
+  OrbitalBatteries: 10
   Description: descrition here...

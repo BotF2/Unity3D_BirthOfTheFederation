@@ -24,5 +24,8 @@ MonoBehaviour:
   Farms: 0
   PowerStations: 0
   Factories: 0
-  Research: 0
+  ResearchCenters: 0
+  Shipyards: 0
+  ShieldGenerators: 0
+  OrbitalBatteries: 0
   Description: descrition here...
