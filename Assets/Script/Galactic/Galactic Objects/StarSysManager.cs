@@ -21,6 +21,8 @@ namespace Assets.Core
         private List<StarSysSO> starSysSOList; // get StarSysSO for civ by int
         [SerializeField]
         private GameObject sysPrefab;
+        [SerializeField]
+        private GameObject sysUIPrefab;
         public List<StarSysController> ManagersStarSysControllerList;
         public GameObject PowerPlantPrefab;
         public GameObject FactoryPrefab;
@@ -96,6 +98,9 @@ namespace Assets.Core
             {
                 GameObject starSystemNewGameOb = (GameObject)Instantiate(sysPrefab, new Vector3(0, 0, 0),
                      Quaternion.identity);
+                GameObject starSysUI = (GameObject)Instantiate(sysUIPrefab, new Vector3(0, 0, 0),
+                    Quaternion.identity);
+                starSysUI.transform.SetParent(starSystemNewGameOb.transform, false);
                 starSystemNewGameOb.layer = 4; // water layer (also used by fog of war for obsticles with shows to line of sight
                 starSystemNewGameOb.transform.Translate(new Vector3(sysData.GetPosition().x,
                     sysData.GetPosition().y, sysData.GetPosition().z));
@@ -170,7 +175,10 @@ namespace Assets.Core
                     csFogWar.Instance.RunFogOfWar(); // star systems are in place so time to scan for the fog
 
                 }
-
+                //GameObject starSysUI = (GameObject)Instantiate(sysUIPrefab, new Vector3(0, 0, 0),
+                //    Quaternion.identity);
+                //starSysUI.transform.SetParent(starSystemNewGameOb.transform, false);
+                //SetSysUIItems();
 
                 //***** This is temporary so we can test a multi-starsystem civ
                 //******* before diplomacy will alow civs/systems to join another civ
@@ -271,6 +279,11 @@ namespace Assets.Core
         {
             ManagersStarSysControllerList.Add(starSysController);
         }
+        private void SetSysUIItems()
+        {
+        
+        }
     }
+    
 }
 

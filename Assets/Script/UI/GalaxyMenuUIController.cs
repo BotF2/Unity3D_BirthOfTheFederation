@@ -30,8 +30,9 @@ public class GalaxyMenuUIController : MonoBehaviour
     private GameObject IntelBackground;
     [SerializeField]
     private GameObject EncyclopediaBackground;
-
-
+    [SerializeField]
+    //private TMP_Text sysSolFed, sysRomRom, sysKronosKling, sysCardCard, syOmarianDom, sysUniComplexBorg, sysSunTerran;
+   // private readonly string sol = "Sol Earth", romulus = "Romulus", kronos = "Kronos", card = "Cardassia", dom ="Omarian Nebula", borg = "Unicomplex", terran = "Sun Terra";
     private void Awake()
     {
         if (Instance != null)
@@ -94,7 +95,7 @@ public class GalaxyMenuUIController : MonoBehaviour
             DiplomacyBackground.SetActive(false);
             IntelBackground.SetActive(false);
             EncyclopediaBackground.SetActive(false);
-            // SettingBackground.SetActive(false);
+            SetSysNames();
             FirstContactUIController.Instance.CloseUnLoadFirstContactUI();
             FleetUIController.Instance.CloseUnLoadFleetUI();
         }
@@ -212,5 +213,34 @@ public class GalaxyMenuUIController : MonoBehaviour
             encyclopediaMenuView.SetActive(false);
             EncyclopediaBackground.SetActive(false);
         }
+    }
+    private void SetSysNames()
+    {
+        //switch (i)
+        //{
+        //    case 0:
+        //        playerFed.text = notInGame;
+        //        break;
+        //    case 1:
+        //        playerRom.text = notInGame;
+        //        break;
+        //    case 2:
+        //        playerKling.text = notInGame;
+        //        break;
+        //    case 3:
+        //        playerCard.text = notInGame;
+        //        break;
+        //    case 4:
+        //        playerDom.text = notInGame;
+        //        break;
+        //    case 5:
+        //        playerBorg.text = notInGame;
+        //        break;
+        //    case 6:
+        //        playerTerran.text = notInGame;
+        //        break;
+        //    default:
+        //        break;
+        //}
     }
 }
