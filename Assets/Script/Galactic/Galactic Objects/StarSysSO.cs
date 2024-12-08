@@ -18,7 +18,7 @@ public class StarSysSO : ScriptableObject
     public int PopulationLimit;
     public int Farms;
     public int PowerStations;
-    public int Factories;
+    public int Factories;  
     public int ResearchCenters;
     public int Shipyards;
     public int ShieldGenerators;

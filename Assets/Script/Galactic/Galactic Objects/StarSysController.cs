@@ -10,16 +10,19 @@ namespace Assets.Core
     /// </summary>
     public class StarSysController : MonoBehaviour
     {
-
         //Fields
         private StarSysData starSysData;
         public StarSysData StarSysData { get { return starSysData; } set { starSysData = value; } }
+        [SerializeField]
+        private GameObject starSysUIController;
+        public GameObject StarSysUIController { get { return starSysUIController; } set { starSysUIController = value; } }
         private Camera galaxyEventCamera;
         [SerializeField]
         private Canvas canvasToolTip;
         public Canvas canvasYourStarSysUI;
         public static event Action<TrekRandomEventSO> TrekEventDisasters;
         private int stardate;
+        public int PowerPerPlant = 10; // used by GalaxyMenuUIController
        
 
         public StarSysController(string name)
@@ -145,6 +148,11 @@ namespace Assets.Core
                         break;
                 }
             }
+        }
+        public void BuildClick() // open build list UI
+        {
+            // Do shit
+            // StarSysManager.Instance.GetInstanceOfFacility();
         }
     }
 }

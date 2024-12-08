@@ -98,9 +98,9 @@ namespace Assets.Core
             {
                 GameObject starSystemNewGameOb = (GameObject)Instantiate(sysPrefab, new Vector3(0, 0, 0),
                      Quaternion.identity);
-                GameObject starSysUI = (GameObject)Instantiate(sysUIPrefab, new Vector3(0, 0, 0),
-                    Quaternion.identity);
-                starSysUI.transform.SetParent(starSystemNewGameOb.transform, false);
+                //GameObject starSysUI = (GameObject)Instantiate(sysUIPrefab, new Vector3(0, 0, 0),
+                //     Quaternion.identity);
+                //starSysUI.transform.SetParent(starSystemNewGameOb.transform, false);
                 starSystemNewGameOb.layer = 4; // water layer (also used by fog of war for obsticles with shows to line of sight
                 starSystemNewGameOb.transform.Translate(new Vector3(sysData.GetPosition().x,
                     sysData.GetPosition().y, sysData.GetPosition().z));
@@ -154,19 +154,19 @@ namespace Assets.Core
                     galaxyImage.transform.position.y, starSystemNewGameOb.transform.position.z);
                 Vector3[] points = { starSystemNewGameOb.transform.position, galaxyPlanePoint };
                 ourDropLine.SetUpLine(points);
-                StarSysController starSysConroller = starSystemNewGameOb.GetComponentInChildren<StarSysController>();
-                starSysConroller.name = sysData.GetSysName();
-                starSysConroller.StarSysData = sysData;
-                starSysConroller.canvasYourStarSysUI = yourStarSysUICanvas;
+                StarSysController starSysController = starSystemNewGameOb.GetComponentInChildren<StarSysController>();
+                starSysController.name = sysData.GetSysName();
+                starSysController.StarSysData = sysData;
+                starSysController.canvasYourStarSysUI = yourStarSysUICanvas;
                 foreach (var civCon in CivManager.Instance.CivControllersInGame)
                 {
-                    if (civCon.CivData.CivEnum == starSysConroller.StarSysData.GetFirstOwner())
-                        starSysConroller.StarSysData.CurrentCivController = civCon;
+                    if (civCon.CivData.CivEnum == starSysController.StarSysData.GetFirstOwner())
+                        starSysController.StarSysData.CurrentCivController = civCon;
                 }
                 starSystemNewGameOb.SetActive(true);
-                ManagersStarSysControllerList.Add(starSysConroller);
-                //systemCount++;
-                List<StarSysController> listStarSysCon = new List<StarSysController> { starSysConroller };
+                ManagersStarSysControllerList.Add(starSysController);
+
+                List<StarSysController> listStarSysCon = new List<StarSysController> { starSysController };
                 CivManager.Instance.AddSystemToOwnSystemListAndHomeSys(listStarSysCon);
                 var canvases = starSystemNewGameOb.GetComponentsInChildren<Canvas>();
                 starSystemCounter++;
@@ -175,11 +175,10 @@ namespace Assets.Core
                     csFogWar.Instance.RunFogOfWar(); // star systems are in place so time to scan for the fog
 
                 }
-                //GameObject starSysUI = (GameObject)Instantiate(sysUIPrefab, new Vector3(0, 0, 0),
-                //    Quaternion.identity);
-                //starSysUI.transform.SetParent(starSystemNewGameOb.transform, false);
-                //SetSysUIItems();
-
+                //if (starSysController.StarSysData.CurrentOwner == GameController.Instance.GameData.LocalPlayerCivEnum)
+                //{
+                //    GalaxyMenuUIController.Instance.SendToGalaxySysUI(starSysController);
+                //}
                 //***** This is temporary so we can test a multi-starsystem civ
                 //******* before diplomacy will alow civs/systems to join another civ
                 //if (systemCount == 8)

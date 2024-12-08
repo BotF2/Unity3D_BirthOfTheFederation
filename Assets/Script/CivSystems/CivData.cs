@@ -20,7 +20,7 @@ namespace Assets.Core
         public int Population = 5;
         public int Credits = 100;
         public int TechPoints = 10; // 10 for pre warp and playable get 90 more to be tech level early at 100; 
-        public float CivTechLevel; // all cis have tech points and the techlevel enum value sets a level threashold
+        public TechLevel TechLevel; // all cis have tech points and the techlevel enum value sets a level threashold
         public bool Playable;
         public bool PlayedByAI = true;
         public CivEnum LocalPlayerCivEnum;

@@ -193,7 +193,7 @@ namespace Assets.Core
                 civData.Population = civSO.Population;
                 civData.Credits = civSO.Credits;
                 civData.TechPoints = civSO.TechPoints;
-                civData.CivTechLevel = (float)MainMenuUIController.Instance.MainMenuData.SelectedTechLevel;
+                civData.TechLevel = MainMenuUIController.Instance.MainMenuData.SelectedTechLevel;
                 civData.Playable = civSO.Playable;
                 civData.HasWarp = civSO.HasWarp;
                 civData.Decription = civSO.Decription;
@@ -203,7 +203,7 @@ namespace Assets.Core
                     civData.Population = 20;
                     civData.Credits = 300;
                     civData.TechPoints = 100; // set to tech level early at 100 points
-                    civData.CivTechLevel = (float)TechLevel.EARLY;
+                    civData.TechLevel = TechLevel.EARLY;
                 }
                 else if ((int)civData.CivEnum >= 159)// uninhabited system
                 {

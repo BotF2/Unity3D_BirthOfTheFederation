@@ -1254,7 +1254,7 @@ GameObject:
   - component: {fileID: 4945801355902179643}
   - component: {fileID: 4945801355902179642}
   m_Layer: 5
-  m_Name: NumTotalPossibleOut (TMP)
+  m_Name: NumTotalEOut (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1560,7 +1560,7 @@ GameObject:
   - component: {fileID: 4945801355937844075}
   - component: {fileID: 4945801355937844074}
   m_Layer: 5
-  m_Name: Energy In Text (TMP)
+  m_Name: Energy Into OB Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1649,7 +1649,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -2337,7 +2337,7 @@ GameObject:
   - component: {fileID: 4945801356155772613}
   - component: {fileID: 4945801356155772612}
   m_Layer: 5
-  m_Name: Energy In Text (TMP)
+  m_Name: Energy Into Research Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2426,7 +2426,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -2825,7 +2825,7 @@ GameObject:
   - component: {fileID: 4945801356240350536}
   - component: {fileID: 4945801356240350539}
   m_Layer: 5
-  m_Name: HeaderText (TMP)
+  m_Name: HeaderShieldsText (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4471,8 +4471,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 1
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -5405,7 +5405,7 @@ GameObject:
   - component: {fileID: 4945801356822363012}
   - component: {fileID: 4945801356822363015}
   m_Layer: 5
-  m_Name: Energy In Text (TMP)
+  m_Name: Energy Into Yards Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5616,7 +5616,7 @@ GameObject:
   - component: {fileID: 4945801356901144111}
   - component: {fileID: 4945801356901144110}
   m_Layer: 5
-  m_Name: Energy In Text (TMP)
+  m_Name: Energy Into Shields Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5705,7 +5705,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -6521,7 +6521,7 @@ GameObject:
   - component: {fileID: 4945801357080630362}
   - component: {fileID: 4945801357080630357}
   m_Layer: 5
-  m_Name: 'NumYardsOnRatio (TMP) '
+  m_Name: NumYardsOnRatio (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6609,7 +6609,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -7517,7 +7517,7 @@ GameObject:
   - component: {fileID: 4945801357315874163}
   - component: {fileID: 4945801357315874162}
   m_Layer: 5
-  m_Name: NumText (TMP)
+  m_Name: NumOBRatioText (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7606,7 +7606,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -8700,7 +8700,7 @@ GameObject:
   - component: {fileID: 4945801357469446851}
   - component: {fileID: 4945801357469446850}
   m_Layer: 5
-  m_Name: 'NumPlantsRatioText (TMP) '
+  m_Name: NumPlantsRatioText (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8788,7 +8788,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -8911,7 +8911,7 @@ GameObject:
   - component: {fileID: 4945801357484871220}
   - component: {fileID: 4945801357484871223}
   m_Layer: 5
-  m_Name: Energy In Text (TMP)
+  m_Name: Energy Into Factories Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9046,7 +9046,7 @@ GameObject:
   - component: {fileID: 4945801357490288106}
   - component: {fileID: 4945801357490288101}
   m_Layer: 5
-  m_Name: HeaderText
+  m_Name: HeaderResearchText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9387,7 +9387,7 @@ GameObject:
   - component: {fileID: 4945801357538781787}
   - component: {fileID: 4945801357538781786}
   m_Layer: 5
-  m_Name: NumText (TMP)
+  m_Name: NumResearchRatioText (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9476,7 +9476,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -9727,7 +9727,7 @@ GameObject:
   - component: {fileID: 4945801357613259356}
   - component: {fileID: 4945801357613259359}
   m_Layer: 5
-  m_Name: NumText (TMP)
+  m_Name: NumShieldsRatioText (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9816,7 +9816,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0

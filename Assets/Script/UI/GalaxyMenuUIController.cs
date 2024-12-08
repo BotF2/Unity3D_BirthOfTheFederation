@@ -3,10 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Assets.Core;
+using Unity.VisualScripting;
+using System.Runtime.CompilerServices;
 
 public class GalaxyMenuUIController : MonoBehaviour
 {
-    public static GalaxyMenuUIController Instance { get; private set; } 
+    public static GalaxyMenuUIController Instance { get; private set; }
+    [SerializeField]
+    private GameObject buildListUI;
     [SerializeField]
     private GameObject sysMenuView;
     [SerializeField] 
@@ -31,8 +36,16 @@ public class GalaxyMenuUIController : MonoBehaviour
     [SerializeField]
     private GameObject EncyclopediaBackground;
     [SerializeField]
-    //private TMP_Text sysSolFed, sysRomRom, sysKronosKling, sysCardCard, syOmarianDom, sysUniComplexBorg, sysSunTerran;
-   // private readonly string sol = "Sol Earth", romulus = "Romulus", kronos = "Kronos", card = "Cardassia", dom ="Omarian Nebula", borg = "Unicomplex", terran = "Sun Terra";
+    private List<StarSysController> sysControllers;
+    [SerializeField]
+    private GameObject contentFolderParent;
+    //[SerializeField]
+    //private List<string>  sysNames;
+    [SerializeField]
+    private GameObject sysUIprefab;
+    //[SerializeField]
+    //private int powerPerEnergyPlant = 10;
+    
     private void Awake()
     {
         if (Instance != null)
@@ -52,17 +65,16 @@ public class GalaxyMenuUIController : MonoBehaviour
         diplomacyMenuView.SetActive(false); 
         intelMenuView.SetActive(false) ;
         encyclopediaMenuView.SetActive(false);
-       // settingsMenuView.SetActive(false);
         closeOpenMenuButton.SetActive(false);
         SysBackground.SetActive(false);
         FleetBackground.SetActive(false);
         DiplomacyBackground.SetActive(false);
         IntelBackground.SetActive(false);
         EncyclopediaBackground.SetActive(false);
-       // SettingBackground.SetActive(false);
+        buildListUI.SetActive(false);
     }
 
-    public void CloseAnOpenGalaxyUI()
+    public void CloseTheOpenGalaxyUI()
     {
         sysMenuView.SetActive(false);
         fleetsMenuView.SetActive(false);
@@ -70,7 +82,7 @@ public class GalaxyMenuUIController : MonoBehaviour
         intelMenuView.SetActive(false);
         encyclopediaMenuView.SetActive(false);
        // settingsMenuView.SetActive(false);
-        //closeOpenMenuButton.SetActive(false);
+        closeOpenMenuButton.SetActive(false);
         SysBackground.SetActive(false);
         FleetBackground.SetActive(false);
         DiplomacyBackground.SetActive(false);
@@ -95,7 +107,7 @@ public class GalaxyMenuUIController : MonoBehaviour
             DiplomacyBackground.SetActive(false);
             IntelBackground.SetActive(false);
             EncyclopediaBackground.SetActive(false);
-            SetSysNames();
+            SetUISystemsData();
             FirstContactUIController.Instance.CloseUnLoadFirstContactUI();
             FleetUIController.Instance.CloseUnLoadFleetUI();
         }
@@ -198,13 +210,13 @@ public class GalaxyMenuUIController : MonoBehaviour
             intelMenuView.SetActive(false);
             encyclopediaMenuView.SetActive(true);
             EncyclopediaBackground.SetActive(true);
-            //  settingsMenuView.SetActive(false);
+
             closeOpenMenuButton.SetActive(true);
             SysBackground.SetActive(false);
             FleetBackground.SetActive(false);
             DiplomacyBackground.SetActive(false);
             IntelBackground.SetActive(false);
-            // SettingBackground.SetActive(false);
+
             FirstContactUIController.Instance.CloseUnLoadFirstContactUI();
             FleetUIController.Instance.CloseUnLoadFleetUI();
         }
@@ -214,33 +226,131 @@ public class GalaxyMenuUIController : MonoBehaviour
             EncyclopediaBackground.SetActive(false);
         }
     }
-    private void SetSysNames()
+    private void SetUISystemsData()
     {
-        //switch (i)
-        //{
-        //    case 0:
-        //        playerFed.text = notInGame;
-        //        break;
-        //    case 1:
-        //        playerRom.text = notInGame;
-        //        break;
-        //    case 2:
-        //        playerKling.text = notInGame;
-        //        break;
-        //    case 3:
-        //        playerCard.text = notInGame;
-        //        break;
-        //    case 4:
-        //        playerDom.text = notInGame;
-        //        break;
-        //    case 5:
-        //        playerBorg.text = notInGame;
-        //        break;
-        //    case 6:
-        //        playerTerran.text = notInGame;
-        //        break;
-        //    default:
-        //        break;
-        //}
+        if (sysControllers.Count > 0)
+        {
+            foreach (var sysCon in sysControllers)
+            {
+                UpdateSystemUI(sysCon);
+            }
+        }
+        else
+        {
+            NewSystemUI();
+        }
+    }
+    private void NewSystemUI()
+    {
+        foreach (var sysController in StarSysManager.Instance.ManagersStarSysControllerList)
+        {
+            if (sysController.StarSysData.CurrentOwner == GameController.Instance.GameData.LocalPlayerCivEnum)
+            {
+                GameObject starSysUI = (GameObject)Instantiate(sysUIprefab, new Vector3(0, 0, 0),
+                    Quaternion.identity);
+                sysControllers.Add(sysController);
+                sysController.StarSysUIController = starSysUI; // each system controller has its system UI
+                starSysUI.transform.SetParent(contentFolderParent.transform, false); // load Queue
+
+                UpdateSystemUI(sysController);
+            }
+        }
+    }
+    private void UpdateSystemUI(StarSysController sysController)
+    {
+        TextMeshProUGUI[] listTMP = sysController.StarSysUIController.GetComponentsInChildren<TextMeshProUGUI>();
+
+        foreach (var OneTmp in listTMP)
+        {
+            int techLevelInt = (int)CivManager.Instance.LocalPlayerCivContoller.CivData.TechLevel / 100; // Early Tech level = 100, Supreme = 900;
+            OneTmp.enabled = true;
+            switch (OneTmp.name)
+            {
+                case "Sys Name Text (TMP)":
+                    OneTmp.text = sysController.StarSysData.SysName;
+                    break;
+
+                //case "HeaderPowerUnitText (TMP)":
+                // ToDo: can make it race specific here, not defaul "Plasma Reactor"
+                //    break;
+                case "NumTotalUnits (TMP)":
+                    OneTmp.text = (sysController.StarSysData.PowerStations.Count).ToString();
+                    break;
+                case "NumTotalEOut (TMP)":
+                    OneTmp.text = (sysController.StarSysData.PowerStations.Count * sysController.PowerPerPlant).ToString() + "u";
+                    break;
+                // ToDo: use techLevelInt in power output 
+
+                //case "HeaderFactoryText (TMP)":
+                //  ToDo: can make it race specific here, not defaul "Replication Plants"
+                //    break;
+                case "NumPlantsRatioText (TMP)":
+                    // ToDo: This can be the number active over the total number of plants
+                    OneTmp.text = (sysController.StarSysData.Factories.Count).ToString();
+                    break;
+                case "Energy Into Factories Text (TMP)":
+                    OneTmp.text = (sysController.StarSysData.PowerStations.Count).ToString() + "u";
+                    // ToDo: work in tech levels
+                    break;
+
+                // ToDo: Factory build Queue here?
+
+                //case "Shipyard Name Text (TMP)":
+                //    // default shipyard for everyone
+                //    break;
+                case "NumYardsOnRatio (TMP)":
+                    // ToDo: This can be the number active over the total number of yards
+                    OneTmp.text = (sysController.StarSysData.Shipyards.Count).ToString();
+                    break;
+                case "Energy Into Yards Text (TMP)":
+                    OneTmp.text = (sysController.StarSysData.Shipyards.Count).ToString() + "u";
+                    // ToDo: work in tech levels
+                    break;
+                // ToDo: Yard's build Queue here
+                case "NumShieldsRatioText (TMP)":
+                    // ToDo: This can be the number active over the total number of yards
+                    OneTmp.text = (sysController.StarSysData.ShieldGenerators.Count).ToString();
+                    break;
+                case "Energy Into Shields Text (TMP)":
+                    OneTmp.text = (sysController.StarSysData.ShieldGenerators.Count).ToString() + "u";
+                    // ToDo: work in tech levels
+                    break;
+                case "NumOBRatioText (TMP)":
+                    // ToDo: This can be the number active over the total number of OB
+                    OneTmp.text = (sysController.StarSysData.OrbitalBatteries.Count).ToString();
+                    break;
+                case "Energy Into OB Text (TMP)":
+                    OneTmp.text = (sysController.StarSysData.OrbitalBatteries.Count).ToString() + "u";
+                    // ToDo: work in tech levels
+                    break;
+                case "HeaderResearchText (TMP)":
+                    // ToDo: make it race specific
+                    break;
+                case "NumResearchRatioText (TMP)":
+                    // ToDo: This can be the number active over the total number of centers
+                    OneTmp.text = (sysController.StarSysData.ResearchCenters.Count).ToString();
+                    break;
+                case "Energy Into Research Text (TMP)":
+                    OneTmp.text = (sysController.StarSysData.ResearchCenters.Count).ToString() + "u";
+                    // ToDo: work in tech levels
+                    break;
+                default:
+                    break;
+            }
+            Button[] listButton = sysController.StarSysUIController.GetComponentsInChildren<Button>();
+            foreach (var OneButt in listButton)
+            {
+                switch (OneButt.name)
+                {
+                    case "BuildButton":
+                        OneButt.onClick.AddListener(() =>buildListUI.SetActive(true));
+                        OneButt.onClick.AddListener(() => sysController.BuildClick());
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
     }
 }
+
