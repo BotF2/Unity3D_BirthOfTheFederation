@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 using Assets.Core;
 using TMPro;
-public class SystemUIMenuController : MonoBehaviour
+public class SystemUIMenuManager : MonoBehaviour
 {
     public GameObject SystemUIMenuPrefab;
     [SerializeField]
@@ -20,7 +20,6 @@ public class SystemUIMenuController : MonoBehaviour
             obj.transform.SetParent(this.gameObject.transform, false);
             obj.transform.GetChild(1).GetComponent<TMP_Text>().text = i.ToString(); 
         }
-
     }
 
 

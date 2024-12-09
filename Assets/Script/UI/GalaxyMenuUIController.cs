@@ -35,14 +35,14 @@ public class GalaxyMenuUIController : MonoBehaviour
     private GameObject IntelBackground;
     [SerializeField]
     private GameObject EncyclopediaBackground;
-    [SerializeField]
-    private List<StarSysController> sysControllers;
+    //[SerializeField]
+    //private List<StarSysController> sysControllers;
     [SerializeField]
     private GameObject contentFolderParent;
     //[SerializeField]
     //private List<string>  sysNames;
-    [SerializeField]
-    private GameObject sysUIprefab;
+    //[SerializeField]
+    //private GameObject sysUIprefab;
     //[SerializeField]
     //private int powerPerEnergyPlant = 10;
     
@@ -228,35 +228,35 @@ public class GalaxyMenuUIController : MonoBehaviour
     }
     private void SetUISystemsData()
     {
-        if (sysControllers.Count > 0)
+        if (StarSysManager.Instance.ManagersStarSysControllerList.Count > 0)
         {
-            foreach (var sysCon in sysControllers)
+            foreach (var sysCon in StarSysManager.Instance.ManagersStarSysControllerList)
             {
                 UpdateSystemUI(sysCon);
             }
         }
         else
         {
-            NewSystemUI();
+            StarSysManager.Instance.NewSystemUI();
         }
     }
-    private void NewSystemUI()
-    {
-        foreach (var sysController in StarSysManager.Instance.ManagersStarSysControllerList)
-        {
-            if (sysController.StarSysData.CurrentOwner == GameController.Instance.GameData.LocalPlayerCivEnum)
-            {
-                GameObject starSysUI = (GameObject)Instantiate(sysUIprefab, new Vector3(0, 0, 0),
-                    Quaternion.identity);
-                sysControllers.Add(sysController);
-                sysController.StarSysUIController = starSysUI; // each system controller has its system UI
-                starSysUI.transform.SetParent(contentFolderParent.transform, false); // load Queue
+    //private void NewSystemUI()
+    //{
+    //    foreach (var sysController in StarSysManager.Instance.ManagersStarSysControllerList)
+    //    {
+    //        if (sysController.StarSysData.CurrentOwner == GameController.Instance.GameData.LocalPlayerCivEnum)
+    //        {
+    //            GameObject starSysUI = (GameObject)Instantiate(sysUIprefab, new Vector3(0, 0, 0),
+    //                Quaternion.identity);
+    //            StarSysManager.Instance.ManagersStarSysControllerList.Add(sysController);
+    //            sysController.StarSysUIController = starSysUI; // each system controller has its system UI
+    //            starSysUI.transform.SetParent(contentFolderParent.transform, false); // load Queue
 
-                UpdateSystemUI(sysController);
-            }
-        }
-    }
-    private void UpdateSystemUI(StarSysController sysController)
+    //            UpdateSystemUI(sysController);
+    //        }
+    //    }
+    //}
+    public void UpdateSystemUI(StarSysController sysController)
     {
         TextMeshProUGUI[] listTMP = sysController.StarSysUIController.GetComponentsInChildren<TextMeshProUGUI>();
 

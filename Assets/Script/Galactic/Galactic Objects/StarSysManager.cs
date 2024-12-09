@@ -31,6 +31,8 @@ namespace Assets.Core
         public GameObject OrbitalBatteryPrefab;
         public GameObject ResearchCenterPrefab;
         [SerializeField]
+        private GameObject contentFolderParent;
+        [SerializeField]
         private GameObject galaxyImage;
         [SerializeField]
         private Sprite unknowSystem;
@@ -281,6 +283,22 @@ namespace Assets.Core
         private void SetSysUIItems()
         {
         
+        }
+        public void NewSystemUI()
+        {
+            foreach (var sysController in StarSysManager.Instance.ManagersStarSysControllerList)
+            {
+                if (sysController.StarSysData.CurrentOwner == GameController.Instance.GameData.LocalPlayerCivEnum)
+                {
+                    GameObject starSysUI = (GameObject)Instantiate(sysUIPrefab, new Vector3(0, 0, 0),
+                        Quaternion.identity);
+                    ManagersStarSysControllerList.Add(sysController);
+                    sysController.StarSysUIController = starSysUI; // each system controller has its system UI
+                    starSysUI.transform.SetParent(contentFolderParent.transform, false); // load Queue
+
+                    GalaxyMenuUIController.Instance.UpdateSystemUI(sysController);
+                }
+            }
         }
     }
     
