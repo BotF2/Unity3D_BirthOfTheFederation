@@ -232,13 +232,17 @@ public class GalaxyMenuUIController : MonoBehaviour
         {
             foreach (var sysCon in StarSysManager.Instance.ManagersStarSysControllerList)
             {
-                UpdateSystemUI(sysCon);
+                if (sysCon.StarSysUIController != null)
+                    UpdateSystemUI(sysCon);
+                else
+                    StarSysManager.Instance.NewSystemUI(sysCon);
+
             }
         }
-        else
-        {
-            StarSysManager.Instance.NewSystemUI();
-        }
+        //else
+        //{
+        //    StarSysManager.Instance.NewSystemUI();
+        //}
     }
     //private void NewSystemUI()
     //{
@@ -258,96 +262,99 @@ public class GalaxyMenuUIController : MonoBehaviour
     //}
     public void UpdateSystemUI(StarSysController sysController)
     {
-        TextMeshProUGUI[] listTMP = sysController.StarSysUIController.GetComponentsInChildren<TextMeshProUGUI>();
-
-        foreach (var OneTmp in listTMP)
+        if (sysController.StarSysUIController != null)
         {
-            int techLevelInt = (int)CivManager.Instance.LocalPlayerCivContoller.CivData.TechLevel / 100; // Early Tech level = 100, Supreme = 900;
-            OneTmp.enabled = true;
-            switch (OneTmp.name)
+            TextMeshProUGUI[] listTMP = sysController.StarSysUIController.GetComponentsInChildren<TextMeshProUGUI>();
+
+            foreach (var OneTmp in listTMP)
             {
-                case "Sys Name Text (TMP)":
-                    OneTmp.text = sysController.StarSysData.SysName;
-                    break;
-
-                //case "HeaderPowerUnitText (TMP)":
-                // ToDo: can make it race specific here, not defaul "Plasma Reactor"
-                //    break;
-                case "NumTotalUnits (TMP)":
-                    OneTmp.text = (sysController.StarSysData.PowerStations.Count).ToString();
-                    break;
-                case "NumTotalEOut (TMP)":
-                    OneTmp.text = (sysController.StarSysData.PowerStations.Count * sysController.PowerPerPlant).ToString() + "u";
-                    break;
-                // ToDo: use techLevelInt in power output 
-
-                //case "HeaderFactoryText (TMP)":
-                //  ToDo: can make it race specific here, not defaul "Replication Plants"
-                //    break;
-                case "NumPlantsRatioText (TMP)":
-                    // ToDo: This can be the number active over the total number of plants
-                    OneTmp.text = (sysController.StarSysData.Factories.Count).ToString();
-                    break;
-                case "Energy Into Factories Text (TMP)":
-                    OneTmp.text = (sysController.StarSysData.PowerStations.Count).ToString() + "u";
-                    // ToDo: work in tech levels
-                    break;
-
-                // ToDo: Factory build Queue here?
-
-                //case "Shipyard Name Text (TMP)":
-                //    // default shipyard for everyone
-                //    break;
-                case "NumYardsOnRatio (TMP)":
-                    // ToDo: This can be the number active over the total number of yards
-                    OneTmp.text = (sysController.StarSysData.Shipyards.Count).ToString();
-                    break;
-                case "Energy Into Yards Text (TMP)":
-                    OneTmp.text = (sysController.StarSysData.Shipyards.Count).ToString() + "u";
-                    // ToDo: work in tech levels
-                    break;
-                // ToDo: Yard's build Queue here
-                case "NumShieldsRatioText (TMP)":
-                    // ToDo: This can be the number active over the total number of yards
-                    OneTmp.text = (sysController.StarSysData.ShieldGenerators.Count).ToString();
-                    break;
-                case "Energy Into Shields Text (TMP)":
-                    OneTmp.text = (sysController.StarSysData.ShieldGenerators.Count).ToString() + "u";
-                    // ToDo: work in tech levels
-                    break;
-                case "NumOBRatioText (TMP)":
-                    // ToDo: This can be the number active over the total number of OB
-                    OneTmp.text = (sysController.StarSysData.OrbitalBatteries.Count).ToString();
-                    break;
-                case "Energy Into OB Text (TMP)":
-                    OneTmp.text = (sysController.StarSysData.OrbitalBatteries.Count).ToString() + "u";
-                    // ToDo: work in tech levels
-                    break;
-                case "HeaderResearchText (TMP)":
-                    // ToDo: make it race specific
-                    break;
-                case "NumResearchRatioText (TMP)":
-                    // ToDo: This can be the number active over the total number of centers
-                    OneTmp.text = (sysController.StarSysData.ResearchCenters.Count).ToString();
-                    break;
-                case "Energy Into Research Text (TMP)":
-                    OneTmp.text = (sysController.StarSysData.ResearchCenters.Count).ToString() + "u";
-                    // ToDo: work in tech levels
-                    break;
-                default:
-                    break;
-            }
-            Button[] listButton = sysController.StarSysUIController.GetComponentsInChildren<Button>();
-            foreach (var OneButt in listButton)
-            {
-                switch (OneButt.name)
+                int techLevelInt = (int)CivManager.Instance.LocalPlayerCivContoller.CivData.TechLevel / 100; // Early Tech level = 100, Supreme = 900;
+                OneTmp.enabled = true;
+                switch (OneTmp.name)
                 {
-                    case "BuildButton":
-                        OneButt.onClick.AddListener(() =>buildListUI.SetActive(true));
-                        OneButt.onClick.AddListener(() => sysController.BuildClick());
+                    case "Sys Name Text (TMP)":
+                        OneTmp.text = sysController.StarSysData.SysName;
+                        break;
+
+                    //case "HeaderPowerUnitText (TMP)":
+                    // ToDo: can make it race specific here, not defaul "Plasma Reactor"
+                    //    break;
+                    case "NumTotalUnits (TMP)":
+                        OneTmp.text = (sysController.StarSysData.PowerStations.Count).ToString();
+                        break;
+                    case "NumTotalEOut (TMP)":
+                        OneTmp.text = (sysController.StarSysData.PowerStations.Count * sysController.PowerPerPlant).ToString() + "u";
+                        break;
+                    // ToDo: use techLevelInt in power output 
+
+                    //case "HeaderFactoryText (TMP)":
+                    //  ToDo: can make it race specific here, not defaul "Replication Plants"
+                    //    break;
+                    case "NumPlantsRatioText (TMP)":
+                        // ToDo: This can be the number active over the total number of plants
+                        OneTmp.text = (sysController.StarSysData.Factories.Count).ToString();
+                        break;
+                    case "Energy Into Factories Text (TMP)":
+                        OneTmp.text = (sysController.StarSysData.PowerStations.Count).ToString() + "u";
+                        // ToDo: work in tech levels
+                        break;
+
+                    // ToDo: Factory build Queue here?
+
+                    //case "Shipyard Name Text (TMP)":
+                    //    // default shipyard for everyone
+                    //    break;
+                    case "NumYardsOnRatio (TMP)":
+                        // ToDo: This can be the number active over the total number of yards
+                        OneTmp.text = (sysController.StarSysData.Shipyards.Count).ToString();
+                        break;
+                    case "Energy Into Yards Text (TMP)":
+                        OneTmp.text = (sysController.StarSysData.Shipyards.Count).ToString() + "u";
+                        // ToDo: work in tech levels
+                        break;
+                    // ToDo: Yard's build Queue here
+                    case "NumShieldsRatioText (TMP)":
+                        // ToDo: This can be the number active over the total number of yards
+                        OneTmp.text = (sysController.StarSysData.ShieldGenerators.Count).ToString();
+                        break;
+                    case "Energy Into Shields Text (TMP)":
+                        OneTmp.text = (sysController.StarSysData.ShieldGenerators.Count).ToString() + "u";
+                        // ToDo: work in tech levels
+                        break;
+                    case "NumOBRatioText (TMP)":
+                        // ToDo: This can be the number active over the total number of OB
+                        OneTmp.text = (sysController.StarSysData.OrbitalBatteries.Count).ToString();
+                        break;
+                    case "Energy Into OB Text (TMP)":
+                        OneTmp.text = (sysController.StarSysData.OrbitalBatteries.Count).ToString() + "u";
+                        // ToDo: work in tech levels
+                        break;
+                    case "HeaderResearchText (TMP)":
+                        // ToDo: make it race specific
+                        break;
+                    case "NumResearchRatioText (TMP)":
+                        // ToDo: This can be the number active over the total number of centers
+                        OneTmp.text = (sysController.StarSysData.ResearchCenters.Count).ToString();
+                        break;
+                    case "Energy Into Research Text (TMP)":
+                        OneTmp.text = (sysController.StarSysData.ResearchCenters.Count).ToString() + "u";
+                        // ToDo: work in tech levels
                         break;
                     default:
                         break;
+                }
+                Button[] listButton = sysController.StarSysUIController.GetComponentsInChildren<Button>();
+                foreach (var OneButt in listButton)
+                {
+                    switch (OneButt.name)
+                    {
+                        case "BuildButton":
+                            OneButt.onClick.AddListener(() => buildListUI.SetActive(true));
+                            OneButt.onClick.AddListener(() => sysController.BuildClick());
+                            break;
+                        default:
+                            break;
+                    }
                 }
             }
         }

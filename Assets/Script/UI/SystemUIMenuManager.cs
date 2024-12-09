@@ -14,12 +14,12 @@ public class SystemUIMenuManager : MonoBehaviour
 
     void Start()
     {
-        for (int i = 0; i < 10; i++)
-        {
-            GameObject obj = Instantiate(SystemUIMenuPrefab);
-            obj.transform.SetParent(this.gameObject.transform, false);
-            obj.transform.GetChild(1).GetComponent<TMP_Text>().text = i.ToString(); 
-        }
+        //for (int i = 0; i < 10; i++)
+        //{
+        //    GameObject obj = Instantiate(SystemUIMenuPrefab);
+        //    obj.transform.SetParent(this.gameObject.transform, false);
+        //    obj.transform.GetChild(1).GetComponent<TMP_Text>().text = i.ToString(); 
+        //}
     }
 
 

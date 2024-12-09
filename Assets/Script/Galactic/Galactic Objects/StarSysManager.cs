@@ -284,21 +284,21 @@ namespace Assets.Core
         {
         
         }
-        public void NewSystemUI()
+        public void NewSystemUI(StarSysController sysController)
         {
-            foreach (var sysController in StarSysManager.Instance.ManagersStarSysControllerList)
-            {
+            //foreach (var sysController in StarSysManager.Instance.ManagersStarSysControllerList)
+            //{
                 if (sysController.StarSysData.CurrentOwner == GameController.Instance.GameData.LocalPlayerCivEnum)
                 {
                     GameObject starSysUI = (GameObject)Instantiate(sysUIPrefab, new Vector3(0, 0, 0),
                         Quaternion.identity);
-                    ManagersStarSysControllerList.Add(sysController);
+                   // ManagersStarSysControllerList.Add(sysController);
                     sysController.StarSysUIController = starSysUI; // each system controller has its system UI
                     starSysUI.transform.SetParent(contentFolderParent.transform, false); // load Queue
 
                     GalaxyMenuUIController.Instance.UpdateSystemUI(sysController);
                 }
-            }
+            //}
         }
     }
     
