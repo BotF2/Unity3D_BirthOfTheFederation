@@ -19,6 +19,8 @@ namespace Assets.Core
         public static StarSysManager Instance;
         [SerializeField]
         private List<StarSysSO> starSysSOList; // get StarSysSO for civ by int
+        //[SerializeField]
+        //private List<StarSysFacilitySO> starSysFacilitySOList; // get StarSysFacilitySO for civ by int
         [SerializeField]
         private GameObject sysPrefab;
         [SerializeField]
@@ -70,12 +72,13 @@ namespace Assets.Core
                 SysData.SystemType = starSysSO.StarType;
                 SysData.StarSprit = starSysSO.StarSprit;
                 SysData.Description = "description here";
-                SysData.PowerStations = GetSystemFacilities(starSysSO.PowerStations, PowerPlantPrefab);
-                SysData.Factories = GetSystemFacilities(starSysSO.Factories, FactoryPrefab);
-                SysData.ResearchCenters = GetSystemFacilities(starSysSO.ResearchCenters, ResearchCenterPrefab);
-                SysData.Shipyards = GetSystemFacilities(starSysSO.Shipyards, ShipyardPrefab);
-                SysData.ShieldGenerators = GetSystemFacilities(starSysSO.ShieldGenerators, ShieldGeneratorPrefab);
-                SysData.OrbitalBatteries = GetSystemFacilities(starSysSO.OrbitalBatteries, OrbitalBatteryPrefab);
+                // instantiate facilities game objects from prefabs 
+                SysData.PowerStations = GetSystemFacilities(starSysSO.PowerStations, PowerPlantPrefab, civSO.CivInt);
+                SysData.Factories = GetSystemFacilities(starSysSO.Factories, FactoryPrefab, civSO.CivInt);
+                SysData.ResearchCenters = GetSystemFacilities(starSysSO.ResearchCenters, ResearchCenterPrefab, civSO.CivInt);
+                SysData.Shipyards = GetSystemFacilities(starSysSO.Shipyards, ShipyardPrefab, civSO.CivInt);
+                SysData.ShieldGenerators = GetSystemFacilities(starSysSO.ShieldGenerators, ShieldGeneratorPrefab, civSO.CivInt);
+                SysData.OrbitalBatteries = GetSystemFacilities(starSysSO.OrbitalBatteries, OrbitalBatteryPrefab, civSO.CivInt);
                 //SysData.TechUnits = 0;
                 //starSysDatas.Add(SysData);
                 InstantiateSystem(SysData, civSO);
@@ -220,17 +223,21 @@ namespace Assets.Core
                 go.transform.SetParent(parent.transform, false);
             }
         }
-        private List<GameObject> GetSystemFacilities(int num, GameObject prefab)
+        private List<GameObject> GetSystemFacilities(int numOf, GameObject prefab, int civInt)
         {
             List<GameObject> list = new List<GameObject>();
-            for (int i = 0; i < num; i++)
+            for (int i = 0; i < numOf; i++)
             {
-                GameObject newGO = (GameObject)Instantiate(prefab, new Vector3(0, 0, 0),
+                GameObject newFacilityGO = (GameObject)Instantiate(prefab, new Vector3(0, 0, 0),
                     Quaternion.identity);
-                list.Add(newGO);
+                GetFacilityDataFromSO(newFacilityGO, civInt);
+                list.Add(newFacilityGO);
             }
-
             return list;
+        }
+        private void GetFacilityDataFromSO(GameObject facilityGO, int civInt)
+        {
+
         }
         public StarSysSO GetStarSObyInt(int sysInt)
         {

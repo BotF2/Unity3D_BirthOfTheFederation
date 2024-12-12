@@ -239,6 +239,7 @@ public class GalaxyMenuUIController : MonoBehaviour
 
             }
         }
+
         //else
         //{
         //    StarSysManager.Instance.NewSystemUI();

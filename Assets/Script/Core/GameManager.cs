@@ -330,6 +330,15 @@ namespace Assets.Core
         ProtectTransports,
         TargetTransports
     }
+    public enum StarSysFacilities
+    {
+        PowerPlanet,
+        Factory,
+        Shipyard,
+        ShieldGenerator,
+        OrbitalBattery,
+        ResearchCenter
+    }
     #endregion
 
     public class GameManager : MonoBehaviour
