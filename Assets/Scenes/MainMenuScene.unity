@@ -17986,7 +17986,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7f173683bb120848886c27dc5b21230, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GalaxyMapEventList: []
 --- !u!1 &634433416
 GameObject:
   m_ObjectHideFlags: 0
@@ -59386,6 +59385,54 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5be12cf191101484d985497abe5be640, type: 2}
   - {fileID: 11400000, guid: ad9d87d22e76100478a2067dde22d8f9, type: 2}
   - {fileID: 11400000, guid: e54f7300c7d2adb4c8929726d9783d3c, type: 2}
+  powerPlantSOList:
+  - {fileID: 11400000, guid: 6151d15db64051c4ca76966cf95d2bc9, type: 2}
+  - {fileID: 11400000, guid: 3aec5741c4bd4014fbb7bd30a7e68cc1, type: 2}
+  - {fileID: 11400000, guid: f877d4a963f6ca04da7284414a1cedd6, type: 2}
+  - {fileID: 11400000, guid: 0610c84e24b39594eba8c4413f092889, type: 2}
+  - {fileID: 11400000, guid: 2d65b557039d23445be54720958b7ae3, type: 2}
+  - {fileID: 11400000, guid: f7265042be582b3408f0cd6fd2a1b935, type: 2}
+  - {fileID: 11400000, guid: 565959b3a6962574ca208d2935e25e6f, type: 2}
+  factorySOList:
+  - {fileID: 11400000, guid: 0bcb4d70d5200a54fa3e0a19fd918ba1, type: 2}
+  - {fileID: 11400000, guid: 88d9c376aa5626849850ff0f57ff706a, type: 2}
+  - {fileID: 11400000, guid: 7f482dc932823ba47ab8705a2155372f, type: 2}
+  - {fileID: 11400000, guid: 93ac0ed5529bae942bfe9ed91cfc0879, type: 2}
+  - {fileID: 11400000, guid: 0a198a93c2085cc43a4f956ce9c7a41c, type: 2}
+  - {fileID: 11400000, guid: f10197030341a1b4c8b79d0553b591a1, type: 2}
+  - {fileID: 11400000, guid: 3e50203caf48187428f960935fdaf014, type: 2}
+  shipyardSOList:
+  - {fileID: 11400000, guid: 61d2a1dd7f464e049a3a2f1314070ef1, type: 2}
+  - {fileID: 11400000, guid: 67d90bac50384f44498b7f8009ce0c21, type: 2}
+  - {fileID: 11400000, guid: f4f83350da94398409de64dac768f161, type: 2}
+  - {fileID: 11400000, guid: 1b777a5cef027ec46ab78574e5cbed73, type: 2}
+  - {fileID: 11400000, guid: af7dcd736ad58a643b82fc56ff8ffb57, type: 2}
+  - {fileID: 11400000, guid: 5ac75972e07732040bb75cbe206138ba, type: 2}
+  - {fileID: 11400000, guid: daee0185f103fa945af80aefee13cebc, type: 2}
+  shieldGeneratorSOList:
+  - {fileID: 11400000, guid: 07f78928bd251e74d9b8632ced6bcb29, type: 2}
+  - {fileID: 11400000, guid: 20de5121385fe2446a5c11d70c5f39f8, type: 2}
+  - {fileID: 11400000, guid: cdb8c07ae45c4a34e8b5c058ab45bc73, type: 2}
+  - {fileID: 11400000, guid: 69b12ec4e35af32448848f4b75a77e89, type: 2}
+  - {fileID: 11400000, guid: fb98f8682caccaa4195827260cac4944, type: 2}
+  - {fileID: 11400000, guid: e164ee4080eb37448afb1abb107a5581, type: 2}
+  - {fileID: 11400000, guid: 1e49ce69c9a323948a9dfa84492088be, type: 2}
+  orbitalBatterySOList:
+  - {fileID: 11400000, guid: 6076d58967f091e408802ed001b5fe1e, type: 2}
+  - {fileID: 11400000, guid: 959bceac7e5ecf747999c1c99deb3366, type: 2}
+  - {fileID: 11400000, guid: 25e65c01f34f7fb4ca7d6ef2e4ddf78a, type: 2}
+  - {fileID: 11400000, guid: 44154f6f92fdf854f8e7611db77681e4, type: 2}
+  - {fileID: 11400000, guid: 357bb9209896f9f40a8fcd1cc0490db9, type: 2}
+  - {fileID: 11400000, guid: 04e6d15388be3bd4ca16be7ccb854548, type: 2}
+  - {fileID: 11400000, guid: 80493d4267b16c94ba2a2d6fe28cd97e, type: 2}
+  researchCenterSOList:
+  - {fileID: 11400000, guid: 9ac01738b4b0be34495b83b04f3bc5b4, type: 2}
+  - {fileID: 11400000, guid: c447e31b00f066e4394c50cd68cab866, type: 2}
+  - {fileID: 11400000, guid: 4859fe7f605d42d49a68b41d115500cb, type: 2}
+  - {fileID: 11400000, guid: 9db25de90d08bbf4a9ee422e882e760e, type: 2}
+  - {fileID: 11400000, guid: 641d73b0dfabc864f952a8214351fa81, type: 2}
+  - {fileID: 11400000, guid: ff6a5f49b26e72448ae0bc07e3f2a1ab, type: 2}
+  - {fileID: 11400000, guid: cc87f47bdb5ebd048a0fc0b69afdcd76, type: 2}
   sysPrefab: {fileID: 6000483729355016117, guid: 06f0b4bc75ea46440939b026367c3da3, type: 3}
   sysUIPrefab: {fileID: 4945801355922885453, guid: 2019fad506023ad42a54b9e786bd3ff1, type: 3}
   ManagersStarSysControllerList: []
@@ -59409,7 +59456,7 @@ RectTransform:
   m_GameObject: {fileID: 1965346448}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.007722008, y: 0.1, z: 0.0054259356}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 843799568}

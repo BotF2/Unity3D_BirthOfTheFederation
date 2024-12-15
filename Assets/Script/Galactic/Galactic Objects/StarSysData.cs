@@ -30,6 +30,7 @@ public class StarSysData
     public List<GameObject> PowerUnits;
     public List<GameObject> ShieldGenerators;
     public List<GameObject> OrbitalBatteries;
+    public PowerPlantData PlantData;
 
     public string Description;
     private string v;

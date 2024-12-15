@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ab2c8afa7ab68a49be268be250bca74, type: 3}
+  m_Name: FactorySO_3_Factory
+  m_EditorClassIdentifier: 
+  CivInt: 3
+  TechLevel: 100
+  FacilitiesEnumType: 1
+  Name: Factory
+  StartStarDate: 0
+  BuildDuration: 3
+  PowerLoad: 1
+  FactorySprite: {fileID: 21300000, guid: 389fa6a31d496a04cb80c4e98b9f92b1, type: 3}
+  Description: Cardassian factories employ forced labor on a large sale. Though primative
+    by Federation standards the vast scale allows them to complete with more advanced
+    civilizations.

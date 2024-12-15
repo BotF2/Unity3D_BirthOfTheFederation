@@ -239,28 +239,8 @@ public class GalaxyMenuUIController : MonoBehaviour
 
             }
         }
-
-        //else
-        //{
-        //    StarSysManager.Instance.NewSystemUI();
-        //}
     }
-    //private void NewSystemUI()
-    //{
-    //    foreach (var sysController in StarSysManager.Instance.ManagersStarSysControllerList)
-    //    {
-    //        if (sysController.StarSysData.CurrentOwner == GameController.Instance.GameData.LocalPlayerCivEnum)
-    //        {
-    //            GameObject starSysUI = (GameObject)Instantiate(sysUIprefab, new Vector3(0, 0, 0),
-    //                Quaternion.identity);
-    //            StarSysManager.Instance.ManagersStarSysControllerList.Add(sysController);
-    //            sysController.StarSysUIController = starSysUI; // each system controller has its system UI
-    //            starSysUI.transform.SetParent(contentFolderParent.transform, false); // load Queue
 
-    //            UpdateSystemUI(sysController);
-    //        }
-    //    }
-    //}
     public void UpdateSystemUI(StarSysController sysController)
     {
         if (sysController.StarSysUIController != null)
@@ -277,9 +257,11 @@ public class GalaxyMenuUIController : MonoBehaviour
                         OneTmp.text = sysController.StarSysData.SysName;
                         break;
 
-                    //case "HeaderPowerUnitText (TMP)":
-                    // ToDo: can make it race specific here, not defaul "Plasma Reactor"
-                    //    break;
+                    case "HeaderPowerUnitText (TMP)":
+                        if (sysController.StarSysData.PowerStations.Count > 0)  
+                            OneTmp.text = sysController.StarSysData.PlantData.Name;
+                    //ToDo: can make it race specific here, not defaul "Plasma Reactor"
+                        break;
                     case "NumTotalUnits (TMP)":
                         OneTmp.text = (sysController.StarSysData.PowerStations.Count).ToString();
                         break;
@@ -291,10 +273,10 @@ public class GalaxyMenuUIController : MonoBehaviour
                     //case "HeaderFactoryText (TMP)":
                     //  ToDo: can make it race specific here, not defaul "Replication Plants"
                     //    break;
-                    case "NumPlantsRatioText (TMP)":
-                        // ToDo: This can be the number active over the total number of plants
-                        OneTmp.text = (sysController.StarSysData.Factories.Count).ToString();
-                        break;
+                    //case "NumPlantsRatioText (TMP)":
+                    //    // ToDo: This can be the number active over the total number of plants
+                    //    OneTmp.text = (sysController.StarSysData.Factories.Count).ToString();
+                    //    break;
                     case "Energy Into Factories Text (TMP)":
                         OneTmp.text = (sysController.StarSysData.PowerStations.Count).ToString() + "u";
                         // ToDo: work in tech levels
@@ -305,42 +287,42 @@ public class GalaxyMenuUIController : MonoBehaviour
                     //case "Shipyard Name Text (TMP)":
                     //    // default shipyard for everyone
                     //    break;
-                    case "NumYardsOnRatio (TMP)":
-                        // ToDo: This can be the number active over the total number of yards
-                        OneTmp.text = (sysController.StarSysData.Shipyards.Count).ToString();
-                        break;
-                    case "Energy Into Yards Text (TMP)":
-                        OneTmp.text = (sysController.StarSysData.Shipyards.Count).ToString() + "u";
-                        // ToDo: work in tech levels
-                        break;
+                    //case "NumYardsOnRatio (TMP)":
+                    //    // ToDo: This can be the number active over the total number of yards
+                    //    OneTmp.text = (sysController.StarSysData.Shipyards.Count).ToString();
+                    //    break;
+                    //case "Energy Into Yards Text (TMP)":
+                    //    OneTmp.text = (sysController.StarSysData.Shipyards.Count).ToString() + "u";
+                    //    // ToDo: work in tech levels
+                    //    break;
                     // ToDo: Yard's build Queue here
-                    case "NumShieldsRatioText (TMP)":
-                        // ToDo: This can be the number active over the total number of yards
-                        OneTmp.text = (sysController.StarSysData.ShieldGenerators.Count).ToString();
-                        break;
-                    case "Energy Into Shields Text (TMP)":
-                        OneTmp.text = (sysController.StarSysData.ShieldGenerators.Count).ToString() + "u";
-                        // ToDo: work in tech levels
-                        break;
-                    case "NumOBRatioText (TMP)":
-                        // ToDo: This can be the number active over the total number of OB
-                        OneTmp.text = (sysController.StarSysData.OrbitalBatteries.Count).ToString();
-                        break;
-                    case "Energy Into OB Text (TMP)":
-                        OneTmp.text = (sysController.StarSysData.OrbitalBatteries.Count).ToString() + "u";
-                        // ToDo: work in tech levels
-                        break;
-                    case "HeaderResearchText (TMP)":
-                        // ToDo: make it race specific
-                        break;
-                    case "NumResearchRatioText (TMP)":
-                        // ToDo: This can be the number active over the total number of centers
-                        OneTmp.text = (sysController.StarSysData.ResearchCenters.Count).ToString();
-                        break;
-                    case "Energy Into Research Text (TMP)":
-                        OneTmp.text = (sysController.StarSysData.ResearchCenters.Count).ToString() + "u";
-                        // ToDo: work in tech levels
-                        break;
+                    //case "NumShieldsRatioText (TMP)":
+                    //    // ToDo: This can be the number active over the total number of yards
+                    //    OneTmp.text = (sysController.StarSysData.ShieldGenerators.Count).ToString();
+                    //    break;
+                    //case "Energy Into Shields Text (TMP)":
+                    //    OneTmp.text = (sysController.StarSysData.ShieldGenerators.Count).ToString() + "u";
+                    //    // ToDo: work in tech levels
+                    //    break;
+                    //case "NumOBRatioText (TMP)":
+                    //    // ToDo: This can be the number active over the total number of OB
+                    //    OneTmp.text = (sysController.StarSysData.OrbitalBatteries.Count).ToString();
+                    //    break;
+                    //case "Energy Into OB Text (TMP)":
+                    //    OneTmp.text = (sysController.StarSysData.OrbitalBatteries.Count).ToString() + "u";
+                    //    // ToDo: work in tech levels
+                    //    break;
+                    //case "HeaderResearchText (TMP)":
+                    //    // ToDo: make it race specific
+                    //    break;
+                    //case "NumResearchRatioText (TMP)":
+                    //    // ToDo: This can be the number active over the total number of centers
+                    //    OneTmp.text = (sysController.StarSysData.ResearchCenters.Count).ToString();
+                    //    break;
+                    //case "Energy Into Research Text (TMP)":
+                    //    OneTmp.text = (sysController.StarSysData.ResearchCenters.Count).ToString() + "u";
+                    //    // ToDo: work in tech levels
+                    //    break;
                     default:
                         break;
                 }

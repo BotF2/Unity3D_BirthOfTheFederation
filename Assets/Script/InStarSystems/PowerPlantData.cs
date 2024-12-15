@@ -1,18 +1,25 @@
+using Assets.Core;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public class PowerPlantData : MonoBehaviour
+public class PowerPlantData // uses StarSysController and StarSysManager
 {
-    public int startStarDate;
-    public int buildDuration;
-    public int PowerOut;
-    //public Canvas Canvas;
+    public int CivInt;
+    public TechLevel TechLevel;
+    public StarSysFacilities FacilitiesEnumType;
+    public string Name;
+    public int StartStarDate; //start to build in factory queue
+    public int BuildDuration;// duration to build can be reduced by number and output of factories
+    public int PowerOutput;
+    public Sprite PowerPlantSprite;
+    public string Description;
+    private string v;
+    public GameObject SysGameObject;
 
-    //void Start()
-    //{
-    //    Canvas = GetComponentInChildren<Canvas>();
-    //    Canvas.enabled = false;
-    //}
+    public PowerPlantData(string v)
+    {
+        this.v = v;
+        this.Name = v;
+    }
 }

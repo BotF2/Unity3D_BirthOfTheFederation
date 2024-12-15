@@ -17,7 +17,9 @@ MonoBehaviour:
   FacilitiesEnumType: 0
   Name: Fusion Reactor
   StartStarDate: 0
-  BuildDuration: 4
-  PowerOut: 20
+  BuildDuration: 5
+  PowerOutput: 10
   PowerPlantSprite: {fileID: 21300000, guid: 08e726991db827c4aa0a75325f31244b, type: 3}
-  Description: Description
+  Description: Cardassian fusion reactors utilize the hydrogen isotopes Tritium.
+    Radioactive isotopes are bred from lithium in the reactor. Extreme temperatures
+    and pressure in a confinement chamber allows for efficient energy is extraction.

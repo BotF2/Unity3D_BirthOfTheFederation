@@ -16,7 +16,7 @@ public class PowerPlantSO: ScriptableObject
     public string Name;
     public int StartStarDate; //start to build in factory queue
     public int BuildDuration;// duration to build can be reduced by number and output of factories
-    public int PowerOut;
+    public int PowerOutput;
     public Sprite PowerPlantSprite;
     public string Description;
 }

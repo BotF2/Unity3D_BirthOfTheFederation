@@ -3,16 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using Assets.Core;
 
-public class OrbitalBatteryData : MonoBehaviour
+public class OrbitalBatteryData
 {
-    public int startStarDate;
-    public int buildDuration;
-    public int powerIn;
-    //public Canvas Canvas;
+    public int CivInt;
+    public TechLevel TechLevel;
+    public StarSysFacilities FacilitiesEnumType;
+    public string Name;
+    public int StartStarDate; //start to build in factory queue
+    public int BuildDuration;// duration to build can be reduced by number and output of factories
+    public int PowerLoad;
+    public Sprite OrbitalBatterySprite;
+    public string Description;
+    private string v;
+    public GameObject SysGameObject;
 
-    //private void Start()
-    //{
-    //    Canvas = GetComponent<Canvas>();
-    //    Canvas.enabled = false;
-    //}
+    public OrbitalBatteryData(string v)
+    {
+        this.v = v;
+        this.Name = v;
+    }
 }

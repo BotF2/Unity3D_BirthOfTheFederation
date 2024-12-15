@@ -11,16 +11,25 @@ namespace Assets.Core
     /// This is a type of galactic object that is a 'StarSystem' class (Manager/Controller/Data and can have a habitable 'planet') 
     /// with a real star or a nebula or a complex as in the Borg Unicomplex)
     /// Other galactic objects not described by StarSys (will have their own classes (ToDo: Managers/Controllers/Data) for stations (one class),
-    /// and blackholes/wormholes (one class.)
-    /// </summary> 
+    /// and blackholes/wormholes (one class.) 
     /// </summary>
     public class StarSysManager : MonoBehaviour
     {
         public static StarSysManager Instance;
         [SerializeField]
         private List<StarSysSO> starSysSOList; // get StarSysSO for civ by int
-        //[SerializeField]
-        //private List<StarSysFacilitySO> starSysFacilitySOList; // get StarSysFacilitySO for civ by int
+        [SerializeField]
+        private List<PowerPlantSO> powerPlantSOList; // get PowerPlantSO for civ by int
+        [SerializeField]
+        private List<FactorySO> factorySOList; // get factorySO for civ by int
+        [SerializeField]
+        private List<ShipyardSO> shipyardSOList; // get shipyardSO for civ by int
+        [SerializeField]
+        private List<ShieldGeneratorSO> shieldGeneratorSOList; // get shieldGeneratorSO for civ by int
+        [SerializeField]
+        private List<OrbitalBatterySO> orbitalBatterySOList; // get OrbitalBatterySO for civ by int
+        [SerializeField]
+        private List<ResearchCenterSO> researchCenterSOList; // get factorySO for civ by int
         [SerializeField]
         private GameObject sysPrefab;
         [SerializeField]
@@ -72,15 +81,7 @@ namespace Assets.Core
                 SysData.SystemType = starSysSO.StarType;
                 SysData.StarSprit = starSysSO.StarSprit;
                 SysData.Description = "description here";
-                // instantiate facilities game objects from prefabs 
-                SysData.PowerStations = GetSystemFacilities(starSysSO.PowerStations, PowerPlantPrefab, civSO.CivInt);
-                SysData.Factories = GetSystemFacilities(starSysSO.Factories, FactoryPrefab, civSO.CivInt);
-                SysData.ResearchCenters = GetSystemFacilities(starSysSO.ResearchCenters, ResearchCenterPrefab, civSO.CivInt);
-                SysData.Shipyards = GetSystemFacilities(starSysSO.Shipyards, ShipyardPrefab, civSO.CivInt);
-                SysData.ShieldGenerators = GetSystemFacilities(starSysSO.ShieldGenerators, ShieldGeneratorPrefab, civSO.CivInt);
-                SysData.OrbitalBatteries = GetSystemFacilities(starSysSO.OrbitalBatteries, OrbitalBatteryPrefab, civSO.CivInt);
-                //SysData.TechUnits = 0;
-                //starSysDatas.Add(SysData);
+
                 InstantiateSystem(SysData, civSO);
                 if (civSO.HasWarp)
                     FleetManager.Instance.FleetDataFromSO(civSO, SysData.GetPosition());
@@ -88,7 +89,6 @@ namespace Assets.Core
                     starSysDatas.Add(SysData);
             }
             starSysDatas.Remove(starSysDatas[0]); // pull out the null
-            //GameManager.Instance.GameData.LoadGalacticDestinations(starSysDatas);
         }
         public void InstantiateSystem(StarSysData sysData, CivSO civSO)
         {
@@ -103,15 +103,13 @@ namespace Assets.Core
             {
                 GameObject starSystemNewGameOb = (GameObject)Instantiate(sysPrefab, new Vector3(0, 0, 0),
                      Quaternion.identity);
-                //GameObject starSysUI = (GameObject)Instantiate(sysUIPrefab, new Vector3(0, 0, 0),
-                //     Quaternion.identity);
-                //starSysUI.transform.SetParent(starSystemNewGameOb.transform, false);
+
                 starSystemNewGameOb.layer = 4; // water layer (also used by fog of war for obsticles with shows to line of sight
                 starSystemNewGameOb.transform.Translate(new Vector3(sysData.GetPosition().x,
                     sysData.GetPosition().y, sysData.GetPosition().z));
                 starSystemNewGameOb.transform.SetParent(galaxyCenter.transform, true);
                 starSystemNewGameOb.transform.localScale = new Vector3(1, 1, 1);
-                SetParentForFacilities(starSystemNewGameOb, sysData);
+
                 Transform fogObsticleTransform = starSystemNewGameOb.transform.Find("FogObstacle");
                 fogObsticleTransform.SetParent(galaxyCenter.transform, false);
                 fogObsticleTransform.Translate(new Vector3(sysData.GetPosition().x, -55f, sysData.GetPosition().z));
@@ -144,7 +142,6 @@ namespace Assets.Core
                         if (oneRenderer.name == "OwnerInsignia")
                         {
                             oneRenderer.sprite = civSO.Insignia;
-                            //oneRenderer.sprite.GetComponent<MeshFilter>().sharedMesh.RecalculateBounds();
                         } // ToDo: random map with random sprites on nebula, wormholes
                         else if (oneRenderer.name == "StarSprite")
                             oneRenderer.sprite = sysData.StarSprit;
@@ -180,10 +177,18 @@ namespace Assets.Core
                     csFogWar.Instance.RunFogOfWar(); // star systems are in place so time to scan for the fog
 
                 }
-                //if (starSysController.StarSysData.CurrentOwner == GameController.Instance.GameData.LocalPlayerCivEnum)
-                //{
-                //    GalaxyMenuUIController.Instance.SendToGalaxySysUI(starSysController);
-                //}
+                if (civSO.CivInt < 7) // only for playable major civs
+                {
+                    StarSysSO starSysSO = GetStarSObyInt(civSO.CivInt);
+                    sysData.PowerStations = GetSystemFacilities(starSysSO.PowerStations, PowerPlantPrefab, civSO.CivInt, sysData);
+                    //sysData.Factories = GetSystemFacilities(starSysSO.Factories, FactoryPrefab, civSO.CivInt);
+                    //sysData.ResearchCenters = GetSystemFacilities(starSysSO.ResearchCenters, ResearchCenterPrefab, civSO.CivInt);
+                    //sysData.Shipyards = GetSystemFacilities(starSysSO.Shipyards, ShipyardPrefab, civSO.CivInt);
+                    //sysData.ShieldGenerators = GetSystemFacilities(starSysSO.ShieldGenerators, ShieldGeneratorPrefab, civSO.CivInt);
+                    //sysData.OrbitalBatteries = GetSystemFacilities(starSysSO.OrbitalBatteries, OrbitalBatteryPrefab, civSO.CivInt);
+                    SetParentForFacilities(starSystemNewGameOb, sysData);
+                }
+
                 //***** This is temporary so we can test a multi-starsystem civ
                 //******* before diplomacy will alow civs/systems to join another civ
                 //if (systemCount == 8)
@@ -198,48 +203,214 @@ namespace Assets.Core
             {
                 go.transform.SetParent(parent.transform, false);
             }
-            foreach (var go in starSysData.Factories)
-            {
-                go.transform.SetParent(parent.transform, false);
-            }
-            foreach (var go in starSysData.OrbitalBatteries)
-            {
-                go.transform.SetParent(parent.transform, false);
-            }
-            foreach (var go in starSysData.ResearchCenters)
-            {
-                go.transform.SetParent(parent.transform, false);
-            }
-            foreach (var go in starSysData.Shipyards)
-            {
-                go.transform.SetParent(parent.transform, false);
-            }
-            foreach (var go in starSysData.ShieldGenerators)
-            {
-                go.transform.SetParent(parent.transform, false);
-            }
-            foreach (var go in starSysData.OrbitalBatteries)
-            {
-                go.transform.SetParent(parent.transform, false);
-            }
+            //foreach (var go in starSysData.Factories)
+            //{
+            //    go.transform.SetParent(parent.transform, false);
+            //}
+            //foreach (var go in starSysData.Shipyards)
+            //{
+            //    go.transform.SetParent(parent.transform, false);
+            //}
+            //foreach (var go in starSysData.ShieldGenerators)
+            //{
+            //    go.transform.SetParent(parent.transform, false);
+            //}
+            //foreach (var go in starSysData.OrbitalBatteries)
+            //{
+            //    go.transform.SetParent(parent.transform, false);
+            //}
+            //foreach (var go in starSysData.ResearchCenters)
+            //{
+            //    go.transform.SetParent(parent.transform, false);
+            //}
         }
-        private List<GameObject> GetSystemFacilities(int numOf, GameObject prefab, int civInt)
+        private List<GameObject> GetSystemFacilities(int numOf, GameObject prefab, int civInt, StarSysData sysData)
         {
             List<GameObject> list = new List<GameObject>();
-            for (int i = 0; i < numOf; i++)
+            switch (prefab.name)
             {
-                GameObject newFacilityGO = (GameObject)Instantiate(prefab, new Vector3(0, 0, 0),
-                    Quaternion.identity);
-                GetFacilityDataFromSO(newFacilityGO, civInt);
-                list.Add(newFacilityGO);
+                case "PowerPlantData":
+                    {
+                        PowerPlantData powerPlantData = new PowerPlantData("null");
+                        var powerPlantSO = GetPowrPlantSObyCivInt(civInt);
+                        powerPlantData.CivInt = powerPlantSO.CivInt;
+                        powerPlantData.TechLevel = powerPlantSO.TechLevel;
+                        powerPlantData.FacilitiesEnumType = powerPlantSO.FacilitiesEnumType;
+                        powerPlantData.Name = powerPlantSO.Name;                       
+                        powerPlantData.StartStarDate = powerPlantSO.StartStarDate;
+                        powerPlantData.BuildDuration = powerPlantSO.BuildDuration;
+                        powerPlantData.PowerPlantSprite = powerPlantSO.PowerPlantSprite;
+                        powerPlantData.Description = powerPlantSO.Description;
+                        sysData.PlantData = powerPlantData;
+                        
+                        List<PowerPlantData> powerPlantDatas = new List<PowerPlantData>();
+                        for (int i = 0; i < numOf; i++)
+                        {
+                            powerPlantDatas.Add(powerPlantData);
+                            GameObject newFacilityGO = (GameObject)Instantiate(prefab, new Vector3(0, 0, 0),
+                                Quaternion.identity);
+                            GetPowerPlantText(newFacilityGO, powerPlantData);
+                            newFacilityGO.SetActive(true);
+                            
+                            powerPlantData.SysGameObject = newFacilityGO;
+                            list.Add(newFacilityGO);
+                        }                        
+                        break;
+                    }
+                case "FactoryData":
+                    {
+                        //FactoryData factoryData = new FactoryData("null");
+                        //var factorySO = GetFactorySObyCivInt(civInt);
+                        //factoryData.CivInt = factorySO.CivInt;
+                        //factoryData.TechLevel = factorySO.TechLevel;
+                        //factoryData.FacilitiesEnumType = factorySO.FacilitiesEnumType;
+                        //factoryData.Name = factorySO.Name;
+                        //factoryData.StartStarDate = factorySO.StartStarDate;
+                        //factoryData.BuildDuration = factorySO.BuildDuration;
+                        //factoryData.PowerPlantSprite = factorySO.FactorySprite;
+                        //factoryData.Description = factorySO.Description;
+                        //List<FactoryData> pDatas = new List<FactoryData>();
+                        //for (int i = 0; i < numOf; i++)
+                        //    pDatas.Add(factoryData);
+                        //for (int i = 0; i < pDatas.Count; i++)
+                        //{
+                        //    GameObject newFacilityGO = (GameObject)Instantiate(prefab, new Vector3(0, 0, 0),
+                        //        Quaternion.identity);
+                        //    factoryData.SysGameObject = newFacilityGO;
+                        //    list.Add(newFacilityGO);
+                        //}
+                        break;
+                    }
+                case "ShipyardData":
+                    {
+                        //ShipyardData sData = new ShipyardData("null");
+                        //var sSO = GetShipyardSObyCivInt(civInt);
+                        //sData.CivInt = sSO.CivInt;
+                        //sData.TechLevel = sSO.TechLevel;
+                        //sData.FacilitiesEnumType = sSO.FacilitiesEnumType;
+                        //sData.Name = sSO.Name;
+                        //sData.StartStarDate = sSO.StartStarDate;
+                        //sData.BuildDuration = sSO.BuildDuration;
+                        //sData.ShipyardSprite = sSO.ShipyardSprite;
+                        //sData.Description = sSO.Description;
+                        //List<ShipyardData> pDatas = new List<ShipyardData>();
+                        //for (int i = 0; i < numOf; i++)
+                        //    pDatas.Add(sData);
+                        //for (int i = 0; i < pDatas.Count; i++)
+                        //{
+                        //    GameObject newFacilityGO = (GameObject)Instantiate(prefab, new Vector3(0, 0, 0),
+                        //        Quaternion.identity);
+                        //    sData.SysGameObject = newFacilityGO;
+                        //    list.Add(newFacilityGO);
+                        //}
+                        break;
+                    }
+                case "ShieldGeneratorData":
+                    {
+                        //ShieldGeneratorData sData = new ShieldGeneratorData("null");
+                        //var sSO = GetShieldGeneratorSObyCivInt(civInt);
+                        //sData.CivInt = sSO.CivInt;
+                        //sData.TechLevel = sSO.TechLevel;
+                        //sData.FacilitiesEnumType = sSO.FacilitiesEnumType;
+                        //sData.Name = sSO.Name;
+                        //sData.StartStarDate = sSO.StartStarDate;
+                        //sData.BuildDuration = sSO.BuildDuration;
+                        //sData.ShieldGeneratorSprite = sSO.ShieldGeneratorSprite;
+                        //sData.Description = sSO.Description;
+                        //List<ShieldGeneratorData> pDatas = new List<ShieldGeneratorData>();
+                        //for (int i = 0; i < numOf; i++)
+                        //    pDatas.Add(sData);
+                        //for (int i = 0; i < pDatas.Count; i++)
+                        //{
+                        //    GameObject newFacilityGO = (GameObject)Instantiate(prefab, new Vector3(0, 0, 0),
+                        //        Quaternion.identity);
+                        //    sData.SysGameObject = newFacilityGO;
+                        //    list.Add(newFacilityGO);
+                        //}
+                        break;
+                    }
+                case "OrbitalBatteryData":
+                    {
+                    //    OrbitalBatteryData sData = new OrbitalBatteryData("null");
+                    //    var sSO = GetOrbitalBatterySObyCivInt(civInt);
+                    //    sData.CivInt = sSO.CivInt;
+                    //    sData.TechLevel = sSO.TechLevel;
+                    //    sData.FacilitiesEnumType = sSO.FacilitiesEnumType;
+                    //    sData.Name = sSO.Name;
+                    //    sData.StartStarDate = sSO.StartStarDate;
+                    //    sData.BuildDuration = sSO.BuildDuration;
+                    //    sData.OrbitalBatterySprite = sSO.OrbitalBatterySprite;
+                    //    sData.Description = sSO.Description;
+                    //    List<OrbitalBatteryData> pDatas = new List<OrbitalBatteryData>();
+                    //    for (int i = 0; i < numOf; i++)
+                    //        pDatas.Add(sData);
+                    //    for (int i = 0; i < pDatas.Count; i++)
+                    //    {
+                    //        GameObject newFacilityGO = (GameObject)Instantiate(prefab, new Vector3(0, 0, 0),
+                    //            Quaternion.identity);
+                    //        sData.SysGameObject = newFacilityGO;
+                    //        list.Add(newFacilityGO);
+                    //    }
+                        break;
+                    }
+                case "ResearchCenterData":
+                    {
+                        //ResearchCenterData sData = new ResearchCenterData("null");
+                        //var sSO = GetResearchCenterSObyCivInt(civInt);
+                        //sData.CivInt = sSO.CivInt;
+                        //sData.TechLevel = sSO.TechLevel;
+                        //sData.FacilitiesEnumType = sSO.FacilitiesEnumType;
+                        //sData.Name = sSO.Name;
+                        //sData.StartStarDate = sSO.StartStarDate;
+                        //sData.BuildDuration = sSO.BuildDuration;
+                        //sData.ResearchCenterSprite = sSO.ResearchCenterSprite;
+                        //sData.Description = sSO.Description;
+                        //List<ResearchCenterData> pDatas = new List<ResearchCenterData>();
+                        //for (int i = 0; i < numOf; i++)
+                        //    pDatas.Add(sData);
+                        //for (int i = 0; i < pDatas.Count; i++)
+                        //{
+                        //    GameObject newFacilityGO = (GameObject)Instantiate(prefab, new Vector3(0, 0, 0),
+                        //        Quaternion.identity);
+                        //    sData.SysGameObject = newFacilityGO;
+                        //    list.Add(newFacilityGO);
+                        //}
+                        break;
+                    }
+                default:
+                    break;
             }
+
             return list;
         }
+
         private void GetFacilityDataFromSO(GameObject facilityGO, int civInt)
         {
+            PowerPlantData powerPlantData = new PowerPlantData("null");
+            List<PowerPlantData> powerPlantDatas = new List<PowerPlantData>();
+            powerPlantDatas.Add(powerPlantData);
+            foreach (var civSO in powerPlantDatas)
+            {
 
+            }
         }
-        public StarSysSO GetStarSObyInt(int sysInt)
+        private void GetPowerPlantText(GameObject go, PowerPlantData plantData)
+        {
+
+            TextMeshProUGUI[] TheText = go.GetComponentsInChildren<TextMeshProUGUI>();
+            foreach (var OneTmp in TheText)
+            {
+                OneTmp.enabled = true;
+                if (OneTmp != null && OneTmp.name == "NameText (TMP)")
+                {
+                    OneTmp.text = plantData.Name;
+                }
+                //else if (OneTmp != null && OneTmp.name == "SysDescription (TMP)")
+                //    OneTmp.text = plantData.Description;
+
+            }
+        }
+        private StarSysSO GetStarSObyInt(int sysInt)
         {
             StarSysSO result = null;
 
@@ -253,6 +424,90 @@ namespace Assets.Core
             }
             return result;
 
+        }
+        private PowerPlantSO GetPowrPlantSObyCivInt(int  civInt)
+        {
+            PowerPlantSO result = null;
+
+            foreach (var sO in powerPlantSOList)
+            {
+                if (sO.CivInt == civInt)
+                {
+                    result = sO;
+                    break;
+                }
+            }
+            return result;
+        }
+        private FactorySO GetFactorySObyCivInt(int civInt)
+        {
+            FactorySO result = null;
+
+            foreach (var sO in factorySOList)
+            {
+                if (sO.CivInt == civInt)
+                {
+                    result = sO;
+                    break;
+                }
+            }
+            return result;
+        }
+        private ShipyardSO GetShipyardSObyCivInt(int civInt)
+        {
+            ShipyardSO result = null;
+
+            foreach (var sO in shipyardSOList)
+            {
+                if (sO.CivInt == civInt)
+                {
+                    result = sO;
+                    break;
+                }
+            }
+            return result;
+        }
+        private ShieldGeneratorSO GetShieldGeneratorSObyCivInt(int civInt)
+        {
+            ShieldGeneratorSO result = null;
+
+            foreach (var sO in shieldGeneratorSOList)
+            {
+                if (sO.CivInt == civInt)
+                {
+                    result = sO;
+                    break;
+                }
+            }
+            return result;
+        }
+        private OrbitalBatterySO GetOrbitalBatterySObyCivInt(int civInt)
+        {
+            OrbitalBatterySO result = null;
+
+            foreach (var sO in orbitalBatterySOList)
+            {
+                if (sO.CivInt == civInt)
+                {
+                    result = sO;
+                    break;
+                }
+            }
+            return result;
+        }
+        private ResearchCenterSO GetResearchCenterSObyCivInt(int civInt)
+        {
+            ResearchCenterSO result = null;
+
+            foreach (var sO in researchCenterSOList)
+            {
+                if (sO.CivInt == civInt)
+                {
+                    result = sO;
+                    break;
+                }
+            }
+            return result;
         }
         public StarSysData GetStarSysDataByName(string name)
         {
@@ -307,6 +562,7 @@ namespace Assets.Core
                 }
             //}
         }
+
     }
     
 }

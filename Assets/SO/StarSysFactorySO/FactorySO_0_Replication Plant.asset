@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ab2c8afa7ab68a49be268be250bca74, type: 3}
+  m_Name: FactorySO_0_Replication Plant
+  m_EditorClassIdentifier: 
+  CivInt: 0
+  TechLevel: 100
+  FacilitiesEnumType: 1
+  Name: Replication Plant
+  StartStarDate: 0
+  BuildDuration: 6
+  PowerLoad: 2
+  FactorySprite: {fileID: 21300000, guid: e230a3cfce8d7494dbee8b3425232ef1, type: 3}
+  Description: The replicator is a technological marvel that embodies the principles
+    of molecular synthesis and matter-energy conversion. By converting raw material
+    or energy into virtually any object or substance, it has transformed life in
+    the Federation, enabling sustainable living, deep-space exploration, and cultural
+    evolution.

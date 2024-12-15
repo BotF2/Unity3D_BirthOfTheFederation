@@ -8,27 +8,27 @@ public class PowerPlantSOImporter : EditorWindow
 {
 #if UNITY_EDITOR
 
-    [MenuItem("Tools/Import PowerPlantSO CSV")]
+    [MenuItem("Tools/Import PowerPlantSO TSV")]
     public static void ShowWindow()
     {
-        GetWindow<PowerPlantSOImporter>("PowerPlantSO CSV Importer");
+        GetWindow<PowerPlantSOImporter>("PowerPlantSO TSV Importer");
     }
 
-    private string filePath = $"Assets/Resources/Data/StarSysPowerPlant.csv";
+    private string filePath = $"Assets/Resources/Data/StarSysPowerPlant.tsv";
 
     void OnGUI()
     {
-        GUILayout.Label("PowerPlantSO CSV Importer", EditorStyles.boldLabel);
-        filePath = EditorGUILayout.TextField("CSV File Path", filePath);
+        GUILayout.Label("PowerPlantSO TSV Importer", EditorStyles.boldLabel);
+        filePath = EditorGUILayout.TextField("TSV File Path", filePath);
 
-        if (GUILayout.Button("Import PowerPlantSO CSV"))
+        if (GUILayout.Button("Import PowerPlantSO TSV"))
         {
             //Output the Game data path to the console
             Debug.Log("dataPath : " + Application.dataPath);
-            ImportStarSysCSV(filePath);
+            ImportStarSysTSV(filePath);
         }
     }
-    private static void ImportStarSysCSV(string filePath)
+    private static void ImportStarSysTSV(string filePath)
     {
         if (!File.Exists(filePath))
         {
@@ -37,10 +37,10 @@ public class PowerPlantSOImporter : EditorWindow
         }
 
         string[] lines = File.ReadAllLines(filePath);
-
+        //MessageBox.Show("xy is imported separeted with TABs", "INFO", MessageBoxButton.OK);
         foreach (string line in lines)
         {
-            string[] fields = line.Split(',');
+            string[] fields = line.Split("\t");
 
             if (fields.Length > 7) // Ensure there are enough fields
             {
@@ -64,7 +64,7 @@ public class PowerPlantSOImporter : EditorWindow
                     powerPlantSO.Name = (fields[3]);
                     powerPlantSO.StartStarDate = int.Parse(fields[5]);
                     powerPlantSO.BuildDuration = int.Parse(fields[6]);
-                    powerPlantSO.PowerOut = int.Parse(fields[7]);
+                    powerPlantSO.PowerOutput = int.Parse(fields[7]);
                     powerPlantSO.PowerPlantSprite = Resources.Load<Sprite>(imageString);
                     powerPlantSO.Description = (fields[8]);
                     string assetPath = $"Assets/SO/StarSysPowerPlantSO/PowerPlantSO_{powerPlantSO.CivInt}_{powerPlantSO.Name}.asset";
@@ -72,7 +72,7 @@ public class PowerPlantSOImporter : EditorWindow
                     AssetDatabase.SaveAssets();
                 }
             }
-            Debug.Log("CivSOImporter Import Complete");
+            Debug.Log("PowerPlantSOImporter Import Complete");
         }
     }
 

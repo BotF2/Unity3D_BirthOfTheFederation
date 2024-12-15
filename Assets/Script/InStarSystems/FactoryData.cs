@@ -1,22 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Assets.Core;
 
 /// <summary>
 /// This is a type of star system asset/object that can be built in the factory queue.
 /// </summary>
-public class FactoryData : MonoBehaviour
+public class FactoryData // uses StarSysController and StarSysManager
 {
-    private int startStarDate;
-    private int buildDuration;
-    private int powerIn;
-    private int productionUnits;
-    //public Canvas Canvas;
-    
-    //private void Start()
-    //{
-    //    Canvas = GetComponent<Canvas>();
-    //    Canvas.enabled = false;      
-    //}
-
+    public int CivInt;
+    public TechLevel TechLevel;
+    public StarSysFacilities FacilitiesEnumType; // what type are we
+    public string Name;
+    public int StartStarDate; //start to build this factory in an existing factory queue
+    public int BuildDuration;// duration to build can be reduced by number and output of factories
+    public int PowerLoad;
+    public Sprite PowerPlantSprite;
+    public string Description;
+    private string v;
+    public GameObject SysGameObject;
+    public FactoryData(string v)
+    {
+        this.v = v;
+        this.Name = v;
+    }
 }
