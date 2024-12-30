@@ -22,7 +22,7 @@ namespace Assets.Core
         {
             Galaxy galaxy = new Galaxy();
             theGalaxy = this;
-            // GameManager.Instance.Galaxy = galaxy;
+            // GameManager.current.Galaxy = galaxy;
 
             // For now, we set a SEED for the random number generator, so that it
             // starts from the same Galaxy every time, see planet.cs random is now not so random

@@ -57,7 +57,7 @@ public class ShieldGeneratorSOImporter : EditorWindow
                 if (fields.Length >= 7) // Ensure there are enough fields
                 {
                     ShieldGeneratorSO ShieldGeneratorSO = CreateInstance<ShieldGeneratorSO>();
-                    ////StarSysInt	,	ShieldGeneratorSO Enum	,	ShieldGeneratorSO Short Name	,	ShieldGeneratorSO Long Name	,	Home System	,	Triat One	,	Trait Two	,	ShieldGeneratorSO Image	,	Insginia	,	Population	,	Credits	,	TechLevel Points
+                    ////StarSysInt	,	ShieldGeneratorSO Enum	,	ShieldGeneratorSO Short TextComponent	,	ShieldGeneratorSO Long TextComponent	,	Home System	,	Triat One	,	Trait Two	,	ShieldGeneratorSO Image	,	Insginia	,	Population	,	Credits	,	TechLevel Points
                     ShieldGeneratorSO.CivInt = int.Parse(fields[0]);
                     ShieldGeneratorSO.TechLevel = (TechLevel)int.Parse(fields[1]);
                     ShieldGeneratorSO.FacilitiesEnumType = (StarSysFacilities)int.Parse(fields[2]);

@@ -81,9 +81,9 @@ namespace Assets.Core
             //            civCon.CivData.Decription = "temp civCon member of Federation";
             //        }
             //    }
-            //    StarSysManager.Instance.UpdateStarSystemOwner(CivEnum.ANDORIANS, CivEnum.FED);
-            //    StarSysManager.Instance.UpdateStarSystemOwner(CivEnum.VULCANS, CivEnum.FED);
-            //    StarSysManager.Instance.UpdateStarSystemOwner(CivEnum.TELLARITES, CivEnum.FED);
+            //    StarSysManager.current.UpdateStarSystemOwner(CivEnum.ANDORIANS, CivEnum.FED);
+            //    StarSysManager.current.UpdateStarSystemOwner(CivEnum.VULCANS, CivEnum.FED);
+            //    StarSysManager.current.UpdateStarSystemOwner(CivEnum.TELLARITES, CivEnum.FED);
             //}
             //nowCivsCanJoinTheFederation = false;
             #endregion

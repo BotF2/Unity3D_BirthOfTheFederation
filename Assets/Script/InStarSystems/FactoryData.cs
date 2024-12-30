@@ -17,6 +17,7 @@ public class FactoryData // uses StarSysController and StarSysManager
     public int PowerLoad;
     public Sprite PowerPlantSprite;
     public string Description;
+    public int On; // 0 = off, 1 = on
     private string v;
     public GameObject SysGameObject;
     public FactoryData(string v)

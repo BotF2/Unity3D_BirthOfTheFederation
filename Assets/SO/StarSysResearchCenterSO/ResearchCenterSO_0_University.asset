@@ -18,7 +18,7 @@ MonoBehaviour:
   Name: University
   StartStarDate: 0
   BuildDuration: 4
-  PowerLoad: 2
+  PowerLoad: 1
   ResearchCenterSprite: {fileID: 21300000, guid: 759a55d754272734bafc82b2c6789b40, type: 3}
   Description: Standard Federation shields come with adaptive modulation and versatility
     against various threats.

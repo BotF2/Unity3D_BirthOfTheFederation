@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
+using System.Diagnostics;
+using Unity.VisualScripting;
 
 namespace Assets.Core
 {
@@ -101,6 +103,7 @@ namespace Assets.Core
             }
             else
             {
+                //Debugger.Break();
                 GameObject starSystemNewGameOb = (GameObject)Instantiate(sysPrefab, new Vector3(0, 0, 0),
                      Quaternion.identity);
 
@@ -109,7 +112,7 @@ namespace Assets.Core
                     sysData.GetPosition().y, sysData.GetPosition().z));
                 starSystemNewGameOb.transform.SetParent(galaxyCenter.transform, true);
                 starSystemNewGameOb.transform.localScale = new Vector3(1, 1, 1);
-
+                StarSysController starSysController = starSystemNewGameOb.GetComponentInChildren<StarSysController>();
                 Transform fogObsticleTransform = starSystemNewGameOb.transform.Find("FogObstacle");
                 fogObsticleTransform.SetParent(galaxyCenter.transform, false);
                 fogObsticleTransform.Translate(new Vector3(sysData.GetPosition().x, -55f, sysData.GetPosition().z));
@@ -120,15 +123,19 @@ namespace Assets.Core
                 TextMeshProUGUI[] TheText = starSystemNewGameOb.GetComponentsInChildren<TextMeshProUGUI>();
                 foreach (var OneTmp in TheText)
                 {
+                    //Debugger.Break();
                     OneTmp.enabled = true;
-                    if (OneTmp != null && OneTmp.name == "SysName (TMP)")
+                    if (OneTmp != null && OneTmp.name == "SysName")
                     {
-                        if (!GameController.Instance.AreWeLocalPlayer(sysData.CurrentOwner)) // != CivManager.Instance.LocalPlayerCivEnum)
+                        if (!GameController.Instance.AreWeLocalPlayer(sysData.CurrentOwner)) // != CivManager.current.LocalPlayerCivEnum)
                         {
                             OneTmp.text = "UNKNOWN";
                         }
                         else
+                        {
                             OneTmp.text = sysData.GetSysName();
+                           //var sysThingy = sysData
+                        }
                     }
                     else if (OneTmp != null && OneTmp.name == "SysDescription (TMP)")
                         OneTmp.text = sysData.Description;
@@ -156,8 +163,9 @@ namespace Assets.Core
                     galaxyImage.transform.position.y, starSystemNewGameOb.transform.position.z);
                 Vector3[] points = { starSystemNewGameOb.transform.position, galaxyPlanePoint };
                 ourDropLine.SetUpLine(points);
-                StarSysController starSysController = starSystemNewGameOb.GetComponentInChildren<StarSysController>();
+                //StarSysController starSysController = starSystemNewGameOb.GetComponentInChildren<StarSysController>();
                 starSysController.name = sysData.GetSysName();
+                //starSysController.StarSysUIController.Sys
                 starSysController.StarSysData = sysData;
                 starSysController.canvasYourStarSysUI = yourStarSysUICanvas;
                 foreach (var civCon in CivManager.Instance.CivControllersInGame)
@@ -177,15 +185,15 @@ namespace Assets.Core
                     csFogWar.Instance.RunFogOfWar(); // star systems are in place so time to scan for the fog
 
                 }
-                if (civSO.CivInt < 7) // only for playable major civs
+                if (civSO.CivInt < 7) 
                 {
                     StarSysSO starSysSO = GetStarSObyInt(civSO.CivInt);
                     sysData.PowerStations = GetSystemFacilities(starSysSO.PowerStations, PowerPlantPrefab, civSO.CivInt, sysData);
-                    //sysData.Factories = GetSystemFacilities(starSysSO.Factories, FactoryPrefab, civSO.CivInt);
-                    //sysData.ResearchCenters = GetSystemFacilities(starSysSO.ResearchCenters, ResearchCenterPrefab, civSO.CivInt);
-                    //sysData.Shipyards = GetSystemFacilities(starSysSO.Shipyards, ShipyardPrefab, civSO.CivInt);
-                    //sysData.ShieldGenerators = GetSystemFacilities(starSysSO.ShieldGenerators, ShieldGeneratorPrefab, civSO.CivInt);
-                    //sysData.OrbitalBatteries = GetSystemFacilities(starSysSO.OrbitalBatteries, OrbitalBatteryPrefab, civSO.CivInt);
+                    sysData.Factories = GetSystemFacilities(starSysSO.Factories, FactoryPrefab, civSO.CivInt, sysData);
+                    sysData.Shipyards = GetSystemFacilities(starSysSO.Shipyards, ShipyardPrefab, civSO.CivInt, sysData);
+                    sysData.ShieldGenerators = GetSystemFacilities(starSysSO.ShieldGenerators, ShieldGeneratorPrefab, civSO.CivInt, sysData);
+                    sysData.OrbitalBatteries = GetSystemFacilities(starSysSO.OrbitalBatteries, OrbitalBatteryPrefab, civSO.CivInt, sysData);
+                    sysData.ResearchCenters = GetSystemFacilities(starSysSO.ResearchCenters, ResearchCenterPrefab, civSO.CivInt, sysData);
                     SetParentForFacilities(starSystemNewGameOb, sysData);
                 }
 
@@ -193,7 +201,7 @@ namespace Assets.Core
                 //******* before diplomacy will alow civs/systems to join another civ
                 //if (systemCount == 8)
                 //{
-                //    CivManager.Instance.nowCivsCanJoinTheFederation = true;
+                //    CivManager.current.nowCivsCanJoinTheFederation = true;
                 //}
             }
         }
@@ -203,32 +211,34 @@ namespace Assets.Core
             {
                 go.transform.SetParent(parent.transform, false);
             }
-            //foreach (var go in starSysData.Factories)
-            //{
-            //    go.transform.SetParent(parent.transform, false);
-            //}
-            //foreach (var go in starSysData.Shipyards)
-            //{
-            //    go.transform.SetParent(parent.transform, false);
-            //}
-            //foreach (var go in starSysData.ShieldGenerators)
-            //{
-            //    go.transform.SetParent(parent.transform, false);
-            //}
-            //foreach (var go in starSysData.OrbitalBatteries)
-            //{
-            //    go.transform.SetParent(parent.transform, false);
-            //}
-            //foreach (var go in starSysData.ResearchCenters)
-            //{
-            //    go.transform.SetParent(parent.transform, false);
-            //}
+            foreach (var go in starSysData.Factories)
+            {
+                go.transform.SetParent(parent.transform, false);
+            }
+            foreach (var go in starSysData.Shipyards)
+            {
+                go.transform.SetParent(parent.transform, false);
+            }
+            foreach (var go in starSysData.ShieldGenerators)
+            {
+                go.transform.SetParent(parent.transform, false);
+            }
+            foreach (var go in starSysData.OrbitalBatteries)
+            {
+                go.transform.SetParent(parent.transform, false);
+            }
+            foreach (var go in starSysData.ResearchCenters)
+            {
+                go.transform.SetParent(parent.transform, false);
+            }
         }
+
         private List<GameObject> GetSystemFacilities(int numOf, GameObject prefab, int civInt, StarSysData sysData)
         {
             List<GameObject> list = new List<GameObject>();
             switch (prefab.name)
             {
+                // "SysName" in each system ribbon is set in GalaxyMenuUIController without a facility game object needed
                 case "PowerPlantData":
                     {
                         PowerPlantData powerPlantData = new PowerPlantData("null");
@@ -239,9 +249,10 @@ namespace Assets.Core
                         powerPlantData.Name = powerPlantSO.Name;                       
                         powerPlantData.StartStarDate = powerPlantSO.StartStarDate;
                         powerPlantData.BuildDuration = powerPlantSO.BuildDuration;
+                        powerPlantData.PowerOutput = powerPlantSO.PowerOutput;  
                         powerPlantData.PowerPlantSprite = powerPlantSO.PowerPlantSprite;
                         powerPlantData.Description = powerPlantSO.Description;
-                        sysData.PlantData = powerPlantData;
+                        sysData.PowerPlantData = powerPlantData;
                         
                         List<PowerPlantData> powerPlantDatas = new List<PowerPlantData>();
                         for (int i = 0; i < numOf; i++)
@@ -249,8 +260,9 @@ namespace Assets.Core
                             powerPlantDatas.Add(powerPlantData);
                             GameObject newFacilityGO = (GameObject)Instantiate(prefab, new Vector3(0, 0, 0),
                                 Quaternion.identity);
-                            GetPowerPlantText(newFacilityGO, powerPlantData);
-                            newFacilityGO.SetActive(true);
+                            newFacilityGO.layer = 5;
+                            GetPowerPlantText(newFacilityGO, powerPlantData, numOf);
+                            newFacilityGO.SetActive(false);
                             
                             powerPlantData.SysGameObject = newFacilityGO;
                             list.Add(newFacilityGO);
@@ -259,122 +271,163 @@ namespace Assets.Core
                     }
                 case "FactoryData":
                     {
-                        //FactoryData factoryData = new FactoryData("null");
-                        //var factorySO = GetFactorySObyCivInt(civInt);
-                        //factoryData.CivInt = factorySO.CivInt;
-                        //factoryData.TechLevel = factorySO.TechLevel;
-                        //factoryData.FacilitiesEnumType = factorySO.FacilitiesEnumType;
-                        //factoryData.Name = factorySO.Name;
-                        //factoryData.StartStarDate = factorySO.StartStarDate;
-                        //factoryData.BuildDuration = factorySO.BuildDuration;
-                        //factoryData.PowerPlantSprite = factorySO.FactorySprite;
-                        //factoryData.Description = factorySO.Description;
-                        //List<FactoryData> pDatas = new List<FactoryData>();
-                        //for (int i = 0; i < numOf; i++)
-                        //    pDatas.Add(factoryData);
-                        //for (int i = 0; i < pDatas.Count; i++)
-                        //{
-                        //    GameObject newFacilityGO = (GameObject)Instantiate(prefab, new Vector3(0, 0, 0),
-                        //        Quaternion.identity);
-                        //    factoryData.SysGameObject = newFacilityGO;
-                        //    list.Add(newFacilityGO);
-                        //}
+                        //Debugger.Break();
+                        FactoryData factoryData = new FactoryData("null");
+                        var factorySO = GetFactorySObyCivInt(civInt);
+                        factoryData.CivInt = factorySO.CivInt;
+                        factoryData.TechLevel = factorySO.TechLevel;
+                        factoryData.FacilitiesEnumType = factorySO.FacilitiesEnumType;
+                        factoryData.Name = factorySO.Name;
+                        factoryData.StartStarDate = factorySO.StartStarDate;
+                        factoryData.PowerLoad = factorySO.PowerLoad;
+                        factoryData.BuildDuration = factorySO.BuildDuration;
+                        factoryData.On = 1;
+                        factoryData.PowerPlantSprite = factorySO.FactorySprite;
+                        factoryData.Description = factorySO.Description;
+                        sysData.FactoryData = factoryData;
+                        List<FactoryData> fDatas = new List<FactoryData>();
+                        for (int i = 0; i < numOf; i++)
+                            fDatas.Add(factoryData);
+                        for (int i = 0; i < fDatas.Count; i++)
+                        {
+                            GameObject newFacilityGO = (GameObject)Instantiate(prefab, new Vector3(0, 0, 0),
+                                Quaternion.identity);
+                            newFacilityGO.layer = 5;
+                            TextMeshProUGUI On = newFacilityGO.AddComponent<TextMeshProUGUI>();
+                            On.text = factoryData.On.ToString(); // 0 = off, 1 = on. is set to 1 above
+                            GetFactoryText(newFacilityGO, factoryData, numOf);
+                            newFacilityGO.SetActive(false);
+                            factoryData.SysGameObject = newFacilityGO;
+                            list.Add(newFacilityGO);
+                        }
                         break;
                     }
                 case "ShipyardData":
                     {
-                        //ShipyardData sData = new ShipyardData("null");
-                        //var sSO = GetShipyardSObyCivInt(civInt);
-                        //sData.CivInt = sSO.CivInt;
-                        //sData.TechLevel = sSO.TechLevel;
-                        //sData.FacilitiesEnumType = sSO.FacilitiesEnumType;
-                        //sData.Name = sSO.Name;
-                        //sData.StartStarDate = sSO.StartStarDate;
-                        //sData.BuildDuration = sSO.BuildDuration;
-                        //sData.ShipyardSprite = sSO.ShipyardSprite;
-                        //sData.Description = sSO.Description;
-                        //List<ShipyardData> pDatas = new List<ShipyardData>();
-                        //for (int i = 0; i < numOf; i++)
-                        //    pDatas.Add(sData);
-                        //for (int i = 0; i < pDatas.Count; i++)
-                        //{
-                        //    GameObject newFacilityGO = (GameObject)Instantiate(prefab, new Vector3(0, 0, 0),
-                        //        Quaternion.identity);
-                        //    sData.SysGameObject = newFacilityGO;
-                        //    list.Add(newFacilityGO);
-                        //}
+                        ShipyardData sData = new ShipyardData("null");
+                        var sSO = GetShipyardSObyCivInt(civInt);
+                        sData.CivInt = sSO.CivInt;
+                        sData.TechLevel = sSO.TechLevel;
+                        sData.FacilitiesEnumType = sSO.FacilitiesEnumType;
+                        sData.Name = sSO.Name;
+                        sData.StartStarDate = sSO.StartStarDate;
+                        sData.BuildDuration = sSO.BuildDuration;
+                        sData.PowerLoad = sSO.PowerLoad;
+                        sData.On = 1;
+                        sData.ShipyardSprite = sSO.ShipyardSprite;
+                        sData.Description = sSO.Description;
+                        sysData.ShipyardData = sData;
+                        List<ShipyardData> syDatas = new List<ShipyardData>();
+                        for (int i = 0; i < numOf; i++)
+                            syDatas.Add(sData);
+                        for (int i = 0; i < syDatas.Count; i++)
+                        {
+                            GameObject newFacilityGO = (GameObject)Instantiate(prefab, new Vector3(0, 0, 0),
+                                Quaternion.identity);
+                            newFacilityGO.layer = 5;
+                            TextMeshProUGUI On = newFacilityGO.AddComponent<TextMeshProUGUI>();
+                            On.text = sData.On.ToString();
+                            GetShipyardText(newFacilityGO, sData, numOf);
+                            newFacilityGO.SetActive(false);
+                            sData.SysGameObject = newFacilityGO;
+                            list.Add(newFacilityGO);
+                        }
                         break;
                     }
                 case "ShieldGeneratorData":
                     {
-                        //ShieldGeneratorData sData = new ShieldGeneratorData("null");
-                        //var sSO = GetShieldGeneratorSObyCivInt(civInt);
-                        //sData.CivInt = sSO.CivInt;
-                        //sData.TechLevel = sSO.TechLevel;
-                        //sData.FacilitiesEnumType = sSO.FacilitiesEnumType;
-                        //sData.Name = sSO.Name;
-                        //sData.StartStarDate = sSO.StartStarDate;
-                        //sData.BuildDuration = sSO.BuildDuration;
-                        //sData.ShieldGeneratorSprite = sSO.ShieldGeneratorSprite;
-                        //sData.Description = sSO.Description;
-                        //List<ShieldGeneratorData> pDatas = new List<ShieldGeneratorData>();
-                        //for (int i = 0; i < numOf; i++)
-                        //    pDatas.Add(sData);
-                        //for (int i = 0; i < pDatas.Count; i++)
-                        //{
-                        //    GameObject newFacilityGO = (GameObject)Instantiate(prefab, new Vector3(0, 0, 0),
-                        //        Quaternion.identity);
-                        //    sData.SysGameObject = newFacilityGO;
-                        //    list.Add(newFacilityGO);
-                        //}
+                        ShieldGeneratorData sgData = new ShieldGeneratorData("null");
+                        var sgSO = GetShieldGeneratorSObyCivInt(civInt);
+                        sgData.CivInt = sgSO.CivInt;
+                        sgData.TechLevel = sgSO.TechLevel;
+                        sgData.FacilitiesEnumType = sgSO.FacilitiesEnumType;
+                        sgData.Name = sgSO.Name;
+                        sgData.StartStarDate = sgSO.StartStarDate;
+                        sgData.BuildDuration = sgSO.BuildDuration;
+                        sgData.PowerLoad = sgSO.PowerLoad;
+                        sgData.On = 1;
+                        sgData.ShieldGeneratorSprite = sgSO.ShieldGeneratorSprite;
+                        sgData.Description = sgSO.Description;
+                        sysData.ShieldGeneratorData = sgData;
+                        List<ShieldGeneratorData> sGDatas = new List<ShieldGeneratorData>();
+                        for (int i = 0; i < numOf; i++)
+                            sGDatas.Add(sgData);
+                        for (int i = 0; i < sGDatas.Count; i++)
+                        {
+                            GameObject newFacilityGO = (GameObject)Instantiate(prefab, new Vector3(0, 0, 0),
+                                Quaternion.identity);
+                            newFacilityGO.layer = 5;
+                            TextMeshProUGUI On = newFacilityGO.AddComponent<TextMeshProUGUI>();
+                            On.text = sgData.On.ToString();
+                            GetShieldGText(newFacilityGO, sgData, numOf);
+                            newFacilityGO.SetActive(false);
+                            sgData.SysGameObject = newFacilityGO;
+                            list.Add(newFacilityGO);
+                        }
                         break;
                     }
                 case "OrbitalBatteryData":
                     {
-                    //    OrbitalBatteryData sData = new OrbitalBatteryData("null");
-                    //    var sSO = GetOrbitalBatterySObyCivInt(civInt);
-                    //    sData.CivInt = sSO.CivInt;
-                    //    sData.TechLevel = sSO.TechLevel;
-                    //    sData.FacilitiesEnumType = sSO.FacilitiesEnumType;
-                    //    sData.Name = sSO.Name;
-                    //    sData.StartStarDate = sSO.StartStarDate;
-                    //    sData.BuildDuration = sSO.BuildDuration;
-                    //    sData.OrbitalBatterySprite = sSO.OrbitalBatterySprite;
-                    //    sData.Description = sSO.Description;
-                    //    List<OrbitalBatteryData> pDatas = new List<OrbitalBatteryData>();
-                    //    for (int i = 0; i < numOf; i++)
-                    //        pDatas.Add(sData);
-                    //    for (int i = 0; i < pDatas.Count; i++)
-                    //    {
-                    //        GameObject newFacilityGO = (GameObject)Instantiate(prefab, new Vector3(0, 0, 0),
-                    //            Quaternion.identity);
-                    //        sData.SysGameObject = newFacilityGO;
-                    //        list.Add(newFacilityGO);
-                    //    }
+                        OrbitalBatteryData obData = new OrbitalBatteryData("null");
+                        var sgSO = GetOrbitalBatterySObyCivInt(civInt);
+                        obData.CivInt = sgSO.CivInt;
+                        obData.TechLevel = sgSO.TechLevel;
+                        obData.FacilitiesEnumType = sgSO.FacilitiesEnumType;
+                        obData.Name = sgSO.Name;
+                        obData.StartStarDate = sgSO.StartStarDate;
+                        obData.BuildDuration = sgSO.BuildDuration;
+                        obData.PowerLoad = sgSO.PowerLoad;
+                        obData.On = 1;
+                        obData.OrbitalBatterySprite = sgSO.OrbitalBatterySprite;
+                        obData.Description = sgSO.Description;
+                        sysData.OrbitalBatteryData = obData;
+                        List<OrbitalBatteryData> oBDatas = new List<OrbitalBatteryData>();
+                        for (int i = 0; i < numOf; i++)
+                            oBDatas.Add(obData);
+                        for (int i = 0; i < oBDatas.Count; i++)
+                        {
+                            GameObject newFacilityGO = (GameObject)Instantiate(prefab, new Vector3(0, 0, 0),
+                                Quaternion.identity);
+                            newFacilityGO.layer = 5;
+                            TextMeshProUGUI On = newFacilityGO.AddComponent<TextMeshProUGUI>();
+                            On.text = obData.On.ToString();
+                            GetOBText(newFacilityGO, obData, numOf);
+                            newFacilityGO.SetActive(false);
+                            obData.SysGameObject = newFacilityGO;
+                            list.Add(newFacilityGO);
+                        }
                         break;
                     }
                 case "ResearchCenterData":
                     {
-                        //ResearchCenterData sData = new ResearchCenterData("null");
-                        //var sSO = GetResearchCenterSObyCivInt(civInt);
-                        //sData.CivInt = sSO.CivInt;
-                        //sData.TechLevel = sSO.TechLevel;
-                        //sData.FacilitiesEnumType = sSO.FacilitiesEnumType;
-                        //sData.Name = sSO.Name;
-                        //sData.StartStarDate = sSO.StartStarDate;
-                        //sData.BuildDuration = sSO.BuildDuration;
-                        //sData.ResearchCenterSprite = sSO.ResearchCenterSprite;
-                        //sData.Description = sSO.Description;
-                        //List<ResearchCenterData> pDatas = new List<ResearchCenterData>();
-                        //for (int i = 0; i < numOf; i++)
-                        //    pDatas.Add(sData);
-                        //for (int i = 0; i < pDatas.Count; i++)
-                        //{
-                        //    GameObject newFacilityGO = (GameObject)Instantiate(prefab, new Vector3(0, 0, 0),
-                        //        Quaternion.identity);
-                        //    sData.SysGameObject = newFacilityGO;
-                        //    list.Add(newFacilityGO);
-                        //}
+                        ResearchCenterData researchData = new ResearchCenterData("null");
+                        var sgSO = GetResearchCenterSObyCivInt(civInt);
+                        researchData.CivInt = sgSO.CivInt;
+                        researchData.TechLevel = sgSO.TechLevel;
+                        researchData.FacilitiesEnumType = sgSO.FacilitiesEnumType;
+                        researchData.Name = sgSO.Name;
+                        researchData.StartStarDate = sgSO.StartStarDate;
+                        researchData.BuildDuration = sgSO.BuildDuration;
+                        researchData.PowerLoad = sgSO.PowerLoad;
+                        researchData.On = 1;
+                        researchData.ResearchCenterSprite = sgSO.ResearchCenterSprite;
+                        researchData.Description = sgSO.Description;
+                        sysData.ResearchCenterData = researchData;
+                        List<ResearchCenterData> reDatas = new List<ResearchCenterData>();
+                        for (int i = 0; i < numOf; i++)
+                            reDatas.Add(researchData);
+                        for (int i = 0; i < reDatas.Count; i++)
+                        {
+                            GameObject newFacilityGO = (GameObject)Instantiate(prefab, new Vector3(0, 0, 0),
+                                Quaternion.identity);
+                            newFacilityGO.layer = 5;
+                            TextMeshProUGUI On = newFacilityGO.AddComponent<TextMeshProUGUI>();
+                            On.text = researchData.On.ToString();
+                            GetResearchCenterText(newFacilityGO, researchData, numOf);
+                            newFacilityGO.SetActive(false);
+                            researchData.SysGameObject = newFacilityGO;
+                            list.Add(newFacilityGO);
+                        }
                         break;
                     }
                 default:
@@ -384,29 +437,115 @@ namespace Assets.Core
             return list;
         }
 
-        private void GetFacilityDataFromSO(GameObject facilityGO, int civInt)
+        private void GetPowerPlantText(GameObject go, PowerPlantData plantData, int numOf)
         {
-            PowerPlantData powerPlantData = new PowerPlantData("null");
-            List<PowerPlantData> powerPlantDatas = new List<PowerPlantData>();
-            powerPlantDatas.Add(powerPlantData);
-            foreach (var civSO in powerPlantDatas)
-            {
-
-            }
-        }
-        private void GetPowerPlantText(GameObject go, PowerPlantData plantData)
-        {
-
             TextMeshProUGUI[] TheText = go.GetComponentsInChildren<TextMeshProUGUI>();
             foreach (var OneTmp in TheText)
             {
                 OneTmp.enabled = true;
-                if (OneTmp != null && OneTmp.name == "NameText (TMP)")
-                {
+                if (OneTmp.name == "NameText (TMP)")
                     OneTmp.text = plantData.Name;
-                }
-                //else if (OneTmp != null && OneTmp.name == "SysDescription (TMP)")
-                //    OneTmp.text = plantData.Description;
+                else if (OneTmp.name == "NumTotalUnits (TMP)")
+                    OneTmp.text = numOf.ToString();
+                else if (OneTmp.name == "NumTotalEOut (TMP)")
+                    OneTmp.text = plantData.PowerOutput.ToString();
+                else if (OneTmp.name == "DescriptionText (TMP)")
+                    OneTmp.text = plantData.Description;
+                // image here
+
+            }
+        }
+        private void GetFactoryText(GameObject go, FactoryData factoryData, int numOf)
+        {
+            TextMeshProUGUI[] TheText = go.GetComponentsInChildren<TextMeshProUGUI>();
+            foreach (var OneTmp in TheText)
+            {
+                OneTmp.enabled = true;
+                if (OneTmp.name == "NameFactory")
+                    OneTmp.text = factoryData.Name;
+                else if (OneTmp.name == "NumFactoryRatio")
+                    OneTmp.text = numOf.ToString();
+                else if (OneTmp.name == "FactoryLoad")
+                    OneTmp.text = factoryData.PowerLoad.ToString();
+                else if (OneTmp.name == "DescriptionFactory")
+                    OneTmp.text = factoryData.Description;
+                    
+                // image here
+
+            }
+        }
+
+        private void GetShipyardText(GameObject go, ShipyardData factoryData, int numOf)
+        {
+            TextMeshProUGUI[] TheText = go.GetComponentsInChildren<TextMeshProUGUI>();
+            foreach (var OneTmp in TheText)
+            {
+                OneTmp.enabled = true;
+                if (OneTmp.name == "NameShipyard")
+                    OneTmp.text = factoryData.Name;
+                else if (OneTmp.name == "NumShipyardRatio")
+                    OneTmp.text = numOf.ToString();
+                else if (OneTmp.name == "ShipyardLoad")
+                    OneTmp.text = factoryData.PowerLoad.ToString();
+                else if (OneTmp.name == "DescriptionShipyard")
+                    OneTmp.text = factoryData.Description;
+                // image here
+
+            }
+        }
+        private void GetShieldGText(GameObject go, ShieldGeneratorData shieldData, int numOf)
+        {
+            TextMeshProUGUI[] TheText = go.GetComponentsInChildren<TextMeshProUGUI>();
+            foreach (var OneTmp in TheText)
+            {
+                OneTmp.enabled = true;
+                if (OneTmp.name == "NameShieldG")
+                    OneTmp.text = shieldData.Name;
+                else if (OneTmp.name == "NumShieldGRatio")
+                    OneTmp.text = numOf.ToString();
+                else if (OneTmp.name == "ShieldGLoad")
+                    OneTmp.text = shieldData.PowerLoad.ToString();
+                else if (OneTmp.name == "DescriptionShieldG")
+                    OneTmp.text = shieldData.Description;
+                else if (OneTmp.name == "NumOn")
+                    OneTmp.text = shieldData.Description;
+                // image here
+
+            }
+        }
+        private void GetOBText(GameObject go, OrbitalBatteryData oBData, int numOf)
+        {
+            TextMeshProUGUI[] TheText = go.GetComponentsInChildren<TextMeshProUGUI>();
+            foreach (var OneTmp in TheText)
+            {
+                OneTmp.enabled = true;
+                if (OneTmp.name == "NameOB")
+                    OneTmp.text = oBData.Name;
+                else if (OneTmp.name == "NumOBRatio")
+                    OneTmp.text = numOf.ToString();
+                else if (OneTmp.name == "OBLoad")
+                    OneTmp.text = oBData.PowerLoad.ToString();
+                else if (OneTmp.name == "DescriptionOB")
+                    OneTmp.text = oBData.Description;
+                // image here
+
+            }
+        }
+        private void GetResearchCenterText(GameObject go, ResearchCenterData oBData, int numOf)
+        {
+            TextMeshProUGUI[] TheText = go.GetComponentsInChildren<TextMeshProUGUI>();
+            foreach (var OneTmp in TheText)
+            {
+                OneTmp.enabled = true;
+                if (OneTmp.name == "NameResearchCenter")
+                    OneTmp.text = oBData.Name;
+                else if (OneTmp.name == "NumResearchCenterRatio")
+                    OneTmp.text = numOf.ToString();
+                else if (OneTmp.name == "ResearchCenterLoad")
+                    OneTmp.text = oBData.PowerLoad.ToString();
+                else if (OneTmp.name == "DescriptionResearchCenter")
+                    OneTmp.text = oBData.Description;
+                // image here
 
             }
         }
@@ -548,19 +687,18 @@ namespace Assets.Core
         }
         public void NewSystemUI(StarSysController sysController)
         {
-            //foreach (var sysController in StarSysManager.Instance.ManagersStarSysControllerList)
-            //{
-                if (sysController.StarSysData.CurrentOwner == GameController.Instance.GameData.LocalPlayerCivEnum)
-                {
-                    GameObject starSysUI = (GameObject)Instantiate(sysUIPrefab, new Vector3(0, 0, 0),
-                        Quaternion.identity);
-                   // ManagersStarSysControllerList.Add(sysController);
-                    sysController.StarSysUIController = starSysUI; // each system controller has its system UI
-                    starSysUI.transform.SetParent(contentFolderParent.transform, false); // load Queue
+            
+            if (sysController.StarSysData.CurrentOwner == GameController.Instance.GameData.LocalPlayerCivEnum)
+            {
+                GameObject starSysUI = (GameObject)Instantiate(sysUIPrefab, new Vector3(0, 0, 0),
+                    Quaternion.identity);
+                starSysUI.layer = 5;
+                sysController.StarSysUIController = starSysUI; // each system controller has its system UI
+                starSysUI.transform.SetParent(contentFolderParent.transform, false); // load into Queue
 
-                    GalaxyMenuUIController.Instance.UpdateSystemUI(sysController);
-                }
-            //}
+                GalaxyMenuUIController.Instance.SetupSystemUI(sysController);
+            }
+            
         }
 
     }

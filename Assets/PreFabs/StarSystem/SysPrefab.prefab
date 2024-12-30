@@ -502,7 +502,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d4ab63fa3e8ed64d95d6f81c3b153cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: {fileID: 3233669402281765565}
+  TextComponent: {fileID: 0}
 --- !u!1 &2925003583102638923
 GameObject:
   m_ObjectHideFlags: 0
@@ -946,8 +946,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d116b78ae9cd6b84c8714da7db2c4686, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  starSysUIController: {fileID: 0}
   canvasToolTip: {fileID: 4392431061251062606}
-  canvasStarSysUI: {fileID: 5076678459824870277}
+  canvasYourStarSysUI: {fileID: 0}
 --- !u!1 &8311483342550982191
 GameObject:
   m_ObjectHideFlags: 0
@@ -1224,7 +1225,7 @@ GameObject:
   - component: {fileID: 1608174476255943998}
   - component: {fileID: 3233669402281765565}
   m_Layer: 4
-  m_Name: SysName (TMP)
+  m_Name: SysName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

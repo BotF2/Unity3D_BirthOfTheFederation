@@ -16,7 +16,7 @@ public class ShipController : MonoBehaviour
         //CombatUICanvas = CanvasGO.GetComponent<canvas>();
         //CombatUICanvas.worldCamera = combatEventCamera;
         //CanvasToolTip.worldCamera = combatEventCamera;
-        //Name = shipData.CivEnum.ToString() + " Fleet " + shipData.ShipName;
+        //TextComponent = shipData.CivEnum.ToString() + " Fleet " + shipData.ShipName;
 
     }
     private void FixedUpdate()
@@ -33,7 +33,7 @@ public class ShipController : MonoBehaviour
         //    GameObject hitObject = hit.collider.gameObject;
         //    goName = hitObject.name;
         //}
-        //CombatUIManager.Instance.LoadShipUI(gameObject);
+        //CombatUIManager.current.LoadShipUI(gameObject);
     }
     void OnTriggerEnter(Collider collider)
     {

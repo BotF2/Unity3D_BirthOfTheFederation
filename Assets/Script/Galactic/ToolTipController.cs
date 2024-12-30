@@ -5,37 +5,51 @@ using UnityEngine.EventSystems;
 
 public class ToolTipController : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
+   // public static ToolTipController current;
     /// <summary>
-    /// Only tool tips on our systems and fleet for now. ToDo: do we want to add known systems and fleets? 
+    /// Only tool tips on our systems and fleet and System UI so far
     /// It gets complicated.
     /// </summary>
 
-    public TextMeshProUGUI Name;
+    public TextMeshProUGUI TextComponent;
+    //private void Awake()
+    //{
+    //    if (current != null)
+    //    {
+    //        Destroy(gameObject);
+    //    }
+    //    else
+    //    {
+    //        current = this;
+    //        DontDestroyOnLoad(gameObject);
+    //    }
+    //}
+    
 
     void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)
     {
-        if (Name != null && HoverManager.Instance != null)
+        if (TextComponent != null && HoverManager.Instance != null)
         {
             var localPlayerCivCon = CivManager.Instance.GetLocalPlayerCivController();
             foreach (StarSysController starSysCon in localPlayerCivCon.CivData.StarSysOwned)
             {
-                if (starSysCon.StarSysData.GetSysName() == Name.text)
+                if (starSysCon.StarSysData.GetSysName() == TextComponent.text)
                 {
-                    HoverManager.Instance.ShowTip(Name.text);
+                    HoverManager.Instance.ShowTip(TextComponent.text);
                     break;
                 }
             }
 
-            if (Name.text.Contains(localPlayerCivCon.CivShortName))
+            if (TextComponent.text.Contains(localPlayerCivCon.CivShortName))
             {
-                HoverManager.Instance.ShowTip(Name.text);
+                HoverManager.Instance.ShowTip(TextComponent.text);
             }
             ///***** ToDo maybe - also see civs we know?
             else
             {
                 foreach (CivController civCon in localPlayerCivCon.CivData.CivControllersWeKnow)
                 {
-                    HoverManager.Instance.ShowTip(Name.text);
+                    HoverManager.Instance.ShowTip(TextComponent.text);
                 }
             }
         }

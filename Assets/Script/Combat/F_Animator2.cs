@@ -29,7 +29,7 @@ namespace Assets.Core
                 //    once = 1;
                 //}
             }
-            //if (GameManager.Instance._statePassedCombatPlay)
+            //if (GameManager.current._statePassedCombatPlay)
             //    anim.SetBool("FriendStop2", true);
         }
         public void PlayWarp() // called in animation - warp

@@ -45,7 +45,7 @@ public class DiplomacyController : MonoBehaviour
             if (hitGO.GetComponent<StarSysController>() != null)
                 civPartyOne.ResetNames(hitGO);
         }
-        //FirstContactUIController.Instance.FirstContactUIToggle.SetActive(true);
+        //FirstContactUIController.current.FirstContactUIToggle.SetActive(true);
     }
     public void NextDiplomaticContact(DiplomacyController controller)
     {

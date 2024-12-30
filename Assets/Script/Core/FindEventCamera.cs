@@ -20,7 +20,7 @@ public class FindEventCamera : MonoBehaviour
             //goName = hitObject.name;
             if (hitObject == gameObject)
             {
-                //??????????? FleetUIController.Instance.LoadFleetUI(gameObject);
+                //??????????? FleetUIController.current.LoadFleetUI(gameObject);
             }
         }
 

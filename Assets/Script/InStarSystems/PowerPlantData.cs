@@ -14,6 +14,7 @@ public class PowerPlantData // uses StarSysController and StarSysManager
     public int PowerOutput;
     public Sprite PowerPlantSprite;
     public string Description;
+    public bool On;
     private string v;
     public GameObject SysGameObject;
 

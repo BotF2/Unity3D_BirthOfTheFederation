@@ -37,33 +37,33 @@ namespace Assets.Core
         //    switch (activeToggleOrder.name.ToUpper())
         //    {
         //        case "TOGGLE_ENGAGE":
-        //            GameManager.Instance._combatOrder = Orders.Engage;
+        //            GameManager.current._combatOrder = Orders.Engage;
         //            order = Orders.Engage;
         //            Debug.Log("Active Engage.");
         //            break;
         //        case "TOGGLE_RUSH":
         //            Debug.Log("Active Rush.");
-        //            GameManager.Instance._combatOrder = Orders.Rush;
+        //            GameManager.current._combatOrder = Orders.Rush;
         //            order = Orders.Rush;
         //            break;
         //        case "TOGGLE_RETREAT":
         //            Debug.Log("Active Retreat.");
-        //            GameManager.Instance._combatOrder = Orders.Retreat;
+        //            GameManager.current._combatOrder = Orders.Retreat;
         //            order = Orders.Retreat;
         //            break;
         //        case "TOGGLE_FORMATION":
         //            Debug.Log("Active Formation.");
-        //            GameManager.Instance._combatOrder = Orders.Formation;
+        //            GameManager.current._combatOrder = Orders.Formation;
         //            order = Orders.Formation;
         //            break;
         //        case "TOGGLE_PROTECT_TRANSPORTS":
         //            Debug.Log("Active Protect Transports.");
-        //            GameManager.Instance._combatOrder = Orders.ProtectTransports;
+        //            GameManager.current._combatOrder = Orders.ProtectTransports;
         //            order = Orders.ProtectTransports;
         //            break;
         //        case "TOGGLE_TARGET_TRANSPORTS":
         //            Debug.Log("Active Target Transports.");
-        //            GameManager.Instance._combatOrder = Orders.TargetTransports;
+        //            GameManager.current._combatOrder = Orders.TargetTransports;
         //            order= Orders.TargetTransports;
         //            break;
         //        default:

@@ -24,7 +24,7 @@ namespace Assets.Core
 
         //void Start()
         //{
-        //    gameManager = GameManager.Instance;
+        //    gameManager = GameManager.current;
 
         //    //systemDataDictionary = GalaxyView.SystemDataDictionary; // this really works
         //}

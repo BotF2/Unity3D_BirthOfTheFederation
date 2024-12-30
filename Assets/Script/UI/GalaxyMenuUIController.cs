@@ -6,6 +6,8 @@ using TMPro;
 using Assets.Core;
 using Unity.VisualScripting;
 using System.Runtime.CompilerServices;
+using System.Diagnostics;
+using System;
 
 public class GalaxyMenuUIController : MonoBehaviour
 {
@@ -35,17 +37,17 @@ public class GalaxyMenuUIController : MonoBehaviour
     private GameObject IntelBackground;
     [SerializeField]
     private GameObject EncyclopediaBackground;
-    //[SerializeField]
-    //private List<StarSysController> sysControllers;
     [SerializeField]
-    private GameObject contentFolderParent;
+    private List<StarSysController> sysControllers;
+    //[SerializeField]
+    //private GameObject contentFolderParent;
     //[SerializeField]
     //private List<string>  sysNames;
     //[SerializeField]
     //private GameObject sysUIprefab;
     //[SerializeField]
     //private int powerPerEnergyPlant = 10;
-    
+
     private void Awake()
     {
         if (Instance != null)
@@ -233,114 +235,259 @@ public class GalaxyMenuUIController : MonoBehaviour
             foreach (var sysCon in StarSysManager.Instance.ManagersStarSysControllerList)
             {
                 if (sysCon.StarSysUIController != null)
-                    UpdateSystemUI(sysCon);
+                    SetupSystemUI(sysCon);
                 else
                     StarSysManager.Instance.NewSystemUI(sysCon);
 
             }
         }
     }
+    public void RemoveSystem(StarSysController sysController)
+    {
+        sysControllers.Remove(sysController);
+    }
 
-    public void UpdateSystemUI(StarSysController sysController)
+    public void SetupSystemUI(StarSysController sysController)
     {
         if (sysController.StarSysUIController != null)
         {
+            sysControllers.Add(sysController);// in list of content folder items
             TextMeshProUGUI[] listTMP = sysController.StarSysUIController.GetComponentsInChildren<TextMeshProUGUI>();
 
             foreach (var OneTmp in listTMP)
             {
                 int techLevelInt = (int)CivManager.Instance.LocalPlayerCivContoller.CivData.TechLevel / 100; // Early Tech level = 100, Supreme = 900;
                 OneTmp.enabled = true;
-                switch (OneTmp.name)
+                var name =OneTmp.name.ToString();
+          
+                switch (name)
                 {
-                    case "Sys Name Text (TMP)":
+                    case "SysName":
                         OneTmp.text = sysController.StarSysData.SysName;
                         break;
-
-                    case "HeaderPowerUnitText (TMP)":
-                        if (sysController.StarSysData.PowerStations.Count > 0)  
-                            OneTmp.text = sysController.StarSysData.PlantData.Name;
+                    case "HeaderPowerUnitText":
+                        //if (sysController.StarSysData.PowerStations.Count > 0)  
+                        OneTmp.text = sysController.StarSysData.PowerPlantData.Name;
                     //ToDo: can make it race specific here, not defaul "Plasma Reactor"
                         break;
-                    case "NumTotalUnits (TMP)":
+                    case "NumPUnits":
                         OneTmp.text = (sysController.StarSysData.PowerStations.Count).ToString();
                         break;
-                    case "NumTotalEOut (TMP)":
-                        OneTmp.text = (sysController.StarSysData.PowerStations.Count * sysController.PowerPerPlant).ToString() + "u";
+                    case "NumTotalEOut":
+                        OneTmp.text = (sysController.StarSysData.PowerStations.Count * sysController.StarSysData.PowerPlantData.PowerOutput).ToString() + "u";
                         break;
                     // ToDo: use techLevelInt in power output 
 
-                    //case "HeaderFactoryText (TMP)":
-                    //  ToDo: can make it race specific here, not defaul "Replication Plants"
-                    //    break;
-                    //case "NumPlantsRatioText (TMP)":
-                    //    // ToDo: This can be the number active over the total number of plants
-                    //    OneTmp.text = (sysController.StarSysData.Factories.Count).ToString();
-                    //    break;
-                    case "Energy Into Factories Text (TMP)":
-                        OneTmp.text = (sysController.StarSysData.PowerStations.Count).ToString() + "u";
+                    case "NameFactory":
+                        OneTmp.text = sysController.StarSysData.FactoryData.Name;
+                        break;
+                    case "NumFactoryRatio":
+                        int count = 0;
+                        foreach (var item in sysController.StarSysData.Factories)
+                        {
+                            TextMeshProUGUI TheText = item.GetComponent<TextMeshProUGUI>();
+                            if (TheText.text == "1") // 1 = on and 0 = off
+                                count++;
+                        }
+                        OneTmp.text = count.ToString() + "/" +(sysController.StarSysData.Factories.Count).ToString();
+                        break;
+                    case "FactoryLoad":
+                        // for now all are turned on
+                        OneTmp.text = (sysController.StarSysData.FactoryData.PowerLoad * sysController.StarSysData.Factories.Count).ToString() + "u";
                         // ToDo: work in tech levels
                         break;
 
                     // ToDo: Factory build Queue here?
 
-                    //case "Shipyard Name Text (TMP)":
-                    //    // default shipyard for everyone
-                    //    break;
-                    //case "NumYardsOnRatio (TMP)":
-                    //    // ToDo: This can be the number active over the total number of yards
-                    //    OneTmp.text = (sysController.StarSysData.Shipyards.Count).ToString();
-                    //    break;
-                    //case "Energy Into Yards Text (TMP)":
-                    //    OneTmp.text = (sysController.StarSysData.Shipyards.Count).ToString() + "u";
-                    //    // ToDo: work in tech levels
-                    //    break;
-                    // ToDo: Yard's build Queue here
-                    //case "NumShieldsRatioText (TMP)":
-                    //    // ToDo: This can be the number active over the total number of yards
-                    //    OneTmp.text = (sysController.StarSysData.ShieldGenerators.Count).ToString();
-                    //    break;
-                    //case "Energy Into Shields Text (TMP)":
-                    //    OneTmp.text = (sysController.StarSysData.ShieldGenerators.Count).ToString() + "u";
-                    //    // ToDo: work in tech levels
-                    //    break;
-                    //case "NumOBRatioText (TMP)":
-                    //    // ToDo: This can be the number active over the total number of OB
-                    //    OneTmp.text = (sysController.StarSysData.OrbitalBatteries.Count).ToString();
-                    //    break;
-                    //case "Energy Into OB Text (TMP)":
-                    //    OneTmp.text = (sysController.StarSysData.OrbitalBatteries.Count).ToString() + "u";
-                    //    // ToDo: work in tech levels
-                    //    break;
-                    //case "HeaderResearchText (TMP)":
-                    //    // ToDo: make it race specific
-                    //    break;
-                    //case "NumResearchRatioText (TMP)":
-                    //    // ToDo: This can be the number active over the total number of centers
-                    //    OneTmp.text = (sysController.StarSysData.ResearchCenters.Count).ToString();
-                    //    break;
-                    //case "Energy Into Research Text (TMP)":
-                    //    OneTmp.text = (sysController.StarSysData.ResearchCenters.Count).ToString() + "u";
-                    //    // ToDo: work in tech levels
-                    //    break;
+                    case "ShipyardName":
+                        OneTmp.text = sysController.StarSysData.ShipyardData.Name;
+                        break;
+                    case "NumYardsOnRatio":
+                        int count1 = 0;
+                        foreach (var item in sysController.StarSysData.Shipyards)
+                        {
+                            TextMeshProUGUI TheText = item.GetComponent<TextMeshProUGUI>();
+                            if (TheText.text == "1")
+                                count1++;
+                        }
+                        OneTmp.text = count1.ToString() + "/" + (sysController.StarSysData.Shipyards.Count).ToString();
+                        break;
+                    case "YardLoad":
+                        // for now all are turned on
+                        OneTmp.text = (sysController.StarSysData.ShipyardData.PowerLoad * sysController.StarSysData.Shipyards.Count).ToString() + "u";
+                        // ToDo: work in tech levels
+                        break;
+                    //ToDo: Yard's build Queue here
+                    case "ShieldName":
+                        OneTmp.text = sysController.StarSysData.ShieldGeneratorData.Name;
+                        break;
+                    case "NumShieldRatio":
+                        int count2 = 0;
+                        foreach (var item in sysController.StarSysData.ShieldGenerators)
+                        {
+                            TextMeshProUGUI TheText = item.GetComponent<TextMeshProUGUI>();
+                            if (TheText.text == "1")
+                                count2++;
+                        }
+                        OneTmp.text = count2.ToString() + "/" + (sysController.StarSysData.ShieldGenerators.Count).ToString();
+                        break;
+                    case "ShieldLoad":
+                        OneTmp.text = (sysController.StarSysData.ShieldGeneratorData.PowerLoad * sysController.StarSysData.ShieldGenerators.Count).ToString() + "u";
+                        // ToDo: work in tech levels
+                        break;
+                    case "OBName":
+                        OneTmp.text = sysController.StarSysData.OrbitalBatteryData.Name;
+                        break;
+                    case "NumOBRatio":
+                        int count3 = 0;
+                        foreach (var item in sysController.StarSysData.OrbitalBatteries)
+                        {
+                            TextMeshProUGUI TheText = item.GetComponent<TextMeshProUGUI>();
+                            if (TheText.text == "1")
+                                count3++;
+                        }
+                        OneTmp.text = count3.ToString() +"/"+(sysController.StarSysData.OrbitalBatteries.Count).ToString();
+                        break;
+                    case "OBLoad":
+                        OneTmp.text = (sysController.StarSysData.OrbitalBatteryData.PowerLoad * sysController.StarSysData.OrbitalBatteries.Count).ToString() + "u";
+                        // ToDo: work in tech levels
+                        break;
+                    case "ResearchName":
+                        OneTmp.text = sysController.StarSysData.ResearchCenterData.Name;
+                        break;
+                    case "NumResearchRatio":
+                        int count4 = 0;
+                        foreach (var item in sysController.StarSysData.ResearchCenters)
+                        {
+                            TextMeshProUGUI TheText = item.GetComponent<TextMeshProUGUI>();
+                            if (TheText.text == "1")
+                                count4++;
+                        }
+                        OneTmp.text = count4.ToString() +"/"+(sysController.StarSysData.ResearchCenters.Count).ToString();
+                        break;
+                    case "ResearchLoad":
+                        OneTmp.text = (sysController.StarSysData.ResearchCenterData.PowerLoad * sysController.StarSysData.ResearchCenters.Count).ToString() + "u";
+                        // ToDo: work in tech levels
+                        break;
                     default:
                         break;
                 }
+
                 Button[] listButton = sysController.StarSysUIController.GetComponentsInChildren<Button>();
                 foreach (var OneButt in listButton)
                 {
                     switch (OneButt.name)
                     {
                         case "BuildButton":
-                            OneButt.onClick.AddListener(() => buildListUI.SetActive(true));
-                            OneButt.onClick.AddListener(() => sysController.BuildClick());
+                            //OneButt.onClick.AddListener(() => buildListUI.SetActive(true));
+                            //OneButt.onClick.AddListener(() => sysController.BuildClick());
+                            break;
+                        case "FactoryButtonOn":
+                            OneButt.onClick.AddListener(() => sysController.FacilityOnClick(sysController, OneButt.name));
+                            break;
+                        case "FactoryButtonOff":
+                            OneButt.onClick.AddListener(() => sysController.FacilityOnClick(sysController, OneButt.name));
+                            break;
+                        case "YardButtonOn":
+                            OneButt.onClick.AddListener(() => sysController.FacilityOnClick(sysController, OneButt.name));
+                            break;
+                        case "YardButtonOff":
+                            OneButt.onClick.AddListener(() => sysController.FacilityOnClick(sysController, OneButt.name));
+                            break;
+                        case "ShieldButtonOn":
+                            OneButt.onClick.AddListener(() => sysController.FacilityOnClick(sysController, OneButt.name));
+                            break;
+                        case "ShieldButtonOff":
+                            OneButt.onClick.AddListener(() => sysController.FacilityOnClick(sysController, OneButt.name));
+                            break;
+                        case "OBButtonOn":
+                            OneButt.onClick.AddListener(() => sysController.FacilityOnClick(sysController, OneButt.name));
+                            break;
+                        case "OBButtonOff":
+                            OneButt.onClick.AddListener(() => sysController.FacilityOnClick(sysController, OneButt.name));
+                            break;
+                        case "ResearchButtonOn":
+                            OneButt.onClick.AddListener(() => sysController.FacilityOnClick(sysController, OneButt.name));
+                            break;
+                        case "ResearchButtonOff":
+                            OneButt.onClick.AddListener(() => sysController.FacilityOnClick(sysController, OneButt.name));
                             break;
                         default:
                             break;
                     }
                 }
             }
+
         }
     }
+    public void UpdateFactories(StarSysController sysController)
+    {
+        foreach (var SysCon in sysControllers)
+        {
+            if (sysController == SysCon)
+            {
+                TextMeshProUGUI[] listTMP = sysController.StarSysUIController.GetComponentsInChildren<TextMeshProUGUI>();
+
+                foreach (var OneTmp in listTMP)
+                {
+                    OneTmp.enabled = true;
+                    var itemName = OneTmp.name.ToString();
+                    int count = 0;
+                    switch (itemName)
+                    {
+
+                        case "NumFactoryRatio":
+                            foreach (var item in sysController.StarSysData.Factories)
+                            {
+                                TextMeshProUGUI TheText = item.GetComponent<TextMeshProUGUI>();
+                                if (TheText.text == "1") // 1 = on and 0 = off
+                                    count++;
+                            }
+                            OneTmp.text = count.ToString() + "/" + (sysController.StarSysData.Factories.Count).ToString();
+                            break;
+                        case "FactoryLoad":
+                            // for now all are turned on
+                            OneTmp.text = (sysController.StarSysData.FactoryData.PowerLoad * count).ToString() + "u";
+                            break;
+                    }
+                }
+                Button[] listButton = sysController.StarSysUIController.GetComponentsInChildren<Button>();
+                foreach (var OneButt in listButton)
+                {
+                    switch (OneButt.name)
+                    {
+                        case "FactoryButtonOn":
+                            OneButt.onClick.AddListener(() => sysController.FacilityOnClick(sysController, OneButt.name));
+                            break;
+                        case "FactoryButtonOff":
+                            OneButt.onClick.AddListener(() => sysController.FacilityOnClick(sysController, OneButt.name));
+                            break;
+                    }
+                }
+            }
+        }
+        //if(itemName == "NumFactoryRatio") { }
+        //    int count = 0;
+        //    foreach (var SysCon in sysController.StarSysData.Factories)
+        //    {
+        //        TextMeshProUGUI TheText = SysCon.GetComponent<TextMeshProUGUI>();
+        //        if (TheText.text == "1") // 1 = on and 0 = off
+        //            count++;
+        //    }
+        //    OneTmp.text = count.ToString() + "/" + (sysController.StarSysData.Factories.Count).ToString();
+        //    break;
+        //case "FactoryLoad":
+        //    // for now all are turned on
+        //    OneTmp.text = (sysController.StarSysData.FactoryData.PowerLoad * sysController.StarSysData.Factories.Count).ToString() + "u";
+        //    // ToDo: work in tech levels
+        //    break;
+    }
+
+    private bool IntParse()
+    {
+        throw new NotImplementedException();
+    }
+
 }
+
 

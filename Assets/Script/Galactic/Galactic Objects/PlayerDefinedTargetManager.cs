@@ -59,7 +59,7 @@ namespace Assets.Core
             playerController.galaxyEventCamera = galaxyEventCamera;
             playerController.galaxyBackgroundImage = galaxyImageGO;
             playerController.PlayerTargetData = playerTargetData;
-            //playerController.Name ToDo: number the destinations
+            //playerController.TextComponent ToDo: number the destinations
             // Get position x and y defined by player
             playerDefinedTargetGO.transform.Translate(new Vector3(position.x + 20f, position.y, position.z));
             playerDefinedTargetGO.transform.SetParent(galaxyCenter.transform, true);

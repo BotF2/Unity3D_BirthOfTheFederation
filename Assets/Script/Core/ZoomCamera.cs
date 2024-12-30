@@ -24,7 +24,7 @@ namespace Assets.Core
                 {
                     if (Input.mouseScrollDelta == Vector2.zero)
                         return;
-                    else//GameManager.Instance._statePassedCombatInit)
+                    else//GameManager.current._statePassedCombatInit)
                     {
                         bool turnOffNormalize = false;
                         if (cameraMultiTarget._normalizeFieldOfView)

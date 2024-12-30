@@ -1,6 +1,10 @@
 using System;
 using System.Collections.Generic;
+using TMPro;
+
+//using UnityEditor.AddressableAssets.HostingServices;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Assets.Core
 {
@@ -15,6 +19,7 @@ namespace Assets.Core
         public StarSysData StarSysData { get { return starSysData; } set { starSysData = value; } }
         [SerializeField]
         private GameObject starSysUIController;
+        // instantiated by StarSysManager from a prefab and added to StarSysController, NewSystemUI()
         public GameObject StarSysUIController { get { return starSysUIController; } set { starSysUIController = value; } }
         private Camera galaxyEventCamera;
         [SerializeField]
@@ -22,7 +27,7 @@ namespace Assets.Core
         public Canvas canvasYourStarSysUI;
         public static event Action<TrekRandomEventSO> TrekEventDisasters;
         private int stardate;
-        public int PowerPerPlant = 10; // used by GalaxyMenuUIController
+        //public int PowerPerPlant = 10; // used by GalaxyMenuUIController
        
 
         public StarSysController(string name)
@@ -34,7 +39,8 @@ namespace Assets.Core
             galaxyEventCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>() as Camera;
             canvasToolTip.worldCamera = galaxyEventCamera;
             canvasYourStarSysUI.worldCamera = galaxyEventCamera;
-            TimeManager.Instance.OnRandomSpecialEvent = DoDisaster;
+            TimeManager.Instance.OnRandomSpecialEvent += DoDisaster;
+            OnOffSysFacilityEvents.current.FacilityOnClick += FacilityOnClick;// subscribe methode to the event += () => Debug.Log("Action Invoked!");
         }
         private void Update()
         {
@@ -151,8 +157,155 @@ namespace Assets.Core
         }
         public void BuildClick() // open build list UI
         {
-            // Do shit
-            // StarSysManager.Instance.GetInstanceOfFacility();
+            // Do some shit here
+            // StarSysManager.current.GetInstanceOfFacility();
+        }
+        public void FacilityOnClick(StarSysController sysCon, string name)
+        {
+            if (this == sysCon)
+            {
+                switch (name)
+                {
+                    case "FactoryButtonOn":
+                        {
+                            for (int i = 0; i < this.StarSysData.Factories.Count; i++)
+                            {
+                                if (StarSysData.Factories[i].GetComponent<TextMeshProUGUI>().text == "0")
+                                {
+                                    StarSysData.Factories[i].GetComponent<TextMeshProUGUI>().text = "1";
+                                    GalaxyMenuUIController.Instance.UpdateFactories(this);
+                                }
+                                break;
+                            }
+                        }
+                        break;
+                    case "FactoryButtonOff":
+                        {
+                            for (int i = 0; i < this.StarSysData.Factories.Count; i++)
+                            {
+                                if (StarSysData.Factories[i].GetComponent<TextMeshProUGUI>().text == "1")
+                                {
+                                    StarSysData.Factories[i].GetComponent<TextMeshProUGUI>().text = "0";
+                                    GalaxyMenuUIController.Instance.UpdateFactories(this);
+                                }
+                                break;
+                            }
+                        }
+                        break;
+                    case "YardButtonOn":
+                        {
+                            for (int i = 0; i < this.StarSysData.Shipyards.Count; i++)
+                            {
+                                if (StarSysData.Factories[i].GetComponent<TextMeshProUGUI>().text == "0")
+                                {
+                                    StarSysData.Factories[i].GetComponent<TextMeshProUGUI>().text = "1";
+                                    //GalaxyMenuUIController.Instance.SetupSystemUI(this);
+                                }
+                                break;
+                            }
+                        }
+                        break;
+                    case "YardButtonOff":
+                        {
+                            for (int i = 0; i < this.StarSysData.Shipyards.Count; i++)
+                            {
+                                if (StarSysData.Factories[i].GetComponent<TextMeshProUGUI>().text == "1")
+                                {
+                                    StarSysData.Factories[i].GetComponent<TextMeshProUGUI>().text = "0";
+                                    //GalaxyMenuUIController.Instance.SetupSystemUI(this);
+                                }
+                                break;
+                            }
+                        }
+                        break;
+                    case "ShieldButtonOn":
+                        {
+                            for (int i = 0; i < this.StarSysData.ShieldGenerators.Count; i++)
+                            {
+                                if (StarSysData.Factories[i].GetComponent<TextMeshProUGUI>().text == "0")
+                                {
+                                    StarSysData.Factories[i].GetComponent<TextMeshProUGUI>().text = "1";
+                                    // GalaxyMenuUIController.Instance.SetupSystemUI(this);
+                                }
+                                break;
+                            }
+                        }
+                        break;
+                    case "ShieldButtonOff":
+                        {
+                            for (int i = 0; i < this.StarSysData.ShieldGenerators.Count; i++)
+                            {
+                                if (StarSysData.Factories[i].GetComponent<TextMeshProUGUI>().text == "1")
+                                {
+                                    StarSysData.Factories[i].GetComponent<TextMeshProUGUI>().text = "0";
+                                    // GalaxyMenuUIController.Instance.SetupSystemUI(this);
+                                }
+                                break;
+                            }
+                        }
+                        break;
+                    case "OBButtonOn":
+                        {
+                            for (int i = 0; i < this.StarSysData.OrbitalBatteries.Count; i++)
+                            {
+                                if (StarSysData.Factories[i].GetComponent<TextMeshProUGUI>().text == "0")
+                                {
+                                    StarSysData.Factories[i].GetComponent<TextMeshProUGUI>().text = "1";
+                                    //GalaxyMenuUIController.Instance.SetupSystemUI(this);
+                                }
+                                break;
+                            }
+                        }
+                        break;
+                    case "OBButtonOff":
+                        {
+                            for (int i = 0; i < this.StarSysData.OrbitalBatteries.Count; i++)
+                            {
+                                if (StarSysData.Factories[i].GetComponent<TextMeshProUGUI>().text == "1")
+                                {
+                                    StarSysData.Factories[i].GetComponent<TextMeshProUGUI>().text = "0";
+                                    //GalaxyMenuUIController.Instance.SetupSystemUI(this);
+                                }
+                                break;
+                            }
+                        }
+                        break;
+                    case "ResearchButtonOn":
+                        {
+                            for (int i = 0; i < this.StarSysData.ResearchCenters.Count; i++)
+                            {
+                                if (StarSysData.Factories[i].GetComponent<TextMeshProUGUI>().text == "0")
+                                {
+                                    StarSysData.Factories[i].GetComponent<TextMeshProUGUI>().text = "1";
+                                    //GalaxyMenuUIController.Instance.SetupSystemUI(this);
+                                }
+                                break;
+                            }
+                        }
+                        break;
+                    case "ResearchButtonOff":
+                        {
+                            for (int i = 0; i < this.StarSysData.ResearchCenters.Count; i++)
+                            {
+                                if (StarSysData.Factories[i].GetComponent<TextMeshProUGUI>().text == "1")
+                                {
+                                    StarSysData.Factories[i].GetComponent<TextMeshProUGUI>().text = "0";
+                                    //GalaxyMenuUIController.Instance.SetupSystemUI(this);
+                                }
+                                break;
+                            }
+                        }
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+        }
+        private void OnDestroy()
+        {
+            TimeManager.Instance.OnRandomSpecialEvent -= DoDisaster;
+            OnOffSysFacilityEvents.current.FacilityOnClick -= FacilityOnClick;
         }
     }
 }

@@ -8,7 +8,7 @@ public class TimeManager : MonoBehaviour
     public static TimeManager Instance;
 
     public event Action<TrekRandomEventSO> onRandomSpecialEvent; // 
-    public Action<TrekRandomEventSO> OnRandomSpecialEvent; // Instance of the delegate Action 
+    public Action<TrekRandomEventSO> OnRandomSpecialEvent; // current of the delegate Action 
     public event Action<TrekStardateEventSO> onStardateSpecialEvent; // 
     public Action<TrekStardateEventSO> OnStardateSpecialEvent;
     public event Action OnStardateChanged; //StardateUIController subscribes the UpdateDateText() function

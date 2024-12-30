@@ -18,7 +18,7 @@ MonoBehaviour:
   Name: Fabrication Plant
   StartStarDate: 0
   BuildDuration: 6
-  PowerLoad: 2
+  PowerLoad: 4
   FactorySprite: {fileID: 21300000, guid: edda6618890f8a24d9889ffa0c8eb303, type: 3}
   Description: 'The nature and operation of Romulan assembly plants remains a closely
     guarded imperial secret. '

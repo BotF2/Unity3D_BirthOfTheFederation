@@ -49,7 +49,7 @@ public class HabitableSysUIController: MonoBehaviour
             //ToDo: manage open UIs so we keep a UI with interaction pending when a fleet reaches a new target and you need more than one UI still open
             YourStarSysUIManager.Instance.CloseUnLoadStarSysUI();
             FleetUIController.Instance.CloseUnLoadFleetUI();
-            //FleetSelectionUI.Instance.UnLoadShipManagerUI();
+            //FleetSelectionUI.current.UnLoadShipManagerUI();
             FirstContactUIController.Instance.CloseUnLoadFirstContactUI();
             HabitableSysUIToggle.SetActive(true);
             visitingFleetCivEnum = discoveringFleetController.FleetData.CivEnum;

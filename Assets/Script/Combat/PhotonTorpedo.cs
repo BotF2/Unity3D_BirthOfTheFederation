@@ -17,14 +17,14 @@ namespace Assets.Core
         private void Start()
         {
 
-            //if (GameManager.Instance._statePassedMain_Init) // ToDo: how do we know if combat is over? && GameManager.Instance.FriendShips.Count > 0)
+            //if (GameManager.current._statePassedMain_Init) // ToDo: how do we know if combat is over? && GameManager.current.FriendShips.Count > 0)
             //{
             //    string whoTorpedo = gameObject.CivName.Substring(0, 3);
-            //  //  string friendShips = GameManager.Instance.FriendNameArray[0].Substring(0, 3); 
+            //  //  string friendShips = GameManager.current.FriendNameArray[0].Substring(0, 3); 
             //    if (whoTorpedo == friendShips)
-            //        theLocalTargetList = GameManager.Instance.EnemyShips;
+            //        theLocalTargetList = GameManager.current.EnemyShips;
             //    else
-            //        theLocalTargetList = GameManager.Instance.FriendShips;
+            //        theLocalTargetList = GameManager.current.FriendShips;
             //    homingTorpedo = transform.GetComponent<Rigidbody>();
             //    if (homingTorpedo != null)
             //    {

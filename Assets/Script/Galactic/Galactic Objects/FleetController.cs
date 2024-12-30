@@ -182,9 +182,9 @@ namespace Assets.Core
                 //        ourZCoordinate = galaxyEventCamera.WorldToScreenPoint(gameObject.transform.position).z;
                 //        // store offset = gameobject world pos - mouse world pos
                 //        vectorOffset = gameObject.transform.position - GetMouseWorldPosition();
-                //        //if (FleetUIController.Instance.MouseClickSetsDestination == false)
+                //        //if (FleetUIController.current.MouseClickSetsDestination == false)
                 //        //{
-                //        //    FleetUIController.Instance.LoadFleetUI(hitObject);
+                //        //    FleetUIController.current.LoadFleetUI(hitObject);
                 //        //}
                 //    }
                 //else
@@ -227,7 +227,7 @@ namespace Assets.Core
                     else if (!diplomacyController.areWePlaceholder && diplomacyController.DiplomacyData.DiplomacyEnumOfCivs == DiplomacyStatusEnum.TotalWar)
                     {
                         //**** Do Combat ****
-                        //Do this in combat code, TimeManager.Instance.PauseTime();
+                        //Do this in combat code, TimeManager.current.PauseTime();
                     }
                     // is this fleet we hit our destination
                     if (this.FleetData.Destination == hitGO.gameObject)
@@ -258,13 +258,13 @@ namespace Assets.Core
             /// the controllers for the two in a hit are checked above so do not check again.
             //else if (thisFleetController.gameObject == hitGO.GetComponent<FleetController>().FleetData.Destination)
             //{
-            //    FleetUIController.Instance.ClickCancelDestinationButton();
-            //    FleetUIController.Instance.CloseUnLoadFirstContactUI();
-            //    YourStarSysUIManager.Instance.CloseUnLoadStarSysUI();   
+            //    FleetUIController.current.ClickCancelDestinationButton();
+            //    FleetUIController.current.CloseUnLoadFirstContactUI();
+            //    YourStarSysUIManager.current.CloseUnLoadStarSysUI();   
             //}
 
             // old checklist
-            //FleetManager.Instance.
+            //FleetManager.current.
             //1) you get the FleetController of the new fleet GO
             //2) you ask your factionOwner (CivManager) if you already know the civ/faction of the new fleet
             //3) ?first contatact > what kind of hail?
@@ -346,8 +346,8 @@ namespace Assets.Core
                 DestinationLine.lineRenderer.positionCount = 0;
                 FleetUIController.Instance.CloseUnLoadFleetUI();
             }
-            //????PlayerDefinedTargetManager.Instance.
-            //FleetManager.Instance.
+            //????PlayerDefinedTargetManager.current.
+            //FleetManager.current.
             //1) you get the FleetController of the new fleet GO
             //2) ?build a deep space starbase vs a partol point for travel
         }
@@ -395,7 +395,7 @@ namespace Assets.Core
         void OnArrivedAtDestination()
         {
             // Logic to handle what happens when the fleet arrives at the destination
-            ;           //FleetUIController.Instance.ClickCancelDestinationButton(); 
+            ;           //FleetUIController.current.ClickCancelDestinationButton(); 
                         // Debug.Log("Arrived at destination: " + this.FleetData.Destination.name);
                         // Example: Stop the fleet, update UI, trigger events, etc.
 

@@ -228,7 +228,7 @@ namespace Assets.Core
             //foreach (var toggle in MultiplayerCivilizationGroup.ActiveToggles().ToArray())
             //{
             //    // ToDo: !!! need to get local player for SetLocalCivilization(int of civ) and
-            //    // CivManager.Instance.LocalPlayerCivEnum = CivManager.Instance.GetCivDataByCivEnum(CivEnum...);
+            //    // CivManager.current.LocalPlayerCivEnum = CivManager.current.GetCivDataByCivEnum(CivEnum...);
             //    // can try using Mirror; with GameObject LocalPlayerCivEnum = NetworkClient.LocalPlayerCivEnum.gameObject;
             //    if (toggle.name == "TOGGLE_FED")
             //    {

@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using Assets.Core;
 
 public class HoverManager : MonoBehaviour
 {

@@ -57,7 +57,7 @@ public class ShipyardSOImporter : EditorWindow
                 if (fields.Length >= 7) // Ensure there are enough fields
                 {
                     ShipyardSO ShipyardSO = CreateInstance<ShipyardSO>();
-                    ////StarSysInt	,	ShipyardSO Enum	,	ShipyardSO Short Name	,	ShipyardSO Long Name	,	Home System	,	Triat One	,	Trait Two	,	ShipyardSO Image	,	Insginia	,	Population	,	Credits	,	TechLevel Points
+                    ////StarSysInt	,	ShipyardSO Enum	,	ShipyardSO Short TextComponent	,	ShipyardSO Long TextComponent	,	Home System	,	Triat One	,	Trait Two	,	ShipyardSO Image	,	Insginia	,	Population	,	Credits	,	TechLevel Points
                     ShipyardSO.CivInt = int.Parse(fields[0]);
                     ShipyardSO.TechLevel = (TechLevel)int.Parse(fields[1]);
                     ShipyardSO.FacilitiesEnumType = (StarSysFacilities)int.Parse(fields[2]);

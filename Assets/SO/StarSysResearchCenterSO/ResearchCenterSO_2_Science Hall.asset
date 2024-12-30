@@ -18,6 +18,6 @@ MonoBehaviour:
   Name: Science Hall
   StartStarDate: 0
   BuildDuration: 4
-  PowerLoad: 2
+  PowerLoad: 1
   ResearchCenterSprite: {fileID: 0}
   Description: Klingon shields are robust and designed for combat.

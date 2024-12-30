@@ -30,7 +30,14 @@ public class StarSysData
     public List<GameObject> PowerUnits;
     public List<GameObject> ShieldGenerators;
     public List<GameObject> OrbitalBatteries;
-    public PowerPlantData PlantData;
+    public PowerPlantData PowerPlantData;
+    public FactoryData FactoryData;
+    public ShipyardData ShipyardData;
+    public ShieldGeneratorData ShieldGeneratorData;
+    public OrbitalBatteryData OrbitalBatteryData;
+    public ResearchCenterData ResearchCenterData;
+    
+
 
     public string Description;
     private string v;
@@ -60,7 +67,7 @@ public class StarSysData
     //public CivController GetCivController(CivEnum civEnum)
     //{
     //    CivController civCon = new CivController("null");
-    //    civCon = CivManager.Instance.GetCivControllerByEnum(civEnum);
+    //    civCon = CivManager.current.GetCivControllerByEnum(civEnum);
 
     //    return civCon;
     //}

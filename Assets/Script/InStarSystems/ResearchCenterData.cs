@@ -14,6 +14,7 @@ public class ResearchCenterData
     public int PowerLoad;
     public Sprite ResearchCenterSprite;
     public string Description;
+    public int On; // 0 = off, 1 = on
     private string v;
     public GameObject SysGameObject;
     public ResearchCenterData(string v)

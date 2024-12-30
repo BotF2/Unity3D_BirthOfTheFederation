@@ -44,7 +44,7 @@ public class FleetGroupController : MonoBehaviour
         //DiplomacyUICanvas.worldCamera = GalaxyEventCamera;
         //CanvasToolTip.worldCamera = GalaxyEventCamera;
         //FleetData.CurrentWarpFactor = 0f;
-        //Name = FleetData.CivShortName + " Fleet " + FleetData.Name;
+        //TextComponent = FleetData.CivShortName + " Fleet " + FleetData.TextComponent;
         //FleetState = FleetState.FleetStationary;
 
     }
@@ -140,7 +140,7 @@ public class FleetGroupController : MonoBehaviour
     }
     public void OnFleetEncounteredFleet(FleetController fleetController)
     {
-        //CivManager.Instance.Diplomacy(this.fleetData.OurCivController, fleetController.fleetData.OurCivController);
+        //CivManager.current.Diplomacy(this.fleetData.OurCivController, fleetController.fleetData.OurCivController);
         //// is it our fleet or not? Diplomacy or manage fleets or keep going?
         //if (fleetController.gameObject == this.FleetData.Destination)
         //{
@@ -149,7 +149,7 @@ public class FleetGroupController : MonoBehaviour
         //    //this.FleetData.war
         //    //FleetState = FleetState.FleetInSystem;
         //}
-        //FleetManager.Instance.
+        //FleetManager.current.
         //1) you get the FleetController of the new fleet GO
         //2) you ask your factionOwner (CivManager) if you already know the faction of the new fleet
         //3) ?first contatact > what kind of hail?
@@ -158,9 +158,9 @@ public class FleetGroupController : MonoBehaviour
     }
     public void OnFleetEncounteredStarSys(StarSysController starSysController)
     {
-        //????StarSysManager.Instance.
-        //FleetManager.Instance.GetFleetGroupInSystemForShipTransfer(starSysController);
-        //CivManager.Instance.Diplomacy(this.fleetData.OurCivController, starSysController.StarSysData.CurrentCivController);
+        //????StarSysManager.current.
+        //FleetManager.current.GetFleetGroupInSystemForShipTransfer(starSysController);
+        //CivManager.current.Diplomacy(this.fleetData.OurCivController, starSysController.StarSysData.CurrentCivController);
         //// is it our fleet or not? Diplomacy or manage fleets or keep going?
         //if (starSysController.gameObject == this.FleetData.Destination)
         //{
@@ -176,8 +176,8 @@ public class FleetGroupController : MonoBehaviour
     }
     public void OnFleetEncounteredPlayerDefinedTarget(PlayerDefinedTargetController playerTargetController)
     {
-        //????PlayerDefinedTargetManager.Instance.
-        //FleetManager.Instance.
+        //????PlayerDefinedTargetManager.current.
+        //FleetManager.current.
         //1) you get the FleetController of the new fleet GO
         //2) ?build a deep space starbase vs a partol point for travel
 
@@ -242,13 +242,13 @@ public class FleetGroupController : MonoBehaviour
     //}
     //public void AddFleetController(FleetController ourUIFleetController) // do we need this?
     //{
-    //    if (!FleetManager.Instance.ManagersFleetControllerList.Contains(ourUIFleetController))
-    //        FleetManager.Instance.ManagersFleetControllerList.Add(ourUIFleetController);
+    //    if (!FleetManager.current.ManagersFleetControllerList.Contains(ourUIFleetController))
+    //        FleetManager.current.ManagersFleetControllerList.Add(ourUIFleetController);
     //}
     //public void RemoveFleetController(FleetController ourUIFleetController)
     //{
-    //    if (FleetManager.Instance.ManagersFleetControllerList.Contains(ourUIFleetController))
-    //        FleetManager.Instance.ManagersFleetControllerList.Remove(ourUIFleetController);
+    //    if (FleetManager.current.ManagersFleetControllerList.Contains(ourUIFleetController))
+    //        FleetManager.current.ManagersFleetControllerList.Remove(ourUIFleetController);
     //}
 }
 

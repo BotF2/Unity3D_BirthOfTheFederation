@@ -59,7 +59,7 @@ public class OrbitalBatterySOImporter : EditorWindow
                 if (fields.Length >= 7) // Ensure there are enough fields
                 {
                     OrbitalBatterySO OrbitalBatterySO = CreateInstance<OrbitalBatterySO>();
-                    ////StarSysInt	,	OrbitalBatterySO Enum	,	OrbitalBatterySO Short Name	,	OrbitalBatterySO Long Name	,	Home System	,	Triat One	,	Trait Two	,	OrbitalBatterySO Image	,	Insginia	,	Population	,	Credits	,	TechLevel Points
+                    ////StarSysInt	,	OrbitalBatterySO Enum	,	OrbitalBatterySO Short TextComponent	,	OrbitalBatterySO Long TextComponent	,	Home System	,	Triat One	,	Trait Two	,	OrbitalBatterySO Image	,	Insginia	,	Population	,	Credits	,	TechLevel Points
                     OrbitalBatterySO.CivInt = int.Parse(fields[0]);
                     OrbitalBatterySO.TechLevel = (TechLevel)int.Parse(fields[1]);
                     OrbitalBatterySO.FacilitiesEnumType = (StarSysFacilities)int.Parse(fields[2]);

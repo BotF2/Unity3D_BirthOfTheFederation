@@ -57,7 +57,7 @@ public class PowerPlantSOImporter : EditorWindow
                 if (fields.Length >= 7) // Ensure there are enough fields
                 {
                     PowerPlantSO powerPlantSO = CreateInstance<PowerPlantSO>();
-                    ////StarSysInt	,	powerPlantSO Enum	,	powerPlantSO Short Name	,	powerPlantSO Long Name	,	Home System	,	Triat One	,	Trait Two	,	powerPlantSO Image	,	Insginia	,	Population	,	Credits	,	TechLevel Points
+                    ////StarSysInt	,	powerPlantSO Enum	,	powerPlantSO Short TextComponent	,	powerPlantSO Long TextComponent	,	Home System	,	Triat One	,	Trait Two	,	powerPlantSO Image	,	Insginia	,	Population	,	Credits	,	TechLevel Points
                     powerPlantSO.CivInt = int.Parse(fields[0]);
                     powerPlantSO.TechLevel = (TechLevel)int.Parse(fields[1]);
                     powerPlantSO.FacilitiesEnumType = (StarSysFacilities)int.Parse(fields[2]);
