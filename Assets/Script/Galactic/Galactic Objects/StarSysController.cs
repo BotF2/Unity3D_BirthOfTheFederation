@@ -174,8 +174,8 @@ namespace Assets.Core
                                 {
                                     StarSysData.Factories[i].GetComponent<TextMeshProUGUI>().text = "1";
                                     GalaxyMenuUIController.Instance.UpdateFactories(this);
-                                }
-                                break;
+                                    break;
+                                }                              
                             }
                         }
                         break;
@@ -187,8 +187,8 @@ namespace Assets.Core
                                 {
                                     StarSysData.Factories[i].GetComponent<TextMeshProUGUI>().text = "0";
                                     GalaxyMenuUIController.Instance.UpdateFactories(this);
-                                }
-                                break;
+                                    break;
+                                }                      
                             }
                         }
                         break;
@@ -196,12 +196,12 @@ namespace Assets.Core
                         {
                             for (int i = 0; i < this.StarSysData.Shipyards.Count; i++)
                             {
-                                if (StarSysData.Factories[i].GetComponent<TextMeshProUGUI>().text == "0")
+                                if (StarSysData.Shipyards[i].GetComponent<TextMeshProUGUI>().text == "0")
                                 {
-                                    StarSysData.Factories[i].GetComponent<TextMeshProUGUI>().text = "1";
-                                    //GalaxyMenuUIController.Instance.SetupSystemUI(this);
+                                    StarSysData.Shipyards[i].GetComponent<TextMeshProUGUI>().text = "1";
+                                    GalaxyMenuUIController.Instance.UpdateYards(this);
+                                    break;
                                 }
-                                break;
                             }
                         }
                         break;
@@ -209,12 +209,12 @@ namespace Assets.Core
                         {
                             for (int i = 0; i < this.StarSysData.Shipyards.Count; i++)
                             {
-                                if (StarSysData.Factories[i].GetComponent<TextMeshProUGUI>().text == "1")
+                                if (StarSysData.Shipyards[i].GetComponent<TextMeshProUGUI>().text == "1")
                                 {
-                                    StarSysData.Factories[i].GetComponent<TextMeshProUGUI>().text = "0";
-                                    //GalaxyMenuUIController.Instance.SetupSystemUI(this);
+                                    StarSysData.Shipyards[i].GetComponent<TextMeshProUGUI>().text = "0";
+                                    GalaxyMenuUIController.Instance.UpdateYards(this);
+                                    break;
                                 }
-                                break;
                             }
                         }
                         break;
@@ -222,12 +222,12 @@ namespace Assets.Core
                         {
                             for (int i = 0; i < this.StarSysData.ShieldGenerators.Count; i++)
                             {
-                                if (StarSysData.Factories[i].GetComponent<TextMeshProUGUI>().text == "0")
+                                if (StarSysData.ShieldGenerators[i].GetComponent<TextMeshProUGUI>().text == "0")
                                 {
-                                    StarSysData.Factories[i].GetComponent<TextMeshProUGUI>().text = "1";
-                                    // GalaxyMenuUIController.Instance.SetupSystemUI(this);
+                                    StarSysData.ShieldGenerators[i].GetComponent<TextMeshProUGUI>().text = "1";
+                                    GalaxyMenuUIController.Instance.UpdateShields(this);
+                                    break;
                                 }
-                                break;
                             }
                         }
                         break;
@@ -235,12 +235,12 @@ namespace Assets.Core
                         {
                             for (int i = 0; i < this.StarSysData.ShieldGenerators.Count; i++)
                             {
-                                if (StarSysData.Factories[i].GetComponent<TextMeshProUGUI>().text == "1")
+                                if (StarSysData.ShieldGenerators[i].GetComponent<TextMeshProUGUI>().text == "1")
                                 {
-                                    StarSysData.Factories[i].GetComponent<TextMeshProUGUI>().text = "0";
-                                    // GalaxyMenuUIController.Instance.SetupSystemUI(this);
+                                    StarSysData.ShieldGenerators[i].GetComponent<TextMeshProUGUI>().text = "0";
+                                    GalaxyMenuUIController.Instance.UpdateShields(this);
+                                    break;
                                 }
-                                break;
                             }
                         }
                         break;
@@ -248,12 +248,12 @@ namespace Assets.Core
                         {
                             for (int i = 0; i < this.StarSysData.OrbitalBatteries.Count; i++)
                             {
-                                if (StarSysData.Factories[i].GetComponent<TextMeshProUGUI>().text == "0")
+                                if (StarSysData.OrbitalBatteries[i].GetComponent<TextMeshProUGUI>().text == "0")
                                 {
-                                    StarSysData.Factories[i].GetComponent<TextMeshProUGUI>().text = "1";
-                                    //GalaxyMenuUIController.Instance.SetupSystemUI(this);
+                                    StarSysData.OrbitalBatteries[i].GetComponent<TextMeshProUGUI>().text = "1";
+                                    GalaxyMenuUIController.Instance.UpdateOBs(this);
+                                    break;
                                 }
-                                break;
                             }
                         }
                         break;
@@ -261,12 +261,12 @@ namespace Assets.Core
                         {
                             for (int i = 0; i < this.StarSysData.OrbitalBatteries.Count; i++)
                             {
-                                if (StarSysData.Factories[i].GetComponent<TextMeshProUGUI>().text == "1")
+                                if (StarSysData.OrbitalBatteries[i].GetComponent<TextMeshProUGUI>().text == "1")
                                 {
-                                    StarSysData.Factories[i].GetComponent<TextMeshProUGUI>().text = "0";
-                                    //GalaxyMenuUIController.Instance.SetupSystemUI(this);
+                                    StarSysData.OrbitalBatteries[i].GetComponent<TextMeshProUGUI>().text = "0";
+                                    GalaxyMenuUIController.Instance.UpdateOBs(this);
+                                    break;
                                 }
-                                break;
                             }
                         }
                         break;
@@ -274,12 +274,13 @@ namespace Assets.Core
                         {
                             for (int i = 0; i < this.StarSysData.ResearchCenters.Count; i++)
                             {
-                                if (StarSysData.Factories[i].GetComponent<TextMeshProUGUI>().text == "0")
+                                if (StarSysData.ResearchCenters[i].GetComponent<TextMeshProUGUI>().text == "0")
                                 {
-                                    StarSysData.Factories[i].GetComponent<TextMeshProUGUI>().text = "1";
-                                    //GalaxyMenuUIController.Instance.SetupSystemUI(this);
+                                    StarSysData.ResearchCenters[i].GetComponent<TextMeshProUGUI>().text = "1";
+                                    GalaxyMenuUIController.Instance.UpdateResearchCenters(this);
+                                    break;
                                 }
-                                break;
+                                
                             }
                         }
                         break;
@@ -287,12 +288,12 @@ namespace Assets.Core
                         {
                             for (int i = 0; i < this.StarSysData.ResearchCenters.Count; i++)
                             {
-                                if (StarSysData.Factories[i].GetComponent<TextMeshProUGUI>().text == "1")
+                                if (StarSysData.ResearchCenters[i].GetComponent<TextMeshProUGUI>().text == "1")
                                 {
-                                    StarSysData.Factories[i].GetComponent<TextMeshProUGUI>().text = "0";
-                                    //GalaxyMenuUIController.Instance.SetupSystemUI(this);
-                                }
-                                break;
+                                    StarSysData.ResearchCenters[i].GetComponent<TextMeshProUGUI>().text = "0";
+                                    GalaxyMenuUIController.Instance.UpdateResearchCenters(this);
+                                    break;
+                                }          
                             }
                         }
                         break;

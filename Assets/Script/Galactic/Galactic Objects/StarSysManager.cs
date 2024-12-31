@@ -195,6 +195,8 @@ namespace Assets.Core
                     sysData.OrbitalBatteries = GetSystemFacilities(starSysSO.OrbitalBatteries, OrbitalBatteryPrefab, civSO.CivInt, sysData);
                     sysData.ResearchCenters = GetSystemFacilities(starSysSO.ResearchCenters, ResearchCenterPrefab, civSO.CivInt, sysData);
                     SetParentForFacilities(starSystemNewGameOb, sysData);
+                    if (GameController.Instance.AreWeLocalPlayer(sysData.CurrentOwner))
+                        NewSystemUI(starSysController);
                 }
 
                 //***** This is temporary so we can test a multi-starsystem civ
@@ -693,10 +695,8 @@ namespace Assets.Core
                 GameObject starSysUI = (GameObject)Instantiate(sysUIPrefab, new Vector3(0, 0, 0),
                     Quaternion.identity);
                 starSysUI.layer = 5;
-                sysController.StarSysUIController = starSysUI; // each system controller has its system UI
+                sysController.StarSysUIController = starSysUI; 
                 starSysUI.transform.SetParent(contentFolderParent.transform, false); // load into Queue
-
-                GalaxyMenuUIController.Instance.SetupSystemUI(sysController);
             }
             
         }

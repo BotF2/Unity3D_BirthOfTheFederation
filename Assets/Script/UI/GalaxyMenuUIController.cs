@@ -234,11 +234,8 @@ public class GalaxyMenuUIController : MonoBehaviour
         {
             foreach (var sysCon in StarSysManager.Instance.ManagersStarSysControllerList)
             {
-                if (sysCon.StarSysUIController != null)
+                if (sysCon.StarSysUIController != null && GameController.Instance.AreWeLocalPlayer(sysCon.StarSysData.CurrentOwner))
                     SetupSystemUI(sysCon);
-                else
-                    StarSysManager.Instance.NewSystemUI(sysCon);
-
             }
         }
     }
@@ -258,8 +255,8 @@ public class GalaxyMenuUIController : MonoBehaviour
             {
                 int techLevelInt = (int)CivManager.Instance.LocalPlayerCivContoller.CivData.TechLevel / 100; // Early Tech level = 100, Supreme = 900;
                 OneTmp.enabled = true;
-                var name =OneTmp.name.ToString();
-          
+                var name = OneTmp.name.ToString();
+
                 switch (name)
                 {
                     case "SysName":
@@ -268,7 +265,7 @@ public class GalaxyMenuUIController : MonoBehaviour
                     case "HeaderPowerUnitText":
                         //if (sysController.StarSysData.PowerStations.Count > 0)  
                         OneTmp.text = sysController.StarSysData.PowerPlantData.Name;
-                    //ToDo: can make it race specific here, not defaul "Plasma Reactor"
+                        //ToDo: can make it race specific here, not defaul "Plasma Reactor"
                         break;
                     case "NumPUnits":
                         OneTmp.text = (sysController.StarSysData.PowerStations.Count).ToString();
@@ -289,7 +286,7 @@ public class GalaxyMenuUIController : MonoBehaviour
                             if (TheText.text == "1") // 1 = on and 0 = off
                                 count++;
                         }
-                        OneTmp.text = count.ToString() + "/" +(sysController.StarSysData.Factories.Count).ToString();
+                        OneTmp.text = count.ToString() + "/" + (sysController.StarSysData.Factories.Count).ToString();
                         break;
                     case "FactoryLoad":
                         // for now all are turned on
@@ -346,7 +343,7 @@ public class GalaxyMenuUIController : MonoBehaviour
                             if (TheText.text == "1")
                                 count3++;
                         }
-                        OneTmp.text = count3.ToString() +"/"+(sysController.StarSysData.OrbitalBatteries.Count).ToString();
+                        OneTmp.text = count3.ToString() + "/" + (sysController.StarSysData.OrbitalBatteries.Count).ToString();
                         break;
                     case "OBLoad":
                         OneTmp.text = (sysController.StarSysData.OrbitalBatteryData.PowerLoad * sysController.StarSysData.OrbitalBatteries.Count).ToString() + "u";
@@ -363,7 +360,7 @@ public class GalaxyMenuUIController : MonoBehaviour
                             if (TheText.text == "1")
                                 count4++;
                         }
-                        OneTmp.text = count4.ToString() +"/"+(sysController.StarSysData.ResearchCenters.Count).ToString();
+                        OneTmp.text = count4.ToString() + "/" + (sysController.StarSysData.ResearchCenters.Count).ToString();
                         break;
                     case "ResearchLoad":
                         OneTmp.text = (sysController.StarSysData.ResearchCenterData.PowerLoad * sysController.StarSysData.ResearchCenters.Count).ToString() + "u";
@@ -372,52 +369,51 @@ public class GalaxyMenuUIController : MonoBehaviour
                     default:
                         break;
                 }
-
-                Button[] listButton = sysController.StarSysUIController.GetComponentsInChildren<Button>();
-                foreach (var OneButt in listButton)
-                {
-                    switch (OneButt.name)
-                    {
-                        case "BuildButton":
-                            //OneButt.onClick.AddListener(() => buildListUI.SetActive(true));
-                            //OneButt.onClick.AddListener(() => sysController.BuildClick());
-                            break;
-                        case "FactoryButtonOn":
-                            OneButt.onClick.AddListener(() => sysController.FacilityOnClick(sysController, OneButt.name));
-                            break;
-                        case "FactoryButtonOff":
-                            OneButt.onClick.AddListener(() => sysController.FacilityOnClick(sysController, OneButt.name));
-                            break;
-                        case "YardButtonOn":
-                            OneButt.onClick.AddListener(() => sysController.FacilityOnClick(sysController, OneButt.name));
-                            break;
-                        case "YardButtonOff":
-                            OneButt.onClick.AddListener(() => sysController.FacilityOnClick(sysController, OneButt.name));
-                            break;
-                        case "ShieldButtonOn":
-                            OneButt.onClick.AddListener(() => sysController.FacilityOnClick(sysController, OneButt.name));
-                            break;
-                        case "ShieldButtonOff":
-                            OneButt.onClick.AddListener(() => sysController.FacilityOnClick(sysController, OneButt.name));
-                            break;
-                        case "OBButtonOn":
-                            OneButt.onClick.AddListener(() => sysController.FacilityOnClick(sysController, OneButt.name));
-                            break;
-                        case "OBButtonOff":
-                            OneButt.onClick.AddListener(() => sysController.FacilityOnClick(sysController, OneButt.name));
-                            break;
-                        case "ResearchButtonOn":
-                            OneButt.onClick.AddListener(() => sysController.FacilityOnClick(sysController, OneButt.name));
-                            break;
-                        case "ResearchButtonOff":
-                            OneButt.onClick.AddListener(() => sysController.FacilityOnClick(sysController, OneButt.name));
-                            break;
-                        default:
-                            break;
-                    }
-                }
             }
 
+            Button[] listButton = sysController.StarSysUIController.GetComponentsInChildren<Button>();
+            foreach (var OneButt in listButton)
+            {
+                switch (OneButt.name)
+                {
+                    case "BuildButton":
+                        //OneButt.onClick.AddListener(() => buildListUI.SetActive(true));
+                        //OneButt.onClick.AddListener(() => sysController.BuildClick());
+                        break;
+                    case "FactoryButtonOn":
+                        OneButt.onClick.AddListener(() => sysController.FacilityOnClick(sysController, OneButt.name));
+                        break;
+                    case "FactoryButtonOff":
+                        OneButt.onClick.AddListener(() => sysController.FacilityOnClick(sysController, OneButt.name));
+                        break;
+                    case "YardButtonOn":
+                        OneButt.onClick.AddListener(() => sysController.FacilityOnClick(sysController, OneButt.name));
+                        break;
+                    case "YardButtonOff":
+                        OneButt.onClick.AddListener(() => sysController.FacilityOnClick(sysController, OneButt.name));
+                        break;
+                    case "ShieldButtonOn":
+                        OneButt.onClick.AddListener(() => sysController.FacilityOnClick(sysController, OneButt.name));
+                        break;
+                    case "ShieldButtonOff":
+                        OneButt.onClick.AddListener(() => sysController.FacilityOnClick(sysController, OneButt.name));
+                        break;
+                    case "OBButtonOn":
+                        OneButt.onClick.AddListener(() => sysController.FacilityOnClick(sysController, OneButt.name));
+                        break;
+                    case "OBButtonOff":
+                        OneButt.onClick.AddListener(() => sysController.FacilityOnClick(sysController, OneButt.name));
+                        break;
+                    case "ResearchButtonOn":
+                        OneButt.onClick.AddListener(() => sysController.FacilityOnClick(sysController, OneButt.name));
+                        break;
+                    case "ResearchButtonOff":
+                        OneButt.onClick.AddListener(() => sysController.FacilityOnClick(sysController, OneButt.name));
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
     }
     public void UpdateFactories(StarSysController sysController)
@@ -451,38 +447,143 @@ public class GalaxyMenuUIController : MonoBehaviour
                             break;
                     }
                 }
-                Button[] listButton = sysController.StarSysUIController.GetComponentsInChildren<Button>();
-                foreach (var OneButt in listButton)
+            }
+        }
+    }
+    public void UpdateYards(StarSysController sysController)
+    {
+        foreach (var SysCon in sysControllers)
+        {
+            if (sysController == SysCon)
+            {
+                TextMeshProUGUI[] listTMP = sysController.StarSysUIController.GetComponentsInChildren<TextMeshProUGUI>();
+
+                foreach (var OneTmp in listTMP)
                 {
-                    switch (OneButt.name)
+                    OneTmp.enabled = true;
+                    var itemName = OneTmp.name.ToString();
+                    int count1 = 0;
+                    switch (itemName)
                     {
-                        case "FactoryButtonOn":
-                            OneButt.onClick.AddListener(() => sysController.FacilityOnClick(sysController, OneButt.name));
+                        case "NumYardsOnRatio":
+
+                            foreach (var item in sysController.StarSysData.Shipyards)
+                            {
+                                TextMeshProUGUI TheText = item.GetComponent<TextMeshProUGUI>();
+                                if (TheText.text == "1")
+                                    count1++;
+                            }
+                            OneTmp.text = count1.ToString() + "/" + (sysController.StarSysData.Shipyards.Count).ToString();
                             break;
-                        case "FactoryButtonOff":
-                            OneButt.onClick.AddListener(() => sysController.FacilityOnClick(sysController, OneButt.name));
+                        case "YardLoad":
+                            // for now all are turned on
+                            OneTmp.text = (sysController.StarSysData.ShipyardData.PowerLoad * count1).ToString() + "u";
+                            // ToDo: work in tech levels
                             break;
                     }
                 }
             }
         }
-        //if(itemName == "NumFactoryRatio") { }
-        //    int count = 0;
-        //    foreach (var SysCon in sysController.StarSysData.Factories)
-        //    {
-        //        TextMeshProUGUI TheText = SysCon.GetComponent<TextMeshProUGUI>();
-        //        if (TheText.text == "1") // 1 = on and 0 = off
-        //            count++;
-        //    }
-        //    OneTmp.text = count.ToString() + "/" + (sysController.StarSysData.Factories.Count).ToString();
-        //    break;
-        //case "FactoryLoad":
-        //    // for now all are turned on
-        //    OneTmp.text = (sysController.StarSysData.FactoryData.PowerLoad * sysController.StarSysData.Factories.Count).ToString() + "u";
-        //    // ToDo: work in tech levels
-        //    break;
     }
+    public void UpdateShields(StarSysController sysController)
+    {
+        foreach (var SysCon in sysControllers)
+        {
+            if (sysController == SysCon)
+            {
+                TextMeshProUGUI[] listTMP = sysController.StarSysUIController.GetComponentsInChildren<TextMeshProUGUI>();
 
+                foreach (var OneTmp in listTMP)
+                {
+                    OneTmp.enabled = true;
+                    var itemName = OneTmp.name.ToString();
+                    int count2 = 0;
+                    switch (itemName)
+                    {
+                        case "NumShieldRatio":
+                            foreach (var item in sysController.StarSysData.ShieldGenerators)
+                            {
+                                TextMeshProUGUI TheText = item.GetComponent<TextMeshProUGUI>();
+                                if (TheText.text == "1")
+                                    count2++;
+                            }
+                            OneTmp.text = count2.ToString() + "/" + (sysController.StarSysData.ShieldGenerators.Count).ToString();
+                            break;
+                        case "ShieldLoad":
+                            OneTmp.text = (sysController.StarSysData.ShieldGeneratorData.PowerLoad * count2).ToString() + "u";
+                            // ToDo: work in tech levels
+                            break;
+                    }
+                }
+            }
+        }
+    }
+    public void UpdateOBs(StarSysController sysController)
+    {
+        foreach (var SysCon in sysControllers)
+        {
+            if (sysController == SysCon)
+            {
+                TextMeshProUGUI[] listTMP = sysController.StarSysUIController.GetComponentsInChildren<TextMeshProUGUI>();
+
+                foreach (var OneTmp in listTMP)
+                {
+                    OneTmp.enabled = true;
+                    var itemName = OneTmp.name.ToString();
+                    int count3 = 0;
+                    switch (itemName)
+                    {
+                        case "NumOBRatio":
+                            foreach (var item in sysController.StarSysData.OrbitalBatteries)
+                            {
+                                TextMeshProUGUI TheText = item.GetComponent<TextMeshProUGUI>();
+                                if (TheText.text == "1")
+                                    count3++;
+                            }
+                            OneTmp.text = count3.ToString() + "/" + (sysController.StarSysData.OrbitalBatteries.Count).ToString();
+                            break;
+                        case "OBLoad":
+                            OneTmp.text = (sysController.StarSysData.OrbitalBatteryData.PowerLoad * count3).ToString() + "u";
+                            // ToDo: work in tech levels
+                            break;
+                    }
+                }
+            }
+        }
+    }
+    public void UpdateResearchCenters(StarSysController sysController)
+    {
+        foreach (var SysCon in sysControllers)
+        {
+            if (sysController == SysCon)
+            {
+                TextMeshProUGUI[] listTMP = sysController.StarSysUIController.GetComponentsInChildren<TextMeshProUGUI>();
+
+                foreach (var OneTmp in listTMP)
+                {
+                    OneTmp.enabled = true;
+                    var itemName = OneTmp.name.ToString();
+                    int count4 = 0;
+                    switch (itemName)
+                    {
+                        case "NumResearchRatio":
+                            foreach (var item in sysController.StarSysData.ResearchCenters)
+                            {
+                                TextMeshProUGUI TheText = item.GetComponent<TextMeshProUGUI>();
+                                if (TheText.text == "1")
+                                    count4++;
+                            }
+                            OneTmp.text = count4.ToString() + "/" + (sysController.StarSysData.ResearchCenters.Count).ToString();
+                            break;
+                        case "ResearchLoad":
+                            OneTmp.text = (sysController.StarSysData.ResearchCenterData.PowerLoad * count4).ToString() + "u";
+                            // ToDo: work in tech levels
+                            break;
+                    }
+                }
+            }
+        }
+    }
     private bool IntParse()
     {
         throw new NotImplementedException();
