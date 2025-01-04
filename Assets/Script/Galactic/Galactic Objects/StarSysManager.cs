@@ -165,7 +165,7 @@ namespace Assets.Core
                 ourDropLine.SetUpLine(points);
                 //StarSysController starSysController = starSystemNewGameOb.GetComponentInChildren<StarSysController>();
                 starSysController.name = sysData.GetSysName();
-                //starSysController.StarSysUIController.Sys
+                //starSysController.StarSysUIGameObject.Sys
                 starSysController.StarSysData = sysData;
                 starSysController.canvasYourStarSysUI = yourStarSysUICanvas;
                 foreach (var civCon in CivManager.Instance.CivControllersInGame)
@@ -185,7 +185,7 @@ namespace Assets.Core
                     csFogWar.Instance.RunFogOfWar(); // star systems are in place so time to scan for the fog
 
                 }
-                if (civSO.CivInt < 7) 
+                if (GameController.Instance.AreWeLocalPlayer(sysData.CurrentOwner)) 
                 {
                     StarSysSO starSysSO = GetStarSObyInt(civSO.CivInt);
                     sysData.PowerStations = GetSystemFacilities(starSysSO.PowerStations, PowerPlantPrefab, civSO.CivInt, sysData);
@@ -195,8 +195,7 @@ namespace Assets.Core
                     sysData.OrbitalBatteries = GetSystemFacilities(starSysSO.OrbitalBatteries, OrbitalBatteryPrefab, civSO.CivInt, sysData);
                     sysData.ResearchCenters = GetSystemFacilities(starSysSO.ResearchCenters, ResearchCenterPrefab, civSO.CivInt, sysData);
                     SetParentForFacilities(starSystemNewGameOb, sysData);
-                    if (GameController.Instance.AreWeLocalPlayer(sysData.CurrentOwner))
-                        NewSystemUI(starSysController);
+                    NewSystemUI(starSysController);
                 }
 
                 //***** This is temporary so we can test a multi-starsystem civ
@@ -240,7 +239,7 @@ namespace Assets.Core
             List<GameObject> list = new List<GameObject>();
             switch (prefab.name)
             {
-                // "SysName" in each system ribbon is set in GalaxyMenuUIController without a facility game object needed
+                // "SysName" not done here. See in each system ribbon is set in GalaxyMenuUIController without a facility game object needed
                 case "PowerPlantData":
                     {
                         PowerPlantData powerPlantData = new PowerPlantData("null");
@@ -273,7 +272,6 @@ namespace Assets.Core
                     }
                 case "FactoryData":
                     {
-                        //Debugger.Break();
                         FactoryData factoryData = new FactoryData("null");
                         var factorySO = GetFactorySObyCivInt(civInt);
                         factoryData.CivInt = factorySO.CivInt;
@@ -283,7 +281,6 @@ namespace Assets.Core
                         factoryData.StartStarDate = factorySO.StartStarDate;
                         factoryData.PowerLoad = factorySO.PowerLoad;
                         factoryData.BuildDuration = factorySO.BuildDuration;
-                        factoryData.On = 1;
                         factoryData.PowerPlantSprite = factorySO.FactorySprite;
                         factoryData.Description = factorySO.Description;
                         sysData.FactoryData = factoryData;
@@ -296,43 +293,44 @@ namespace Assets.Core
                                 Quaternion.identity);
                             newFacilityGO.layer = 5;
                             TextMeshProUGUI On = newFacilityGO.AddComponent<TextMeshProUGUI>();
-                            On.text = factoryData.On.ToString(); // 0 = off, 1 = on. is set to 1 above
+                            On.text = "1"; // 0 = off, 1 = on.
                             GetFactoryText(newFacilityGO, factoryData, numOf);
                             newFacilityGO.SetActive(false);
                             factoryData.SysGameObject = newFacilityGO;
                             list.Add(newFacilityGO);
+                            sysData.TotalSysPowerLoad += factoryData.PowerLoad;
                         }
                         break;
                     }
                 case "ShipyardData":
                     {
-                        ShipyardData sData = new ShipyardData("null");
+                        ShipyardData syData = new ShipyardData("null");
                         var sSO = GetShipyardSObyCivInt(civInt);
-                        sData.CivInt = sSO.CivInt;
-                        sData.TechLevel = sSO.TechLevel;
-                        sData.FacilitiesEnumType = sSO.FacilitiesEnumType;
-                        sData.Name = sSO.Name;
-                        sData.StartStarDate = sSO.StartStarDate;
-                        sData.BuildDuration = sSO.BuildDuration;
-                        sData.PowerLoad = sSO.PowerLoad;
-                        sData.On = 1;
-                        sData.ShipyardSprite = sSO.ShipyardSprite;
-                        sData.Description = sSO.Description;
-                        sysData.ShipyardData = sData;
+                        syData.CivInt = sSO.CivInt;
+                        syData.TechLevel = sSO.TechLevel;
+                        syData.FacilitiesEnumType = sSO.FacilitiesEnumType;
+                        syData.Name = sSO.Name;
+                        syData.StartStarDate = sSO.StartStarDate;
+                        syData.BuildDuration = sSO.BuildDuration;
+                        syData.PowerLoad = sSO.PowerLoad;
+                        syData.ShipyardSprite = sSO.ShipyardSprite;
+                        syData.Description = sSO.Description;
+                        sysData.ShipyardData = syData;
                         List<ShipyardData> syDatas = new List<ShipyardData>();
                         for (int i = 0; i < numOf; i++)
-                            syDatas.Add(sData);
+                            syDatas.Add(syData);
                         for (int i = 0; i < syDatas.Count; i++)
                         {
                             GameObject newFacilityGO = (GameObject)Instantiate(prefab, new Vector3(0, 0, 0),
                                 Quaternion.identity);
                             newFacilityGO.layer = 5;
                             TextMeshProUGUI On = newFacilityGO.AddComponent<TextMeshProUGUI>();
-                            On.text = sData.On.ToString();
-                            GetShipyardText(newFacilityGO, sData, numOf);
+                            On.text = "1";
+                            GetShipyardText(newFacilityGO, syData, numOf);
                             newFacilityGO.SetActive(false);
-                            sData.SysGameObject = newFacilityGO;
+                            syData.SysGameObject = newFacilityGO;
                             list.Add(newFacilityGO);
+                            sysData.TotalSysPowerLoad += syData.PowerLoad;
                         }
                         break;
                     }
@@ -347,7 +345,6 @@ namespace Assets.Core
                         sgData.StartStarDate = sgSO.StartStarDate;
                         sgData.BuildDuration = sgSO.BuildDuration;
                         sgData.PowerLoad = sgSO.PowerLoad;
-                        sgData.On = 1;
                         sgData.ShieldGeneratorSprite = sgSO.ShieldGeneratorSprite;
                         sgData.Description = sgSO.Description;
                         sysData.ShieldGeneratorData = sgData;
@@ -360,11 +357,12 @@ namespace Assets.Core
                                 Quaternion.identity);
                             newFacilityGO.layer = 5;
                             TextMeshProUGUI On = newFacilityGO.AddComponent<TextMeshProUGUI>();
-                            On.text = sgData.On.ToString();
+                            On.text = "1";
                             GetShieldGText(newFacilityGO, sgData, numOf);
                             newFacilityGO.SetActive(false);
                             sgData.SysGameObject = newFacilityGO;
                             list.Add(newFacilityGO);
+                            sysData.TotalSysPowerLoad += sgData.PowerLoad;
                         }
                         break;
                     }
@@ -379,7 +377,6 @@ namespace Assets.Core
                         obData.StartStarDate = sgSO.StartStarDate;
                         obData.BuildDuration = sgSO.BuildDuration;
                         obData.PowerLoad = sgSO.PowerLoad;
-                        obData.On = 1;
                         obData.OrbitalBatterySprite = sgSO.OrbitalBatterySprite;
                         obData.Description = sgSO.Description;
                         sysData.OrbitalBatteryData = obData;
@@ -392,11 +389,12 @@ namespace Assets.Core
                                 Quaternion.identity);
                             newFacilityGO.layer = 5;
                             TextMeshProUGUI On = newFacilityGO.AddComponent<TextMeshProUGUI>();
-                            On.text = obData.On.ToString();
+                            On.text = "1";
                             GetOBText(newFacilityGO, obData, numOf);
                             newFacilityGO.SetActive(false);
                             obData.SysGameObject = newFacilityGO;
                             list.Add(newFacilityGO);
+                            sysData.TotalSysPowerLoad += obData.PowerLoad;
                         }
                         break;
                     }
@@ -411,7 +409,6 @@ namespace Assets.Core
                         researchData.StartStarDate = sgSO.StartStarDate;
                         researchData.BuildDuration = sgSO.BuildDuration;
                         researchData.PowerLoad = sgSO.PowerLoad;
-                        researchData.On = 1;
                         researchData.ResearchCenterSprite = sgSO.ResearchCenterSprite;
                         researchData.Description = sgSO.Description;
                         sysData.ResearchCenterData = researchData;
@@ -424,11 +421,12 @@ namespace Assets.Core
                                 Quaternion.identity);
                             newFacilityGO.layer = 5;
                             TextMeshProUGUI On = newFacilityGO.AddComponent<TextMeshProUGUI>();
-                            On.text = researchData.On.ToString();
+                            On.text = "1";
                             GetResearchCenterText(newFacilityGO, researchData, numOf);
                             newFacilityGO.SetActive(false);
                             researchData.SysGameObject = newFacilityGO;
                             list.Add(newFacilityGO);
+                            sysData.TotalSysPowerLoad += researchData.PowerLoad;
                         }
                         break;
                     }
@@ -453,6 +451,8 @@ namespace Assets.Core
                     OneTmp.text = plantData.PowerOutput.ToString();
                 else if (OneTmp.name == "DescriptionText (TMP)")
                     OneTmp.text = plantData.Description;
+                //Doing the system power load in SysData/ GalaxyMenuUIController //else if (OneTmp.name == "NumP Load")
+
                 // image here
 
             }
@@ -692,11 +692,11 @@ namespace Assets.Core
             
             if (sysController.StarSysData.CurrentOwner == GameController.Instance.GameData.LocalPlayerCivEnum)
             {
-                GameObject starSysUI = (GameObject)Instantiate(sysUIPrefab, new Vector3(0, 0, 0),
+                GameObject thisStarSysUIGameObject = (GameObject)Instantiate(sysUIPrefab, new Vector3(0, 0, 0),
                     Quaternion.identity);
-                starSysUI.layer = 5;
-                sysController.StarSysUIController = starSysUI; 
-                starSysUI.transform.SetParent(contentFolderParent.transform, false); // load into Queue
+                thisStarSysUIGameObject.layer = 5;
+                sysController.StarSysUIGameObject = thisStarSysUIGameObject; 
+                thisStarSysUIGameObject.transform.SetParent(contentFolderParent.transform, false); // load into Queue
             }
             
         }

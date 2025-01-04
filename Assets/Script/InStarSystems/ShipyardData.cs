@@ -14,7 +14,6 @@ public class ShipyardData
     public int PowerLoad;
     public Sprite ShipyardSprite;
     public string Description;
-    public int On; // 0 = off, 1 = on
     private string v;
     public GameObject SysGameObject;
     public ShipyardData(string v)

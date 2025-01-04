@@ -14,7 +14,6 @@ public class OrbitalBatteryData
     public int PowerLoad;
     public Sprite OrbitalBatterySprite;
     public string Description;
-    public int On; // 0 = off, 1 = on
     private string v;
     public GameObject SysGameObject;
 

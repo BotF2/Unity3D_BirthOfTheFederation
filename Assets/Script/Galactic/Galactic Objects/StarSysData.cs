@@ -30,6 +30,7 @@ public class StarSysData
     public List<GameObject> PowerUnits;
     public List<GameObject> ShieldGenerators;
     public List<GameObject> OrbitalBatteries;
+    public int TotalSysPowerLoad = 0;
     public PowerPlantData PowerPlantData;
     public FactoryData FactoryData;
     public ShipyardData ShipyardData;

@@ -18,17 +18,15 @@ namespace Assets.Core
         private StarSysData starSysData;
         public StarSysData StarSysData { get { return starSysData; } set { starSysData = value; } }
         [SerializeField]
-        private GameObject starSysUIController;
+        private GameObject starSysUIGameObject; //The instantiated system UI prefab, not a class but a game object
         // instantiated by StarSysManager from a prefab and added to StarSysController, NewSystemUI()
-        public GameObject StarSysUIController { get { return starSysUIController; } set { starSysUIController = value; } }
+        public GameObject StarSysUIGameObject { get { return starSysUIGameObject; } set { starSysUIGameObject = value; } }
         private Camera galaxyEventCamera;
         [SerializeField]
         private Canvas canvasToolTip;
         public Canvas canvasYourStarSysUI;
         public static event Action<TrekRandomEventSO> TrekEventDisasters;
         private int stardate;
-        //public int PowerPerPlant = 10; // used by GalaxyMenuUIController
-       
 
         public StarSysController(string name)
         {
@@ -46,6 +44,8 @@ namespace Assets.Core
         {
             stardate = TimeManager.Instance.currentStardate;
         }
+        // ****** ToDo: need to know when a new facility has completed its build
+        // ********* call for BuildCompeted(newGO, int powerloaddelta);
         public void AddToFactoryQueue(GameObject facilityPrefab)
         {
             GameObject systemFacilityGO = (GameObject)Instantiate(facilityPrefab, new Vector3(0, 0, 0),
@@ -157,7 +157,7 @@ namespace Assets.Core
         }
         public void BuildClick() // open build list UI
         {
-            // Do some shit here
+            // 
             // StarSysManager.current.GetInstanceOfFacility();
         }
         public void FacilityOnClick(StarSysController sysCon, string name)
@@ -173,7 +173,8 @@ namespace Assets.Core
                                 if (StarSysData.Factories[i].GetComponent<TextMeshProUGUI>().text == "0")
                                 {
                                     StarSysData.Factories[i].GetComponent<TextMeshProUGUI>().text = "1";
-                                    GalaxyMenuUIController.Instance.UpdateFactories(this);
+                                    this.StarSysData.TotalSysPowerLoad += StarSysData.FactoryData.PowerLoad;
+                                    GalaxyMenuUIController.Instance.UpdateFactories(this, 1);
                                     break;
                                 }                              
                             }
@@ -186,7 +187,8 @@ namespace Assets.Core
                                 if (StarSysData.Factories[i].GetComponent<TextMeshProUGUI>().text == "1")
                                 {
                                     StarSysData.Factories[i].GetComponent<TextMeshProUGUI>().text = "0";
-                                    GalaxyMenuUIController.Instance.UpdateFactories(this);
+                                    this.StarSysData.TotalSysPowerLoad -= StarSysData.FactoryData.PowerLoad;
+                                    GalaxyMenuUIController.Instance.UpdateFactories(this, -1);
                                     break;
                                 }                      
                             }
@@ -199,6 +201,7 @@ namespace Assets.Core
                                 if (StarSysData.Shipyards[i].GetComponent<TextMeshProUGUI>().text == "0")
                                 {
                                     StarSysData.Shipyards[i].GetComponent<TextMeshProUGUI>().text = "1";
+                                    this.StarSysData.TotalSysPowerLoad += StarSysData.ShipyardData.PowerLoad;
                                     GalaxyMenuUIController.Instance.UpdateYards(this);
                                     break;
                                 }
@@ -212,6 +215,7 @@ namespace Assets.Core
                                 if (StarSysData.Shipyards[i].GetComponent<TextMeshProUGUI>().text == "1")
                                 {
                                     StarSysData.Shipyards[i].GetComponent<TextMeshProUGUI>().text = "0";
+                                    this.StarSysData.TotalSysPowerLoad -= StarSysData.ShipyardData.PowerLoad;
                                     GalaxyMenuUIController.Instance.UpdateYards(this);
                                     break;
                                 }
@@ -225,6 +229,7 @@ namespace Assets.Core
                                 if (StarSysData.ShieldGenerators[i].GetComponent<TextMeshProUGUI>().text == "0")
                                 {
                                     StarSysData.ShieldGenerators[i].GetComponent<TextMeshProUGUI>().text = "1";
+                                    this.StarSysData.TotalSysPowerLoad += StarSysData.ShieldGeneratorData.PowerLoad;
                                     GalaxyMenuUIController.Instance.UpdateShields(this);
                                     break;
                                 }
@@ -238,6 +243,7 @@ namespace Assets.Core
                                 if (StarSysData.ShieldGenerators[i].GetComponent<TextMeshProUGUI>().text == "1")
                                 {
                                     StarSysData.ShieldGenerators[i].GetComponent<TextMeshProUGUI>().text = "0";
+                                    this.StarSysData.TotalSysPowerLoad -= StarSysData.ShieldGeneratorData.PowerLoad;
                                     GalaxyMenuUIController.Instance.UpdateShields(this);
                                     break;
                                 }
@@ -251,6 +257,7 @@ namespace Assets.Core
                                 if (StarSysData.OrbitalBatteries[i].GetComponent<TextMeshProUGUI>().text == "0")
                                 {
                                     StarSysData.OrbitalBatteries[i].GetComponent<TextMeshProUGUI>().text = "1";
+                                    this.StarSysData.TotalSysPowerLoad += StarSysData.OrbitalBatteryData.PowerLoad;
                                     GalaxyMenuUIController.Instance.UpdateOBs(this);
                                     break;
                                 }
@@ -264,6 +271,7 @@ namespace Assets.Core
                                 if (StarSysData.OrbitalBatteries[i].GetComponent<TextMeshProUGUI>().text == "1")
                                 {
                                     StarSysData.OrbitalBatteries[i].GetComponent<TextMeshProUGUI>().text = "0";
+                                    this.StarSysData.TotalSysPowerLoad -= StarSysData.OrbitalBatteryData.PowerLoad;
                                     GalaxyMenuUIController.Instance.UpdateOBs(this);
                                     break;
                                 }
@@ -277,6 +285,7 @@ namespace Assets.Core
                                 if (StarSysData.ResearchCenters[i].GetComponent<TextMeshProUGUI>().text == "0")
                                 {
                                     StarSysData.ResearchCenters[i].GetComponent<TextMeshProUGUI>().text = "1";
+                                    this.StarSysData.TotalSysPowerLoad += StarSysData.ResearchCenterData.PowerLoad;
                                     GalaxyMenuUIController.Instance.UpdateResearchCenters(this);
                                     break;
                                 }
@@ -291,6 +300,7 @@ namespace Assets.Core
                                 if (StarSysData.ResearchCenters[i].GetComponent<TextMeshProUGUI>().text == "1")
                                 {
                                     StarSysData.ResearchCenters[i].GetComponent<TextMeshProUGUI>().text = "0";
+                                    this.StarSysData.TotalSysPowerLoad -= StarSysData.ResearchCenterData.PowerLoad;
                                     GalaxyMenuUIController.Instance.UpdateResearchCenters(this);
                                     break;
                                 }          
@@ -308,5 +318,25 @@ namespace Assets.Core
             TimeManager.Instance.OnRandomSpecialEvent -= DoDisaster;
             OnOffSysFacilityEvents.current.FacilityOnClick -= FacilityOnClick;
         }
+        //public void OnBuildCompeted(GameObject newGO, int powerLoad)
+        //{
+        //    GalaxyMenuUIController.Instance.UpdateSystemPowerLoad(this, powerLoad);
+        //    switch (newGO.name)
+        //    {
+        //        case "PowerPlantData":
+        //        case "FactoryData":
+        //        case "ShipyardData":
+        //        case "ShieldGeneratorData":
+        //        case "OrbitalBatteryData":
+        //        case "ResearchCenterData":
+        //            {
+        //                this.StarSysData.TotalSysPowerLoad += powerLoad;
+        //                break;
+        //            }
+        //        default:
+        //            break;
+        //    }
+     
+        //}
     }
 }

@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 
 [DebuggerDisplay("{" + nameof(GetDebuggerDisplay) + "(),nq}")]
-public class YourStarSysUIManager : MonoBehaviour
+public class YourStarSysUIManager : MonoBehaviour // currently not being used, consider deleting
 {
     public static YourStarSysUIManager Instance;
     public StarSysController controller; // system we clicked
