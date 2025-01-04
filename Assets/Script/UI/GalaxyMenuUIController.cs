@@ -444,18 +444,11 @@ public class GalaxyMenuUIController : MonoBehaviour
                             OneTmp.text = count.ToString() + "/" + (sysController.StarSysData.Factories.Count).ToString();
                             break;
                         case "FactoryLoad":
-                            int deltaTotalLoad = 0;
                             int load = Int32.Parse(OneTmp.text);
-                            if (plusMinus == -1) {
-                                load -= sysController.StarSysData.FactoryData.PowerLoad;
-                                deltaTotalLoad = -(sysController.StarSysData.FactoryData.PowerLoad);
-                            }
-                            else {
-                                load += sysController.StarSysData.FactoryData.PowerLoad;
-                                deltaTotalLoad = sysController.StarSysData.FactoryData.PowerLoad;
-                            }
+                            load += plusMinus * sysController.StarSysData.FactoryData.PowerLoad;
+                            
                             OneTmp.text = load.ToString();
-                            UpdateSystemPowerLoad(sysController, deltaTotalLoad);
+                            UpdateSystemPowerLoad(sysController);
                             break;
                         default:
                             break;
@@ -464,7 +457,7 @@ public class GalaxyMenuUIController : MonoBehaviour
             }
         }
     }
-    public void UpdateYards(StarSysController sysController)
+    public void UpdateYards(StarSysController sysController, int plusMinus)
     {
         foreach (var SysCon in sysControllers)
         {
@@ -490,9 +483,12 @@ public class GalaxyMenuUIController : MonoBehaviour
                             OneTmp.text = count1.ToString() + "/" + (sysController.StarSysData.Shipyards.Count).ToString();
                             break;
                         case "YardLoad":
-                            // for now all are turned on
-                            OneTmp.text = (sysController.StarSysData.ShipyardData.PowerLoad * count1).ToString();
-                            // ToDo: work in tech levels
+                            int load = Int32.Parse(OneTmp.text);
+ 
+                            load += plusMinus * sysController.StarSysData.ShipyardData.PowerLoad;
+                            
+                            OneTmp.text = load.ToString();
+                            UpdateSystemPowerLoad(sysController);
                             break;
                         default:
                             break;
@@ -501,7 +497,7 @@ public class GalaxyMenuUIController : MonoBehaviour
             }
         }
     }
-    public void UpdateShields(StarSysController sysController)
+    public void UpdateShields(StarSysController sysController, int plusMinus)
     {
         foreach (var SysCon in sysControllers)
         {
@@ -526,9 +522,15 @@ public class GalaxyMenuUIController : MonoBehaviour
                             OneTmp.text = count2.ToString() + "/" + (sysController.StarSysData.ShieldGenerators.Count).ToString();
                             break;
                         case "ShieldLoad":
-                            OneTmp.text = (sysController.StarSysData.ShieldGeneratorData.PowerLoad * count2).ToString();
-                            // ToDo: work in tech levels
+                            int load = Int32.Parse(OneTmp.text);
+
+                            load += plusMinus * sysController.StarSysData.ShieldGeneratorData.PowerLoad;
+
+                            OneTmp.text = load.ToString();
+                            UpdateSystemPowerLoad(sysController);
                             break;
+                            // ToDo: work in tech levels
+                     
                         default:
                             break;
                     }
@@ -536,7 +538,7 @@ public class GalaxyMenuUIController : MonoBehaviour
             }
         }
     }
-    public void UpdateOBs(StarSysController sysController)
+    public void UpdateOBs(StarSysController sysController, int plusMinus)
     {
         foreach (var SysCon in sysControllers)
         {
@@ -561,9 +563,15 @@ public class GalaxyMenuUIController : MonoBehaviour
                             OneTmp.text = count3.ToString() + "/" + (sysController.StarSysData.OrbitalBatteries.Count).ToString();
                             break;
                         case "OBLoad":
-                            OneTmp.text = (sysController.StarSysData.OrbitalBatteryData.PowerLoad * count3).ToString();
-                            // ToDo: work in tech levels
+                            int load = Int32.Parse(OneTmp.text);
+
+                            load += plusMinus * sysController.StarSysData.OrbitalBatteryData.PowerLoad;
+
+                            OneTmp.text = load.ToString();
+                            UpdateSystemPowerLoad(sysController);
                             break;
+                            // ToDo: work in tech levels
+                            
                         default:
                             break;
                     }
@@ -571,7 +579,7 @@ public class GalaxyMenuUIController : MonoBehaviour
             }
         }
     }
-    public void UpdateResearchCenters(StarSysController sysController)
+    public void UpdateResearchCenters(StarSysController sysController, int plusMinus)
     {
         foreach (var SysCon in sysControllers)
         {
@@ -596,9 +604,15 @@ public class GalaxyMenuUIController : MonoBehaviour
                             OneTmp.text = count4.ToString() + "/" + (sysController.StarSysData.ResearchCenters.Count).ToString();
                             break;
                         case "ResearchLoad":
-                            OneTmp.text = (sysController.StarSysData.ResearchCenterData.PowerLoad * count4).ToString();
-                            // ToDo: work in tech levels
+                            int load = Int32.Parse(OneTmp.text);
+
+                            load += plusMinus * sysController.StarSysData.ResearchCenterData.PowerLoad;
+
+                            OneTmp.text = load.ToString();
+                            UpdateSystemPowerLoad(sysController);
                             break;
+                            // ToDo: work in tech levels
+                            
                         default:
                             break;
                     }
@@ -606,21 +620,8 @@ public class GalaxyMenuUIController : MonoBehaviour
             }
         }
     }
-    //public void UpdateSystemPowerLoad(StarSysController sysCon, int facilityDeltaLoad)
-    //{
-    //    if (sysControllers.Contains(sysCon))
-    //    {
-    //        foreach (var item in sysControllers)
-    //        {
-    //            if (sysCon == item)
-    //            {
-    //                sysCon.StarSysData.TotalSysPowerLoad += facilityDeltaLoad;
-    //            }
-    //        }
 
-    //    }
-    //}
-    private void UpdateSystemPowerLoad(StarSysController sysCon, int delta)
+    private void UpdateSystemPowerLoad(StarSysController sysCon)
     {
         TextMeshProUGUI[] listTMP = sysCon.StarSysUIGameObject.GetComponentsInChildren<TextMeshProUGUI>();
 
@@ -630,16 +631,10 @@ public class GalaxyMenuUIController : MonoBehaviour
             OneTmp.enabled = true;
             if ("NumP Load" == OneTmp.name)
             {
-                sysCon.StarSysData.TotalSysPowerLoad += delta;
                 OneTmp.text = sysCon.StarSysData.TotalSysPowerLoad.ToString();
             }
         }
     }
-    private bool IntParse()
-    {
-        throw new NotImplementedException();
-    }
-
 }
 
 
