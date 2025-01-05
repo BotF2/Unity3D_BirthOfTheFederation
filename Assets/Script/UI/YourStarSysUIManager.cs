@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 
 [DebuggerDisplay("{" + nameof(GetDebuggerDisplay) + "(),nq}")]
-public class YourStarSysUIManager : MonoBehaviour // currently not being used, consider deleting
+public class YourStarSysUIManager : MonoBehaviour 
 {
     public static YourStarSysUIManager Instance;
     public StarSysController controller; // system we clicked
@@ -28,7 +28,7 @@ public class YourStarSysUIManager : MonoBehaviour // currently not being used, c
     [SerializeField]
     private TMP_Text tPopulation;
     [SerializeField]
-    private TMP_Text tForms;
+    private TMP_Text tFarms;
     [SerializeField]
     private TMP_Text tPower;
     [SerializeField]
@@ -139,7 +139,7 @@ public class YourStarSysUIManager : MonoBehaviour // currently not being used, c
             }
             tPopulation.text = t_Pop.ToString();
             tPopulation.maskable = false;
-            tForms.text = t_Farms.ToString();
+            tFarms.text = t_Farms.ToString();
             tPower.text = t_Power.ToString();
             tStations.text = t_Stations.ToString();
             tProduction.text = t_Production.ToString();

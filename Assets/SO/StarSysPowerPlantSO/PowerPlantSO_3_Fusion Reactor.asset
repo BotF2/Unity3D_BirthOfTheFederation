@@ -15,7 +15,7 @@ MonoBehaviour:
   CivInt: 3
   TechLevel: 100
   FacilitiesEnumType: 0
-  Name: Fusion Reactor
+  Name: Fusion Reactors
   StartStarDate: 0
   BuildDuration: 5
   PowerOutput: 10

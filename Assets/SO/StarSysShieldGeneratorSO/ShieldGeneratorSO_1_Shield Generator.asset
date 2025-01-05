@@ -15,7 +15,7 @@ MonoBehaviour:
   CivInt: 1
   TechLevel: 100
   FacilitiesEnumType: 3
-  Name: Shield Generator
+  Name: Shield Generators
   StartStarDate: 0
   BuildDuration: 4
   PowerLoad: 2

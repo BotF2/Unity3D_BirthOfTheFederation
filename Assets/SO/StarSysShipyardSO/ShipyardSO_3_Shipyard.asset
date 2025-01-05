@@ -15,7 +15,7 @@ MonoBehaviour:
   CivInt: 3
   TechLevel: 100
   FacilitiesEnumType: 2
-  Name: Shipyard
+  Name: Shipyards
   StartStarDate: 0
   BuildDuration: 3
   PowerLoad: 2

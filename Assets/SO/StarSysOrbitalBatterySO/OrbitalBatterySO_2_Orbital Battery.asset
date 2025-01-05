@@ -15,7 +15,7 @@ MonoBehaviour:
   CivInt: 2
   TechLevel: 100
   FacilitiesEnumType: 4
-  Name: Orbital Battery
+  Name: Orbital Batteries
   StartStarDate: 0
   BuildDuration: 4
   PowerLoad: 2

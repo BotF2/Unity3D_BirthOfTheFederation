@@ -17987,7 +17987,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7f173683bb120848886c27dc5b21230, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GalaxyMapEventList: []
 --- !u!1 &634433416
 GameObject:
   m_ObjectHideFlags: 0
@@ -36013,7 +36012,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 854, y: 451}
+  m_AnchoredPosition: {x: 880, y: 480}
   m_SizeDelta: {x: 120, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1211519214
@@ -37285,7 +37284,7 @@ MonoBehaviour:
   sysControllerList: []
   CivName: {fileID: 377124291}
   tPopulation: {fileID: 500245846}
-  tForms: {fileID: 163368134}
+  tFarms: {fileID: 0}
   tPower: {fileID: 814506503}
   tStations: {fileID: 662669632}
   tProduction: {fileID: 1784282421}

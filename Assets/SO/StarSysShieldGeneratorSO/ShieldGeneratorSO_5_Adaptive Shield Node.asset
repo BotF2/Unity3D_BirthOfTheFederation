@@ -15,7 +15,7 @@ MonoBehaviour:
   CivInt: 5
   TechLevel: 100
   FacilitiesEnumType: 3
-  Name: Adaptive Shield Node
+  Name: Adaptive Shield Nodes
   StartStarDate: 0
   BuildDuration: 8
   PowerLoad: 4

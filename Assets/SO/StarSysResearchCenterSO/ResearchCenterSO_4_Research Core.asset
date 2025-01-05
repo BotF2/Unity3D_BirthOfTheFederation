@@ -15,7 +15,7 @@ MonoBehaviour:
   CivInt: 4
   TechLevel: 100
   FacilitiesEnumType: 5
-  Name: Research Core
+  Name: Research Cores
   StartStarDate: 0
   BuildDuration: 6
   PowerLoad: 2

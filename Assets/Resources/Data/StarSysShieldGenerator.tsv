@@ -1,7 +1,7 @@
-0	100	3	Shield Generator	shield_generator	0	4	2	Standard Federation shields come with adaptive modulation and versatility against various threats.
-1	100	3	Shield Generator	shield_generator	0	4	2	While the Romulan's advanced shields are integrated with cloaking devices, allowing seamless stealth and defense but they cannot hild a planet.
-2	100	3	Shield Generator	shield_generator	0	4	2	Klingon shields are robust and designed for combat.
-3	100	3	Shield Generator	shield_generator	0	2	1	What the Cardassians lack in quality they more than make up for with quantity. 
-4	100	3	Shield Generator	shield_generator	0	6	3	The Dominion has High-capacity, fast-regenerating shields for durability.
-5	100	3	Adaptive Shield Node	borg_planetary_shields	0	8	4	Adaptive shields capable of resisting most conventional weapons after brief exposure.
-6	100	3	Shield Generator	shield_generator	0	4	2	Standard Terran shields come with adaptive modulation and versatility against various threats.
+0	100	3	Shield Generators	shield_Generators	0	4	2	Standard Federation shields come with adaptive modulation and versatility against various threats.
+1	100	3	Shield Generators	shield_Generators	0	4	2	While the Romulan's advanced shields are integrated with cloaking devices, allowing seamless stealth and defense but they cannot hild a planet.
+2	100	3	Shield Generators	shield_Generators	0	4	2	Klingon shields are robust and designed for combat.
+3	100	3	Shield Generators	shield_Generators	0	2	1	What the Cardassians lack in quality they more than make up for with quantity. 
+4	100	3	Shield Generators	shield_Generators	0	6	3	The Dominion has High-capacity, fast-regenerating shields for durability.
+5	100	3	Adaptive Shield Nodes	borg_planetary_shields	0	8	4	Adaptive shields capable of resisting most conventional weapons after brief exposure.
+6	100	3	Shield Generators	shield_Generators	0	4	2	Standard Terran shields come with adaptive modulation and versatility against various threats.

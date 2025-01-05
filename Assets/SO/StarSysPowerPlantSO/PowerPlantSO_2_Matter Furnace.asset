@@ -15,7 +15,7 @@ MonoBehaviour:
   CivInt: 2
   TechLevel: 100
   FacilitiesEnumType: 0
-  Name: Matter Furnace
+  Name: Matter Furnaces
   StartStarDate: 0
   BuildDuration: 10
   PowerOutput: 20

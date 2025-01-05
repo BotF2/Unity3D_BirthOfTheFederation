@@ -15,7 +15,7 @@ MonoBehaviour:
   CivInt: 1
   TechLevel: 100
   FacilitiesEnumType: 5
-  Name: Research Lab
+  Name: Research Labs
   StartStarDate: 0
   BuildDuration: 4
   PowerLoad: 1

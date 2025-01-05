@@ -15,7 +15,7 @@ MonoBehaviour:
   CivInt: 0
   TechLevel: 100
   FacilitiesEnumType: 0
-  Name: Antimatter Plasma Reactor
+  Name: Antimatter Plasma Reactors
   StartStarDate: 0
   BuildDuration: 10
   PowerOutput: 20

@@ -15,7 +15,7 @@ MonoBehaviour:
   CivInt: 6
   TechLevel: 100
   FacilitiesEnumType: 5
-  Name: University
+  Name: Universities
   StartStarDate: 0
   BuildDuration: 4
   PowerLoad: 1

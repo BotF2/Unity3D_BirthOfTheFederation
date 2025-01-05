@@ -15,7 +15,7 @@ MonoBehaviour:
   CivInt: 5
   TechLevel: 100
   FacilitiesEnumType: 2
-  Name: Vessal Assemly Node
+  Name: Vessal Assemly Nodes
   StartStarDate: 0
   BuildDuration: 12
   PowerLoad: 8

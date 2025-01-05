@@ -15,7 +15,7 @@ MonoBehaviour:
   CivInt: 2
   TechLevel: 100
   FacilitiesEnumType: 5
-  Name: Science Hall
+  Name: Science Halls
   StartStarDate: 0
   BuildDuration: 4
   PowerLoad: 1
