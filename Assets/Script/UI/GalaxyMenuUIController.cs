@@ -248,6 +248,19 @@ public class GalaxyMenuUIController : MonoBehaviour
         if (sysController.StarSysUIGameObject != null)
         {
             sysControllers.Add(sysController);// add to list of content folder items
+            RectTransform[] minMapDotTransfor = sysController.StarSysUIGameObject.GetComponentsInChildren<RectTransform>();
+            for (int i = 0; i < minMapDotTransfor.Length; i++)
+            {
+                if (minMapDotTransfor[i].name == "RedDot")
+                {
+                    float x = sysController.StarSysData.GetPosition().x * 14/600;
+                    float y = 0f;
+                    float z = sysController.StarSysData.GetPosition().z * 2/90; 
+                    minMapDotTransfor[i].Translate(new Vector3(x,z,y), Space.Self); // flip z and y from main galaxy map to UI mini map
+                    break;
+                }
+            }
+
             TextMeshProUGUI[] OneTMP = sysController.StarSysUIGameObject.GetComponentsInChildren<TextMeshProUGUI>();
             for (int i = 0; i < OneTMP.Length; i++) 
             {
