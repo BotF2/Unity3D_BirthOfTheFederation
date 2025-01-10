@@ -75,18 +75,18 @@ namespace Assets.Core
             StarSysData SysData = new StarSysData("null");
             List<StarSysData> starSysDatas = new List<StarSysData>();
             starSysDatas.Add(SysData);
-            foreach (var civSO in civSOList)
+            for (int i = 0; i < civSOList.Count; i++) 
             {
-                StarSysSO starSysSO = GetStarSObyInt(civSO.CivInt);
+                StarSysSO starSysSO = GetStarSObyInt(civSOList[i].CivInt);
                 SysData = new StarSysData(starSysSO);
                 SysData.CurrentOwner = starSysSO.FirstOwner;
                 SysData.SystemType = starSysSO.StarType;
                 SysData.StarSprit = starSysSO.StarSprit;
                 SysData.Description = "description here";
 
-                InstantiateSystem(SysData, civSO);
-                if (civSO.HasWarp)
-                    FleetManager.Instance.FleetDataFromSO(civSO, SysData.GetPosition());
+                InstantiateSystem(SysData, civSOList[i]);
+                if (civSOList[i].HasWarp)
+                    FleetManager.Instance.FleetDataFromSO(civSOList[i], SysData.GetPosition());
                 if (SysData.SysName != "null")
                     starSysDatas.Add(SysData);
             }
@@ -121,37 +121,37 @@ namespace Assets.Core
                 sysData.SysGameObject = starSystemNewGameOb;
 
                 TextMeshProUGUI[] TheText = starSystemNewGameOb.GetComponentsInChildren<TextMeshProUGUI>();
-                foreach (var OneTmp in TheText)
+                for (int i = 0; i < TheText.Length; i++)
                 {
                     //Debugger.Break();
-                    OneTmp.enabled = true;
-                    if (OneTmp != null && OneTmp.name == "SysName")
+                    TheText[i].enabled = true;
+                    if (TheText[i] != null && TheText[i].name == "SysName")
                     {
                         if (!GameController.Instance.AreWeLocalPlayer(sysData.CurrentOwner)) // != CivManager.current.LocalPlayerCivEnum)
                         {
-                            OneTmp.text = "UNKNOWN";
+                            TheText[i].text = "UNKNOWN";
                         }
                         else
                         {
-                            OneTmp.text = sysData.GetSysName();
+                            TheText[i].text = sysData.GetSysName();
                            //var sysThingy = sysData
                         }
                     }
-                    else if (OneTmp != null && OneTmp.name == "SysDescription (TMP)")
-                        OneTmp.text = sysData.Description;
+                    else if (TheText[i] != null && TheText[i].name == "SysDescription (TMP)")
+                        TheText[i].text = sysData.Description;
 
                 }
                 var Renderers = starSystemNewGameOb.GetComponentsInChildren<SpriteRenderer>();
-                foreach (var oneRenderer in Renderers)
+                for (int i = 0;i < Renderers.Length; i++)
                 {
-                    if (oneRenderer != null)
+                    if (Renderers[i] != null)
                     {
-                        if (oneRenderer.name == "OwnerInsignia")
+                        if (Renderers[i].name == "OwnerInsignia")
                         {
-                            oneRenderer.sprite = civSO.Insignia;
+                            Renderers[i].sprite = civSO.Insignia;
                         } // ToDo: random map with random sprites on nebula, wormholes
-                        else if (oneRenderer.name == "StarSprite")
-                            oneRenderer.sprite = sysData.StarSprit;
+                        else if (Renderers[i].name == "StarSprite")
+                            Renderers[i].sprite = sysData.StarSprit;
                     }
                 }
 
@@ -168,10 +168,14 @@ namespace Assets.Core
                 //starSysController.StarSysUIGameObject.Sys
                 starSysController.StarSysData = sysData;
                 starSysController.canvasYourStarSysUI = yourStarSysUICanvas;
-                foreach (var civCon in CivManager.Instance.CivControllersInGame)
+                CivController[] controllers = CivManager.Instance.CivControllersInGame.ToArray();
+                for (int i = 0; controllers.Length > 0; i++)
                 {
-                    if (civCon.CivData.CivEnum == starSysController.StarSysData.GetFirstOwner())
-                        starSysController.StarSysData.CurrentCivController = civCon;
+                    if (controllers[i].CivData.CivEnum == starSysController.StarSysData.GetFirstOwner())
+                    { 
+                        starSysController.StarSysData.CurrentCivController = controllers[i];
+                        break;
+                    }
                 }
                 starSystemNewGameOb.SetActive(true);
                 ManagersStarSysControllerList.Add(starSysController);
@@ -440,17 +444,17 @@ namespace Assets.Core
         private void GetPowerPlantText(GameObject go, PowerPlantData plantData, int numOf)
         {
             TextMeshProUGUI[] TheText = go.GetComponentsInChildren<TextMeshProUGUI>();
-            foreach (var OneTmp in TheText)
+            for (int i = 0;i < TheText.Length;i++) 
             {
-                OneTmp.enabled = true;
-                if (OneTmp.name == "NameText (TMP)")
-                    OneTmp.text = plantData.Name;
-                else if (OneTmp.name == "NumTotalUnits (TMP)")
-                    OneTmp.text = numOf.ToString();
-                else if (OneTmp.name == "NumTotalEOut (TMP)")
-                    OneTmp.text = plantData.PowerOutput.ToString();
-                else if (OneTmp.name == "DescriptionText (TMP)")
-                    OneTmp.text = plantData.Description;
+                TheText[i].enabled = true;
+                if (TheText[i].name == "NameText (TMP)")
+                    TheText[i].text = plantData.Name;
+                else if (TheText[i].name == "NumTotalUnits (TMP)")
+                    TheText[i].text = numOf.ToString();
+                else if (TheText[i].name == "NumTotalEOut (TMP)")
+                    TheText[i].text = plantData.PowerOutput.ToString();
+                else if (TheText[i].name == "DescriptionText (TMP)")
+                    TheText[i].text = plantData.Description;
                 //Doing the system power load in SysData/ GalaxyMenuUIController //else if (OneTmp.name == "NumP Load")
 
                 // image here
@@ -460,17 +464,17 @@ namespace Assets.Core
         private void GetFactoryText(GameObject go, FactoryData factoryData, int numOf)
         {
             TextMeshProUGUI[] TheText = go.GetComponentsInChildren<TextMeshProUGUI>();
-            foreach (var OneTmp in TheText)
+            for (int i = 0; i < TheText.Length; i++)
             {
-                OneTmp.enabled = true;
-                if (OneTmp.name == "NameFactory")
-                    OneTmp.text = factoryData.Name;
-                else if (OneTmp.name == "NumFactoryRatio")
-                    OneTmp.text = numOf.ToString();
-                else if (OneTmp.name == "FactoryLoad")
-                    OneTmp.text = factoryData.PowerLoad.ToString();
-                else if (OneTmp.name == "DescriptionFactory")
-                    OneTmp.text = factoryData.Description;
+                TheText[i].enabled = true;
+                if (TheText[i].name == "NameFactory")
+                    TheText[i].text = factoryData.Name;
+                else if (TheText[i].name == "NumFactoryRatio")
+                    TheText[i].text = numOf.ToString();
+                else if (TheText[i].name == "FactoryLoad")
+                    TheText[i].text = factoryData.PowerLoad.ToString();
+                else if (TheText[i].name == "DescriptionFactory")
+                    TheText[i].text = factoryData.Description;
                     
                 // image here
 
@@ -480,17 +484,17 @@ namespace Assets.Core
         private void GetShipyardText(GameObject go, ShipyardData factoryData, int numOf)
         {
             TextMeshProUGUI[] TheText = go.GetComponentsInChildren<TextMeshProUGUI>();
-            foreach (var OneTmp in TheText)
+            for (int i = 0; i < TheText.Length; i++)
             {
-                OneTmp.enabled = true;
-                if (OneTmp.name == "NameShipyard")
-                    OneTmp.text = factoryData.Name;
-                else if (OneTmp.name == "NumShipyardRatio")
-                    OneTmp.text = numOf.ToString();
-                else if (OneTmp.name == "ShipyardLoad")
-                    OneTmp.text = factoryData.PowerLoad.ToString();
-                else if (OneTmp.name == "DescriptionShipyard")
-                    OneTmp.text = factoryData.Description;
+                TheText[i].enabled = true;
+                if (TheText[i].name == "NameShipyard")
+                    TheText[i].text = factoryData.Name;
+                else if (TheText[i].name == "NumShipyardRatio")
+                    TheText[i].text = numOf.ToString();
+                else if (TheText[i].name == "ShipyardLoad")
+                    TheText[i].text = factoryData.PowerLoad.ToString();
+                else if (TheText[i].name == "DescriptionShipyard")
+                    TheText[i].text = factoryData.Description;
                 // image here
 
             }
@@ -498,19 +502,17 @@ namespace Assets.Core
         private void GetShieldGText(GameObject go, ShieldGeneratorData shieldData, int numOf)
         {
             TextMeshProUGUI[] TheText = go.GetComponentsInChildren<TextMeshProUGUI>();
-            foreach (var OneTmp in TheText)
+            for (int i = 0; i < TheText.Length; i++)
             {
-                OneTmp.enabled = true;
-                if (OneTmp.name == "NameShieldG")
-                    OneTmp.text = shieldData.Name;
-                else if (OneTmp.name == "NumShieldGRatio")
-                    OneTmp.text = numOf.ToString();
-                else if (OneTmp.name == "ShieldGLoad")
-                    OneTmp.text = shieldData.PowerLoad.ToString();
-                else if (OneTmp.name == "DescriptionShieldG")
-                    OneTmp.text = shieldData.Description;
-                else if (OneTmp.name == "NumOn")
-                    OneTmp.text = shieldData.Description;
+                TheText[i].enabled = true;
+                if (TheText[i].name == "NameShieldG")
+                    TheText[i].text = shieldData.Name;
+                else if (TheText[i].name == "NumShieldGRatio")
+                    TheText[i].text = numOf.ToString();
+                else if (TheText[i].name == "ShieldGLoad")
+                    TheText[i].text = shieldData.PowerLoad.ToString();
+                else if (TheText[i].name == "DescriptionShieldG")
+                    TheText[i].text = shieldData.Description;
                 // image here
 
             }
@@ -518,35 +520,35 @@ namespace Assets.Core
         private void GetOBText(GameObject go, OrbitalBatteryData oBData, int numOf)
         {
             TextMeshProUGUI[] TheText = go.GetComponentsInChildren<TextMeshProUGUI>();
-            foreach (var OneTmp in TheText)
+            for (int i = 0; i < TheText.Length; i++)
             {
-                OneTmp.enabled = true;
-                if (OneTmp.name == "NameOB")
-                    OneTmp.text = oBData.Name;
-                else if (OneTmp.name == "NumOBRatio")
-                    OneTmp.text = numOf.ToString();
-                else if (OneTmp.name == "OBLoad")
-                    OneTmp.text = oBData.PowerLoad.ToString();
-                else if (OneTmp.name == "DescriptionOB")
-                    OneTmp.text = oBData.Description;
+                TheText[i].enabled = true;
+                if (TheText[i].name == "NameOB")
+                    TheText[i].text = oBData.Name;
+                else if (TheText[i].name == "NumOBRatio")
+                    TheText[i].text = numOf.ToString();
+                else if (TheText[i].name == "OBLoad")
+                    TheText[i].text = oBData.PowerLoad.ToString();
+                else if (TheText[i].name == "DescriptionOB")
+                    TheText[i].text = oBData.Description;
                 // image here
 
             }
         }
-        private void GetResearchCenterText(GameObject go, ResearchCenterData oBData, int numOf)
+        private void GetResearchCenterText(GameObject go, ResearchCenterData resData, int numOf)
         {
             TextMeshProUGUI[] TheText = go.GetComponentsInChildren<TextMeshProUGUI>();
-            foreach (var OneTmp in TheText)
+            for (int i = 0; i < TheText.Length; i++)
             {
-                OneTmp.enabled = true;
-                if (OneTmp.name == "NameResearchCenter")
-                    OneTmp.text = oBData.Name;
-                else if (OneTmp.name == "NumResearchCenterRatio")
-                    OneTmp.text = numOf.ToString();
-                else if (OneTmp.name == "ResearchCenterLoad")
-                    OneTmp.text = oBData.PowerLoad.ToString();
-                else if (OneTmp.name == "DescriptionResearchCenter")
-                    OneTmp.text = oBData.Description;
+                TheText[i].enabled = true;
+                if (TheText[i].name == "NameResearchCenter")
+                    TheText[i].text = resData.Name;
+                else if (TheText[i].name == "NumResearchCenterRatio")
+                    TheText[i].text = numOf.ToString();
+                else if (TheText[i].name == "ResearchCenterLoad")
+                    TheText[i].text = resData.PowerLoad.ToString();
+                else if (TheText[i].name == "DescriptionResearchCenter")
+                    TheText[i].text = resData.Description;
                 // image here
 
             }
@@ -554,12 +556,11 @@ namespace Assets.Core
         private StarSysSO GetStarSObyInt(int sysInt)
         {
             StarSysSO result = null;
-
-            foreach (var starSO in starSysSOList)
+            for (int i = 0; i< starSysSOList.Count; i++)
             {
-                if (starSO.StarSysInt == sysInt)
+                if (starSysSOList[i].StarSysInt == sysInt)
                 {
-                    result = starSO;
+                    result = starSysSOList[i];
                     break;
                 }
             }
@@ -569,12 +570,11 @@ namespace Assets.Core
         private PowerPlantSO GetPowrPlantSObyCivInt(int  civInt)
         {
             PowerPlantSO result = null;
-
-            foreach (var sO in powerPlantSOList)
+            for(int i = 0;i< powerPlantSOList.Count;i++)
             {
-                if (sO.CivInt == civInt)
+                if (powerPlantSOList[i].CivInt == civInt)
                 {
-                    result = sO;
+                    result = powerPlantSOList[i];
                     break;
                 }
             }
@@ -583,12 +583,11 @@ namespace Assets.Core
         private FactorySO GetFactorySObyCivInt(int civInt)
         {
             FactorySO result = null;
-
-            foreach (var sO in factorySOList)
+            for (int i = 0; i < factorySOList.Count; i++)
             {
-                if (sO.CivInt == civInt)
+                if (factorySOList[i].CivInt == civInt)
                 {
-                    result = sO;
+                    result = factorySOList[i];
                     break;
                 }
             }
@@ -597,12 +596,11 @@ namespace Assets.Core
         private ShipyardSO GetShipyardSObyCivInt(int civInt)
         {
             ShipyardSO result = null;
-
-            foreach (var sO in shipyardSOList)
+            for (int i = 0;i< shipyardSOList.Count;i++)
             {
-                if (sO.CivInt == civInt)
+                if (shipyardSOList[i].CivInt == civInt)
                 {
-                    result = sO;
+                    result = shipyardSOList[i];
                     break;
                 }
             }
@@ -611,12 +609,11 @@ namespace Assets.Core
         private ShieldGeneratorSO GetShieldGeneratorSObyCivInt(int civInt)
         {
             ShieldGeneratorSO result = null;
-
-            foreach (var sO in shieldGeneratorSOList)
+            for (int i = 0;i< shieldGeneratorSOList.Count;i++)
             {
-                if (sO.CivInt == civInt)
+                if (shieldGeneratorSOList[i].CivInt == civInt)
                 {
-                    result = sO;
+                    result = shieldGeneratorSOList[i];
                     break;
                 }
             }
@@ -625,12 +622,11 @@ namespace Assets.Core
         private OrbitalBatterySO GetOrbitalBatterySObyCivInt(int civInt)
         {
             OrbitalBatterySO result = null;
-
-            foreach (var sO in orbitalBatterySOList)
+            for (int i = 0;i< orbitalBatterySOList.Count;i++)
             {
-                if (sO.CivInt == civInt)
+                if (orbitalBatterySOList[i].CivInt == civInt)
                 {
-                    result = sO;
+                    result = orbitalBatterySOList[i];
                     break;
                 }
             }
@@ -639,12 +635,11 @@ namespace Assets.Core
         private ResearchCenterSO GetResearchCenterSObyCivInt(int civInt)
         {
             ResearchCenterSO result = null;
-
-            foreach (var sO in researchCenterSOList)
+            for (int i = 0; i< researchCenterSOList.Count; i++)
             {
-                if (sO.CivInt == civInt)
+                if (researchCenterSOList[i].CivInt == civInt)
                 {
-                    result = sO;
+                    result = researchCenterSOList[i];
                     break;
                 }
             }
@@ -654,14 +649,13 @@ namespace Assets.Core
         {
 
             StarSysData result = null;
-
-
-            foreach (var sysCon in ManagersStarSysControllerList)
+            for (int i = 0;i< ManagersStarSysControllerList.Count; i++)
             {
 
-                if (sysCon.StarSysData.GetSysName().Equals(name))
+                if (ManagersStarSysControllerList[i].StarSysData.GetSysName().Equals(name))
                 {
-                    result = sysCon.StarSysData;
+                    result = ManagersStarSysControllerList[i].StarSysData;
+                    break;
                 }
             }
             return result;

@@ -253,9 +253,9 @@ public class GalaxyMenuUIController : MonoBehaviour
             {
                 if (minMapDotTransfor[i].name == "RedDot")
                 {
-                    float x = sysController.StarSysData.GetPosition().x * 14/600;
+                    float x = sysController.StarSysData.GetPosition().x * 0.12f; // 0.12f is our cosmologic constant, fudge factor
                     float y = 0f;
-                    float z = sysController.StarSysData.GetPosition().z * 2/90; 
+                    float z = sysController.StarSysData.GetPosition().z * 0.12f;
                     minMapDotTransfor[i].Translate(new Vector3(x,z,y), Space.Self); // flip z and y from main galaxy map to UI mini map
                     break;
                 }
