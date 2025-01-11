@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "GalaxyMapDestinationEvent")]
-public class GalaxyMapEvents : ScriptableObject //MonoBehaviour
+public class GalaxyMapEvents : MonoBehaviour 
 {
     public List<GalaxyMapOurEvent> GalaxyMapEventList = new List<GalaxyMapOurEvent>();
     // Rise event through different method signatures
