@@ -14,6 +14,8 @@ namespace Assets.Core
         public void GetLineRenderer()
         {
             lineRenderer = GetComponentInChildren<LineRenderer>();
+            lineRenderer.startColor = Color.clear;
+            lineRenderer.endColor = Color.clear;
         }
 
         public void SetUpLine(Vector3[] points)
@@ -28,16 +30,5 @@ namespace Assets.Core
                 }
             }
         }
-
-        //private void Update()
-        //{
-        //    if (lineRenderer != null && points != null)
-        //    {
-        //        for (int i = 0; i < points.Length; i++)
-        //        {
-        //            lineRenderer.SetPosition(i, points[i]);
-        //        }
-        //    }
-        //}
     }
 }

@@ -133,52 +133,42 @@ namespace Assets.Core
                 TheText.text = fleetNewGameOb.name;
                 fleetData.Name = TheText.text;
                 var Renderers = fleetNewGameOb.GetComponentsInChildren<SpriteRenderer>();
-                foreach (var oneRenderer in Renderers)
+                for (int i = 0; i < Renderers.Length; i++)
                 {
-                    if (oneRenderer != null)
+                    if (Renderers[i] != null)
                     {
-                        if (oneRenderer.name == "InsigniaSprite")
+                        if (Renderers[i].name == "InsigniaSprite")
                         {
-                            oneRenderer.sprite = fleetController.FleetData.Insignia;
+                            Renderers[i].sprite = fleetController.FleetData.Insignia;
                             if (!GameController.Instance.AreWeLocalPlayer(fleetController.FleetData.CivEnum))
                             {
-                                oneRenderer.gameObject.SetActive(false);
+                                Renderers[i].gameObject.SetActive(false);
                             }
                         }
-                        if (oneRenderer.name == "InsigniaUnknown" && GameController.Instance.AreWeLocalPlayer(fleetController.FleetData.CivEnum))
+                        if (Renderers[i].name == "InsigniaUnknown" && GameController.Instance.AreWeLocalPlayer(fleetController.FleetData.CivEnum))
                         {
-                            oneRenderer.gameObject.SetActive(false);
+                            Renderers[i].gameObject.SetActive(false);
                         }
                     }
                 }
                 // The line from Fleet to underlying galaxy image and to destination
                 MapLineMovable[] ourLineToGalaxyImageScript = fleetNewGameOb.GetComponentsInChildren<MapLineMovable>();
-                foreach (var itemMapLineScript in ourLineToGalaxyImageScript)
+                for (int i = 0;i < ourLineToGalaxyImageScript.Length;i++)
                 {
-                    if (itemMapLineScript.name == "DropLine")
+                    if (ourLineToGalaxyImageScript[i].name == "DropLine")
                     {
-                        itemMapLineScript.GetLineRenderer();
-                        itemMapLineScript.transform.SetParent(fleetNewGameOb.transform, false);
+                        ourLineToGalaxyImageScript[i].GetLineRenderer();
+                        ourLineToGalaxyImageScript[i].lineRenderer.startColor = Color.red;
+                        ourLineToGalaxyImageScript[i].lineRenderer.endColor = Color.red;
+                        ourLineToGalaxyImageScript[i].transform.SetParent(fleetNewGameOb.transform, false);
                         Vector3 galaxyPlanePoint = new Vector3(fleetNewGameOb.transform.position.x,
                             galaxyImage.transform.position.y, fleetNewGameOb.transform.position.z);
                         Vector3[] points = { fleetNewGameOb.transform.position, galaxyPlanePoint };
-                        itemMapLineScript.SetUpLine(points);
-                        //fleetController.FleetData.yAboveGalaxyImage = galaxyCenter.transform.position.y - galaxyPlanePoint.y;
-                        fleetController.DropLine = itemMapLineScript;
+                        ourLineToGalaxyImageScript[i].SetUpLine(points);
+                        fleetController.DropLine = ourLineToGalaxyImageScript[i];
                     }
+                    // eles if "DestinationLine" is done in FleetController
 
-                    else if (itemMapLineScript.name == "DestinationLine")
-                    {
-                        itemMapLineScript.GetLineRenderer();
-                        itemMapLineScript.transform.SetParent(fleetNewGameOb.transform, false);
-                        fleetController.DestinationLine = itemMapLineScript;
-                        //Vector3 destinationPoint = new Vector3(fleetNewGameOb.transform.position.x,
-                        //    galaxyImageGO.transform.position.y, fleetNewGameOb.transform.position.z);
-                        //Vector3[] points = { fleetNewGameOb.transform.position, destinationPoint };
-                        //itemMapLineScript.SetUpLine(points);
-                        //fleetController.FleetData.yAboveGalaxyImage = galaxyCenter.transform.position.y - destinationPoint.y;
-                        //fleetController.DropLine = itemMapLineScript;
-                    }
                 }
 
                 fleetController.FleetData.ShipsList.Clear();
@@ -194,6 +184,7 @@ namespace Assets.Core
                 ShipManager.Instance.BuildShipsOfFirstFleet(fleetNewGameOb);
             }
         }
+
         void RemoveFleetConrollerFromAllControllers(FleetController fleetController)
         {
             ManagersFleetControllerList.Remove(fleetController);
@@ -210,27 +201,26 @@ namespace Assets.Core
         public GameObject FindFleetGO(FleetController fleetController)
         {
             GameObject ourFleetGO = fleetPrefab;
-            foreach (GameObject fleetGO in FleetGOList)
+            for (int i = 0; i< FleetGOList.Count; i++)
             {
-                if (fleetGO.GetComponentInChildren<FleetController>() == fleetController)
+                if (FleetGOList[i].GetComponentInChildren<FleetController>() == fleetController)
                 {
-                    ourFleetGO = fleetGO;
+                    ourFleetGO = FleetGOList[i];
+                    break;
                 }
             }
             return ourFleetGO;
         }
         public FleetSO GetFleetSObyInt(int fleetInt)
         {
-
             FleetSO result = null;
-
-
-            foreach (var fleetSO in fleetSOList)
+            for (int i = 0;i< fleetSOList.Count; i++)
+            //foreach (var fleetSO in fleetSOList)
             {
 
-                if (fleetSO.CivIndex == fleetInt)
+                if (fleetSOList[i].CivIndex == fleetInt)
                 {
-                    result = fleetSO;
+                    result = fleetSOList[i];
                     break;
                 }
             }

@@ -163,9 +163,8 @@ namespace Assets.Core
                     galaxyImage.transform.position.y, starSystemNewGameOb.transform.position.z);
                 Vector3[] points = { starSystemNewGameOb.transform.position, galaxyPlanePoint };
                 ourDropLine.SetUpLine(points);
-                //StarSysController starSysController = starSystemNewGameOb.GetComponentInChildren<StarSysController>();
+
                 starSysController.name = sysData.GetSysName();
-                //starSysController.StarSysUIGameObject.Sys
                 starSysController.StarSysData = sysData;
                 starSysController.canvasYourStarSysUI = yourStarSysUICanvas;
                 CivController[] controllers = CivManager.Instance.CivControllersInGame.ToArray();

@@ -20,8 +20,6 @@ namespace Assets.Core
         public MapLineMovable DropLine;
         public MapLineMovable DestinationLine;
         public GameObject BackgroundGalaxyImage;
-        //[Header("GalaxyMapDestinationEvent")]
-        //public GalaxyMapOurEvent GalaxyMapDestinationEvent;
         [SerializeField]
         private List<string> shipDropdownOptions;
         private Camera galaxyEventCamera;
@@ -35,22 +33,24 @@ namespace Assets.Core
         {
             rb = GetComponent<Rigidbody>();
             rb.isKinematic = true;
-            //GalaxyMapOurEvent.current.onSetDestination += OnSetDestination; // not really for destination, doing that with onMousDown on fleet...
-            //GalaxyMapOurEvent.current.onRemoveDestination += OnRemoveDestination; // We may find a good way to use this C# Event system
-
             galaxyEventCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
             var CanvasGO = GameObject.Find("CanvasFleetUI");
             FleetUICanvas = CanvasGO.GetComponent<Canvas>();
             FleetUICanvas.worldCamera = galaxyEventCamera;
             CanvasToolTip.worldCamera = galaxyEventCamera;
             FleetData.CurrentWarpFactor = 9.8f;
-            foreach (var shipCon in this.FleetData.ShipsList)
+            for (int i = 0; i < FleetData.ShipsList.Count; i++)
+            //foreach (var shipCon in this.FleetData.ShipsList)
             {
-                if (shipCon.ShipData.maxWarpFactor < this.FleetData.MaxWarpFactor)
-                { this.FleetData.MaxWarpFactor = shipCon.ShipData.maxWarpFactor; }
+                if (FleetData.ShipsList[i].ShipData.maxWarpFactor < this.FleetData.MaxWarpFactor)
+                { this.FleetData.MaxWarpFactor = FleetData.ShipsList[i].ShipData.maxWarpFactor; }
             }
             Name = FleetData.CivShortName + " Fleet " + FleetData.Name;
             FleetState = FleetState.FleetStationary;
+            DestinationLine = this.GetComponentInChildren<MapLineMovable>();
+            DestinationLine.GetLineRenderer();
+            DestinationLine.transform.SetParent(transform, false);
+            
         }
         void Update()
         {
@@ -102,9 +102,14 @@ namespace Assets.Core
                 {
                     FleetState = FleetState.FleetAtWarp;
                     MoveToDesitinationGO();
-                    DrawDestinationLine();
+                    DrawDestinationLine(FleetData.Destination.transform.position);
                 }
             }
+            else
+            {
+               //FleetData.Destination.;
+            }
+
         }
         public Rigidbody GetRigidbody() { return rb; }
 
@@ -166,6 +171,12 @@ namespace Assets.Core
         private void NewDestination(GameObject hitObject) // here is a destination
         {
             {
+                DestinationLine.gameObject.SetActive(true);
+                DestinationLine.lineRenderer.gameObject.SetActive(true);
+                DestinationLine.lineRenderer.enabled = true;
+
+                DestinationLine.lineRenderer.startColor = Color.blue;
+                DestinationLine.lineRenderer.endColor = Color.red;
                 // turn off cursor of destination
                 bool isFleet = false;
                 MousePointerChanger.Instance.ResetCursor(); // reset to default cursor because we just got the destination
@@ -176,21 +187,10 @@ namespace Assets.Core
                     //hitObject.GetComponent<FleetController>().CanvasDestination.gameObject.SetActive(true);
                     isFleet = true;
                 }
-                //if (hitObject.GetComponent<PlayerDefinedTargetController>() != null)
-                //    if (this.TargetController == hitObject.GetComponent<PlayerDefinedTargetController>())
-                //    {
-                //        ourZCoordinate = galaxyEventCamera.WorldToScreenPoint(gameObject.transform.position).z;
-                //        // store offset = gameobject world pos - mouse world pos
-                //        vectorOffset = gameObject.transform.position - GetMouseWorldPosition();
-                //        //if (FleetUIController.current.MouseClickSetsDestination == false)
-                //        //{
-                //        //    FleetUIController.current.LoadFleetUI(hitObject);
-                //        //}
-                //    }
-                //else
                 FleetUIController.Instance.SetAsDestination(hitObject, isFleet);
             }
         }
+
         void OnTriggerEnter(Collider collider) // Not using OnCollisionEnter....
         {
             FleetController hitFleetController = collider.gameObject.GetComponent<FleetController>();// the collider is on the hit gameObject this fleet hit
@@ -385,11 +385,21 @@ namespace Assets.Core
             DropLine.SetUpLine(points);
             this.FleetState = FleetState.FleetAtWarp;
         }
-        void DrawDestinationLine()
+        void DrawDestinationLine(Vector3 destinationPoint)
         {
-            Vector3 destinationPoint = FleetData.Destination.transform.position;
+            if (DestinationLine != null) { }
+            else
+            {
+                DestinationLine = this.GetComponentInChildren<MapLineMovable>();
+                DestinationLine.GetLineRenderer();
+                DestinationLine.transform.SetParent(transform, false);
+                DestinationLine.enabled = true;
+            }
+
             Vector3[] points = { transform.position, destinationPoint };
             DestinationLine.gameObject.SetActive(true);
+            DestinationLine.lineRenderer.startColor = Color.blue;
+            DestinationLine.lineRenderer.endColor = Color.red;
             DestinationLine.SetUpLine(points);
         }
         void OnArrivedAtDestination()
@@ -418,11 +428,11 @@ namespace Assets.Core
         public void UpdateMaxWarp()
         {
             float maxWarp = 9.8f;
-            foreach (var shipController in fleetData.ShipsList)
+            for (int i = 0; i<fleetData.ShipsList.Count; i++)
             {
-                if (shipController.ShipData.maxWarpFactor < maxWarp)
+                if (fleetData.ShipsList[i].ShipData.maxWarpFactor < maxWarp)
                 {
-                    maxWarp = shipController.ShipData.maxWarpFactor;
+                    maxWarp = fleetData.ShipsList[i].ShipData.maxWarpFactor;
                 }
             }
             fleetData.MaxWarpFactor = maxWarp;

@@ -177,27 +177,27 @@ namespace Assets.Core
         }
         public void CivDataFromSO(List<CivSO> civSOList)
         {
-            foreach (var civSO in civSOList)
+            for (int i = 0; i < civSOList.Count; i++) 
             {
                 CivData civData = new CivData(); // CivData is not MonoBehavior so new is OK
-                civData.CivInt = civSO.CivInt;
-                civData.CivEnum = civSO.CivEnum;
-                civData.CivLongName = civSO.CivLongName;
-                civData.CivShortName = civSO.CivShortName;
-                civData.Warlike = (WarLikeEnum)civSO.WarLikeEnum; // a scale from most worklike 0 to neutral 3 and most peasful at 5
-                civData.Xenophbia = civSO.XenophbiaEnum;
-                civData.Ruthelss = civSO.RuthlessEnum;
-                civData.Greedy = civSO.GreedyEnum;
-                civData.CivRaceSprite = civSO.CivImage;
-                civData.InsigniaSprite = civSO.Insignia;
-                civData.Population = civSO.Population;
-                civData.Credits = civSO.Credits;
-                civData.TechPoints = civSO.TechPoints;
+                civData.CivInt = civSOList[i].CivInt;
+                civData.CivEnum = civSOList[i].CivEnum;
+                civData.CivLongName = civSOList[i].CivLongName;
+                civData.CivShortName = civSOList[i].CivShortName;
+                civData.Warlike = (WarLikeEnum)civSOList[i].WarLikeEnum; // a scale from most worklike 0 to neutral 3 and most peasful at 5
+                civData.Xenophbia = civSOList[i].XenophbiaEnum;
+                civData.Ruthelss = civSOList[i].RuthlessEnum;
+                civData.Greedy = civSOList[i].GreedyEnum;
+                civData.CivRaceSprite = civSOList[i].CivImage;
+                civData.InsigniaSprite = civSOList[i].Insignia;
+                civData.Population = civSOList[i].Population;
+                civData.Credits = civSOList[i].Credits;
+                civData.TechPoints = civSOList[i].TechPoints;
                 civData.TechLevel = MainMenuUIController.Instance.MainMenuData.SelectedTechLevel;
-                civData.Playable = civSO.Playable;
-                civData.HasWarp = civSO.HasWarp;
-                civData.Decription = civSO.Decription;
-                civData.IntelPoints = civSO.IntelPoints;
+                civData.Playable = civSOList[i].Playable;
+                civData.HasWarp = civSOList[i].HasWarp;
+                civData.Decription = civSOList[i].Decription;
+                civData.IntelPoints = civSOList[i].IntelPoints;
                 if ((int)civData.CivEnum <= 6) // playable races, major civilization
                 {
                     civData.Population = 20;
@@ -250,22 +250,20 @@ namespace Assets.Core
         }
         void CreateCivEnumList(List<CivSO> listOfCivSO)
         {
-            foreach (var civSO in listOfCivSO)
+            for (int i = 0; i < listOfCivSO.Count; i++) 
             {
-                CivSOInGame.Add(civSO.CivEnum);
+                CivSOInGame.Add(listOfCivSO[i].CivEnum);
             }
         }
         public CivData GetCivDataByName(string shortName)
         {
 
             CivData result = null;
-
-
-            foreach (var civ in CivDataInGameList)
+            for (int i = 0;i < CivDataInGameList.Count;i++)
             {
-                if (civ.CivShortName.Equals(shortName))
+                if (CivDataInGameList[i].CivShortName.Equals(shortName))
                 {
-                    result = civ;
+                    result = CivDataInGameList[i];
                 }
             }
             return result;
@@ -274,13 +272,12 @@ namespace Assets.Core
         public CivData GetCivDataByCivEnum(CivEnum civEnum)
         {
             CivData result = null;
-
-            foreach (var civ in CivDataInGameList)
+            for(int i = 0; i<CivDataInGameList.Count;i++)
             {
 
-                if (civ.CivEnum.Equals(civEnum))
+                if (CivDataInGameList[i].CivEnum.Equals(civEnum))
                 {
-                    result = civ;
+                    result = CivDataInGameList[i];
                 }
             }
             return result;
@@ -295,11 +292,11 @@ namespace Assets.Core
         {
             GameObject aCivGO = (GameObject)Instantiate(civPrefab, new Vector3(0, 0, 0), Quaternion.identity);
             CivController aCiv = aCivGO.GetComponent<CivController>();
-            foreach (var civ in CivControllersInGame)
+            for(int i = 0; i< CivControllersInGame.Count;i++)
             {
-                if (civEnum == civ.CivData.CivEnum)
+                if (civEnum == CivControllersInGame[i].CivData.CivEnum)
                 {
-                    aCiv = civ;
+                    aCiv = CivControllersInGame[i];
                 }
             }
             return aCiv;
@@ -318,9 +315,11 @@ namespace Assets.Core
         public CivController GetLocalPlayerCivController()
         {
             CivController civController = null;
-            foreach (var civCon in CivControllersInGame)
-                if (civCon == CivManager.Instance.LocalPlayerCivContoller)
-                    civController = civCon;
+            for (int i = 0; i < CivControllersInGame.Count; i++)
+            {
+                if (CivControllersInGame[i] == CivManager.Instance.LocalPlayerCivContoller)
+                    civController = CivControllersInGame[i];
+            }
             return civController;
         }
     }
