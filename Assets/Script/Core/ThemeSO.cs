@@ -1,0 +1,25 @@
+using UnityEngine;
+using Assets.Core;
+
+
+[CreateAssetMenu(fileName = "ThemeSO", menuName = "ThemeSO")]
+/// <summary>
+/// This is a type of UI menu theme based on the style, color scheme and design of the faction/civilization (Federation, Klingon...) selected by the local player
+/// </summary>
+public class ThemeSO: ScriptableObject
+{
+    public Sprite BackImage;
+    public Sprite Insignia;
+    public Sprite RaceImage;
+    public Color BackgroundColor;
+    public Color ForegroundColor;
+    public Color BoarderColor;
+    public Color HighLightColor;
+    public Color LowLightColor;
+    public Color TextColor;
+    public Font Font;
+    public Sprite ButtonSprite1;
+    public Sprite ButtonSprite2;
+    public Sprite ButtonSprite3;
+    public Sprite ButtonSprite4;
+}

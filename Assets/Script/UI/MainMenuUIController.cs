@@ -331,6 +331,7 @@ namespace Assets.Core
                     FedOnOff.OnSelect(null);
                     FedLocalPalyerToggle = activeLocalPlayerToggle;
                     GameManager.Instance.GameController.GameData.LocalPlayerCivEnum = CivEnum.FED;
+                    ThemeManager.Instance.ApplyTheme(ThemeEnum.Fed);
                     Debug.Log("Active FedLocalPalyerToggle.");
                     SetLocalCivilization(0);
                     PlaceTheYouInPlayerList(0);
@@ -343,6 +344,7 @@ namespace Assets.Core
                     SetLocalCivilization(1);
                     PlaceTheYouInPlayerList(1);
                     GameManager.Instance.GameController.GameData.LocalPlayerCivEnum = CivEnum.ROM;
+                    ThemeManager.Instance.ApplyTheme(ThemeEnum.Rom);
                     break;
                 case "TOGGLE_KLING":
                     KlingOnOff.isOn = true;
@@ -352,6 +354,7 @@ namespace Assets.Core
                     SetLocalCivilization(2);
                     PlaceTheYouInPlayerList(2);
                     GameManager.Instance.GameController.GameData.LocalPlayerCivEnum = CivEnum.KLING;
+                    ThemeManager.Instance.ApplyTheme(ThemeEnum.Kling);
                     break;
                 case "TOGGLE_CARD":
                     CardOnOff.isOn = true;
@@ -361,6 +364,7 @@ namespace Assets.Core
                     SetLocalCivilization(3);
                     PlaceTheYouInPlayerList(3);
                     GameManager.Instance.GameController.GameData.LocalPlayerCivEnum = CivEnum.CARD;
+                    ThemeManager.Instance.ApplyTheme(ThemeEnum.Card);
                     break;
                 case "TOGGLE_DOM":
                     DomOnOff.isOn = true;
@@ -370,6 +374,7 @@ namespace Assets.Core
                     SetLocalCivilization(4);
                     PlaceTheYouInPlayerList(4);
                     GameManager.Instance.GameController.GameData.LocalPlayerCivEnum = CivEnum.DOM;
+                    ThemeManager.Instance.ApplyTheme(ThemeEnum.Dom);
                     break;
                 case "TOGGLE_BORG":
                     BorgOnOff.isOn = true;
@@ -379,6 +384,7 @@ namespace Assets.Core
                     SetLocalCivilization(5);
                     PlaceTheYouInPlayerList(5);
                     GameManager.Instance.GameController.GameData.LocalPlayerCivEnum = CivEnum.BORG;
+                    ThemeManager.Instance.ApplyTheme(ThemeEnum.Borg);
                     break;
                 case "TOGGLE_TERRAN":
                     TerranOnOff.isOn = true;
@@ -388,6 +394,7 @@ namespace Assets.Core
                     SetLocalCivilization(6);
                     PlaceTheYouInPlayerList(6);
                     GameManager.Instance.GameController.GameData.LocalPlayerCivEnum = CivEnum.TERRAN;
+                    ThemeManager.Instance.ApplyTheme(ThemeEnum.Terran);
                     break;
                 default:
                     break;
