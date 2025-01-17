@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Assets.Core;
 using TMPro;
+using UnityEngine.UI;
 
 public enum ThemeEnum
 {
@@ -26,7 +27,7 @@ public class ThemeManager : MonoBehaviour
     [SerializeField] private Image spriteFleetShip;
     //[SerializeField] private Color[] colors;
     [SerializeField] private Font[] fonts;
-    [SerializeField] private Text[] texts;
+    [SerializeField] private TMP_Text[] tMP_Texts;
     [SerializeField] private Button[] buttons;
 
     private void Awake()
@@ -109,7 +110,7 @@ public class ThemeManager : MonoBehaviour
         // Apply to texts
         for (int i = 0; i < tMP_Texts.Length; i++)
         {
-            text.color = currentTheme.TextColor;
+            tMP_Texts[i].color = currentTheme.TextColor;
             //text.font = currentTheme.Font;
         }
 
