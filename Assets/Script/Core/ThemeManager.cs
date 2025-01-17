@@ -25,7 +25,6 @@ public class ThemeManager : MonoBehaviour
     [SerializeField] private Image spriteRace;
     [SerializeField] private Image spriteSystem;
     [SerializeField] private Image spriteFleetShip;
-    //[SerializeField] private Color[] colors;
     [SerializeField] private Font[] fonts;
     [SerializeField] private TMP_Text[] tMP_Texts;
     [SerializeField] private Button[] buttons;
@@ -66,47 +65,12 @@ public class ThemeManager : MonoBehaviour
                 break;
         }
 
-
-        // Apply to background
-        //if (colors != null)
-        //{
-        //    for (int i = 0; i < colors.Length; i++)
-        //    {
-                imageBackground.color = currentTheme.BackgroundColor;
-        //    }
-        //}
-        //if (spriteInsignias != null)
-        //{
-        //    for (int i = 0; i < spriteInsignias.Length; i++) 
-        //    {
-        //        spriteInsignias[i] = currentTheme.Insignia;
-        //    }
-        //}
+        imageBackground.color = currentTheme.BackgroundColor;
         spriteInsignia.sprite = currentTheme.Insignia;
-        //if (spriteRaces!= null)
-        //{
-        //    for (int i = 0; i < spriteRaces.Length; i++)
-        //    {
-        //        spriteRaces[i] = currentTheme.Insignia;
-        //    }
-        //}
         spriteRace.sprite = currentTheme.RaceImage;
         spriteSystem.sprite = currentTheme.SystemImage;
         spriteFleetShip.sprite = currentTheme.FleetShipImage  ;
-        //if (spriteSystems != null)
-        //{
-        //    for (int i = 0; i < spriteSystems.Length; i++)
-        //    {
-        //        spriteSystems[i] = currentTheme.Insignia;
-        //    }
-        //}
-        //if (spriteFleetShips != null)
-        //{
-        //    for (int i = 0; i < spriteFleetShips.Length; i++)
-        //    {
-        //        spriteFleetShips[i] = currentTheme.Insignia;
-        //    }
-        //}
+
         // Apply to texts
         for (int i = 0; i < tMP_Texts.Length; i++)
         {
@@ -117,10 +81,6 @@ public class ThemeManager : MonoBehaviour
         // Apply to buttons
         for (int i = 0; i < buttons.Length; i++)
         {
-
-        //}
-        ////foreach (var button in buttons)
-        //{
             var buttonImage = buttons[1].GetComponent<UnityEngine.UI.Image>();
             if (buttonImage != null)
                 buttonImage.sprite = currentTheme.ButtonSprite1;
