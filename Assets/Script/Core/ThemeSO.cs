@@ -1,5 +1,6 @@
 using UnityEngine;
 using Assets.Core;
+using TMPro;
 
 
 [CreateAssetMenu(fileName = "ThemeSO", menuName = "ThemeSO")]
@@ -8,6 +9,7 @@ using Assets.Core;
 /// </summary>
 public class ThemeSO: ScriptableObject
 {
+    public int CivInt;
     public Sprite BackImage;
     public Sprite Insignia;
     public Sprite RaceImage;
@@ -17,7 +19,7 @@ public class ThemeSO: ScriptableObject
     public Color HighLightColor;
     public Color LowLightColor;
     public Color TextColor;
-    public Font Font;
+    public TMP_Text TMP_Text;
     public Sprite ButtonSprite1;
     public Sprite ButtonSprite2;
     public Sprite ButtonSprite3;

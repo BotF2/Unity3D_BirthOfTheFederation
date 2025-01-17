@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80299fdb14b4be145bb13b85e61b6789, type: 3}
   m_Name: RomThemeSO
   m_EditorClassIdentifier: 
+  CivInt: 1
   BackImage: {fileID: 0}
   Insignia: {fileID: 0}
   RaceImage: {fileID: 0}
@@ -21,7 +22,7 @@ MonoBehaviour:
   HighLightColor: {r: 0, g: 0, b: 0, a: 0}
   LowLightColor: {r: 0, g: 0, b: 0, a: 0}
   TextColor: {r: 0, g: 0, b: 0, a: 0}
-  Font: {fileID: 0}
+  TextMechPro: {fileID: 0}
   ButtonSprite1: {fileID: 0}
   ButtonSprite2: {fileID: 0}
   ButtonSprite3: {fileID: 0}
