@@ -19,13 +19,15 @@ public class ThemeManager : MonoBehaviour
     public static ThemeManager Instance;
     [SerializeField] private ThemeSO[] themeSOs;
     [SerializeField] private ThemeSO currentTheme;
-    [SerializeField] private UnityEngine.UI.Image[] imagesBackgrounds;
-    [SerializeField] private Sprite[] spriteInsignias;
-    [SerializeField] private Sprite[] spriteRaces;
-    [SerializeField] private Color[] colors;
-    [SerializeField] private TMP_Text[] tMP_Texts;
-    //[SerializeField] private Text[] texts;
-    [SerializeField] private UnityEngine.UI.Button[] buttons;
+    [SerializeField] private Image imageBackground;
+    [SerializeField] private Image spriteInsignia;
+    [SerializeField] private Image spriteRace;
+    [SerializeField] private Image spriteSystem;
+    [SerializeField] private Image spriteFleetShip;
+    //[SerializeField] private Color[] colors;
+    [SerializeField] private Font[] fonts;
+    [SerializeField] private Text[] texts;
+    [SerializeField] private Button[] buttons;
 
     private void Awake()
     {
@@ -65,33 +67,50 @@ public class ThemeManager : MonoBehaviour
 
 
         // Apply to background
-        if (imagesBackgrounds != null)
-        {
-            foreach (UnityEngine.UI.Image image in imagesBackgrounds)
-            {
-                image.color = currentTheme.BackgroundColor;
-            }
-        }
-        if (spriteInsignias != null)
-        {
-            for (int i = 0; i < spriteInsignias.Length; i++) 
-            {
-                spriteInsignias[i] = currentTheme.Insignia;
-            }
-        }
-        if (spriteRaces!= null)
-        {
-            for (int i = 0; i < spriteRaces.Length; i++)
-            {
-                spriteRaces[i] = currentTheme.Insignia;
-            }
-        }
+        //if (colors != null)
+        //{
+        //    for (int i = 0; i < colors.Length; i++)
+        //    {
+                imageBackground.color = currentTheme.BackgroundColor;
+        //    }
+        //}
+        //if (spriteInsignias != null)
+        //{
+        //    for (int i = 0; i < spriteInsignias.Length; i++) 
+        //    {
+        //        spriteInsignias[i] = currentTheme.Insignia;
+        //    }
+        //}
+        spriteInsignia.sprite = currentTheme.Insignia;
+        //if (spriteRaces!= null)
+        //{
+        //    for (int i = 0; i < spriteRaces.Length; i++)
+        //    {
+        //        spriteRaces[i] = currentTheme.Insignia;
+        //    }
+        //}
+        spriteRace.sprite = currentTheme.RaceImage;
+        spriteSystem.sprite = currentTheme.SystemImage;
+        spriteFleetShip.sprite = currentTheme.FleetShipImage  ;
+        //if (spriteSystems != null)
+        //{
+        //    for (int i = 0; i < spriteSystems.Length; i++)
+        //    {
+        //        spriteSystems[i] = currentTheme.Insignia;
+        //    }
+        //}
+        //if (spriteFleetShips != null)
+        //{
+        //    for (int i = 0; i < spriteFleetShips.Length; i++)
+        //    {
+        //        spriteFleetShips[i] = currentTheme.Insignia;
+        //    }
+        //}
         // Apply to texts
         for (int i = 0; i < tMP_Texts.Length; i++)
         {
-            tMP_Texts[i].color = currentTheme.TMP_Text.color;
-            tMP_Texts[i].font = currentTheme.TMP_Text.font;
-            tMP_Texts[i].ForceMeshUpdate();
+            text.color = currentTheme.TextColor;
+            //text.font = currentTheme.Font;
         }
 
         // Apply to buttons

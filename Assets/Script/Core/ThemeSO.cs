@@ -13,6 +13,8 @@ public class ThemeSO: ScriptableObject
     public Sprite BackImage;
     public Sprite Insignia;
     public Sprite RaceImage;
+    public Sprite SystemImage;
+    public Sprite FleetShipImage;
     public Color BackgroundColor;
     public Color ForegroundColor;
     public Color BoarderColor;

@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80299fdb14b4be145bb13b85e61b6789, type: 3}
   m_Name: TerranThemeSO
   m_EditorClassIdentifier: 
-  CivInt: 6
-  BackImage: {fileID: 0}
-  Insignia: {fileID: 0}
-  RaceImage: {fileID: 0}
+  BackImage: {fileID: 21300000, guid: 2f9918ec73f4fdf46899bf5d6932f662, type: 3}
+  Insignia: {fileID: 21300000, guid: f9196827056ebc147a7e26cac702d060, type: 3}
+  RaceImage: {fileID: 21300000, guid: 39ec3883ff6684245a79fc2d4b9ff202, type: 3}
+  SystemImage: {fileID: 21300000, guid: d0f0c0f0001543b4eb1a5bddf59ccb19, type: 3}
+  FleetShipImage: {fileID: 21300000, guid: 7c73ab7a100936045963fb7ca99ee6f1, type: 3}
   BackgroundColor: {r: 0.9137255, g: 0.80309796, b: 0.27058828, a: 1}
   ForegroundColor: {r: 0, g: 0, b: 0, a: 0}
   BoarderColor: {r: 0, g: 0, b: 0, a: 0}
