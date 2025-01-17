@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using Assets.Core;
-using Unity.VisualScripting;
+using TMPro;
 
 public enum ThemeEnum
 {
@@ -20,13 +19,13 @@ public class ThemeManager : MonoBehaviour
     public static ThemeManager Instance;
     [SerializeField] private ThemeSO[] themeSOs;
     [SerializeField] private ThemeSO currentTheme;
-    [SerializeField] private Image[] imagesBackgrounds;
+    [SerializeField] private UnityEngine.UI.Image[] imagesBackgrounds;
     [SerializeField] private Sprite[] spriteInsignias;
     [SerializeField] private Sprite[] spriteRaces;
     [SerializeField] private Color[] colors;
-    [SerializeField] private Font[] fonts;
-    [SerializeField] private Text[] texts;
-    [SerializeField] private Button[] buttons;
+    [SerializeField] private TMP_Text[] tMP_Texts;
+    //[SerializeField] private Text[] texts;
+    [SerializeField] private UnityEngine.UI.Button[] buttons;
 
     private void Awake()
     {
@@ -68,7 +67,7 @@ public class ThemeManager : MonoBehaviour
         // Apply to background
         if (imagesBackgrounds != null)
         {
-            foreach (Image image in imagesBackgrounds)
+            foreach (UnityEngine.UI.Image image in imagesBackgrounds)
             {
                 image.color = currentTheme.BackgroundColor;
             }
@@ -88,16 +87,21 @@ public class ThemeManager : MonoBehaviour
             }
         }
         // Apply to texts
-        foreach (var text in texts)
+        for (int i = 0; i < tMP_Texts.Length; i++)
         {
-            text.color = currentTheme.TextColor;
-            text.font = currentTheme.Font;
+            tMP_Texts[i].color = currentTheme.TMP_Text.color;
+            tMP_Texts[i].font = currentTheme.TMP_Text.font;
+            tMP_Texts[i].ForceMeshUpdate();
         }
 
         // Apply to buttons
-        foreach (var button in buttons)
+        for (int i = 0; i < buttons.Length; i++)
         {
-            var buttonImage = button.GetComponent<Image>();
+
+        //}
+        ////foreach (var button in buttons)
+        //{
+            var buttonImage = buttons[1].GetComponent<UnityEngine.UI.Image>();
             if (buttonImage != null)
                 buttonImage.sprite = currentTheme.ButtonSprite1;
         }
