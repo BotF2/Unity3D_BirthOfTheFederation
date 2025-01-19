@@ -11,12 +11,14 @@ using System;
 
 public class GalaxyMenuUIController : MonoBehaviour
 {
-    public static GalaxyMenuUIController Instance { get; private set; }
+    public static GalaxyMenuUIController Instance; // { get; private set; }
     [SerializeField]
     private GameObject buildListUI;
     [SerializeField]
     private GameObject sysMenuView;
-    [SerializeField] 
+    [SerializeField]
+    private GameObject sysQueueContainer;
+    [SerializeField]
     private GameObject fleetsMenuView;
     [SerializeField] 
     private GameObject diplomacyMenuView;
@@ -25,7 +27,8 @@ public class GalaxyMenuUIController : MonoBehaviour
     [SerializeField] 
     private GameObject encyclopediaMenuView;
     [SerializeField]
-
+    private GameObject aNull;
+    [SerializeField]
     private GameObject closeOpenMenuButton;
     [SerializeField]
     private GameObject SysBackground;
@@ -39,6 +42,7 @@ public class GalaxyMenuUIController : MonoBehaviour
     private GameObject EncyclopediaBackground;
     [SerializeField]
     private List<StarSysController> sysControllers;
+    public StarSysController ActiveStarSysController;
 
     //[SerializeField]
     //private List<string>  sysNames;
@@ -77,11 +81,12 @@ public class GalaxyMenuUIController : MonoBehaviour
 
     public void CloseTheOpenGalaxyUI()
     {
-        sysMenuView.SetActive(false);
-        fleetsMenuView.SetActive(false);
-        diplomacyMenuView.SetActive(false);
-        intelMenuView.SetActive(false);
-        encyclopediaMenuView.SetActive(false);
+        MenuManager.Instance.OpenMenu(Menu.None, aNull);
+        //sysMenuView.SetActive(false);
+        //fleetsMenuView.SetActive(false);
+        //diplomacyMenuView.SetActive(false);
+        //intelMenuView.SetActive(false);
+        //encyclopediaMenuView.SetActive(false);
        // settingsMenuView.SetActive(false);
         closeOpenMenuButton.SetActive(false);
         SysBackground.SetActive(false);
@@ -95,28 +100,28 @@ public class GalaxyMenuUIController : MonoBehaviour
     public void OpenSystems()
     {
         if (!sysMenuView.activeSelf)
-        { 
-            sysMenuView.SetActive(true);
+        {
+            // sysMenuView.SetActive(true);
             SysBackground.SetActive(true);
-            fleetsMenuView.SetActive(false);
-            diplomacyMenuView.SetActive(false);
-            intelMenuView.SetActive(false);
-            encyclopediaMenuView.SetActive(false);
+           // fleetsMenuView.SetActive(false);
+            //diplomacyMenuView.SetActive(false);
+            //intelMenuView.SetActive(false);
+           // encyclopediaMenuView.SetActive(false);
             // settingsMenuView.SetActive(false);
             closeOpenMenuButton.SetActive(true);
             FleetBackground.SetActive(false);
             DiplomacyBackground.SetActive(false);
             IntelBackground.SetActive(false);
-            EncyclopediaBackground.SetActive(false);
+            MenuManager.Instance.OpenMenu(Menu.SystemsMenu, aNull);    
             SetUISystemsData();
-            FirstContactUIController.Instance.CloseUnLoadFirstContactUI();
-            FleetUIController.Instance.CloseUnLoadFleetUI();
+            //FirstContactUIController.Instance.CloseUnLoadFirstContactUI();
+            //FleetUIController.Instance.CloseUnLoadFleetUI();
         }
         else
         {
-            sysMenuView.SetActive(false);
-            SysBackground.SetActive(false);
+            MenuManager.Instance.OpenMenu(Menu.None, sysMenuView);
 
+            SysBackground.SetActive(false);
         }
     }
 
@@ -124,25 +129,17 @@ public class GalaxyMenuUIController : MonoBehaviour
     {
         if (!fleetsMenuView.activeSelf)
         {
-            sysMenuView.SetActive(false);
-            fleetsMenuView.SetActive(true);
+            MenuManager.Instance.OpenMenu (Menu.FleetsMenu, aNull);
             FleetBackground.SetActive(true);
-            diplomacyMenuView.SetActive(false);
-            intelMenuView.SetActive(false);
-            encyclopediaMenuView.SetActive(false);
-            //  settingsMenuView.SetActive(false);
             closeOpenMenuButton.SetActive(true);
             SysBackground.SetActive(false);
             DiplomacyBackground.SetActive(false);
             IntelBackground.SetActive(false);
             EncyclopediaBackground.SetActive(false);
-            //  SettingBackground.SetActive(false);
-            FirstContactUIController.Instance.CloseUnLoadFirstContactUI();
-            FleetUIController.Instance.CloseUnLoadFleetUI();
         }
         else
         {
-            fleetsMenuView.SetActive(false);
+            MenuManager.Instance.OpenMenu(Menu.None, fleetsMenuView);
             FleetBackground.SetActive(false);
         }
     }
@@ -150,25 +147,18 @@ public class GalaxyMenuUIController : MonoBehaviour
     {
         if (!diplomacyMenuView.activeSelf)
         {
-            sysMenuView.SetActive(false);
-            fleetsMenuView.SetActive(false);
-            diplomacyMenuView.SetActive(true);
+            MenuManager.Instance.OpenMenu(Menu.DiplomacyMenu, aNull);
             DiplomacyBackground.SetActive(true);
-            intelMenuView.SetActive(false);
-            encyclopediaMenuView.SetActive(false);
-            // settingsMenuView.SetActive(false);
             closeOpenMenuButton.SetActive(true);
             SysBackground.SetActive(false);
             FleetBackground.SetActive(false);
             IntelBackground.SetActive(false);
             EncyclopediaBackground.SetActive(false);
-            // SettingBackground.SetActive(false);
-            FirstContactUIController.Instance.CloseUnLoadFirstContactUI();
-            FleetUIController.Instance.CloseUnLoadFleetUI();
         } 
         else 
         {
-            diplomacyMenuView.SetActive(false);
+            MenuManager.Instance.OpenMenu(Menu.None, diplomacyMenuView);    
+
             DiplomacyBackground.SetActive(false);
         }
     }
@@ -177,25 +167,17 @@ public class GalaxyMenuUIController : MonoBehaviour
     {
         if (!intelMenuView.activeSelf)
         {
-            sysMenuView.SetActive(false);
-            fleetsMenuView.SetActive(false);
-            diplomacyMenuView.SetActive(false);
-            intelMenuView.SetActive(true);
+            MenuManager.Instance.OpenMenu(Menu.IntellMenu, aNull);
             IntelBackground.SetActive(true);
-            encyclopediaMenuView.SetActive(false);
-            // settingsMenuView.SetActive(false);
             closeOpenMenuButton.SetActive(true);
             SysBackground.SetActive(false);
             FleetBackground.SetActive(false);
             DiplomacyBackground.SetActive(false);
             EncyclopediaBackground.SetActive(false);
-            // SettingBackground.SetActive(false);
-            FirstContactUIController.Instance.CloseUnLoadFirstContactUI();
-            FleetUIController.Instance.CloseUnLoadFleetUI();
         }
-        else 
-        {
-            intelMenuView.SetActive(false);
+        else
+        { 
+            MenuManager.Instance.OpenMenu(Menu.None, intelMenuView);
             IntelBackground.SetActive(false);
         }
 
@@ -205,25 +187,17 @@ public class GalaxyMenuUIController : MonoBehaviour
     {
         if (!encyclopediaMenuView.activeSelf)
         {
-            sysMenuView.SetActive(false);
-            fleetsMenuView.SetActive(false);
-            diplomacyMenuView.SetActive(false);
-            intelMenuView.SetActive(false);
-            encyclopediaMenuView.SetActive(true);
+            MenuManager.Instance.OpenMenu(Menu.EncyclopedianMenu, aNull);
             EncyclopediaBackground.SetActive(true);
-
             closeOpenMenuButton.SetActive(true);
             SysBackground.SetActive(false);
             FleetBackground.SetActive(false);
             DiplomacyBackground.SetActive(false);
             IntelBackground.SetActive(false);
-
-            FirstContactUIController.Instance.CloseUnLoadFirstContactUI();
-            FleetUIController.Instance.CloseUnLoadFleetUI();
         }
         else 
         {
-            encyclopediaMenuView.SetActive(false);
+            MenuManager.Instance.OpenMenu(Menu.None, encyclopediaMenuView);
             EncyclopediaBackground.SetActive(false);
         }
     }
@@ -233,7 +207,7 @@ public class GalaxyMenuUIController : MonoBehaviour
         {
             foreach (var sysCon in StarSysManager.Instance.ManagersStarSysControllerList)
             {
-                if (sysCon.StarSysUIGameObject != null && GameController.Instance.AreWeLocalPlayer(sysCon.StarSysData.CurrentOwner))
+                if (sysCon.StarSysQueueUIGameObject != null && GameController.Instance.AreWeLocalPlayer(sysCon.StarSysData.CurrentOwner))
                     SetupSystemUI(sysCon);
             }
         }
@@ -245,199 +219,318 @@ public class GalaxyMenuUIController : MonoBehaviour
 
     public void SetupSystemUI(StarSysController sysController)
     {
-        if (sysController.StarSysUIGameObject != null)
+        if (sysController.StarSysQueueUIGameObject != null)
         {
-            sysControllers.Add(sysController);// add to list of content folder items
-            RectTransform[] minMapDotTransfor = sysController.StarSysUIGameObject.GetComponentsInChildren<RectTransform>();
-            for (int i = 0; i < minMapDotTransfor.Length; i++)
+
+            if (!sysControllers.Contains(sysController))
             {
-                if (minMapDotTransfor[i].name == "RedDot")
+                //sysController.StarSysQueueUIGameObject.SetActive(true);
+                //sysController.StarSysQueueUIGameObject.transform.SetParent(sysQueueContainer.transform, false);
+                sysControllers.Add(sysController);// add to list for content (queue) folder systems
+                RectTransform[] minMapDotTransfor = sysController.StarSysQueueUIGameObject.GetComponentsInChildren<RectTransform>();
+                for (int i = 0; i < minMapDotTransfor.Length; i++)
                 {
-                    float x = sysController.StarSysData.GetPosition().x * 0.12f; // 0.12f is our cosmologic constant, fudge factor
-                    float y = 0f;
-                    float z = sysController.StarSysData.GetPosition().z * 0.12f;
-                    minMapDotTransfor[i].Translate(new Vector3(x,z,y), Space.Self); // flip z and y from main galaxy map to UI mini map
-                    break;
+                    if (minMapDotTransfor[i].name == "RedDot")
+                    {
+                        float x = sysController.StarSysData.GetPosition().x * 0.12f; // 0.12f is our cosmologic constant, fudge factor
+                        float y = 0f;
+                        float z = sysController.StarSysData.GetPosition().z * 0.12f;
+                        minMapDotTransfor[i].Translate(new Vector3(x, z, y), Space.Self); // flip z and y from main galaxy map to UI mini map
+                        break;
+                    }
                 }
-            }
 
-            TextMeshProUGUI[] OneTMP = sysController.StarSysUIGameObject.GetComponentsInChildren<TextMeshProUGUI>();
-            for (int i = 0; i < OneTMP.Length; i++) 
-            {
-                int techLevelInt = (int)CivManager.Instance.LocalPlayerCivContoller.CivData.TechLevel / 100; // Early Tech level = 100, Supreme = 900;
-                OneTMP[i].enabled = true;
-                var name = OneTMP[i].name.ToString();
-
-                switch (name)
+                TextMeshProUGUI[] OneTMP = sysController.StarSysQueueUIGameObject.GetComponentsInChildren<TextMeshProUGUI>();
+                for (int i = 0; i < OneTMP.Length; i++)
                 {
-                    case "SysName":
-                        OneTMP[i].text = sysController.StarSysData.SysName;
-                        break;
-                    case "HeaderPowerUnitText":
-                        //if (sysController.StarSysData.PowerStations.Count > 0)  
-                        OneTMP[i].text = sysController.StarSysData.PowerPlantData.Name;
-                        //ToDo: can make it race specific here, not defaul "Plasma Reactor"
-                        break;
-                    case "NumPUnits":
-                        OneTMP[i].text = (sysController.StarSysData.PowerStations.Count).ToString();
-                        break;
-                    case "NumTotalEOut":
-                        OneTMP[i].text = (sysController.StarSysData.PowerStations.Count * sysController.StarSysData.PowerPlantData.PowerOutput).ToString();
-                        break;
-                    // ToDo: use techLevelInt in power output 
-                    case "NumP Load":
-                        OneTMP[i].text = (sysController.StarSysData.TotalSysPowerLoad.ToString());
-                        break;
+                    int techLevelInt = (int)CivManager.Instance.LocalPlayerCivContoller.CivData.TechLevel / 100; // Early Tech level = 100, Supreme = 900;
+                    OneTMP[i].enabled = true;
+                    var name = OneTMP[i].name.ToString();
 
-                    case "NameFactory":
-                        OneTMP[i].text = sysController.StarSysData.FactoryData.Name;
-                        break;
-                    case "NumFactoryRatio":
-                        int count = 0;
-                        foreach (var item in sysController.StarSysData.Factories)
-                        {
-                            TextMeshProUGUI TheText = item.GetComponent<TextMeshProUGUI>();
-                            if (TheText.text == "1") // 1 = on and 0 = off
-                                count++;
-                        }
-                        OneTMP[i].text = count.ToString() + "/" + (sysController.StarSysData.Factories.Count).ToString();
-                        break;
-                    case "FactoryLoad":
-                        // for now all are turned on
-                        OneTMP[i].text = (sysController.StarSysData.FactoryData.PowerLoad * sysController.StarSysData.Factories.Count).ToString();
-                        // ToDo: work in tech levels
-                        break;
+                    switch (name)
+                    {
+                        case "SysName": // text in the button for sys activation
+                            OneTMP[i].text = sysController.StarSysData.SysName;
+                            break;
+                        case "HeaderPowerUnitText":
+                            //if (sysController.StarSysData.PowerStations.Count > 0)  
+                            OneTMP[i].text = sysController.StarSysData.PowerPlantData.Name;
+                            //ToDo: can make it race specific here, not defaul "Plasma Reactor"
+                            break;
+                        case "NumPUnits":
+                            OneTMP[i].text = (sysController.StarSysData.PowerStations.Count).ToString();
+                            break;
+                        case "NumTotalEOut":
+                            OneTMP[i].text = (sysController.StarSysData.PowerStations.Count * sysController.StarSysData.PowerPlantData.PowerOutput).ToString();
+                            break;
+                        // ToDo: use techLevelInt in power output 
+                        case "NumP Load":
+                            OneTMP[i].text = (sysController.StarSysData.TotalSysPowerLoad.ToString());
+                            break;
 
-                    // ToDo: Factory build Queue here?
+                        case "NameFactory":
+                            OneTMP[i].text = sysController.StarSysData.FactoryData.Name;
+                            break;
+                        case "NumFactoryRatio":
+                            int count = 0;
+                            foreach (var item in sysController.StarSysData.Factories)
+                            {
+                                TextMeshProUGUI TheText = item.GetComponent<TextMeshProUGUI>();
+                                if (TheText.text == "1") // 1 = on and 0 = off
+                                    count++;
+                            }
+                            OneTMP[i].text = count.ToString() + "/" + (sysController.StarSysData.Factories.Count).ToString();
+                            break;
+                        case "FactoryLoad":
+                            // for now all are turned on
+                            OneTMP[i].text = (sysController.StarSysData.FactoryData.PowerLoad * sysController.StarSysData.Factories.Count).ToString();
+                            // ToDo: work in tech levels
+                            break;
 
-                    case "ShipyardName":
-                        OneTMP[i].text = sysController.StarSysData.ShipyardData.Name;
-                        break;
-                    case "NumYardsOnRatio":
-                        int count1 = 0;
-                        foreach (var item in sysController.StarSysData.Shipyards)
-                        {
-                            TextMeshProUGUI TheText = item.GetComponent<TextMeshProUGUI>();
-                            if (TheText.text == "1")
-                                count1++;
-                        }
-                        OneTMP[i].text = count1.ToString() + "/" + (sysController.StarSysData.Shipyards.Count).ToString();
-                        break;
-                    case "YardLoad":
-                        // for now all are turned on
-                        OneTMP[i].text = (sysController.StarSysData.ShipyardData.PowerLoad * sysController.StarSysData.Shipyards.Count).ToString();
-                        // ToDo: work in tech levels
-                        break;
-                    //ToDo: Yard's build Queue here
-                    case "ShieldName":
-                        OneTMP[i].text = sysController.StarSysData.ShieldGeneratorData.Name;
-                        break;
-                    case "NumShieldRatio":
-                        int count2 = 0;
-                        foreach (var item in sysController.StarSysData.ShieldGenerators)
-                        {
-                            TextMeshProUGUI TheText = item.GetComponent<TextMeshProUGUI>();
-                            if (TheText.text == "1")
-                                count2++;
-                        }
-                        OneTMP[i].text = count2.ToString() + "/" + (sysController.StarSysData.ShieldGenerators.Count).ToString();
-                        break;
-                    case "ShieldLoad":
-                        OneTMP[i].text = (sysController.StarSysData.ShieldGeneratorData.PowerLoad * sysController.StarSysData.ShieldGenerators.Count).ToString();
-                        // ToDo: work in tech levels
-                        break;
-                    case "OBName":
-                        OneTMP[i].text = sysController.StarSysData.OrbitalBatteryData.Name;
-                        break;
-                    case "NumOBRatio":
-                        int count3 = 0;
-                        foreach (var item in sysController.StarSysData.OrbitalBatteries)
-                        {
-                            TextMeshProUGUI TheText = item.GetComponent<TextMeshProUGUI>();
-                            if (TheText.text == "1")
-                                count3++;
-                        }
-                        OneTMP[i].text = count3.ToString() + "/" + (sysController.StarSysData.OrbitalBatteries.Count).ToString();
-                        break;
-                    case "OBLoad":
-                        OneTMP[i].text = (sysController.StarSysData.OrbitalBatteryData.PowerLoad * sysController.StarSysData.OrbitalBatteries.Count).ToString();
-                        // ToDo: work in tech levels
-                        break;
-                    case "ResearchName":
-                        OneTMP[i].text = sysController.StarSysData.ResearchCenterData.Name;
-                        break;
-                    case "NumResearchRatio":
-                        int count4 = 0;
-                        foreach (var item in sysController.StarSysData.ResearchCenters)
-                        {
-                            TextMeshProUGUI TheText = item.GetComponent<TextMeshProUGUI>();
-                            if (TheText.text == "1")
-                                count4++;
-                        }
-                        OneTMP[i].text = count4.ToString() + "/" + (sysController.StarSysData.ResearchCenters.Count).ToString();
-                        break;
-                    case "ResearchLoad":
-                        OneTMP[i].text = (sysController.StarSysData.ResearchCenterData.PowerLoad * sysController.StarSysData.ResearchCenters.Count).ToString();
-                        // ToDo: work in tech levels
-                        break;
-                    default:
-                        break;
+                        // ToDo: Factory build Queue here?
+
+                        case "ShipyardName":
+                            OneTMP[i].text = sysController.StarSysData.ShipyardData.Name;
+                            break;
+                        case "NumYardsOnRatio":
+                            int count1 = 0;
+                            foreach (var item in sysController.StarSysData.Shipyards)
+                            {
+                                TextMeshProUGUI TheText = item.GetComponent<TextMeshProUGUI>();
+                                if (TheText.text == "1")
+                                    count1++;
+                            }
+                            OneTMP[i].text = count1.ToString() + "/" + (sysController.StarSysData.Shipyards.Count).ToString();
+                            break;
+                        case "YardLoad":
+                            // for now all are turned on
+                            OneTMP[i].text = (sysController.StarSysData.ShipyardData.PowerLoad * sysController.StarSysData.Shipyards.Count).ToString();
+                            // ToDo: work in tech levels
+                            break;
+                        //ToDo: Yard's build Queue here
+                        case "ShieldName":
+                            OneTMP[i].text = sysController.StarSysData.ShieldGeneratorData.Name;
+                            break;
+                        case "NumShieldRatio":
+                            int count2 = 0;
+                            foreach (var item in sysController.StarSysData.ShieldGenerators)
+                            {
+                                TextMeshProUGUI TheText = item.GetComponent<TextMeshProUGUI>();
+                                if (TheText.text == "1")
+                                    count2++;
+                            }
+                            OneTMP[i].text = count2.ToString() + "/" + (sysController.StarSysData.ShieldGenerators.Count).ToString();
+                            break;
+                        case "ShieldLoad":
+                            OneTMP[i].text = (sysController.StarSysData.ShieldGeneratorData.PowerLoad * sysController.StarSysData.ShieldGenerators.Count).ToString();
+                            // ToDo: work in tech levels
+                            break;
+                        case "OBName":
+                            OneTMP[i].text = sysController.StarSysData.OrbitalBatteryData.Name;
+                            break;
+                        case "NumOBRatio":
+                            int count3 = 0;
+                            foreach (var item in sysController.StarSysData.OrbitalBatteries)
+                            {
+                                TextMeshProUGUI TheText = item.GetComponent<TextMeshProUGUI>();
+                                if (TheText.text == "1")
+                                    count3++;
+                            }
+                            OneTMP[i].text = count3.ToString() + "/" + (sysController.StarSysData.OrbitalBatteries.Count).ToString();
+                            break;
+                        case "OBLoad":
+                            OneTMP[i].text = (sysController.StarSysData.OrbitalBatteryData.PowerLoad * sysController.StarSysData.OrbitalBatteries.Count).ToString();
+                            // ToDo: work in tech levels
+                            break;
+                        case "ResearchName":
+                            OneTMP[i].text = sysController.StarSysData.ResearchCenterData.Name;
+                            break;
+                        case "NumResearchRatio":
+                            int count4 = 0;
+                            foreach (var item in sysController.StarSysData.ResearchCenters)
+                            {
+                                TextMeshProUGUI TheText = item.GetComponent<TextMeshProUGUI>();
+                                if (TheText.text == "1")
+                                    count4++;
+                            }
+                            OneTMP[i].text = count4.ToString() + "/" + (sysController.StarSysData.ResearchCenters.Count).ToString();
+                            break;
+                        case "ResearchLoad":
+                            OneTMP[i].text = (sysController.StarSysData.ResearchCenterData.PowerLoad * sysController.StarSysData.ResearchCenters.Count).ToString();
+                            // ToDo: work in tech levels
+                            break;
+                        default:
+                            break;
+                    }
                 }
-            }
 
-            Button[] listButtons = sysController.StarSysUIGameObject.GetComponentsInChildren<Button>();
-            //for (int k = 0; k < listButtons.Length; k++) 
-            foreach (var listButton in listButtons)
-            {
-                switch (listButton.name)
+                Button[] listButtons = sysController.StarSysQueueUIGameObject.GetComponentsInChildren<Button>();
+                foreach (var listButton in listButtons)
                 {
-                    case "BuildButton":
-                        //listButton.onClick.AddListener(() => buildListUI.SetActive(true));
-                        //listButton.onClick.AddListener(() => sysController.BuildClick());
-                        break;
-                    case "FactoryButtonOn":
-                        listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
-                        break;
-                    case "FactoryButtonOff":
-                        listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
-                        break;
-                    case "YardButtonOn":
-                        listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
-                        break;
-                    case "YardButtonOff":
-                        listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
-                        break;
-                    case "ShieldButtonOn":
-                        listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
-                        break;
-                    case "ShieldButtonOff":
-                        listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
-                        break;
-                    case "OBButtonOn":
-                        listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
-                        break;
-                    case "OBButtonOff":
-                        listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
-                        break;
-                    case "ResearchButtonOn":
-                        listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
-                        break;
-                    case "ResearchButtonOff":
-                        listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
-                        break;
-                    default:
-                        break;
+                    switch (listButton.name)
+                    {
+                        case "BuildButton":
+                            //listButton.onClick.AddListener(() => buildListUI.SetActive(true));
+                            //listButton.onClick.AddListener(() => sysController.BuildClick());
+                            break;
+                        case "FactoryButtonOn":
+                            listButton.onClick.RemoveAllListeners();
+                            listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
+                            break;
+                        case "FactoryButtonOff":
+                            listButton.onClick.RemoveAllListeners();
+                            listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
+                            break;
+                        case "YardButtonOn":
+                            listButton.onClick.RemoveAllListeners();
+                            listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
+                            break;
+                        case "YardButtonOff":
+                            listButton.onClick.RemoveAllListeners();
+                            listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
+                            break;
+                        case "ShieldButtonOn":
+                            listButton.onClick.RemoveAllListeners();
+                            listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
+                            break;
+                        case "ShieldButtonOff":
+                            listButton.onClick.RemoveAllListeners();
+                            listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
+                            break;
+                        case "OBButtonOn":
+                            listButton.onClick.RemoveAllListeners();
+                            listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
+                            break;
+                        case "OBButtonOff":
+                            listButton.onClick.RemoveAllListeners();
+                            listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
+                            break;
+                        case "ResearchButtonOn":
+                            listButton.onClick.RemoveAllListeners();
+                            listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
+                            break;
+                        case "ResearchButtonOff":
+                            listButton.onClick.RemoveAllListeners();
+                            listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
+                            break;
+                        default:
+                            break;
+                    }
                 }
             }
         }
     }
+    //public void RemoveListeners(StarSysController sysController)
+    //{
+    //    Button[] listButtons = sysController.StarSysQueueUIGameObject.GetComponentsInChildren<Button>();
+    //    //for (int k = 0; k < listButtons.Length; k++) 
+    //    foreach (var listButton in listButtons)
+    //    {
+    //        switch (listButton.name)
+    //        {
+    //            case "BuildButton":
+    //                //listButton.onClick.AddListener(() => buildListUI.SetActive(true));
+    //                //listButton.onClick.AddListener(() => sysController.BuildClick());
+    //                break;
+    //            case "FactoryButtonOn":
+    //                listButton.onClick.RemoveAllListeners();
+    //               // listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
+    //                break;
+    //            case "FactoryButtonOff":
+    //                listButton.onClick.RemoveAllListeners();
+    //                //listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
+    //                break;
+    //            case "YardButtonOn":
+    //                listButton.onClick.RemoveAllListeners();
+    //                //listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
+    //                break;
+    //            case "YardButtonOff":
+    //                listButton.onClick.RemoveAllListeners();
+    //                //listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
+    //                break;
+    //            case "ShieldButtonOn":
+    //                listButton.onClick.RemoveAllListeners();
+    //                //listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
+    //                break;
+    //            case "ShieldButtonOff":
+    //                listButton.onClick.RemoveAllListeners();
+    //               // listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
+    //                break;
+    //            case "OBButtonOn":
+    //                listButton.onClick.RemoveAllListeners();
+    //                //listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
+    //                break;
+    //            case "OBButtonOff":
+    //                listButton.onClick.RemoveAllListeners();
+    //                //listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
+    //                break;
+    //            case "ResearchButtonOn":
+    //                listButton.onClick.RemoveAllListeners();
+    //               // listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
+    //                break;
+    //            case "ResearchButtonOff":
+    //                listButton.onClick.RemoveAllListeners();
+    //                //listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
+    //                break;
+    //            default:
+    //                break;
+    //        }
+    //    }
+    //}
+    //public void SetUpButtonListeners(GameObject UIgameObject, StarSysController sysController)
+    //{
+    //    Button[] listButtons = UIgameObject.GetComponentsInChildren<Button>();
+    //    //for (int k = 0; k < listButtons.Length; k++) 
+    //    foreach (var listButton in listButtons)
+    //    {
+    //        switch (listButton.name)
+    //        {
+    //            case "BuildButton":
+    //                //listButton.onClick.AddListener(() => buildListUI.SetActive(true));
+    //                //listButton.onClick.AddListener(() => sysController.BuildClick());
+    //                break;
+    //            case "FactoryButtonOn":
+    //                listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
+    //                break;
+    //            case "FactoryButtonOff":
+    //                listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
+    //                break;
+    //            case "YardButtonOn":
+    //                listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
+    //                break;
+    //            case "YardButtonOff":
+    //                listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
+    //                break;
+    //            case "ShieldButtonOn":
+    //                listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
+    //                break;
+    //            case "ShieldButtonOff":
+    //                listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
+    //                break;
+    //            case "OBButtonOn":
+    //                listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
+    //                break;
+    //            case "OBButtonOff":
+    //                listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
+    //                break;
+    //            case "ResearchButtonOn":
+    //                listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
+    //                break;
+    //            case "ResearchButtonOff":
+    //                listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
+    //                break;
+    //            default:
+    //                break;
+    //        }
+    //    }
+    //}
     public void UpdateFactories(StarSysController sysController, int plusMinus)
     {
         for (int j = 0; j < sysControllers.Count; j++)
         { 
             if (sysController == sysControllers[j])
             {
-                TextMeshProUGUI[] OneTMP = sysController.StarSysUIGameObject.GetComponentsInChildren<TextMeshProUGUI>();
+                TextMeshProUGUI[] OneTMP = sysController.StarSysQueueUIGameObject.GetComponentsInChildren<TextMeshProUGUI>();
                 for (int i = 0; i < OneTMP.Length; i++) 
                 {
                     OneTMP[i].enabled = true;
@@ -475,7 +568,7 @@ public class GalaxyMenuUIController : MonoBehaviour
         {
             if (sysController == sysControllers[j])
             {
-                TextMeshProUGUI[] OneTMP = sysController.StarSysUIGameObject.GetComponentsInChildren<TextMeshProUGUI>();
+                TextMeshProUGUI[] OneTMP = sysController.StarSysQueueUIGameObject.GetComponentsInChildren<TextMeshProUGUI>();
                 for (int i = 0; i < OneTMP.Length; i++)
                 //foreach (var OneTMP[i] in listTMP)
                 {
@@ -515,7 +608,7 @@ public class GalaxyMenuUIController : MonoBehaviour
         {
             if (sysController == sysControllers[j])
             {
-                TextMeshProUGUI[] OneTMP = sysController.StarSysUIGameObject.GetComponentsInChildren<TextMeshProUGUI>();
+                TextMeshProUGUI[] OneTMP = sysController.StarSysQueueUIGameObject.GetComponentsInChildren<TextMeshProUGUI>();
                 for (int i = 0; i < OneTMP.Length; i++) 
                 //foreach (var OneTmp in listTMP)
                 {
@@ -556,7 +649,7 @@ public class GalaxyMenuUIController : MonoBehaviour
         {
             if (sysController == sysControllers[j])
             {
-                TextMeshProUGUI[] OneTMP = sysController.StarSysUIGameObject.GetComponentsInChildren<TextMeshProUGUI>();
+                TextMeshProUGUI[] OneTMP = sysController.StarSysQueueUIGameObject.GetComponentsInChildren<TextMeshProUGUI>();
                 for (int i = 0; i < OneTMP.Length; i++)
                 //foreach (var OneTmp in listTMP)
                 {
@@ -597,7 +690,7 @@ public class GalaxyMenuUIController : MonoBehaviour
         {
             if (sysController == sysControllers[j])
             {
-                TextMeshProUGUI[] OneTMP = sysController.StarSysUIGameObject.GetComponentsInChildren<TextMeshProUGUI>();
+                TextMeshProUGUI[] OneTMP = sysController.StarSysQueueUIGameObject.GetComponentsInChildren<TextMeshProUGUI>();
                 for (int i = 0; i < OneTMP.Length; i++)
                // foreach (var OneTmp in listTMP)
                 {
@@ -635,7 +728,7 @@ public class GalaxyMenuUIController : MonoBehaviour
 
     private void UpdateSystemPowerLoad(StarSysController sysCon)
     {
-        TextMeshProUGUI[] OneTMP = sysCon.StarSysUIGameObject.GetComponentsInChildren<TextMeshProUGUI>();
+        TextMeshProUGUI[] OneTMP = sysCon.StarSysQueueUIGameObject.GetComponentsInChildren<TextMeshProUGUI>();
         for (int i = 0; i < OneTMP.Length; i++) 
        // foreach (var OneTmp in listTMP)
         {

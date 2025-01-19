@@ -234,7 +234,8 @@ namespace Assets.Core
                     {
                         FleetUIController.Instance.ClickCancelDestinationButton();
                         FleetUIController.Instance.CloseUnLoadFleetUI();
-                        YourStarSysUIManager.Instance.CloseUnLoadStarSysUI();
+                        //enuManager.Instance.OpenMenu
+                        //YourStarSysUIManager.Instance.CloseUnLoadStarSysUI();
                         OnArrivedAtDestination();//? should we do other stuff here for FleetController at destination?
                     }
                 }

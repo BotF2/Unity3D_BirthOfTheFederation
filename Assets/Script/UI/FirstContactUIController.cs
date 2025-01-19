@@ -54,9 +54,11 @@ public class FirstContactUIController : MonoBehaviour
     {
         controller = ourDiplomacyController;
         TimeManager.Instance.PauseTime(); // ToDo: put a pause indicator on screen
-        YourStarSysUIManager.Instance.CloseUnLoadStarSysUI();
-        FleetUIController.Instance.CloseUnLoadFleetUI();
-        FleetSelectionUI.Instance.UnLoadShipManagerUI();
+        GameObject aNull = new GameObject();
+        MenuManager.Instance.OpenMenu(Menu.FirstContactMenu, aNull);
+       // YourStarSysUIManager.Instance.CloseUnLoadStarSysUI();
+        //FleetUIController.Instance.CloseUnLoadFleetUI();
+        //FleetSelectionUI.Instance.UnLoadShipManagerUI();
         if (GameController.Instance.AreWeLocalPlayer(ourDiplomacyController.DiplomacyData.CivOne.CivData.CivEnum))
             LoadCivDataInUI(ourDiplomacyController.DiplomacyData.CivTwo, ourDiplomacyController);
         else if (GameController.Instance.AreWeLocalPlayer(ourDiplomacyController.DiplomacyData.CivTwo.CivData.CivEnum))

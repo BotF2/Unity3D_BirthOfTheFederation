@@ -18,9 +18,12 @@ namespace Assets.Core
         private StarSysData starSysData;
         public StarSysData StarSysData { get { return starSysData; } set { starSysData = value; } }
         [SerializeField]
-        private GameObject starSysUIGameObject; //The instantiated system UI prefab, not a class but a game object
-        // instantiated by StarSysManager from a prefab and added to StarSysController, NewSystemUI()
-        public GameObject StarSysUIGameObject { get { return starSysUIGameObject; } set { starSysUIGameObject = value; } }
+        private GameObject starSysQueueUIGameObject; //The instantiated system UI for system queue, a prefab clone, not a class but a game object
+        // instantiated by StarSysManager from a prefab and added to StarSysController, NewSystemQueueUI()
+        public GameObject StarSysQueueUIGameObject { get { return starSysQueueUIGameObject; } set { starSysQueueUIGameObject = value; } }
+        private GameObject starSysGalaxyUIGameObject; //The instantiated system UI for one system on clicking system in galaxys map, a prefab clone, not a class but a game object
+        // instantiated by StarSysManager from a prefab and added to StarSysController, NewSystemQueueUI()
+        public GameObject StarSysGalaxyUIGameObject { get { return starSysGalaxyUIGameObject; } set { starSysGalaxyUIGameObject = value; } }
         private Camera galaxyEventCamera;
         [SerializeField]
         private Canvas canvasToolTip;
@@ -81,7 +84,10 @@ namespace Assets.Core
                 {
                     if (FleetUIController.Instance.MouseClickSetsDestination == false) // not while FleetUIController was looking for a destination
                     {
-                        YourStarSysUIManager.Instance.LoadStarSysUI(gameObject);
+                        GameObject aNull = new GameObject();
+                        MenuManager.Instance.OpenMenu(Menu.ASystemMenu, aNull);
+                        ASysUIController.Instance.SetupSystemUI(this);
+                        //YourStarSysUIManager.Instance.LoadStarSysUI(gameObject);
                     }
                     else
                     {

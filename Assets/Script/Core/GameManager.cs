@@ -425,12 +425,7 @@ namespace Assets.Core
         public bool _statePassedCombatInit = false; // COMBAT INIT
         public bool _statePassedCombatPlay = false;
 
-        public void InitializeGameManagerWithMainMenuUIController()
-        {
-            mainMenuUIController = GameObject.Find("MainMenuUIController").GetComponent<MainMenuUIController>();
-            mainMenuUIController.LoadDefault();
-            this.GameController.GameData.LocalPlayerCivEnum = CivEnum.FED;
-        }  
+
         private void Awake()
         {
             if (Instance != null)
@@ -444,7 +439,12 @@ namespace Assets.Core
             }
             InitializeGameManagerWithMainMenuUIController();
         }
-
+        public void InitializeGameManagerWithMainMenuUIController()
+        {
+            mainMenuUIController = GameObject.Find("MainMenuUIController").GetComponent<MainMenuUIController>();
+            mainMenuUIController.LoadDefault();
+            this.GameController.GameData.LocalPlayerCivEnum = CivEnum.FED;
+        }
         //  MARC CODE
         public GameObject UICamera;
         public GameObject GalaxyCamera;

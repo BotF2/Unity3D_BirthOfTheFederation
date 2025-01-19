@@ -46,12 +46,14 @@ public class HabitableSysUIController: MonoBehaviour
         if ((int)this.starSysController.StarSysData.CurrentOwner >= firstUninhabited) // not already been clamed
         {
             TimeManager.Instance.PauseTime(); // ToDo: put a pause indicator on screen
-            //ToDo: manage open UIs so we keep a UI with interaction pending when a fleet reaches a new target and you need more than one UI still open
-            YourStarSysUIManager.Instance.CloseUnLoadStarSysUI();
-            FleetUIController.Instance.CloseUnLoadFleetUI();
-            //FleetSelectionUI.current.UnLoadShipManagerUI();
-            FirstContactUIController.Instance.CloseUnLoadFirstContactUI();
-            HabitableSysUIToggle.SetActive(true);
+                                              //ToDo: manage open UIs so we keep a UI with interaction pending when a fleet reaches a new target and you need more than one UI still open
+            GameObject aNull = new GameObject();
+            MenuManager.Instance.OpenMenu(Menu.HabitableSysMenu, aNull);
+            //YourStarSysUIManager.Instance.CloseUnLoadStarSysUI();
+            //FleetUIController.Instance.CloseUnLoadFleetUI();
+            ////FleetSelectionUI.current.UnLoadShipManagerUI();
+            //FirstContactUIController.Instance.CloseUnLoadFirstContactUI();
+            //HabitableSysUIToggle.SetActive(true);
             visitingFleetCivEnum = discoveringFleetController.FleetData.CivEnum;
         }
     }

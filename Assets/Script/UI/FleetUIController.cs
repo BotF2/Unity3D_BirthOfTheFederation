@@ -235,12 +235,16 @@ public class FleetUIController : MonoBehaviour
     }
     public void OnClickShipManager()
     {
-        FleetSelectionUI.Instance.LoadShipUIManager(ourUIFleetController);
+        GameObject aNull = new GameObject();
+        MenuManager.Instance.OpenMenu(Menu.FleetsMenu, aNull);
+        //FleetSelectionUI.Instance.LoadShipUIManager(ourUIFleetController);
     }
     public void LoadFleetUI(GameObject rayHitGO)
     {
-        YourStarSysUIManager.Instance.CloseUnLoadStarSysUI();
-        FirstContactUIController.Instance.CloseUnLoadFirstContactUI();
+        GameObject aNull = new GameObject();
+        MenuManager.Instance.OpenMenu(Menu.AFleetMenu, aNull);
+        //YourStarSysUIManager.Instance.CloseUnLoadStarSysUI();
+        //FirstContactUIController.Instance.CloseUnLoadFirstContactUI();
         //FleetSelectionUI.current.UnLoadShipManagerUI();
         fleetUIToggle.SetActive(true);
 

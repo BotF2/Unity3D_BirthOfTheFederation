@@ -46,6 +46,8 @@ namespace Assets.Core
         [SerializeField]
         private GameObject contentFolderParent;
         [SerializeField]
+        private GameObject sysPanel;
+        [SerializeField]
         private GameObject galaxyImage;
         [SerializeField]
         private Sprite unknowSystem;
@@ -198,7 +200,8 @@ namespace Assets.Core
                     sysData.OrbitalBatteries = GetSystemFacilities(starSysSO.OrbitalBatteries, OrbitalBatteryPrefab, civSO.CivInt, sysData);
                     sysData.ResearchCenters = GetSystemFacilities(starSysSO.ResearchCenters, ResearchCenterPrefab, civSO.CivInt, sysData);
                     SetParentForFacilities(starSystemNewGameOb, sysData);
-                    NewSystemUI(starSysController);
+                    NewSystemQueueUI(starSysController);
+                    NewSystemGalaxyUI(starSysController);
                 }
 
                 //***** This is temporary so we can test a multi-starsystem civ
@@ -680,18 +683,29 @@ namespace Assets.Core
         {
         
         }
-        public void NewSystemUI(StarSysController sysController)
+        public void NewSystemQueueUI(StarSysController sysController)
         {
-            
             if (sysController.StarSysData.CurrentOwner == GameController.Instance.GameData.LocalPlayerCivEnum)
             {
                 GameObject thisStarSysUIGameObject = (GameObject)Instantiate(sysUIPrefab, new Vector3(0, 0, 0),
                     Quaternion.identity);
                 thisStarSysUIGameObject.layer = 5;
-                sysController.StarSysUIGameObject = thisStarSysUIGameObject; 
-                thisStarSysUIGameObject.transform.SetParent(contentFolderParent.transform, false); // load into Queue
+                sysController.StarSysQueueUIGameObject = thisStarSysUIGameObject; 
+                thisStarSysUIGameObject.transform.SetParent(contentFolderParent.transform, false); // load into Queue of systems
             }
             
+        }
+        public void NewSystemGalaxyUI(StarSysController sysController)
+        {
+            if (sysController.StarSysData.CurrentOwner == GameController.Instance.GameData.LocalPlayerCivEnum)
+            {
+                GameObject thisStarSysUIGameObject = (GameObject)Instantiate(sysUIPrefab, new Vector3(0, 0, 0),
+                    Quaternion.identity);
+                thisStarSysUIGameObject.layer = 5;
+                sysController.StarSysGalaxyUIGameObject = thisStarSysUIGameObject;
+                thisStarSysUIGameObject.transform.SetParent(sysPanel.transform, false); // load into CanvasASystemUI panel for click of system in galaxy map
+            }
+
         }
 
     }
