@@ -8,6 +8,7 @@ using Unity.VisualScripting;
 using System.Runtime.CompilerServices;
 using System.Diagnostics;
 using System;
+using System.Linq;
 
 public class GalaxyMenuUIController : MonoBehaviour
 {
@@ -18,6 +19,10 @@ public class GalaxyMenuUIController : MonoBehaviour
     private GameObject sysMenuView;
     [SerializeField]
     private GameObject sysQueueContainer;
+    [SerializeField]
+    private GameObject aSystemView;
+    [SerializeField] 
+    private GameObject aSysContainer;
     [SerializeField]
     private GameObject fleetsMenuView;
     [SerializeField] 
@@ -42,7 +47,9 @@ public class GalaxyMenuUIController : MonoBehaviour
     private GameObject EncyclopediaBackground;
     [SerializeField]
     private List<StarSysController> sysControllers;
-    public StarSysController ActiveStarSysController;
+    [SerializeField]
+    private List<GameObject> queueUIs;
+   // public StarSysController ActiveStarSysController;
 
     //[SerializeField]
     //private List<string>  sysNames;
@@ -66,6 +73,7 @@ public class GalaxyMenuUIController : MonoBehaviour
     void Start()
     {
         sysMenuView.SetActive(false);
+        aSystemView.SetActive(false);   
         fleetsMenuView.SetActive(false);
         diplomacyMenuView.SetActive(false); 
         intelMenuView.SetActive(false) ;
@@ -215,8 +223,17 @@ public class GalaxyMenuUIController : MonoBehaviour
     public void RemoveSystem(StarSysController sysController)
     {
         sysControllers.Remove(sysController);
+        queueUIs.Remove(sysController.StarSysQueueUIGameObject);
     }
-
+    public void OpenASystemUI(StarSysController theSysCon) // move system ui to single system view when system clicked on galaxy map
+    {
+        if (queueUIs.Contains(theSysCon.StarSysQueueUIGameObject))
+        {
+            theSysCon.StarSysQueueUIGameObject.SetActive(true);
+            theSysCon.StarSysQueueUIGameObject.transform.SetParent(aSysContainer.transform, false);
+            SysBackground.SetActive(false);
+        }
+    }
     public void SetupSystemUI(StarSysController sysController)
     {
         if (sysController.StarSysQueueUIGameObject != null)
@@ -224,9 +241,10 @@ public class GalaxyMenuUIController : MonoBehaviour
 
             if (!sysControllers.Contains(sysController))
             {
-                //sysController.StarSysQueueUIGameObject.SetActive(true);
-                //sysController.StarSysQueueUIGameObject.transform.SetParent(sysQueueContainer.transform, false);
+                sysController.StarSysQueueUIGameObject.SetActive(true);
+                sysController.StarSysQueueUIGameObject.transform.SetParent(sysQueueContainer.transform, false);
                 sysControllers.Add(sysController);// add to list for content (queue) folder systems
+                queueUIs.Add(sysController.StarSysQueueUIGameObject);
                 RectTransform[] minMapDotTransfor = sysController.StarSysQueueUIGameObject.GetComponentsInChildren<RectTransform>();
                 for (int i = 0; i < minMapDotTransfor.Length; i++)
                 {
@@ -418,6 +436,8 @@ public class GalaxyMenuUIController : MonoBehaviour
                     }
                 }
             }
+            sysController.StarSysQueueUIGameObject.SetActive(true);
+            sysController.StarSysQueueUIGameObject.transform.SetParent(sysQueueContainer.transform, false);
         }
     }
     //public void RemoveListeners(StarSysController sysController)

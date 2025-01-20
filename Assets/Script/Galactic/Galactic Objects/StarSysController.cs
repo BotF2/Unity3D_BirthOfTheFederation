@@ -20,9 +20,6 @@ namespace Assets.Core
         private GameObject starSysQueueUIGameObject; //The instantiated system UI for system queue, a prefab clone, not a class but a game object
         // instantiated by StarSysManager from a prefab and added to StarSysController, NewSystemQueueUI()
         public GameObject StarSysQueueUIGameObject { get { return starSysQueueUIGameObject; } set { starSysQueueUIGameObject = value; } }
-        private GameObject starSysGalaxyUIGameObject; //The instantiated system UI for one system on clicking system in galaxys map, a prefab clone, not a class but a game object
-        // instantiated by StarSysManager from a prefab and added to StarSysController, NewSystemQueueUI()
-        public GameObject StarSysGalaxyUIGameObject { get { return starSysGalaxyUIGameObject; } set { starSysGalaxyUIGameObject = value; } }
         private Camera galaxyEventCamera;
         [SerializeField]
         private Canvas canvasToolTip;
@@ -85,8 +82,7 @@ namespace Assets.Core
                     {
                         GameObject aNull = new GameObject();
                         MenuManager.Instance.OpenMenu(Menu.ASystemMenu, aNull);
-                        ASysUIController.Instance.SetupSystemUI(this);
-                        //YourStarSysUIManager.Instance.LoadStarSysUI(gameObject);
+                        GalaxyMenuUIController.Instance.OpenASystemUI(this);
                     }
                     else
                     {
@@ -103,7 +99,7 @@ namespace Assets.Core
         {
             bool isFleet = false;
             FleetUIController.Instance.SetAsDestination(hitObject, isFleet);
-            //this.CanvasDestination.gameObject.SetActive(true);
+
         }
 
         public void OnEnable()
