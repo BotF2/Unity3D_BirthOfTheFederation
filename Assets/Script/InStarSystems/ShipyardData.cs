@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Assets.Core;
 
+[System.Serializable]
 public class ShipyardData
 {
     public int CivInt;

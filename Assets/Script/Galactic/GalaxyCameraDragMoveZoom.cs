@@ -25,11 +25,9 @@ public class GalaxyCameraDragMoveZoom : MonoBehaviour //, IPointerClickHandler
     [SerializeField]
     private float maxZ = 500f;
 
-    // private Vector3 dragOrigin;
-    //private Vector3 cameraDragOrigin;
-    //private Vector3 currentPosition;
     private Vector3 lastMousePosition;
 
+    [Obsolete]
     void Update()
     {
         DoZoom();

@@ -287,7 +287,7 @@ namespace Assets.Core
                         factoryData.StartStarDate = factorySO.StartStarDate;
                         factoryData.PowerLoad = factorySO.PowerLoad;
                         factoryData.BuildDuration = factorySO.BuildDuration;
-                        factoryData.PowerPlantSprite = factorySO.FactorySprite;
+                        factoryData.FactorySprite = factorySO.FactorySprite;
                         factoryData.Description = factorySO.Description;
                         sysData.FactoryData = factoryData;
                         List<FactoryData> fDatas = new List<FactoryData>();

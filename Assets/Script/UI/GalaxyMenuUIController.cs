@@ -49,14 +49,7 @@ public class GalaxyMenuUIController : MonoBehaviour
     private List<StarSysController> sysControllers;
     [SerializeField]
     private List<GameObject> queueUIs;
-   // public StarSysController ActiveStarSysController;
 
-    //[SerializeField]
-    //private List<string>  sysNames;
-    //[SerializeField]
-    //private GameObject sysUIprefab;
-    //[SerializeField]
-    //private int powerPerEnergyPlant = 10;
 
     private void Awake()
     {
@@ -90,12 +83,6 @@ public class GalaxyMenuUIController : MonoBehaviour
     public void CloseTheOpenGalaxyUI()
     {
         MenuManager.Instance.OpenMenu(Menu.None, aNull);
-        //sysMenuView.SetActive(false);
-        //fleetsMenuView.SetActive(false);
-        //diplomacyMenuView.SetActive(false);
-        //intelMenuView.SetActive(false);
-        //encyclopediaMenuView.SetActive(false);
-       // settingsMenuView.SetActive(false);
         closeOpenMenuButton.SetActive(false);
         SysBackground.SetActive(false);
         FleetBackground.SetActive(false);
@@ -109,21 +96,13 @@ public class GalaxyMenuUIController : MonoBehaviour
     {
         if (!sysMenuView.activeSelf)
         {
-            // sysMenuView.SetActive(true);
             SysBackground.SetActive(true);
-           // fleetsMenuView.SetActive(false);
-            //diplomacyMenuView.SetActive(false);
-            //intelMenuView.SetActive(false);
-           // encyclopediaMenuView.SetActive(false);
-            // settingsMenuView.SetActive(false);
             closeOpenMenuButton.SetActive(true);
             FleetBackground.SetActive(false);
             DiplomacyBackground.SetActive(false);
             IntelBackground.SetActive(false);
             MenuManager.Instance.OpenMenu(Menu.SystemsMenu, aNull);    
             SetUISystemsData();
-            //FirstContactUIController.Instance.CloseUnLoadFirstContactUI();
-            //FleetUIController.Instance.CloseUnLoadFleetUI();
         }
         else
         {
@@ -440,110 +419,6 @@ public class GalaxyMenuUIController : MonoBehaviour
             sysController.StarSysQueueUIGameObject.transform.SetParent(sysQueueContainer.transform, false);
         }
     }
-    //public void RemoveListeners(StarSysController sysController)
-    //{
-    //    Button[] listButtons = sysController.StarSysQueueUIGameObject.GetComponentsInChildren<Button>();
-    //    //for (int k = 0; k < listButtons.Length; k++) 
-    //    foreach (var listButton in listButtons)
-    //    {
-    //        switch (listButton.name)
-    //        {
-    //            case "BuildButton":
-    //                //listButton.onClick.AddListener(() => buildListUI.SetActive(true));
-    //                //listButton.onClick.AddListener(() => sysController.BuildClick());
-    //                break;
-    //            case "FactoryButtonOn":
-    //                listButton.onClick.RemoveAllListeners();
-    //               // listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
-    //                break;
-    //            case "FactoryButtonOff":
-    //                listButton.onClick.RemoveAllListeners();
-    //                //listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
-    //                break;
-    //            case "YardButtonOn":
-    //                listButton.onClick.RemoveAllListeners();
-    //                //listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
-    //                break;
-    //            case "YardButtonOff":
-    //                listButton.onClick.RemoveAllListeners();
-    //                //listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
-    //                break;
-    //            case "ShieldButtonOn":
-    //                listButton.onClick.RemoveAllListeners();
-    //                //listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
-    //                break;
-    //            case "ShieldButtonOff":
-    //                listButton.onClick.RemoveAllListeners();
-    //               // listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
-    //                break;
-    //            case "OBButtonOn":
-    //                listButton.onClick.RemoveAllListeners();
-    //                //listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
-    //                break;
-    //            case "OBButtonOff":
-    //                listButton.onClick.RemoveAllListeners();
-    //                //listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
-    //                break;
-    //            case "ResearchButtonOn":
-    //                listButton.onClick.RemoveAllListeners();
-    //               // listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
-    //                break;
-    //            case "ResearchButtonOff":
-    //                listButton.onClick.RemoveAllListeners();
-    //                //listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
-    //                break;
-    //            default:
-    //                break;
-    //        }
-    //    }
-    //}
-    //public void SetUpButtonListeners(GameObject UIgameObject, StarSysController sysController)
-    //{
-    //    Button[] listButtons = UIgameObject.GetComponentsInChildren<Button>();
-    //    //for (int k = 0; k < listButtons.Length; k++) 
-    //    foreach (var listButton in listButtons)
-    //    {
-    //        switch (listButton.name)
-    //        {
-    //            case "BuildButton":
-    //                //listButton.onClick.AddListener(() => buildListUI.SetActive(true));
-    //                //listButton.onClick.AddListener(() => sysController.BuildClick());
-    //                break;
-    //            case "FactoryButtonOn":
-    //                listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
-    //                break;
-    //            case "FactoryButtonOff":
-    //                listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
-    //                break;
-    //            case "YardButtonOn":
-    //                listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
-    //                break;
-    //            case "YardButtonOff":
-    //                listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
-    //                break;
-    //            case "ShieldButtonOn":
-    //                listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
-    //                break;
-    //            case "ShieldButtonOff":
-    //                listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
-    //                break;
-    //            case "OBButtonOn":
-    //                listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
-    //                break;
-    //            case "OBButtonOff":
-    //                listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
-    //                break;
-    //            case "ResearchButtonOn":
-    //                listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
-    //                break;
-    //            case "ResearchButtonOff":
-    //                listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
-    //                break;
-    //            default:
-    //                break;
-    //        }
-    //    }
-    //}
     public void UpdateFactories(StarSysController sysController, int plusMinus)
     {
         for (int j = 0; j < sysControllers.Count; j++)
