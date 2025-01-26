@@ -35,6 +35,8 @@ TagManager:
   - DestroyTemp
   - GalaxyImage
   - InventorySlot
+  - FactoryBuildSlot
+  - FactoryQueueSlot
   layers:
   - Default
   - TransparentFX

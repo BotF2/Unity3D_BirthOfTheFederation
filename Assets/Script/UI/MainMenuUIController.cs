@@ -69,7 +69,7 @@ namespace Assets.Core
         private GameObject techLevelToggleGroup;
         [SerializeField]
         private TMP_Text playerFed, playerRom, playerKling, playerCard, playerDom, playerBorg, playerTerran;
-        private readonly string you = "You", computer = "Computer", notInGame = "Absent";
+        private readonly string player = "You", computer = "Computer", notInGame = "Absent";
         private Toggle activeLocalPlayerToggle;
         //ToDo for multiplayer lobby
         //private Toggle _activeRemote0;
@@ -498,25 +498,25 @@ namespace Assets.Core
             switch (civInt)
             {
                 case 0:
-                    playerFed.text = you;
+                    playerFed.text = player;
                     break;
                 case 1:
-                    playerRom.text = you;
+                    playerRom.text = player;
                     break;
                 case 2:
-                    playerKling.text = you;
+                    playerKling.text = player;
                     break;
                 case 3:
-                    playerCard.text = you;
+                    playerCard.text = player;
                     break;
                 case 4:
-                    playerDom.text = you;
+                    playerDom.text = player;
                     break;
                 case 5:
-                    playerBorg.text = you;
+                    playerBorg.text = player;
                     break;
                 case 6:
-                    playerTerran.text = you;
+                    playerTerran.text = player;
                     break;
                 default:
                     break;
@@ -525,19 +525,19 @@ namespace Assets.Core
 
         private void ResetPlayers()
         {
-            if (playerFed.text == you)
+            if (playerFed.text == player)
                 playerFed.text = computer;
-            if (playerRom.text == you)
+            if (playerRom.text == player)
                 playerRom.text = computer;
-            if (playerKling.text == you)
+            if (playerKling.text == player)
                 playerKling.text = computer;
-            if (playerCard.text == you)
+            if (playerCard.text == player)
                 playerCard.text = computer;
-            if (playerDom.text == you)
+            if (playerDom.text == player)
                 playerDom.text = computer;
-            if (playerBorg.text == you)
+            if (playerBorg.text == player)
                 playerBorg.text = computer;
-            if (playerTerran.text == you)
+            if (playerTerran.text == player)
                 playerTerran.text = computer;
         }
         private void SetSingleVsMultiplayer(bool singleMultiSelection)

@@ -18,7 +18,7 @@ public class GalaxyMenuUIController : MonoBehaviour
     [SerializeField]
     private GameObject sysMenuView;
     [SerializeField]
-    private GameObject sysQueueContainer;
+    private GameObject sysListContainer;
     [SerializeField]
     private GameObject aSystemView;
     [SerializeField] 
@@ -34,21 +34,21 @@ public class GalaxyMenuUIController : MonoBehaviour
     [SerializeField]
     private GameObject aNull;
     [SerializeField]
-    private GameObject closeOpenMenuButton;
+    private GameObject closeMenuButton;
     [SerializeField]
-    private GameObject SysBackground;
+    private GameObject sysBackground;
     [SerializeField]
-    private GameObject FleetBackground;
+    private GameObject fleetBackground;
     [SerializeField]
-    private GameObject DiplomacyBackground;
+    private GameObject diplomacyBackground;
     [SerializeField]
-    private GameObject IntelBackground;
+    private GameObject intelBackground;
     [SerializeField]
-    private GameObject EncyclopediaBackground;
+    private GameObject encyclopediaBackground;
     [SerializeField]
     private List<StarSysController> sysControllers;
     [SerializeField]
-    private List<GameObject> queueUIs;
+    private List<GameObject> listOfUIs;
 
 
     private void Awake()
@@ -71,24 +71,24 @@ public class GalaxyMenuUIController : MonoBehaviour
         diplomacyMenuView.SetActive(false); 
         intelMenuView.SetActive(false) ;
         encyclopediaMenuView.SetActive(false);
-        closeOpenMenuButton.SetActive(false);
-        SysBackground.SetActive(false);
-        FleetBackground.SetActive(false);
-        DiplomacyBackground.SetActive(false);
-        IntelBackground.SetActive(false);
-        EncyclopediaBackground.SetActive(false);
+        closeMenuButton.SetActive(false);
+        sysBackground.SetActive(false);
+        fleetBackground.SetActive(false);
+        diplomacyBackground.SetActive(false);
+        intelBackground.SetActive(false);
+        encyclopediaBackground.SetActive(false);
         buildListUI.SetActive(false);
     }
 
     public void CloseTheOpenGalaxyUI()
     {
         MenuManager.Instance.OpenMenu(Menu.None, aNull);
-        closeOpenMenuButton.SetActive(false);
-        SysBackground.SetActive(false);
-        FleetBackground.SetActive(false);
-        DiplomacyBackground.SetActive(false);
-        IntelBackground.SetActive(false);
-        EncyclopediaBackground.SetActive(false);
+        closeMenuButton.SetActive(false);
+        sysBackground.SetActive(false);
+        fleetBackground.SetActive(false);
+        diplomacyBackground.SetActive(false);
+        intelBackground.SetActive(false);
+        encyclopediaBackground.SetActive(false);
       //  SettingBackground.SetActive(false);
 
     }
@@ -96,11 +96,11 @@ public class GalaxyMenuUIController : MonoBehaviour
     {
         if (!sysMenuView.activeSelf)
         {
-            SysBackground.SetActive(true);
-            closeOpenMenuButton.SetActive(true);
-            FleetBackground.SetActive(false);
-            DiplomacyBackground.SetActive(false);
-            IntelBackground.SetActive(false);
+            sysBackground.SetActive(true);
+            closeMenuButton.SetActive(true);
+            fleetBackground.SetActive(false);
+            diplomacyBackground.SetActive(false);
+            intelBackground.SetActive(false);
             MenuManager.Instance.OpenMenu(Menu.SystemsMenu, aNull);    
             SetUISystemsData();
         }
@@ -108,7 +108,7 @@ public class GalaxyMenuUIController : MonoBehaviour
         {
             MenuManager.Instance.OpenMenu(Menu.None, sysMenuView);
 
-            SysBackground.SetActive(false);
+            sysBackground.SetActive(false);
         }
     }
 
@@ -117,17 +117,17 @@ public class GalaxyMenuUIController : MonoBehaviour
         if (!fleetsMenuView.activeSelf)
         {
             MenuManager.Instance.OpenMenu (Menu.FleetsMenu, aNull);
-            FleetBackground.SetActive(true);
-            closeOpenMenuButton.SetActive(true);
-            SysBackground.SetActive(false);
-            DiplomacyBackground.SetActive(false);
-            IntelBackground.SetActive(false);
-            EncyclopediaBackground.SetActive(false);
+            fleetBackground.SetActive(true);
+            closeMenuButton.SetActive(true);
+            sysBackground.SetActive(false);
+            diplomacyBackground.SetActive(false);
+            intelBackground.SetActive(false);
+            encyclopediaBackground.SetActive(false);
         }
         else
         {
             MenuManager.Instance.OpenMenu(Menu.None, fleetsMenuView);
-            FleetBackground.SetActive(false);
+            fleetBackground.SetActive(false);
         }
     }
     public void OpenDiplomacy()
@@ -135,18 +135,18 @@ public class GalaxyMenuUIController : MonoBehaviour
         if (!diplomacyMenuView.activeSelf)
         {
             MenuManager.Instance.OpenMenu(Menu.DiplomacyMenu, aNull);
-            DiplomacyBackground.SetActive(true);
-            closeOpenMenuButton.SetActive(true);
-            SysBackground.SetActive(false);
-            FleetBackground.SetActive(false);
-            IntelBackground.SetActive(false);
-            EncyclopediaBackground.SetActive(false);
+            diplomacyBackground.SetActive(true);
+            closeMenuButton.SetActive(true);
+            sysBackground.SetActive(false);
+            fleetBackground.SetActive(false);
+            intelBackground.SetActive(false);
+            encyclopediaBackground.SetActive(false);
         } 
         else 
         {
             MenuManager.Instance.OpenMenu(Menu.None, diplomacyMenuView);    
 
-            DiplomacyBackground.SetActive(false);
+            diplomacyBackground.SetActive(false);
         }
     }
 
@@ -155,17 +155,17 @@ public class GalaxyMenuUIController : MonoBehaviour
         if (!intelMenuView.activeSelf)
         {
             MenuManager.Instance.OpenMenu(Menu.IntellMenu, aNull);
-            IntelBackground.SetActive(true);
-            closeOpenMenuButton.SetActive(true);
-            SysBackground.SetActive(false);
-            FleetBackground.SetActive(false);
-            DiplomacyBackground.SetActive(false);
-            EncyclopediaBackground.SetActive(false);
+            intelBackground.SetActive(true);
+            closeMenuButton.SetActive(true);
+            sysBackground.SetActive(false);
+            fleetBackground.SetActive(false);
+            diplomacyBackground.SetActive(false);
+            encyclopediaBackground.SetActive(false);
         }
         else
         { 
             MenuManager.Instance.OpenMenu(Menu.None, intelMenuView);
-            IntelBackground.SetActive(false);
+            intelBackground.SetActive(false);
         }
 
     }
@@ -175,17 +175,17 @@ public class GalaxyMenuUIController : MonoBehaviour
         if (!encyclopediaMenuView.activeSelf)
         {
             MenuManager.Instance.OpenMenu(Menu.EncyclopedianMenu, aNull);
-            EncyclopediaBackground.SetActive(true);
-            closeOpenMenuButton.SetActive(true);
-            SysBackground.SetActive(false);
-            FleetBackground.SetActive(false);
-            DiplomacyBackground.SetActive(false);
-            IntelBackground.SetActive(false);
+            encyclopediaBackground.SetActive(true);
+            closeMenuButton.SetActive(true);
+            sysBackground.SetActive(false);
+            fleetBackground.SetActive(false);
+            diplomacyBackground.SetActive(false);
+            intelBackground.SetActive(false);
         }
         else 
         {
             MenuManager.Instance.OpenMenu(Menu.None, encyclopediaMenuView);
-            EncyclopediaBackground.SetActive(false);
+            encyclopediaBackground.SetActive(false);
         }
     }
     private void SetUISystemsData()
@@ -194,7 +194,7 @@ public class GalaxyMenuUIController : MonoBehaviour
         {
             foreach (var sysCon in StarSysManager.Instance.ManagersStarSysControllerList)
             {
-                if (sysCon.StarSysQueueUIGameObject != null && GameController.Instance.AreWeLocalPlayer(sysCon.StarSysData.CurrentOwner))
+                if (sysCon.StarSysListUIGameObject != null && GameController.Instance.AreWeLocalPlayer(sysCon.StarSysData.CurrentOwner))
                     SetupSystemUI(sysCon);
             }
         }
@@ -202,29 +202,29 @@ public class GalaxyMenuUIController : MonoBehaviour
     public void RemoveSystem(StarSysController sysController)
     {
         sysControllers.Remove(sysController);
-        queueUIs.Remove(sysController.StarSysQueueUIGameObject);
+        listOfUIs.Remove(sysController.StarSysListUIGameObject);
     }
     public void OpenASystemUI(StarSysController theSysCon) // move system ui to single system view when system clicked on galaxy map
     {
-        if (queueUIs.Contains(theSysCon.StarSysQueueUIGameObject))
+        if (listOfUIs.Contains(theSysCon.StarSysListUIGameObject))
         {
-            theSysCon.StarSysQueueUIGameObject.SetActive(true);
-            theSysCon.StarSysQueueUIGameObject.transform.SetParent(aSysContainer.transform, false);
-            SysBackground.SetActive(false);
+            theSysCon.StarSysListUIGameObject.SetActive(true);
+            theSysCon.StarSysListUIGameObject.transform.SetParent(aSysContainer.transform, false);
+            sysBackground.SetActive(false);
         }
     }
     public void SetupSystemUI(StarSysController sysController)
     {
-        if (sysController.StarSysQueueUIGameObject != null)
+        if (sysController.StarSysListUIGameObject != null)
         {
 
             if (!sysControllers.Contains(sysController))
             {
-                sysController.StarSysQueueUIGameObject.SetActive(true);
-                sysController.StarSysQueueUIGameObject.transform.SetParent(sysQueueContainer.transform, false);
+                sysController.StarSysListUIGameObject.SetActive(true);
+                sysController.StarSysListUIGameObject.transform.SetParent(sysListContainer.transform, false);
                 sysControllers.Add(sysController);// add to list for content (queue) folder systems
-                queueUIs.Add(sysController.StarSysQueueUIGameObject);
-                RectTransform[] minMapDotTransfor = sysController.StarSysQueueUIGameObject.GetComponentsInChildren<RectTransform>();
+                listOfUIs.Add(sysController.StarSysListUIGameObject);
+                RectTransform[] minMapDotTransfor = sysController.StarSysListUIGameObject.GetComponentsInChildren<RectTransform>();
                 for (int i = 0; i < minMapDotTransfor.Length; i++)
                 {
                     if (minMapDotTransfor[i].name == "RedDot")
@@ -237,7 +237,7 @@ public class GalaxyMenuUIController : MonoBehaviour
                     }
                 }
 
-                TextMeshProUGUI[] OneTMP = sysController.StarSysQueueUIGameObject.GetComponentsInChildren<TextMeshProUGUI>();
+                TextMeshProUGUI[] OneTMP = sysController.StarSysListUIGameObject.GetComponentsInChildren<TextMeshProUGUI>();
                 for (int i = 0; i < OneTMP.Length; i++)
                 {
                     int techLevelInt = (int)CivManager.Instance.LocalPlayerCivContoller.CivData.TechLevel / 100; // Early Tech level = 100, Supreme = 900;
@@ -360,15 +360,51 @@ public class GalaxyMenuUIController : MonoBehaviour
                             break;
                     }
                 }
+                Image[] listOfImages = sysController.StarSysListUIGameObject.GetComponentsInChildren<Image>();
+                for (int i = 0; i < listOfImages.Length; i++)
+                {
+                   // int techLevelInt = (int)CivManager.Instance.LocalPlayerCivContoller.CivData.TechLevel / 100; // Early Tech level = 100, Supreme = 900;
+                    listOfImages[i].enabled = true;
+                    var name = listOfImages[i].name.ToString();
+                    switch (name)
+                    {
+                        case "PowerUnitImage":
+                            listOfImages[i].sprite = ThemeManager.Instance.CurrentTheme.PowerPlantImage;
+                            //BuildListUIManager.Instance.SetFacilityImage(listOfImages[i], name);
+                            break;
+                        case "FactoryImage":
+                            listOfImages[i].sprite = ThemeManager.Instance.CurrentTheme.FactoryImage;
+                           //BuildListUIManager.Instance.SetFacilityImage(listOfImages[i], name);
+                            break;
+                        case "shipyardImage":
+                            listOfImages[i].sprite = ThemeManager.Instance.CurrentTheme.ShipyardImage;
+                            //BuildListUIManager.Instance.SetFacilityImage(listOfImages[i], name);
+                            break;
+                        case "ShieldPlantImage":
+                            listOfImages[i].sprite = ThemeManager.Instance.CurrentTheme.ShieldImage;
+                           // BuildListUIManager.Instance.SetFacilityImage(listOfImages[i], name);
+                            break;
+                        case "OrbitalBatteriesImage":
+                            listOfImages[i].sprite = ThemeManager.Instance.CurrentTheme.OrbitalBatteriesImage;
+                           // BuildListUIManager.Instance.SetFacilityImage(listOfImages[i], name);
+                            break;
+                        case "ResearchImage":
+                            listOfImages[i].sprite = ThemeManager.Instance.CurrentTheme.ResearchCenterImage;
+                           // BuildListUIManager.Instance.SetFacilityImage(listOfImages[i], name);
+                            break;
+                        default:
+                            break;
+                    }
+                }
 
-                Button[] listButtons = sysController.StarSysQueueUIGameObject.GetComponentsInChildren<Button>();
+                Button[] listButtons = sysController.StarSysListUIGameObject.GetComponentsInChildren<Button>();
                 foreach (var listButton in listButtons)
                 {
                     switch (listButton.name)
                     {
                         case "BuildButton":
-                            //listButton.onClick.AddListener(() => buildListUI.SetActive(true));
-                            //listButton.onClick.AddListener(() => sysController.BuildClick());
+                            listButton.onClick.RemoveAllListeners();
+                            listButton.onClick.AddListener(() => sysController.BuildClick(sysController, listButton.name));
                             break;
                         case "FactoryButtonOn":
                             listButton.onClick.RemoveAllListeners();
@@ -415,8 +451,8 @@ public class GalaxyMenuUIController : MonoBehaviour
                     }
                 }
             }
-            sysController.StarSysQueueUIGameObject.SetActive(true);
-            sysController.StarSysQueueUIGameObject.transform.SetParent(sysQueueContainer.transform, false);
+            sysController.StarSysListUIGameObject.SetActive(true);
+            sysController.StarSysListUIGameObject.transform.SetParent(sysListContainer.transform, false);
         }
     }
     public void UpdateFactories(StarSysController sysController, int plusMinus)
@@ -425,7 +461,7 @@ public class GalaxyMenuUIController : MonoBehaviour
         { 
             if (sysController == sysControllers[j])
             {
-                TextMeshProUGUI[] OneTMP = sysController.StarSysQueueUIGameObject.GetComponentsInChildren<TextMeshProUGUI>();
+                TextMeshProUGUI[] OneTMP = sysController.StarSysListUIGameObject.GetComponentsInChildren<TextMeshProUGUI>();
                 for (int i = 0; i < OneTMP.Length; i++) 
                 {
                     OneTMP[i].enabled = true;
@@ -463,7 +499,7 @@ public class GalaxyMenuUIController : MonoBehaviour
         {
             if (sysController == sysControllers[j])
             {
-                TextMeshProUGUI[] OneTMP = sysController.StarSysQueueUIGameObject.GetComponentsInChildren<TextMeshProUGUI>();
+                TextMeshProUGUI[] OneTMP = sysController.StarSysListUIGameObject.GetComponentsInChildren<TextMeshProUGUI>();
                 for (int i = 0; i < OneTMP.Length; i++)
                 //foreach (var OneTMP[i] in listTMP)
                 {
@@ -503,7 +539,7 @@ public class GalaxyMenuUIController : MonoBehaviour
         {
             if (sysController == sysControllers[j])
             {
-                TextMeshProUGUI[] OneTMP = sysController.StarSysQueueUIGameObject.GetComponentsInChildren<TextMeshProUGUI>();
+                TextMeshProUGUI[] OneTMP = sysController.StarSysListUIGameObject.GetComponentsInChildren<TextMeshProUGUI>();
                 for (int i = 0; i < OneTMP.Length; i++) 
                 //foreach (var OneTmp in listTMP)
                 {
@@ -544,7 +580,7 @@ public class GalaxyMenuUIController : MonoBehaviour
         {
             if (sysController == sysControllers[j])
             {
-                TextMeshProUGUI[] OneTMP = sysController.StarSysQueueUIGameObject.GetComponentsInChildren<TextMeshProUGUI>();
+                TextMeshProUGUI[] OneTMP = sysController.StarSysListUIGameObject.GetComponentsInChildren<TextMeshProUGUI>();
                 for (int i = 0; i < OneTMP.Length; i++)
                 //foreach (var OneTmp in listTMP)
                 {
@@ -585,7 +621,7 @@ public class GalaxyMenuUIController : MonoBehaviour
         {
             if (sysController == sysControllers[j])
             {
-                TextMeshProUGUI[] OneTMP = sysController.StarSysQueueUIGameObject.GetComponentsInChildren<TextMeshProUGUI>();
+                TextMeshProUGUI[] OneTMP = sysController.StarSysListUIGameObject.GetComponentsInChildren<TextMeshProUGUI>();
                 for (int i = 0; i < OneTMP.Length; i++)
                // foreach (var OneTmp in listTMP)
                 {
@@ -623,7 +659,7 @@ public class GalaxyMenuUIController : MonoBehaviour
 
     private void UpdateSystemPowerLoad(StarSysController sysCon)
     {
-        TextMeshProUGUI[] OneTMP = sysCon.StarSysQueueUIGameObject.GetComponentsInChildren<TextMeshProUGUI>();
+        TextMeshProUGUI[] OneTMP = sysCon.StarSysListUIGameObject.GetComponentsInChildren<TextMeshProUGUI>();
         for (int i = 0; i < OneTMP.Length; i++) 
        // foreach (var OneTmp in listTMP)
         {

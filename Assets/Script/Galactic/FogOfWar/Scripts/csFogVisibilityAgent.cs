@@ -8,9 +8,9 @@
  */
 
 /*
- * This script is just an example of what you can do with the visibility check interface.
- * You can create whatever agent that you want based on this script.
- * Also, I recommend you to change the part where the FogWar module is fetched with Find()...
+ * This script is just an example of what player can do with the visibility check interface.
+ * You can create whatever agent that player want based on this script.
+ * Also, I recommend player to change the part where the FogWar module is fetched with Find()...
  */
 
 

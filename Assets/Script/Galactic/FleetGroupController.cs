@@ -150,8 +150,8 @@ public class FleetGroupController : MonoBehaviour
         //    //FleetState = FleetState.FleetInSystem;
         //}
         //FleetManager.current.
-        //1) you get the FleetController of the new fleet GO
-        //2) you ask your factionOwner (CivManager) if you already know the faction of the new fleet
+        //1) player get the FleetController of the new fleet GO
+        //2) player ask your factionOwner (CivManager) if player already know the faction of the new fleet
         //3) ?first contatact > what kind of hail?
         //4) ?combat
         //5) ?move ships in and out of fleets
@@ -169,8 +169,8 @@ public class FleetGroupController : MonoBehaviour
         //    //this.FleetData.war
         //    //FleetState = FleetState.FleetInSystem;
         //}
-        //1) you get the FleetController of the new fleet GO
-        //2) you ask your factionOwner (CivManager) if you already know the faction of the new fleet
+        //1) player get the FleetController of the new fleet GO
+        //2) player ask your factionOwner (CivManager) if player already know the faction of the new fleet
         //3) ?first contatact > what kind of hail, diplomacy vs uninhabited ?colonize vs terraform a rock vs do fleet busness in our system
         //4) ?combat vs diplomacy and or traid...
     }
@@ -178,7 +178,7 @@ public class FleetGroupController : MonoBehaviour
     {
         //????PlayerDefinedTargetManager.current.
         //FleetManager.current.
-        //1) you get the FleetController of the new fleet GO
+        //1) player get the FleetController of the new fleet GO
         //2) ?build a deep space starbase vs a partol point for travel
 
     }

@@ -47,6 +47,7 @@ namespace Assets.Core
         private GameObject contentFolderParent;
         [SerializeField]
         private GameObject sysPanel;
+        public GameObject BuildUI;
         [SerializeField]
         private GameObject galaxyImage;
         [SerializeField]
@@ -200,7 +201,7 @@ namespace Assets.Core
                     sysData.OrbitalBatteries = GetSystemFacilities(starSysSO.OrbitalBatteries, OrbitalBatteryPrefab, civSO.CivInt, sysData);
                     sysData.ResearchCenters = GetSystemFacilities(starSysSO.ResearchCenters, ResearchCenterPrefab, civSO.CivInt, sysData);
                     SetParentForFacilities(starSystemNewGameOb, sysData);
-                    NewSystemQueueUI(starSysController);
+                    NewSystemListUI(starSysController);
                     //NewSystemGalaxyUI(starSysController);
                 }
 
@@ -683,15 +684,15 @@ namespace Assets.Core
         {
         
         }
-        public void NewSystemQueueUI(StarSysController sysController)
+        public void NewSystemListUI(StarSysController sysController)
         {
             if (sysController.StarSysData.CurrentOwner == GameController.Instance.GameData.LocalPlayerCivEnum)
             {
                 GameObject thisStarSysUIGameObject = (GameObject)Instantiate(sysUIPrefab, new Vector3(0, 0, 0),
                     Quaternion.identity);
                 thisStarSysUIGameObject.layer = 5;
-                sysController.StarSysQueueUIGameObject = thisStarSysUIGameObject; 
-                thisStarSysUIGameObject.transform.SetParent(contentFolderParent.transform, false); // load into Queue of systems
+                sysController.StarSysListUIGameObject = thisStarSysUIGameObject; 
+                thisStarSysUIGameObject.transform.SetParent(contentFolderParent.transform, false); // load into List of systems
             }
             
         }

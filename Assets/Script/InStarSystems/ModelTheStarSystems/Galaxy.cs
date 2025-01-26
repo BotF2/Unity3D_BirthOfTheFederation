@@ -44,7 +44,7 @@ namespace Assets.Core
 
         public void Update(UInt64 timeSinceStart)
         {
-            // ToDo: Consider only updating the systems you are looking at
+            // ToDo: Consider only updating the systems player are looking at
             foreach (SolarSystem ss in SolarSystems)
             {
                 ss.Update(timeSinceStart); // solarsystem inherits from orbital with this Update()

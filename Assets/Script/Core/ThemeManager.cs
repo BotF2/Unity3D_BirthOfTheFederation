@@ -19,12 +19,19 @@ public class ThemeManager : MonoBehaviour
 {
     public static ThemeManager Instance;
     [SerializeField] private ThemeSO[] themeSOs;
-    [SerializeField] private ThemeSO currentTheme;
+    [SerializeField] public ThemeSO CurrentTheme;
     [SerializeField] private Image imageBackground;
     [SerializeField] private Image spriteInsignia;
     [SerializeField] private Image spriteRace;
     [SerializeField] private Image spriteSystem;
     [SerializeField] private Image spriteFleetShip;
+    [SerializeField] private Image spritePowerPlant;
+    [SerializeField] private Image spriteFactory;
+    [SerializeField] private Image spriteShipyard;
+    [SerializeField] private Image spriteShields;
+    [SerializeField] private Image spriteOrbitalBatteries;
+    [SerializeField] private Image spriteResearchCenter;
+
     [SerializeField] private Font[] fonts;
     [SerializeField] private TMP_Text[] tMP_Texts;
     [SerializeField] private Button[] buttons;
@@ -33,6 +40,7 @@ public class ThemeManager : MonoBehaviour
     {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
+        CurrentTheme = themeSOs[0];
     }
 
     public void ApplyTheme(ThemeEnum themeEnum)
@@ -40,42 +48,48 @@ public class ThemeManager : MonoBehaviour
         switch (themeEnum)
         {
             case ThemeEnum.Fed:
-                currentTheme = themeSOs[0];
+                CurrentTheme = themeSOs[0];
                 break;
             case ThemeEnum.Rom:
-                currentTheme = themeSOs[1];
+                CurrentTheme = themeSOs[1];
                 break;
             case ThemeEnum.Kling:
-                currentTheme = themeSOs[2];
+                CurrentTheme = themeSOs[2];
                 break;
             case ThemeEnum.Card:
-                currentTheme = themeSOs[3];
+                CurrentTheme = themeSOs[3];
                 break;
             case ThemeEnum.Dom:
-                currentTheme = themeSOs[4];
+                CurrentTheme = themeSOs[4];
                 break;
             case ThemeEnum.Borg:
-                currentTheme = themeSOs[5];
+                CurrentTheme = themeSOs[5];
                 break;
             case ThemeEnum.Terran:
-                currentTheme = themeSOs[6];
+                CurrentTheme = themeSOs[6];
                 break;
             default:
-                currentTheme = themeSOs[7];
+                CurrentTheme = themeSOs[7];
                 break;
         }
 
-        imageBackground.color = currentTheme.BackgroundColor;
-        spriteInsignia.sprite = currentTheme.Insignia;
-        spriteRace.sprite = currentTheme.RaceImage;
-        spriteSystem.sprite = currentTheme.SystemImage;
-        spriteFleetShip.sprite = currentTheme.FleetShipImage  ;
-
+        imageBackground.color = CurrentTheme.BackgroundColor;
+        spriteInsignia.sprite = CurrentTheme.Insignia;
+        spriteRace.sprite = CurrentTheme.RaceImage;
+        spriteSystem.sprite = CurrentTheme.SystemImage;
+        spriteFleetShip.sprite = CurrentTheme.FleetShipImage;
+        spritePowerPlant.sprite = CurrentTheme.PowerPlantImage;
+        spriteFactory.sprite = CurrentTheme.FactoryImage;
+        spriteShipyard.sprite = CurrentTheme.ShipyardImage;
+        spriteShields.sprite = CurrentTheme.ShieldImage;
+        spriteOrbitalBatteries.sprite = CurrentTheme.OrbitalBatteriesImage;
+        spriteResearchCenter.sprite = CurrentTheme.ResearchCenterImage;
+        BuildListUIManager.Instance.SetFacilityImage(CurrentTheme);
         // Apply to texts
         for (int i = 0; i < tMP_Texts.Length; i++)
         {
-            tMP_Texts[i].color = currentTheme.TextColor;
-            //text.font = currentTheme.Font;
+            tMP_Texts[i].color = CurrentTheme.TextColor;
+            //text.font = CurrentTheme.Font;
         }
 
         // Apply to buttons
@@ -83,7 +97,7 @@ public class ThemeManager : MonoBehaviour
         {
             var buttonImage = buttons[1].GetComponent<UnityEngine.UI.Image>();
             if (buttonImage != null)
-                buttonImage.sprite = currentTheme.ButtonSprite1;
+                buttonImage.sprite = CurrentTheme.ButtonSprite1;
         }
     }
 }

@@ -17,9 +17,11 @@ namespace Assets.Core
         private StarSysData starSysData;
         public StarSysData StarSysData { get { return starSysData; } set { starSysData = value; } }
         [SerializeField]
-        private GameObject starSysQueueUIGameObject; //The instantiated system UI for system queue, a prefab clone, not a class but a game object
-        // instantiated by StarSysManager from a prefab and added to StarSysController, NewSystemQueueUI()
-        public GameObject StarSysQueueUIGameObject { get { return starSysQueueUIGameObject; } set { starSysQueueUIGameObject = value; } }
+        private GameObject starSysListUIGameObject; //The instantiated system UI for system list, a prefab clone, not a class but a game object
+        // instantiated by StarSysManager from a prefab and added to StarSysController, NewSystemListUI()
+        public GameObject StarSysListUIGameObject { get { return starSysListUIGameObject; } set { starSysListUIGameObject = value; } }
+        [SerializeField]
+        private GameObject buildUI;
         private Camera galaxyEventCamera;
         [SerializeField]
         private Canvas canvasToolTip;
@@ -38,6 +40,7 @@ namespace Assets.Core
             canvasYourStarSysUI.worldCamera = galaxyEventCamera;
             TimeManager.Instance.OnRandomSpecialEvent += DoDisaster;
             OnOffSysFacilityEvents.current.FacilityOnClick += FacilityOnClick;// subscribe methode to the event += () => Debug.Log("Action Invoked!");
+            buildUI = StarSysManager.Instance.BuildUI;
         }
         private void Update()
         {
@@ -156,10 +159,9 @@ namespace Assets.Core
                 }
             }
         }
-        public void BuildClick() // open build list UI
+        public void BuildClick(StarSysController sysCon, string name) // open build list UI
         {
-            // 
-            // StarSysManager.current.GetInstanceOfFacility();
+            MenuManager.Instance.OpenMenu(Menu.BuildMenu, null);
         }
         public void FacilityOnClick(StarSysController sysCon, string name)
         {

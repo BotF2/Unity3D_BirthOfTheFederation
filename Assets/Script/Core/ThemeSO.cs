@@ -15,6 +15,12 @@ public class ThemeSO: ScriptableObject
     public Sprite RaceImage;
     public Sprite SystemImage;
     public Sprite FleetShipImage;
+    public Sprite PowerPlantImage;
+    public Sprite FactoryImage;
+    public Sprite ShipyardImage;
+    public Sprite ShieldImage;
+    public Sprite OrbitalBatteriesImage;
+    public Sprite ResearchCenterImage;
     public Color BackgroundColor;
     public Color ForegroundColor;
     public Color BoarderColor;
