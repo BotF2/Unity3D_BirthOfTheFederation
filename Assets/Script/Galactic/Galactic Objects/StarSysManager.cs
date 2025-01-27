@@ -55,8 +55,6 @@ namespace Assets.Core
         [SerializeField]
         private GameObject galaxyCenter;
         private Camera galaxyEventCamera;
-        [SerializeField]
-        private Canvas yourStarSysUICanvas;
         private int starSystemCounter = 0;
         //private int systemCount = -1; // Used only in testing multiple systems in Federation
         private void Awake()
@@ -71,7 +69,6 @@ namespace Assets.Core
         public void Start()
         {
             galaxyEventCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>() as Camera;
-            yourStarSysUICanvas.worldCamera = galaxyEventCamera;
         }
         public void SysDataFromSO(List<CivSO> civSOList)
         {
@@ -169,7 +166,6 @@ namespace Assets.Core
 
                 starSysController.name = sysData.GetSysName();
                 starSysController.StarSysData = sysData;
-                starSysController.canvasYourStarSysUI = yourStarSysUICanvas;
                 CivController[] controllers = CivManager.Instance.CivControllersInGame.ToArray();
                 for (int i = 0; controllers.Length > 0; i++)
                 {

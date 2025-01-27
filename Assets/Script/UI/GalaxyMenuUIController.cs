@@ -16,12 +16,12 @@ public class GalaxyMenuUIController : MonoBehaviour
     [SerializeField]
     private GameObject buildListUI;
     [SerializeField]
-    private GameObject sysMenuView;
+    private GameObject systemsMenuView;
     [SerializeField]
     private GameObject sysListContainer;
     [SerializeField]
     private GameObject aSystemView;
-    [SerializeField] 
+    [SerializeField]
     private GameObject aSysContainer;
     [SerializeField]
     private GameObject fleetsMenuView;
@@ -48,7 +48,7 @@ public class GalaxyMenuUIController : MonoBehaviour
     [SerializeField]
     private List<StarSysController> sysControllers;
     [SerializeField]
-    private List<GameObject> listOfUIs;
+    private List<GameObject> listOfUIgos;
 
 
     private void Awake()
@@ -65,7 +65,7 @@ public class GalaxyMenuUIController : MonoBehaviour
     }
     void Start()
     {
-        sysMenuView.SetActive(false);
+        systemsMenuView.SetActive(false);
         aSystemView.SetActive(false);   
         fleetsMenuView.SetActive(false);
         diplomacyMenuView.SetActive(false); 
@@ -78,6 +78,7 @@ public class GalaxyMenuUIController : MonoBehaviour
         intelBackground.SetActive(false);
         encyclopediaBackground.SetActive(false);
         buildListUI.SetActive(false);
+        SetUISystemsData();//get our system ui game objects to match your sys controllers
     }
 
     public void CloseTheOpenGalaxyUI()
@@ -89,12 +90,10 @@ public class GalaxyMenuUIController : MonoBehaviour
         diplomacyBackground.SetActive(false);
         intelBackground.SetActive(false);
         encyclopediaBackground.SetActive(false);
-      //  SettingBackground.SetActive(false);
-
     }
     public void OpenSystems()
     {
-        if (!sysMenuView.activeSelf)
+        if (!systemsMenuView.activeSelf)
         {
             sysBackground.SetActive(true);
             closeMenuButton.SetActive(true);
@@ -106,12 +105,29 @@ public class GalaxyMenuUIController : MonoBehaviour
         }
         else
         {
-            MenuManager.Instance.OpenMenu(Menu.None, sysMenuView);
+            MenuManager.Instance.OpenMenu(Menu.None, systemsMenuView);
 
             sysBackground.SetActive(false);
         }
-    }
 
+    }
+    public void OpenASystemUI(StarSysController theSysCon) // now system ui open single system view when our system is clicked on galaxy map
+    {
+        if (listOfUIgos.Contains(theSysCon.StarSysListUIGameObject))
+        {
+            aSystemView.SetActive(true);
+            closeMenuButton.SetActive(true);
+            systemsMenuView.SetActive(false);
+            fleetBackground.SetActive(false);
+            diplomacyBackground.SetActive(false);
+            intelBackground.SetActive(false);
+            encyclopediaBackground.SetActive(false);
+            buildListUI.SetActive(false);
+            theSysCon.StarSysListUIGameObject.SetActive(true);
+            theSysCon.StarSysListUIGameObject.transform.SetParent(aSysContainer.transform, false);
+            sysBackground.SetActive(true);
+        }
+    }
     public void OpenFleets()
     {
         if (!fleetsMenuView.activeSelf)
@@ -202,28 +218,20 @@ public class GalaxyMenuUIController : MonoBehaviour
     public void RemoveSystem(StarSysController sysController)
     {
         sysControllers.Remove(sysController);
-        listOfUIs.Remove(sysController.StarSysListUIGameObject);
+        listOfUIgos.Remove(sysController.StarSysListUIGameObject);
     }
-    public void OpenASystemUI(StarSysController theSysCon) // move system ui to single system view when system clicked on galaxy map
-    {
-        if (listOfUIs.Contains(theSysCon.StarSysListUIGameObject))
-        {
-            theSysCon.StarSysListUIGameObject.SetActive(true);
-            theSysCon.StarSysListUIGameObject.transform.SetParent(aSysContainer.transform, false);
-            sysBackground.SetActive(false);
-        }
-    }
+
     public void SetupSystemUI(StarSysController sysController)
     {
         if (sysController.StarSysListUIGameObject != null)
         {
 
-            if (!sysControllers.Contains(sysController))
+            if (!sysControllers.Contains(sysController) && !listOfUIgos.Contains(sysController.StarSysListUIGameObject))
             {
                 sysController.StarSysListUIGameObject.SetActive(true);
                 sysController.StarSysListUIGameObject.transform.SetParent(sysListContainer.transform, false);
                 sysControllers.Add(sysController);// add to list for content (queue) folder systems
-                listOfUIs.Add(sysController.StarSysListUIGameObject);
+                listOfUIgos.Add(sysController.StarSysListUIGameObject);
                 RectTransform[] minMapDotTransfor = sysController.StarSysListUIGameObject.GetComponentsInChildren<RectTransform>();
                 for (int i = 0; i < minMapDotTransfor.Length; i++)
                 {

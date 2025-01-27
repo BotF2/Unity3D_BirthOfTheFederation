@@ -2,7 +2,9 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
-
+/// <summary>
+/// This is for language used, English, German, French....
+/// </summary>
 public class LocaleManager : MonoBehaviour
 {
 

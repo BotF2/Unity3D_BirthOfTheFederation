@@ -85,14 +85,14 @@ public class ThemeManager : MonoBehaviour
         spriteOrbitalBatteries.sprite = CurrentTheme.OrbitalBatteriesImage;
         spriteResearchCenter.sprite = CurrentTheme.ResearchCenterImage;
         BuildListUIManager.Instance.SetFacilityImage(CurrentTheme);
-        // Apply to texts
+        // ToDo Apply to texts
         for (int i = 0; i < tMP_Texts.Length; i++)
         {
             tMP_Texts[i].color = CurrentTheme.TextColor;
             //text.font = CurrentTheme.Font;
         }
 
-        // Apply to buttons
+        // ToDo Apply to buttons
         for (int i = 0; i < buttons.Length; i++)
         {
             var buttonImage = buttons[1].GetComponent<UnityEngine.UI.Image>();

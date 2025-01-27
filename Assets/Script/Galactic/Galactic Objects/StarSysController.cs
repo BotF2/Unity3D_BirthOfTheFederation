@@ -1,9 +1,6 @@
 using System;
-using System.Collections.Generic;
 using TMPro;
-//using UnityEditor.AddressableAssets.HostingServices;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Assets.Core
 {
@@ -37,15 +34,14 @@ namespace Assets.Core
         {
             galaxyEventCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>() as Camera;
             canvasToolTip.worldCamera = galaxyEventCamera;
-            canvasYourStarSysUI.worldCamera = galaxyEventCamera;
             TimeManager.Instance.OnRandomSpecialEvent += DoDisaster;
             OnOffSysFacilityEvents.current.FacilityOnClick += FacilityOnClick;// subscribe methode to the event += () => Debug.Log("Action Invoked!");
             buildUI = StarSysManager.Instance.BuildUI;
         }
-        private void Update()
-        {
-            stardate = TimeManager.Instance.currentStardate;
-        }
+        //private void Update()
+        //{
+        //    stardate = TimeManager.Instance.currentStardate;
+        //}
         // ****** ToDo: need to know when a new facility has completed its build
         // ********* call for BuildCompeted(newGO, int powerloaddelta);
         public void AddToFactoryQueue(GameObject facilityPrefab)
@@ -81,15 +77,15 @@ namespace Assets.Core
                 // what a Star System Controller does with a hit
                 if (hitObject.tag != "GalaxyImage" && GameController.Instance.AreWeLocalPlayer(this.StarSysData.CurrentOwner)) // this 'StarSystem' is a local player galaxy object hit
                 {
-                    if (FleetUIController.Instance.MouseClickSetsDestination == false) // not while FleetUIController was looking for a destination
+                    if (FleetUIController.Instance.MouseClickSetsDestination == false) // not while our FleetUIController was looking for a destination
                     {
                         GameObject aNull = new GameObject();
-                        MenuManager.Instance.OpenMenu(Menu.ASystemMenu, aNull);
+                        MenuManager.Instance.OpenMenu(Menu.ASystemMenu, aNull); // get a single system UI on map system click
                         GalaxyMenuUIController.Instance.OpenASystemUI(this);
                     }
                     else
                     {
-                        NewDestination(hitObject); // one of our systems hit as destination
+                        NewDestination(hitObject); // one of our systems hit 
                     }
                 }
                 else if (FleetUIController.Instance.MouseClickSetsDestination == true)
