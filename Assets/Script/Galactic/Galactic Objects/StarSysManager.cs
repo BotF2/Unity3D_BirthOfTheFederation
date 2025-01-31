@@ -21,6 +21,8 @@ namespace Assets.Core
         [SerializeField]
         private List<StarSysSO> starSysSOList; // get StarSysSO for civ by int
         [SerializeField]
+        //private List<ThemeSO> starSysSOList; // get StarSysSO for civ by int
+        //[SerializeField]
         private List<PowerPlantSO> powerPlantSOList; // get PowerPlantSO for civ by int
         [SerializeField]
         private List<FactorySO> factorySOList; // get factorySO for civ by int
@@ -47,7 +49,6 @@ namespace Assets.Core
         private GameObject contentFolderParent;
         [SerializeField]
         private GameObject sysPanel;
-        public GameObject BuildUI;
         [SerializeField]
         private GameObject galaxyImage;
         [SerializeField]
@@ -198,7 +199,7 @@ namespace Assets.Core
                     sysData.ResearchCenters = GetSystemFacilities(starSysSO.ResearchCenters, ResearchCenterPrefab, civSO.CivInt, sysData);
                     SetParentForFacilities(starSystemNewGameOb, sysData);
                     NewSystemListUI(starSysController);
-                    //NewSystemGalaxyUI(starSysController);
+                    //BuildListUIController.Instance.SetFacilityImage(CurrentTheme);
                 }
 
                 //***** This is temporary so we can test a multi-starsystem civ

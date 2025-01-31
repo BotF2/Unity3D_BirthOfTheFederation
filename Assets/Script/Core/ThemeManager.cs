@@ -84,7 +84,7 @@ public class ThemeManager : MonoBehaviour
         spriteShields.sprite = CurrentTheme.ShieldImage;
         spriteOrbitalBatteries.sprite = CurrentTheme.OrbitalBatteriesImage;
         spriteResearchCenter.sprite = CurrentTheme.ResearchCenterImage;
-        BuildListUIManager.Instance.SetFacilityImage(CurrentTheme);
+       // BuildListUIController.Instance.SetFacilityImage(CurrentTheme);
         // ToDo Apply to texts
         for (int i = 0; i < tMP_Texts.Length; i++)
         {

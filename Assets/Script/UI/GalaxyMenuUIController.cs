@@ -378,27 +378,27 @@ public class GalaxyMenuUIController : MonoBehaviour
                     {
                         case "PowerUnitImage":
                             listOfImages[i].sprite = ThemeManager.Instance.CurrentTheme.PowerPlantImage;
-                            //BuildListUIManager.Instance.SetFacilityImage(listOfImages[i], name);
+                            //BuildListUIController.Instance.SetFacilityImage(listOfImages[i], name);
                             break;
                         case "FactoryImage":
                             listOfImages[i].sprite = ThemeManager.Instance.CurrentTheme.FactoryImage;
-                           //BuildListUIManager.Instance.SetFacilityImage(listOfImages[i], name);
+                           //BuildListUIController.Instance.SetFacilityImage(listOfImages[i], name);
                             break;
                         case "shipyardImage":
                             listOfImages[i].sprite = ThemeManager.Instance.CurrentTheme.ShipyardImage;
-                            //BuildListUIManager.Instance.SetFacilityImage(listOfImages[i], name);
+                            //BuildListUIController.Instance.SetFacilityImage(listOfImages[i], name);
                             break;
                         case "ShieldPlantImage":
                             listOfImages[i].sprite = ThemeManager.Instance.CurrentTheme.ShieldImage;
-                           // BuildListUIManager.Instance.SetFacilityImage(listOfImages[i], name);
+                           // BuildListUIController.Instance.SetFacilityImage(listOfImages[i], name);
                             break;
                         case "OrbitalBatteriesImage":
                             listOfImages[i].sprite = ThemeManager.Instance.CurrentTheme.OrbitalBatteriesImage;
-                           // BuildListUIManager.Instance.SetFacilityImage(listOfImages[i], name);
+                           // BuildListUIController.Instance.SetFacilityImage(listOfImages[i], name);
                             break;
                         case "ResearchImage":
                             listOfImages[i].sprite = ThemeManager.Instance.CurrentTheme.ResearchCenterImage;
-                           // BuildListUIManager.Instance.SetFacilityImage(listOfImages[i], name);
+                           // BuildListUIController.Instance.SetFacilityImage(listOfImages[i], name);
                             break;
                         default:
                             break;

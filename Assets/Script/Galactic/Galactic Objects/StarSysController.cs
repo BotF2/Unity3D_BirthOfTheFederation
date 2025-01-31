@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -17,14 +18,27 @@ namespace Assets.Core
         private GameObject starSysListUIGameObject; //The instantiated system UI for system list, a prefab clone, not a class but a game object
         // instantiated by StarSysManager from a prefab and added to StarSysController, NewSystemListUI()
         public GameObject StarSysListUIGameObject { get { return starSysListUIGameObject; } set { starSysListUIGameObject = value; } }
-        [SerializeField]
-        private GameObject buildUI;
         private Camera galaxyEventCamera;
         [SerializeField]
         private Canvas canvasToolTip;
         public Canvas canvasYourStarSysUI;
         public static event Action<TrekRandomEventSO> TrekEventDisasters;
-        private int stardate;
+        [SerializeField]
+        private List<PowerPlantData> powerPlantDatasList;
+        [SerializeField]
+        private List<FactoryData> factoryDatasList;
+        [SerializeField]
+        private List<FactoryData> sysFactoryBuildQueueList;
+        [SerializeField]
+        private List<ShipyardData> shipyardDatasList;
+        [SerializeField]
+        private List<ShieldGeneratorData> shieildGeneratorDatasList;
+        [SerializeField]
+        private List<OrbitalBatteryData> orbitalBatteryDatasList;
+        [SerializeField]
+        private List<ResearchCenterData> researchCenterDatasList;
+        [SerializeField]
+        private bool building = false;
 
         public StarSysController(string name)
         {
@@ -36,14 +50,22 @@ namespace Assets.Core
             canvasToolTip.worldCamera = galaxyEventCamera;
             TimeManager.Instance.OnRandomSpecialEvent += DoDisaster;
             OnOffSysFacilityEvents.current.FacilityOnClick += FacilityOnClick;// subscribe methode to the event += () => Debug.Log("Action Invoked!");
-            buildUI = StarSysManager.Instance.BuildUI;
         }
-        //private void Update()
-        //{
-        //    stardate = TimeManager.Instance.currentStardate;
-        //}
+        private void Update()
+        {
+            if (building)
+            {
+
+            }
+        }
         // ****** ToDo: need to know when a new facility has completed its build
         // ********* call for BuildCompeted(newGO, int powerloaddelta);
+        public void FactoryBuildTimer(StarSysFacilities starSysFacilities)
+        {
+            TechLevel ourTechLevel = this.StarSysData.CurrentCivController.CivData.TechLevel;
+            //ToD use tech level to set features of system production, defence....
+            building = true;
+        }
         public void AddToFactoryQueue(GameObject facilityPrefab)
         {
             GameObject systemFacilityGO = (GameObject)Instantiate(facilityPrefab, new Vector3(0, 0, 0),

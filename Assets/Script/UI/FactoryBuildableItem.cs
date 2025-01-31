@@ -10,8 +10,10 @@ public class FactoryBuildableItem : MonoBehaviour, IBeginDragHandler, IEndDragHa
     private CanvasGroup canvasGroup;
     private Transform originalParent;
     [SerializeField]
+    StarSysController starSysController;
+    [SerializeField]
     private GameObject factoryBuildSlot;
-    private bool isDragging;
+    //private bool isDragging;
 
     private void Awake()
     {
@@ -42,6 +44,7 @@ public class FactoryBuildableItem : MonoBehaviour, IBeginDragHandler, IEndDragHa
         if (eventData.pointerEnter != null && eventData.pointerEnter.CompareTag("FactoryQueueSlot"))
         {
             transform.SetParent(eventData.pointerEnter.transform);
+            starSysController.FactoryBuildTimer(StarSysFacilities.Factory);
         }
         else if (eventData.pointerEnter != null && eventData.pointerEnter.CompareTag("FactoryBuildSlot"))
         {
