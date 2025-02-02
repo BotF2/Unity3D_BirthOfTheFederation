@@ -613,7 +613,7 @@ namespace FischlWorks_FogWar
 
 
 
-        /// Adds a new FogRevealer instance to the list and returns its index
+        /// Adds a new FogRevealer Instance to the list and returns its index
         public int AddFogRevealer(FogRevealer fogRevealer)
         {
             fogRevealers.Add(fogRevealer);
@@ -623,7 +623,7 @@ namespace FischlWorks_FogWar
 
 
 
-        /// Removes a FogRevealer instance from the list with index
+        /// Removes a FogRevealer Instance from the list with index
         public void RemoveFogRevealer(int revealerIndex)
         {
             if (fogRevealers.Count > revealerIndex && revealerIndex > -1)

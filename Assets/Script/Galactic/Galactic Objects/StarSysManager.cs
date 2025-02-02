@@ -5,6 +5,7 @@ using UnityEditor;
 using UnityEngine;
 using System.Diagnostics;
 using Unity.VisualScripting;
+using UnityEngine.SceneManagement;
 
 namespace Assets.Core
 {
@@ -21,8 +22,8 @@ namespace Assets.Core
         [SerializeField]
         private List<StarSysSO> starSysSOList; // get StarSysSO for civ by int
         [SerializeField]
-        //private List<ThemeSO> starSysSOList; // get StarSysSO for civ by int
-        //[SerializeField]
+        private List<GameObject> buildListPrefabs;
+        [SerializeField]
         private List<PowerPlantSO> powerPlantSOList; // get PowerPlantSO for civ by int
         [SerializeField]
         private List<FactorySO> factorySOList; // get factorySO for civ by int
@@ -36,6 +37,7 @@ namespace Assets.Core
         private List<ResearchCenterSO> researchCenterSOList; // get factorySO for civ by int
         [SerializeField]
         private GameObject sysPrefab;
+
         [SerializeField]
         private GameObject sysUIPrefab;
         public List<StarSysController> ManagersStarSysControllerList;
@@ -50,7 +52,11 @@ namespace Assets.Core
         [SerializeField]
         private GameObject sysPanel;
         [SerializeField]
+        private ThemeSO localPlayerTheme;
+        [SerializeField]
         private GameObject galaxyImage;
+        [SerializeField]
+        private GameObject canvasBuildList;
         [SerializeField]
         private Sprite unknowSystem;
         [SerializeField]
@@ -104,7 +110,6 @@ namespace Assets.Core
             }
             else
             {
-                //Debugger.Break();
                 GameObject starSystemNewGameOb = (GameObject)Instantiate(sysPrefab, new Vector3(0, 0, 0),
                      Quaternion.identity);
 
@@ -124,7 +129,6 @@ namespace Assets.Core
                 TextMeshProUGUI[] TheText = starSystemNewGameOb.GetComponentsInChildren<TextMeshProUGUI>();
                 for (int i = 0; i < TheText.Length; i++)
                 {
-                    //Debugger.Break();
                     TheText[i].enabled = true;
                     if (TheText[i] != null && TheText[i].name == "SysName")
                     {
@@ -199,8 +203,9 @@ namespace Assets.Core
                     sysData.ResearchCenters = GetSystemFacilities(starSysSO.ResearchCenters, ResearchCenterPrefab, civSO.CivInt, sysData);
                     SetParentForFacilities(starSystemNewGameOb, sysData);
                     NewSystemListUI(starSysController);
-                    //BuildListUIController.Instance.SetFacilityImage(CurrentTheme);
+                    localPlayerTheme = ThemeManager.Instance.GetLocalPlayerTheme();
                 }
+
 
                 //***** This is temporary so we can test a multi-starsystem civ
                 //******* before diplomacy will alow civs/systems to join another civ
@@ -692,6 +697,45 @@ namespace Assets.Core
                 thisStarSysUIGameObject.transform.SetParent(contentFolderParent.transform, false); // load into List of systems
             }
             
+        }
+        public void InstantiateSysBuildListUI(StarSysController sysCon)
+        {
+            int i = 0;
+            switch (sysCon.StarSysData.CurrentCivController.CivData.CivEnum)
+            {
+                case CivEnum.FED:
+                    i = 0;
+                    break;
+                case CivEnum.ROM:
+                    i = 1;
+                    break;
+                case CivEnum.KLING:
+                    i = 2;
+                    break;
+                case CivEnum.CARD:
+                    i = 3;
+                    break;
+                case CivEnum.DOM:
+                    i = 4;
+                    break;
+                case CivEnum.BORG:
+                    i = 5;
+                    break;
+                case CivEnum.TERRAN:
+                    i = 0;
+                    break;
+                default:
+                    break;
+            }
+            GameObject sysBuildListUI = (GameObject)Instantiate(buildListPrefabs[i], new Vector3(0, 0, 0),
+                Quaternion.identity);
+            MenuManager.Instance.SetBuildMenu(sysBuildListUI);
+            sysBuildListUI.layer = 5; //UI layer
+            canvasBuildList.SetActive(true);
+            // *********** get the FactoryBuildableItems codes, set StarSysController/Data for them so the can send image endDrags back.
+            sysBuildListUI.transform.SetParent(canvasBuildList.transform, false);
+            
+
         }
     }   
 }

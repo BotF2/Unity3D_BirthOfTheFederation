@@ -62,7 +62,7 @@ public class PlayerDefinedTargetController : MonoBehaviour
             MoveTarget(delta.x, delta.y);
             lastMousePosition = Input.mousePosition;
             rb.MovePosition(transform.position); // kinematic with physics movement
-            rb.velocity = Vector3.zero;
+            rb.linearVelocity = Vector3.zero;
             // update drop line
             Vector3 galaxyPlanePoint = new Vector3(rb.position.x, -60f, rb.position.z);
             Vector3[] points = { rb.position, galaxyPlanePoint };

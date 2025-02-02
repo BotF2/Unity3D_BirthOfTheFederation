@@ -28,7 +28,7 @@ public class MenuManager : MonoBehaviour
     public static MenuManager Instance { get; private set; }
     [SerializeField] private GameObject systemsMenu;
     [SerializeField] private GameObject aSystemMenu;
-    [SerializeField] private GameObject buildMenu;
+    public GameObject buildMenu;
     [SerializeField] private GameObject fleetsMenu;
     [SerializeField] private GameObject aFleetMenu;
     [SerializeField] private GameObject diplomacyMenu;
@@ -50,6 +50,11 @@ public class MenuManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
+    }
+    public void SetBuildMenu(GameObject prefabMenu)
+    {
+        buildMenu = prefabMenu;
+        buildMenu.SetActive(true);
     }
     public void OpenMenu(Menu menuEnum, GameObject callingMenu)
     {

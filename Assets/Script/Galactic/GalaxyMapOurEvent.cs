@@ -5,7 +5,7 @@ public class GalaxyMapOurEvent : MonoBehaviour
 {
     /// <summary>
     /// Not using this yet, Will see what we can/should use it for
-    /// I think we need a c# Event (not Unity Event) because the instance of FleetController is not there before code runs (FleetManager instantiates FleetControllers).
+    /// I think we need a c# Event (not Unity Event) because the Instance of FleetController is not there before code runs (FleetManager instantiates FleetControllers).
     /// If the FleetController is not yet there before runtime we cannot asign game objects in the inspector 
     /// </summary>
     public static GalaxyMapOurEvent current;

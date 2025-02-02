@@ -93,7 +93,7 @@ public class ShipManager : MonoBehaviour
         List<ShipSO> listOfShipSOs = new List<ShipSO>();
         switch (techLevel)
         {
-            case 0:
+            case 100:// early
                 foreach (var shipSO in ShipSOListTech0)
                 {
                     if (shipSO.CivEnum == civ)
@@ -102,7 +102,7 @@ public class ShipManager : MonoBehaviour
                     }
                 }
                 break;
-            case 1:
+            case 300: // developed
                 foreach (var shipSO in ShipSOListTech1)
                 {
                     if (shipSO.CivEnum == civ)
@@ -111,7 +111,7 @@ public class ShipManager : MonoBehaviour
                     }
                 }
                 break;
-            case 2:
+            case 600: // advanced
                 foreach (var shipSO in ShipSOListTech2)
                 {
                     if (shipSO.CivEnum == civ)
@@ -120,7 +120,7 @@ public class ShipManager : MonoBehaviour
                     }
                 }
                 break;
-            case 3:
+            case 900: // supreme
                 foreach (var shipSO in ShipSOListTech3)
                 {
                     if (shipSO.CivEnum == civ)

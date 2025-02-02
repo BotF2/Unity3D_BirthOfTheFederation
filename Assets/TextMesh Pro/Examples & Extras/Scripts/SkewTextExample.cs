@@ -1,5 +1,5 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
+using System.Collections;
 
 
 namespace TMPro.Examples
@@ -41,7 +41,7 @@ namespace TMPro.Examples
         /// <summary>
         ///  Method to curve text along a Unity animation curve.
         /// </summary>
-        /// <param CivName="textComponent"></param>
+        /// <param name="textComponent"></param>
         /// <returns></returns>
         IEnumerator WarpText()
         {

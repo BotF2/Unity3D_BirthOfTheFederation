@@ -377,7 +377,7 @@ namespace Assets.Core
             Vector3 nextPosition = Vector3.MoveTowards(rb.position, FleetData.Destination.transform.position,
             FleetData.CurrentWarpFactor * warpFudgeFactor * Time.fixedDeltaTime);
             rb.MovePosition(nextPosition); // kinematic with physics movement
-            rb.velocity = Vector3.zero;
+            rb.linearVelocity = Vector3.zero;
             // OnArrivedAtDestination();
 
             // update dropline

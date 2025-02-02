@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
@@ -34,11 +35,11 @@ namespace Assets.Core
 
             private BlitSettings settings;
 
-            private RenderTargetIdentifier source { get; set; }
-            private RenderTargetIdentifier destination { get; set; }
+            private RTHandle source { get; set; }
+            private RTHandle destination { get; set; }
 
-            RenderTargetHandle m_TemporaryColorTexture;
-            RenderTargetHandle m_DestinationTexture;
+            RTHandle m_TemporaryColorTexture;
+            RTHandle m_DestinationTexture;
             string m_ProfilerTag;
 
             public BlitPass(RenderPassEvent renderPassEvent, BlitSettings settings, string tag)
@@ -47,14 +48,14 @@ namespace Assets.Core
                 this.settings = settings;
                 blitMaterial = settings.blitMaterial;
                 m_ProfilerTag = tag;
-                m_TemporaryColorTexture.Init("_TemporaryColorTexture");
+                m_TemporaryColorTexture = RTHandles.Alloc("_TemporaryColorTexture", name: "_TemporaryColorTexture");
                 if (settings.dstType == Target.TextureID)
                 {
-                    m_DestinationTexture.Init(settings.dstTextureId);
+                    m_DestinationTexture = RTHandles.Alloc(settings.dstTextureId);
                 }
             }
 
-            public void Setup(RenderTargetIdentifier source, RenderTargetIdentifier destination)
+            public void Setup(RTHandle source, RTHandle destination)
             {
                 this.source = source;
                 this.destination = destination;
@@ -65,53 +66,93 @@ namespace Assets.Core
 #endif
             }
 
+            [System.Obsolete]
             public override void Execute(ScriptableRenderContext context, ref RenderingData renderingData)
             {
                 CommandBuffer cmd = CommandBufferPool.Get(m_ProfilerTag);
 
-                RenderTextureDescriptor opaqueDesc = renderingData.cameraData.cameraTargetDescriptor;
-                opaqueDesc.depthBufferBits = 0;
+                if (source != null)
+                {
+                    Blitter.BlitCameraTexture(cmd, source, m_TemporaryColorTexture, new Vector4(1, 1, 0, 0), 0);
+                    Blitter.BlitCameraTexture(cmd, source, m_DestinationTexture, new Vector4(1, 1, 0, 0), 0);
+                }
+                if (destination != null)
+                {
+                    Blitter.BlitCameraTexture(cmd, source, m_TemporaryColorTexture, new Vector4(1, 1, 0, 0), 0);
+                    Blitter.BlitCameraTexture(cmd, source, m_DestinationTexture, new Vector4(1, 1, 0, 0), 0);
+                }
+                //CommandBuffer cmd = CommandBufferPool.Get(m_ProfilerTag);
 
-                if (settings.setInverseViewMatrix)
-                {
-                    Shader.SetGlobalMatrix("_InverseView", renderingData.cameraData.camera.cameraToWorldMatrix);
-                }
+                //RenderTextureDescriptor opaqueDesc = renderingData.cameraData.cameraTargetDescriptor;
+                //opaqueDesc.depthBufferBits = 0;
 
-                if (settings.dstType == Target.TextureID)
-                {
-                    if (settings.overrideGraphicsFormat)
-                    {
-                        opaqueDesc.graphicsFormat = settings.graphicsFormat;
-                    }
-                    cmd.GetTemporaryRT(m_DestinationTexture.id, opaqueDesc, filterMode);
-                }
+                //if (settings.setInverseViewMatrix)
+                //{
+                //    Shader.SetGlobalMatrix("_InverseView", renderingData.cameraData.camera.cameraToWorldMatrix);
+                //}
 
-                //Debug.Log($"src = {source},     dst = {_destination} ");
-                // Can't read and write to same color _destination, use a TemporaryRT
-                if (source == destination || (settings.srcType == settings.dstType && settings.srcType == Target.CameraColor))
-                {
-                    cmd.GetTemporaryRT(m_TemporaryColorTexture.id, opaqueDesc, filterMode);
-                    Blit(cmd, source, m_TemporaryColorTexture.Identifier(), blitMaterial, settings.blitMaterialPassIndex);
-                    Blit(cmd, m_TemporaryColorTexture.Identifier(), destination);
-                }
-                else
-                {
-                    Blit(cmd, source, destination, blitMaterial, settings.blitMaterialPassIndex);
-                }
+                //if (settings.dstType == Target.TextureID)
+                //{
+                //    if (settings.overrideGraphicsFormat)
+                //    {
+                //        opaqueDesc.graphicsFormat = settings.graphicsFormat;
+                //    }
+                //    //cmd.GetTemporaryRT(m_DestinationTexture.id, opaqueDesc, filterMode);
+                //    RenderTextureDescriptor descriptor = renderingData.cameraData.cameraTargetDescriptor;
+                //    descriptor.depthBufferBits = 0;
+                //    m_DestinationTexture = RTHandles.Alloc(descriptor, name: "m_DestinationTexture");
+                //}
+
+                ////Debug.Log($"src = {source},     dst = {_destination} ");
+                //// Can't read and write to same color _destination, use a TemporaryRT
+                //if (source == destination || (settings.srcType == settings.dstType && settings.srcType == Target.CameraColor))
+                //{
+                //    //cmd.GetTemporaryRT(m_TemporaryColorTexture.id, opaqueDesc, filterMode);
+                //    RenderTextureDescriptor descriptor = renderingData.cameraData.cameraTargetDescriptor;
+                //    descriptor.depthBufferBits = 0;
+                //    m_TemporaryColorTexture = RTHandles.Alloc(descriptor, name: "m_TemporaryColorTexture");
+                //    Blitter.BlitCameraTexture(cmd, source, m_TemporaryColorTexture, new Vector4(1, 1, 0, 0), 0);
+                //    // Blit(cmd, source, m_TemporaryColorTexture.Identifier(), blitMaterial, settings.blitMaterialPassIndex);
+                //    Blitter.BlitCameraTexture(cmd, source, m_TemporaryColorTexture, new Vector4(1, 1, 0, 0), 0);
+                //    //Blit(cmd, m_TemporaryColorTexture.Identifier(), destination);
+                //}
+                //else
+                //{
+                //    //Blitter.BlitCameraTexture(cmd, source, m_TemporaryColorTexture, new Vector4(1, 1, 0, 0), 0);
+                //    Blit(cmd, source, destination, blitMaterial, settings.blitMaterialPassIndex);
+                //}
+
+
 
                 context.ExecuteCommandBuffer(cmd);
                 CommandBufferPool.Release(cmd);
             }
 
+            [System.Obsolete]
+            public override void OnCameraSetup(CommandBuffer cmd, ref RenderingData renderingData)
+            {
+                m_TemporaryColorTexture = RTHandles.Alloc("m_TemporaryColorTexture", name: "m_TemporaryColorTexture");
+                m_DestinationTexture = RTHandles.Alloc("m_DestinationTexture", name: "m_DestinationTexture");
+                //RenderTextureDescriptor descriptor = renderingData.cameraData.cameraTargetDescriptor;
+                //descriptor.depthBufferBits = 0; // Set depth if needed
+                //myRenderTarget = RTHandles.Alloc(descriptor, name: "_CustomRenderTexture");
+            }
+            public override void OnCameraCleanup(CommandBuffer cmd)
+            {
+                source?.Release();
+                destination?.Release(); 
+            }
             public override void FrameCleanup(CommandBuffer cmd)
             {
                 if (settings.dstType == Target.TextureID)
                 {
-                    cmd.ReleaseTemporaryRT(m_DestinationTexture.id);
+                    m_DestinationTexture?.Release();
+                    //cmd.ReleaseTemporaryRT(m_DestinationTexture.id);
                 }
                 if (source == destination || (settings.srcType == settings.dstType && settings.srcType == Target.CameraColor))
                 {
-                    cmd.ReleaseTemporaryRT(m_TemporaryColorTexture.id);
+                    m_TemporaryColorTexture?.Release(); 
+                    //cmd.ReleaseTemporaryRT(m_TemporaryColorTexture.id);
                 }
             }
         }
@@ -149,7 +190,7 @@ namespace Assets.Core
 
         public BlitPass blitPass;
 
-        private RenderTargetIdentifier srcIdentifier, dstIdentifier;
+        private RTHandle srcIdentifier, dstIdentifier;
 
         public override void Create()
         {
@@ -167,20 +208,26 @@ namespace Assets.Core
                 settings.graphicsFormat = SystemInfo.GetGraphicsFormat(UnityEngine.Experimental.Rendering.DefaultFormat.LDR);
             }
 
-            UpdateSrcIdentifier();
-            UpdateDstIdentifier();
+            //UpdateSrcIdentifier();
+            //UpdateDstIdentifier();
         }
 
-        private void UpdateSrcIdentifier()
-        {
-            srcIdentifier = UpdateIdentifier(settings.srcType, settings.srcTextureId, settings.srcTextureObject);
-        }
+        //private void UpdateSrcIdentifier()
+        //{
+        //    srcIdentifier = UpdateIdentifier(settings.srcType, settings.srcTextureId, settings.srcTextureObject);
+        //}
 
-        private void UpdateDstIdentifier()
-        {
-            dstIdentifier = UpdateIdentifier(settings.dstType, settings.dstTextureId, settings.dstTextureObject);
-        }
-
+        //private void UpdateDstIdentifier()
+        //{
+        //    dstIdentifier = UpdateIdentifier(settings.dstType, settings.dstTextureId, settings.dstTextureObject);
+        //}
+        //private RTHandle UpdateID(Target type, string s, RenderTexture obj)
+        //{
+        //    if (type == Target.RenderTextureObject)
+        //    {
+        //        return obj;
+        //    }
+        //}
         private RenderTargetIdentifier UpdateIdentifier(Target type, string s, RenderTexture obj)
         {
             if (type == Target.RenderTextureObject)
@@ -189,7 +236,7 @@ namespace Assets.Core
             }
             else if (type == Target.TextureID)
             {
-                //RenderTargetHandle m_RTHandle = new RenderTargetHandle();
+                //RTHandle m_RTHandle = new RTHandle();
                 //m_RTHandle.Init(s);
                 //return m_RTHandle.Identifier();
                 return s;
@@ -216,13 +263,13 @@ namespace Assets.Core
                 {
                     settings.srcType = Target.TextureID;
                     settings.srcTextureId = "_AfterPostProcessTexture";
-                    UpdateSrcIdentifier();
+                    //UpdateSrcIdentifier();
                 }
                 if (settings.dstType == Target.CameraColor)
                 {
                     settings.dstType = Target.TextureID;
                     settings.dstTextureId = "_AfterPostProcessTexture";
-                    UpdateDstIdentifier();
+                    //UpdateDstIdentifier();
                 }
             }
             else
@@ -232,20 +279,20 @@ namespace Assets.Core
                 {
                     settings.srcType = Target.CameraColor;
                     settings.srcTextureId = "";
-                    UpdateSrcIdentifier();
+                    //UpdateSrcIdentifier();
                 }
                 if (settings.dstType == Target.TextureID && settings.dstTextureId == "_AfterPostProcessTexture")
                 {
                     settings.dstType = Target.CameraColor;
                     settings.dstTextureId = "";
-                    UpdateDstIdentifier();
+                    //UpdateDstIdentifier();
                 }
             }
 
-            var src = (settings.srcType == Target.CameraColor) ? renderer.cameraColorTarget : srcIdentifier;
-            var dest = (settings.dstType == Target.CameraColor) ? renderer.cameraColorTarget : dstIdentifier;
+            //var src = (settings.srcType == Target.CameraColor) ? renderer.cameraColorTarget : srcIdentifier;
+            //var dest = (settings.dstType == Target.CameraColor) ? renderer.cameraColorTarget : dstIdentifier;
 
-            blitPass.Setup(src, dest);
+            //blitPass.Setup(src, dest);
             renderer.EnqueuePass(blitPass);
         }
     }

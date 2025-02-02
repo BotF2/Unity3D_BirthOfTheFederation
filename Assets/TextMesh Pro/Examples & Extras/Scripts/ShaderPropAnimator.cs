@@ -1,10 +1,10 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
+using System.Collections;
 
 
 namespace TMPro.Examples
 {
-
+    
     public class ShaderPropAnimator : MonoBehaviour
     {
 
@@ -20,7 +20,7 @@ namespace TMPro.Examples
             // Cache a reference to object's renderer
             m_Renderer = GetComponent<Renderer>();
 
-            // Cache a reference to object's material and create an current by doing so.
+            // Cache a reference to object's material and create an instance by doing so.
             m_Material = m_Renderer.material;
         }
 

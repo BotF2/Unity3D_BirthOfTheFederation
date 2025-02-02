@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using System.Collections;
+using System.Collections.Generic;
 
 
 #pragma warning disable 0618 // Disabled warning due to SetVertices being deprecated until new release with SetMesh() is available.
@@ -38,7 +41,7 @@ namespace TMPro.Examples
 
             m_Canvas = gameObject.GetComponentInParent<Canvas>();
 
-            // Get a reference to the GalaxyEventCamera if canvas Render Mode is not ScreenSpace Overlay.
+            // Get a reference to the camera if Canvas Render Mode is not ScreenSpace Overlay.
             if (m_Canvas.renderMode == RenderMode.ScreenSpaceOverlay)
                 m_Camera = null;
             else
@@ -155,7 +158,7 @@ namespace TMPro.Examples
                     // We do this to make sure this character is rendered last and over other characters.
                     meshInfo.SwapVertexData(vertexIndex, lastVertexIndex);
 
-                    // Need to update the appropriate 
+                    // Need to update the appropriate
                     m_TextMeshPro.UpdateVertexData(TMP_VertexDataUpdateFlags.All);
                 }
                 #endregion
@@ -467,7 +470,7 @@ namespace TMPro.Examples
             // Get a reference to the vertices that we need to replace.
             Vector3[] dst_vertices = m_TextMeshPro.textInfo.meshInfo[materialIndex].vertices;
 
-            // Restore / Copy vertices from source to _destination
+            // Restore / Copy vertices from source to destination
             dst_vertices[vertexIndex + 0] = src_vertices[vertexIndex + 0];
             dst_vertices[vertexIndex + 1] = src_vertices[vertexIndex + 1];
             dst_vertices[vertexIndex + 2] = src_vertices[vertexIndex + 2];
@@ -480,7 +483,7 @@ namespace TMPro.Examples
             // Get a reference to the cached / original vertex colors.
             Color32[] src_colors = m_cachedMeshInfoVertexData[materialIndex].colors32;
 
-            // Copy the vertex colors from source to _destination.
+            // Copy the vertex colors from source to destination.
             dst_colors[vertexIndex + 0] = src_colors[vertexIndex + 0];
             dst_colors[vertexIndex + 1] = src_colors[vertexIndex + 1];
             dst_colors[vertexIndex + 2] = src_colors[vertexIndex + 2];
@@ -488,8 +491,8 @@ namespace TMPro.Examples
 
             // Restore UV0S
             // UVS0
-            Vector2[] src_uv0s = m_cachedMeshInfoVertexData[materialIndex].uvs0;
-            Vector2[] dst_uv0s = m_TextMeshPro.textInfo.meshInfo[materialIndex].uvs0;
+            Vector4[] src_uv0s = m_cachedMeshInfoVertexData[materialIndex].uvs0;
+            Vector4[] dst_uv0s = m_TextMeshPro.textInfo.meshInfo[materialIndex].uvs0;
             dst_uv0s[vertexIndex + 0] = src_uv0s[vertexIndex + 0];
             dst_uv0s[vertexIndex + 1] = src_uv0s[vertexIndex + 1];
             dst_uv0s[vertexIndex + 2] = src_uv0s[vertexIndex + 2];
@@ -537,7 +540,7 @@ namespace TMPro.Examples
             dst_uv2s[lastIndex + 2] = src_uv2s[lastIndex + 2];
             dst_uv2s[lastIndex + 3] = src_uv2s[lastIndex + 3];
 
-            // Need to update the appropriate 
+            // Need to update the appropriate
             m_TextMeshPro.UpdateVertexData(TMP_VertexDataUpdateFlags.All);
         }
     }

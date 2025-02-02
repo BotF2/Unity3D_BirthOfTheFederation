@@ -84,8 +84,7 @@ public class ThemeManager : MonoBehaviour
         spriteShields.sprite = CurrentTheme.ShieldImage;
         spriteOrbitalBatteries.sprite = CurrentTheme.OrbitalBatteriesImage;
         spriteResearchCenter.sprite = CurrentTheme.ResearchCenterImage;
-       // BuildListUIController.Instance.SetFacilityImage(CurrentTheme);
-        // ToDo Apply to texts
+
         for (int i = 0; i < tMP_Texts.Length; i++)
         {
             tMP_Texts[i].color = CurrentTheme.TextColor;
@@ -99,6 +98,10 @@ public class ThemeManager : MonoBehaviour
             if (buttonImage != null)
                 buttonImage.sprite = CurrentTheme.ButtonSprite1;
         }
+    }
+    public ThemeSO GetLocalPlayerTheme()
+    {
+        return CurrentTheme;
     }
 }
 

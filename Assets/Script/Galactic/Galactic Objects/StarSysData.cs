@@ -1,6 +1,7 @@
 using Assets.Core;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 /// <summary>
 /// This is a type of galactic object that is a 'StarSystem' class (Manager/Controller/Data and can have a habitable 'planet') 
 /// with a real star or a nebula or a complex as in the Borg Unicomplex)
@@ -30,6 +31,8 @@ public class StarSysData
     public List<GameObject> PowerUnits;
     public List<GameObject> ShieldGenerators;
     public List<GameObject> OrbitalBatteries;
+    public GameObject buildSlotItemImage;
+    public List<GameObject> buildQueueImageList;
     public int TotalSysPowerLoad = 0;
     public PowerPlantData PowerPlantData;
     public FactoryData FactoryData;
@@ -37,7 +40,31 @@ public class StarSysData
     public ShieldGeneratorData ShieldGeneratorData;
     public OrbitalBatteryData OrbitalBatteryData;
     public ResearchCenterData ResearchCenterData;
-    
+    [SerializeField]
+    private Image powerPlant;
+    //[SerializeField]
+    //private Image powerPlantBGroud;
+    [SerializeField]
+    private Image factory;
+    //[SerializeField]
+    //private Image factoryBGround;
+    [SerializeField]
+    private Image shipyard;
+    //[SerializeField]
+    //private Image shipyardBGround;
+    [SerializeField]
+    private Image shield;
+    //[SerializeField]
+    //private Image shieldBGround;
+    [SerializeField]
+    private Image orbital;
+    //[SerializeField]
+    //private Image orbitalBGround;
+    [SerializeField]
+    private Image researchCenter;
+    //[SerializeField]
+    //private Image researchCenterBGround;
+
 
 
     public string Description;

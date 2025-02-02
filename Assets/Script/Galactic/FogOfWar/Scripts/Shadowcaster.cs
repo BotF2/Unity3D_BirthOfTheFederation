@@ -30,7 +30,7 @@ namespace FischlWorks_FogWar
 
     /// A non-static submodule that performs shadowcasting algorithm over a LevelData object.
 
-    /// An instance of this module is instantiated for each construction of the csFogWar object.\n
+    /// An Instance of this module is instantiated for each construction of the csFogWar object.\n
     /// While the LevelData class defined within csFogWar class holds the information about obstacles,\n
     /// the FogField class defined within Shadowcaster class holds the information about player sight.
     public class Shadowcaster

@@ -29,3 +29,9 @@ MonoBehaviour:
   ShieldGenerators: 2
   OrbitalBatteries: 10
   Description: descrition here...
+  powerPlant: {fileID: 21300000, guid: 1255299b7026dcf4aa5bdd8e328db099, type: 3}
+  factory: {fileID: 21300000, guid: a3345f76412f410488f69695db9b7a11, type: 3}
+  shipyard: {fileID: 21300000, guid: 5dee004ad1a741447b3db96084793bd0, type: 3}
+  shield: {fileID: 21300000, guid: 298cc62f36e90a34cb90c13a98e7c705, type: 3}
+  orbital: {fileID: 21300000, guid: d2a83ac0093b8f94d822ac2250d1563e, type: 3}
+  researchCenter: {fileID: 21300000, guid: 8b7bb6f780e13784894e48c9e10be39e, type: 3}

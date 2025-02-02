@@ -1,5 +1,5 @@
-using System.Collections;
 using UnityEngine;
+using System.Collections;
 
 
 namespace TMPro.Examples
@@ -24,16 +24,16 @@ namespace TMPro.Examples
             // Get Reference to TextMeshPro Component
             m_textMeshPro = GetComponent<TMP_Text>();
             m_textMeshPro.text = label01;
-            m_textMeshPro.enableWordWrapping = true;
+            m_textMeshPro.textWrappingMode = TextWrappingModes.Normal;
             m_textMeshPro.alignment = TextAlignmentOptions.Top;
 
 
 
-            //if (GetComponentInParent(typeof(canvas)) as canvas == null)
+            //if (GetComponentInParent(typeof(Canvas)) as Canvas == null)
             //{
-            //    GameObject canvas = new GameObject("canvas", typeof(canvas));
+            //    GameObject canvas = new GameObject("Canvas", typeof(Canvas));
             //    gameObject.transform.SetParent(canvas.transform);
-            //    canvas.GetComponent<canvas>().renderMode = RenderMode.ScreenSpaceOverlay;
+            //    canvas.GetComponent<Canvas>().renderMode = RenderMode.ScreenSpaceOverlay;
 
             //    // Set RectTransform Size
             //    gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(500, 300);

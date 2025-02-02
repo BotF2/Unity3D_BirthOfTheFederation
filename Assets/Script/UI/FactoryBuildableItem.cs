@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using Assets.Core;
+using System.Linq;
 
 public class FactoryBuildableItem : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
@@ -12,15 +13,16 @@ public class FactoryBuildableItem : MonoBehaviour, IBeginDragHandler, IEndDragHa
     [SerializeField]
     StarSysController starSysController;
     [SerializeField]
-    private GameObject factoryBuildSlot;
-    //private bool isDragging;
+    private List<GameObject> factorySlots;
+    [SerializeField]
+    private GameObject[] gameObjects;
 
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
-        GameObject[] goArray = GameObject.FindGameObjectsWithTag("FactoryBuildSlot");
-        factoryBuildSlot = goArray[0];
+        // GameObject[] goArray = GameObject.FindGameObjectsWithTag("FactoryBuildSlot") + GameObject.FindGameObjectsWithTag("");
+        //factoryBuildSlots = goArray[0];
     }
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -41,15 +43,36 @@ public class FactoryBuildableItem : MonoBehaviour, IBeginDragHandler, IEndDragHa
     public void OnEndDrag(PointerEventData eventData)
     {
         canvasGroup.blocksRaycasts = true;
-        if (eventData.pointerEnter != null && eventData.pointerEnter.CompareTag("FactoryQueueSlot"))
+        if (eventData.pointerEnter != null && eventData.pointerEnter.CompareTag("FactoryBuildSlot"))
+        {
+            transform.SetParent(eventData.pointerEnter.transform);
+        }
+        else if (eventData.pointerEnter != null && eventData.pointerEnter.CompareTag("Slot0Factory"))
         {
             transform.SetParent(eventData.pointerEnter.transform);
             starSysController.FactoryBuildTimer(StarSysFacilities.Factory);
         }
-        else if (eventData.pointerEnter != null && eventData.pointerEnter.CompareTag("FactoryBuildSlot"))
+        else if (eventData.pointerEnter != null && eventData.pointerEnter.CompareTag("Slot1Factory"))
         {
             transform.SetParent(eventData.pointerEnter.transform);
         }
+        else if (eventData.pointerEnter != null && eventData.pointerEnter.CompareTag("Slot2Factory"))
+        {
+            transform.SetParent(eventData.pointerEnter.transform);
+        }
+        else if (eventData.pointerEnter != null && eventData.pointerEnter.CompareTag("Slot3Factory"))
+        {
+            transform.SetParent(eventData.pointerEnter.transform);
+        }
+        else if (eventData.pointerEnter != null && eventData.pointerEnter.CompareTag("Slot4Factory"))
+        {
+            transform.SetParent(eventData.pointerEnter.transform);
+        }
+        //else if (eventData.pointerEnter != null && eventData.pointerEnter.CompareTag("Slot5Factory"))
+        //{
+        //    transform.SetParent(eventData.pointerEnter.transform);
+        //}
+
         else
         {
             transform.SetParent(originalParent);

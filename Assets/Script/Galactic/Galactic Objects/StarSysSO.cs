@@ -1,5 +1,6 @@
 using Assets.Core;
 using UnityEngine;
+using UnityEngine.UI;
 
 [CreateAssetMenu(menuName = "Galaxy/StarSysSO")]
 public class StarSysSO : ScriptableObject
@@ -25,4 +26,28 @@ public class StarSysSO : ScriptableObject
     public int OrbitalBatteries;
     public string Description;
     private string v;
+    [SerializeField]
+    private Sprite powerPlant;
+    //[SerializeField]
+    //private Sprite powerPlantBGroud;
+    [SerializeField]
+    private Sprite factory;
+    //[SerializeField]
+    //private Sprite factoryBGround;
+    [SerializeField]
+    private Sprite shipyard;
+    //[SerializeField]
+    //private Sprite shipyardBGround;
+    [SerializeField]
+    private Sprite shield;
+    //[SerializeField]
+    //private Sprite shieldBGround;
+    [SerializeField]
+    private Sprite orbital;
+    //[SerializeField]
+    //private Sprite orbitalBGround;
+    [SerializeField]
+    private Sprite researchCenter;
+    //[SerializeField]
+    //private Sprite researchCenterBGround;
 }

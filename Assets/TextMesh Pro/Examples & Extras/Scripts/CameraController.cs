@@ -1,9 +1,10 @@
 using UnityEngine;
+using System.Collections;
 
 
 namespace TMPro.Examples
 {
-
+    
     public class CameraController : MonoBehaviour
     {
         public enum CameraModes { Follow, Isometric, Free }
@@ -69,7 +70,7 @@ namespace TMPro.Examples
         {
             if (CameraTarget == null)
             {
-                // If we don't have a _destination (assigned by the player, create a dummy in the center of the scene).
+                // If we don't have a target (assigned by the player, create a dummy in the center of the scene).
                 dummyTarget = new GameObject("Camera Target").transform;
                 CameraTarget = dummyTarget;
             }
@@ -81,7 +82,7 @@ namespace TMPro.Examples
             GetPlayerInput();
 
 
-            // Check if we still have a valid _destination
+            // Check if we still have a valid target
             if (CameraTarget != null)
             {
                 if (CameraMode == CameraModes.Isometric)
@@ -145,7 +146,7 @@ namespace TMPro.Examples
                     MovementSmoothing = !MovementSmoothing;
 
 
-                // Check for right mouse button to change GalaxyEventCamera follow and elevation angle
+                // Check for right mouse button to change camera follow and elevation angle
                 if (Input.GetMouseButton(1))
                 {
                     mouseY = Input.GetAxis("Mouse Y");
@@ -204,7 +205,7 @@ namespace TMPro.Examples
                     {
                         if (hit.transform == CameraTarget)
                         {
-                            // Reset Follow position
+                            // Reset Follow Position
                             OrbitalAngle = 0;
                         }
                         else
