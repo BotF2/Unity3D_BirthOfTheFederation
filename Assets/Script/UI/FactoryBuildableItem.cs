@@ -10,8 +10,8 @@ public class FactoryBuildableItem : MonoBehaviour, IBeginDragHandler, IEndDragHa
     private RectTransform rectTransform;
     private CanvasGroup canvasGroup;
     private Transform originalParent;
-    [SerializeField]
-    StarSysController starSysController;
+    
+    public StarSysController starSysController;
     [SerializeField]
     private List<GameObject> factorySlots;
     [SerializeField]

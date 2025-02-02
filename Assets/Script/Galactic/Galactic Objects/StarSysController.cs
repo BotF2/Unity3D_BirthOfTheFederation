@@ -38,30 +38,7 @@ namespace Assets.Core
         private List<OrbitalBatteryData> orbitalBatteryDatasList;
         [SerializeField]
         private List<ResearchCenterData> researchCenterDatasList;
-        //[SerializeField]
-        //private Image powerPlant;
-        //[SerializeField]
-        //private Image powerPlantBGroud;
-        //[SerializeField]
-        //private Image factory;
-        //[SerializeField]
-        //private Image factoryBGround;
-        //[SerializeField]
-        //private Image shipyard;
-        //[SerializeField]
-        //private Image shipyardBGround;
-        //[SerializeField]
-        //private Image shield;
-        //[SerializeField]
-        //private Image shieldBGround;
-        //[SerializeField]
-        //private Image orbital;
-        //[SerializeField]
-        //private Image orbitalBGround;
-        //[SerializeField]
-        //private Image researchCenter;
-        //[SerializeField]
-        //private Image researchCenterBGround;
+
         private bool building = false;
 
         public StarSysController(string name)
@@ -367,25 +344,5 @@ namespace Assets.Core
             TimeManager.Instance.OnRandomSpecialEvent -= DoDisaster;
             OnOffSysFacilityEvents.current.FacilityOnClick -= FacilityOnClick;
         }
-        //public void SetFacilityImages(ThemeSO theme)
-        //{
-        //    powerPlant.sprite = theme.PowerPlantImage;
-        //    powerPlantBGroud.sprite = theme.PowerPlantImage;
-
-        //    factory.sprite = theme.FactoryImage;
-        //    factoryBGround.sprite = theme.FactoryImage;
-
-        //    shipyard.sprite = theme.ShipyardImage;
-        //    shipyardBGround.sprite = theme.ShipyardImage;
-
-        //    shield.sprite = theme.ShieldImage;
-        //    shieldBGround.sprite = theme.ShieldImage;
-
-        //    orbital.sprite = theme.OrbitalBatteriesImage;
-        //    orbitalBGround.sprite = theme.OrbitalBatteriesImage;
-
-        //    researchCenter.sprite = theme.ResearchCenterImage;
-        //    researchCenterBGround.sprite = theme.ResearchCenterImage;
-       //}
     }
 }

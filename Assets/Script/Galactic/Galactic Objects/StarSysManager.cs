@@ -735,8 +735,18 @@ namespace Assets.Core
             canvasBuildList.SetActive(true);
             // *********** get the FactoryBuildableItems codes, set StarSysController/Data for them so the can send image endDrags back.
             sysBuildListUI.transform.SetParent(canvasBuildList.transform, false);
-            
-
+            FactoryBuildableItem buildable = sysBuildListUI.GetComponent<FactoryBuildableItem>();
+          
+            TextMeshProUGUI[] TheText = sysBuildListUI.GetComponentsInChildren<TextMeshProUGUI>();
+            for (int j = 0; j < TheText.Length; j++)
+            {
+                TheText[j].enabled = true;
+                if (TheText[j].name == "SystemNameTMP")
+                {
+                    TheText[j].text = sysCon.StarSysData.SysName;
+                    break;
+                }
+            }
         }
     }   
 }
