@@ -726,6 +726,7 @@ namespace Assets.Core
                     break;
                 default:
                     break;
+
             }
             GameObject sysBuildListUI = (GameObject)Instantiate(buildListPrefabs[i], new Vector3(0, 0, 0),
                 Quaternion.identity);
