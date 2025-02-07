@@ -33,7 +33,10 @@ namespace Assets.Core
         private Transform lastBuildingItem;
         private Transform buildingItem;
         private bool building = false;
+        [SerializeField]
         private int staredToBuild;
+        [SerializeField]
+        private float remainingTimeToBuild = 1;
 
 
         public StarSysController(string name)
@@ -71,32 +74,22 @@ namespace Assets.Core
             sysBuildQueueList = sysBuildQueueList.OrderByDescending(t => t.localPosition.y)
                                     .ThenBy(t => t.localPosition.x)
                                     .ToList();
-            if ( buildingItem == null && sysBuildQueueList.Count > 0)
+            if (sysBuildQueueList.Count > 0 && sysBuildQueueList[0] != null)
             {
-                BuildingThisFacility(sysBuildQueueList[0]);
-                //building = true;
-                //lastBuildingItem = buildingItem;
+                buildingItem = sysBuildQueueList[0];
+                building = true;
+                if (buildingItem != lastBuildingItem)
+                {
+                    remainingTimeToBuild = GetBuildTimeDuration(buildingItem.gameObject.GetComponentInChildren<FactoryBuildableItem>().facilityType);
+                    lastBuildingItem = buildingItem;
+                }
             }
-            else if (building && building != lastBuildingItem)
-            {
-
-                //BuildThisFacility(buildingItem);
-                //building = true;// false on completing the build, instantitate facility and destroy transform.gameobject
-            }
+            else { building = false; }
 
         }
-        private void BuildingThisFacility(Transform transform)
-        {
-            // time build get facility build duration for time
-        }
+
         private void Update()
         {
-            // Are we building anything
-            if (building) 
-            {
-                
-            }
-
             // Did anything change in the build queue?
             if (GameController.Instance.AreWeLocalPlayer(this.StarSysData.CurrentOwner))
             {
@@ -105,6 +98,7 @@ namespace Assets.Core
                     if (lastBuildQueueCount != buildListGridLayoutGroup.transform.childCount)
                     {
                         GridUpdate();
+                        building = false;
                     }
                     else
                     {
@@ -121,36 +115,55 @@ namespace Assets.Core
                         }
                     }
                 }
-                // what is in the build slot, what is building and has it changed?
-                //if(sysBuildQueueList != null && sys) {
+            }
+            // Are we building anything
+            if (building && remainingTimeToBuild > 0)
+            {
+                remainingTimeToBuild -= Time.deltaTime;
+            }
+            else if (building && remainingTimeToBuild <= 0)
+            {
+                remainingTimeToBuild = 0;
+                //Instatiate facility for system based on the item type in build slot, buildingItem = sysBuildQueueList[0];
+                // destroy build item in queue
+                // ********* call for BuildCompeted(newGO, int powerloaddelta);
             }
         }
-        public void UpdateBuildQueue()
-        {
-            // Subscribe to event
-            //OnGridChanged += GridUpdate; // syscon subscrib to 
-            //if (sysBuildQueueList.Count > 0)
-            //    building = true;
-            //else building = false;
-            //if (building) 
-            //{
 
-            ////Debug.Log("Sorted Grid Order:");
-            //for (int i = 0; i < sysBuildQueueList.Count; i++)
-            //{
-            //    Debug.Log($"{i}: {sysBuildQueueList[i].name}");
-            //}
-            //}
-            //else {
-
-        }
-        // ****** ToDo: need to know when a new facility has completed its build
-        // ********* call for BuildCompeted(newGO, int powerloaddelta);
-        public void FactoryBuildTimer(StarSysFacilities starSysFacilities)
+ 
+        public float GetBuildTimeDuration(StarSysFacilities starSysFacilities)
         {
+            float timeDuration = 1;
             TechLevel ourTechLevel = this.StarSysData.CurrentCivController.CivData.TechLevel;
+            switch (starSysFacilities)
+            {
+                case StarSysFacilities.PowerPlanet:
+                    timeDuration = this.StarSysData.PowerPlantData.BuildDuration;
+                    break;
+                case StarSysFacilities.Factory:
+                    timeDuration = this.StarSysData.FactoryData.BuildDuration;
+                    break;
+                case StarSysFacilities.Shipyard:
+                    timeDuration = this.StarSysData.ShipyardData.BuildDuration;
+                    break;
+                case StarSysFacilities.ShieldGenerator:
+                    timeDuration = this.StarSysData.ShieldGeneratorData.BuildDuration;
+                    break;
+                case StarSysFacilities.OrbitalBattery:
+                    timeDuration = this.StarSysData.OrbitalBatteryData.BuildDuration;
+                    break;
+                case StarSysFacilities.ResearchCenter:
+                    timeDuration = this.StarSysData.ResearchCenterData.BuildDuration;
+                    break;
+                default:
+                    break;
+            }
+            return timeDuration;
             //ToD use tech level to set features of system production, defence....
-            //building = true;
+        }
+        private void RunCoundownClock(float duration)
+        {
+
         }
         public void AddToFactoryQueue(GameObject facilityPrefab)
         {

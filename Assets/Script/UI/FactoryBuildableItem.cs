@@ -51,7 +51,7 @@ public class FactoryBuildableItem : MonoBehaviour, IBeginDragHandler, IEndDragHa
         //else if (eventData.pointerEnter != null && eventData.pointerEnter.CompareTag("Slot0Factory"))
         //{
         //    transform.SetParent(eventData.pointerEnter.transform);
-        //    starSysController.FactoryBuildTimer(StarSysFacilities.Factory);
+        //    starSysController.GetBuildTimeDuration(StarSysFacilities.Factory);
         //}
         //else if (eventData.pointerEnter != null && eventData.pointerEnter.CompareTag("Slot1Factory"))
         //{
