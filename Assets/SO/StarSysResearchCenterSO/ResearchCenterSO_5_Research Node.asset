@@ -17,8 +17,8 @@ MonoBehaviour:
   FacilitiesEnumType: 5
   Name: Research Nodes
   StartStarDate: 0
-  BuildDuration: 8
-  PowerLoad: 3
+  BuildDuration: 4
+  PowerLoad: 1
   ResearchCenterSprite: {fileID: 21300000, guid: eff5e139c1dd3d4488793aeb8c19b9c6, type: 3}
   Description: Adaptive shields capable of resisting most conventional weapons after
     brief exposure.

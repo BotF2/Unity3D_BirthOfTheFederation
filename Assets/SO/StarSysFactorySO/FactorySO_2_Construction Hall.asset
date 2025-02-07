@@ -17,7 +17,7 @@ MonoBehaviour:
   FacilitiesEnumType: 1
   Name: Construction Halls
   StartStarDate: 0
-  BuildDuration: 6
+  BuildDuration: 8
   PowerLoad: 4
   FactorySprite: {fileID: 21300000, guid: 17c8200fe9f92774cb327da7987eb709, type: 3}
   Description: Klingon construction halls reflect the cultural priorities of ruggedness,

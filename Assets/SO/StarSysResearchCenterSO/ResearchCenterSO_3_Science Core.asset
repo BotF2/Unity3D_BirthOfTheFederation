@@ -17,7 +17,7 @@ MonoBehaviour:
   FacilitiesEnumType: 5
   Name: Science Cores
   StartStarDate: 0
-  BuildDuration: 2
+  BuildDuration: 4
   PowerLoad: 1
   ResearchCenterSprite: {fileID: 21300000, guid: dbfd8373acc769a48876ae3083c5ff51, type: 3}
   Description: 'What the Cardassians lack in quality they more than make up for with

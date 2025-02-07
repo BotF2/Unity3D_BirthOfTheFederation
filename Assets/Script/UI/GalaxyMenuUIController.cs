@@ -664,7 +664,6 @@ public class GalaxyMenuUIController : MonoBehaviour
             }
         }
     }
-
     private void UpdateSystemPowerLoad(StarSysController sysCon)
     {
         TextMeshProUGUI[] OneTMP = sysCon.StarSysListUIGameObject.GetComponentsInChildren<TextMeshProUGUI>();

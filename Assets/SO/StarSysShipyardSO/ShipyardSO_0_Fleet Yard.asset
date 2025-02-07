@@ -17,7 +17,7 @@ MonoBehaviour:
   FacilitiesEnumType: 2
   Name: Fleet Yards
   StartStarDate: 0
-  BuildDuration: 6
+  BuildDuration: 12
   PowerLoad: 4
   ShipyardSprite: {fileID: 21300000, guid: 61c465bb247bf8643b52c293850722a3, type: 3}
   Description: "Federation shipyards, aka Fleet Yards, are more than just places

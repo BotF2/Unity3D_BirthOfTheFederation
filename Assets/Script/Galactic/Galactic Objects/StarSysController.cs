@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
+using Unity.VisualScripting;
 
 namespace Assets.Core
 {
@@ -24,22 +26,15 @@ namespace Assets.Core
         private Canvas canvasToolTip;
         public Canvas canvasYourStarSysUI;
         public static event Action<TrekRandomEventSO> TrekEventDisasters;
+        public GridLayoutGroup buildListGridLayoutGroup;
         [SerializeField]
-        private List<PowerPlantData> powerPlantDatasList;
-        [SerializeField]
-        private List<FactoryData> factoryDatasList;
-        [SerializeField]
-        private List<FactoryData> sysFactoryBuildQueueList;
-        [SerializeField]
-        private List<ShipyardData> shipyardDatasList;
-        [SerializeField]
-        private List<ShieldGeneratorData> shieildGeneratorDatasList;
-        [SerializeField]
-        private List<OrbitalBatteryData> orbitalBatteryDatasList;
-        [SerializeField]
-        private List<ResearchCenterData> researchCenterDatasList;
-
+        private List<Transform> sysBuildQueueList;
+        private int lastBuildQueueCount = 0;
+        private Transform lastBuildingItem;
+        private Transform buildingItem;
         private bool building = false;
+        private int staredToBuild;
+
 
         public StarSysController(string name)
         {
@@ -51,13 +46,103 @@ namespace Assets.Core
             canvasToolTip.worldCamera = galaxyEventCamera;
             TimeManager.Instance.OnRandomSpecialEvent += DoDisaster;
             OnOffSysFacilityEvents.current.FacilityOnClick += FacilityOnClick;// subscribe methode to the event += () => Debug.Log("Action Invoked!");
+
+        }
+
+        public void GridUpdate()
+        {
+            lastBuildQueueCount = this.buildListGridLayoutGroup.transform.childCount;
+            Debug.Log("Grid layout has changed!");
+            // update syscontroller sysBuildQueue list to match buildListBridLayoutGroup.tranform children
+            foreach (Transform child in buildListGridLayoutGroup.transform)
+            {
+                if (!sysBuildQueueList.Contains(child))
+                    sysBuildQueueList.Add(child);
+            }
+
+            //Does sysBuildQueueList have extra items not in buildListGridLayoutGroup children?
+            foreach (Transform child in buildListGridLayoutGroup.transform)
+            {   
+                if (!sysBuildQueueList.Contains(child))
+                    sysBuildQueueList.Remove(child);
+            }
+
+            // Sort by Y position (top to bottom), then X position (left to right)
+            sysBuildQueueList = sysBuildQueueList.OrderByDescending(t => t.localPosition.y)
+                                    .ThenBy(t => t.localPosition.x)
+                                    .ToList();
+            if ( buildingItem == null && sysBuildQueueList.Count > 0)
+            {
+                BuildingThisFacility(sysBuildQueueList[0]);
+                //building = true;
+                //lastBuildingItem = buildingItem;
+            }
+            else if (building && building != lastBuildingItem)
+            {
+
+                //BuildThisFacility(buildingItem);
+                //building = true;// false on completing the build, instantitate facility and destroy transform.gameobject
+            }
+
+        }
+        private void BuildingThisFacility(Transform transform)
+        {
+            // time build get facility build duration for time
         }
         private void Update()
         {
-            if (building)
+            // Are we building anything
+            if (building) 
             {
-
+                
             }
+
+            // Did anything change in the build queue?
+            if (GameController.Instance.AreWeLocalPlayer(this.StarSysData.CurrentOwner))
+            {
+                if (buildListGridLayoutGroup != null)
+                {
+                    if (lastBuildQueueCount != buildListGridLayoutGroup.transform.childCount)
+                    {
+                        GridUpdate();
+                    }
+                    else
+                    {
+                        int counter = 0;
+                        foreach (var item in buildListGridLayoutGroup.transform)
+                        {
+                            if (sysBuildQueueList[counter] != null && (Transform)item != sysBuildQueueList[counter])
+                            {
+                                GridUpdate();
+                                break;
+                            }
+                            else
+                                counter++;
+                        }
+                    }
+                }
+                // what is in the build slot, what is building and has it changed?
+                //if(sysBuildQueueList != null && sys) {
+            }
+        }
+        public void UpdateBuildQueue()
+        {
+            // Subscribe to event
+            //OnGridChanged += GridUpdate; // syscon subscrib to 
+            //if (sysBuildQueueList.Count > 0)
+            //    building = true;
+            //else building = false;
+            //if (building) 
+            //{
+
+            ////Debug.Log("Sorted Grid Order:");
+            //for (int i = 0; i < sysBuildQueueList.Count; i++)
+            //{
+            //    Debug.Log($"{i}: {sysBuildQueueList[i].name}");
+            //}
+            //}
+            //else {
+
         }
         // ****** ToDo: need to know when a new facility has completed its build
         // ********* call for BuildCompeted(newGO, int powerloaddelta);
@@ -65,7 +150,7 @@ namespace Assets.Core
         {
             TechLevel ourTechLevel = this.StarSysData.CurrentCivController.CivData.TechLevel;
             //ToD use tech level to set features of system production, defence....
-            building = true;
+            //building = true;
         }
         public void AddToFactoryQueue(GameObject facilityPrefab)
         {
@@ -184,6 +269,7 @@ namespace Assets.Core
             StarSysManager.Instance.InstantiateSysBuildListUI(this);
 
             MenuManager.Instance.OpenMenu(Menu.BuildMenu, null);
+            //OnGridChanged += GridUpdate; // syscon subscrib to 
 
         }
         public void FacilityOnClick(StarSysController sysCon, string name)
