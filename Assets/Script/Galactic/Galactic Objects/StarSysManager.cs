@@ -6,6 +6,8 @@ using UnityEngine;
 using System.Diagnostics;
 using Unity.VisualScripting;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using System.Linq;
 
 namespace Assets.Core
 {
@@ -698,7 +700,7 @@ namespace Assets.Core
             }
             
         }
-        public void InstantiateSysBuildListUI(StarSysController sysCon)
+        public void InstantiateSysBuildListUI(StarSysController sysCon) // open the build queue
         {
             int i = 0;
             switch (sysCon.StarSysData.CurrentCivController.CivData.CivEnum)
@@ -728,23 +730,33 @@ namespace Assets.Core
                     break;
 
             }
-            GameObject sysBuildListUI = (GameObject)Instantiate(buildListPrefabs[i], new Vector3(0, 0, 0),
+            GameObject sysBuildListInstance = (GameObject)Instantiate(buildListPrefabs[i], new Vector3(0, 0, 0),
                 Quaternion.identity);
-            MenuManager.Instance.SetBuildMenu(sysBuildListUI);
-            sysBuildListUI.layer = 5; //UI layer
+            MenuManager.Instance.SetBuildMenu(sysBuildListInstance);
+            sysBuildListInstance.layer = 5; //UI layer
             canvasBuildList.SetActive(true);
             // *********** get the FactoryBuildableItems codes, set StarSysController/Data for them so the can send image endDrags back.
-            sysBuildListUI.transform.SetParent(canvasBuildList.transform, false);
-            FactoryBuildableItem buildable = sysBuildListUI.GetComponent<FactoryBuildableItem>();
+            sysBuildListInstance.transform.SetParent(canvasBuildList.transform, false);
+            FactoryBuildableItem buildable = sysBuildListInstance.GetComponent<FactoryBuildableItem>();
           
-            TextMeshProUGUI[] TheText = sysBuildListUI.GetComponentsInChildren<TextMeshProUGUI>();
-            for (int j = 0; j < TheText.Length; j++)
+            TextMeshProUGUI[] TheTextItems = sysBuildListInstance.GetComponentsInChildren<TextMeshProUGUI>();
+            for (int j = 0; j < TheTextItems.Length; j++)
             {
-                TheText[j].enabled = true;
-                if (TheText[j].name == "SystemNameTMP")
+                TheTextItems[j].enabled = true;
+                if (TheTextItems[j].name == "SystemNameTMP")
                 {
-                    TheText[j].text = sysCon.StarSysData.SysName;
+                    TheTextItems[j].text = sysCon.StarSysData.SysName;
                     break;
+                }
+            }
+            GridLayoutGroup[] TheGrids = sysBuildListInstance.GetComponentsInChildren<GridLayoutGroup>();
+            for (int k = 0; k < TheGrids.Length; k++)
+            {
+                TheGrids[k].enabled = true;
+                if (TheGrids[k].name == "BuildableQueueFactory")
+                {
+                    sysCon.buildListGridLayoutGroup =TheGrids[k];
+                    sysCon.GridUpdate();
                 }
             }
         }

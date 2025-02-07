@@ -17,7 +17,7 @@ MonoBehaviour:
   FacilitiesEnumType: 4
   Name: Orbital Batteries
   StartStarDate: 0
-  BuildDuration: 6
+  BuildDuration: 4
   PowerLoad: 3
   OrbitalBatterySprite: {fileID: 21300000, guid: 0264ca17952eabd47a594f836bcd1aae, type: 3}
   Description: Orbital batteries are mainly a defensive measure but can be used to

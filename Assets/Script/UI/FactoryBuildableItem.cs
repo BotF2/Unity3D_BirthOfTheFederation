@@ -12,6 +12,7 @@ public class FactoryBuildableItem : MonoBehaviour, IBeginDragHandler, IEndDragHa
     private Transform originalParent;
     
     public StarSysController starSysController;
+    public StarSysFacilities facilityType;
     [SerializeField]
     private List<GameObject> factorySlots;
     [SerializeField]
@@ -28,7 +29,7 @@ public class FactoryBuildableItem : MonoBehaviour, IBeginDragHandler, IEndDragHa
     {
         originalParent = transform.parent;
         canvasGroup.blocksRaycasts = false; // allow drag
-        transform.SetParent(transform.root); // top layer to be seen
+        transform.SetParent(transform.root); // down list to top layer to be seen
         transform.SetAsLastSibling();
         Debug.Log("onBeginDrag");
     }
@@ -47,27 +48,27 @@ public class FactoryBuildableItem : MonoBehaviour, IBeginDragHandler, IEndDragHa
         {
             transform.SetParent(eventData.pointerEnter.transform);
         }
-        else if (eventData.pointerEnter != null && eventData.pointerEnter.CompareTag("Slot0Factory"))
-        {
-            transform.SetParent(eventData.pointerEnter.transform);
-            starSysController.FactoryBuildTimer(StarSysFacilities.Factory);
-        }
-        else if (eventData.pointerEnter != null && eventData.pointerEnter.CompareTag("Slot1Factory"))
-        {
-            transform.SetParent(eventData.pointerEnter.transform);
-        }
-        else if (eventData.pointerEnter != null && eventData.pointerEnter.CompareTag("Slot2Factory"))
-        {
-            transform.SetParent(eventData.pointerEnter.transform);
-        }
-        else if (eventData.pointerEnter != null && eventData.pointerEnter.CompareTag("Slot3Factory"))
-        {
-            transform.SetParent(eventData.pointerEnter.transform);
-        }
-        else if (eventData.pointerEnter != null && eventData.pointerEnter.CompareTag("Slot4Factory"))
-        {
-            transform.SetParent(eventData.pointerEnter.transform);
-        }
+        //else if (eventData.pointerEnter != null && eventData.pointerEnter.CompareTag("Slot0Factory"))
+        //{
+        //    transform.SetParent(eventData.pointerEnter.transform);
+        //    starSysController.FactoryBuildTimer(StarSysFacilities.Factory);
+        //}
+        //else if (eventData.pointerEnter != null && eventData.pointerEnter.CompareTag("Slot1Factory"))
+        //{
+        //    transform.SetParent(eventData.pointerEnter.transform);
+        //}
+        //else if (eventData.pointerEnter != null && eventData.pointerEnter.CompareTag("Slot2Factory"))
+        //{
+        //    transform.SetParent(eventData.pointerEnter.transform);
+        //}
+        //else if (eventData.pointerEnter != null && eventData.pointerEnter.CompareTag("Slot3Factory"))
+        //{
+        //    transform.SetParent(eventData.pointerEnter.transform);
+        //}
+        //else if (eventData.pointerEnter != null && eventData.pointerEnter.CompareTag("Slot4Factory"))
+        //{
+        //    transform.SetParent(eventData.pointerEnter.transform);
+        //}
         //else if (eventData.pointerEnter != null && eventData.pointerEnter.CompareTag("Slot5Factory"))
         //{
         //    transform.SetParent(eventData.pointerEnter.transform);

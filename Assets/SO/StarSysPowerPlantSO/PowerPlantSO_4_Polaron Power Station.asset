@@ -17,8 +17,8 @@ MonoBehaviour:
   FacilitiesEnumType: 0
   Name: Polaron Power Stations
   StartStarDate: 0
-  BuildDuration: 15
-  PowerOutput: 30
+  BuildDuration: 8
+  PowerOutput: 20
   PowerPlantSprite: {fileID: 21300000, guid: debd3118c20cd4543acef1038acddaf9, type: 3}
   Description: "The Dominion\u2019s power sources are likely built around matter-antimatter
     reactors, polaron energy systems, and potentially exotic Gamma Quadrant technologies.
