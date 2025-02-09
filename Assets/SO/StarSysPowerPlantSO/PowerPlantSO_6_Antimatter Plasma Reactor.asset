@@ -19,7 +19,7 @@ MonoBehaviour:
   StartStarDate: 0
   BuildDuration: 8
   PowerOutput: 20
-  PowerPlantSprite: {fileID: 21300000, guid: 73acb334e390ce645be7367f586b66ec, type: 3}
+  PowerPlantSprite: {fileID: 21300000, guid: c1cc6b3d79191e44a91d5fc1cf0f1ee5, type: 3}
   Description: In the presence of warp plasma, hydrogen is converted completely and
     efficiently to energy. The Plasma Reactor uses a fully-contained bubble of warp
     plasma as a catalyst, and converts hydrogen to energy more efficiently than a

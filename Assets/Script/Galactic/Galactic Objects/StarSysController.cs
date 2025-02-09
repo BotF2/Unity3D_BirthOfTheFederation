@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using System.Linq;
 using Unity.VisualScripting;
 
+
 namespace Assets.Core
 {
     /// <summary>
@@ -24,7 +25,7 @@ namespace Assets.Core
         private Camera galaxyEventCamera;
         [SerializeField]
         private Canvas canvasToolTip;
-        public Canvas canvasYourStarSysUI;
+       // public Canvas canvasYourStarSysUI;
         public static event Action<TrekRandomEventSO> TrekEventDisasters;
         public GridLayoutGroup buildListGridLayoutGroup;
         [SerializeField]
@@ -33,8 +34,8 @@ namespace Assets.Core
         private Transform lastBuildingItem;
         private Transform buildingItem;
         private bool building = false;
-        [SerializeField]
-        private int staredToBuild;
+        private bool starTimer = true;
+        private float starDateOfCompletion = 0f; 
         [SerializeField]
         private float remainingTimeToBuild = 1;
 
@@ -42,6 +43,7 @@ namespace Assets.Core
         public StarSysController(string name)
         {
             StarSysData = new StarSysData(name);
+            starDateOfCompletion = 0f;
         }
         private void Start()
         {
@@ -49,10 +51,10 @@ namespace Assets.Core
             canvasToolTip.worldCamera = galaxyEventCamera;
             TimeManager.Instance.OnRandomSpecialEvent += DoDisaster;
             OnOffSysFacilityEvents.current.FacilityOnClick += FacilityOnClick;// subscribe methode to the event += () => Debug.Log("Action Invoked!");
-
+            starDateOfCompletion = 0f;
         }
 
-        public void GridUpdate()
+        public void GridFactoryQueueUpdate()
         {
             lastBuildQueueCount = this.buildListGridLayoutGroup.transform.childCount;
             Debug.Log("Grid layout has changed!");
@@ -78,10 +80,12 @@ namespace Assets.Core
             {
                 buildingItem = sysBuildQueueList[0];
                 building = true;
+                
                 if (buildingItem != lastBuildingItem)
                 {
-                    remainingTimeToBuild = GetBuildTimeDuration(buildingItem.gameObject.GetComponentInChildren<FactoryBuildableItem>().facilityType);
+                    remainingTimeToBuild = GetBuildTimeDuration(buildingItem.gameObject.GetComponentInChildren<FactoryBuildableItem>().FacilityType);
                     lastBuildingItem = buildingItem;
+                    starTimer = true;
                 }
             }
             else { building = false; }
@@ -97,8 +101,8 @@ namespace Assets.Core
                 {
                     if (lastBuildQueueCount != buildListGridLayoutGroup.transform.childCount)
                     {
-                        GridUpdate();
-                        building = false;
+                        GridFactoryQueueUpdate();
+                       // building = false;
                     }
                     else
                     {
@@ -107,7 +111,7 @@ namespace Assets.Core
                         {
                             if (sysBuildQueueList[counter] != null && (Transform)item != sysBuildQueueList[counter])
                             {
-                                GridUpdate();
+                                GridFactoryQueueUpdate();
                                 break;
                             }
                             else
@@ -119,14 +123,92 @@ namespace Assets.Core
             // Are we building anything
             if (building && remainingTimeToBuild > 0)
             {
-                remainingTimeToBuild -= Time.deltaTime;
+
+                if (starTimer)
+                {
+                    starDateOfCompletion = TimeManager.Instance.CurrentStarDate() + remainingTimeToBuild;
+                    starTimer = false;
+                }
+                else if (TimeManager.Instance.CurrentStarDate() >= starDateOfCompletion)
+                {
+                    building = false;
+                    starTimer = true;
+                    remainingTimeToBuild = 0f;
+                    buildingItem = null;
+                    switch (sysBuildQueueList[0].gameObject.GetComponentInChildren<FactoryBuildableItem>().FacilityType)
+                    {
+                        case StarSysFacilities.PowerPlanet:
+                            this.StarSysData.PowerStations.Add(StarSysManager.Instance.AddSystemFacilities(1, StarSysManager.Instance.PowerPlantPrefab, (int)this.StarSysData.CurrentOwner, this.StarSysData)[0]);
+                            if (starSysListUIGameObject != null)
+                            {
+                                TextMeshProUGUI[] theTextItems = starSysListUIGameObject.GetComponentsInChildren<TextMeshProUGUI>();
+                                for (int j = 0; j < theTextItems.Length; j++)
+                                {
+                                    theTextItems[j].enabled = true;
+                                    if (theTextItems[j].name == "NumPUnits")
+                                        theTextItems[j].text = this.StarSysData.PowerStations.Count.ToString();
+                                    else if (theTextItems[j].name == "NumTotalEOut")
+                                        theTextItems[j].text = ((this.StarSysData.PowerStations.Count) * (this.StarSysData.PowerPlantData.PowerOutput)).ToString();
+                                }
+                            }
+                            break;
+                    
+                        case StarSysFacilities.Factory:
+                            var factory = (StarSysManager.Instance.AddSystemFacilities(1, StarSysManager.Instance.FactoryPrefab, (int)this.StarSysData.CurrentOwner, this.StarSysData)[0]);
+                            this.StarSysData.Factories.Add(factory);
+                            var textOnOff = factory.GetComponent<TextMeshProUGUI>();
+                            textOnOff.enabled = true;
+                            textOnOff.text = "0"; // off 
+                            if (starSysListUIGameObject != null)
+                            {
+                                TextMeshProUGUI[] theTextItems = starSysListUIGameObject.GetComponentsInChildren<TextMeshProUGUI>();
+                                for (int j = 0; j < theTextItems.Length; j++)
+                                {
+                                    theTextItems[j].enabled = true;
+                                    if (theTextItems[j].name == "FactoryLoad")
+                                        theTextItems[j].text = ((this.StarSysData.Factories.Count) * (this.StarSysData.FactoryData.PowerLoad)).ToString();
+                                    else if (theTextItems[j].name == "NumFactoryRatio")
+                                    {
+                                        int num = 0;
+                                        foreach (var item in this.StarSysData.Factories) 
+                                        {
+                                            TextMeshProUGUI TheText = item.GetComponent<TextMeshProUGUI>();
+                                            if (TheText.text == "1") // 1 = on and 0 = off
+                                                num++;
+                                        }
+                                        theTextItems[j].text = num.ToString() + "/" + (this.StarSysData.Factories.Count).ToString();
+                                    }
+                                }
+                            }
+                            break;
+                        case StarSysFacilities.Shipyard:
+                            this.StarSysData.Shipyards.Add(StarSysManager.Instance.AddSystemFacilities(1, StarSysManager.Instance.ShipyardPrefab, (int)this.StarSysData.CurrentOwner, this.StarSysData)[0]);
+                            break;
+                        case StarSysFacilities.ShieldGenerator:
+                            this.StarSysData.ShieldGenerators.Add(StarSysManager.Instance.AddSystemFacilities(1, StarSysManager.Instance.ShieldGeneratorPrefab, (int)this.StarSysData.CurrentOwner, this.StarSysData)[0]);
+                            break;
+                        case StarSysFacilities.OrbitalBattery:
+                            this.StarSysData.OrbitalBatteries.Add(StarSysManager.Instance.AddSystemFacilities(1, StarSysManager.Instance.OrbitalBatteryPrefab, (int)this.StarSysData.CurrentOwner, this.StarSysData)[0]);
+                            break;
+                        case StarSysFacilities.ResearchCenter:
+                            this.StarSysData.ResearchCenters.Add(StarSysManager.Instance.AddSystemFacilities(1, StarSysManager.Instance.ResearchCenterPrefab, (int)this.StarSysData.CurrentOwner, this.StarSysData)[0]);
+                            break;
+                        default:
+                            break;
+                    }
+                    var imageTransform = sysBuildQueueList[0];
+                    imageTransform.SetParent(imageTransform.GetComponent<FactoryBuildableItem>().originalParent, false);
+                    if (imageTransform.parent.childCount > 1)
+                    { 
+                        imageTransform.gameObject.SetActive(false);
+                    }
+                    sysBuildQueueList.Remove(sysBuildQueueList[0]);
+                }
             }
-            else if (building && remainingTimeToBuild <= 0)
+            else if (remainingTimeToBuild < 0)
             {
                 remainingTimeToBuild = 0;
-                //Instatiate facility for system based on the item type in build slot, buildingItem = sysBuildQueueList[0];
-                // destroy build item in queue
-                // ********* call for BuildCompeted(newGO, int powerloaddelta);
+
             }
         }
 
@@ -277,12 +359,11 @@ namespace Assets.Core
                 }
             }
         }
-        public void BuildClick(StarSysController sysCon, string name) // open build list UI
+        public void BuildClick(StarSysController sysCon) // open build list UI
         {
             StarSysManager.Instance.InstantiateSysBuildListUI(this);
 
             MenuManager.Instance.OpenMenu(Menu.BuildMenu, null);
-            //OnGridChanged += GridUpdate; // syscon subscrib to 
 
         }
         public void FacilityOnClick(StarSysController sysCon, string name)

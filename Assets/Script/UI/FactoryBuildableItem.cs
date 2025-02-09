@@ -9,21 +9,15 @@ public class FactoryBuildableItem : MonoBehaviour, IBeginDragHandler, IEndDragHa
 {
     private RectTransform rectTransform;
     private CanvasGroup canvasGroup;
-    private Transform originalParent;
+    public Transform originalParent;
     
-    public StarSysController starSysController;
-    public StarSysFacilities facilityType;
-    [SerializeField]
-    private List<GameObject> factorySlots;
-    [SerializeField]
-    private GameObject[] gameObjects;
+    public StarSysController StarSysController;
+    public StarSysFacilities FacilityType;
 
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
-        // GameObject[] goArray = GameObject.FindGameObjectsWithTag("FactoryBuildSlot") + GameObject.FindGameObjectsWithTag("");
-        //factoryBuildSlots = goArray[0];
     }
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -47,38 +41,36 @@ public class FactoryBuildableItem : MonoBehaviour, IBeginDragHandler, IEndDragHa
         if (eventData.pointerEnter != null && eventData.pointerEnter.CompareTag("FactoryBuildSlot"))
         {
             transform.SetParent(eventData.pointerEnter.transform);
-        }
-        //else if (eventData.pointerEnter != null && eventData.pointerEnter.CompareTag("Slot0Factory"))
-        //{
-        //    transform.SetParent(eventData.pointerEnter.transform);
-        //    starSysController.GetBuildTimeDuration(StarSysFacilities.Factory);
-        //}
-        //else if (eventData.pointerEnter != null && eventData.pointerEnter.CompareTag("Slot1Factory"))
-        //{
-        //    transform.SetParent(eventData.pointerEnter.transform);
-        //}
-        //else if (eventData.pointerEnter != null && eventData.pointerEnter.CompareTag("Slot2Factory"))
-        //{
-        //    transform.SetParent(eventData.pointerEnter.transform);
-        //}
-        //else if (eventData.pointerEnter != null && eventData.pointerEnter.CompareTag("Slot3Factory"))
-        //{
-        //    transform.SetParent(eventData.pointerEnter.transform);
-        //}
-        //else if (eventData.pointerEnter != null && eventData.pointerEnter.CompareTag("Slot4Factory"))
-        //{
-        //    transform.SetParent(eventData.pointerEnter.transform);
-        //}
-        //else if (eventData.pointerEnter != null && eventData.pointerEnter.CompareTag("Slot5Factory"))
-        //{
-        //    transform.SetParent(eventData.pointerEnter.transform);
-        //}
 
+            switch (this.FacilityType)
+            {
+                case StarSysFacilities.PowerPlanet:
+                    StarSysManager.Instance.NewImageInEmptyBuildableInventory(StarSysManager.Instance.PowerPlantPrefab, this.StarSysController);
+                    break;
+                case StarSysFacilities.Factory:
+                    StarSysManager.Instance.NewImageInEmptyBuildableInventory(StarSysManager.Instance.FactoryPrefab, this.StarSysController);
+                    break;
+                case StarSysFacilities.Shipyard:
+                    StarSysManager.Instance.NewImageInEmptyBuildableInventory(StarSysManager.Instance.ShipyardPrefab, this.StarSysController);
+                    break;
+                case StarSysFacilities.ShieldGenerator:
+                    StarSysManager.Instance.NewImageInEmptyBuildableInventory(StarSysManager.Instance.ShieldGeneratorPrefab, this.StarSysController);
+                    break;
+                case StarSysFacilities.OrbitalBattery:
+                    StarSysManager.Instance.NewImageInEmptyBuildableInventory(StarSysManager.Instance.OrbitalBatteryPrefab, this.StarSysController);
+                    break;
+                case StarSysFacilities.ResearchCenter:
+                    StarSysManager.Instance.NewImageInEmptyBuildableInventory(StarSysManager.Instance.ResearchCenterPrefab, this.StarSysController);
+                    break;
+                default:
+                    break;
+            }
+            //StarSysManager.Instance.NewImageInEmptyBuildableInventory
+        }
         else
         {
             transform.SetParent(originalParent);
         }
-       // canvasGroup.blocksRaycasts = true;
         rectTransform.anchoredPosition = Vector2.zero;
         Debug.Log("onEndDrag");
     }

@@ -49,6 +49,25 @@ namespace Assets.Core
         public GameObject ShieldGeneratorPrefab;
         public GameObject OrbitalBatteryPrefab;
         public GameObject ResearchCenterPrefab;
+
+        private GameObject powerPlantInventorySlot;
+        private GameObject factoryInventorySlot;
+        private GameObject shipyardInventorySlot;
+        private GameObject shieldGenInventorySlot;
+        private GameObject orbitalBatteryInventorySlot;
+        private GameObject researchCenterInventorySlot;
+        [SerializeField]
+        private GameObject powerPlantInventorySlotPrefab;
+        [SerializeField]
+        private GameObject factoryInventorySlotPrefab;
+        [SerializeField]
+        private GameObject shipyardInventorySlotPrefab;
+        [SerializeField]
+        private GameObject shieldGenInventorySlotPrefab;
+        [SerializeField]
+        private GameObject orbitalBatteryInventorySlotPrefab;
+        [SerializeField]
+        private GameObject researchCenterInventorySlotPrefab;
         [SerializeField]
         private GameObject contentFolderParent;
         [SerializeField]
@@ -197,12 +216,12 @@ namespace Assets.Core
                 if (GameController.Instance.AreWeLocalPlayer(sysData.CurrentOwner)) 
                 {
                     StarSysSO starSysSO = GetStarSObyInt(civSO.CivInt);
-                    sysData.PowerStations = GetSystemFacilities(starSysSO.PowerStations, PowerPlantPrefab, civSO.CivInt, sysData);
-                    sysData.Factories = GetSystemFacilities(starSysSO.Factories, FactoryPrefab, civSO.CivInt, sysData);
-                    sysData.Shipyards = GetSystemFacilities(starSysSO.Shipyards, ShipyardPrefab, civSO.CivInt, sysData);
-                    sysData.ShieldGenerators = GetSystemFacilities(starSysSO.ShieldGenerators, ShieldGeneratorPrefab, civSO.CivInt, sysData);
-                    sysData.OrbitalBatteries = GetSystemFacilities(starSysSO.OrbitalBatteries, OrbitalBatteryPrefab, civSO.CivInt, sysData);
-                    sysData.ResearchCenters = GetSystemFacilities(starSysSO.ResearchCenters, ResearchCenterPrefab, civSO.CivInt, sysData);
+                    sysData.PowerStations = AddSystemFacilities(starSysSO.PowerStations, PowerPlantPrefab, civSO.CivInt, sysData);
+                    sysData.Factories = AddSystemFacilities(starSysSO.Factories, FactoryPrefab, civSO.CivInt, sysData);
+                    sysData.Shipyards = AddSystemFacilities(starSysSO.Shipyards, ShipyardPrefab, civSO.CivInt, sysData);
+                    sysData.ShieldGenerators = AddSystemFacilities(starSysSO.ShieldGenerators, ShieldGeneratorPrefab, civSO.CivInt, sysData);
+                    sysData.OrbitalBatteries = AddSystemFacilities(starSysSO.OrbitalBatteries, OrbitalBatteryPrefab, civSO.CivInt, sysData);
+                    sysData.ResearchCenters = AddSystemFacilities(starSysSO.ResearchCenters, ResearchCenterPrefab, civSO.CivInt, sysData);
                     SetParentForFacilities(starSystemNewGameOb, sysData);
                     NewSystemListUI(starSysController);
                     localPlayerTheme = ThemeManager.Instance.GetLocalPlayerTheme();
@@ -245,7 +264,7 @@ namespace Assets.Core
             }
         }
 
-        private List<GameObject> GetSystemFacilities(int numOf, GameObject prefab, int civInt, StarSysData sysData)
+        public List<GameObject> AddSystemFacilities(int numOf, GameObject prefab, int civInt, StarSysData sysData)
         {
             List<GameObject> list = new List<GameObject>();
             switch (prefab.name)
@@ -700,7 +719,11 @@ namespace Assets.Core
             }
             
         }
-        public void InstantiateSysBuildListUI(StarSysController sysCon) // open the build queue
+        //public void UpdateSysUI(StarSysController sysController)
+        //{
+
+        //}
+        public void InstantiateSysBuildListUI(StarSysController sysCon) // open the build queue UI
         {
             int i = 0;
             switch (sysCon.StarSysData.CurrentCivController.CivData.CivEnum)
@@ -735,31 +758,127 @@ namespace Assets.Core
             MenuManager.Instance.SetBuildMenu(sysBuildListInstance);
             sysBuildListInstance.layer = 5; //UI layer
             canvasBuildList.SetActive(true);
-            // *********** get the FactoryBuildableItems codes, set StarSysController/Data for them so the can send image endDrags back.
+            // getting the FactoryBuildableItems code, set StarSysController/Data for them so the can send image endDrags back.
             sysBuildListInstance.transform.SetParent(canvasBuildList.transform, false);
-            FactoryBuildableItem buildable = sysBuildListInstance.GetComponent<FactoryBuildableItem>();
-          
-            TextMeshProUGUI[] TheTextItems = sysBuildListInstance.GetComponentsInChildren<TextMeshProUGUI>();
-            for (int j = 0; j < TheTextItems.Length; j++)
+            FactoryBuildableItem[] buildable = sysBuildListInstance.GetComponentsInChildren<FactoryBuildableItem>();
+            buildable[0].StarSysController = sysCon;
+            for (int m = 0; m < buildable.Length; m++)
             {
-                TheTextItems[j].enabled = true;
-                if (TheTextItems[j].name == "SystemNameTMP")
+                buildable[m].StarSysController = sysCon;
+                if (buildable[m].name == "ItemPowerPlant")
+                    buildable[m].FacilityType = StarSysFacilities.PowerPlanet;
+                else if (buildable[m].name == "ItemFactory")
+                    buildable[m].FacilityType = StarSysFacilities.Factory;
+                else if (buildable[m].name == "ItemShipyard")
+                    buildable[m].FacilityType = StarSysFacilities.Shipyard;
+                else if (buildable[m].name == "ItemShieldGenerator")
+                    buildable[m].FacilityType = StarSysFacilities.ShieldGenerator;
+                else if (buildable[m].name == "ItemOrbitalBattery")
+                    buildable[m].FacilityType = StarSysFacilities.OrbitalBattery;
+                else if (buildable[m].name == "ItemResearchCenter")
+                    buildable[m].FacilityType = StarSysFacilities.ResearchCenter;
+            }
+            TextMeshProUGUI[] theTextItems = sysBuildListInstance.GetComponentsInChildren<TextMeshProUGUI>();
+            for (int j = 0; j < theTextItems.Length; j++)
+            {
+                theTextItems[j].enabled = true;
+                if (theTextItems[j].name == "SystemNameTMP")
                 {
-                    TheTextItems[j].text = sysCon.StarSysData.SysName;
+                    theTextItems[j].text = sysCon.StarSysData.SysName;
                     break;
                 }
             }
-            GridLayoutGroup[] TheGrids = sysBuildListInstance.GetComponentsInChildren<GridLayoutGroup>();
-            for (int k = 0; k < TheGrids.Length; k++)
+            GridLayoutGroup[] theGrids = sysBuildListInstance.GetComponentsInChildren<GridLayoutGroup>();
+            for (int k = 0; k < theGrids.Length; k++)
             {
-                TheGrids[k].enabled = true;
-                if (TheGrids[k].name == "BuildableQueueFactory")
+                theGrids[k].enabled = true;
+                if (theGrids[k].name == "BuildableQueueFactory")
                 {
-                    sysCon.buildListGridLayoutGroup =TheGrids[k];
-                    sysCon.GridUpdate();
+                    sysCon.buildListGridLayoutGroup =theGrids[k];
+                    sysCon.GridFactoryQueueUpdate();
+                }
+            }
+            Transform[] theSlots = sysBuildListInstance.GetComponentsInChildren<Transform>();
+            for (int l = 0; (l < theSlots.Length); l++)
+            {
+                theSlots[l].gameObject.SetActive(true);
+                if(theSlots[l].gameObject.name == "ItemSlotPower")
+                {
+                    powerPlantInventorySlot = theSlots[l].gameObject;
+                }
+                else if (theSlots[l].gameObject.name == "ItemSlotFactory")
+                {
+                    factoryInventorySlot = theSlots[l].gameObject;
+                }
+                else if (theSlots[l].gameObject.name == "ItemSlotShipyard")
+                {
+                    shipyardInventorySlot = theSlots[l].gameObject;
+                }
+                else if (theSlots[l].gameObject.name == "ItemSlotShields")
+                {
+                    shieldGenInventorySlot = theSlots[l].gameObject;
+                }
+                else if (theSlots[l].gameObject.name == "ItemSlotOrbitalBattery")
+                {
+                    orbitalBatteryInventorySlot = theSlots[l].gameObject;
+                }
+                else if (theSlots[l].gameObject.name == "ItemSlotResearchCnt")
+                { 
+                    researchCenterInventorySlot = theSlots[l].gameObject;
                 }
             }
         }
+        public void NewImageInEmptyBuildableInventory(GameObject prefab, StarSysController sysCon) 
+        {
+            switch (prefab.name)
+            {
+                case "PowerPlantData":
+                    GameObject imageObPower = (GameObject)Instantiate(powerPlantInventorySlotPrefab, new Vector3(0, 0, 0),
+                        Quaternion.identity);
+                    var powerPlantSO = GetPowrPlantSObyCivInt((int)sysCon.StarSysData.CurrentOwner);
+                    imageObPower.GetComponentInChildren<Image>().sprite =  powerPlantSO.PowerPlantSprite;
+                    imageObPower.transform.SetParent(powerPlantInventorySlot.transform, false);
+                    break;
+                case "FactoryData":
+                    GameObject imageObFactory = (GameObject)Instantiate(factoryInventorySlotPrefab, new Vector3(0, 0, 0),
+                        Quaternion.identity);
+                    var factorySO = GetFactorySObyCivInt((int)sysCon.StarSysData.CurrentOwner);
+                    imageObFactory.GetComponentInChildren<Image>().sprite = factorySO.FactorySprite;
+                    imageObFactory.transform.SetParent(factoryInventorySlot.transform, false);
+                    break;
+                case "ShipyardData":
+                    GameObject imageObShipyard = (GameObject)Instantiate(shipyardInventorySlotPrefab, new Vector3(0, 0, 0),
+                        Quaternion.identity);
+                    var shipyardSO = GetShipyardSObyCivInt((int)sysCon.StarSysData.CurrentOwner);
+                    imageObShipyard.GetComponentInChildren<Image>().sprite = shipyardSO.ShipyardSprite;
+                    imageObShipyard.transform.SetParent(shipyardInventorySlot.transform, false);
+                    break;
+                case "ShieldGeneratorData":
+                    GameObject imageObShield = (GameObject)Instantiate(shieldGenInventorySlotPrefab, new Vector3(0, 0, 0),
+                        Quaternion.identity);
+                    var shieldSO = GetShieldGeneratorSObyCivInt((int)sysCon.StarSysData.CurrentOwner);
+                    imageObShield.GetComponentInChildren<Image>().sprite = shieldSO.ShieldGeneratorSprite;
+                    imageObShield.transform.SetParent(shieldGenInventorySlot.transform, false);
+                    break;
+                case "OrbitalBatteryData":
+                    GameObject imageObOB = (GameObject)Instantiate(orbitalBatteryInventorySlotPrefab, new Vector3(0, 0, 0),
+                        Quaternion.identity);
+                    var orbitalSO = GetOrbitalBatterySObyCivInt((int)sysCon.StarSysData.CurrentOwner);
+                    imageObOB.GetComponentInChildren<Image>().sprite = orbitalSO.OrbitalBatterySprite;
+                    imageObOB.transform.SetParent(orbitalBatteryInventorySlot.transform, false);
+                    break;
+                case "ResearchCenterData":
+                    GameObject imageObRC = (GameObject)Instantiate(researchCenterInventorySlotPrefab, new Vector3(0, 0, 0),
+                        Quaternion.identity);
+                    var researchSO = GetResearchCenterSObyCivInt((int)sysCon.StarSysData.CurrentOwner);
+                    imageObRC.GetComponentInChildren<Image>().sprite = researchSO.ResearchCenterSprite;
+                    imageObRC.transform.SetParent(researchCenterInventorySlot.transform, false);
+                    break;
+                default:
+                    break;
+            }
+        }
+
     }   
 }
 

@@ -82,7 +82,7 @@ public class PlayerDefinedTargetController : MonoBehaviour
         //this.CanvasDestination.gameObject.SetActive(true);
     }
     ///
-    /// Doing trigger collider in the fleetController for now, sort by type of starSysController on hit object
+    /// Doing trigger collider in the fleetController for now, sort by type of StarSysController on hit object
     /// 
 
     //void OnTriggerEnter(Collider collider)

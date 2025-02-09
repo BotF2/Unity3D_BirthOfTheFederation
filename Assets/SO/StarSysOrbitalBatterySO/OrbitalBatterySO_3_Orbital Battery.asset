@@ -19,7 +19,7 @@ MonoBehaviour:
   StartStarDate: 0
   BuildDuration: 4
   PowerLoad: 1
-  OrbitalBatterySprite: {fileID: 21300000, guid: 2c5bd654d3ae71e42ac5ab0b11872ed1, type: 3}
+  OrbitalBatterySprite: {fileID: 21300000, guid: ad289e2959f6b414ca2562054a2313fe, type: 3}
   Description: Orbital batteries are mainly a defensive measure but can be used to
     blockade of a wormhole or transwarp hub. Their effectiveness is maximized when
     used in conjunction with other defensive systems, but they are vulnerable to

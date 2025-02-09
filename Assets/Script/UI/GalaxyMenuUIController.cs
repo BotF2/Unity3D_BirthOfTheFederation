@@ -378,27 +378,27 @@ public class GalaxyMenuUIController : MonoBehaviour
                     {
                         case "PowerUnitImage":
                             listOfImages[i].sprite = ThemeManager.Instance.CurrentTheme.PowerPlantImage;
-                            //BuildListUIController.Instance.SetFacilityImages(listOfImages[i], name);
+                  
                             break;
                         case "FactoryImage":
                             listOfImages[i].sprite = ThemeManager.Instance.CurrentTheme.FactoryImage;
-                           //BuildListUIController.Instance.SetFacilityImages(listOfImages[i], name);
+                     
                             break;
                         case "shipyardImage":
                             listOfImages[i].sprite = ThemeManager.Instance.CurrentTheme.ShipyardImage;
-                            //BuildListUIController.Instance.SetFacilityImages(listOfImages[i], name);
+             
                             break;
                         case "ShieldPlantImage":
                             listOfImages[i].sprite = ThemeManager.Instance.CurrentTheme.ShieldImage;
-                           // BuildListUIController.Instance.SetFacilityImages(listOfImages[i], name);
+                 
                             break;
                         case "OrbitalBatteriesImage":
                             listOfImages[i].sprite = ThemeManager.Instance.CurrentTheme.OrbitalBatteriesImage;
-                           // BuildListUIController.Instance.SetFacilityImages(listOfImages[i], name);
+                         
                             break;
                         case "ResearchImage":
                             listOfImages[i].sprite = ThemeManager.Instance.CurrentTheme.ResearchCenterImage;
-                           // BuildListUIController.Instance.SetFacilityImages(listOfImages[i], name);
+                          
                             break;
                         default:
                             break;
@@ -412,7 +412,7 @@ public class GalaxyMenuUIController : MonoBehaviour
                     {
                         case "BuildButton":
                             listButton.onClick.RemoveAllListeners();
-                            listButton.onClick.AddListener(() => sysController.BuildClick(sysController, listButton.name));
+                            listButton.onClick.AddListener(() => sysController.BuildClick(sysController));
                             break;
                         case "FactoryButtonOn":
                             listButton.onClick.RemoveAllListeners();

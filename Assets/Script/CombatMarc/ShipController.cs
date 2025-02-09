@@ -54,7 +54,7 @@ public class ShipController : MonoBehaviour
         //1) player get the ShipController of the ship GO we hit
         //2) player ask your factionOwner (CivManager) 
     }
-    //public void OnShipEncounteredOther(OtherController starSysController)
+    //public void OnShipEncounteredOther(OtherController StarSysController)
     //{
     //    //1) player get the OtheerController of the GO
 

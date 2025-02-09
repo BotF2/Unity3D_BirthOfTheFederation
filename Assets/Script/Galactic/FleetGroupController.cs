@@ -159,10 +159,10 @@ public class FleetGroupController : MonoBehaviour
     public void OnFleetEncounteredStarSys(StarSysController starSysController)
     {
         //????StarSysManager.current.
-        //FleetManager.current.GetFleetGroupInSystemForShipTransfer(starSysController);
-        //CivManager.current.Diplomacy(this.fleetData.OurCivController, starSysController.StarSysData.CurrentCivController);
+        //FleetManager.current.GetFleetGroupInSystemForShipTransfer(StarSysController);
+        //CivManager.current.Diplomacy(this.fleetData.OurCivController, StarSysController.StarSysData.CurrentCivController);
         //// is it our fleet or not? Diplomacy or manage fleets or keep going?
-        //if (starSysController.gameObject == this.FleetData.Destination)
+        //if (StarSysController.gameObject == this.FleetData.Destination)
         //{
         //    /// use fleet enum state
         //    //this.FleetData.Destination = null;

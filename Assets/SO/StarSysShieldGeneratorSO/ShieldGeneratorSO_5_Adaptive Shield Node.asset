@@ -19,6 +19,6 @@ MonoBehaviour:
   StartStarDate: 0
   BuildDuration: 4
   PowerLoad: 2
-  ShieldGeneratorSprite: {fileID: 21300000, guid: 1367260cb779b06409081ec40a1d2e0d, type: 3}
+  ShieldGeneratorSprite: {fileID: 21300000, guid: 298cc62f36e90a34cb90c13a98e7c705, type: 3}
   Description: Adaptive shields capable of resisting most conventional weapons after
     brief exposure.
