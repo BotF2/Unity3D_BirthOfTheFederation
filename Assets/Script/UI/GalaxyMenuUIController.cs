@@ -269,9 +269,10 @@ public class GalaxyMenuUIController : MonoBehaviour
                             OneTMP[i].text = (sysController.StarSysData.PowerStations.Count * sysController.StarSysData.PowerPlantData.PowerOutput).ToString();
                             break;
                         // ToDo: use techLevelInt in power output 
-                        case "NumP Load":
-                            OneTMP[i].text = (sysController.StarSysData.TotalSysPowerLoad.ToString());
-                            break;
+                        //case "NumP Load":
+                        //    //OneTMP[i].text = (sysController.StarSysData.TotalSysPowerLoad.ToString());
+
+                        //    break;
 
                         case "NameFactory":
                             OneTMP[i].text = sysController.StarSysData.FactoryData.Name;
@@ -367,6 +368,7 @@ public class GalaxyMenuUIController : MonoBehaviour
                         default:
                             break;
                     }
+                    UpdateSystemPowerLoad(sysController);
                 }
                 Image[] listOfImages = sysController.StarSysListUIGameObject.GetComponentsInChildren<Image>();
                 for (int i = 0; i < listOfImages.Length; i++)
@@ -465,210 +467,206 @@ public class GalaxyMenuUIController : MonoBehaviour
     }
     public void UpdateFactories(StarSysController sysController, int plusMinus)
     {
-        for (int j = 0; j < sysControllers.Count; j++)
-        { 
-            if (sysController == sysControllers[j])
+        int count = 0;
+        bool justOnce = true;
+        TextMeshProUGUI[] OneTMP = sysController.StarSysListUIGameObject.GetComponentsInChildren<TextMeshProUGUI>();
+        for (int i = 0; i < OneTMP.Length; i++)
+        {
+            OneTMP[i].enabled = true;
+            var itemName = OneTMP[i].name.ToString();
+            int load = 0;
+            // ToDo: work in tech levels
+            switch (itemName)
             {
-                TextMeshProUGUI[] OneTMP = sysController.StarSysListUIGameObject.GetComponentsInChildren<TextMeshProUGUI>();
-                for (int i = 0; i < OneTMP.Length; i++) 
-                {
-                    OneTMP[i].enabled = true;
-                    var itemName = OneTMP[i].name.ToString();
-                    int count = 0;
-                    switch (itemName)
+                case "FactoryLoad":
                     {
-
-                        case "NumFactoryRatio":
-                            foreach (var item in sysController.StarSysData.Factories)
-                            {
-                                TextMeshProUGUI TheText = item.GetComponent<TextMeshProUGUI>();
-                                if (TheText.text == "1") // 1 = on and 0 = off
-                                    count++;
-                            }
-                            OneTMP[i].text = count.ToString() + "/" + (sysController.StarSysData.Factories.Count).ToString();
-                            break;
-                        case "FactoryLoad":
-                            int load = Int32.Parse(OneTMP[i].text);
-                            load += plusMinus * sysController.StarSysData.FactoryData.PowerLoad;
-                            
+                        load = Int32.Parse(OneTMP[i].text);
+                        load += plusMinus * sysController.StarSysData.FactoryData.PowerLoad;
+                        if (justOnce)// increase or decrese the load by plusMinus 
+                        {
+                            justOnce = false;
+                            //int load = Int32.Parse(OneTMP[i].text);
+                            //load += plusMinus * sysController.StarSysData.FactoryData.PowerLoad;
                             OneTMP[i].text = load.ToString();
-                            UpdateSystemPowerLoad(sysController);
-                            break;
-                        default:
-                            break;
+                        }
+                        break;
                     }
-                }
+                case "NumFactoryRatio":
+                    for (int j = 0; j < sysController.StarSysData.Factories.Count; j++)
+                    {
+                        TextMeshProUGUI TheText = sysController.StarSysData.Factories[j].GetComponent<TextMeshProUGUI>();
+                        if (TheText.text == "1")
+                            count++;
+                    }
+                    OneTMP[i].text = count.ToString() + "/" + (sysController.StarSysData.Factories.Count).ToString();
+                    break;
+                default:
+                    break;
             }
         }
+        UpdateSystemPowerLoad(sysController);
     }
     public void UpdateYards(StarSysController sysController, int plusMinus)
     {
-        for (int j = 0; j < sysControllers.Count; j++)
+        int count1 = 0;
+        bool justOnce = true;
+        TextMeshProUGUI[] OneTMP = sysController.StarSysListUIGameObject.GetComponentsInChildren<TextMeshProUGUI>();
+        for (int i = 0; i < OneTMP.Length; i++)
         {
-            if (sysController == sysControllers[j])
+            OneTMP[i].enabled = true;
+            var itemName = OneTMP[i].name.ToString();
+            // ToDo: work in tech levels
+            switch (itemName)
             {
-                TextMeshProUGUI[] OneTMP = sysController.StarSysListUIGameObject.GetComponentsInChildren<TextMeshProUGUI>();
-                for (int i = 0; i < OneTMP.Length; i++)
-                //foreach (var OneTMP[i] in listTMP)
-                {
-                    OneTMP[i].enabled = true;
-                    var itemName = OneTMP[i].name.ToString();
-                    int count1 = 0;
-                    switch (itemName)
+                case "YardLoad":
                     {
-                        case "NumYardsOnRatio":
-
-                            foreach (var item in sysController.StarSysData.Shipyards)
-                            {
-                                TextMeshProUGUI TheText = item.GetComponent<TextMeshProUGUI>();
-                                if (TheText.text == "1")
-                                    count1++;
-                            }
-                            OneTMP[i].text = count1.ToString() + "/" + (sysController.StarSysData.Shipyards.Count).ToString();
-                            break;
-                        case "YardLoad":
+                        if (justOnce)// increase or decrese the load by plusMinus 
+                        {
+                            justOnce = false;
                             int load = Int32.Parse(OneTMP[i].text);
- 
                             load += plusMinus * sysController.StarSysData.ShipyardData.PowerLoad;
-                            
                             OneTMP[i].text = load.ToString();
-                            UpdateSystemPowerLoad(sysController);
-                            break;
-                        default:
-                            break;
+                        }
+                        break;
                     }
-                }
+                case "NumYardsOnRatio":
+
+                    for (int j = 0; j < sysController.StarSysData.Shipyards.Count; j++)
+                    {
+                        TextMeshProUGUI TheText = sysController.StarSysData.Shipyards[j].GetComponent<TextMeshProUGUI>();
+                        if (TheText.text == "1")
+                            count1++;
+                    }
+                    OneTMP[i].text = count1.ToString() + "/" + (sysController.StarSysData.Shipyards.Count).ToString();
+                    break;
+                default:
+                    break;
             }
         }
+        UpdateSystemPowerLoad(sysController);
     }
     public void UpdateShields(StarSysController sysController, int plusMinus)
     {
-        for (int j = 0; j < sysControllers.Count; j++)
+        int count2 = 0;
+        bool justOnce = true;
+        TextMeshProUGUI[] OneTMP = sysController.StarSysListUIGameObject.GetComponentsInChildren<TextMeshProUGUI>();
+        for (int i = 0; i < OneTMP.Length; i++)
         {
-            if (sysController == sysControllers[j])
+            OneTMP[i].enabled = true;
+            var itemName = OneTMP[i].name.ToString();
+            // ToDo: work in tech levels
+            switch (itemName)  
             {
-                TextMeshProUGUI[] OneTMP = sysController.StarSysListUIGameObject.GetComponentsInChildren<TextMeshProUGUI>();
-                for (int i = 0; i < OneTMP.Length; i++) 
-                //foreach (var OneTmp in listTMP)
-                {
-                    OneTMP[i].enabled = true;
-                    var itemName = OneTMP[i].name.ToString();
-                    int count2 = 0;
-                    switch (itemName)
+                case "ShieldLoad":
                     {
-                        case "NumShieldRatio":
-                            foreach (var item in sysController.StarSysData.ShieldGenerators)
-                            {
-                                TextMeshProUGUI TheText = item.GetComponent<TextMeshProUGUI>();
-                                if (TheText.text == "1")
-                                    count2++;
-                            }
-                            OneTMP[i].text = count2.ToString() + "/" + (sysController.StarSysData.ShieldGenerators.Count).ToString();
-                            break;
-                        case "ShieldLoad":
+                        if (justOnce)// increase or decrese the load by plusMinus 
+                        {
+                            justOnce = false;
                             int load = Int32.Parse(OneTMP[i].text);
-
                             load += plusMinus * sysController.StarSysData.ShieldGeneratorData.PowerLoad;
-
                             OneTMP[i].text = load.ToString();
-                            UpdateSystemPowerLoad(sysController);
-                            break;
-                            // ToDo: work in tech levels
-                     
-                        default:
-                            break;
+                        }
+                        break;
                     }
-                }
+                case "NumShieldRatio":
+                    for (int j = 0; j < sysController.StarSysData.ShieldGenerators.Count; j++)
+                    {
+                        TextMeshProUGUI TheText = sysController.StarSysData.ShieldGenerators[j].GetComponent<TextMeshProUGUI>();
+                        if (TheText.text == "1")
+                            count2++;
+                    }
+                    OneTMP[i].text = count2.ToString() + "/" + (sysController.StarSysData.ShieldGenerators.Count).ToString();
+                    break;
+                default:
+                    break;
             }
         }
+        UpdateSystemPowerLoad(sysController);
     }
     public void UpdateOBs(StarSysController sysController, int plusMinus)
     {
-        for (int j = 0; j < sysControllers.Count; j++)
+        int count3 = 0;
+        bool justOnce = true;
+        TextMeshProUGUI[] OneTMP = sysController.StarSysListUIGameObject.GetComponentsInChildren<TextMeshProUGUI>();
+        for (int i = 0; i < OneTMP.Length; i++)
         {
-            if (sysController == sysControllers[j])
+            OneTMP[i].enabled = true;
+            var itemName = OneTMP[i].name.ToString();
+            // ToDo: work in tech levels
+            switch (itemName)
             {
-                TextMeshProUGUI[] OneTMP = sysController.StarSysListUIGameObject.GetComponentsInChildren<TextMeshProUGUI>();
-                for (int i = 0; i < OneTMP.Length; i++)
-                //foreach (var OneTmp in listTMP)
-                {
-                    OneTMP[i].enabled = true;
-                    var itemName = OneTMP[i].name.ToString();
-                    int count3 = 0;
-                    switch (itemName)
+                case "OBLoad":
                     {
-                        case "NumOBRatio":
-                            foreach (var item in sysController.StarSysData.OrbitalBatteries)
-                            {
-                                TextMeshProUGUI TheText = item.GetComponent<TextMeshProUGUI>();
-                                if (TheText.text == "1")
-                                    count3++;
-                            }
-                            OneTMP[i].text = count3.ToString() + "/" + (sysController.StarSysData.OrbitalBatteries.Count).ToString();
-                            break;
-                        case "OBLoad":
+                        if (justOnce)// increase or decrese the load by plusMinus 
+                        {
+                            justOnce = false;
                             int load = Int32.Parse(OneTMP[i].text);
-
                             load += plusMinus * sysController.StarSysData.OrbitalBatteryData.PowerLoad;
-
                             OneTMP[i].text = load.ToString();
-                            UpdateSystemPowerLoad(sysController);
-                            break;
-                            // ToDo: work in tech levels
-                            
-                        default:
-                            break;
+                        }
+                        break;
                     }
-                }
+                case "NumOBRatio":
+                    for (int j = 0; j < sysController.StarSysData.OrbitalBatteries.Count; j++)
+                    {
+                        TextMeshProUGUI TheText = sysController.StarSysData.OrbitalBatteries[j].GetComponent<TextMeshProUGUI>();
+                        if (TheText.text == "1")
+                            count3++;
+                    }
+                    OneTMP[i].text = count3.ToString() + "/" + (sysController.StarSysData.OrbitalBatteries.Count).ToString();
+                    break;
+                default:
+                    break;
             }
         }
+        UpdateSystemPowerLoad(sysController);
     }
     public void UpdateResearchCenters(StarSysController sysController, int plusMinus)
     {
-        for (int j = 0; j < sysControllers.Count; j++)
+        int count4 = 0;
+        bool justOnce = true;
+        TextMeshProUGUI[] OneTMP = sysController.StarSysListUIGameObject.GetComponentsInChildren<TextMeshProUGUI>();
+        for (int i = 0; i < OneTMP.Length; i++)
         {
-            if (sysController == sysControllers[j])
+            OneTMP[i].enabled = true;
+            var itemName = OneTMP[i].name.ToString();
+            // ToDo: work in tech levels
+            switch (itemName)
             {
-                TextMeshProUGUI[] OneTMP = sysController.StarSysListUIGameObject.GetComponentsInChildren<TextMeshProUGUI>();
-                for (int i = 0; i < OneTMP.Length; i++)
-               // foreach (var OneTmp in listTMP)
+                case "ResearchLoad":
                 {
-                    OneTMP[i].enabled = true;
-                    var itemName = OneTMP[i].name.ToString();
-                    int count4 = 0;
-                    switch (itemName)
+                    if (justOnce)// increase or decrese the load by plusMinus 
                     {
-                        case "NumResearchRatio":
-                            foreach (var item in sysController.StarSysData.ResearchCenters)
-                            {
-                                TextMeshProUGUI TheText = item.GetComponent<TextMeshProUGUI>();
-                                if (TheText.text == "1")
-                                    count4++;
-                            }
-                            OneTMP[i].text = count4.ToString() + "/" + (sysController.StarSysData.ResearchCenters.Count).ToString();
-                            break;
-                        case "ResearchLoad":
-                            int load = Int32.Parse(OneTMP[i].text);
-
-                            load += plusMinus * sysController.StarSysData.ResearchCenterData.PowerLoad;
-
-                            OneTMP[i].text = load.ToString();
-                            UpdateSystemPowerLoad(sysController);
-                            break;
-                            // ToDo: work in tech levels
-                            
-                        default:
-                            break;
+                        justOnce = false;
+                        int load = Int32.Parse(OneTMP[i].text);
+                        load += plusMinus * sysController.StarSysData.ResearchCenterData.PowerLoad;
+                        OneTMP[i].text = load.ToString();
                     }
+                    break;
                 }
+                case "NumResearchRatio":
+                {
+                    for (int j = 0; j < sysController.StarSysData.ResearchCenters.Count; j++)
+                    {
+                        TextMeshProUGUI TheText = sysController.StarSysData.ResearchCenters[j].GetComponent<TextMeshProUGUI>();
+                        if (TheText.text == "1")
+                        count4++;
+                    }
+                    OneTMP[i].text = count4.ToString() + "/" + (sysController.StarSysData.ResearchCenters.Count).ToString();
+          
+                    break;
+                }
+                default:
+                    break;
             }
         }
+        
+        UpdateSystemPowerLoad(sysController);
     }
-    private void UpdateSystemPowerLoad(StarSysController sysCon)
+    public void UpdateSystemPowerLoad(StarSysController sysCon)
     {
         TextMeshProUGUI[] OneTMP = sysCon.StarSysListUIGameObject.GetComponentsInChildren<TextMeshProUGUI>();
-        for (int i = 0; i < OneTMP.Length; i++) 
-       // foreach (var OneTmp in listTMP)
+        for (int i = 0; i < OneTMP.Length; i++)
         {
             int techLevelInt = (int)CivManager.Instance.LocalPlayerCivContoller.CivData.TechLevel / 100; // Early Tech level = 100, Supreme = 900;
             OneTMP[i].enabled = true;

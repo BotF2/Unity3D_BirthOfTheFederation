@@ -21,6 +21,30 @@ public class FactoryBuildableItem : MonoBehaviour, IBeginDragHandler, IEndDragHa
     }
     public void OnBeginDrag(PointerEventData eventData)
     {
+        var theDragedScript = eventData.pointerDrag.GetComponent<FactoryBuildableItem>();
+        switch (eventData.pointerDrag.name)
+        {
+            case "ItemPowerPlant":
+                theDragedScript.FacilityType = StarSysFacilities.ShieldGenerator;
+                    break;
+            case "ItemFactory":
+                theDragedScript.FacilityType = StarSysFacilities.ShieldGenerator;
+                break;
+            case "ItemShipyard":
+                theDragedScript.FacilityType = StarSysFacilities.ShieldGenerator;
+                break;
+            case "ItemShieldGenerator":
+                theDragedScript.FacilityType = StarSysFacilities.ShieldGenerator;
+                break;
+            case "ItemOrbitalBattery":
+                theDragedScript.FacilityType = StarSysFacilities.ShieldGenerator;
+                break;
+            case "ItemResearchCenter":
+                theDragedScript.FacilityType = StarSysFacilities.ShieldGenerator;
+                break;
+            default:
+                break;
+        }
         originalParent = transform.parent;
         canvasGroup.blocksRaycasts = false; // allow drag
         transform.SetParent(transform.root); // down list to top layer to be seen
@@ -41,8 +65,38 @@ public class FactoryBuildableItem : MonoBehaviour, IBeginDragHandler, IEndDragHa
         if (eventData.pointerEnter != null && eventData.pointerEnter.CompareTag("FactoryBuildSlot"))
         {
             transform.SetParent(eventData.pointerEnter.transform);
-
-            switch (this.FacilityType)
+            //string nameOfDraged = eventData.pointerDrag.name;
+            var theDragedScript = eventData.pointerDrag.GetComponent<FactoryBuildableItem>();
+            switch (eventData.pointerDrag.name)
+            {
+                case "ItemPowerPlant":
+                case "ItemPowerPlant Variant(Clone)":
+                    theDragedScript.FacilityType = StarSysFacilities.PowerPlanet;
+                    break;
+                case "ItemFactory":
+                case "ItemFactory Variant(Clone)":
+                    theDragedScript.FacilityType = StarSysFacilities.Factory;
+                    break;
+                case "ItemShipyard":
+                case "ItemShipyard Variant(Clone)":
+                    theDragedScript.FacilityType = StarSysFacilities.Shipyard;
+                    break;
+                case "ItemShieldGenerator":
+                case "ItemShieldGenerator Variant(Clone)":
+                    theDragedScript.FacilityType = StarSysFacilities.ShieldGenerator;
+                    break;
+                case "ItemOrbitalBattery":
+                case "ItemOrbitalBattery Variant(Clone)":
+                    theDragedScript.FacilityType = StarSysFacilities.OrbitalBattery;
+                    break;
+                case "ItemResearchCenter":
+                case "ItemResearchCenter Variant(Clone)":
+                    theDragedScript.FacilityType = StarSysFacilities.ResearchCenter;
+                    break;
+                default:
+                    break;
+            }
+            switch (theDragedScript.FacilityType)
             {
                 case StarSysFacilities.PowerPlanet:
                     StarSysManager.Instance.NewImageInEmptyBuildableInventory(StarSysManager.Instance.PowerPlantPrefab, this.StarSysController);
@@ -65,7 +119,6 @@ public class FactoryBuildableItem : MonoBehaviour, IBeginDragHandler, IEndDragHa
                 default:
                     break;
             }
-            //StarSysManager.Instance.NewImageInEmptyBuildableInventory
         }
         else
         {

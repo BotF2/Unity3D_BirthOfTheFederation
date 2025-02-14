@@ -49,7 +49,7 @@ namespace Assets.Core
         public GameObject ShieldGeneratorPrefab;
         public GameObject OrbitalBatteryPrefab;
         public GameObject ResearchCenterPrefab;
-
+        public StarSysController currentActiveSysCon;
         private GameObject powerPlantInventorySlot;
         private GameObject factoryInventorySlot;
         private GameObject shipyardInventorySlot;
@@ -297,7 +297,8 @@ namespace Assets.Core
                             
                             powerPlantData.SysGameObject = newFacilityGO;
                             list.Add(newFacilityGO);
-                        }                        
+                        }  
+                        
                         break;
                     }
                 case "FactoryData":
@@ -711,18 +712,15 @@ namespace Assets.Core
         {
             if (sysController.StarSysData.CurrentOwner == GameController.Instance.GameData.LocalPlayerCivEnum)
             {
+                currentActiveSysCon = sysController;
                 GameObject thisStarSysUIGameObject = (GameObject)Instantiate(sysUIPrefab, new Vector3(0, 0, 0),
                     Quaternion.identity);
                 thisStarSysUIGameObject.layer = 5;
                 sysController.StarSysListUIGameObject = thisStarSysUIGameObject; 
                 thisStarSysUIGameObject.transform.SetParent(contentFolderParent.transform, false); // load into List of systems
-            }
-            
+            }    
         }
-        //public void UpdateSysUI(StarSysController sysController)
-        //{
 
-        //}
         public void InstantiateSysBuildListUI(StarSysController sysCon) // open the build queue UI
         {
             int i = 0;
@@ -830,13 +828,16 @@ namespace Assets.Core
         }
         public void NewImageInEmptyBuildableInventory(GameObject prefab, StarSysController sysCon) 
         {
+            if (sysCon == null)
+                sysCon = currentActiveSysCon;
+
             switch (prefab.name)
             {
                 case "PowerPlantData":
                     GameObject imageObPower = (GameObject)Instantiate(powerPlantInventorySlotPrefab, new Vector3(0, 0, 0),
                         Quaternion.identity);
                     var powerPlantSO = GetPowrPlantSObyCivInt((int)sysCon.StarSysData.CurrentOwner);
-                    imageObPower.GetComponentInChildren<Image>().sprite =  powerPlantSO.PowerPlantSprite;
+                    imageObPower.GetComponentInChildren<Image>().sprite = powerPlantSO.PowerPlantSprite;
                     imageObPower.transform.SetParent(powerPlantInventorySlot.transform, false);
                     break;
                 case "FactoryData":
@@ -878,7 +879,6 @@ namespace Assets.Core
                     break;
             }
         }
-
     }   
 }
 

@@ -31,6 +31,8 @@ namespace Assets.Core
         [SerializeField]
         private List<Transform> sysBuildQueueList;
         private int lastBuildQueueCount = 0;
+        //public int totalPowerOutput;
+        //public int totalPowerLoad;
         private Transform lastBuildingItem;
         private Transform buildingItem;
         private bool building = false;
@@ -89,7 +91,6 @@ namespace Assets.Core
                 }
             }
             else { building = false; }
-
         }
 
         private void Update()
@@ -102,7 +103,6 @@ namespace Assets.Core
                     if (lastBuildQueueCount != buildListGridLayoutGroup.transform.childCount)
                     {
                         GridFactoryQueueUpdate();
-                       // building = false;
                     }
                     else
                     {
@@ -148,17 +148,21 @@ namespace Assets.Core
                                     if (theTextItems[j].name == "NumPUnits")
                                         theTextItems[j].text = this.StarSysData.PowerStations.Count.ToString();
                                     else if (theTextItems[j].name == "NumTotalEOut")
-                                        theTextItems[j].text = ((this.StarSysData.PowerStations.Count) * (this.StarSysData.PowerPlantData.PowerOutput)).ToString();
+                                    {
+                                        this.starSysData.TotalSysPowerOutput = (this.StarSysData.PowerStations.Count) * (this.StarSysData.PowerPlantData.PowerOutput);
+                                        theTextItems[j].text = this.starSysData.TotalSysPowerOutput.ToString();
+                                    }
                                 }
                             }
+                            GalaxyMenuUIController.Instance.UpdateSystemPowerLoad(this);
                             break;
                     
                         case StarSysFacilities.Factory:
                             var factory = (StarSysManager.Instance.AddSystemFacilities(1, StarSysManager.Instance.FactoryPrefab, (int)this.StarSysData.CurrentOwner, this.StarSysData)[0]);
                             this.StarSysData.Factories.Add(factory);
-                            var textOnOff = factory.GetComponent<TextMeshProUGUI>();
-                            textOnOff.enabled = true;
-                            textOnOff.text = "0"; // off 
+                            var textFOnOff = factory.GetComponent<TextMeshProUGUI>();
+                            textFOnOff.enabled = true;
+                            textFOnOff.text = "0"; // off 
                             if (starSysListUIGameObject != null)
                             {
                                 TextMeshProUGUI[] theTextItems = starSysListUIGameObject.GetComponentsInChildren<TextMeshProUGUI>();
@@ -180,18 +184,132 @@ namespace Assets.Core
                                     }
                                 }
                             }
+                            GalaxyMenuUIController.Instance.UpdateSystemPowerLoad(this);
                             break;
                         case StarSysFacilities.Shipyard:
-                            this.StarSysData.Shipyards.Add(StarSysManager.Instance.AddSystemFacilities(1, StarSysManager.Instance.ShipyardPrefab, (int)this.StarSysData.CurrentOwner, this.StarSysData)[0]);
+                            var shipyard = StarSysManager.Instance.AddSystemFacilities(1, StarSysManager.Instance.ShipyardPrefab, (int)this.StarSysData.CurrentOwner, this.StarSysData)[0];
+                            this.StarSysData.Shipyards.Add(shipyard);
+                            var textSyOnOff = shipyard.GetComponent<TextMeshProUGUI>();
+                            textSyOnOff.enabled = true;
+                            textSyOnOff.text = "0"; // off 
+                            if (starSysListUIGameObject != null)
+                            {
+                                TextMeshProUGUI[] theTextItems = starSysListUIGameObject.GetComponentsInChildren<TextMeshProUGUI>();
+                                for (int j = 0; j < theTextItems.Length; j++)
+                                {
+                                    theTextItems[j].enabled = true;
+                                    if (theTextItems[j].name == "YardLoad")
+                                        theTextItems[j].text = ((this.StarSysData.Shipyards.Count) * (this.StarSysData.ShipyardData.PowerLoad)).ToString();
+                                    else if (theTextItems[j].name == "NumYardsOnRatio")
+                                    {
+                                        int num = 0;
+                                        foreach (var item in this.StarSysData.Shipyards)
+                                        {
+                                            TextMeshProUGUI TheText = item.GetComponent<TextMeshProUGUI>();
+                                            if (TheText.text == "1") // 1 = on and 0 = off
+                                                num++;
+                                        }
+                                        theTextItems[j].text = num.ToString() + "/" + (this.StarSysData.Shipyards.Count).ToString();
+                                    }
+                                }
+                            }
+                            GalaxyMenuUIController.Instance.UpdateSystemPowerLoad(this);
                             break;
                         case StarSysFacilities.ShieldGenerator:
-                            this.StarSysData.ShieldGenerators.Add(StarSysManager.Instance.AddSystemFacilities(1, StarSysManager.Instance.ShieldGeneratorPrefab, (int)this.StarSysData.CurrentOwner, this.StarSysData)[0]);
-                            break;
+                            {
+                                var shieldGenerator = StarSysManager.Instance.AddSystemFacilities(1, StarSysManager.Instance.ShieldGeneratorPrefab, (int)this.StarSysData.CurrentOwner, this.StarSysData)[0];
+                                this.StarSysData.ShieldGenerators.Add(shieldGenerator);
+                                var textSGOnOff = shieldGenerator.GetComponent<TextMeshProUGUI>();
+                                textSGOnOff.enabled = true;
+                                textSGOnOff.text = "0"; // off 
+                                if (starSysListUIGameObject != null)
+                                {
+                                    TextMeshProUGUI[] theTextItems = starSysListUIGameObject.GetComponentsInChildren<TextMeshProUGUI>();
+                                    int num = 0;
+                                    foreach (var item in this.StarSysData.ShieldGenerators)
+                                    {
+                                        TextMeshProUGUI TheText = item.GetComponent<TextMeshProUGUI>();
+                                        if (TheText.text == "1") // 1 = on and 0 = off
+                                            num++;
+                                    }
+                                    for (int j = 0; j < theTextItems.Length; j++)
+                                    {
+                                        theTextItems[j].enabled = true;
+                                        if (theTextItems[j].name == "ShieldLoad")
+                                            theTextItems[j].text = (num * (this.StarSysData.ShieldGeneratorData.PowerLoad)).ToString();
+                                        else if (theTextItems[j].name == "NumShieldRatio")
+                                        {
+                                            //int num = 0;
+                                            //foreach (var item in this.StarSysData.ShieldGenerators)
+                                            //{
+                                            //    TextMeshProUGUI TheText = item.GetComponent<TextMeshProUGUI>();
+                                            //    if (TheText.text == "1") // 1 = on and 0 = off
+                                            //        num++;
+                                            //}
+                                            theTextItems[j].text = num.ToString() + "/" + (this.StarSysData.ShieldGenerators.Count).ToString();
+                                        }
+                                    }
+                                }
+                                GalaxyMenuUIController.Instance.UpdateSystemPowerLoad(this);
+                                break;
+                            }
                         case StarSysFacilities.OrbitalBattery:
-                            this.StarSysData.OrbitalBatteries.Add(StarSysManager.Instance.AddSystemFacilities(1, StarSysManager.Instance.OrbitalBatteryPrefab, (int)this.StarSysData.CurrentOwner, this.StarSysData)[0]);
+                            var orbitalBatterie = StarSysManager.Instance.AddSystemFacilities(1, StarSysManager.Instance.OrbitalBatteryPrefab, (int)this.StarSysData.CurrentOwner, this.StarSysData)[0];
+                            this.StarSysData.OrbitalBatteries.Add(orbitalBatterie);
+                            var textOBOnOff = orbitalBatterie.GetComponent<TextMeshProUGUI>();
+                            textOBOnOff.enabled = true;
+                            textOBOnOff.text = "0"; // off 
+                            if (starSysListUIGameObject != null)
+                            {
+                                TextMeshProUGUI[] theTextItems = starSysListUIGameObject.GetComponentsInChildren<TextMeshProUGUI>();
+                                for (int j = 0; j < theTextItems.Length; j++)
+                                {
+                                    theTextItems[j].enabled = true;
+                                    if (theTextItems[j].name == "OBLoad")
+                                        theTextItems[j].text = ((this.StarSysData.OrbitalBatteries.Count) * (this.StarSysData.OrbitalBatteryData.PowerLoad)).ToString();
+                                    else if (theTextItems[j].name == "NumOBRatio")
+                                    {
+                                        int num = 0;
+                                        foreach (var item in this.StarSysData.OrbitalBatteries)
+                                        {
+                                            TextMeshProUGUI TheText = item.GetComponent<TextMeshProUGUI>();
+                                            if (TheText.text == "1") // 1 = on and 0 = off
+                                                num++;
+                                        }
+                                        theTextItems[j].text = num.ToString() + "/" + (this.StarSysData.OrbitalBatteries.Count).ToString();
+                                    }
+                                }
+                            }
+                            GalaxyMenuUIController.Instance.UpdateSystemPowerLoad(this);
                             break;
                         case StarSysFacilities.ResearchCenter:
-                            this.StarSysData.ResearchCenters.Add(StarSysManager.Instance.AddSystemFacilities(1, StarSysManager.Instance.ResearchCenterPrefab, (int)this.StarSysData.CurrentOwner, this.StarSysData)[0]);
+                            var researchCenter = StarSysManager.Instance.AddSystemFacilities(1, StarSysManager.Instance.ResearchCenterPrefab, (int)this.StarSysData.CurrentOwner, this.StarSysData)[0];                            
+                            this.StarSysData.ResearchCenters.Add(researchCenter);
+                            var textRCOnOff = researchCenter.GetComponent<TextMeshProUGUI>();
+                            textRCOnOff.enabled = true;
+                            textRCOnOff.text = "0"; // off 
+                            if (starSysListUIGameObject != null)
+                            {
+                                TextMeshProUGUI[] theTextItems = starSysListUIGameObject.GetComponentsInChildren<TextMeshProUGUI>();
+                                for (int j = 0; j < theTextItems.Length; j++)
+                                {
+                                    theTextItems[j].enabled = true;
+                                    if (theTextItems[j].name == "ResearchLoad")
+                                        theTextItems[j].text = ((this.StarSysData.ResearchCenters.Count) * (this.StarSysData.ResearchCenterData.PowerLoad)).ToString();
+                                    else if (theTextItems[j].name == "NumResearchRatio")
+                                    {
+                                        int num = 0;
+                                        foreach (var item in this.StarSysData.ResearchCenters)
+                                        {
+                                            TextMeshProUGUI TheText = item.GetComponent<TextMeshProUGUI>();
+                                            if (TheText.text == "1") // 1 = on and 0 = off
+                                                num++;
+                                        }
+                                        theTextItems[j].text = num.ToString() + "/" + (this.StarSysData.ResearchCenters.Count).ToString();
+                                    }
+                                }
+                            }
+                            GalaxyMenuUIController.Instance.UpdateSystemPowerLoad(this);
                             break;
                         default:
                             break;
@@ -378,10 +496,17 @@ namespace Assets.Core
                             {
                                 if (StarSysData.Factories[i].GetComponent<TextMeshProUGUI>().text == "0")
                                 {
-                                    StarSysData.Factories[i].GetComponent<TextMeshProUGUI>().text = "1";
-                                    this.StarSysData.TotalSysPowerLoad += StarSysData.FactoryData.PowerLoad;
-                                    GalaxyMenuUIController.Instance.UpdateFactories(this, 1);
-                                    break;
+                                    if (this.StarSysData.TotalSysPowerLoad + StarSysData.FactoryData.PowerLoad <=
+                                        this.StarSysData.TotalSysPowerOutput)
+                                    {
+                                        this.StarSysData.TotalSysPowerLoad += StarSysData.FactoryData.PowerLoad;
+                                        StarSysData.Factories[i].GetComponent<TextMeshProUGUI>().text = "1";
+                                        GalaxyMenuUIController.Instance.UpdateFactories(this, 1);
+                                        
+                                    }
+                                    else
+                                        // // call power overload
+                                        break;
                                 }                              
                             }
                         }
