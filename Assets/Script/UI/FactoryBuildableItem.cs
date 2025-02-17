@@ -25,22 +25,22 @@ public class FactoryBuildableItem : MonoBehaviour, IBeginDragHandler, IEndDragHa
         switch (eventData.pointerDrag.name)
         {
             case "ItemPowerPlant":
-                theDragedScript.FacilityType = StarSysFacilities.ShieldGenerator;
+                theDragedScript.FacilityType = StarSysFacilities.PowerPlanet;
                     break;
             case "ItemFactory":
-                theDragedScript.FacilityType = StarSysFacilities.ShieldGenerator;
+                theDragedScript.FacilityType = StarSysFacilities.Factory;
                 break;
             case "ItemShipyard":
-                theDragedScript.FacilityType = StarSysFacilities.ShieldGenerator;
+                theDragedScript.FacilityType = StarSysFacilities.Shipyard;
                 break;
             case "ItemShieldGenerator":
                 theDragedScript.FacilityType = StarSysFacilities.ShieldGenerator;
                 break;
             case "ItemOrbitalBattery":
-                theDragedScript.FacilityType = StarSysFacilities.ShieldGenerator;
+                theDragedScript.FacilityType = StarSysFacilities.OrbitalBattery;
                 break;
             case "ItemResearchCenter":
-                theDragedScript.FacilityType = StarSysFacilities.ShieldGenerator;
+                theDragedScript.FacilityType = StarSysFacilities.ResearchCenter;
                 break;
             default:
                 break;

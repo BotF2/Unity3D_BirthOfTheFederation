@@ -24,7 +24,7 @@ namespace Assets.Core
         [SerializeField]
         private List<StarSysSO> starSysSOList; // get StarSysSO for civ by int
         [SerializeField]
-        private List<GameObject> buildListPrefabs;
+        private GameObject buildListPrefab;
         [SerializeField]
         private List<PowerPlantSO> powerPlantSOList; // get PowerPlantSO for civ by int
         [SerializeField]
@@ -56,6 +56,8 @@ namespace Assets.Core
         private GameObject shieldGenInventorySlot;
         private GameObject orbitalBatteryInventorySlot;
         private GameObject researchCenterInventorySlot;
+        [SerializeField]
+        private GameObject factoryBuildItemPrefab;
         [SerializeField]
         private GameObject powerPlantInventorySlotPrefab;
         [SerializeField]
@@ -216,12 +218,12 @@ namespace Assets.Core
                 if (GameController.Instance.AreWeLocalPlayer(sysData.CurrentOwner)) 
                 {
                     StarSysSO starSysSO = GetStarSObyInt(civSO.CivInt);
-                    sysData.PowerStations = AddSystemFacilities(starSysSO.PowerStations, PowerPlantPrefab, civSO.CivInt, sysData);
-                    sysData.Factories = AddSystemFacilities(starSysSO.Factories, FactoryPrefab, civSO.CivInt, sysData);
-                    sysData.Shipyards = AddSystemFacilities(starSysSO.Shipyards, ShipyardPrefab, civSO.CivInt, sysData);
-                    sysData.ShieldGenerators = AddSystemFacilities(starSysSO.ShieldGenerators, ShieldGeneratorPrefab, civSO.CivInt, sysData);
-                    sysData.OrbitalBatteries = AddSystemFacilities(starSysSO.OrbitalBatteries, OrbitalBatteryPrefab, civSO.CivInt, sysData);
-                    sysData.ResearchCenters = AddSystemFacilities(starSysSO.ResearchCenters, ResearchCenterPrefab, civSO.CivInt, sysData);
+                    sysData.PowerStations = AddSystemFacilities(starSysSO.PowerStations, PowerPlantPrefab, civSO.CivInt, sysData, 1);
+                    sysData.Factories = AddSystemFacilities(starSysSO.Factories, FactoryPrefab, civSO.CivInt, sysData, 1);
+                    sysData.Shipyards = AddSystemFacilities(starSysSO.Shipyards, ShipyardPrefab, civSO.CivInt, sysData,1);
+                    sysData.ShieldGenerators = AddSystemFacilities(starSysSO.ShieldGenerators, ShieldGeneratorPrefab, civSO.CivInt, sysData,1);
+                    sysData.OrbitalBatteries = AddSystemFacilities(starSysSO.OrbitalBatteries, OrbitalBatteryPrefab, civSO.CivInt, sysData,1);
+                    sysData.ResearchCenters = AddSystemFacilities(starSysSO.ResearchCenters, ResearchCenterPrefab, civSO.CivInt, sysData,1);
                     SetParentForFacilities(starSystemNewGameOb, sysData);
                     NewSystemListUI(starSysController);
                     localPlayerTheme = ThemeManager.Instance.GetLocalPlayerTheme();
@@ -264,7 +266,7 @@ namespace Assets.Core
             }
         }
 
-        public List<GameObject> AddSystemFacilities(int numOf, GameObject prefab, int civInt, StarSysData sysData)
+        public List<GameObject> AddSystemFacilities(int numOf, GameObject prefab, int civInt, StarSysData sysData, int onOff)
         {
             List<GameObject> list = new List<GameObject>();
             switch (prefab.name)
@@ -324,7 +326,7 @@ namespace Assets.Core
                                 Quaternion.identity);
                             newFacilityGO.layer = 5;
                             TextMeshProUGUI On = newFacilityGO.AddComponent<TextMeshProUGUI>();
-                            On.text = "1"; // 0 = off, 1 = on.
+                            On.text = onOff.ToString(); // 0 = off, 1 = on.
                             GetFactoryText(newFacilityGO, factoryData, numOf);
                             newFacilityGO.SetActive(false);
                             factoryData.SysGameObject = newFacilityGO;
@@ -356,7 +358,7 @@ namespace Assets.Core
                                 Quaternion.identity);
                             newFacilityGO.layer = 5;
                             TextMeshProUGUI On = newFacilityGO.AddComponent<TextMeshProUGUI>();
-                            On.text = "1";
+                            On.text = onOff.ToString();
                             GetShipyardText(newFacilityGO, syData, numOf);
                             newFacilityGO.SetActive(false);
                             syData.SysGameObject = newFacilityGO;
@@ -388,7 +390,7 @@ namespace Assets.Core
                                 Quaternion.identity);
                             newFacilityGO.layer = 5;
                             TextMeshProUGUI On = newFacilityGO.AddComponent<TextMeshProUGUI>();
-                            On.text = "1";
+                            On.text = onOff.ToString();
                             GetShieldGText(newFacilityGO, sgData, numOf);
                             newFacilityGO.SetActive(false);
                             sgData.SysGameObject = newFacilityGO;
@@ -420,7 +422,7 @@ namespace Assets.Core
                                 Quaternion.identity);
                             newFacilityGO.layer = 5;
                             TextMeshProUGUI On = newFacilityGO.AddComponent<TextMeshProUGUI>();
-                            On.text = "1";
+                            On.text = onOff.ToString();
                             GetOBText(newFacilityGO, obData, numOf);
                             newFacilityGO.SetActive(false);
                             obData.SysGameObject = newFacilityGO;
@@ -452,7 +454,7 @@ namespace Assets.Core
                                 Quaternion.identity);
                             newFacilityGO.layer = 5;
                             TextMeshProUGUI On = newFacilityGO.AddComponent<TextMeshProUGUI>();
-                            On.text = "1";
+                            On.text = onOff.ToString();
                             GetResearchCenterText(newFacilityGO, researchData, numOf);
                             newFacilityGO.SetActive(false);
                             researchData.SysGameObject = newFacilityGO;
@@ -722,49 +724,23 @@ namespace Assets.Core
         }
 
         public void InstantiateSysBuildListUI(StarSysController sysCon) // open the build queue UI
-        {
-            int i = 0;
-            switch (sysCon.StarSysData.CurrentCivController.CivData.CivEnum)
-            {
-                case CivEnum.FED:
-                    i = 0;
-                    break;
-                case CivEnum.ROM:
-                    i = 1;
-                    break;
-                case CivEnum.KLING:
-                    i = 2;
-                    break;
-                case CivEnum.CARD:
-                    i = 3;
-                    break;
-                case CivEnum.DOM:
-                    i = 4;
-                    break;
-                case CivEnum.BORG:
-                    i = 5;
-                    break;
-                case CivEnum.TERRAN:
-                    i = 0;
-                    break;
-                default:
-                    break;
-
-            }
-            GameObject sysBuildListInstance = (GameObject)Instantiate(buildListPrefabs[i], new Vector3(0, 0, 0),
+        {  
+            GameObject sysBuildListInstance = (GameObject)Instantiate(buildListPrefab, new Vector3(0, -70, 0),
                 Quaternion.identity);
             MenuManager.Instance.SetBuildMenu(sysBuildListInstance);
             sysBuildListInstance.layer = 5; //UI layer
             canvasBuildList.SetActive(true);
-            // getting the FactoryBuildableItems code, set StarSysController/Data for them so the can send image endDrags back.
+            // getting the FactoryBuildableItems code, set StarSysController/Data for them so they can send image endDrags back.
             sysBuildListInstance.transform.SetParent(canvasBuildList.transform, false);
             FactoryBuildableItem[] buildable = sysBuildListInstance.GetComponentsInChildren<FactoryBuildableItem>();
-            buildable[0].StarSysController = sysCon;
+
             for (int m = 0; m < buildable.Length; m++)
             {
                 buildable[m].StarSysController = sysCon;
                 if (buildable[m].name == "ItemPowerPlant")
+                {
                     buildable[m].FacilityType = StarSysFacilities.PowerPlanet;
+                }
                 else if (buildable[m].name == "ItemFactory")
                     buildable[m].FacilityType = StarSysFacilities.Factory;
                 else if (buildable[m].name == "ItemShipyard")
@@ -790,17 +766,18 @@ namespace Assets.Core
             for (int k = 0; k < theGrids.Length; k++)
             {
                 theGrids[k].enabled = true;
-                if (theGrids[k].name == "BuildableQueueFactory")
+                if (theGrids[k].name == "QueueHoldingBuildables")
                 {
-                    sysCon.buildListGridLayoutGroup =theGrids[k];
+                    sysCon.buildListGridLayoutGroup = theGrids[k];
                     sysCon.GridFactoryQueueUpdate();
+                    break;
                 }
             }
             Transform[] theSlots = sysBuildListInstance.GetComponentsInChildren<Transform>();
             for (int l = 0; (l < theSlots.Length); l++)
             {
                 theSlots[l].gameObject.SetActive(true);
-                if(theSlots[l].gameObject.name == "ItemSlotPower")
+                if (theSlots[l].gameObject.name == "ItemSlotPower")
                 {
                     powerPlantInventorySlot = theSlots[l].gameObject;
                 }
@@ -821,11 +798,13 @@ namespace Assets.Core
                     orbitalBatteryInventorySlot = theSlots[l].gameObject;
                 }
                 else if (theSlots[l].gameObject.name == "ItemSlotResearchCnt")
-                { 
+                {
                     researchCenterInventorySlot = theSlots[l].gameObject;
                 }
             }
         }
+
+        
         public void NewImageInEmptyBuildableInventory(GameObject prefab, StarSysController sysCon) 
         {
             if (sysCon == null)
