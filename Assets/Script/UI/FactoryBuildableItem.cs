@@ -65,7 +65,6 @@ public class FactoryBuildableItem : MonoBehaviour, IBeginDragHandler, IEndDragHa
         if (eventData.pointerEnter != null && eventData.pointerEnter.CompareTag("FactoryBuildSlot"))
         {
             transform.SetParent(eventData.pointerEnter.transform);
-            //string nameOfDraged = eventData.pointerDrag.name;
             var theDragedScript = eventData.pointerDrag.GetComponent<FactoryBuildableItem>();
             switch (eventData.pointerDrag.name)
             {

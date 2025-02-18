@@ -235,6 +235,7 @@ public class GalaxyMenuUIController : MonoBehaviour
             {
                 sysController.StarSysListUIGameObject.SetActive(true);
                 sysController.StarSysListUIGameObject.transform.SetParent(sysListContainer.transform, false);
+
                 sysControllers.Add(sysController);// add to list for content (queue) folder systems
                 listOfUIgos.Add(sysController.StarSysListUIGameObject);
                 RectTransform[] minMapDotTransfor = sysController.StarSysListUIGameObject.GetComponentsInChildren<RectTransform>();

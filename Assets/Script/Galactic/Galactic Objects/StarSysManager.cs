@@ -86,6 +86,8 @@ namespace Assets.Core
         private GameObject galaxyCenter;
         private Camera galaxyEventCamera;
         private int starSystemCounter = 0;
+        [SerializeField]
+        private Image theMask;
         //private int systemCount = -1; // Used only in testing multiple systems in Federation
         private void Awake()
         {
@@ -724,12 +726,15 @@ namespace Assets.Core
         }
 
         public void InstantiateSysBuildListUI(StarSysController sysCon) // open the build queue UI
-        {  
+        {
             GameObject sysBuildListInstance = (GameObject)Instantiate(buildListPrefab, new Vector3(0, -70, 0),
                 Quaternion.identity);
             MenuManager.Instance.SetBuildMenu(sysBuildListInstance);
             sysBuildListInstance.layer = 5; //UI layer
+
             canvasBuildList.SetActive(true);
+            //BuildListUIController buildListUIContoller = sysBuildListInstance.GetComponent<BuildListUIController>();
+            //sysCon.BuildListUIController = buildListUIContoller;
             // getting the FactoryBuildableItems code, set StarSysController/Data for them so they can send image endDrags back.
             sysBuildListInstance.transform.SetParent(canvasBuildList.transform, false);
             FactoryBuildableItem[] buildable = sysBuildListInstance.GetComponentsInChildren<FactoryBuildableItem>();
@@ -777,39 +782,96 @@ namespace Assets.Core
             for (int l = 0; (l < theSlots.Length); l++)
             {
                 theSlots[l].gameObject.SetActive(true);
+                //if (theSlots[l].gameObject.name =="")
+                //{
+                //    buildListUIContoller.CurrentProgress = sysCon.RemainingTimeToBuild;
+                //}
                 if (theSlots[l].gameObject.name == "ItemSlotPower")
                 {
                     powerPlantInventorySlot = theSlots[l].gameObject;
+                    Image[] itemPowerPlantImage = theSlots[l].gameObject.GetComponentsInChildren<Image>();
+                    for (int i = 0; i < itemPowerPlantImage.Length; i++)
+                    {
+                        if (itemPowerPlantImage[i].name == "ItemPowerPlant" || itemPowerPlantImage[i].name == "ImagePowerBackground")
+                        {
+                            itemPowerPlantImage[i].sprite = sysCon.StarSysData.PowerPlantData.PowerPlantSprite;
+                        }
+                    }
                 }
                 else if (theSlots[l].gameObject.name == "ItemSlotFactory")
                 {
                     factoryInventorySlot = theSlots[l].gameObject;
+                    Image[] itemFactoryImage = theSlots[l].gameObject.GetComponentsInChildren<Image>();
+                    for (int i = 0; i < itemFactoryImage.Length; i++)
+                    {
+                        if (itemFactoryImage[i].name == "ItemFactory" || itemFactoryImage[i].name == "ImageFactoryBackground")
+                        {
+                            itemFactoryImage[i].sprite = sysCon.StarSysData.FactoryData.FactorySprite;
+
+                        }
+                    }
                 }
                 else if (theSlots[l].gameObject.name == "ItemSlotShipyard")
                 {
                     shipyardInventorySlot = theSlots[l].gameObject;
+                    Image[] itemShipyardImage = theSlots[l].gameObject.GetComponentsInChildren<Image>();
+                    for (int i = 0; i < itemShipyardImage.Length; i++)
+                    {
+                        if (itemShipyardImage[i].name == "ItemShipyard" || itemShipyardImage[i].name == "ImageShipyardBackground")
+                        {
+                            itemShipyardImage[i].sprite = sysCon.StarSysData.ShipyardData.ShipyardSprite;
+                        }
+                    }
                 }
                 else if (theSlots[l].gameObject.name == "ItemSlotShields")
                 {
                     shieldGenInventorySlot = theSlots[l].gameObject;
+                    Image[] itemShieldGenImage = theSlots[l].gameObject.GetComponentsInChildren<Image>();
+                    for (int i = 0; i < itemShieldGenImage.Length; i++)
+                    {
+                        if (itemShieldGenImage[i].name == "ItemShieldGenerator" || itemShieldGenImage[i].name == "ImageShieldBackground")
+                        {
+                            itemShieldGenImage[i].sprite = sysCon.StarSysData.ShieldGeneratorData.ShieldGeneratorSprite;
+                        }
+                    }
                 }
                 else if (theSlots[l].gameObject.name == "ItemSlotOrbitalBattery")
                 {
                     orbitalBatteryInventorySlot = theSlots[l].gameObject;
+                    Image[] itemOBImage = theSlots[l].gameObject.GetComponentsInChildren<Image>();
+                    for (int i = 0; i < itemOBImage.Length; i++)
+                    {
+                        if (itemOBImage[i].name == "ItemOrbitalBattery" || itemOBImage[i].name == "ImageOrbitalBatteryBackground")
+                        {
+                            itemOBImage[i].sprite = sysCon.StarSysData.OrbitalBatteryData.OrbitalBatterySprite;
+                        }
+                    }
                 }
                 else if (theSlots[l].gameObject.name == "ItemSlotResearchCnt")
                 {
                     researchCenterInventorySlot = theSlots[l].gameObject;
+                    Image[] itemResearchCenterImage = theSlots[l].gameObject.GetComponentsInChildren<Image>();
+                    for (int i = 0; i < itemResearchCenterImage.Length; i++)
+                    {
+                        if (itemResearchCenterImage[i].name == "ItemResearchCenter" || itemResearchCenterImage[i].name == "ImageResearchBackground")
+                        {
+                            itemResearchCenterImage[i].sprite = sysCon.StarSysData.ResearchCenterData.ResearchCenterSprite;
+                        }
+                    }
+                }
+                else if (theSlots[l].gameObject.name == "Mask")
+                {
+                    theMask = theSlots[l].gameObject.GetComponent<Image>();
                 }
             }
         }
+        
 
         
         public void NewImageInEmptyBuildableInventory(GameObject prefab, StarSysController sysCon) 
         {
             if (sysCon == null)
                 sysCon = currentActiveSysCon;
-
             switch (prefab.name)
             {
                 case "PowerPlantData":

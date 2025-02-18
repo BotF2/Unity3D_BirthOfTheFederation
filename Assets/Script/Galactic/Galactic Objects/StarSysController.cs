@@ -27,6 +27,7 @@ namespace Assets.Core
         private Canvas canvasToolTip;
         public static event Action<TrekRandomEventSO> TrekEventDisasters;
         public GridLayoutGroup buildListGridLayoutGroup;
+        public GridLayoutGroup shipListGridLayoutGroup;
         [SerializeField]
         private List<Transform> sysBuildQueueList;
         private int lastBuildQueueCount = 0;
@@ -34,9 +35,13 @@ namespace Assets.Core
         private Transform buildingItem;
         private bool building = false;
         private bool starTimer = true;
-        private float starDateOfCompletion = 0f; 
-        [SerializeField]
-        private float remainingTimeToBuild = 1;
+        private float starDateOfCompletion = 0f;
+        private int maxProgress = 1;
+        private int currentProgress =0;
+
+        public Image theMask;
+        public int RemainingTimeToBuild = 1;
+       // public BuildListUIController BuildListUIController;
 
 
         public StarSysController(string name)
@@ -82,7 +87,7 @@ namespace Assets.Core
                 
                 if (buildingItem != lastBuildingItem)
                 {
-                    remainingTimeToBuild = GetBuildTimeDuration(buildingItem.gameObject.GetComponentInChildren<FactoryBuildableItem>().FacilityType);
+                    RemainingTimeToBuild = GetBuildTimeDuration(buildingItem.gameObject.GetComponentInChildren<FactoryBuildableItem>().FacilityType);
                     lastBuildingItem = buildingItem;
                     starTimer = true;
                 }
@@ -92,6 +97,7 @@ namespace Assets.Core
 
         private void Update()
         {
+            GetCurrentFill();
             // Did anything change in the build queue?
             if (GameController.Instance.AreWeLocalPlayer(this.StarSysData.CurrentOwner))
             {
@@ -119,19 +125,24 @@ namespace Assets.Core
             }
             // Are we building anything
             // 
-            if (building && remainingTimeToBuild > 0)
+            if (building && RemainingTimeToBuild > 0)
             {
 
                 if (starTimer)
                 {
-                    starDateOfCompletion = TimeManager.Instance.CurrentStarDate() + remainingTimeToBuild;
+                    maxProgress = RemainingTimeToBuild;
+                    starDateOfCompletion = TimeManager.Instance.CurrentStarDate() + RemainingTimeToBuild;
                     starTimer = false;
+                }
+                else if(TimeManager.Instance.CurrentStarDate() < starDateOfCompletion)
+                {
+                   currentProgress = (int)(starDateOfCompletion - TimeManager.Instance.CurrentStarDate());
                 }
                 else if (TimeManager.Instance.CurrentStarDate() >= starDateOfCompletion)
                 {
                     building = false;
                     starTimer = true;
-                    remainingTimeToBuild = 0f;
+                    RemainingTimeToBuild = 0;
                     buildingItem = null;
                     switch (sysBuildQueueList[0].gameObject.GetComponentInChildren<FactoryBuildableItem>().FacilityType)
                     {
@@ -147,20 +158,20 @@ namespace Assets.Core
                                         theTextItems[j].text = this.StarSysData.PowerStations.Count.ToString();
                                     else if (theTextItems[j].name == "NumTotalEOut")
                                     {
-                                         this.starSysData.TotalSysPowerOutput = (this.StarSysData.PowerStations.Count) * (this.StarSysData.PowerPlantData.PowerOutput);
+                                        this.starSysData.TotalSysPowerOutput = (this.StarSysData.PowerStations.Count) * (this.StarSysData.PowerPlantData.PowerOutput);
                                         theTextItems[j].text = this.starSysData.TotalSysPowerOutput.ToString();
                                     }
                                 }
                             }
                             GalaxyMenuUIController.Instance.UpdateSystemPowerLoad(this);
                             break;
-                    
+
                         case StarSysFacilities.Factory:
                             var factory = (StarSysManager.Instance.AddSystemFacilities(1, StarSysManager.Instance.FactoryPrefab, (int)this.StarSysData.CurrentOwner, this.StarSysData, 0)[0]);
                             AddSysFacility(factory, "FactoryLoad", "NumFactoryRatio", StarSysFacilities.Factory);
                             break;
                         case StarSysFacilities.Shipyard:
-                            var shipyard = StarSysManager.Instance.AddSystemFacilities(1, StarSysManager.Instance.ShipyardPrefab, (int)this.StarSysData.CurrentOwner, this.StarSysData,0)[0];
+                            var shipyard = StarSysManager.Instance.AddSystemFacilities(1, StarSysManager.Instance.ShipyardPrefab, (int)this.StarSysData.CurrentOwner, this.StarSysData, 0)[0];
                             AddSysFacility(shipyard, "YardLoad", "NumYardsOnRatio", StarSysFacilities.Shipyard);
                             break;
                         case StarSysFacilities.ShieldGenerator:
@@ -182,16 +193,24 @@ namespace Assets.Core
                     var imageTransform = sysBuildQueueList[0];
                     imageTransform.SetParent(imageTransform.GetComponent<FactoryBuildableItem>().originalParent, false);
                     if (imageTransform.parent.childCount > 1)
-                    { 
+                    {
                         imageTransform.gameObject.SetActive(false);
                     }
                     sysBuildQueueList.Remove(sysBuildQueueList[0]);
                 }
             }
-            else if (remainingTimeToBuild < 0)
+            else if (RemainingTimeToBuild < 0)
             {
-                remainingTimeToBuild = 0;
+                RemainingTimeToBuild = 0;
 
+            }
+        }
+        private void GetCurrentFill()
+        {
+            if (theMask != null)
+            {
+                float fillAmount = (float)currentProgress / (float)maxProgress;
+                theMask.fillAmount = fillAmount;
             }
         }
         private void AddSysFacility(GameObject faciltyGO, string loadName, string ratioName, StarSysFacilities facilityType )
@@ -267,9 +286,9 @@ namespace Assets.Core
             GalaxyMenuUIController.Instance.UpdateSystemPowerLoad(this);
         }
  
-        public float GetBuildTimeDuration(StarSysFacilities starSysFacilities)
+        public int GetBuildTimeDuration(StarSysFacilities starSysFacilities)
         {
-            float timeDuration = 1;
+            int timeDuration = 1;
             TechLevel ourTechLevel = this.StarSysData.CurrentCivController.CivData.TechLevel;
             switch (starSysFacilities)
             {

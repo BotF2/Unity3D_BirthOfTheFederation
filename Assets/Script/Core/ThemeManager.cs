@@ -72,7 +72,6 @@ public class ThemeManager : MonoBehaviour
                 CurrentTheme = themeSOs[7];
                 break;
         }
-
         imageBackground.color = CurrentTheme.BackgroundColor;
         spriteInsignia.sprite = CurrentTheme.Insignia;
         spriteRace.sprite = CurrentTheme.RaceImage;
