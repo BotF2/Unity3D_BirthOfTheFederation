@@ -86,8 +86,7 @@ namespace Assets.Core
         private GameObject galaxyCenter;
         private Camera galaxyEventCamera;
         private int starSystemCounter = 0;
-        [SerializeField]
-        private Image theMask;
+
         //private int systemCount = -1; // Used only in testing multiple systems in Federation
         private void Awake()
         {
@@ -784,7 +783,7 @@ namespace Assets.Core
                 theSlots[l].gameObject.SetActive(true);
                 //if (theSlots[l].gameObject.name =="")
                 //{
-                //    buildListUIContoller.CurrentProgress = sysCon.RemainingTimeToBuild;
+                //    buildListUIContoller.CurrentProgress = sysCon.TimeToBuild;
                 //}
                 if (theSlots[l].gameObject.name == "ItemSlotPower")
                 {
@@ -859,9 +858,9 @@ namespace Assets.Core
                         }
                     }
                 }
-                else if (theSlots[l].gameObject.name == "Mask")
+                else if (theSlots[l].gameObject.name == "FactoryProgressBar")
                 {
-                    theMask = theSlots[l].gameObject.GetComponent<Image>();
+                    sysCon.SliderBuildProgress = theSlots[l].gameObject.GetComponent<Slider>();
                 }
             }
         }

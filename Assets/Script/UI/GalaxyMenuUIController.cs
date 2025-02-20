@@ -426,6 +426,10 @@ public class GalaxyMenuUIController : MonoBehaviour
                             listButton.onClick.RemoveAllListeners();
                             listButton.onClick.AddListener(() => sysController.BuildClick(sysController));
                             break;
+                        case "ShipButton":
+                            listButton.onClick.RemoveAllListeners();
+                            listButton.onClick.AddListener(() => sysController.ShipClick(sysController));
+                            break;
                         case "FactoryButtonOn":
                             listButton.onClick.RemoveAllListeners();
                             listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));

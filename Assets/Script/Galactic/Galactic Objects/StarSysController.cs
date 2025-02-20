@@ -35,14 +35,11 @@ namespace Assets.Core
         private Transform buildingItem;
         private bool building = false;
         private bool starTimer = true;
-        private float starDateOfCompletion = 0f;
-        private int maxProgress = 1;
-        private int currentProgress =0;
-
-        public Image theMask;
-        public int RemainingTimeToBuild = 1;
-       // public BuildListUIController BuildListUIController;
-
+        public Slider SliderBuildProgress;
+        private float starDateOfCompletion = 1f;
+        private int currentProgress =1;
+        private int startDate = 1;
+        public int TimeToBuild = 1;
 
         public StarSysController(string name)
         {
@@ -87,7 +84,7 @@ namespace Assets.Core
                 
                 if (buildingItem != lastBuildingItem)
                 {
-                    RemainingTimeToBuild = GetBuildTimeDuration(buildingItem.gameObject.GetComponentInChildren<FactoryBuildableItem>().FacilityType);
+                    TimeToBuild = GetBuildTimeDuration(buildingItem.gameObject.GetComponentInChildren<FactoryBuildableItem>().FacilityType);
                     lastBuildingItem = buildingItem;
                     starTimer = true;
                 }
@@ -97,7 +94,6 @@ namespace Assets.Core
 
         private void Update()
         {
-            GetCurrentFill();
             // Did anything change in the build queue?
             if (GameController.Instance.AreWeLocalPlayer(this.StarSysData.CurrentOwner))
             {
@@ -125,24 +121,27 @@ namespace Assets.Core
             }
             // Are we building anything
             // 
-            if (building && RemainingTimeToBuild > 0)
+            if (building && TimeToBuild > 0)
             {
 
                 if (starTimer)
                 {
-                    maxProgress = RemainingTimeToBuild;
-                    starDateOfCompletion = TimeManager.Instance.CurrentStarDate() + RemainingTimeToBuild;
+                    //maxProgress = TimeToBuild;
+                    startDate = TimeManager.Instance.CurrentStarDate();
+                    starDateOfCompletion = TimeManager.Instance.CurrentStarDate() + TimeToBuild;
                     starTimer = false;
                 }
-                else if(TimeManager.Instance.CurrentStarDate() < starDateOfCompletion)
+                else if(TimeManager.Instance.CurrentStarDate() <= starDateOfCompletion)
                 {
-                   currentProgress = (int)(starDateOfCompletion - TimeManager.Instance.CurrentStarDate());
+                   currentProgress = (int)(TimeManager.Instance.CurrentStarDate() - startDate);
+                   SetBuildProgress((float)currentProgress / (float)TimeToBuild);
                 }
                 else if (TimeManager.Instance.CurrentStarDate() >= starDateOfCompletion)
                 {
                     building = false;
+                    SetBuildProgress(0);
                     starTimer = true;
-                    RemainingTimeToBuild = 0;
+                    TimeToBuild = 0;
                     buildingItem = null;
                     switch (sysBuildQueueList[0].gameObject.GetComponentInChildren<FactoryBuildableItem>().FacilityType)
                     {
@@ -199,20 +198,13 @@ namespace Assets.Core
                     sysBuildQueueList.Remove(sysBuildQueueList[0]);
                 }
             }
-            else if (RemainingTimeToBuild < 0)
+            else if (TimeToBuild < 0)
             {
-                RemainingTimeToBuild = 0;
+                TimeToBuild = 0;
 
             }
         }
-        private void GetCurrentFill()
-        {
-            if (theMask != null)
-            {
-                float fillAmount = (float)currentProgress / (float)maxProgress;
-                theMask.fillAmount = fillAmount;
-            }
-        }
+
         private void AddSysFacility(GameObject faciltyGO, string loadName, string ratioName, StarSysFacilities facilityType )
         {
             int newFacilityLoad = 0;
@@ -439,6 +431,13 @@ namespace Assets.Core
             MenuManager.Instance.OpenMenu(Menu.BuildMenu, null);
 
         }
+        public void ShipClick(StarSysController sysCon) // open shipbuild list UI
+        {
+            StarSysManager.Instance.InstantiateSysBuildListUI(this);
+
+            MenuManager.Instance.OpenMenu(Menu.BuildMenu, null);
+
+        }
         public void FacilityOnClick(StarSysController sysCon, string name)
         {
             if (this == sysCon)
@@ -648,5 +647,10 @@ namespace Assets.Core
             TimeManager.Instance.OnRandomSpecialEvent -= DoDisaster;
             OnOffSysFacilityEvents.current.FacilityOnClick -= FacilityOnClick;
         }
+        public void SetBuildProgress(float progress)
+        {
+            SliderBuildProgress.value = progress;
+        }
     }
+
 }
