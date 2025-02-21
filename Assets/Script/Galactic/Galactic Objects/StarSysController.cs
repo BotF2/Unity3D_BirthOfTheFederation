@@ -308,10 +308,7 @@ namespace Assets.Core
             return timeDuration;
             //ToD use tech level to set features of system production, defence....
         }
-        private void RunCoundownClock(float duration)
-        {
 
-        }
         public void AddToFactoryQueue(GameObject facilityPrefab)
         {
             GameObject systemFacilityGO = (GameObject)Instantiate(facilityPrefab, new Vector3(0, 0, 0),
@@ -424,14 +421,14 @@ namespace Assets.Core
                 }
             }
         }
-        public void BuildClick(StarSysController sysCon) // open build list UI
+        public void BuildClick(StarSysController sysCon) // open build and ship build list UI
         {
             StarSysManager.Instance.InstantiateSysBuildListUI(this);
 
             MenuManager.Instance.OpenMenu(Menu.BuildMenu, null);
 
         }
-        public void ShipClick(StarSysController sysCon) // open shipbuild list UI
+        public void ShipClick(StarSysController sysCon) // open build and ship build list UI
         {
             StarSysManager.Instance.InstantiateSysBuildListUI(this);
 

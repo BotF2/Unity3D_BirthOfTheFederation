@@ -732,11 +732,11 @@ namespace Assets.Core
             sysBuildListInstance.layer = 5; //UI layer
 
             canvasBuildList.SetActive(true);
-            //BuildListUIController buildListUIContoller = sysBuildListInstance.GetComponent<BuildListUIController>();
-            //sysCon.BuildListUIController = buildListUIContoller;
+
             // getting the FactoryBuildableItems code, set StarSysController/Data for them so they can send image endDrags back.
             sysBuildListInstance.transform.SetParent(canvasBuildList.transform, false);
             FactoryBuildableItem[] buildable = sysBuildListInstance.GetComponentsInChildren<FactoryBuildableItem>();
+
 
             for (int m = 0; m < buildable.Length; m++)
             {
@@ -781,10 +781,7 @@ namespace Assets.Core
             for (int l = 0; (l < theSlots.Length); l++)
             {
                 theSlots[l].gameObject.SetActive(true);
-                //if (theSlots[l].gameObject.name =="")
-                //{
-                //    buildListUIContoller.CurrentProgress = sysCon.TimeToBuild;
-                //}
+
                 if (theSlots[l].gameObject.name == "ItemSlotPower")
                 {
                     powerPlantInventorySlot = theSlots[l].gameObject;
@@ -864,8 +861,6 @@ namespace Assets.Core
                 }
             }
         }
-        
-
         
         public void NewImageInEmptyBuildableInventory(GameObject prefab, StarSysController sysCon) 
         {
