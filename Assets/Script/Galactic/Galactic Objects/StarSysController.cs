@@ -193,7 +193,7 @@ namespace Assets.Core
                     imageTransform.SetParent(imageTransform.GetComponent<FactoryBuildableItem>().originalParent, false);
                     if (imageTransform.parent.childCount > 1)
                     {
-                        imageTransform.gameObject.SetActive(false);
+                        Destroy(imageTransform.gameObject);
                     }
                     sysBuildQueueList.Remove(sysBuildQueueList[0]);
                 }
