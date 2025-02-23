@@ -59,7 +59,7 @@ public class FactorySOImporter : EditorWindow
                 if (fields.Length >= 7) // Ensure there are enough fields
                 {
                     FactorySO factorySO = CreateInstance<FactorySO>();
-                    ////StarSysInt	,	factorySO Enum	,	factorySO Short TextComponent	,	factorySO Long TextComponent	,	Home System	,	Triat One	,	Trait Two	,	factorySO Image	,	Insginia	,	Population	,	Credits	,	TechLevel Points
+                    ////StarSysInt	,	factorySO Enum	,	factorySO Short TextComponent	,	factorySO Long TextComponent	,	Home System	,	Triat One	,	Trait Two	,	factorySO Image	,	Insginia	,	Population	,	Credits	,	StartingTechLevel Points
                     factorySO.CivInt = int.Parse(fields[0]);
                     factorySO.TechLevel = (TechLevel)int.Parse(fields[1]);
                     factorySO.FacilitiesEnumType = (StarSysFacilities)int.Parse(fields[2]);

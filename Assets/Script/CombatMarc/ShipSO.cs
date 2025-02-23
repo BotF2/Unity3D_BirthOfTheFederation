@@ -15,7 +15,7 @@ public class ShipSO : ScriptableObject
     public int HullMaxHealth;
     public int TorpedoDamage;
     public int BeamDamage;
-    public int Price;
+    public int BuildDuration;
     public GameObject Mesh;
 
 }

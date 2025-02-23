@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShipName: TERRAN_CRUISER_II(CLONE)
   CivEnum: 6
-  TechLevel: 1
+  TechLevel: 300
   ShipType: 2
   shipSprite: {fileID: 21300000, guid: 7c73ab7a100936045963fb7ca99ee6f1, type: 3}
   shipColor: {r: 0, g: 0, b: 0, a: 0}
@@ -23,5 +23,5 @@ MonoBehaviour:
   HullMaxHealth: 33
   TorpedoDamage: 30
   BeamDamage: 30
-  Price: 148
+  BuildDuration: 10
   Mesh: {fileID: 0}

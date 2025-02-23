@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShipName: ANDORIANS_DESTROYER_I(CLONE)
   CivEnum: 13
-  TechLevel: 0
+  TechLevel: 100
   ShipType: 1
   shipSprite: {fileID: 21300000, guid: 6b7f9d7808f4e084e9b77973058f84be, type: 3}
   shipColor: {r: 0, g: 0, b: 0, a: 0}
@@ -23,5 +23,5 @@ MonoBehaviour:
   HullMaxHealth: 15
   TorpedoDamage: 15
   BeamDamage: 15
-  Price: 78
+  BuildDuration: 8
   Mesh: {fileID: 0}

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShipName: CARD_TRANSPORT_I(CLONE)
   CivEnum: 3
-  TechLevel: 0
+  TechLevel: 100
   ShipType: 5
   shipSprite: {fileID: 21300000, guid: 4a33ac84199af434188834869389e2a3, type: 3}
   shipColor: {r: 0, g: 0, b: 0, a: 0}
@@ -23,5 +23,5 @@ MonoBehaviour:
   HullMaxHealth: 15
   TorpedoDamage: 0
   BeamDamage: 0
-  Price: 78
+  BuildDuration: 9
   Mesh: {fileID: 0}

@@ -28,10 +28,10 @@ namespace Assets.Core
             TimeManager.Instance.OnStardateSpecialEvent = DoStardateEvent;
             diplomacyManager = DiplomacyManager.Instance;
         }
-        public void UpdateCredits()
-        {
-            CivData.Credits += 50;
-        }
+        //public void UpdateCredits()
+        //{
+        //    CivData.Credits += 50;
+        //}
         //public void Diplomacy(CivController civPartyOne, CivController civPartyTwo, GameObject hitGO)
         //{
         //    if (!civPartyOne.CivData.CivControllersWeKnow.Contains(civPartyTwo))

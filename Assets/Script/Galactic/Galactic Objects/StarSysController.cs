@@ -40,6 +40,18 @@ namespace Assets.Core
         private int currentProgress =1;
         private int startDate = 1;
         public int TimeToBuild = 1;
+        [SerializeField]
+        private List<Transform> shipBuildQueueList;
+        private int lastShipBuildQueueCount = 0;
+        private Transform lastShipBuildingItem;
+        private Transform shipBuildingItem;
+        private bool shipBuilding = false;
+        private bool shipStartTimer = true;
+        public Slider ShipSliderBuildProgress;
+        private float shipStarDateOfCompletion = 1f;
+        private int shipCurrentProgress = 1;
+        private int shipStartDate = 1;
+        public int ShipTimeToBuild = 1;
 
         public StarSysController(string name)
         {
@@ -91,6 +103,42 @@ namespace Assets.Core
             }
             else { building = false; }
         }
+        public void GridShipQueueUpdate()
+        {
+            lastShipBuildQueueCount = this.shipListGridLayoutGroup.transform.childCount;
+            Debug.Log("Ship Grid layout has changed!");
+            // update syscontroller list to match buildShipListBridLayoutGroup.tranform children
+            foreach (Transform child in shipListGridLayoutGroup.transform)
+            {
+                if (!shipBuildQueueList.Contains(child))
+                    shipBuildQueueList.Add(child);
+            }
+
+            //Does shipBuildQueueList have extra items not in buildListGridLayoutGroup children?
+            foreach (Transform child in shipListGridLayoutGroup.transform)
+            {
+                if (!shipBuildQueueList.Contains(child))
+                    shipBuildQueueList.Remove(child);
+            }
+
+            // Sort by Y position (top to bottom), then X position (left to right)
+            shipBuildQueueList = shipBuildQueueList.OrderByDescending(t => t.localPosition.y)
+                                    .ThenBy(t => t.localPosition.x)
+                                    .ToList();
+            if (shipBuildQueueList.Count > 0 && shipBuildQueueList[0] != null)
+            {
+                shipBuildingItem = shipBuildQueueList[0];
+                shipBuilding = true;
+
+                if (shipBuildingItem != lastShipBuildingItem)
+                {
+                    ShipTimeToBuild = shipBuildingItem.gameObject.GetComponentInChildren<ShipBuildableItem>().BuildDuration;
+                    lastShipBuildingItem = shipBuildingItem;
+                    shipStartTimer = true;
+                }
+            }
+            else { building = false; }
+        }
 
         private void Update()
         {
@@ -118,6 +166,27 @@ namespace Assets.Core
                         }
                     }
                 }
+                if (shipListGridLayoutGroup != null)
+                {
+                    if (lastShipBuildQueueCount != shipListGridLayoutGroup.transform.childCount)
+                    {
+                        GridShipQueueUpdate();
+                    }
+                    else
+                    {
+                        int counter = 0;
+                        foreach (var item in shipListGridLayoutGroup.transform)
+                        {
+                            if (shipBuildQueueList[counter] != null && (Transform)item != shipBuildQueueList[counter])
+                            {
+                                GridShipQueueUpdate();
+                                break;
+                            }
+                            else
+                                counter++;
+                        }
+                    }
+                }
             }
             // Are we building anything
             // 
@@ -126,7 +195,6 @@ namespace Assets.Core
 
                 if (starTimer)
                 {
-                    //maxProgress = TimeToBuild;
                     startDate = TimeManager.Instance.CurrentStarDate();
                     starDateOfCompletion = TimeManager.Instance.CurrentStarDate() + TimeToBuild;
                     starTimer = false;
@@ -202,6 +270,62 @@ namespace Assets.Core
             {
                 TimeToBuild = 0;
 
+            }
+            if (shipBuilding && ShipTimeToBuild > 0)
+            {
+                if (shipStartTimer)
+                {
+                    shipStartDate = TimeManager.Instance.CurrentStarDate();
+                    shipStarDateOfCompletion = TimeManager.Instance.CurrentStarDate() + ShipTimeToBuild;
+                    shipStartTimer = false;
+                }
+                else if (TimeManager.Instance.CurrentStarDate() <= shipStarDateOfCompletion)
+                {
+                    shipCurrentProgress = (int)(TimeManager.Instance.CurrentStarDate() - shipStartDate);
+                    SetShipBuildProgress((float)shipCurrentProgress / (float)ShipTimeToBuild);
+                }
+                else if (TimeManager.Instance.CurrentStarDate() >= shipStarDateOfCompletion)
+                {
+                    shipBuilding = false;
+                    SetShipBuildProgress(0);
+                    shipStartTimer = true;
+                    ShipTimeToBuild = 0;
+                    shipBuildingItem = null;
+                    switch (shipBuildQueueList[0].gameObject.GetComponentInChildren<ShipBuildableItem>().ShipType)
+                    {
+                        case ShipType.Scout:
+                           // StarSysManager.Instance.AddShipToSystem(this, ShipType.Scout);
+                            break;
+                        //case ShipType.Destroyer:
+                        //    StarSysManager.Instance.AddShipToSystem(this, ShipType.Destroyer);
+                        //    break;
+                        //case ShipType.Cruiser:
+                        //    StarSysManager.Instance.AddShipToSystem(this, ShipType.Cruiser);
+                        //    break;
+                        //case ShipType.LtCruiser:
+                        //    StarSysManager.Instance.AddShipToSystem(this, ShipType.LtCruiser);
+                        //    break;
+                        //case ShipType.HvyCruiser:
+                        //    StarSysManager.Instance.AddShipToSystem(this, ShipType.HvyCruiser);
+                        //    break;
+                        //case ShipType.Transport:
+                        //    StarSysManager.Instance.AddShipToSystem(this, ShipType.Transport);
+                        //    break;
+                        default:
+                            break;
+                    }
+                    var imageTransform = shipBuildQueueList[0];
+                    imageTransform.SetParent(imageTransform.GetComponent<ShipBuildableItem>().originalParent, false);
+                    if (imageTransform.parent.childCount > 1)
+                    {
+                        Destroy(imageTransform.gameObject);
+                    }
+                    shipBuildQueueList.Remove(shipBuildQueueList[0]);
+                }
+            }
+            else if (ShipTimeToBuild < 0)
+            {
+                ShipTimeToBuild = 0;
             }
         }
 
@@ -308,6 +432,7 @@ namespace Assets.Core
             return timeDuration;
             //ToD use tech level to set features of system production, defence....
         }
+
 
         public void AddToFactoryQueue(GameObject facilityPrefab)
         {
@@ -647,6 +772,10 @@ namespace Assets.Core
         public void SetBuildProgress(float progress)
         {
             SliderBuildProgress.value = progress;
+        }
+        public void SetShipBuildProgress(float progress)
+        {
+            ShipSliderBuildProgress.value = progress;
         }
     }
 

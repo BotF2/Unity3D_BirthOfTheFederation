@@ -1,13 +1,9 @@
 using FischlWorks_FogWar;
 using System.Collections.Generic;
-using TMPro;
-using UnityEditor;
-using UnityEngine;
-using System.Diagnostics;
-using Unity.VisualScripting;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 using System.Linq;
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
 
 namespace Assets.Core
 {
@@ -56,6 +52,19 @@ namespace Assets.Core
         private GameObject shieldGenInventorySlot;
         private GameObject orbitalBatteryInventorySlot;
         private GameObject researchCenterInventorySlot;
+        public GameObject scoutPrefab;
+        public GameObject destroyerPrefab;
+        public GameObject cruiserPrefab;
+        public GameObject ltCruiserPrefab;
+        public GameObject hvyCruiserPrefab;
+        public GameObject transportPrefab;
+        private GameObject scoutInventorySlot;
+        private GameObject destroyerInventorySlot;
+        private GameObject cruiserInventorySlot;
+        private GameObject ltCruiserInventorySlot;
+        private GameObject hvyCruiserInventorySlot;
+        private GameObject transportInventorySlot;
+
         [SerializeField]
         private GameObject factoryBuildItemPrefab;
         [SerializeField]
@@ -100,6 +109,75 @@ namespace Assets.Core
         public void Start()
         {
             galaxyEventCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>() as Camera;
+
+        }
+        public void SetShipBuildPerfabs(CivEnum localCiv)
+        {
+          
+            TechLevel techLevel = CivManager.Instance.LocalPlayerCivContoller.CivData.TechLevel;
+            List<ShipSO> shipSOList = new List<ShipSO>();
+            switch (techLevel)
+            {
+                case TechLevel.EARLY:
+                    shipSOList = ShipManager.Instance.ShipSOListTech0.Where(x => x.CivEnum == localCiv && x.TechLevel == TechLevel.EARLY).ToList();
+                    break;
+                case TechLevel.DEVELOPED:
+                    shipSOList = ShipManager.Instance.ShipSOListTech1.Where(x => x.CivEnum == localCiv && x.TechLevel == TechLevel.DEVELOPED).ToList();
+                    break;
+                case TechLevel.ADVANCED:
+                    shipSOList = ShipManager.Instance.ShipSOListTech2.Where(x => x.CivEnum == localCiv && x.TechLevel == TechLevel.ADVANCED).ToList();
+                    break;
+                case TechLevel.SUPREME:
+                    shipSOList = ShipManager.Instance.ShipSOListTech3.Where(x => x.CivEnum == localCiv && x.TechLevel == TechLevel.SUPREME).ToList();
+                    break;
+                default:
+                    break;
+            }
+            for (int i = 0; i < shipSOList.Count; i++)
+            {
+                if (shipSOList[i].ShipType == ShipType.Scout)
+                {
+                    var shipBuildScript = scoutPrefab.GetComponent<ShipBuildableItem>();
+                    shipBuildScript.BuildDuration = shipSOList[i].BuildDuration;
+                    shipBuildScript.ShipSprite = shipSOList[i].shipSprite;
+                    scoutPrefab.GetComponent<Image>().sprite = shipSOList[i].shipSprite;
+                }
+                else if (shipSOList[i].ShipType == ShipType.Destroyer)
+                {
+                    var shipBuildScript = destroyerPrefab.GetComponent<ShipBuildableItem>();
+                    shipBuildScript.BuildDuration = shipSOList[i].BuildDuration;
+                    shipBuildScript.ShipSprite = shipSOList[i].shipSprite;
+                    destroyerPrefab.GetComponent<Image>().sprite = shipSOList[i].shipSprite;
+                }
+                else if (shipSOList[i].ShipType == ShipType.Cruiser)
+                {
+                    var shipBuildScript = cruiserPrefab.GetComponent<ShipBuildableItem>();
+                    shipBuildScript.BuildDuration = shipSOList[i].BuildDuration;
+                    shipBuildScript.ShipSprite = shipSOList[i].shipSprite;
+                    cruiserPrefab.GetComponent<Image>().sprite = shipSOList[i].shipSprite;
+                }
+                else if (shipSOList[i].ShipType == ShipType.LtCruiser)
+                {
+                    var shipBuildScript = ltCruiserPrefab.GetComponent<ShipBuildableItem>();
+                    shipBuildScript.BuildDuration = shipSOList[i].BuildDuration;
+                    shipBuildScript.ShipSprite = shipSOList[i].shipSprite;
+                    ltCruiserPrefab.GetComponent<Image>().sprite = shipSOList[i].shipSprite;
+                }
+                else if (shipSOList[i].ShipType == ShipType.HvyCruiser)
+                {
+                    var shipBuildScript = hvyCruiserPrefab.GetComponent<ShipBuildableItem>();
+                    shipBuildScript.BuildDuration = shipSOList[i].BuildDuration;
+                    shipBuildScript.ShipSprite = shipSOList[i].shipSprite;
+                    hvyCruiserPrefab.GetComponent<Image>().sprite = shipSOList[i].shipSprite;
+                }
+                else if (shipSOList[i].ShipType == ShipType.Transport)
+                {
+                    var shipBuildScript = transportPrefab.GetComponent<ShipBuildableItem>();
+                    shipBuildScript.BuildDuration = shipSOList[i].BuildDuration;
+                    shipBuildScript.ShipSprite = shipSOList[i].shipSprite;
+                    transportPrefab.GetComponent<Image>().sprite = shipSOList[i].shipSprite;
+                }
+            }
         }
         public void SysDataFromSO(List<CivSO> civSOList)
         {
@@ -270,6 +348,7 @@ namespace Assets.Core
         public List<GameObject> AddSystemFacilities(int numOf, GameObject prefab, int civInt, StarSysData sysData, int onOff)
         {
             List<GameObject> list = new List<GameObject>();
+            //******Tech level*********
             switch (prefab.name)
             {
                 // "SysName" not done here. See in each system ribbon is set in GalaxyMenuUIController without a facility game object needed
@@ -774,6 +853,11 @@ namespace Assets.Core
                 {
                     sysCon.buildListGridLayoutGroup = theGrids[k];
                     sysCon.GridFactoryQueueUpdate();
+                }
+                else if (theGrids[k].name == "QueueHoldingBuildableShips")
+                {
+                    sysCon.shipListGridLayoutGroup = theGrids[k];
+                    sysCon.GridShipQueueUpdate();
                     break;
                 }
             }
@@ -781,85 +865,219 @@ namespace Assets.Core
             for (int l = 0; (l < theSlots.Length); l++)
             {
                 theSlots[l].gameObject.SetActive(true);
+                switch (theSlots[l].gameObject.name)
+                {
+                    case "ItemSlotPower":
+                        {
+                            powerPlantInventorySlot = theSlots[l].gameObject;
+                            Image[] itemPowerPlantImage = theSlots[l].gameObject.GetComponentsInChildren<Image>();
+                            for (int i = 0; i < itemPowerPlantImage.Length; i++)
+                            {
+                                if (itemPowerPlantImage[i].name == "ItemPowerPlant" || itemPowerPlantImage[i].name == "ImagePowerBackground")
+                                {
+                                    itemPowerPlantImage[i].sprite = sysCon.StarSysData.PowerPlantData.PowerPlantSprite;
+                                }
+                            }
+                            break;
+                        }
+                    case "ItemSlotFactory":
+                        {
+                            factoryInventorySlot = theSlots[l].gameObject;
+                            Image[] itemFactoryImage = theSlots[l].gameObject.GetComponentsInChildren<Image>();
+                            for (int i = 0; i < itemFactoryImage.Length; i++)
+                            {
+                                if (itemFactoryImage[i].name == "ItemFactory" || itemFactoryImage[i].name == "ImageFactoryBackground")
+                                {
+                                    itemFactoryImage[i].sprite = sysCon.StarSysData.FactoryData.FactorySprite;
+                                }
+                            }
+                            break;
 
-                if (theSlots[l].gameObject.name == "ItemSlotPower")
-                {
-                    powerPlantInventorySlot = theSlots[l].gameObject;
-                    Image[] itemPowerPlantImage = theSlots[l].gameObject.GetComponentsInChildren<Image>();
-                    for (int i = 0; i < itemPowerPlantImage.Length; i++)
-                    {
-                        if (itemPowerPlantImage[i].name == "ItemPowerPlant" || itemPowerPlantImage[i].name == "ImagePowerBackground")
-                        {
-                            itemPowerPlantImage[i].sprite = sysCon.StarSysData.PowerPlantData.PowerPlantSprite;
                         }
-                    }
-                }
-                else if (theSlots[l].gameObject.name == "ItemSlotFactory")
-                {
-                    factoryInventorySlot = theSlots[l].gameObject;
-                    Image[] itemFactoryImage = theSlots[l].gameObject.GetComponentsInChildren<Image>();
-                    for (int i = 0; i < itemFactoryImage.Length; i++)
-                    {
-                        if (itemFactoryImage[i].name == "ItemFactory" || itemFactoryImage[i].name == "ImageFactoryBackground")
+                    case "ItemSlotShipyard":
                         {
-                            itemFactoryImage[i].sprite = sysCon.StarSysData.FactoryData.FactorySprite;
-
+                            shipyardInventorySlot = theSlots[l].gameObject;
+                            Image[] itemShipyardImage = theSlots[l].gameObject.GetComponentsInChildren<Image>();
+                            for (int i = 0; i < itemShipyardImage.Length; i++)
+                            {
+                                if (itemShipyardImage[i].name == "ItemShipyard" || itemShipyardImage[i].name == "ImageShipyardBackground")
+                                {
+                                    itemShipyardImage[i].sprite = sysCon.StarSysData.ShipyardData.ShipyardSprite;
+                                }
+                            }
+                            break;
                         }
-                    }
-                }
-                else if (theSlots[l].gameObject.name == "ItemSlotShipyard")
-                {
-                    shipyardInventorySlot = theSlots[l].gameObject;
-                    Image[] itemShipyardImage = theSlots[l].gameObject.GetComponentsInChildren<Image>();
-                    for (int i = 0; i < itemShipyardImage.Length; i++)
-                    {
-                        if (itemShipyardImage[i].name == "ItemShipyard" || itemShipyardImage[i].name == "ImageShipyardBackground")
+                    case "ItemSlotShields":
                         {
-                            itemShipyardImage[i].sprite = sysCon.StarSysData.ShipyardData.ShipyardSprite;
+                            shieldGenInventorySlot = theSlots[l].gameObject;
+                            Image[] itemShieldGenImage = theSlots[l].gameObject.GetComponentsInChildren<Image>();
+                            for (int i = 0; i < itemShieldGenImage.Length; i++)
+                            {
+                                if (itemShieldGenImage[i].name == "ItemShieldGenerator" || itemShieldGenImage[i].name == "ImageShieldBackground")
+                                {
+                                    itemShieldGenImage[i].sprite = sysCon.StarSysData.ShieldGeneratorData.ShieldGeneratorSprite;
+                                }
+                            }
+                            break;
                         }
-                    }
-                }
-                else if (theSlots[l].gameObject.name == "ItemSlotShields")
-                {
-                    shieldGenInventorySlot = theSlots[l].gameObject;
-                    Image[] itemShieldGenImage = theSlots[l].gameObject.GetComponentsInChildren<Image>();
-                    for (int i = 0; i < itemShieldGenImage.Length; i++)
-                    {
-                        if (itemShieldGenImage[i].name == "ItemShieldGenerator" || itemShieldGenImage[i].name == "ImageShieldBackground")
+                    case "ItemSlotOrbitalBattery":
                         {
-                            itemShieldGenImage[i].sprite = sysCon.StarSysData.ShieldGeneratorData.ShieldGeneratorSprite;
+                            orbitalBatteryInventorySlot = theSlots[l].gameObject;
+                            Image[] itemOBImage = theSlots[l].gameObject.GetComponentsInChildren<Image>();
+                            for (int i = 0; i < itemOBImage.Length; i++)
+                            {
+                                if (itemOBImage[i].name == "ItemOrbitalBattery" || itemOBImage[i].name == "ImageOrbitalBatteryBackground")
+                                {
+                                    itemOBImage[i].sprite = sysCon.StarSysData.OrbitalBatteryData.OrbitalBatterySprite;
+                                }
+                            }
+                            break;
                         }
-                    }
-                }
-                else if (theSlots[l].gameObject.name == "ItemSlotOrbitalBattery")
-                {
-                    orbitalBatteryInventorySlot = theSlots[l].gameObject;
-                    Image[] itemOBImage = theSlots[l].gameObject.GetComponentsInChildren<Image>();
-                    for (int i = 0; i < itemOBImage.Length; i++)
-                    {
-                        if (itemOBImage[i].name == "ItemOrbitalBattery" || itemOBImage[i].name == "ImageOrbitalBatteryBackground")
+                    case "ItemSlotResearchCnt":
                         {
-                            itemOBImage[i].sprite = sysCon.StarSysData.OrbitalBatteryData.OrbitalBatterySprite;
+                            researchCenterInventorySlot = theSlots[l].gameObject;
+                            Image[] itemResearchCenterImage = theSlots[l].gameObject.GetComponentsInChildren<Image>();
+                            for (int i = 0; i < itemResearchCenterImage.Length; i++)
+                            {
+                                if (itemResearchCenterImage[i].name == "ItemResearchCenter" || itemResearchCenterImage[i].name == "ImageResearchBackground")
+                                {
+                                    itemResearchCenterImage[i].sprite = sysCon.StarSysData.ResearchCenterData.ResearchCenterSprite;
+                                }
+                            }
+                            break;
                         }
-                    }
-                }
-                else if (theSlots[l].gameObject.name == "ItemSlotResearchCnt")
-                {
-                    researchCenterInventorySlot = theSlots[l].gameObject;
-                    Image[] itemResearchCenterImage = theSlots[l].gameObject.GetComponentsInChildren<Image>();
-                    for (int i = 0; i < itemResearchCenterImage.Length; i++)
-                    {
-                        if (itemResearchCenterImage[i].name == "ItemResearchCenter" || itemResearchCenterImage[i].name == "ImageResearchBackground")
+                    case "FactoryProgressBar":
                         {
-                            itemResearchCenterImage[i].sprite = sysCon.StarSysData.ResearchCenterData.ResearchCenterSprite;
+                            sysCon.SliderBuildProgress = theSlots[l].gameObject.GetComponent<Slider>();
+                            break;
                         }
-                    }
-                }
-                else if (theSlots[l].gameObject.name == "FactoryProgressBar")
-                {
-                    sysCon.SliderBuildProgress = theSlots[l].gameObject.GetComponent<Slider>();
+                    case "Cruiser (TMP)":
+                        {
+                            if (sysCon.StarSysData.CurrentCivController.CivData.TechLevel == TechLevel.EARLY || sysCon.StarSysData.CurrentCivController.CivData.TechLevel == TechLevel.SUPREME)
+                            {
+                                theSlots[l].gameObject.SetActive(false);
+                                break;
+                            }
+                            else theSlots[l].gameObject.SetActive(true);
+                            break;
+                        }
+                    case "Lt Cruiser (TMP)":
+                    case "Hv Cruiser (TMP)":
+                        {
+                            if (sysCon.StarSysData.CurrentCivController.CivData.TechLevel != TechLevel.SUPREME)
+                            {
+                                theSlots[l].gameObject.SetActive(false);
+                                break;
+                            }
+                            else theSlots[l].gameObject.SetActive(true);
+                            break;
+                        }
+                    case "ItemSlotScout":
+                        {
+                            string localPlayer = GameController.Instance.GameData.LocalPlayerCivEnum.ToString();
+                            scoutInventorySlot = theSlots[l].gameObject;
+                            Image[] itemScoutImage = theSlots[l].gameObject.GetComponentsInChildren<Image>();
+                            for (int i = 0; i < itemScoutImage.Length; i++)
+                            {
+                                if (itemScoutImage[i].name == "ItemScout" || itemScoutImage[i].name == "ImageScoutBackground")
+                                {
+                                    itemScoutImage[i].sprite = scoutPrefab.GetComponent<ShipBuildableItem>().ShipSprite;
+                                }
+                            }
+                            break;
+                        }
+                    case "ItemSlotDestroyer":
+                        {
+                            string localPlayer = GameController.Instance.GameData.LocalPlayerCivEnum.ToString();
+                            destroyerInventorySlot = theSlots[l].gameObject;
+                            Image[] itemDestroyerImage = theSlots[l].gameObject.GetComponentsInChildren<Image>();
+                            for (int i = 0; i < itemDestroyerImage.Length; i++)
+                            {
+                                if (itemDestroyerImage[i].name == "ItemDestroyer" || itemDestroyerImage[i].name == "ImageDestroyerBackground")
+                                {
+                                    itemDestroyerImage[i].sprite = destroyerPrefab.GetComponent<ShipBuildableItem>().ShipSprite;
+                                }
+                            }
+                            break;
+                        }
+                    case "ItemSlotCruiser":
+                        {
+                            if (sysCon.StarSysData.CurrentCivController.CivData.TechLevel == TechLevel.EARLY || sysCon.StarSysData.CurrentCivController.CivData.TechLevel == TechLevel.SUPREME)
+                            {
+                                theSlots[l].gameObject.SetActive(false);
+                                break;
+                            }
+                            else theSlots[l].gameObject.SetActive(true);
+                            string localPlayer = GameController.Instance.GameData.LocalPlayerCivEnum.ToString();
+                            cruiserInventorySlot = theSlots[l].gameObject;
+                            Image[] itemCruiserImage = theSlots[l].gameObject.GetComponentsInChildren<Image>();
+                            for (int i = 0; i < itemCruiserImage.Length; i++)
+                            {
+                                if (itemCruiserImage[i].name == "ItemCruiser" || itemCruiserImage[i].name == "ImageCruiserBackground")
+                                {
+                                    itemCruiserImage[i].sprite = cruiserPrefab.GetComponent<ShipBuildableItem>().ShipSprite;
+                                }
+                            }
+                            break;
+                        }
+                    case "ItemSlotLtCruiser":
+                        {
+                            if (sysCon.StarSysData.CurrentCivController.CivData.TechLevel != TechLevel.SUPREME)
+                            {
+                                theSlots[l].gameObject.SetActive(false);
+                                break;
+                            }
+                            else theSlots[l].gameObject.SetActive(true);
+                            string localPlayer = GameController.Instance.GameData.LocalPlayerCivEnum.ToString();
+                            ltCruiserInventorySlot = theSlots[l].gameObject;
+                            Image[] itemCruiserImage = theSlots[l].gameObject.GetComponentsInChildren<Image>();
+                            for (int i = 0; i < itemCruiserImage.Length; i++)
+                            {
+                                if (itemCruiserImage[i].name == "ItemLtCruiser" || itemCruiserImage[i].name == "ImageLtCruiserBackground")
+                                {
+                                    itemCruiserImage[i].sprite = ltCruiserPrefab.GetComponent<ShipBuildableItem>().ShipSprite;
+                                }
+                            }
+                            break;
+                        }
+                    case "ItemSlotHvyCruiser":
+                        {
+                            if (sysCon.StarSysData.CurrentCivController.CivData.TechLevel != TechLevel.SUPREME)
+                            {
+                                theSlots[l].gameObject.SetActive(false);
+                                break;
+                            }
+                            else theSlots[l].gameObject.SetActive(true);
+                            hvyCruiserInventorySlot = theSlots[l].gameObject;
+                            Image[] itemCruiserImage = theSlots[l].gameObject.GetComponentsInChildren<Image>();
+                            for (int i = 0; i < itemCruiserImage.Length; i++)
+                            {
+                                if (itemCruiserImage[i].name == "ItemHvyCruiser" || itemCruiserImage[i].name == "ImageHvyCruiserBackground")
+                                {
+                                    itemCruiserImage[i].sprite = hvyCruiserPrefab.GetComponent<ShipBuildableItem>().ShipSprite;
+                                }
+                            }
+                            break;
+                        }
+                    case "ItemSlotTransport":
+                        {
+                            string localPlayer = GameController.Instance.GameData.LocalPlayerCivEnum.ToString();
+                            transportInventorySlot = theSlots[l].gameObject;
+                            Image[] itemCruiserImage = theSlots[l].gameObject.GetComponentsInChildren<Image>();
+                            for (int i = 0; i < itemCruiserImage.Length; i++)
+                            {
+                                if (itemCruiserImage[i].name == "ItemTransport" || itemCruiserImage[i].name == "ImageTransportBackground")
+                                {
+                                    itemCruiserImage[i].sprite = transportPrefab.GetComponent<ShipBuildableItem>().ShipSprite;
+                                }
+                            }
+                            break;
+                        }
+                    default:
+                        break;
                 }
             }
+
         }
         
         public void NewImageInEmptyBuildableInventory(GameObject prefab, StarSysController sysCon) 
@@ -909,6 +1127,46 @@ namespace Assets.Core
                     var researchSO = GetResearchCenterSObyCivInt((int)sysCon.StarSysData.CurrentOwner);
                     imageObRC.GetComponentInChildren<Image>().sprite = researchSO.ResearchCenterSprite;
                     imageObRC.transform.SetParent(researchCenterInventorySlot.transform, false);
+                    break;
+                default:
+                    break;
+            }
+        }
+        public void NewImageInEmptyShipBuildableInventory(ShipType shiptype)
+        {
+            switch (shiptype)
+            {
+                case ShipType.Scout:
+                    GameObject ItemSGO = (GameObject)Instantiate(scoutPrefab, new Vector3(0, 0, 0),
+                        Quaternion.identity);
+                    ItemSGO.transform.SetParent(scoutInventorySlot.transform, false);
+                    break;
+                case ShipType.Destroyer:
+                    GameObject ItemDGO = (GameObject)Instantiate(destroyerPrefab, new Vector3(0, 0, 0),
+                       Quaternion.identity);
+                    ItemDGO.transform.SetParent(destroyerInventorySlot.transform, false);
+                    break;
+                case ShipType.Cruiser:
+                    GameObject cruiserItemGO = (GameObject)Instantiate(cruiserPrefab, new Vector3(0, 0, 0),
+                        Quaternion.identity);
+                    cruiserItemGO.transform.SetParent(cruiserInventorySlot.transform, false);
+                    break;
+                case ShipType.LtCruiser:
+                    GameObject ltCruiserItemGO = (GameObject)Instantiate(ltCruiserPrefab, new Vector3(0, 0, 0),
+                        Quaternion.identity);
+                    ltCruiserItemGO.transform.SetParent(ltCruiserInventorySlot.transform, false);
+                    break;
+                case ShipType.HvyCruiser:
+                    GameObject hvyCruiserItemGO = (GameObject)Instantiate(hvyCruiserPrefab, new Vector3(0, 0, 0),
+                        Quaternion.identity);
+
+                    hvyCruiserItemGO.transform.SetParent(hvyCruiserInventorySlot.transform, false);
+                    break;
+                case ShipType.Transport:
+                    GameObject transportItemGO = (GameObject)Instantiate(transportPrefab, new Vector3(0, 0, 0),
+                        Quaternion.identity);
+
+                    transportItemGO.transform.SetParent(transportInventorySlot.transform, false);
                     break;
                 default:
                     break;

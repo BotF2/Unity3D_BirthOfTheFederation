@@ -60,7 +60,7 @@ public class ResearchCenterSOImporter : EditorWindow
                 if (fields.Length >= 7) // Ensure there are enough fields
                 {
                     ResearchCenterSO ResearchCenterSO = CreateInstance<ResearchCenterSO>();
-                    ////StarSysInt	,	ResearchCenterSO Enum	,	ResearchCenterSO Short TextComponent	,	ResearchCenterSO Long TextComponent	,	Home System	,	Triat One	,	Trait Two	,	ResearchCenterSO Image	,	Insginia	,	Population	,	Credits	,	TechLevel Points
+                    ////StarSysInt	,	ResearchCenterSO Enum	,	ResearchCenterSO Short TextComponent	,	ResearchCenterSO Long TextComponent	,	Home System	,	Triat One	,	Trait Two	,	ResearchCenterSO Image	,	Insginia	,	Population	,	Credits	,	StartingTechLevel Points
                     ResearchCenterSO.CivInt = int.Parse(fields[0]);
                     ResearchCenterSO.TechLevel = (TechLevel)int.Parse(fields[1]);
                     ResearchCenterSO.FacilitiesEnumType = (StarSysFacilities)int.Parse(fields[2]);

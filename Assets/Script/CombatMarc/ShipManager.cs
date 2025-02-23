@@ -49,7 +49,7 @@ public class ShipManager : MonoBehaviour
                 shipData.HullMaxHealth = shipSO.HullMaxHealth;
                 shipData.TorpedoDamage = shipSO.TorpedoDamage;
                 shipData.BeamDamage = shipSO.BeamDamage;
-                shipData.Price = shipSO.Price;
+                shipData.Price = shipSO.BuildDuration;
                 GameObject shipNewGameOb = (GameObject)Instantiate(shipControllerPrefab, new Vector3(0, 0, 0),
                                 Quaternion.identity);
                 shipDataGO.transform.SetParent(shipNewGameOb.transform);

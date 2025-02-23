@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShipName: ROM_TRANSPORT_III(CLONE)
   CivEnum: 1
-  TechLevel: 2
+  TechLevel: 600
   ShipType: 5
   shipSprite: {fileID: 21300000, guid: 6e1617a97a6251e41bfa2afd5039efd0, type: 3}
   shipColor: {r: 0, g: 0, b: 0, a: 0}
@@ -23,5 +23,5 @@ MonoBehaviour:
   HullMaxHealth: 33
   TorpedoDamage: 0
   BeamDamage: 0
-  Price: 78
+  BuildDuration: 10
   Mesh: {fileID: 0}

@@ -57,7 +57,7 @@ public class StarSysSOImporter : EditorWindow
                 if (fields.Length >= 8) // Ensure there are enough fields
                 {
                     StarSysSO StarSysSO = CreateInstance<StarSysSO>();
-                    ////StarSysInt	,	StarSysSO Enum	,	StarSysSO Short TextComponent	,	StarSysSO Long TextComponent	,	Home System	,	Triat One	,	Trait Two	,	StarSysSO Image	,	Insginia	,	Population	,	Credits	,	TechLevel Points
+                    ////StarSysInt	,	StarSysSO Enum	,	StarSysSO Short TextComponent	,	StarSysSO Long TextComponent	,	Home System	,	Triat One	,	Trait Two	,	StarSysSO Image	,	Insginia	,	Population	,	Credits	,	StartingTechLevel Points
                     StarSysSO.StarSysInt = int.Parse(fields[0]);
                     StarSysSO.Position = new Vector3((int.Parse(fields[1])) / 10, (int.Parse(fields[2])) / 10, (int.Parse(fields[3])) / 10);
                     StarSysSO.SysName = fields[4];

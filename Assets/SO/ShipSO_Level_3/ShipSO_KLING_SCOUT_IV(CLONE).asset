@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShipName: KLING_SCOUT_IV(CLONE)
   CivEnum: 2
-  TechLevel: 3
+  TechLevel: 900
   ShipType: 0
   shipSprite: {fileID: 21300000, guid: 3d4f692fb27896e4eb7cef39f0e9eb19, type: 3}
   shipColor: {r: 0, g: 0, b: 0, a: 0}
@@ -23,5 +23,5 @@ MonoBehaviour:
   HullMaxHealth: 30
   TorpedoDamage: 33
   BeamDamage: 33
-  Price: 146
+  BuildDuration: 6
   Mesh: {fileID: 0}

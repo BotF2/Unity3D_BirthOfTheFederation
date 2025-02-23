@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShipName: CARD_HVYCRUISER_IV(CLONE)
   CivEnum: 3
-  TechLevel: 3
-  ShipType: 5
+  TechLevel: 900
+  ShipType: 4
   shipSprite: {fileID: 21300000, guid: 65d97cab8419d6c4681310f91696edcb, type: 3}
   shipColor: {r: 0, g: 0, b: 0, a: 0}
   maxWarpFactor: 9
@@ -23,5 +23,5 @@ MonoBehaviour:
   HullMaxHealth: 56
   TorpedoDamage: 60
   BeamDamage: 60
-  Price: 251
+  BuildDuration: 9
   Mesh: {fileID: 0}

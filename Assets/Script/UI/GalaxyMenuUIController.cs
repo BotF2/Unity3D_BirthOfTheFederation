@@ -380,7 +380,7 @@ public class GalaxyMenuUIController : MonoBehaviour
                 Image[] listOfImages = sysController.StarSysListUIGameObject.GetComponentsInChildren<Image>();
                 for (int i = 0; i < listOfImages.Length; i++)
                 {
-                   // int techLevelInt = (int)CivManager.Instance.LocalPlayerCivContoller.CivData.TechLevel / 100; // Early Tech level = 100, Supreme = 900;
+                   // int techLevelInt = (int)CivManager.Instance.LocalPlayerCivContoller.CivData.StartingTechLevel / 100; // Early Tech level = 100, Supreme = 900;
                     listOfImages[i].enabled = true;
                     var name = listOfImages[i].name.ToString();
                     switch (name)

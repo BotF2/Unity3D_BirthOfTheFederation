@@ -191,7 +191,7 @@ namespace Assets.Core
                 civData.CivRaceSprite = civSOList[i].CivImage;
                 civData.InsigniaSprite = civSOList[i].Insignia;
                 civData.Population = civSOList[i].Population;
-                civData.Credits = civSOList[i].Credits;
+               //civData.Credits = civSOList[i].Credits;
                 civData.TechPoints = civSOList[i].TechPoints;
                 civData.TechLevel = MainMenuUIController.Instance.MainMenuData.SelectedTechLevel;
                 civData.Playable = civSOList[i].Playable;
@@ -201,14 +201,14 @@ namespace Assets.Core
                 if ((int)civData.CivEnum <= 6) // playable races, major civilization
                 {
                     civData.Population = 20;
-                    civData.Credits = 300;
-                    civData.TechPoints = 100; // set to tech level early at 100 points
-                    civData.TechLevel = TechLevel.EARLY;
+                    //civData.Credits = 300;
+                    //civData.TechPoints = 100; // set to tech level early at 100 points
+                    //civData.TechLevel = TechLevel.EARLY;
                 }
                 else if ((int)civData.CivEnum >= 159)// uninhabited system
                 {
                     civData.Population = 0;
-                    civData.Credits = 0;
+                    //civData.Credits = 0;
                     civData.TechPoints = 0;
                 }
                 CivDataInGameList.Add(civData);
@@ -237,6 +237,7 @@ namespace Assets.Core
 
             {
                 SetLocalPlayerCivController(civController);
+                StarSysManager.Instance.SetShipBuildPerfabs(civController.CivData.CivEnum);
             }
 
         }

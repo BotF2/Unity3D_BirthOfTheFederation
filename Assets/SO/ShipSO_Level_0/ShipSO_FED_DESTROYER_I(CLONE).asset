@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShipName: FED_DESTROYER_I(CLONE)
   CivEnum: 0
-  TechLevel: 0
+  TechLevel: 100
   ShipType: 1
   shipSprite: {fileID: 21300000, guid: 66ff3af9d301b9a44bf8304a811a29e5, type: 3}
   shipColor: {r: 0, g: 0, b: 0, a: 0}
@@ -23,5 +23,5 @@ MonoBehaviour:
   HullMaxHealth: 15
   TorpedoDamage: 15
   BeamDamage: 15
-  Price: 78
+  BuildDuration: 8
   Mesh: {fileID: 0}

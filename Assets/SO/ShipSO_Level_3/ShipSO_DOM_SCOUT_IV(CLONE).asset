@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShipName: DOM_SCOUT_IV(CLONE)
   CivEnum: 4
-  TechLevel: 3
+  TechLevel: 900
   ShipType: 0
   shipSprite: {fileID: 21300000, guid: 5d07ff9360275e9458963ae4d71561a6, type: 3}
   shipColor: {r: 0, g: 0, b: 0, a: 0}
@@ -23,5 +23,5 @@ MonoBehaviour:
   HullMaxHealth: 33
   TorpedoDamage: 30
   BeamDamage: 30
-  Price: 148
+  BuildDuration: 8
   Mesh: {fileID: 0}

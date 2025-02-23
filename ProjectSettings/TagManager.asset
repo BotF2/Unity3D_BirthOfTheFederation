@@ -34,15 +34,9 @@ TagManager:
   - PreFabGalaxyDestinationDropdown
   - DestroyTemp
   - GalaxyImage
-  - InventorySlot
   - FactoryBuildSlot
-  - Slot1Factory
-  - Slot2Factory
-  - Slot0Factory
-  - Slot3Factory
-  - Slot4Factory
-  - Slot5Factory
-  - FactoryQueueSlot
+  - ShipBuildSlot
+  - InventorySlot
   layers:
   - Default
   - TransparentFX

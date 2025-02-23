@@ -60,7 +60,53 @@ public class ShipSOImporter : EditorWindow
                 shipSO.HullMaxHealth = int.Parse(fields[4]);
                 shipSO.TorpedoDamage = int.Parse(fields[6]);
                 shipSO.BeamDamage = int.Parse(fields[8]);
-                shipSO.Price = int.Parse(fields[10]);
+                // build duration does not use the csv value, currently calcuated below, consider adding in tech level factor
+                //int baseValue = 1000;
+                int civFactor = 0;
+                switch (shipSO.CivEnum)
+                {
+                    case CivEnum.FED:
+                    case CivEnum.ROM:
+                    case CivEnum.KLING:
+                    case CivEnum.TERRAN:
+                        break;
+                    case CivEnum.CARD:
+                        civFactor = -1;
+                        break;
+                    case CivEnum.DOM:
+                        civFactor = +2;
+                        break;
+                    case CivEnum.BORG:
+                        civFactor = +4;
+                        break;
+
+                    default:
+                        break;
+                }
+                switch (shipSO.ShipType)
+                {
+                    case ShipType.Scout:
+                        shipSO.BuildDuration = 6 + civFactor;
+                        break;
+                    case ShipType.Destroyer:
+                        shipSO.BuildDuration = 8 + civFactor;
+                        break;
+                    case ShipType.Cruiser:
+                        shipSO.BuildDuration = 10 + civFactor;
+                        break;
+                    case ShipType.LtCruiser:
+                        shipSO.BuildDuration = 10 + civFactor;
+                        break;
+                    case ShipType.HvyCruiser:
+                        shipSO.BuildDuration = 14 + civFactor;
+                        break;
+                    case ShipType.Transport:
+                        shipSO.BuildDuration = 10 + civFactor;
+                        break;
+                    default:
+                        break;
+                }
+                //shipSO.BuildDuration = int.Parse(fields[10]);
                 shipSO.maxWarpFactor = float.Parse(fields[11]);
                 if (shipSO.TechLevel == TechLevel.EARLY)
                     assetPath = $"Assets/SO/ShipSO_Level_0/ShipSO_{shipSO.ShipName}.asset";

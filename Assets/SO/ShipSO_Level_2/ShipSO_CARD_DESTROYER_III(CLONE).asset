@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShipName: CARD_DESTROYER_III(CLONE)
   CivEnum: 3
-  TechLevel: 2
+  TechLevel: 600
   ShipType: 1
   shipSprite: {fileID: 21300000, guid: 29a8e56274ccb9045b3f893cb9890d3e, type: 3}
   shipColor: {r: 0, g: 0, b: 0, a: 0}
@@ -23,5 +23,5 @@ MonoBehaviour:
   HullMaxHealth: 26
   TorpedoDamage: 30
   BeamDamage: 30
-  Price: 131
+  BuildDuration: 7
   Mesh: {fileID: 0}

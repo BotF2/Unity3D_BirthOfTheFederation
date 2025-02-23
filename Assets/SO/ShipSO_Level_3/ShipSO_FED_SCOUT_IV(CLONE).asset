@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShipName: FED_SCOUT_IV(CLONE)
   CivEnum: 0
-  TechLevel: 3
+  TechLevel: 900
   ShipType: 0
   shipSprite: {fileID: 21300000, guid: 24b861b183d9dfa4aad9f49a9a3db16f, type: 3}
   shipColor: {r: 0, g: 0, b: 0, a: 0}
@@ -23,5 +23,5 @@ MonoBehaviour:
   HullMaxHealth: 33
   TorpedoDamage: 30
   BeamDamage: 30
-  Price: 148
+  BuildDuration: 6
   Mesh: {fileID: 0}

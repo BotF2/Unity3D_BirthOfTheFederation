@@ -62,7 +62,7 @@ public class ThemeSOImporter : EditorWindow
                 //var name = Resources.Load<Sprite>("Insignias/" + fields[2].ToUpper());
                 //if (name == null) { name = Resources.Load<Sprite>("Insignias/" + fields[2].ToUpper() + "S"); }
                 //themeSO.Insignia = name;
-                //themeSO.CivTechLevel = TechLevel.EARLY;// TechLevel enum
+                //themeSO.CivTechLevel = StartingTechLevel.EARLY;// StartingTechLevel enum
                 //themeSO.HasWarp = bool.Parse(fields[11]);
                 //themeSO.Playable = bool.Parse(fields[12]);
                 //themeSO.Decription = "ToDo, connect to libaray of themeSO descriptions";

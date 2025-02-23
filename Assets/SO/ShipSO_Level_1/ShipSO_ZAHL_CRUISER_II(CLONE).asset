@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShipName: ZAHL_CRUISER_II(CLONE)
   CivEnum: 155
-  TechLevel: 1
+  TechLevel: 300
   ShipType: 2
   shipSprite: {fileID: 21300000, guid: 5d07ff9360275e9458963ae4d71561a6, type: 3}
   shipColor: {r: 0, g: 0, b: 0, a: 0}
@@ -23,5 +23,5 @@ MonoBehaviour:
   HullMaxHealth: 15
   TorpedoDamage: 15
   BeamDamage: 15
-  Price: 78
+  BuildDuration: 10
   Mesh: {fileID: 0}

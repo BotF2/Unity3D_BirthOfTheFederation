@@ -470,24 +470,28 @@ namespace Assets.Core
                     EarlyToggle.OnSelect(null);
                     EarlyToggle = activeTechLevelToggle;
                     SetTechLevel((int)TechLevel.EARLY);
+                    GameController.Instance.GameData.StartingTechLevel = TechLevel.EARLY;
                     break;
                 case "TOGGLE_DEVELOPED":
                     DevelopedToggle.isOn = true;
                     DevelopedToggle.OnSelect(null);
                     DevelopedToggle = activeTechLevelToggle;
                     SetTechLevel((int)TechLevel.DEVELOPED);
+                    GameController.Instance.GameData.StartingTechLevel = TechLevel.DEVELOPED;
                     break;
                 case "TOGGLE_ADVANCED":
                     AdvancedToggle.isOn = true;
                     AdvancedToggle.OnSelect(null);
                     AdvancedToggle = activeTechLevelToggle;
                     SetTechLevel((int)TechLevel.ADVANCED);
+                    GameController.Instance.GameData.StartingTechLevel = TechLevel.ADVANCED;
                     break;
                 case "TOGGLE_SUPREME":
                     SupremeToggle.isOn = true;
                     SupremeToggle.OnSelect(null);
                     SupremeToggle = activeTechLevelToggle;
                     SetTechLevel((int)TechLevel.SUPREME);
+                    GameController.Instance.GameData.StartingTechLevel = TechLevel.SUPREME;
                     break;
                 default:
                     break;

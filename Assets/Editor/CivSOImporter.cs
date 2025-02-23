@@ -62,7 +62,7 @@ public class CivSOImporter : EditorWindow
                 var name = Resources.Load<Sprite>("Insignias/" + fields[2].ToUpper());
                 if (name == null) { name = Resources.Load<Sprite>("Insignias/" + fields[2].ToUpper() + "S"); }
                 civSO.Insignia = name;
-                civSO.CivTechLevel = TechLevel.EARLY;// TechLevel enum
+                civSO.CivTechLevel = TechLevel.EARLY;// StartingTechLevel enum
                 civSO.HasWarp = bool.Parse(fields[11]);
                 civSO.Playable = bool.Parse(fields[12]);
                 civSO.Decription = "ToDo, connect to libaray of civSO descriptions";

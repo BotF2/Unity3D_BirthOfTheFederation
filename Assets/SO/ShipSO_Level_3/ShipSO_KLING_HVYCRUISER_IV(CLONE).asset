@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShipName: KLING_HVYCRUISER_IV(CLONE)
   CivEnum: 2
-  TechLevel: 3
-  ShipType: 5
+  TechLevel: 900
+  ShipType: 4
   shipSprite: {fileID: 21300000, guid: d67f2f140b568884fa3d893820052e7a, type: 3}
   shipColor: {r: 0, g: 0, b: 0, a: 0}
   maxWarpFactor: 9
@@ -23,5 +23,5 @@ MonoBehaviour:
   HullMaxHealth: 60
   TorpedoDamage: 66
   BeamDamage: 66
-  Price: 272
+  BuildDuration: 10
   Mesh: {fileID: 0}

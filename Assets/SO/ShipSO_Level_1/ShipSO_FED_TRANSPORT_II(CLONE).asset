@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShipName: FED_TRANSPORT_II(CLONE)
   CivEnum: 0
-  TechLevel: 1
+  TechLevel: 300
   ShipType: 5
   shipSprite: {fileID: 21300000, guid: 0eaa1c62e7d4e934ab4ff6b6f81a2c08, type: 3}
   shipColor: {r: 0, g: 0, b: 0, a: 0}
@@ -23,5 +23,5 @@ MonoBehaviour:
   HullMaxHealth: 22
   TorpedoDamage: 0
   BeamDamage: 0
-  Price: 106
+  BuildDuration: 10
   Mesh: {fileID: 0}

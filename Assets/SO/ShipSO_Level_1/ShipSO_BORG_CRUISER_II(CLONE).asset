@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShipName: BORG_CRUISER_II(CLONE)
   CivEnum: 5
-  TechLevel: 1
+  TechLevel: 300
   ShipType: 2
   shipSprite: {fileID: 21300000, guid: ae836d75c178d4943a3a50c669382900, type: 3}
   shipColor: {r: 0, g: 0, b: 0, a: 0}
@@ -23,5 +23,5 @@ MonoBehaviour:
   HullMaxHealth: 33
   TorpedoDamage: 30
   BeamDamage: 30
-  Price: 148
+  BuildDuration: 14
   Mesh: {fileID: 0}

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShipName: ANDORIANS_CRUISER_II(CLONE)
   CivEnum: 13
-  TechLevel: 1
+  TechLevel: 300
   ShipType: 2
   shipSprite: {fileID: 21300000, guid: 972e4a706d601f3498ea945ecdc644c3, type: 3}
   shipColor: {r: 0, g: 0, b: 0, a: 0}
@@ -23,5 +23,5 @@ MonoBehaviour:
   HullMaxHealth: 15
   TorpedoDamage: 15
   BeamDamage: 15
-  Price: 78
+  BuildDuration: 10
   Mesh: {fileID: 0}
