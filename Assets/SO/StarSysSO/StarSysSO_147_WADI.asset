@@ -15,8 +15,8 @@ MonoBehaviour:
   StarSysInt: 147
   Position: {x: -210, y: -14, z: 424}
   SysName: WADI
-  FirstOwner: 148
-  CurrentOwner: 148
+  FirstOwner: 147
+  CurrentOwner: 147
   StarType: 0
   StarSprit: {fileID: 21300000, guid: f46fc7ae4eec69d40aa8026ba9da085d, type: 3}
   Population: 10
@@ -29,3 +29,9 @@ MonoBehaviour:
   ShieldGenerators: 2
   OrbitalBatteries: 5
   Description: descrition here...
+  powerPlantSprite: {fileID: 21300000, guid: debd3118c20cd4543acef1038acddaf9, type: 3}
+  factorySprite: {fileID: 0}
+  shipyardSprite: {fileID: 0}
+  shieldSprite: {fileID: 0}
+  orbitalSprite: {fileID: 0}
+  researchCenterSprite: {fileID: 0}

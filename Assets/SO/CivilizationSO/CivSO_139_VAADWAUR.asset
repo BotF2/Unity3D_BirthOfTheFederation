@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CivSO_139_VAADWAUR
   m_EditorClassIdentifier: 
   CivInt: 139
-  CivEnum: 140
+  CivEnum: 139
   CivShortName: VAADWAUR
   CivLongName: VAADWAUR
   CivHomeSystem: VAADWAUR

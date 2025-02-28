@@ -15,8 +15,8 @@ MonoBehaviour:
   StarSysInt: 144
   Position: {x: 440, y: 25, z: -530}
   SysName: VORGON
-  FirstOwner: 145
-  CurrentOwner: 145
+  FirstOwner: 144
+  CurrentOwner: 144
   StarType: 0
   StarSprit: {fileID: 21300000, guid: f46fc7ae4eec69d40aa8026ba9da085d, type: 3}
   Population: 10
@@ -29,3 +29,9 @@ MonoBehaviour:
   ShieldGenerators: 2
   OrbitalBatteries: 5
   Description: descrition here...
+  powerPlantSprite: {fileID: 21300000, guid: 1255299b7026dcf4aa5bdd8e328db099, type: 3}
+  factorySprite: {fileID: 0}
+  shipyardSprite: {fileID: 0}
+  shieldSprite: {fileID: 0}
+  orbitalSprite: {fileID: 0}
+  researchCenterSprite: {fileID: 0}

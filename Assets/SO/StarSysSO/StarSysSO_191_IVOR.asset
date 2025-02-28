@@ -15,8 +15,8 @@ MonoBehaviour:
   StarSysInt: 191
   Position: {x: 180, y: 1, z: -440}
   SysName: IVOR
-  FirstOwner: 192
-  CurrentOwner: 192
+  FirstOwner: 191
+  CurrentOwner: 191
   StarType: 0
   StarSprit: {fileID: 21300000, guid: a71196654f476ea4db890e76192307fa, type: 3}
   Population: 0
@@ -29,3 +29,9 @@ MonoBehaviour:
   ShieldGenerators: 0
   OrbitalBatteries: 0
   Description: descrition here...
+  powerPlantSprite: {fileID: 0}
+  factorySprite: {fileID: 0}
+  shipyardSprite: {fileID: 0}
+  shieldSprite: {fileID: 0}
+  orbitalSprite: {fileID: 0}
+  researchCenterSprite: {fileID: 0}

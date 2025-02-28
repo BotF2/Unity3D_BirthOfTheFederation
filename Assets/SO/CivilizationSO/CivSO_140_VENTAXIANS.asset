@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CivSO_140_VENTAXIANS
   m_EditorClassIdentifier: 
   CivInt: 140
-  CivEnum: 141
+  CivEnum: 140
   CivShortName: VENTAXIANS
   CivLongName: VENTAXIANS
   CivHomeSystem: VENTAXIA

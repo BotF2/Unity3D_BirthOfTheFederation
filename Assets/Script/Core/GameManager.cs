@@ -120,7 +120,6 @@ namespace Assets.Core
         RAKHARI,
         RAKOSANS,
         RAMATIANS,
-        REMANS,
         RIGELIANS,
         RISIANS,
         RUTIANS,

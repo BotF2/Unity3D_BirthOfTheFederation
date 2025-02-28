@@ -15,8 +15,8 @@ MonoBehaviour:
   StarSysInt: 151
   Position: {x: 50, y: -18, z: -430}
   SysName: XYRILLIA
-  FirstOwner: 152
-  CurrentOwner: 152
+  FirstOwner: 151
+  CurrentOwner: 151
   StarType: 0
   StarSprit: {fileID: 21300000, guid: f46fc7ae4eec69d40aa8026ba9da085d, type: 3}
   Population: 10
@@ -29,3 +29,9 @@ MonoBehaviour:
   ShieldGenerators: 2
   OrbitalBatteries: 5
   Description: descrition here...
+  powerPlantSprite: {fileID: 21300000, guid: debd3118c20cd4543acef1038acddaf9, type: 3}
+  factorySprite: {fileID: 0}
+  shipyardSprite: {fileID: 0}
+  shieldSprite: {fileID: 0}
+  orbitalSprite: {fileID: 0}
+  researchCenterSprite: {fileID: 0}

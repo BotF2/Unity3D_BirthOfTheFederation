@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CivSO_129_TELLARITES
   m_EditorClassIdentifier: 
   CivInt: 129
-  CivEnum: 130
+  CivEnum: 129
   CivShortName: TELLARITES
   CivLongName: TELLARITES
   CivHomeSystem: TELLAR

@@ -52,7 +52,54 @@ public class StarSysSOImporter : EditorWindow
                         imageString = "Stars/" + imageString;
                     }
                 }
-
+                string imagesPower = fields[17];
+                foreach (string file in Directory.GetFiles($"Assets/Resources/Facilities/", "*.png"))
+                {
+                    if (file == "Assets/Resources/Facilities/" + imagesPower + ".png")
+                    {
+                        imagesPower = "Facilities/" + imagesPower;
+                    }
+                }
+                string imagesFactory = fields[18];
+                foreach (string file in Directory.GetFiles($"Assets/Resources/Facilities/", "*.png"))
+                {
+                    if (file == "Assets/Resources/Facilities/" + imagesFactory + ".png")
+                    {
+                        imagesFactory = "Facilities/" + imagesFactory;
+                    }
+                }
+                string imagesShipyard = fields[19];
+                foreach (string file in Directory.GetFiles($"Assets/Resources/Facilities/", "*.png"))
+                {
+                    if (file == "Assets/Resources/Facilities/" + imagesShipyard + ".png")
+                    {
+                        imagesShipyard = "Facilities/" + imagesShipyard;
+                    }
+                }
+                string imagesShield = fields[20];
+                foreach (string file in Directory.GetFiles($"Assets/Resources/Facilities/", "*.png"))
+                {
+                    if (file == "Assets/Resources/Facilities/" + imagesShield + ".png")
+                    {
+                        imagesShield = "Facilities/" + imagesShield;
+                    }
+                }
+                string imagesOB = fields[21];
+                foreach (string file in Directory.GetFiles($"Assets/Resources/Facilities/", "*.png"))
+                {
+                    if (file == "Assets/Resources/Facilities/" + imagesOB + ".png")
+                    {
+                        imagesOB = "Facilities/" + imagesOB;
+                    }
+                }
+                string imagesRC = fields[22];
+                foreach (string file in Directory.GetFiles($"Assets/Resources/Facilities/", "*.png"))
+                {
+                    if (file == "Assets/Resources/Facilities/" + imagesRC + ".png")
+                    {
+                        imagesRC = "Facilities/" + imagesRC;
+                    }
+                }
 
                 if (fields.Length >= 8) // Ensure there are enough fields
                 {
@@ -75,6 +122,12 @@ public class StarSysSOImporter : EditorWindow
                     StarSysSO.ShieldGenerators = int.Parse(fields[14]);
                     StarSysSO.OrbitalBatteries = int.Parse(fields[15]);
                     StarSysSO.Description = "descrition here...";
+                    StarSysSO.powerPlantSprite = Resources.Load<Sprite>(imagesPower);
+                    StarSysSO.factorySprite = Resources.Load<Sprite>(imagesFactory);
+                    StarSysSO.shipyardSprite = Resources.Load<Sprite>(imagesShipyard);
+                    StarSysSO.shieldSprite = Resources.Load<Sprite>(imagesShield);
+                    StarSysSO.orbitalSprite = Resources.Load<Sprite>(imagesOB);
+                    StarSysSO.researchCenterSprite = Resources.Load<Sprite>(imagesRC);
                     string assetPath = $"Assets/SO/StarSysSO/StarSysSO_{StarSysSO.StarSysInt}_{StarSysSO.SysName}.asset";
                     AssetDatabase.CreateAsset(StarSysSO, assetPath);
                     AssetDatabase.SaveAssets();

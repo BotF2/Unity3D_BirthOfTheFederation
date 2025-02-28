@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CivSO_137_TZENKETHI
   m_EditorClassIdentifier: 
   CivInt: 137
-  CivEnum: 138
+  CivEnum: 137
   CivShortName: TZENKETHI
   CivLongName: TZENKETHI
   CivHomeSystem: TZENKETHI

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CivSO_156_ZALKONIANS
   m_EditorClassIdentifier: 
   CivInt: 156
-  CivEnum: 157
+  CivEnum: 156
   CivShortName: ZALKONIANS
   CivLongName: ZALKONIANS
   CivHomeSystem: ZALKONIA

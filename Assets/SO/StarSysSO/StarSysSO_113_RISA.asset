@@ -15,8 +15,8 @@ MonoBehaviour:
   StarSysInt: 113
   Position: {x: -160, y: -1, z: -610}
   SysName: RISA
-  FirstOwner: 114
-  CurrentOwner: 114
+  FirstOwner: 113
+  CurrentOwner: 113
   StarType: 0
   StarSprit: {fileID: 21300000, guid: f46fc7ae4eec69d40aa8026ba9da085d, type: 3}
   Population: 10
@@ -29,3 +29,9 @@ MonoBehaviour:
   ShieldGenerators: 2
   OrbitalBatteries: 5
   Description: descrition here...
+  powerPlantSprite: {fileID: 21300000, guid: c1cc6b3d79191e44a91d5fc1cf0f1ee5, type: 3}
+  factorySprite: {fileID: 0}
+  shipyardSprite: {fileID: 0}
+  shieldSprite: {fileID: 0}
+  orbitalSprite: {fileID: 0}
+  researchCenterSprite: {fileID: 0}

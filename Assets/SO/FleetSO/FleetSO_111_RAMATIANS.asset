@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FleetSO_111_RAMATIANS
   m_EditorClassIdentifier: 
   CivIndex: 111
-  Insignia: {fileID: 21300000, guid: c139221624111fa4893f177f14e41a45, type: 3}
+  Insignia: {fileID: 0}
   CivOwnerEnum: 111
   Location: {x: 0, y: 0, z: 0}
   ShipsList: []

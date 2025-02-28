@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CivSO_119_SONA
   m_EditorClassIdentifier: 
   CivInt: 119
-  CivEnum: 120
+  CivEnum: 119
   CivShortName: SONA
   CivLongName: SONA
   CivHomeSystem: SONA

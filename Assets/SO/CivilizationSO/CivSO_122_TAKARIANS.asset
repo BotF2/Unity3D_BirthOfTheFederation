@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CivSO_122_TAKARIANS
   m_EditorClassIdentifier: 
   CivInt: 122
-  CivEnum: 123
+  CivEnum: 122
   CivShortName: TAKARIANS
   CivLongName: TAKARIANS
   CivHomeSystem: TAKARIA

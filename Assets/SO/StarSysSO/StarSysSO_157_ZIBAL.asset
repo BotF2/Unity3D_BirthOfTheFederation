@@ -15,8 +15,8 @@ MonoBehaviour:
   StarSysInt: 157
   Position: {x: 350, y: 18, z: -930}
   SysName: ZIBAL
-  FirstOwner: 158
-  CurrentOwner: 158
+  FirstOwner: 157
+  CurrentOwner: 157
   StarType: 0
   StarSprit: {fileID: 21300000, guid: 782d452083d14404d83e94f7ce7ee92e, type: 3}
   Population: 10
@@ -29,3 +29,9 @@ MonoBehaviour:
   ShieldGenerators: 2
   OrbitalBatteries: 5
   Description: descrition here...
+  powerPlantSprite: {fileID: 21300000, guid: 47f039ede3bb18e4f81642165585c419, type: 3}
+  factorySprite: {fileID: 0}
+  shipyardSprite: {fileID: 0}
+  shieldSprite: {fileID: 0}
+  orbitalSprite: {fileID: 0}
+  researchCenterSprite: {fileID: 0}

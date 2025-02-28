@@ -15,8 +15,8 @@ MonoBehaviour:
   StarSysInt: 197
   Position: {x: 290, y: 9, z: -350}
   SysName: CHALTOK
-  FirstOwner: 198
-  CurrentOwner: 198
+  FirstOwner: 197
+  CurrentOwner: 197
   StarType: 0
   StarSprit: {fileID: 21300000, guid: a71196654f476ea4db890e76192307fa, type: 3}
   Population: 0
@@ -29,3 +29,9 @@ MonoBehaviour:
   ShieldGenerators: 0
   OrbitalBatteries: 0
   Description: descrition here...
+  powerPlantSprite: {fileID: 0}
+  factorySprite: {fileID: 0}
+  shipyardSprite: {fileID: 0}
+  shieldSprite: {fileID: 0}
+  orbitalSprite: {fileID: 0}
+  researchCenterSprite: {fileID: 0}

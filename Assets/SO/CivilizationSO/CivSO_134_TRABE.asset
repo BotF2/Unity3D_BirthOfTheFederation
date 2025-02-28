@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CivSO_134_TRABE
   m_EditorClassIdentifier: 
   CivInt: 134
-  CivEnum: 135
+  CivEnum: 134
   CivShortName: TRABE
   CivLongName: TRABE
   CivHomeSystem: TRABE

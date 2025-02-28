@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CivSO_151_XYRILLIANS
   m_EditorClassIdentifier: 
   CivInt: 151
-  CivEnum: 152
+  CivEnum: 151
   CivShortName: XYRILLIANS
   CivLongName: XYRILLIANS
   CivHomeSystem: XYRILLIA

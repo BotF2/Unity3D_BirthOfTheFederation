@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CivSO_113_RISIANS
   m_EditorClassIdentifier: 
   CivInt: 113
-  CivEnum: 114
+  CivEnum: 113
   CivShortName: RISIANS
   CivLongName: RISIANS
   CivHomeSystem: RISA

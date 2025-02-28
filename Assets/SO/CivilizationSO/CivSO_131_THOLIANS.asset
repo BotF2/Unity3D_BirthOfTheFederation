@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CivSO_131_THOLIANS
   m_EditorClassIdentifier: 
   CivInt: 131
-  CivEnum: 132
+  CivEnum: 131
   CivShortName: THOLIANS
   CivLongName: THOLIANS
   CivHomeSystem: THOLIA

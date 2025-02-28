@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CivSO_126_TALOSIANS
   m_EditorClassIdentifier: 
   CivInt: 126
-  CivEnum: 127
+  CivEnum: 126
   CivShortName: TALOSIANS
   CivLongName: TALOSIANS
   CivHomeSystem: TALOSIA

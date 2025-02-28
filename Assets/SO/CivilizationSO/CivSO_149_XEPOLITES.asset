@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CivSO_149_XEPOLITES
   m_EditorClassIdentifier: 
   CivInt: 149
-  CivEnum: 150
+  CivEnum: 149
   CivShortName: XEPOLITES
   CivLongName: XEPOLITES
   CivHomeSystem: XEPOLITES

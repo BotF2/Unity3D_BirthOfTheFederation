@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CivSO_157_ZIBALIANS
   m_EditorClassIdentifier: 
   CivInt: 157
-  CivEnum: 158
+  CivEnum: 157
   CivShortName: ZIBALIANS
   CivLongName: ZIBALIANS
   CivHomeSystem: ZIBAL

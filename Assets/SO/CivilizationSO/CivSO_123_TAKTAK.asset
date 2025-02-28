@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CivSO_123_TAKTAK
   m_EditorClassIdentifier: 
   CivInt: 123
-  CivEnum: 124
+  CivEnum: 123
   CivShortName: TAKTAK
   CivLongName: TAKTAK
   CivHomeSystem: TAKTAK

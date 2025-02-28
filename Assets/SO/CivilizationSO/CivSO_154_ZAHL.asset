@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CivSO_154_ZAHL
   m_EditorClassIdentifier: 
   CivInt: 154
-  CivEnum: 155
+  CivEnum: 154
   CivShortName: ZAHL
   CivLongName: ZAHL
   CivHomeSystem: ZAHL

@@ -19,7 +19,7 @@ namespace Assets.Core
     {
         public static CivManager Instance;
         [SerializeField]
-        private List<CivSO> civSOListAllPossible;
+        public List<CivSO> CivSOListAllPossible;
         public List<CivSO> CivSOsInGame;
         [SerializeField]
         private List<CivSO> smallMapMinorNeighborsInGame;
@@ -106,7 +106,7 @@ namespace Assets.Core
                 {
                     if (listPlayableCivEnumForCivSOs[i] != CivEnum.ZZUNINHABITED1)
                     {
-                        _SOsInGame.Add(civSOListAllPossible[i]); // add the playable
+                        _SOsInGame.Add(CivSOListAllPossible[i]); // add the playable
                         _SOsInGame.Add(smallMapMinorNeighborsInGame[i]); // add playable's minor races
                         if (galaxySize >= 1)
                             _SOsInGame.Add(mediumMapMinorNeighborsInGame[i]);
@@ -119,7 +119,7 @@ namespace Assets.Core
 
 
                 ////**** See all Civs -  ****
-                // CivSOsInGame = civSOListAllPossible;
+                // CivSOsInGame = CivSOListAllPossible;
                 #endregion TURN ON ALL CIVs WITH LAST LINE ABOVE
             }
             else if (galaxyType == GalaxyMapType.RANDOM)
@@ -138,22 +138,22 @@ namespace Assets.Core
         }
         private void SetRandomCanonCivsByGalaxySize(int galaxySize, List<CivSO> _SOsInGame)
         {
-            civSOListAllPossible = civSOListAllPossible.OrderBy(i => Guid.NewGuid()).ToList();
+            CivSOListAllPossible = CivSOListAllPossible.OrderBy(i => Guid.NewGuid()).ToList();
 
             for (int i = 0; i < (50 * (1 + galaxySize)); i++)
             {
-                for (int j = 0; j < civSOListAllPossible.Count; j++)
+                for (int j = 0; j < CivSOListAllPossible.Count; j++)
                 {
                     int oneMoreCiv = j;
                     {
-                        if (!_SOsInGame.Contains(civSOListAllPossible[i]))
+                        if (!_SOsInGame.Contains(CivSOListAllPossible[i]))
                         {
-                            _SOsInGame.Add(civSOListAllPossible[i]);
+                            _SOsInGame.Add(CivSOListAllPossible[i]);
                             break;
                         }
-                        else if (!_SOsInGame.Contains(civSOListAllPossible[i + 1]))
+                        else if (!_SOsInGame.Contains(CivSOListAllPossible[i + 1]))
                         {
-                            _SOsInGame.Add(civSOListAllPossible[i + 1]);
+                            _SOsInGame.Add(CivSOListAllPossible[i + 1]);
                             j++;
                             break;
                         }
@@ -252,6 +252,7 @@ namespace Assets.Core
             {
                 CivEnumsInGame.Add(listOfCivSO[i].CivEnum);
             }
+            FleetManager.Instance.CleanUpDictinaryForFleetNums();
         }
         public CivData GetCivDataByName(string shortName)
         {

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CivSO_143_VISSIANS
   m_EditorClassIdentifier: 
   CivInt: 143
-  CivEnum: 144
+  CivEnum: 143
   CivShortName: VISSIANS
   CivLongName: VISSIANS
   CivHomeSystem: VISSIA

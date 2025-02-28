@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CivSO_148_XANTHANS
   m_EditorClassIdentifier: 
   CivInt: 148
-  CivEnum: 149
+  CivEnum: 148
   CivShortName: XANTHANS
   CivLongName: XANTHANS
   CivHomeSystem: XANTHAN

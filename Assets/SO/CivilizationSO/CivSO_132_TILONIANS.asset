@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CivSO_132_TILONIANS
   m_EditorClassIdentifier: 
   CivInt: 132
-  CivEnum: 133
+  CivEnum: 132
   CivShortName: TILONIANS
   CivLongName: TILONIANS
   CivHomeSystem: TILONIA

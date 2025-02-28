@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CivSO_118_SKRREEA
   m_EditorClassIdentifier: 
   CivInt: 118
-  CivEnum: 119
+  CivEnum: 118
   CivShortName: SKRREEA
   CivLongName: SKRREEA
   CivHomeSystem: SKRREEA

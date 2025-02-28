@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CivSO_146_VULCANS
   m_EditorClassIdentifier: 
   CivInt: 146
-  CivEnum: 147
+  CivEnum: 146
   CivShortName: VULCANS
   CivLongName: VULCANS
   CivHomeSystem: VULCAN

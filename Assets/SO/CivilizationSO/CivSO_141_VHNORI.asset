@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CivSO_141_VHNORI
   m_EditorClassIdentifier: 
   CivInt: 141
-  CivEnum: 142
+  CivEnum: 141
   CivShortName: VHNORI
   CivLongName: VHNORI
   CivHomeSystem: VHNORI

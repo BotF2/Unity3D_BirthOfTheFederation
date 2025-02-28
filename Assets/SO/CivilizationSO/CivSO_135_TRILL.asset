@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CivSO_135_TRILL
   m_EditorClassIdentifier: 
   CivInt: 135
-  CivEnum: 136
+  CivEnum: 135
   CivShortName: TRILL
   CivLongName: TRILL
   CivHomeSystem: TRILL

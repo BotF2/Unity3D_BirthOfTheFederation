@@ -15,8 +15,8 @@ MonoBehaviour:
   StarSysInt: 150
   Position: {x: -135, y: 30, z: -214}
   SysName: XINDI
-  FirstOwner: 151
-  CurrentOwner: 151
+  FirstOwner: 150
+  CurrentOwner: 150
   StarType: 0
   StarSprit: {fileID: 21300000, guid: a71196654f476ea4db890e76192307fa, type: 3}
   Population: 10
@@ -29,3 +29,9 @@ MonoBehaviour:
   ShieldGenerators: 2
   OrbitalBatteries: 5
   Description: descrition here...
+  powerPlantSprite: {fileID: 21300000, guid: debd3118c20cd4543acef1038acddaf9, type: 3}
+  factorySprite: {fileID: 0}
+  shipyardSprite: {fileID: 0}
+  shieldSprite: {fileID: 0}
+  orbitalSprite: {fileID: 0}
+  researchCenterSprite: {fileID: 0}

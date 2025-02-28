@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CivSO_115_SELAY
   m_EditorClassIdentifier: 
   CivInt: 115
-  CivEnum: 116
+  CivEnum: 115
   CivShortName: SELAY
   CivLongName: SELAY
   CivHomeSystem: SELAY

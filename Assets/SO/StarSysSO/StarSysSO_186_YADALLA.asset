@@ -15,8 +15,8 @@ MonoBehaviour:
   StarSysInt: 186
   Position: {x: 260, y: 9, z: -430}
   SysName: YADALLA
-  FirstOwner: 187
-  CurrentOwner: 187
+  FirstOwner: 186
+  CurrentOwner: 186
   StarType: 0
   StarSprit: {fileID: 21300000, guid: f46fc7ae4eec69d40aa8026ba9da085d, type: 3}
   Population: 0
@@ -29,3 +29,9 @@ MonoBehaviour:
   ShieldGenerators: 0
   OrbitalBatteries: 0
   Description: descrition here...
+  powerPlantSprite: {fileID: 0}
+  factorySprite: {fileID: 0}
+  shipyardSprite: {fileID: 0}
+  shieldSprite: {fileID: 0}
+  orbitalSprite: {fileID: 0}
+  researchCenterSprite: {fileID: 0}

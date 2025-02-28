@@ -204,7 +204,7 @@ namespace Assets.Core
             starSysDatas.Remove(starSysDatas[0]); // pull out the null
         }
         public void InstantiateSystem(StarSysData sysData, CivSO civSO)
-        {
+         {
             GameObject starSystemNewGameOb = new GameObject();
             if (MainMenuUIController.Instance.MainMenuData.SelectedGalaxyType == GalaxyMapType.RANDOM)
             { // do something random with sysData.position
@@ -299,6 +299,8 @@ namespace Assets.Core
                     csFogWar.Instance.RunFogOfWar(); // star systems are in place so time to scan for the fog
 
                 }
+                if (civSO.HasWarp)
+                    FleetManager.Instance.FleetDataFromSO(starSysController, false); // fleet for first ships as game loads, not for ships instatiated by working shipyard in system
                 if (GameController.Instance.AreWeLocalPlayer(sysData.CurrentOwner)) 
                 {
                     StarSysSO starSysSO = GetStarSObyInt(civSO.CivInt);
@@ -307,8 +309,7 @@ namespace Assets.Core
                     sysData.Shipyards = AddSystemFacilities(starSysSO.Shipyards, ShipyardPrefab, civSO.CivInt, sysData,1);
                     sysData.ShieldGenerators = AddSystemFacilities(starSysSO.ShieldGenerators, ShieldGeneratorPrefab, civSO.CivInt, sysData,1);
                     sysData.OrbitalBatteries = AddSystemFacilities(starSysSO.OrbitalBatteries, OrbitalBatteryPrefab, civSO.CivInt, sysData,1);
-                    sysData.ResearchCenters = AddSystemFacilities(starSysSO.ResearchCenters, ResearchCenterPrefab, civSO.CivInt, sysData,1); if (civSO.HasWarp)
-                    //FleetManager.Instance.FleetDataFromSO( starSysController, true); // empty fleet for new ship 
+                    sysData.ResearchCenters = AddSystemFacilities(starSysSO.ResearchCenters, ResearchCenterPrefab, civSO.CivInt, sysData,1);
                     SetParentForFacilities(starSystemNewGameOb, sysData);
                     NewSystemListUI(starSysController);
                     localPlayerTheme = ThemeManager.Instance.GetLocalPlayerTheme();

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CivSO_117_SIKARIANS
   m_EditorClassIdentifier: 
   CivInt: 117
-  CivEnum: 118
+  CivEnum: 117
   CivShortName: SIKARIANS
   CivLongName: SIKARIANS
   CivHomeSystem: SIKARIA

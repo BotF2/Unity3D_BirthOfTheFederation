@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CivSO_136_TROGORANS
   m_EditorClassIdentifier: 
   CivInt: 136
-  CivEnum: 137
+  CivEnum: 136
   CivShortName: TROGORANS
   CivLongName: TROGORANS
   CivHomeSystem: TROGORA

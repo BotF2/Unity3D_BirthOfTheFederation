@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CivSO_155_ZAKDORN
   m_EditorClassIdentifier: 
   CivInt: 155
-  CivEnum: 156
+  CivEnum: 155
   CivShortName: ZAKDORN
   CivLongName: ZAKDORN
   CivHomeSystem: ZAKDORN

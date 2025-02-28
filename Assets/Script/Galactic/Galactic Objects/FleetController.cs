@@ -439,5 +439,15 @@ namespace Assets.Core
             }
             fleetData.MaxWarpFactor = maxWarp;
         }
+        public void DestroyFleet(FleetData fleetData, GameObject fleetGO)
+        {
+            FleetManager.Instance.RemoveFleetInt(fleetData.CivEnum, fleetData.FleetInt);
+            if(FleetManager.Instance.FleetControllerList.Contains(this))
+            {
+                FleetManager.Instance.FleetGOList.Remove(fleetGO);
+                FleetManager.Instance.FleetControllerList.Remove(this);
+                Destroy(fleetGO.gameObject);
+            }
+        }
     }
 }

@@ -15,8 +15,8 @@ MonoBehaviour:
   StarSysInt: 118
   Position: {x: -300, y: -2, z: 200}
   SysName: SKRREEA
-  FirstOwner: 119
-  CurrentOwner: 119
+  FirstOwner: 118
+  CurrentOwner: 118
   StarType: 0
   StarSprit: {fileID: 21300000, guid: 782d452083d14404d83e94f7ce7ee92e, type: 3}
   Population: 10
@@ -29,3 +29,9 @@ MonoBehaviour:
   ShieldGenerators: 2
   OrbitalBatteries: 5
   Description: descrition here...
+  powerPlantSprite: {fileID: 21300000, guid: c1cc6b3d79191e44a91d5fc1cf0f1ee5, type: 3}
+  factorySprite: {fileID: 0}
+  shipyardSprite: {fileID: 0}
+  shieldSprite: {fileID: 0}
+  orbitalSprite: {fileID: 0}
+  researchCenterSprite: {fileID: 0}

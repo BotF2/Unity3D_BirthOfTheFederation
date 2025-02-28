@@ -19,6 +19,7 @@ public class FleetData
     public string CivShortName;
     public string Name;
     private string description;
+    public int FleetInt;
     //public float yAboveGalaxyImage; // used in FleetManager
     public FleetData(FleetSO fleetSO)
     {

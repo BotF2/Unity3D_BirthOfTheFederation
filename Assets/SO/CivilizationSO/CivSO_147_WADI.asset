@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CivSO_147_WADI
   m_EditorClassIdentifier: 
   CivInt: 147
-  CivEnum: 148
+  CivEnum: 147
   CivShortName: WADI
   CivLongName: WADI
   CivHomeSystem: WADI

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CivSO_127_TAMARIANS
   m_EditorClassIdentifier: 
   CivInt: 127
-  CivEnum: 128
+  CivEnum: 127
   CivShortName: TAMARIANS
   CivLongName: TAMARIANS
   CivHomeSystem: TAMARIA

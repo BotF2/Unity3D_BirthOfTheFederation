@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CivSO_145_VORI
   m_EditorClassIdentifier: 
   CivInt: 145
-  CivEnum: 146
+  CivEnum: 145
   CivShortName: VORI
   CivLongName: VORI
   CivHomeSystem: VORI

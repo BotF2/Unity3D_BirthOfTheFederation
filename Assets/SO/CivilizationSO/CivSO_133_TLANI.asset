@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CivSO_133_TLANI
   m_EditorClassIdentifier: 
   CivInt: 133
-  CivEnum: 134
+  CivEnum: 133
   CivShortName: TLANI
   CivLongName: TLANI
   CivHomeSystem: TLANI

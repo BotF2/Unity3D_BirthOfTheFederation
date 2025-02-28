@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CivSO_125_TALAXIANS
   m_EditorClassIdentifier: 
   CivInt: 125
-  CivEnum: 126
+  CivEnum: 125
   CivShortName: TALAXIANS
   CivLongName: TALAXIANS
   CivHomeSystem: TALAX

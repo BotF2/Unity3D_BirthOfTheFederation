@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CivSO_114_RUTIANS
   m_EditorClassIdentifier: 
   CivInt: 114
-  CivEnum: 115
+  CivEnum: 114
   CivShortName: RUTIANS
   CivLongName: RUTIANS
   CivHomeSystem: RUTIA

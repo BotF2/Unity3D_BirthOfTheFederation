@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CivSO_128_TANUGANS
   m_EditorClassIdentifier: 
   CivInt: 128
-  CivEnum: 129
+  CivEnum: 128
   CivShortName: TANUGANS
   CivLongName: TANUGANS
   CivHomeSystem: TANUGA

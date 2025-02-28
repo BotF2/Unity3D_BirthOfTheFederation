@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CivSO_120_SULIBAN
   m_EditorClassIdentifier: 
   CivInt: 120
-  CivEnum: 121
+  CivEnum: 120
   CivShortName: SULIBAN
   CivLongName: SULIBAN
   CivHomeSystem: SULIBAN

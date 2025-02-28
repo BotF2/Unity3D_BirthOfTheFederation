@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CivIndex: 112
   Insignia: {fileID: 21300000, guid: c95e32f2f199913438c1debd97dbad63, type: 3}
-  CivOwnerEnum: 113
+  CivOwnerEnum: 112
   Location: {x: 0, y: 0, z: 0}
   ShipsList: []
   MaxWarpFactor: 0

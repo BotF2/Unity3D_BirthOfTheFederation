@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CivSO_182_ZZUNINHABITED25
   m_EditorClassIdentifier: 
   CivInt: 182
-  CivEnum: 183
+  CivEnum: 182
   CivShortName: ZZUNINHABITED25
   CivLongName: NO INTELLIGENT LIFE
   CivHomeSystem: NONE

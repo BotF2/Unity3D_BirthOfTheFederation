@@ -15,8 +15,8 @@ MonoBehaviour:
   StarSysInt: 148
   Position: {x: 245, y: -20, z: -730}
   SysName: XANTHAN
-  FirstOwner: 149
-  CurrentOwner: 149
+  FirstOwner: 148
+  CurrentOwner: 148
   StarType: 0
   StarSprit: {fileID: 21300000, guid: 782d452083d14404d83e94f7ce7ee92e, type: 3}
   Population: 10
@@ -29,3 +29,9 @@ MonoBehaviour:
   ShieldGenerators: 2
   OrbitalBatteries: 5
   Description: descrition here...
+  powerPlantSprite: {fileID: 21300000, guid: debd3118c20cd4543acef1038acddaf9, type: 3}
+  factorySprite: {fileID: 0}
+  shipyardSprite: {fileID: 0}
+  shieldSprite: {fileID: 0}
+  orbitalSprite: {fileID: 0}
+  researchCenterSprite: {fileID: 0}

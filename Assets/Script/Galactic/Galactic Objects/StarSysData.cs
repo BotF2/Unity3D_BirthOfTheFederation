@@ -79,11 +79,4 @@ public class StarSysData
     }
     public string GetSysName() { return this.sysName; }
     public CivEnum GetFirstOwner() { return this.firstOwner; }
-    //public CivController GetCivController(CivEnum civEnum)
-    //{
-    //    CivController civCon = new CivController("null");
-    //    civCon = CivManager.current.GetCivControllerByEnum(civEnum);
-
-    //    return civCon;
-    //}
 }

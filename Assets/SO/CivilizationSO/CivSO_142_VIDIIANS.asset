@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CivSO_142_VIDIIANS
   m_EditorClassIdentifier: 
   CivInt: 142
-  CivEnum: 143
+  CivEnum: 142
   CivShortName: VIDIIANS
   CivLongName: VIDIIANS
   CivHomeSystem: VIDIIA

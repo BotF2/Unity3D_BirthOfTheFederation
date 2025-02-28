@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CivSO_121_TAKARANS
   m_EditorClassIdentifier: 
   CivInt: 121
-  CivEnum: 122
+  CivEnum: 121
   CivShortName: TAKARANS
   CivLongName: TAKARANS
   CivHomeSystem: TAKARA

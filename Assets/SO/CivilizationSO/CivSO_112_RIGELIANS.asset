@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CivSO_112_RIGELIANS
   m_EditorClassIdentifier: 
   CivInt: 112
-  CivEnum: 113
+  CivEnum: 112
   CivShortName: RIGELIANS
   CivLongName: RIGELIANS
   CivHomeSystem: RIGELIA

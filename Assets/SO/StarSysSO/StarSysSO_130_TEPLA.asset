@@ -15,8 +15,8 @@ MonoBehaviour:
   StarSysInt: 130
   Position: {x: -580, y: 5, z: 550}
   SysName: TEPLA
-  FirstOwner: 131
-  CurrentOwner: 131
+  FirstOwner: 130
+  CurrentOwner: 130
   StarType: 0
   StarSprit: {fileID: 21300000, guid: a71196654f476ea4db890e76192307fa, type: 3}
   Population: 10
@@ -29,3 +29,9 @@ MonoBehaviour:
   ShieldGenerators: 2
   OrbitalBatteries: 5
   Description: descrition here...
+  powerPlantSprite: {fileID: 21300000, guid: c1cc6b3d79191e44a91d5fc1cf0f1ee5, type: 3}
+  factorySprite: {fileID: 0}
+  shipyardSprite: {fileID: 0}
+  shieldSprite: {fileID: 0}
+  orbitalSprite: {fileID: 0}
+  researchCenterSprite: {fileID: 0}

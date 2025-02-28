@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CivSO_153_YRIDIANS
   m_EditorClassIdentifier: 
   CivInt: 153
-  CivEnum: 154
+  CivEnum: 153
   CivShortName: YRIDIANS
   CivLongName: YRIDIANS
   CivHomeSystem: YRIDIA

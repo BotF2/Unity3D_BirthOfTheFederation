@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CivSO_152_YADERANS
   m_EditorClassIdentifier: 
   CivInt: 152
-  CivEnum: 153
+  CivEnum: 152
   CivShortName: YADERANS
   CivLongName: YADERANS
   CivHomeSystem: YADERA

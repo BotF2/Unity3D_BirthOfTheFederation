@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CivSO_116_SHELIAK
   m_EditorClassIdentifier: 
   CivInt: 116
-  CivEnum: 117
+  CivEnum: 116
   CivShortName: SHELIAK
   CivLongName: SHELIAK
   CivHomeSystem: SHELIA

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CivSO_130_TEPLANS
   m_EditorClassIdentifier: 
   CivInt: 130
-  CivEnum: 131
+  CivEnum: 130
   CivShortName: TEPLANS
   CivLongName: TEPLANS
   CivHomeSystem: TEPLA

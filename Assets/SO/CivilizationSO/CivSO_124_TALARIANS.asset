@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CivSO_124_TALARIANS
   m_EditorClassIdentifier: 
   CivInt: 124
-  CivEnum: 125
+  CivEnum: 124
   CivShortName: TALARIANS
   CivLongName: TALARIANS
   CivHomeSystem: TALARIA
