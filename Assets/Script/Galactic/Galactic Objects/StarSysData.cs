@@ -22,17 +22,17 @@ public class StarSysData
     //public StartingTechLevel is a civ level value, not a system data value.
     public int TechUnits; // ResearchCenters centers provide tech output units that determins progress to a civ level StartingTechLevel enum.
     public Sprite StarSprit;
-    public List<GameObject> PowerStations;
+    public List<GameObject> PowerPlants;
     public List<GameObject> Factories;
     public List<GameObject> FactoryBuildQueue;
     public List<GameObject> ResearchCenters;
     public List<GameObject> Shipyards;
     public List<ShipData> ShipyardQueue;
-    public List<GameObject> PowerUnits;
     public List<GameObject> ShieldGenerators;
     public List<GameObject> OrbitalBatteries;
     public GameObject buildSlotItemImage;
     public List<GameObject> buildQueueImageList;
+    public List<GameObject> FleetsInSystem = new List<GameObject>();
     public int TotalSysPowerOutput =0;
     public int TotalSysPowerLoad = 0;
     public PowerPlantData PowerPlantData;
@@ -43,30 +43,16 @@ public class StarSysData
     public ResearchCenterData ResearchCenterData;
     [SerializeField]
     private Image powerPlant;
-    //[SerializeField]
-    //private Image powerPlantBGroud;
     [SerializeField]
     private Image factory;
-    //[SerializeField]
-    //private Image factoryBGround;
     [SerializeField]
     private Image shipyard;
-    //[SerializeField]
-    //private Image shipyardBGround;
     [SerializeField]
     private Image shield;
-    //[SerializeField]
-    //private Image shieldBGround;
     [SerializeField]
     private Image orbital;
-    //[SerializeField]
-    //private Image orbitalBGround;
     [SerializeField]
     private Image researchCenter;
-    //[SerializeField]
-    //private Image researchCenterBGround;
-
-
 
     public string Description;
     private string v;

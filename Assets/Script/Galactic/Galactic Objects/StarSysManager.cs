@@ -20,7 +20,7 @@ namespace Assets.Core
         [SerializeField]
         private List<StarSysSO> starSysSOList; // get StarSysSO for civ by int
         [SerializeField]
-        private GameObject buildListPrefab;
+        private GameObject sysBuildUIListPrefab;
         [SerializeField]
         private List<PowerPlantSO> powerPlantSOList; // get PowerPlantSO for civ by int
         [SerializeField]
@@ -38,7 +38,7 @@ namespace Assets.Core
 
         [SerializeField]
         private GameObject sysUIPrefab;
-        public List<StarSysController> ManagersStarSysControllerList;
+        public List<StarSysController> StarSysControllerList;
         public GameObject PowerPlantPrefab;
         public GameObject FactoryPrefab;
         public GameObject ShipyardPrefab;
@@ -46,6 +46,8 @@ namespace Assets.Core
         public GameObject OrbitalBatteryPrefab;
         public GameObject ResearchCenterPrefab;
         public StarSysController currentActiveSysCon;
+        [SerializeField]
+        private GameObject fleetPrefab;
         private GameObject powerPlantInventorySlot;
         private GameObject factoryInventorySlot;
         private GameObject shipyardInventorySlot;
@@ -194,8 +196,8 @@ namespace Assets.Core
                 SysData.Description = "description here";
 
                 InstantiateSystem(SysData, civSOList[i]);
-                if (civSOList[i].HasWarp)
-                    FleetManager.Instance.FleetDataFromSO(civSOList[i], SysData.GetPosition());
+                //if (civSOList[i].HasWarp)
+                //    FleetManager.Instance.FleetDataFromSO(, false);
                 if (SysData.SysName != "null")
                     starSysDatas.Add(SysData);
             }
@@ -203,6 +205,7 @@ namespace Assets.Core
         }
         public void InstantiateSystem(StarSysData sysData, CivSO civSO)
         {
+            GameObject starSystemNewGameOb = new GameObject();
             if (MainMenuUIController.Instance.MainMenuData.SelectedGalaxyType == GalaxyMapType.RANDOM)
             { // do something random with sysData.position
             }
@@ -212,7 +215,7 @@ namespace Assets.Core
             }
             else
             {
-                GameObject starSystemNewGameOb = (GameObject)Instantiate(sysPrefab, new Vector3(0, 0, 0),
+                starSystemNewGameOb = (GameObject)Instantiate(sysPrefab, new Vector3(0, 0, 0),
                      Quaternion.identity);
 
                 starSystemNewGameOb.layer = 4; // water layer (also used by fog of war for obsticles with shows to line of sight
@@ -221,6 +224,8 @@ namespace Assets.Core
                 starSystemNewGameOb.transform.SetParent(galaxyCenter.transform, true);
                 starSystemNewGameOb.transform.localScale = new Vector3(1, 1, 1);
                 StarSysController starSysController = starSystemNewGameOb.GetComponentInChildren<StarSysController>();
+                //if (civSO.HasWarp)
+                //    FleetManager.Instance.FleetDataFromSO(starSysController, false);
                 Transform fogObsticleTransform = starSystemNewGameOb.transform.Find("FogObstacle");
                 fogObsticleTransform.SetParent(galaxyCenter.transform, false);
                 fogObsticleTransform.Translate(new Vector3(sysData.GetPosition().x, -55f, sysData.GetPosition().z));
@@ -283,7 +288,7 @@ namespace Assets.Core
                     }
                 }
                 starSystemNewGameOb.SetActive(true);
-                ManagersStarSysControllerList.Add(starSysController);
+                StarSysControllerList.Add(starSysController);
 
                 List<StarSysController> listStarSysCon = new List<StarSysController> { starSysController };
                 CivManager.Instance.AddSystemToOwnSystemListAndHomeSys(listStarSysCon);
@@ -297,18 +302,17 @@ namespace Assets.Core
                 if (GameController.Instance.AreWeLocalPlayer(sysData.CurrentOwner)) 
                 {
                     StarSysSO starSysSO = GetStarSObyInt(civSO.CivInt);
-                    sysData.PowerStations = AddSystemFacilities(starSysSO.PowerStations, PowerPlantPrefab, civSO.CivInt, sysData, 1);
+                    sysData.PowerPlants = AddSystemFacilities(starSysSO.PowerStations, PowerPlantPrefab, civSO.CivInt, sysData, 1);
                     sysData.Factories = AddSystemFacilities(starSysSO.Factories, FactoryPrefab, civSO.CivInt, sysData, 1);
                     sysData.Shipyards = AddSystemFacilities(starSysSO.Shipyards, ShipyardPrefab, civSO.CivInt, sysData,1);
                     sysData.ShieldGenerators = AddSystemFacilities(starSysSO.ShieldGenerators, ShieldGeneratorPrefab, civSO.CivInt, sysData,1);
                     sysData.OrbitalBatteries = AddSystemFacilities(starSysSO.OrbitalBatteries, OrbitalBatteryPrefab, civSO.CivInt, sysData,1);
-                    sysData.ResearchCenters = AddSystemFacilities(starSysSO.ResearchCenters, ResearchCenterPrefab, civSO.CivInt, sysData,1);
+                    sysData.ResearchCenters = AddSystemFacilities(starSysSO.ResearchCenters, ResearchCenterPrefab, civSO.CivInt, sysData,1); if (civSO.HasWarp)
+                    //FleetManager.Instance.FleetDataFromSO( starSysController, true); // empty fleet for new ship 
                     SetParentForFacilities(starSystemNewGameOb, sysData);
                     NewSystemListUI(starSysController);
                     localPlayerTheme = ThemeManager.Instance.GetLocalPlayerTheme();
                 }
-
-
                 //***** This is temporary so we can test a multi-starsystem civ
                 //******* before diplomacy will alow civs/systems to join another civ
                 //if (systemCount == 8)
@@ -319,7 +323,7 @@ namespace Assets.Core
         }
         private void SetParentForFacilities(GameObject parent, StarSysData starSysData)
         {
-            foreach (var go in starSysData.PowerStations)
+            foreach (var go in starSysData.PowerPlants)
             {
                 go.transform.SetParent(parent.transform, false);
             }
@@ -344,7 +348,10 @@ namespace Assets.Core
                 go.transform.SetParent(parent.transform, false);
             }
         }
-
+        public void AddSystemShipFleet(int numOfShip, GameObject fleetPrefab, int civInt, StarSysData sysData)
+        {
+            //sysData.FleetsInSystem[0].GetComponent<FleetData>().AddToShipList(fleetPrefab.GetComponent<ShipController>());
+        }
         public List<GameObject> AddSystemFacilities(int numOf, GameObject prefab, int civInt, StarSysData sysData, int onOff)
         {
             List<GameObject> list = new List<GameObject>();
@@ -546,7 +553,6 @@ namespace Assets.Core
                 default:
                     break;
             }
-
             return list;
         }
 
@@ -758,12 +764,12 @@ namespace Assets.Core
         {
 
             StarSysData result = null;
-            for (int i = 0;i< ManagersStarSysControllerList.Count; i++)
+            for (int i = 0;i< StarSysControllerList.Count; i++)
             {
 
-                if (ManagersStarSysControllerList[i].StarSysData.GetSysName().Equals(name))
+                if (StarSysControllerList[i].StarSysData.GetSysName().Equals(name))
                 {
-                    result = ManagersStarSysControllerList[i].StarSysData;
+                    result = StarSysControllerList[i].StarSysData;
                     break;
                 }
             }
@@ -772,24 +778,13 @@ namespace Assets.Core
         }
         public void UpdateStarSystemOwner(CivEnum civCurrent, CivEnum civNew)
         {
-            foreach (var sysCon in ManagersStarSysControllerList)
+            foreach (var sysCon in StarSysControllerList)
             {
                 if (sysCon.StarSysData.GetFirstOwner() == civCurrent)
                     sysCon.StarSysData.CurrentOwner = civNew;
             }
         }
-        void RemoveStarSysConrollerFromAllControllers(StarSysController starSysController)
-        {
-            ManagersStarSysControllerList.Remove(starSysController);
-        }
-        void AddFleetConrollerFromAllControllers(StarSysController starSysController)
-        {
-            ManagersStarSysControllerList.Add(starSysController);
-        }
-        private void SetSysUIItems()
-        {
-        
-        }
+
         public void NewSystemListUI(StarSysController sysController)
         {
             if (sysController.StarSysData.CurrentOwner == GameController.Instance.GameData.LocalPlayerCivEnum)
@@ -805,7 +800,7 @@ namespace Assets.Core
 
         public void InstantiateSysBuildListUI(StarSysController sysCon) // open the build queue UI
         {
-            GameObject sysBuildListInstance = (GameObject)Instantiate(buildListPrefab, new Vector3(0, -70, 0),
+            GameObject sysBuildListInstance = (GameObject)Instantiate(sysBuildUIListPrefab, new Vector3(0, -70, 0),
                 Quaternion.identity);
             MenuManager.Instance.SetBuildMenu(sysBuildListInstance);
             sysBuildListInstance.layer = 5; //UI layer
@@ -1159,13 +1154,11 @@ namespace Assets.Core
                 case ShipType.HvyCruiser:
                     GameObject hvyCruiserItemGO = (GameObject)Instantiate(hvyCruiserPrefab, new Vector3(0, 0, 0),
                         Quaternion.identity);
-
                     hvyCruiserItemGO.transform.SetParent(hvyCruiserInventorySlot.transform, false);
                     break;
                 case ShipType.Transport:
                     GameObject transportItemGO = (GameObject)Instantiate(transportPrefab, new Vector3(0, 0, 0),
                         Quaternion.identity);
-
                     transportItemGO.transform.SetParent(transportInventorySlot.transform, false);
                     break;
                 default:

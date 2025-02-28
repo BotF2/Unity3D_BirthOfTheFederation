@@ -16693,6 +16693,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7f173683bb120848886c27dc5b21230, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GalaxyMapEventList: []
 --- !u!1 &634433416
 GameObject:
   m_ObjectHideFlags: 0
@@ -31060,6 +31061,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d5e1dea0130fc9a4b9fae44445447d7a, type: 2}
   - {fileID: 11400000, guid: 0887276aa2bf9b4499215ceae580edb1, type: 2}
   - {fileID: 11400000, guid: ffebed232ec09ff4da5bc229640e3815, type: 2}
+  CivSOsInGame: []
   smallMapMinorNeighborsInGame:
   - {fileID: 11400000, guid: 59b4c88f7959c5f4586b8f8fe204815b, type: 2}
   - {fileID: 11400000, guid: e68fe62bff1d1254c9f3494f6a55ad3a, type: 2}
@@ -31084,7 +31086,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: fa9c8a22547a1a74a929c7aef9d97722, type: 2}
   - {fileID: 11400000, guid: fc3a031f3f95c4b4ea30d8b89824ea56, type: 2}
   - {fileID: 11400000, guid: f72694f20f979974b8ccd106a6651fc9, type: 2}
-  CivSOInGame: 
+  CivEnumsInGame: 
   CivControllersInGame: []
   isSinglePlayer: 0
   InGamePlayableCivs: 
@@ -38998,7 +39000,7 @@ MonoBehaviour:
   fogPlaneMaterial: {fileID: 2100000, guid: 36b93ac6fcf129c449491654e397fe4a, type: 2}
   galaxyImage: {fileID: 843799567}
   galaxyCenter: {fileID: 564492290}
-  ManagersFleetControllerList: []
+  FleetControllerList: []
   FleetGOList: []
   fleetGroupPrefab: {fileID: 3717699476320669143, guid: 724c5663d5780da4a9ab08bdbf7ccc98, type: 3}
   unknownfleet: {fileID: 21300000, guid: 4d704142da734fb46b88fe56645880c0, type: 3}
@@ -57456,7 +57458,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5be12cf191101484d985497abe5be640, type: 2}
   - {fileID: 11400000, guid: ad9d87d22e76100478a2067dde22d8f9, type: 2}
   - {fileID: 11400000, guid: e54f7300c7d2adb4c8929726d9783d3c, type: 2}
-  buildListPrefab: {fileID: 3868390008097759204, guid: 7917bd9f1d340bd4e9ef58bcc2b8e3bd, type: 3}
+  sysBuildUIListPrefab: {fileID: 3868390008097759204, guid: 7917bd9f1d340bd4e9ef58bcc2b8e3bd, type: 3}
   powerPlantSOList:
   - {fileID: 11400000, guid: 6151d15db64051c4ca76966cf95d2bc9, type: 2}
   - {fileID: 11400000, guid: 3aec5741c4bd4014fbb7bd30a7e68cc1, type: 2}
@@ -57507,7 +57509,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: cc87f47bdb5ebd048a0fc0b69afdcd76, type: 2}
   sysPrefab: {fileID: 6000483729355016117, guid: 06f0b4bc75ea46440939b026367c3da3, type: 3}
   sysUIPrefab: {fileID: 4945801355922885453, guid: 2019fad506023ad42a54b9e786bd3ff1, type: 3}
-  ManagersStarSysControllerList: []
+  StarSysControllerList: []
   PowerPlantPrefab: {fileID: 3951996713806300590, guid: 53bf0f8c8773c994f8331ada5c7ee1a7, type: 3}
   FactoryPrefab: {fileID: 6352246214134023823, guid: 60da8ed504050aa45839a948c0cbdebe, type: 3}
   ShipyardPrefab: {fileID: 5169689008362311750, guid: 65d737d397bc9294588f248ba029949b, type: 3}
@@ -57515,6 +57517,7 @@ MonoBehaviour:
   OrbitalBatteryPrefab: {fileID: 5454051914275515245, guid: d3ffd69f497d6db498b7847ffec0b573, type: 3}
   ResearchCenterPrefab: {fileID: 3385001668930454785, guid: e08024a6cdf269e4096d554d8fa1dd0b, type: 3}
   currentActiveSysCon: {fileID: 0}
+  fleetPrefab: {fileID: 8531124223347370568, guid: ef3b3036010abf54e8925e887e9010ad, type: 3}
   scoutPrefab: {fileID: 6321614478493960930, guid: f0379e6abf6e2424c9c6ef2a2faec298, type: 3}
   destroyerPrefab: {fileID: 6321614478493960930, guid: 5581d5fd566eab24eb436aa8ae660008, type: 3}
   cruiserPrefab: {fileID: 6321614478493960930, guid: dc1009bead97f4044afd09aebe1c62d4, type: 3}

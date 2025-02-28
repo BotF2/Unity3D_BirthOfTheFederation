@@ -26,6 +26,8 @@ public class FleetData
         ShipsList = fleetSO.ShipsList;
         MaxWarpFactor = fleetSO.MaxWarpFactor;
         description = fleetSO.Description;
+        CivIndex = fleetSO.CivIndex;
+        CivEnum = fleetSO.CivOwnerEnum;
     }
     public FleetData(string name)
     {

@@ -214,7 +214,7 @@ namespace Assets.Core
                     switch (sysBuildQueueList[0].gameObject.GetComponentInChildren<FactoryBuildableItem>().FacilityType)
                     {
                         case StarSysFacilities.PowerPlanet:
-                            this.StarSysData.PowerStations.Add(StarSysManager.Instance.AddSystemFacilities(1, StarSysManager.Instance.PowerPlantPrefab, (int)this.StarSysData.CurrentOwner, this.StarSysData, 0)[0]);
+                            this.StarSysData.PowerPlants.Add(StarSysManager.Instance.AddSystemFacilities(1, StarSysManager.Instance.PowerPlantPrefab, (int)this.StarSysData.CurrentOwner, this.StarSysData, 0)[0]);
                             if (starSysListUIGameObject != null)
                             {
                                 TextMeshProUGUI[] theTextItems = starSysListUIGameObject.GetComponentsInChildren<TextMeshProUGUI>();
@@ -222,10 +222,10 @@ namespace Assets.Core
                                 {
                                     theTextItems[j].enabled = true;
                                     if (theTextItems[j].name == "NumPUnits")
-                                        theTextItems[j].text = this.StarSysData.PowerStations.Count.ToString();
+                                        theTextItems[j].text = this.StarSysData.PowerPlants.Count.ToString();
                                     else if (theTextItems[j].name == "NumTotalEOut")
                                     {
-                                        this.starSysData.TotalSysPowerOutput = (this.StarSysData.PowerStations.Count) * (this.StarSysData.PowerPlantData.PowerOutput);
+                                        this.starSysData.TotalSysPowerOutput = (this.StarSysData.PowerPlants.Count) * (this.StarSysData.PowerPlantData.PowerOutput);
                                         theTextItems[j].text = this.starSysData.TotalSysPowerOutput.ToString();
                                     }
                                 }
@@ -291,26 +291,38 @@ namespace Assets.Core
                     shipStartTimer = true;
                     ShipTimeToBuild = 0;
                     shipBuildingItem = null;
+                    CivEnum localPlayerCivEnum = CivManager.Instance.LocalPlayerCivContoller.CivData.CivEnum;
+                    if (this.StarSysData.FleetsInSystem.Count == 0) // there is always a feel in the system waiting for new ships
+                    {
+                        IEnumerable<CivSO> civSOs =
+                            from civSO in CivManager.Instance.CivSOsInGame
+                            where civSO.CivEnum == this.StarSysData.CurrentCivController.CivData.CivEnum
+                            select civSO;
+                        CivSO theCivSO = civSOs.ToList().FirstOrDefault();
+                        //FleetManager.Instance.FleetDataFromSO(this, true);
+                    }
+                
+                    
                     switch (shipBuildQueueList[0].gameObject.GetComponentInChildren<ShipBuildableItem>().ShipType)
                     {
                         case ShipType.Scout:
-                           // StarSysManager.Instance.AddShipToSystem(this, ShipType.Scout);
+                            StarSysManager.Instance.AddSystemShipFleet(1, StarSysManager.Instance.scoutPrefab, (int)this.StarSysData.CurrentOwner, this.StarSysData);        
                             break;
-                        //case ShipType.Destroyer:
-                        //    StarSysManager.Instance.AddShipToSystem(this, ShipType.Destroyer);
-                        //    break;
-                        //case ShipType.Cruiser:
-                        //    StarSysManager.Instance.AddShipToSystem(this, ShipType.Cruiser);
-                        //    break;
-                        //case ShipType.LtCruiser:
-                        //    StarSysManager.Instance.AddShipToSystem(this, ShipType.LtCruiser);
-                        //    break;
-                        //case ShipType.HvyCruiser:
-                        //    StarSysManager.Instance.AddShipToSystem(this, ShipType.HvyCruiser);
-                        //    break;
-                        //case ShipType.Transport:
-                        //    StarSysManager.Instance.AddShipToSystem(this, ShipType.Transport);
-                        //    break;
+                        case ShipType.Destroyer:
+                            StarSysManager.Instance.AddSystemShipFleet(1, StarSysManager.Instance.destroyerPrefab, (int)this.StarSysData.CurrentOwner, this.StarSysData);
+                            break;
+                        case ShipType.Cruiser:
+                            StarSysManager.Instance.AddSystemShipFleet(1, StarSysManager.Instance.cruiserPrefab, (int)this.StarSysData.CurrentOwner, this.StarSysData);
+                            break;
+                        case ShipType.LtCruiser:
+                            StarSysManager.Instance.AddSystemShipFleet(1, StarSysManager.Instance.ltCruiserPrefab, (int)this.StarSysData.CurrentOwner, this.StarSysData);
+                            break;
+                        case ShipType.HvyCruiser:
+                            StarSysManager.Instance.AddSystemShipFleet(1, StarSysManager.Instance.hvyCruiserPrefab, (int)this.StarSysData.CurrentOwner, this.StarSysData);
+                            break;
+                        case ShipType.Transport:
+                            StarSysManager.Instance.AddSystemShipFleet(1, StarSysManager.Instance.transportPrefab, (int)this.StarSysData.CurrentOwner, this.StarSysData);
+                            break;
                         default:
                             break;
                     }

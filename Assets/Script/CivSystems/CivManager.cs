@@ -20,7 +20,7 @@ namespace Assets.Core
         public static CivManager Instance;
         [SerializeField]
         private List<CivSO> civSOListAllPossible;
-        private List<CivSO> allCivSOsInGame;
+        public List<CivSO> CivSOsInGame;
         [SerializeField]
         private List<CivSO> smallMapMinorNeighborsInGame;
         [SerializeField]
@@ -29,7 +29,7 @@ namespace Assets.Core
         private List<CivSO> largeMapMinorNeighborsInGame;
         private List<CivSO> randomMinorsInGame;
 
-        public List<CivEnum> CivSOInGame;
+        public List<CivEnum> CivEnumsInGame;
         public List<CivData> CivDataInGameList = new List<CivData> { new CivData() };
         public List<CivController> CivControllersInGame;
 
@@ -92,10 +92,7 @@ namespace Assets.Core
         {
 
         }
-        public void SetLocalPlayerCivController(CivController civ)
-        {
-            this.LocalPlayerCivContoller = civ;
-        }
+
         public void UpdatePlayableCivGameList(List<CivEnum> listPlayableCivEnumForCivSOs, int galaxySize, GalaxyMapType galaxyType)
         {
             if (galaxyType == GalaxyMapType.CANON)
@@ -118,11 +115,11 @@ namespace Assets.Core
                     }
                 }
                 SetRandomCanonCivsByGalaxySize(galaxySize, _SOsInGame);
-                allCivSOsInGame = _SOsInGame;
+                CivSOsInGame = _SOsInGame;
 
 
                 ////**** See all Civs -  ****
-                // allCivSOsInGame = civSOListAllPossible;
+                // CivSOsInGame = civSOListAllPossible;
                 #endregion TURN ON ALL CIVs WITH LAST LINE ABOVE
             }
             else if (galaxyType == GalaxyMapType.RANDOM)
@@ -172,10 +169,11 @@ namespace Assets.Core
             MainMenuUIController.Instance.MainMenuData.SelectedTechLevel = (TechLevel)gameTechLevel;
             MainMenuUIController.Instance.MainMenuData.SelectedGalaxyType = (GalaxyMapType)galaxyType;
             isSinglePlayer = isSingleVsMultiplayer;
-            CivDataFromSO(allCivSOsInGame);
-            CreateCivEnumList(allCivSOsInGame);
+            CivDataFromSO(CivSOsInGame, localPlayerCivInt);
+            CreateCivEnumList(CivSOsInGame);
+
         }
-        public void CivDataFromSO(List<CivSO> civSOList)
+        public void CivDataFromSO(List<CivSO> civSOList, int localPayerCivInt)
         {
             for (int i = 0; i < civSOList.Count; i++) 
             {
@@ -191,7 +189,7 @@ namespace Assets.Core
                 civData.CivRaceSprite = civSOList[i].CivImage;
                 civData.InsigniaSprite = civSOList[i].Insignia;
                 civData.Population = civSOList[i].Population;
-               //civData.Credits = civSOList[i].Credits;
+                civData.LocalPlayerCivEnum = ((CivEnum)localPayerCivInt);
                 civData.TechPoints = civSOList[i].TechPoints;
                 civData.TechLevel = MainMenuUIController.Instance.MainMenuData.SelectedTechLevel;
                 civData.Playable = civSOList[i].Playable;
@@ -212,7 +210,7 @@ namespace Assets.Core
                     civData.TechPoints = 0;
                 }
                 CivDataInGameList.Add(civData);
-                InstantiateCivilizations(civData);
+                InstantiateCivilizations(civData, localPayerCivInt);
 
             }
             if (CivDataInGameList[0].CivHomeSystem != null) { }
@@ -220,7 +218,7 @@ namespace Assets.Core
                 CivDataInGameList.Remove(CivDataInGameList[0]); // remove the null entered by field
             StarSysManager.Instance.SysDataFromSO(civSOList);
         }
-        private void InstantiateCivilizations(CivData civData)
+        private void InstantiateCivilizations(CivData civData, int localPlayerCivInt)
         {
             GameObject civNewGameOb = (GameObject)Instantiate(civPrefab, new Vector3(0, 0, 0), Quaternion.identity);
             var civController = civNewGameOb.GetComponentInChildren<CivController>();
@@ -231,12 +229,11 @@ namespace Assets.Core
             civController.CivData.CivEnumsWeKnow = new List<CivEnum>() { civController.CivData.CivEnum };
             civNewGameOb.transform.SetParent(civFolder.transform, true);
             civNewGameOb.name = civData.CivShortName.ToString();
-            //********** We are just assuming Fed is local player, need to do a check for 
-            // NetCode, NetworkObject belongs to the local player
-            if (GameController.Instance.AreWeLocalPlayer(civController.CivData.CivEnum)) // *** this is temp
 
+            // NetCode, NetworkObject belongs to the local player
+            if (localPlayerCivInt == civController.CivData.CivInt)
             {
-                SetLocalPlayerCivController(civController);
+                LocalPlayerCivContoller = civController;
                 StarSysManager.Instance.SetShipBuildPerfabs(civController.CivData.CivEnum);
             }
 
@@ -253,7 +250,7 @@ namespace Assets.Core
         {
             for (int i = 0; i < listOfCivSO.Count; i++) 
             {
-                CivSOInGame.Add(listOfCivSO[i].CivEnum);
+                CivEnumsInGame.Add(listOfCivSO[i].CivEnum);
             }
         }
         public CivData GetCivDataByName(string shortName)

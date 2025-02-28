@@ -3565,7 +3565,7 @@ GameObject:
   - component: {fileID: 8842128110312170451}
   - component: {fileID: 9081010710240092795}
   m_Layer: 5
-  m_Name: BuildListPanel
+  m_Name: SysBuildUIListPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

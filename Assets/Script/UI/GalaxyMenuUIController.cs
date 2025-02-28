@@ -208,9 +208,9 @@ public class GalaxyMenuUIController : MonoBehaviour
     }
     private void SetUISystemsData()
     {
-        if (StarSysManager.Instance.ManagersStarSysControllerList.Count > 0)
+        if (StarSysManager.Instance.StarSysControllerList.Count > 0)
         {
-            foreach (var sysCon in StarSysManager.Instance.ManagersStarSysControllerList)
+            foreach (var sysCon in StarSysManager.Instance.StarSysControllerList)
             {
                 if (sysCon.StarSysListUIGameObject != null && GameController.Instance.AreWeLocalPlayer(sysCon.StarSysData.CurrentOwner))
                 {
@@ -264,15 +264,15 @@ public class GalaxyMenuUIController : MonoBehaviour
                             OneTMP[i].text = sysController.StarSysData.SysName;
                             break;
                         case "HeaderPowerUnitText":
-                            //if (sysController.StarSysData.PowerStations.Count > 0)  
+                            //if (sysController.StarSysData.PowerPlants.Count > 0)  
                             OneTMP[i].text = sysController.StarSysData.PowerPlantData.Name;
                             //ToDo: can make it race specific here, not defaul "Plasma Reactor"
                             break;
                         case "NumPUnits":
-                            OneTMP[i].text = (sysController.StarSysData.PowerStations.Count).ToString();
+                            OneTMP[i].text = (sysController.StarSysData.PowerPlants.Count).ToString();
                             break;
                         case "NumTotalEOut":
-                            sysController.StarSysData.TotalSysPowerOutput = sysController.StarSysData.PowerStations.Count * sysController.StarSysData.PowerPlantData.PowerOutput;
+                            sysController.StarSysData.TotalSysPowerOutput = sysController.StarSysData.PowerPlants.Count * sysController.StarSysData.PowerPlantData.PowerOutput;
                             OneTMP[i].text = (sysController.StarSysData.TotalSysPowerOutput).ToString();                         
                             break;
                         // ToDo: use techLevelInt in power output 

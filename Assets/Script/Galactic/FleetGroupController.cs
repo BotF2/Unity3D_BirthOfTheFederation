@@ -242,13 +242,13 @@ public class FleetGroupController : MonoBehaviour
     //}
     //public void AddFleetController(FleetController ourUIFleetController) // do we need this?
     //{
-    //    if (!FleetManager.current.ManagersFleetControllerList.Contains(ourUIFleetController))
-    //        FleetManager.current.ManagersFleetControllerList.Add(ourUIFleetController);
+    //    if (!FleetManager.current.FleetControllerList.Contains(ourUIFleetController))
+    //        FleetManager.current.FleetControllerList.Add(ourUIFleetController);
     //}
     //public void RemoveFleetController(FleetController ourUIFleetController)
     //{
-    //    if (FleetManager.current.ManagersFleetControllerList.Contains(ourUIFleetController))
-    //        FleetManager.current.ManagersFleetControllerList.Remove(ourUIFleetController);
+    //    if (FleetManager.current.FleetControllerList.Contains(ourUIFleetController))
+    //        FleetManager.current.FleetControllerList.Remove(ourUIFleetController);
     //}
 }
 
