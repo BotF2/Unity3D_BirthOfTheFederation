@@ -136,8 +136,9 @@ namespace Assets.Core
                 FleetControllerList.Add(fleetController);
                 if (!inSystem)
                 {
-                    fleetNewGameOb.transform.SetParent(sysCon.gameObject.transform, true);
-                    fleetNewGameOb.transform.Translate(new Vector3(position.x + 40f, position.y + 10f, fleetData.Position.z));
+                    var trans = sysCon.gameObject.transform;
+                    fleetNewGameOb.transform.SetParent(trans, false);
+                    fleetNewGameOb.transform.Translate(new Vector3(trans.position.x + 40f, trans.position.y + 10f, fleetData.Position.z));
                 }
                 else
                 {

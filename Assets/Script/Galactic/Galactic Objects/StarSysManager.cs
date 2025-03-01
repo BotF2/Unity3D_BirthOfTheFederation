@@ -300,7 +300,7 @@ namespace Assets.Core
 
                 }
                 if (civSO.HasWarp)
-                    FleetManager.Instance.FleetDataFromSO(starSysController, false); // fleet for first ships as game loads, not for ships instatiated by working shipyard in system
+                     FleetManager.Instance.FleetDataFromSO(starSysController, false); // fleet for first ships as game loads, not for ships instatiated by working shipyard in system
                 if (GameController.Instance.AreWeLocalPlayer(sysData.CurrentOwner)) 
                 {
                     StarSysSO starSysSO = GetStarSObyInt(civSO.CivInt);
