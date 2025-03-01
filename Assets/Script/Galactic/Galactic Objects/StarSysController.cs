@@ -299,29 +299,29 @@ namespace Assets.Core
                             where civSO.CivEnum == this.StarSysData.CurrentCivController.CivData.CivEnum
                             select civSO;
                         CivSO theCivSO = civSOs.ToList().FirstOrDefault();
-                        //FleetManager.Instance.FleetDataFromSO(this, true);
+                        FleetManager.Instance.FleetDataFromSO(this, true);
                     }
                 
                     
                     switch (shipBuildQueueList[0].gameObject.GetComponentInChildren<ShipBuildableItem>().ShipType)
                     {
                         case ShipType.Scout:
-                            StarSysManager.Instance.AddSystemShipFleet(1, StarSysManager.Instance.scoutPrefab, (int)this.StarSysData.CurrentOwner, this.StarSysData);        
+                            StarSysManager.Instance.AddSystemShipFleet(this, StarSysManager.Instance.scoutBluePrintPrefab, this.StarSysData.CurrentOwner);        
                             break;
                         case ShipType.Destroyer:
-                            StarSysManager.Instance.AddSystemShipFleet(1, StarSysManager.Instance.destroyerPrefab, (int)this.StarSysData.CurrentOwner, this.StarSysData);
+                            StarSysManager.Instance.AddSystemShipFleet(this, StarSysManager.Instance.destroyerBluePrintPrefab, this.StarSysData.CurrentOwner);
                             break;
                         case ShipType.Cruiser:
-                            StarSysManager.Instance.AddSystemShipFleet(1, StarSysManager.Instance.cruiserPrefab, (int)this.StarSysData.CurrentOwner, this.StarSysData);
+                            StarSysManager.Instance.AddSystemShipFleet(this, StarSysManager.Instance.cruiserBluePrintPrefab, this.StarSysData.CurrentOwner);
                             break;
                         case ShipType.LtCruiser:
-                            StarSysManager.Instance.AddSystemShipFleet(1, StarSysManager.Instance.ltCruiserPrefab, (int)this.StarSysData.CurrentOwner, this.StarSysData);
+                            StarSysManager.Instance.AddSystemShipFleet(this, StarSysManager.Instance.ltCruiserBluePrintPrefab, this.StarSysData.CurrentOwner);
                             break;
                         case ShipType.HvyCruiser:
-                            StarSysManager.Instance.AddSystemShipFleet(1, StarSysManager.Instance.hvyCruiserPrefab, (int)this.StarSysData.CurrentOwner, this.StarSysData);
+                            StarSysManager.Instance.AddSystemShipFleet(this, StarSysManager.Instance.hvyCruiserBluePrintPrefab, this.StarSysData.CurrentOwner);
                             break;
                         case ShipType.Transport:
-                            StarSysManager.Instance.AddSystemShipFleet(1, StarSysManager.Instance.transportPrefab, (int)this.StarSysData.CurrentOwner, this.StarSysData);
+                            StarSysManager.Instance.AddSystemShipFleet(this, StarSysManager.Instance.transportBluePrintPrefab, this.StarSysData.CurrentOwner);
                             break;
                         default:
                             break;
@@ -445,18 +445,6 @@ namespace Assets.Core
             //ToD use tech level to set features of system production, defence....
         }
 
-
-        public void AddToFactoryQueue(GameObject facilityPrefab)
-        {
-            GameObject systemFacilityGO = (GameObject)Instantiate(facilityPrefab, new Vector3(0, 0, 0),
-                Quaternion.identity);
-            this.StarSysData.FactoryBuildQueue.Add(systemFacilityGO);
-        }
-
-        public void AddToShipyardQueue(StarSysController theSystem, ShipData shipData)
-        {
-            this.StarSysData.ShipyardQueue.Add(shipData);
-        }
         public void DoHabitalbeSystemUI(FleetController discoveringFleetCon)
         {
             if (discoveringFleetCon != null)
@@ -484,6 +472,7 @@ namespace Assets.Core
                         GameObject aNull = new GameObject();
                         MenuManager.Instance.OpenMenu(Menu.ASystemMenu, aNull); // get a single system UI on map system click
                         GalaxyMenuUIController.Instance.OpenASystemUI(this);
+                        Destroy(aNull);
                     }
                     else
                     {
@@ -505,11 +494,13 @@ namespace Assets.Core
 
         public void OnEnable()
         {
-            TimeManager.Instance.OnRandomSpecialEvent += DoDisaster;
+            if(TimeManager.Instance != null)
+                TimeManager.Instance.OnRandomSpecialEvent += DoDisaster;
         }
         public void OnDisable()
         {
-            TimeManager.Instance.OnRandomSpecialEvent -= DoDisaster;
+            if (TimeManager.Instance != null)
+                TimeManager.Instance.OnRandomSpecialEvent -= DoDisaster;
         }
         private void DoDisaster(TrekRandomEventSO randomSpecialEvent)
         {

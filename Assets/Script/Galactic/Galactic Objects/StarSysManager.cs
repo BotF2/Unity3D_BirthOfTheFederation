@@ -46,20 +46,21 @@ namespace Assets.Core
         public GameObject OrbitalBatteryPrefab;
         public GameObject ResearchCenterPrefab;
         public StarSysController currentActiveSysCon;
-        [SerializeField]
-        private GameObject fleetPrefab;
+
         private GameObject powerPlantInventorySlot;
         private GameObject factoryInventorySlot;
         private GameObject shipyardInventorySlot;
         private GameObject shieldGenInventorySlot;
         private GameObject orbitalBatteryInventorySlot;
         private GameObject researchCenterInventorySlot;
-        public GameObject scoutPrefab;
-        public GameObject destroyerPrefab;
-        public GameObject cruiserPrefab;
-        public GameObject ltCruiserPrefab;
-        public GameObject hvyCruiserPrefab;
-        public GameObject transportPrefab;
+        [SerializeField]
+        private GameObject fleetPrefab;
+        public GameObject scoutBluePrintPrefab;
+        public GameObject destroyerBluePrintPrefab;
+        public GameObject cruiserBluePrintPrefab;
+        public GameObject ltCruiserBluePrintPrefab;
+        public GameObject hvyCruiserBluePrintPrefab;
+        public GameObject transportBluePrintPrefab;
         private GameObject scoutInventorySlot;
         private GameObject destroyerInventorySlot;
         private GameObject cruiserInventorySlot;
@@ -139,45 +140,45 @@ namespace Assets.Core
             {
                 if (shipSOList[i].ShipType == ShipType.Scout)
                 {
-                    var shipBuildScript = scoutPrefab.GetComponent<ShipBuildableItem>();
+                    var shipBuildScript = scoutBluePrintPrefab.GetComponent<ShipBuildableItem>();
                     shipBuildScript.BuildDuration = shipSOList[i].BuildDuration;
                     shipBuildScript.ShipSprite = shipSOList[i].shipSprite;
-                    scoutPrefab.GetComponent<Image>().sprite = shipSOList[i].shipSprite;
+                    scoutBluePrintPrefab.GetComponent<Image>().sprite = shipSOList[i].shipSprite;
                 }
                 else if (shipSOList[i].ShipType == ShipType.Destroyer)
                 {
-                    var shipBuildScript = destroyerPrefab.GetComponent<ShipBuildableItem>();
+                    var shipBuildScript = destroyerBluePrintPrefab.GetComponent<ShipBuildableItem>();
                     shipBuildScript.BuildDuration = shipSOList[i].BuildDuration;
                     shipBuildScript.ShipSprite = shipSOList[i].shipSprite;
-                    destroyerPrefab.GetComponent<Image>().sprite = shipSOList[i].shipSprite;
+                    destroyerBluePrintPrefab.GetComponent<Image>().sprite = shipSOList[i].shipSprite;
                 }
                 else if (shipSOList[i].ShipType == ShipType.Cruiser)
                 {
-                    var shipBuildScript = cruiserPrefab.GetComponent<ShipBuildableItem>();
+                    var shipBuildScript = cruiserBluePrintPrefab.GetComponent<ShipBuildableItem>();
                     shipBuildScript.BuildDuration = shipSOList[i].BuildDuration;
                     shipBuildScript.ShipSprite = shipSOList[i].shipSprite;
-                    cruiserPrefab.GetComponent<Image>().sprite = shipSOList[i].shipSprite;
+                    cruiserBluePrintPrefab.GetComponent<Image>().sprite = shipSOList[i].shipSprite;
                 }
                 else if (shipSOList[i].ShipType == ShipType.LtCruiser)
                 {
-                    var shipBuildScript = ltCruiserPrefab.GetComponent<ShipBuildableItem>();
+                    var shipBuildScript = ltCruiserBluePrintPrefab.GetComponent<ShipBuildableItem>();
                     shipBuildScript.BuildDuration = shipSOList[i].BuildDuration;
                     shipBuildScript.ShipSprite = shipSOList[i].shipSprite;
-                    ltCruiserPrefab.GetComponent<Image>().sprite = shipSOList[i].shipSprite;
+                    ltCruiserBluePrintPrefab.GetComponent<Image>().sprite = shipSOList[i].shipSprite;
                 }
                 else if (shipSOList[i].ShipType == ShipType.HvyCruiser)
                 {
-                    var shipBuildScript = hvyCruiserPrefab.GetComponent<ShipBuildableItem>();
+                    var shipBuildScript = hvyCruiserBluePrintPrefab.GetComponent<ShipBuildableItem>();
                     shipBuildScript.BuildDuration = shipSOList[i].BuildDuration;
                     shipBuildScript.ShipSprite = shipSOList[i].shipSprite;
-                    hvyCruiserPrefab.GetComponent<Image>().sprite = shipSOList[i].shipSprite;
+                    hvyCruiserBluePrintPrefab.GetComponent<Image>().sprite = shipSOList[i].shipSprite;
                 }
                 else if (shipSOList[i].ShipType == ShipType.Transport)
                 {
-                    var shipBuildScript = transportPrefab.GetComponent<ShipBuildableItem>();
+                    var shipBuildScript = transportBluePrintPrefab.GetComponent<ShipBuildableItem>();
                     shipBuildScript.BuildDuration = shipSOList[i].BuildDuration;
                     shipBuildScript.ShipSprite = shipSOList[i].shipSprite;
-                    transportPrefab.GetComponent<Image>().sprite = shipSOList[i].shipSprite;
+                    transportBluePrintPrefab.GetComponent<Image>().sprite = shipSOList[i].shipSprite;
                 }
             }
         }
@@ -207,11 +208,11 @@ namespace Assets.Core
          {
             GameObject starSystemNewGameOb = new GameObject();
             if (MainMenuUIController.Instance.MainMenuData.SelectedGalaxyType == GalaxyMapType.RANDOM)
-            { // do something random with sysData.position
+            { // do something random with fleetData.position
             }
             else if (MainMenuUIController.Instance.MainMenuData.SelectedGalaxyType == GalaxyMapType.RING)
             {
-                // do something in a ring with sysData.position
+                // do something in a ring with fleetData.position
             }
             else
             {
@@ -246,7 +247,7 @@ namespace Assets.Core
                         else
                         {
                             TheText[i].text = sysData.GetSysName();
-                           //var sysThingy = sysData
+                           //var sysThingy = fleetData
                         }
                     }
                     else if (TheText[i] != null && TheText[i].name == "SysDescription (TMP)")
@@ -349,9 +350,95 @@ namespace Assets.Core
                 go.transform.SetParent(parent.transform, false);
             }
         }
-        public void AddSystemShipFleet(int numOfShip, GameObject fleetPrefab, int civInt, StarSysData sysData)
+        public GameObject AddSystemShipFleet(StarSysController sysCon, GameObject shipBluePrintPrefab, CivEnum civEnum)
         {
-            //sysData.FleetsInSystem[0].GetComponent<FleetData>().AddToShipList(fleetPrefab.GetComponent<ShipController>());
+            GameObject fleetNewGameOb = new GameObject();
+            fleetNewGameOb = (GameObject)Instantiate(fleetPrefab, new Vector3(0, 0, 0),
+                Quaternion.identity);
+            fleetNewGameOb.layer = 4;
+            fleetNewGameOb.transform.SetParent(sysCon.transform, true);
+
+            //******Tech level*********
+            List<ShipSO> shipSOList = new List<ShipSO>();
+            TechLevel techLevel  =CivManager.Instance.GetCivDataByCivEnum(civEnum).TechLevel;
+            switch (techLevel)
+            {
+                case TechLevel.EARLY:
+                    shipSOList = ShipManager.Instance.ShipSOListTech0.Where(x => x.CivEnum == civEnum && x.TechLevel == TechLevel.EARLY).ToList();
+                    break;
+                case TechLevel.DEVELOPED:
+                    shipSOList = ShipManager.Instance.ShipSOListTech1.Where(x => x.CivEnum == civEnum && x.TechLevel == TechLevel.DEVELOPED).ToList();
+                    break;
+                case TechLevel.ADVANCED:
+                    shipSOList = ShipManager.Instance.ShipSOListTech2.Where(x => x.CivEnum == civEnum && x.TechLevel == TechLevel.ADVANCED).ToList();
+                    break;
+                case TechLevel.SUPREME:
+                    shipSOList = ShipManager.Instance.ShipSOListTech3.Where(x => x.CivEnum == civEnum && x.TechLevel == TechLevel.SUPREME).ToList();
+                    break;
+                default:
+                    break;
+            }
+            
+            switch (fleetPrefab.name)
+            {
+                case "scoutBluePrintPrefab":
+                    {
+                        var scoutSOIEnumerable = shipSOList.Where(x => x.ShipType == ShipType.Scout);
+                        var scoutSO = scoutSOIEnumerable.ToList();
+                        List<GameObject> shipGOList = ShipManager.Instance.ShipDataFromSO(scoutSO);
+                        fleetNewGameOb.GetComponent<FleetController>().FleetData.AddToShipList(shipGOList.FirstOrDefault().GetComponent<ShipController>());
+                        shipGOList.FirstOrDefault().transform.SetParent(fleetNewGameOb.transform, false);
+                        break;
+                    }
+                case "destroyerBluePrintPrefab":
+                    {
+                        var destroyerSOIEnumerable = shipSOList.Where(x => x.ShipType == ShipType.Destroyer);
+                        var destroyerSO = destroyerSOIEnumerable.ToList();
+                        List<GameObject> shipGOList = ShipManager.Instance.ShipDataFromSO(destroyerSO);
+                        fleetNewGameOb.GetComponent<FleetController>().FleetData.AddToShipList(shipGOList.FirstOrDefault().GetComponent<ShipController>());
+                        shipGOList.FirstOrDefault().transform.SetParent(fleetNewGameOb.transform, false);
+                        break;
+                    }
+                case "cruiserBluePrintPrefab":
+                    {
+                        var crusierSOIEnumerable = shipSOList.Where(x => x.ShipType == ShipType.Cruiser);
+                        var cruiserSO = crusierSOIEnumerable.ToList();
+                        List<GameObject> shipGOList = ShipManager.Instance.ShipDataFromSO(cruiserSO);
+                        fleetNewGameOb.GetComponent<FleetController>().FleetData.AddToShipList(shipGOList.FirstOrDefault().GetComponent<ShipController>());
+                        shipGOList.FirstOrDefault().transform.SetParent(fleetNewGameOb.transform, false);
+                        break;
+                    }
+                case "ltCruiserBluePrintPrefab":
+                    {
+                        var ltCruiserSOIEnumerable = shipSOList.Where(x => x.ShipType == ShipType.LtCruiser);
+                        var ltCruiserSO = ltCruiserSOIEnumerable.ToList();
+                        List<GameObject> shipGOList = ShipManager.Instance.ShipDataFromSO(ltCruiserSO);
+                        fleetNewGameOb.GetComponent<FleetController>().FleetData.AddToShipList(shipGOList.FirstOrDefault().GetComponent<ShipController>());
+                        shipGOList.FirstOrDefault().transform.SetParent(fleetNewGameOb.transform, false);
+                        break;
+                    }
+                case "hvyCruiserBluePrintPrefab":
+                    {
+                        var hvyCruusierSOIEnumerable = shipSOList.Where(x => x.ShipType == ShipType.HvyCruiser);
+                        var hvyCruiserSO = hvyCruusierSOIEnumerable.ToList();
+                        List<GameObject> shipGOList = ShipManager.Instance.ShipDataFromSO(hvyCruiserSO);
+                        fleetNewGameOb.GetComponent<FleetController>().FleetData.AddToShipList(shipGOList.FirstOrDefault().GetComponent<ShipController>());
+                        shipGOList.FirstOrDefault().transform.SetParent(fleetNewGameOb.transform, false);
+                        break;
+                    }
+                case "transportBluePrintPrefab":
+                    {
+                        var transportSOIEnumerable = shipSOList.Where(x => x.ShipType == ShipType.Transport);
+                        var transportSO = transportSOIEnumerable.ToList();
+                        List<GameObject> shipGOList = ShipManager.Instance.ShipDataFromSO(transportSO);
+                        fleetNewGameOb.GetComponent<FleetController>().FleetData.AddToShipList(shipGOList.FirstOrDefault().GetComponent<ShipController>());
+                        shipGOList.FirstOrDefault().transform.SetParent(fleetNewGameOb.transform, false);
+                        break;
+                    }
+                default:
+                    break;
+            }
+            return fleetNewGameOb;
         }
         public List<GameObject> AddSystemFacilities(int numOf, GameObject prefab, int civInt, StarSysData sysData, int onOff)
         {
@@ -977,7 +1064,7 @@ namespace Assets.Core
                             {
                                 if (itemScoutImage[i].name == "ItemScout" || itemScoutImage[i].name == "ImageScoutBackground")
                                 {
-                                    itemScoutImage[i].sprite = scoutPrefab.GetComponent<ShipBuildableItem>().ShipSprite;
+                                    itemScoutImage[i].sprite = scoutBluePrintPrefab.GetComponent<ShipBuildableItem>().ShipSprite;
                                 }
                             }
                             break;
@@ -991,7 +1078,7 @@ namespace Assets.Core
                             {
                                 if (itemDestroyerImage[i].name == "ItemDestroyer" || itemDestroyerImage[i].name == "ImageDestroyerBackground")
                                 {
-                                    itemDestroyerImage[i].sprite = destroyerPrefab.GetComponent<ShipBuildableItem>().ShipSprite;
+                                    itemDestroyerImage[i].sprite = destroyerBluePrintPrefab.GetComponent<ShipBuildableItem>().ShipSprite;
                                 }
                             }
                             break;
@@ -1011,7 +1098,7 @@ namespace Assets.Core
                             {
                                 if (itemCruiserImage[i].name == "ItemCruiser" || itemCruiserImage[i].name == "ImageCruiserBackground")
                                 {
-                                    itemCruiserImage[i].sprite = cruiserPrefab.GetComponent<ShipBuildableItem>().ShipSprite;
+                                    itemCruiserImage[i].sprite = cruiserBluePrintPrefab.GetComponent<ShipBuildableItem>().ShipSprite;
                                 }
                             }
                             break;
@@ -1031,7 +1118,7 @@ namespace Assets.Core
                             {
                                 if (itemCruiserImage[i].name == "ItemLtCruiser" || itemCruiserImage[i].name == "ImageLtCruiserBackground")
                                 {
-                                    itemCruiserImage[i].sprite = ltCruiserPrefab.GetComponent<ShipBuildableItem>().ShipSprite;
+                                    itemCruiserImage[i].sprite = ltCruiserBluePrintPrefab.GetComponent<ShipBuildableItem>().ShipSprite;
                                 }
                             }
                             break;
@@ -1050,7 +1137,7 @@ namespace Assets.Core
                             {
                                 if (itemCruiserImage[i].name == "ItemHvyCruiser" || itemCruiserImage[i].name == "ImageHvyCruiserBackground")
                                 {
-                                    itemCruiserImage[i].sprite = hvyCruiserPrefab.GetComponent<ShipBuildableItem>().ShipSprite;
+                                    itemCruiserImage[i].sprite = hvyCruiserBluePrintPrefab.GetComponent<ShipBuildableItem>().ShipSprite;
                                 }
                             }
                             break;
@@ -1064,7 +1151,7 @@ namespace Assets.Core
                             {
                                 if (itemCruiserImage[i].name == "ItemTransport" || itemCruiserImage[i].name == "ImageTransportBackground")
                                 {
-                                    itemCruiserImage[i].sprite = transportPrefab.GetComponent<ShipBuildableItem>().ShipSprite;
+                                    itemCruiserImage[i].sprite = transportBluePrintPrefab.GetComponent<ShipBuildableItem>().ShipSprite;
                                 }
                             }
                             break;
@@ -1133,32 +1220,32 @@ namespace Assets.Core
             switch (shiptype)
             {
                 case ShipType.Scout:
-                    GameObject ItemSGO = (GameObject)Instantiate(scoutPrefab, new Vector3(0, 0, 0),
+                    GameObject ItemSGO = (GameObject)Instantiate(scoutBluePrintPrefab, new Vector3(0, 0, 0),
                         Quaternion.identity);
                     ItemSGO.transform.SetParent(scoutInventorySlot.transform, false);
                     break;
                 case ShipType.Destroyer:
-                    GameObject ItemDGO = (GameObject)Instantiate(destroyerPrefab, new Vector3(0, 0, 0),
+                    GameObject ItemDGO = (GameObject)Instantiate(destroyerBluePrintPrefab, new Vector3(0, 0, 0),
                        Quaternion.identity);
                     ItemDGO.transform.SetParent(destroyerInventorySlot.transform, false);
                     break;
                 case ShipType.Cruiser:
-                    GameObject cruiserItemGO = (GameObject)Instantiate(cruiserPrefab, new Vector3(0, 0, 0),
+                    GameObject cruiserItemGO = (GameObject)Instantiate(cruiserBluePrintPrefab, new Vector3(0, 0, 0),
                         Quaternion.identity);
                     cruiserItemGO.transform.SetParent(cruiserInventorySlot.transform, false);
                     break;
                 case ShipType.LtCruiser:
-                    GameObject ltCruiserItemGO = (GameObject)Instantiate(ltCruiserPrefab, new Vector3(0, 0, 0),
+                    GameObject ltCruiserItemGO = (GameObject)Instantiate(ltCruiserBluePrintPrefab, new Vector3(0, 0, 0),
                         Quaternion.identity);
                     ltCruiserItemGO.transform.SetParent(ltCruiserInventorySlot.transform, false);
                     break;
                 case ShipType.HvyCruiser:
-                    GameObject hvyCruiserItemGO = (GameObject)Instantiate(hvyCruiserPrefab, new Vector3(0, 0, 0),
+                    GameObject hvyCruiserItemGO = (GameObject)Instantiate(hvyCruiserBluePrintPrefab, new Vector3(0, 0, 0),
                         Quaternion.identity);
                     hvyCruiserItemGO.transform.SetParent(hvyCruiserInventorySlot.transform, false);
                     break;
                 case ShipType.Transport:
-                    GameObject transportItemGO = (GameObject)Instantiate(transportPrefab, new Vector3(0, 0, 0),
+                    GameObject transportItemGO = (GameObject)Instantiate(transportBluePrintPrefab, new Vector3(0, 0, 0),
                         Quaternion.identity);
                     transportItemGO.transform.SetParent(transportInventorySlot.transform, false);
                     break;

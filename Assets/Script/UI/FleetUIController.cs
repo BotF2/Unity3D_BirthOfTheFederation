@@ -237,7 +237,7 @@ public class FleetUIController : MonoBehaviour
     {
         GameObject aNull = new GameObject();
         MenuManager.Instance.OpenMenu(Menu.FleetsMenu, aNull);
-        //FleetSelectionUI.Instance.LoadShipUIManager(ourUIFleetController);
+        Destroy(aNull);
     }
     public void LoadFleetUI(GameObject rayHitGO)
     {
@@ -277,7 +277,7 @@ public class FleetUIController : MonoBehaviour
         ourUIFleetController.UpdateMaxWarp();
         maxSliderValue = ourUIFleetController.FleetData.MaxWarpFactor;
         ResetWarpSlider(ourUIFleetController.FleetData.CurrentWarpFactor);
-
+        Destroy(aNull);
     }
     private void ReorderDropdownOptions(TMP_Dropdown dropdown)
     {

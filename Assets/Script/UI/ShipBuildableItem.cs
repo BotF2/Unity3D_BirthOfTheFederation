@@ -100,7 +100,7 @@ public class ShipBuildableItem : MonoBehaviour, IBeginDragHandler, IEndDragHandl
             switch (theDragedScript.ShipType)
             {
                 case ShipType.Scout:
-                    StarSysManager.Instance.NewImageInEmptyShipBuildableInventory(ShipType.Scout);                //StarSysManager.Instance.scoutPrefab);
+                    StarSysManager.Instance.NewImageInEmptyShipBuildableInventory(ShipType.Scout);                //StarSysManager.Instance.scoutBluePrintPrefab);
                     break;
                 case ShipType.Destroyer:
                     StarSysManager.Instance.NewImageInEmptyShipBuildableInventory(ShipType.Destroyer);

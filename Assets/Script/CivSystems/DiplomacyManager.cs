@@ -150,8 +150,6 @@ public class DiplomacyManager : MonoBehaviour
             }
         }
         return diplomacyController;
-
-
     }
 }
 

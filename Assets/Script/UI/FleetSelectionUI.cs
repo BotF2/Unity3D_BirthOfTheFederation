@@ -52,6 +52,7 @@ public class FleetSelectionUI : MonoBehaviour
         FleetsManagerUIToggle.SetActive(true);
         clickedFleetController = fleetController;
         CivName.text = clickedFleetController.FleetData.CivLongName;
+        Destroy(aNull);
     }
 
     public void UnLoadShipManagerUI()

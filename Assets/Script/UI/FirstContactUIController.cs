@@ -64,6 +64,7 @@ public class FirstContactUIController : MonoBehaviour
         else if (GameController.Instance.AreWeLocalPlayer(ourDiplomacyController.DiplomacyData.CivTwo.CivData.CivEnum))
             LoadCivDataInUI(ourDiplomacyController.DiplomacyData.CivOne, ourDiplomacyController);
         FirstContactUIToggle.SetActive(true);
+        Destroy(aNull);
 
     }
     private void LoadCivDataInUI(CivController othersController, DiplomacyController ourDiplomacyController)

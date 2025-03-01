@@ -55,6 +55,7 @@ public class HabitableSysUIController: MonoBehaviour
             //FirstContactUIController.Instance.CloseUnLoadFirstContactUI();
             //HabitableSysUIToggle.SetActive(true);
             visitingFleetCivEnum = discoveringFleetController.FleetData.CivEnum;
+            Destroy(aNull);
         }
     }
     public void CloseUnLoadHabitableSysUI()

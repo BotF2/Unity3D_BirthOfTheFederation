@@ -16693,7 +16693,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7f173683bb120848886c27dc5b21230, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GalaxyMapEventList: []
 --- !u!1 &634433416
 GameObject:
   m_ObjectHideFlags: 0
@@ -57518,12 +57517,12 @@ MonoBehaviour:
   ResearchCenterPrefab: {fileID: 3385001668930454785, guid: e08024a6cdf269e4096d554d8fa1dd0b, type: 3}
   currentActiveSysCon: {fileID: 0}
   fleetPrefab: {fileID: 8531124223347370568, guid: ef3b3036010abf54e8925e887e9010ad, type: 3}
-  scoutPrefab: {fileID: 6321614478493960930, guid: f0379e6abf6e2424c9c6ef2a2faec298, type: 3}
-  destroyerPrefab: {fileID: 6321614478493960930, guid: 5581d5fd566eab24eb436aa8ae660008, type: 3}
-  cruiserPrefab: {fileID: 6321614478493960930, guid: dc1009bead97f4044afd09aebe1c62d4, type: 3}
-  ltCruiserPrefab: {fileID: 6321614478493960930, guid: c27ee956952bc6648ab44faa2c0ec959, type: 3}
-  hvyCruiserPrefab: {fileID: 6321614478493960930, guid: d240d6e2bb3fae14bba8add96f2d6ec6, type: 3}
-  transportPrefab: {fileID: 6321614478493960930, guid: f0e53c286ebdb05478980cb0ccd1f460, type: 3}
+  scoutBluePrintPrefab: {fileID: 6321614478493960930, guid: f0379e6abf6e2424c9c6ef2a2faec298, type: 3}
+  destroyerBluePrintPrefab: {fileID: 6321614478493960930, guid: 5581d5fd566eab24eb436aa8ae660008, type: 3}
+  cruiserBluePrintPrefab: {fileID: 6321614478493960930, guid: dc1009bead97f4044afd09aebe1c62d4, type: 3}
+  ltCruiserBluePrintPrefab: {fileID: 6321614478493960930, guid: c27ee956952bc6648ab44faa2c0ec959, type: 3}
+  hvyCruiserBluePrintPrefab: {fileID: 6321614478493960930, guid: d240d6e2bb3fae14bba8add96f2d6ec6, type: 3}
+  transportBluePrintPrefab: {fileID: 6321614478493960930, guid: f0e53c286ebdb05478980cb0ccd1f460, type: 3}
   factoryBuildItemPrefab: {fileID: 6321614478493960930, guid: dc7a7fe4f7eb1134885bd4d8871b0078, type: 3}
   powerPlantInventorySlotPrefab: {fileID: 3710623788376785954, guid: 6f8c8e27fd696e8409a487e73f3357bb, type: 3}
   factoryInventorySlotPrefab: {fileID: 6321614478493960930, guid: dc7a7fe4f7eb1134885bd4d8871b0078, type: 3}

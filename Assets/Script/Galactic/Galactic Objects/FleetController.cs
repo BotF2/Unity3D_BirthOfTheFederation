@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 namespace Assets.Core
@@ -247,7 +248,7 @@ namespace Assets.Core
                     {
                         //this.FleetData.FleetGroupControllers.Add(thisFleetController);
                         //this.FleetState = FleetState.FleetsInRendezvous;
-                        //ToDo: manage to fleets in conjoined for ship exchange and what to do with original fleets, two or more
+                        //ToDo: manage fleets in conjoined for ship exchange and what to do with original fleets, two or more
                     }
                 }
             }
@@ -278,6 +279,10 @@ namespace Assets.Core
 
             CivController hitSysCivController = hitGO.GetComponent<StarSysController>().StarSysData.CurrentCivController;
             CivEnum hitCivEnum = hitGO.GetComponent<StarSysController>().StarSysData.CurrentOwner;
+            var ourCivData = this.FleetData.OurCivController.CivData;
+            ourCivData.CivControllersWeKnow.Add(hitSysCivController);
+            ourCivData.CivEnumsWeKnow.Add(hitCivEnum);
+            EncounterUnknownSystem(hitGO, hitSysCivController, hitCivEnum);
             if (this.FleetData.Destination == hitGO)
             {
                 int firstUninhabited = (int)CivEnum.ZZUNINHABITED1; // all lower than this are inhabited (including Borg UniComplex and inhabitable Nebulas)
@@ -338,6 +343,26 @@ namespace Assets.Core
             //2) player ask your factionOwner (CivManager) if player already know the faction of the new fleet
             //3) ?first contatact > what kind of hail, diplomacy vs firstUninhabited ?colonize vs terraform a rock vs do fleet busness in our system
             //4) ?combat vs diplomacy and or traid...
+        }
+        private void EncounterUnknownSystem(GameObject hitGO, CivController civController, CivEnum civEnum)
+        {  
+            var sysData = hitGO.GetComponent<StarSysController>().StarSysData;
+
+            TextMeshProUGUI[] TheText = hitGO.GetComponentsInChildren<TextMeshProUGUI>();
+            for (int i = 0; i < TheText.Length; i++)
+            {
+                TheText[i].enabled = true;
+                if (TheText[i] != null && TheText[i].name == "SysName")
+                {
+                    if (GameController.Instance.AreWeLocalPlayer(this.FleetData.CivEnum)) 
+                    {
+                        TheText[i].text = sysData.GetSysName();
+                    }
+                }
+                else if (TheText[i] != null && TheText[i].name == "SysDescription (TMP)")
+                    TheText[i].text = sysData.Description;
+
+            }
         }
         public void OnFleetEncounteredPlayerDefinedTarget(PlayerDefinedTargetController playerTargetController)
         {

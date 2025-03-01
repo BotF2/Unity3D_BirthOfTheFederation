@@ -133,12 +133,12 @@ namespace Assets.Core
 
                 fleetController.FleetState = FleetState.FleetStationary;
         
-                FleetControllerList.Add(fleetController);
+                FleetControllerList.Add(fleetController); // add to list of all fleet controllers
                 if (!inSystem)
                 {
                     var trans = sysCon.gameObject.transform;
-                    fleetNewGameOb.transform.SetParent(trans, false);
-                    fleetNewGameOb.transform.Translate(new Vector3(trans.position.x + 40f, trans.position.y + 10f, fleetData.Position.z));
+                    fleetNewGameOb.transform.SetParent(trans, false); // move to star system
+                    fleetNewGameOb.transform.Translate(new Vector3(trans.localPosition.x + 40f, trans.localPosition.y + 10f, trans.localPosition.z));//fleetData.Position.z)); // offset from star system for begining set of fleets
                 }
                 else
                 {
