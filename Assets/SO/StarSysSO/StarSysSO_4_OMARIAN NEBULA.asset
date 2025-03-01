@@ -30,8 +30,8 @@ MonoBehaviour:
   OrbitalBatteries: 10
   Description: descrition here...
   powerPlantSprite: {fileID: 21300000, guid: debd3118c20cd4543acef1038acddaf9, type: 3}
-  factorySprite: {fileID: 0}
-  shipyardSprite: {fileID: 0}
-  shieldSprite: {fileID: 0}
-  orbitalSprite: {fileID: 0}
-  researchCenterSprite: {fileID: 0}
+  factorySprite: {fileID: 21300000, guid: 536253e5b4a42c04d90b743b3d2fda2d, type: 3}
+  shipyardSprite: {fileID: 21300000, guid: 5dee004ad1a741447b3db96084793bd0, type: 3}
+  shieldSprite: {fileID: 21300000, guid: 298cc62f36e90a34cb90c13a98e7c705, type: 3}
+  orbitalSprite: {fileID: 21300000, guid: a18d4104aa99f4a49be5895c3dbe2b8f, type: 3}
+  researchCenterSprite: {fileID: 21300000, guid: 8055434919d69e44985a2a60c46ef8ea, type: 3}

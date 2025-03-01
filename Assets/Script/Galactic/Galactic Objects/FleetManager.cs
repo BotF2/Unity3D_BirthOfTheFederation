@@ -136,7 +136,7 @@ namespace Assets.Core
                 FleetControllerList.Add(fleetController);
                 if (!inSystem)
                 {
-                    fleetNewGameOb.transform.SetParent(sysCon.gameObject.transform);
+                    fleetNewGameOb.transform.SetParent(sysCon.gameObject.transform, true);
                     fleetNewGameOb.transform.Translate(new Vector3(position.x + 40f, position.y + 10f, fleetData.Position.z));
                 }
                 else
@@ -146,7 +146,8 @@ namespace Assets.Core
                         if (ourSysCons[i].StarSysData.GetPosition() == position)
                         {
                             ourSysCons[i].StarSysData.FleetsInSystem.Add(fleetNewGameOb);
-                            fleetNewGameOb.transform.SetParent(ourSysCons[i].gameObject.transform);
+                            fleetNewGameOb.transform.SetParent(ourSysCons[i].gameObject.transform, false);
+                            
                         }
                     }
                 }

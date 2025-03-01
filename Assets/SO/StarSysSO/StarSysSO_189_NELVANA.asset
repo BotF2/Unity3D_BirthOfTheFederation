@@ -17,7 +17,7 @@ MonoBehaviour:
   SysName: NELVANA
   FirstOwner: 189
   CurrentOwner: 189
-  StarType: 0
+  StarType: 3
   StarSprit: {fileID: 21300000, guid: f46fc7ae4eec69d40aa8026ba9da085d, type: 3}
   Population: 0
   PopulationLimit: 10

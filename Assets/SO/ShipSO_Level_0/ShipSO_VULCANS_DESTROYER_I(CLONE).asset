@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ShipSO_VULCANS_DESTROYER_I(CLONE)
   m_EditorClassIdentifier: 
   ShipName: VULCANS_DESTROYER_I(CLONE)
-  CivEnum: 147
+  CivEnum: 146
   TechLevel: 100
   ShipType: 1
   shipSprite: {fileID: 21300000, guid: 859dad8bac773df46a7de36e55eefb7d, type: 3}

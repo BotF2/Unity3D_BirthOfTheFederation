@@ -198,7 +198,7 @@ namespace Assets.Core
                 InstantiateSystem(SysData, civSOList[i]);
                 //if (civSOList[i].HasWarp)
                 //    FleetManager.Instance.FleetDataFromSO(, false);
-                if (SysData.SysName != "null")
+                if (SysData.CurrentCivController != null)
                     starSysDatas.Add(SysData);
             }
             starSysDatas.Remove(starSysDatas[0]); // pull out the null

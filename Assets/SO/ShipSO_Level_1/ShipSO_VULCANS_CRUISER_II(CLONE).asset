@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ShipSO_VULCANS_CRUISER_II(CLONE)
   m_EditorClassIdentifier: 
   ShipName: VULCANS_CRUISER_II(CLONE)
-  CivEnum: 147
+  CivEnum: 146
   TechLevel: 300
   ShipType: 2
   shipSprite: {fileID: 21300000, guid: 608f8fb24e7846343955efc24961f727, type: 3}
