@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Assets.Core;
+using System.Linq;
+
 
 
 public class FleetData
@@ -29,6 +31,13 @@ public class FleetData
         description = fleetSO.Description;
         CivIndex = fleetSO.CivIndex;
         CivEnum = fleetSO.CivOwnerEnum;
+        CivLongName = CivManager.Instance.GetCivDataByCivEnum(CivEnum).CivLongName;
+        CivShortName = CivManager.Instance.GetCivDataByCivEnum(CivEnum).CivShortName;
+        IEnumerable<CivController> ourCivManagers =
+                from x in CivManager.Instance.CivControllersInGame
+                where (x.CivData.CivInt == (int)CivEnum)
+                select x;
+        OurCivController = ourCivManagers.ToList().FirstOrDefault();
     }
     public FleetData(string name)
     {

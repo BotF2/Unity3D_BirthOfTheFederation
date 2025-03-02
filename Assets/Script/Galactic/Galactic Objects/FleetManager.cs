@@ -37,6 +37,7 @@ namespace Assets.Core
         [SerializeField]
         private List<int> destinationIntsInUse = new List<int>() { 0 };
         private Dictionary<CivEnum, List<int>> fleetNumsInUse  = new Dictionary<CivEnum, List<int>>();
+        public List<FleetController> FleetConrollersInGame = new List<FleetController>();
 
 
         private void Awake()
@@ -60,58 +61,63 @@ namespace Assets.Core
         }
         public void CleanUpDictinaryForFleetNums()
         {
-            //IEnumerable<KeyValuePair<CivEnum, List<int>>> IList = (IEnumerable<KeyValuePair<CivEnum, List<int>>>)CivManager.Instance.CivSOListAllPossible;
-            var list = CivManager.Instance.CivSOListAllPossible;
-            for (int i = 0; i < list.Count ; i++)
-            {
-                if (fleetNumsInUse.Any(pairEnumList => pairEnumList.Key != list[i].CivEnum))
-                {
-                    fleetNumsInUse.Remove(list[i].CivEnum);
-                }
-            }
+            ////IEnumerable<KeyValuePair<CivEnum, List<int>>> IList = (IEnumerable<KeyValuePair<CivEnum, List<int>>>)CivManager.Instance.CivSOListAllPossible;
+            //var list = CivManager.Instance.CivSOListAllPossible;
+            //for (int i = 0; i < list.Count; i++)
+            //{
+            //    if (fleetNumsInUse.Any(pairEnumList => pairEnumList.Key != list[i].CivEnum))
+            //    {
+            //        fleetNumsInUse.Remove(list[i].CivEnum);
+            //    }
+            //}
         }
-        public void FleetDataFromSO(StarSysController sysCon, bool inSystem)
+        public GameObject BuildShipInSystemWithFleet( StarSysController sysCon, bool inSystem, CivEnum civEnum)
         {
-            // first path here is sent on loading the game for civs with warp, first fleets from Systems/Civs with warp
+            // system builds a ship and we need a fleet in the system
+            GameObject fleetGO = new GameObject();
+
             FleetSO fleetSO = GetFleetSObyInt((int)sysCon.StarSysData.CurrentOwner);
-            int xyzBump = 1;
+            FleetData fleetData = new FleetData(fleetSO);
             if (fleetSO != null)
             {
-                BuildFleets(sysCon, xyzBump, fleetSO, sysCon.StarSysData.GetPosition(), inSystem);
-                // *** This is an option for more fleets/ships with larger galaxy
-                //switch (GameManager.current.GalaxySize)
-                //{
-                //    case GalaxySize.SMALL:
-                //        BuildFleets(xyzBump, pairEnumList, position);
-                //        break;
-                //    case GalaxySize.MEDIUM:
-                //        BuildFleets(xyzBump +1, pairEnumList, position);
-                //        break;
-                //    case GalaxySize.LARGE:
-                //        BuildFleets(xyzBump +2, pairEnumList, position);
-                //        break;
-                //    default:
-                //        BuildFleets(xyzBump, pairEnumList, position);
-                //        break;
-                //}
+                fleetGO = InstantiateFleet(sysCon, fleetData, sysCon.StarSysData.GetPosition(), inSystem);
             }
+            return fleetGO;
         }
-        public void BuildFleets(StarSysController sysCon, int numFleets, FleetSO fleetSO, Vector3 position, bool inSystem) 
+        public void BuildFirstFleets(StarSysController sysCon, bool inSystem)
         {
+           // first path here is sent on loading the game for civs with warp, first fleets from Systems/Civs with warp
+            FleetSO fleetSO = GetFleetSObyInt((int)sysCon.StarSysData.CurrentOwner);
+           //int xyzBump = 1;
+           var position = sysCon.StarSysData.GetPosition();
+
+            // *** This is an option for more fleets/ships with larger galaxy
+            //switch (GameManager.current.GalaxySize)
+            //{
+            //    case GalaxySize.SMALL:
+            //        BuildFirstFleets(xyzBump, pairEnumList, position);
+            //        break;
+            //    case GalaxySize.MEDIUM:
+            //        BuildFirstFleets(xyzBump +1, pairEnumList, position);
+            //        break;
+            //    case GalaxySize.LARGE:
+            //        BuildFirstFleets(xyzBump +2, pairEnumList, position);
+            //        break;
+            //    default:
+            //        BuildFirstFleets(xyzBump, pairEnumList, position);
+            //        break;
+            //
+
             CivData thisCivData = CivManager.Instance.GetCivDataByCivEnum(fleetSO.CivOwnerEnum); // new CivData();
 
-            for (int i = 0; i < numFleets; i++)
-            {
-                FleetData fleetData = new FleetData(fleetSO); // FleetData is not MonoBehavior so new is OK
-                fleetData.CurrentWarpFactor = 9f;
-                fleetData.CivLongName = thisCivData.CivLongName; //.CivLongName;
-                fleetData.CivShortName = thisCivData.CivShortName;
-                InstantiateFleet(sysCon, fleetData, position, inSystem);
-            }
-            
+            FleetData fleetData = new FleetData(fleetSO); // FleetData is not MonoBehavior so new is OK
+            fleetData.CurrentWarpFactor = 9f;
+            fleetData.CivLongName = thisCivData.CivLongName; //.CivLongName;
+            fleetData.CivShortName = thisCivData.CivShortName;
+            InstantiateFleet(sysCon, fleetData, position, inSystem);  
         }
         
-        public void InstantiateFleet(StarSysController sysCon, FleetData fleetData, Vector3 position, bool inSystem)
+        public GameObject InstantiateFleet(StarSysController sysCon, FleetData fleetData, Vector3 position, bool inSystem)
         {
             GameObject fleetNewGameOb = new GameObject();
     
@@ -136,26 +142,22 @@ namespace Assets.Core
                 FleetControllerList.Add(fleetController); // add to list of all fleet controllers
                 if (!inSystem)
                 {
+                    var transGalaxyCenter = galaxyCenter.gameObject.transform;
                     var trans = sysCon.gameObject.transform;
-                    fleetNewGameOb.transform.SetParent(trans, false); // move to star system
-                    fleetNewGameOb.transform.Translate(new Vector3(trans.localPosition.x + 40f, trans.localPosition.y + 10f, trans.localPosition.z));//fleetData.Position.z)); // offset from star system for begining set of fleets
+                    fleetNewGameOb.transform.SetParent(transGalaxyCenter, true); // parent is galaxy center, it is not in a star system
+                    // now put it near the home world and visible/seen on the galaxy map, in galaxy space. It is not 'hidden' in the system
+                    fleetNewGameOb.transform.Translate(new Vector3(trans.position.x + 10f, trans.position.y + 10f, trans.position.z));
                 }
-                else
+                else // it is in the system so 'hidden' on the galaxy map inside the system
                 {
-                    for (int i = 0; i < ourSysCons.Count; i++)
-                    {
-                        if (ourSysCons[i].StarSysData.GetPosition() == position)
-                        {
-                            ourSysCons[i].StarSysData.FleetsInSystem.Add(fleetNewGameOb);
-                            fleetNewGameOb.transform.SetParent(ourSysCons[i].gameObject.transform, false);
-                            
-                        }
-                    }
+                    fleetNewGameOb.transform.SetParent(sysCon.gameObject.transform, false);
+                    //sysCon.StarSysData.FleetsInSystem.Add(fleetNewGameOb); // doing this back in StarSysController
                 }
                 fleetNewGameOb.transform.localScale = new Vector3(0.7f, 0.7f, 1); // scale ship insignia here
                 int fleetInt = GetNewFleetInt(fleetData.CivEnum);
                 fleetNewGameOb.name = fleetData.CivShortName.ToString() + " Fleet " + fleetInt.ToString(); // name game object
                 fleetController.FleetData.FleetInt = fleetInt;
+                FleetConrollersInGame.Add(fleetController);
                 TextMeshProUGUI TheText = fleetNewGameOb.GetComponentInChildren<TextMeshProUGUI>();
 
                 if (GameController.Instance.AreWeLocalPlayer(fleetData.CivEnum))
@@ -222,7 +224,10 @@ namespace Assets.Core
                 fleetNewGameOb.SetActive(true);
                 if (!inSystem) // all first fleets are not in system
                     ShipManager.Instance.BuildShipsOfFirstFleet(fleetNewGameOb);
+
             }
+            return fleetNewGameOb;
+
         }
 
         void RemoveFleetConrollerFromAllControllers(FleetController fleetController)
@@ -304,15 +309,22 @@ namespace Assets.Core
             List<int> ourFleetNumsInUse = fleetNumsInUse[civEnum];
             int numToReturn = 1;
             if (ourFleetNumsInUse.Count == 0)
+            {
+                ourFleetNumsInUse.Add(numToReturn);
                 return numToReturn;
+            }
             else
             {
                 for (int i = 1; i < ourFleetNumsInUse.Count + 1; i++)
                 {
-                    if (!ourFleetNumsInUse.Contains(i))
+                    if (!ourFleetNumsInUse.Contains(numToReturn))
                     {
                         numToReturn = i;
                         break;
+                    }
+                    else
+                    {
+                        numToReturn = i + 1;
                     }
                 }
                 ourFleetNumsInUse.Add(numToReturn);

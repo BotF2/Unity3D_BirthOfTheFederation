@@ -132,12 +132,13 @@ namespace Assets.Core
 
                 if (shipBuildingItem != lastShipBuildingItem)
                 {
-                    ShipTimeToBuild = shipBuildingItem.gameObject.GetComponentInChildren<ShipBuildableItem>().BuildDuration;
+                    var shipBuildableItem = shipBuildingItem.gameObject.GetComponentInChildren<ShipBuildableItem>();
+                    ShipTimeToBuild = ShipManager.Instance.GetShipBuildDuration(shipBuildableItem.ShipType, this.StarSysData.CurrentCivController.CivData.TechLevel, this.StarSysData.CurrentOwner);
                     lastShipBuildingItem = shipBuildingItem;
                     shipStartTimer = true;
                 }
             }
-            else { building = false; }
+            else { shipBuilding = false; }
         }
 
         private void Update()
@@ -286,12 +287,37 @@ namespace Assets.Core
                 }
                 else if (TimeManager.Instance.CurrentStarDate() >= shipStarDateOfCompletion)
                 {
+                    ShipType shipType = new ShipType();
                     shipBuilding = false;
-                    SetShipBuildProgress(0);
+                    SetShipBuildProgress(0.02f);
                     shipStartTimer = true;
                     ShipTimeToBuild = 0;
                     shipBuildingItem = null;
                     CivEnum localPlayerCivEnum = CivManager.Instance.LocalPlayerCivContoller.CivData.CivEnum;
+                   
+                    switch (shipBuildQueueList[0].gameObject.GetComponentInChildren<ShipBuildableItem>().ShipType)
+                    {
+                        case ShipType.Scout:
+                            shipType = ShipType.Scout;        
+                            break;
+                        case ShipType.Destroyer:
+                            shipType = ShipType.Destroyer;
+                            break;
+                        case ShipType.Cruiser:
+                            shipType = ShipType.Cruiser;
+                            break;
+                        case ShipType.LtCruiser:
+                            shipType = ShipType.LtCruiser;
+                            break;
+                        case ShipType.HvyCruiser:
+                            shipType = ShipType.HvyCruiser;
+                            break;
+                        case ShipType.Transport:
+                            shipType = ShipType.Transport;
+                            break;
+                        default:
+                            break;
+                    }
                     if (this.StarSysData.FleetsInSystem.Count == 0) // there is always a feel in the system waiting for new ships
                     {
                         IEnumerable<CivSO> civSOs =
@@ -299,32 +325,9 @@ namespace Assets.Core
                             where civSO.CivEnum == this.StarSysData.CurrentCivController.CivData.CivEnum
                             select civSO;
                         CivSO theCivSO = civSOs.ToList().FirstOrDefault();
-                        FleetManager.Instance.FleetDataFromSO(this, true);
-                    }
-                
-                    
-                    switch (shipBuildQueueList[0].gameObject.GetComponentInChildren<ShipBuildableItem>().ShipType)
-                    {
-                        case ShipType.Scout:
-                            StarSysManager.Instance.AddSystemShipFleet(this, StarSysManager.Instance.scoutBluePrintPrefab, this.StarSysData.CurrentOwner);        
-                            break;
-                        case ShipType.Destroyer:
-                            StarSysManager.Instance.AddSystemShipFleet(this, StarSysManager.Instance.destroyerBluePrintPrefab, this.StarSysData.CurrentOwner);
-                            break;
-                        case ShipType.Cruiser:
-                            StarSysManager.Instance.AddSystemShipFleet(this, StarSysManager.Instance.cruiserBluePrintPrefab, this.StarSysData.CurrentOwner);
-                            break;
-                        case ShipType.LtCruiser:
-                            StarSysManager.Instance.AddSystemShipFleet(this, StarSysManager.Instance.ltCruiserBluePrintPrefab, this.StarSysData.CurrentOwner);
-                            break;
-                        case ShipType.HvyCruiser:
-                            StarSysManager.Instance.AddSystemShipFleet(this, StarSysManager.Instance.hvyCruiserBluePrintPrefab, this.StarSysData.CurrentOwner);
-                            break;
-                        case ShipType.Transport:
-                            StarSysManager.Instance.AddSystemShipFleet(this, StarSysManager.Instance.transportBluePrintPrefab, this.StarSysData.CurrentOwner);
-                            break;
-                        default:
-                            break;
+                        GameObject fleetGOinSys = FleetManager.Instance.BuildShipInSystemWithFleet(this, true, localPlayerCivEnum); // need fleet for the new ship of our civ and in system true
+                        ShipManager.Instance.BuildShipInOurFleet(shipType, fleetGOinSys, this); // put a ship in the fleet
+                        this.StarSysData.FleetsInSystem.Add(fleetGOinSys);
                     }
                     var imageTransform = shipBuildQueueList[0];
                     imageTransform.SetParent(imageTransform.GetComponent<ShipBuildableItem>().originalParent, false);
@@ -774,11 +777,19 @@ namespace Assets.Core
         }
         public void SetBuildProgress(float progress)
         {
+            //SliderBuildProgress.gameObject.SetActive(true);
+            //SliderBuildProgress.enabled = true;
+            //SliderBuildProgress.gameObject.transform.SetAsLastSibling();
             SliderBuildProgress.value = progress;
+
         }
-        public void SetShipBuildProgress(float progress)
+        public void SetShipBuildProgress(float shipProgress)
         {
-            ShipSliderBuildProgress.value = progress;
+            //ShipSliderBuildProgress.gameObject.SetActive(true);
+            //ShipSliderBuildProgress.enabled = true;
+            //ShipSliderBuildProgress.gameObject.transform.SetAsLastSibling();
+            ShipSliderBuildProgress.value = shipProgress;
+  
         }
     }
 

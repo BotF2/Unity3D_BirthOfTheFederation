@@ -92,6 +92,8 @@ MonoBehaviour:
   originalParent: {fileID: 0}
   StarSysController: {fileID: 0}
   ShipType: 4
+  ShipSprite: {fileID: 0}
+  BuildDuration: 12
 --- !u!225 &6321614478493960943
 CanvasGroup:
   m_ObjectHideFlags: 0

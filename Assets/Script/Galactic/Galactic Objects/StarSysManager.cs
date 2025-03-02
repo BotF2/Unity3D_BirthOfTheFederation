@@ -35,6 +35,8 @@ namespace Assets.Core
         private List<ResearchCenterSO> researchCenterSOList; // get factorySO for civ by int
         [SerializeField]
         private GameObject sysPrefab;
+        [SerializeField]
+        private GameObject sliderPrefab;
 
         [SerializeField]
         private GameObject sysUIPrefab;
@@ -112,6 +114,7 @@ namespace Assets.Core
         public void Start()
         {
             galaxyEventCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>() as Camera;
+            
 
         }
         public void SetShipBuildPerfabs(CivEnum localCiv)
@@ -301,7 +304,7 @@ namespace Assets.Core
 
                 }
                 if (civSO.HasWarp)
-                     FleetManager.Instance.FleetDataFromSO(starSysController, false); // fleet for first ships as game loads, not for ships instatiated by working shipyard in system
+                     FleetManager.Instance.BuildFirstFleets(starSysController, false); // fleet for first ships as game loads, not for ships instatiated by working shipyard in system
                 if (GameController.Instance.AreWeLocalPlayer(sysData.CurrentOwner)) 
                 {
                     StarSysSO starSysSO = GetStarSObyInt(civSO.CivInt);
@@ -350,96 +353,7 @@ namespace Assets.Core
                 go.transform.SetParent(parent.transform, false);
             }
         }
-        public GameObject AddSystemShipFleet(StarSysController sysCon, GameObject shipBluePrintPrefab, CivEnum civEnum)
-        {
-            GameObject fleetNewGameOb = new GameObject();
-            fleetNewGameOb = (GameObject)Instantiate(fleetPrefab, new Vector3(0, 0, 0),
-                Quaternion.identity);
-            fleetNewGameOb.layer = 4;
-            fleetNewGameOb.transform.SetParent(sysCon.transform, true);
 
-            //******Tech level*********
-            List<ShipSO> shipSOList = new List<ShipSO>();
-            TechLevel techLevel  =CivManager.Instance.GetCivDataByCivEnum(civEnum).TechLevel;
-            switch (techLevel)
-            {
-                case TechLevel.EARLY:
-                    shipSOList = ShipManager.Instance.ShipSOListTech0.Where(x => x.CivEnum == civEnum && x.TechLevel == TechLevel.EARLY).ToList();
-                    break;
-                case TechLevel.DEVELOPED:
-                    shipSOList = ShipManager.Instance.ShipSOListTech1.Where(x => x.CivEnum == civEnum && x.TechLevel == TechLevel.DEVELOPED).ToList();
-                    break;
-                case TechLevel.ADVANCED:
-                    shipSOList = ShipManager.Instance.ShipSOListTech2.Where(x => x.CivEnum == civEnum && x.TechLevel == TechLevel.ADVANCED).ToList();
-                    break;
-                case TechLevel.SUPREME:
-                    shipSOList = ShipManager.Instance.ShipSOListTech3.Where(x => x.CivEnum == civEnum && x.TechLevel == TechLevel.SUPREME).ToList();
-                    break;
-                default:
-                    break;
-            }
-            
-            switch (fleetPrefab.name)
-            {
-                case "scoutBluePrintPrefab":
-                    {
-                        var scoutSOIEnumerable = shipSOList.Where(x => x.ShipType == ShipType.Scout);
-                        var scoutSO = scoutSOIEnumerable.ToList();
-                        List<GameObject> shipGOList = ShipManager.Instance.ShipDataFromSO(scoutSO);
-                        fleetNewGameOb.GetComponent<FleetController>().FleetData.AddToShipList(shipGOList.FirstOrDefault().GetComponent<ShipController>());
-                        shipGOList.FirstOrDefault().transform.SetParent(fleetNewGameOb.transform, false);
-                        break;
-                    }
-                case "destroyerBluePrintPrefab":
-                    {
-                        var destroyerSOIEnumerable = shipSOList.Where(x => x.ShipType == ShipType.Destroyer);
-                        var destroyerSO = destroyerSOIEnumerable.ToList();
-                        List<GameObject> shipGOList = ShipManager.Instance.ShipDataFromSO(destroyerSO);
-                        fleetNewGameOb.GetComponent<FleetController>().FleetData.AddToShipList(shipGOList.FirstOrDefault().GetComponent<ShipController>());
-                        shipGOList.FirstOrDefault().transform.SetParent(fleetNewGameOb.transform, false);
-                        break;
-                    }
-                case "cruiserBluePrintPrefab":
-                    {
-                        var crusierSOIEnumerable = shipSOList.Where(x => x.ShipType == ShipType.Cruiser);
-                        var cruiserSO = crusierSOIEnumerable.ToList();
-                        List<GameObject> shipGOList = ShipManager.Instance.ShipDataFromSO(cruiserSO);
-                        fleetNewGameOb.GetComponent<FleetController>().FleetData.AddToShipList(shipGOList.FirstOrDefault().GetComponent<ShipController>());
-                        shipGOList.FirstOrDefault().transform.SetParent(fleetNewGameOb.transform, false);
-                        break;
-                    }
-                case "ltCruiserBluePrintPrefab":
-                    {
-                        var ltCruiserSOIEnumerable = shipSOList.Where(x => x.ShipType == ShipType.LtCruiser);
-                        var ltCruiserSO = ltCruiserSOIEnumerable.ToList();
-                        List<GameObject> shipGOList = ShipManager.Instance.ShipDataFromSO(ltCruiserSO);
-                        fleetNewGameOb.GetComponent<FleetController>().FleetData.AddToShipList(shipGOList.FirstOrDefault().GetComponent<ShipController>());
-                        shipGOList.FirstOrDefault().transform.SetParent(fleetNewGameOb.transform, false);
-                        break;
-                    }
-                case "hvyCruiserBluePrintPrefab":
-                    {
-                        var hvyCruusierSOIEnumerable = shipSOList.Where(x => x.ShipType == ShipType.HvyCruiser);
-                        var hvyCruiserSO = hvyCruusierSOIEnumerable.ToList();
-                        List<GameObject> shipGOList = ShipManager.Instance.ShipDataFromSO(hvyCruiserSO);
-                        fleetNewGameOb.GetComponent<FleetController>().FleetData.AddToShipList(shipGOList.FirstOrDefault().GetComponent<ShipController>());
-                        shipGOList.FirstOrDefault().transform.SetParent(fleetNewGameOb.transform, false);
-                        break;
-                    }
-                case "transportBluePrintPrefab":
-                    {
-                        var transportSOIEnumerable = shipSOList.Where(x => x.ShipType == ShipType.Transport);
-                        var transportSO = transportSOIEnumerable.ToList();
-                        List<GameObject> shipGOList = ShipManager.Instance.ShipDataFromSO(transportSO);
-                        fleetNewGameOb.GetComponent<FleetController>().FleetData.AddToShipList(shipGOList.FirstOrDefault().GetComponent<ShipController>());
-                        shipGOList.FirstOrDefault().transform.SetParent(fleetNewGameOb.transform, false);
-                        break;
-                    }
-                default:
-                    break;
-            }
-            return fleetNewGameOb;
-        }
         public List<GameObject> AddSystemFacilities(int numOf, GameObject prefab, int civInt, StarSysData sysData, int onOff)
         {
             List<GameObject> list = new List<GameObject>();
@@ -944,6 +858,34 @@ namespace Assets.Core
                     break;
                 }
             }
+            Slider[] theSliders = sysBuildListInstance.GetComponentsInChildren<Slider>();
+            for (int l = 0; l < theSliders.Length; l++)
+            {
+                theSliders[l].gameObject.SetActive(true);
+                switch (theSliders[l].gameObject.name)
+                {
+                    case "FactoryProgressBar":
+                        {
+                            sysCon.SliderBuildProgress = theSliders[l];
+
+                            //GameObject factoryItemSlider = InstantiateSlider(theSliders[l].gameObject, theSliders[l]);
+                            //sysCon.SliderBuildProgress = factoryItemSlider.GetComponent<Slider>();
+
+                            break;
+                        }
+                    case "ShipProgressBar":
+                        {
+                            sysCon.ShipSliderBuildProgress = theSliders[l];
+                            //GameObject shipSlider = InstantiateSlider(theSliders[l].gameObject, theSliders[l]);
+                            //sysCon.ShipSliderBuildProgress = shipSlider.GetComponent<Slider>();
+
+                            break;
+                        }
+                    default:
+                        break;
+                }
+
+            }
             Transform[] theSlots = sysBuildListInstance.GetComponentsInChildren<Transform>();
             for (int l = 0; (l < theSlots.Length); l++)
             {
@@ -1029,11 +971,11 @@ namespace Assets.Core
                             }
                             break;
                         }
-                    case "FactoryProgressBar":
-                        {
-                            sysCon.SliderBuildProgress = theSlots[l].gameObject.GetComponent<Slider>();
-                            break;
-                        }
+                    //case "FactoryProgressBar":
+                    //    {
+                    //        sysCon.SliderBuildProgress = theSlots[l].gameObject.GetComponent<Slider>();
+                    //        break;
+                    //    }
                     case "Cruiser (TMP)":
                         {
                             if (sysCon.StarSysData.CurrentCivController.CivData.TechLevel == TechLevel.EARLY || sysCon.StarSysData.CurrentCivController.CivData.TechLevel == TechLevel.SUPREME)
@@ -1156,6 +1098,11 @@ namespace Assets.Core
                             }
                             break;
                         }
+                    //case "ShipProgressBar":
+                    //    {
+                    //        sysCon.ShipSliderBuildProgress = theSlots[l].gameObject.GetComponent<Slider>();
+                    //        break;
+                    //    }
                     default:
                         break;
                 }
@@ -1252,6 +1199,14 @@ namespace Assets.Core
                 default:
                     break;
             }
+        }
+        private GameObject InstantiateSlider(GameObject sliderGO, Slider slider)
+        {
+            sliderGO = (GameObject)Instantiate(sliderPrefab, sliderGO.transform.position,
+                Quaternion.identity);
+            var sliderComp = sliderGO.GetComponent<Slider>();
+            sliderComp = slider; 
+            return sliderGO;
         }
     }   
 }

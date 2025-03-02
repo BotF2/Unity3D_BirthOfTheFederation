@@ -1,5 +1,7 @@
 using Assets.Core;
+using NUnit.Framework.Internal.Execution;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ShipManager : MonoBehaviour
@@ -27,7 +29,7 @@ public class ShipManager : MonoBehaviour
         }
     }
 
-    public List<GameObject> ShipDataFromSO(List<ShipSO> shipSOList)
+    public List<GameObject> ShipGameObjectWithDataFromSO(List<ShipSO> shipSOList)
     {
         List<GameObject> listShipGO = new List<GameObject>();
         foreach (var shipSO in shipSOList)
@@ -49,7 +51,7 @@ public class ShipManager : MonoBehaviour
                 shipData.HullMaxHealth = shipSO.HullMaxHealth;
                 shipData.TorpedoDamage = shipSO.TorpedoDamage;
                 shipData.BeamDamage = shipSO.BeamDamage;
-                shipData.Price = shipSO.BuildDuration;
+                shipData.BuildDuration = shipSO.BuildDuration;
                 GameObject shipNewGameOb = (GameObject)Instantiate(shipControllerPrefab, new Vector3(0, 0, 0),
                                 Quaternion.identity);
                 shipDataGO.transform.SetParent(shipNewGameOb.transform);
@@ -64,6 +66,55 @@ public class ShipManager : MonoBehaviour
         return listShipGO;
     }
 
+    public int GetShipBuildDuration(ShipType shipType, TechLevel techLevel, CivEnum civEnum)
+    {
+        ShipSO aShipSO = new ShipSO();
+        int duration = 1;
+        aShipSO = GetShipSO(shipType, techLevel, civEnum);
+        duration = aShipSO.BuildDuration;
+        return duration;
+    }
+    private ShipSO GetShipSO(ShipType shipType, TechLevel techLevel, CivEnum civEnum)
+    {
+        ShipSO ourShipSO = new ShipSO();
+        switch (techLevel)
+        {
+            case TechLevel.EARLY:
+                var shipSOIEnumEarly = ShipSOListTech0.Where(x => x.ShipType == shipType && x.CivEnum == civEnum);
+                var shipSOe = shipSOIEnumEarly.ToList().FirstOrDefault();
+                ourShipSO = shipSOe;
+                break;
+            case TechLevel.DEVELOPED:
+                var shipSOIEnumDeveloped = ShipSOListTech1.Where(x => x.ShipType == shipType && x.CivEnum == civEnum);
+                var shipSOd = shipSOIEnumDeveloped.ToList().FirstOrDefault();
+                ourShipSO = shipSOd;
+                break;
+            case TechLevel.ADVANCED:
+                var shipSOIEnumAdvanced = ShipSOListTech1.Where(x => x.ShipType == shipType && x.CivEnum == civEnum);
+                var shipSOa = shipSOIEnumAdvanced.ToList().FirstOrDefault();
+                ourShipSO = shipSOa;
+                break;
+            case TechLevel.SUPREME:
+                var shipSOIEnumSup = ShipSOListTech1.Where(x => x.ShipType == shipType && x.CivEnum == civEnum);
+                var shipSOs = shipSOIEnumSup.ToList().FirstOrDefault();
+                ourShipSO = shipSOs;
+                break;
+            default:
+                break;
+        }
+        return ourShipSO;
+    }
+    public void BuildShipInOurFleet(ShipType shipType, GameObject fleetGO, StarSysController sysCon)
+    {
+        ShipSO ourShipSO = GetShipSO(shipType, sysCon.StarSysData.CurrentCivController.CivData.TechLevel, sysCon.StarSysData.CurrentOwner);
+        List<ShipSO> shipSOAsList = new List<ShipSO> { ourShipSO };
+        var ourShipGOList = ShipGameObjectWithDataFromSO(shipSOAsList); // takes a list of ShipSO
+        for (int i = 0; i < ourShipGOList.Count; i++)
+        {
+            ourShipGOList[i].transform.SetParent(fleetGO.transform);
+            fleetGO.GetComponent<FleetController>().FleetData.AddToShipList(ourShipGOList[i].GetComponent<ShipController>());
+        }
+    }
     public void BuildShipsOfFirstFleet(GameObject fleetGO)
     {
         var fleetCon = fleetGO.GetComponent<FleetController>();
@@ -74,7 +125,7 @@ public class ShipManager : MonoBehaviour
         List<GameObject> shipGOs = new List<GameObject>();
         if (ships != null)
         {
-            shipGOs = ShipDataFromSO(ships);
+            shipGOs = ShipGameObjectWithDataFromSO(ships);
             foreach (GameObject shipGO in shipGOs)
             {
                 if (shipGO != null)
