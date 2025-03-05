@@ -1,6 +1,7 @@
 using FischlWorks_FogWar;
 using System.Collections.Generic;
 using System.Linq;
+
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -36,7 +37,7 @@ namespace Assets.Core
         [SerializeField]
         private GameObject sysPrefab;
         [SerializeField]
-        private GameObject sliderPrefab;
+        private GameObject shipSliderPrefab;
 
         [SerializeField]
         private GameObject sysUIPrefab;
@@ -115,7 +116,6 @@ namespace Assets.Core
         {
             galaxyEventCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>() as Camera;
             
-
         }
         public void SetShipBuildPerfabs(CivEnum localCiv)
         {
@@ -208,7 +208,7 @@ namespace Assets.Core
             starSysDatas.Remove(starSysDatas[0]); // pull out the null
         }
         public void InstantiateSystem(StarSysData sysData, CivSO civSO)
-         {
+        {
             GameObject starSystemNewGameOb = new GameObject();
             if (MainMenuUIController.Instance.MainMenuData.SelectedGalaxyType == GalaxyMapType.RANDOM)
             { // do something random with fleetData.position
@@ -324,6 +324,14 @@ namespace Assets.Core
                 //{
                 //    CivManager.current.nowCivsCanJoinTheFederation = true;
                 //}
+            }
+
+            GameObject[] allGO = Resources.FindObjectsOfTypeAll(typeof(GameObject)) as GameObject[];
+            //clean up game object not in use, ToDo: find and remove the creation of these game object at the source
+            foreach (GameObject obj in allGO)
+            {
+                if (obj.name == "New Game Object")
+                    Destroy(obj);
             }
         }
         private void SetParentForFacilities(GameObject parent, StarSysData starSysData)
@@ -858,34 +866,7 @@ namespace Assets.Core
                     break;
                 }
             }
-            Slider[] theSliders = sysBuildListInstance.GetComponentsInChildren<Slider>();
-            for (int l = 0; l < theSliders.Length; l++)
-            {
-                theSliders[l].gameObject.SetActive(true);
-                switch (theSliders[l].gameObject.name)
-                {
-                    case "FactoryProgressBar":
-                        {
-                            sysCon.SliderBuildProgress = theSliders[l];
 
-                            //GameObject factoryItemSlider = InstantiateSlider(theSliders[l].gameObject, theSliders[l]);
-                            //sysCon.SliderBuildProgress = factoryItemSlider.GetComponent<Slider>();
-
-                            break;
-                        }
-                    case "ShipProgressBar":
-                        {
-                            sysCon.ShipSliderBuildProgress = theSliders[l];
-                            //GameObject shipSlider = InstantiateSlider(theSliders[l].gameObject, theSliders[l]);
-                            //sysCon.ShipSliderBuildProgress = shipSlider.GetComponent<Slider>();
-
-                            break;
-                        }
-                    default:
-                        break;
-                }
-
-            }
             Transform[] theSlots = sysBuildListInstance.GetComponentsInChildren<Transform>();
             for (int l = 0; (l < theSlots.Length); l++)
             {
@@ -971,11 +952,12 @@ namespace Assets.Core
                             }
                             break;
                         }
-                    //case "FactoryProgressBar":
-                    //    {
-                    //        sysCon.SliderBuildProgress = theSlots[l].gameObject.GetComponent<Slider>();
-                    //        break;
-                    //    }
+                    case "FactoryProgressBar":
+                        {
+                            sysCon.SliderBuildProgress = theSlots[l].gameObject.GetComponent<Slider>();
+                            sysCon.SliderBuildProgress.gameObject.transform.SetParent(theSlots[l]);
+                            break;
+                        }
                     case "Cruiser (TMP)":
                         {
                             if (sysCon.StarSysData.CurrentCivController.CivData.TechLevel == TechLevel.EARLY || sysCon.StarSysData.CurrentCivController.CivData.TechLevel == TechLevel.SUPREME)
@@ -1098,15 +1080,16 @@ namespace Assets.Core
                             }
                             break;
                         }
-                    //case "ShipProgressBar":
-                    //    {
-                    //        sysCon.ShipSliderBuildProgress = theSlots[l].gameObject.GetComponent<Slider>();
-                    //        break;
-                    //    }
+
                     default:
                         break;
                 }
             }
+            GameObject shipSliderGO = (GameObject)Instantiate(shipSliderPrefab, new Vector3(0, 0, 0),
+                Quaternion.identity);
+            shipSliderGO.transform.SetParent(sysBuildListInstance.transform);
+            sysCon.ShipSliderBuildProgress = shipSliderGO.GetComponentInChildren<Slider>();
+            shipSliderGO.layer = 5; //UI layer
 
         }
         
@@ -1199,14 +1182,6 @@ namespace Assets.Core
                 default:
                     break;
             }
-        }
-        private GameObject InstantiateSlider(GameObject sliderGO, Slider slider)
-        {
-            sliderGO = (GameObject)Instantiate(sliderPrefab, sliderGO.transform.position,
-                Quaternion.identity);
-            var sliderComp = sliderGO.GetComponent<Slider>();
-            sliderComp = slider; 
-            return sliderGO;
         }
     }   
 }

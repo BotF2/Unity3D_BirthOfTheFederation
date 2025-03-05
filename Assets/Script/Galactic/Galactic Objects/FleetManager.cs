@@ -82,7 +82,8 @@ namespace Assets.Core
             {
                 fleetGO = InstantiateFleet(sysCon, fleetData, sysCon.StarSysData.GetPosition(), inSystem);
             }
-            return fleetGO;
+            else fleetGO.name = "killMe";
+                return fleetGO;
         }
         public void BuildFirstFleets(StarSysController sysCon, bool inSystem)
         {
@@ -114,7 +115,11 @@ namespace Assets.Core
             fleetData.CurrentWarpFactor = 9f;
             fleetData.CivLongName = thisCivData.CivLongName; //.CivLongName;
             fleetData.CivShortName = thisCivData.CivShortName;
-            InstantiateFleet(sysCon, fleetData, position, inSystem);  
+            GameObject aFleet = InstantiateFleet(sysCon, fleetData, position, inSystem);  
+            if (aFleet.name == "killMe")
+            {
+                Destroy(aFleet);
+            }
         }
         
         public GameObject InstantiateFleet(StarSysController sysCon, FleetData fleetData, Vector3 position, bool inSystem)
@@ -138,7 +143,7 @@ namespace Assets.Core
                 fleetController.FleetData = fleetData;
 
                 fleetController.FleetState = FleetState.FleetStationary;
-        
+
                 FleetControllerList.Add(fleetController); // add to list of all fleet controllers
                 if (!inSystem)
                 {
@@ -146,7 +151,7 @@ namespace Assets.Core
                     var trans = sysCon.gameObject.transform;
                     fleetNewGameOb.transform.SetParent(transGalaxyCenter, true); // parent is galaxy center, it is not in a star system
                     // now put it near the home world and visible/seen on the galaxy map, in galaxy space. It is not 'hidden' in the system
-                    fleetNewGameOb.transform.Translate(new Vector3(trans.position.x + 10f, trans.position.y + 10f, trans.position.z));
+                    fleetNewGameOb.transform.Translate(new Vector3(trans.position.x + 20f, trans.position.y + 20f, trans.position.z));
                 }
                 else // it is in the system so 'hidden' on the galaxy map inside the system
                 {
@@ -196,7 +201,7 @@ namespace Assets.Core
                 }
                 // The line from Fleet to underlying galaxy image and to destination
                 MapLineMovable[] ourLineToGalaxyImageScript = fleetNewGameOb.GetComponentsInChildren<MapLineMovable>();
-                for (int i = 0;i < ourLineToGalaxyImageScript.Length;i++)
+                for (int i = 0; i < ourLineToGalaxyImageScript.Length; i++)
                 {
                     if (ourLineToGalaxyImageScript[i].name == "DropLine")
                     {
@@ -226,7 +231,8 @@ namespace Assets.Core
                     ShipManager.Instance.BuildShipsOfFirstFleet(fleetNewGameOb);
 
             }
-            return fleetNewGameOb;
+            else fleetNewGameOb.name = "killMe";
+                return fleetNewGameOb;
 
         }
 

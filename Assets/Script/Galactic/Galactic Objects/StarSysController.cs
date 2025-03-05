@@ -203,6 +203,8 @@ namespace Assets.Core
                 else if(TimeManager.Instance.CurrentStarDate() <= starDateOfCompletion)
                 {
                    currentProgress = (int)(TimeManager.Instance.CurrentStarDate() - startDate);
+                    if (TimeToBuild <= 0)
+                        TimeToBuild = 1;
                    SetBuildProgress((float)currentProgress / (float)TimeToBuild);
                 }
                 else if (TimeManager.Instance.CurrentStarDate() >= starDateOfCompletion)
@@ -283,6 +285,8 @@ namespace Assets.Core
                 else if (TimeManager.Instance.CurrentStarDate() <= shipStarDateOfCompletion)
                 {
                     shipCurrentProgress = (int)(TimeManager.Instance.CurrentStarDate() - shipStartDate);
+                    if (ShipTimeToBuild <= 0)
+                        ShipTimeToBuild = 1;
                     SetShipBuildProgress((float)shipCurrentProgress / (float)ShipTimeToBuild);
                 }
                 else if (TimeManager.Instance.CurrentStarDate() >= shipStarDateOfCompletion)
@@ -326,8 +330,13 @@ namespace Assets.Core
                             select civSO;
                         CivSO theCivSO = civSOs.ToList().FirstOrDefault();
                         GameObject fleetGOinSys = FleetManager.Instance.BuildShipInSystemWithFleet(this, true, localPlayerCivEnum); // need fleet for the new ship of our civ and in system true
-                        ShipManager.Instance.BuildShipInOurFleet(shipType, fleetGOinSys, this); // put a ship in the fleet
-                        this.StarSysData.FleetsInSystem.Add(fleetGOinSys);
+                        if (fleetGOinSys.name == "killMe")
+                            Destroy(fleetGOinSys);
+                        else
+                        {
+                            ShipManager.Instance.BuildShipInOurFleet(shipType, fleetGOinSys, this); // put a ship in the fleet
+                            this.StarSysData.FleetsInSystem.Add(fleetGOinSys);
+                        }
                     }
                     var imageTransform = shipBuildQueueList[0];
                     imageTransform.SetParent(imageTransform.GetComponent<ShipBuildableItem>().originalParent, false);
@@ -343,7 +352,6 @@ namespace Assets.Core
                 ShipTimeToBuild = 0;
             }
         }
-
         private void AddSysFacility(GameObject faciltyGO, string loadName, string ratioName, StarSysFacilities facilityType )
         {
             int newFacilityLoad = 0;
@@ -447,7 +455,6 @@ namespace Assets.Core
             return timeDuration;
             //ToD use tech level to set features of system production, defence....
         }
-
         public void DoHabitalbeSystemUI(FleetController discoveringFleetCon)
         {
             if (discoveringFleetCon != null)

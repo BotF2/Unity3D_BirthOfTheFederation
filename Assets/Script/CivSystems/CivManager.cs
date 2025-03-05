@@ -171,7 +171,6 @@ namespace Assets.Core
             isSinglePlayer = isSingleVsMultiplayer;
             CivDataFromSO(CivSOsInGame, localPlayerCivInt);
             CreateCivEnumList(CivSOsInGame);
-
         }
         public void CivDataFromSO(List<CivSO> civSOList, int localPayerCivInt)
         {
@@ -287,19 +286,6 @@ namespace Assets.Core
             CreateNewGameBySelections(gameSize, gameTechLevel, galaxyType, selectedLocalCiv, isSingle);
         }
 
-        //public CivController GetCivControllerByEnum(CivEnum civEnum)
-        //{
-        //    GameObject aCivGO = (GameObject)Instantiate(civPrefab, new Vector3(0, 0, 0), Quaternion.identity);
-        //    CivController aCiv = aCivGO.GetComponent<CivController>();
-        //    for(int i = 0; i< CivControllersInGame.Count;i++)
-        //    {
-        //        if (civEnum == CivControllersInGame[i].CivData.CivEnum)
-        //        {
-        //            aCiv = CivControllersInGame[i];
-        //        }
-        //    }
-        //    return aCiv;
-        //}
         public void AddSystemToOwnSystemListAndHomeSys(List<StarSysController> controllers)
         {
             for (int i = 0; i < CivControllersInGame.Count; i++)
