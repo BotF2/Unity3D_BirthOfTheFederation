@@ -337,8 +337,11 @@ namespace Assets.Core
                             ShipManager.Instance.BuildShipInOurFleet(shipType, fleetGOinSys, this); // put a ship in the fleet
                             this.StarSysData.FleetsInSystem.Add(fleetGOinSys);
                         }
+                    }else if (this.StarSysData.FleetsInSystem.Count > 0)
+                    {
+                        ShipManager.Instance.BuildShipInOurFleet(shipType, this.StarSysData.FleetsInSystem[0], this); // put a ship in the fleet
                     }
-                    var imageTransform = shipBuildQueueList[0];
+                        var imageTransform = shipBuildQueueList[0];
                     imageTransform.SetParent(imageTransform.GetComponent<ShipBuildableItem>().originalParent, false);
                     if (imageTransform.parent.childCount > 1)
                     {

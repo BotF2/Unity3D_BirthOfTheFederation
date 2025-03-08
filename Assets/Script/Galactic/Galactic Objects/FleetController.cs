@@ -47,7 +47,6 @@ namespace Assets.Core
                 if (FleetData.ShipsList[i].ShipData.maxWarpFactor < this.FleetData.MaxWarpFactor)
                 { this.FleetData.MaxWarpFactor = FleetData.ShipsList[i].ShipData.maxWarpFactor; }
             }
-            Name = FleetData.CivShortName + " Fleet " + intName.ToString();
             FleetState = FleetState.FleetStationary;
             DestinationLine = this.GetComponentInChildren<MapLineMovable>();
             DestinationLine.GetLineRenderer();

@@ -4,6 +4,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.Rendering;
 
 
 
@@ -61,15 +62,16 @@ namespace Assets.Core
         }
         public void CleanUpDictinaryForFleetNums()
         {
-            ////IEnumerable<KeyValuePair<CivEnum, List<int>>> IList = (IEnumerable<KeyValuePair<CivEnum, List<int>>>)CivManager.Instance.CivSOListAllPossible;
-            //var list = CivManager.Instance.CivSOListAllPossible;
-            //for (int i = 0; i < list.Count; i++)
-            //{
-            //    if (fleetNumsInUse.Any(pairEnumList => pairEnumList.Key != list[i].CivEnum))
-            //    {
-            //        fleetNumsInUse.Remove(list[i].CivEnum);
-            //    }
-            //}
+            var civs = CivManager.Instance.CivSOListAllPossible;
+   
+            var civsEnumsInGame = CivManager.Instance.CivEnumsInGame;
+            for (int i = 0; i < civs.Count; i++)
+            {
+                if (!civsEnumsInGame.Contains(civs[i].CivEnum))
+                {
+                    fleetNumsInUse.Remove(civs[i].CivEnum);
+                }
+            }
         }
         public GameObject BuildShipInSystemWithFleet( StarSysController sysCon, bool inSystem, CivEnum civEnum)
         {
@@ -83,7 +85,7 @@ namespace Assets.Core
                 fleetGO = InstantiateFleet(sysCon, fleetData, sysCon.StarSysData.GetPosition(), inSystem);
             }
             else fleetGO.name = "killMe";
-                return fleetGO;
+            return fleetGO;
         }
         public void BuildFirstFleets(StarSysController sysCon, bool inSystem)
         {
@@ -156,12 +158,13 @@ namespace Assets.Core
                 else // it is in the system so 'hidden' on the galaxy map inside the system
                 {
                     fleetNewGameOb.transform.SetParent(sysCon.gameObject.transform, false);
-                    //sysCon.StarSysData.FleetsInSystem.Add(fleetNewGameOb); // doing this back in StarSysController
                 }
                 fleetNewGameOb.transform.localScale = new Vector3(0.7f, 0.7f, 1); // scale ship insignia here
                 int fleetInt = GetNewFleetInt(fleetData.CivEnum);
                 fleetNewGameOb.name = fleetData.CivShortName.ToString() + " Fleet " + fleetInt.ToString(); // name game object
+                fleetData.Name = fleetNewGameOb.name;
                 fleetController.FleetData.FleetInt = fleetInt;
+                fleetController.Name = fleetData.Name;
                 FleetConrollersInGame.Add(fleetController);
                 TextMeshProUGUI TheText = fleetNewGameOb.GetComponentInChildren<TextMeshProUGUI>();
 
