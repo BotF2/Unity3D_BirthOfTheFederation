@@ -15,7 +15,7 @@ namespace Assets.Core
         private FleetData fleetData;
         public FleetData FleetData { get { return fleetData; } set { fleetData = value; } }
         public string Name;
-        private int intName = 1;
+        public int intName = 1;
         public FleetState FleetState;
         private float warpFudgeFactor = 10f;
         private Rigidbody rb;
