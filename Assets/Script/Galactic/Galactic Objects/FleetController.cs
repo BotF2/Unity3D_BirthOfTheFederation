@@ -227,7 +227,7 @@ namespace Assets.Core
                     }
                     else if (!diplomacyController.areWePlaceholder && diplomacyController.DiplomacyData.DiplomacyEnumOfCivs == DiplomacyStatusEnum.TotalWar)
                     {
-                        //**** Do Combat ****
+                        //**** Do Combat **** Set Vulcans and Federation at war in Diplomacy Data for testing
                         //Do this in combat code, TimeManager.current.PauseTime();
                     }
                     // is this fleet we hit our destination

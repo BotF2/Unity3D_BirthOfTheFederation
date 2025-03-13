@@ -29,7 +29,12 @@ public class GameController : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
-
+       
+    }
+    public void Start()
+    {
+        if (GameManager.Instance != null)
+        GameManager.Instance.GameController = this;
     }
     public bool DoWeBelongToLocalPlayer(GameObject go)
     {

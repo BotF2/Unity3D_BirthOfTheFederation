@@ -20,6 +20,7 @@ public class SceneController : MonoBehaviour
     }
     public void LoadCombatScene()
     {
+        // not working yet.... SceneTransition.Instance.LoadCombatScene();
         SceneManager.LoadSceneAsync("CombatScene");
     }
     public void LoadMainMenuScene()

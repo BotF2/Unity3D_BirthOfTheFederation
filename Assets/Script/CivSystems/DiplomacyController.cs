@@ -10,10 +10,10 @@ public class DiplomacyController : MonoBehaviour
     public bool areWePlaceholder = false;
     private List<string> diplomaticTransmissions;
     private string declareWar = "The A declares war on the B.";
-    private string demandCreditsAvoidWar = "The A demand X credits to avoid a state of war with the B.";
-    private string offerCreditsImproveRelations = "The A offers the B X credits to improve relations by 200 points.";
-    private string demandCredits = "The A demand X credits from the B.";
-    private string requestCrditsImproveRelations = "The A request X credits from the B to improve relations by 200 points.";
+    private string demandCreditsAvoidWar = "The A demand X something to avoid a state of war with the B.";
+    private string offerCreditsImproveRelations = "The A offers the B X something to improve relations by 200 points.";
+    private string demandCredits = "The A demand X something from the B.";
+    private string requestCrditsImproveRelations = "The A request X something from the B to improve relations by 200 points.";
 
 
     private void Start()

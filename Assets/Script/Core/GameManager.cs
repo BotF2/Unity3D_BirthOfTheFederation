@@ -349,7 +349,7 @@ namespace Assets.Core
         public GameController GameController;
         public bool _weAreFriend = false;
         public bool _warpingInIsOver = false; // WarpingInCompleted() called from E_Animator3 sets true and set false again in CombatCompleted state in BeginState
-        //public Galaxy Galaxy; // Was part of SolarSystemView - Galaxy.cs
+
         private SolarSystemView solarSystemView;
         /// <summary>
         /// Old combat tool for view of all ships in combat
@@ -416,10 +416,10 @@ namespace Assets.Core
         //    //set { _level = value; }
         //}
 
-        bool _isSwitchingState = false;
+        //bool _isSwitchingState = false;
 
-        public bool _statePassedLobbyInit = false;
-        public bool _statePassedMain_Init = false;
+        //public bool _statePassedLobbyInit = false;
+        //public bool _statePassedMain_Init = false;
         public bool _statePassedCombatMenu_Init = false;
         public bool _statePassedCombatInit = false; // COMBAT INIT
         public bool _statePassedCombatPlay = false;
@@ -440,9 +440,12 @@ namespace Assets.Core
         }
         public void InitializeGameManagerWithMainMenuUIController()
         {
-            mainMenuUIController = GameObject.Find("MainMenuUIController").GetComponent<MainMenuUIController>();
-            mainMenuUIController.LoadDefault();
-            this.GameController.GameData.LocalPlayerCivEnum = CivEnum.FED;
+            if (this.GameController != null)
+            {
+                mainMenuUIController = GameObject.Find("MainMenuUIController").GetComponent<MainMenuUIController>();
+                mainMenuUIController.LoadDefault();
+                this.GameController.GameData.LocalPlayerCivEnum = CivEnum.FED;
+            }
         }
         //  MARC CODE
         public GameObject UICamera;

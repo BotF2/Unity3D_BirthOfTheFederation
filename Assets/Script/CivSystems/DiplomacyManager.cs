@@ -81,10 +81,24 @@ public class DiplomacyManager : MonoBehaviour
         diplomacyController.DiplomacyData.CivOne = civPartyOne;
         diplomacyController.DiplomacyData.CivTwo = civPartyTwo;
         // ToDo: use traits to set diplomacy relation out of the gate and for AI actions
-        diplomacyController.DiplomacyData.DiplomacyEnumOfCivs = DiplomacyStatusEnum.Neutral;
-        diplomacyController.DiplomacyData.DiplomacyPointsOfCivs = 50;
+        // For Testing..... 
+        if ((diplomacyController.DiplomacyData.CivOne.CivData.CivEnum == CivEnum.FED
+            && diplomacyController.DiplomacyData.CivTwo.CivData.CivEnum == CivEnum.VULCANS)
+            || (diplomacyController.DiplomacyData.CivOne.CivData.CivEnum == CivEnum.VULCANS
+            && diplomacyController.DiplomacyData.CivTwo.CivData.CivEnum == CivEnum.FED))
+        {
+            diplomacyController.DiplomacyData.DiplomacyEnumOfCivs = DiplomacyStatusEnum.TotalWar;
+            SceneController.Instance.LoadCombatScene();
+            diplomacyController.DiplomacyData.DiplomacyPointsOfCivs = 0;
+        }
+        else
+        {
+            diplomacyController.DiplomacyData.DiplomacyEnumOfCivs = DiplomacyStatusEnum.Neutral;
+            diplomacyController.DiplomacyData.DiplomacyPointsOfCivs = 50;
+        }
         ManagersDiplomacyControllerList.Add(diplomacyController);
-        diplomacyController.FirstContact(civPartyOne, civPartyTwo, hitGO);
+        // ........Turned off for testing combat transition
+        // diplomacyController.FirstContact(civPartyOne, civPartyTwo, hitGO);
         if (GameController.Instance.AreWeLocalPlayer(civPartyOne.CivData.CivEnum) ||
             GameController.Instance.AreWeLocalPlayer(civPartyTwo.CivData.CivEnum))
             FirstContactUIController.Instance.LoadFirstContactUI(diplomacyController);
@@ -111,7 +125,8 @@ public class DiplomacyManager : MonoBehaviour
     {
         if (!FoundADiplomacyController(civPartyOne, civPartyTwo, hitGO))
         {
-            //first contact of game
+            //if (civPartyTwo.GetComponent<FleetController>() != null)
+            //first contact of fleet to fleet game
             InstantiateDipolmacyController(civPartyOne, civPartyTwo, hitGO);
         }
     }

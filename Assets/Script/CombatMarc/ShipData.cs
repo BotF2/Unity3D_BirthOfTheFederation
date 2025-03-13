@@ -16,11 +16,7 @@ public class ShipData : MonoBehaviour
     public int BeamDamage;
     public int BuildDuration;
     public GameObject Mesh;
-    void Start()
-    {
-        //little code change :D
-        Debug.Log("asdf");
-    }
+
     public ShipData(string name)
     {
         ShipName = name;
