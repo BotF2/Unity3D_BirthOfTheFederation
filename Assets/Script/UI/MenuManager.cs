@@ -34,7 +34,7 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private GameObject diplomacyMenu;
     [SerializeField] private GameObject intellMenu;
     [SerializeField] private GameObject encyclopedianMenu;
-    [SerializeField] private GameObject firstContactMenu;
+    //[SerializeField] private GameObject firstContactMenu;
     [SerializeField] private GameObject habitableSysMenu;
     [SerializeField] private GameObject combat;
     [SerializeField] private GameObject openMenu;
@@ -99,10 +99,10 @@ public class MenuManager : MonoBehaviour
                 encyclopedianMenu.SetActive(true);
                 openMenu = encyclopedianMenu;
                 break;
-            case Menu.FirstContactMenu:
-                firstContactMenu.SetActive(true);
-                openMenu = firstContactMenu;
-                break;
+            //case Menu.FirstContactMenu:
+            //    firstContactMenu.SetActive(true);
+            //    openMenu = firstContactMenu;
+            //    break;
             case Menu.HabitableSysMenu:
                 habitableSysMenu.SetActive(true);
                 openMenu = habitableSysMenu;

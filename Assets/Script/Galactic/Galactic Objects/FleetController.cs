@@ -215,6 +215,7 @@ namespace Assets.Core
         {
             CivController hitFleetCivController = hitGO.GetComponent<FleetController>().FleetData.OurCivController;
             DiplomacyController diplomacyController = DiplomacyManager.Instance.GetTheDiplomacyController(this.FleetData.OurCivController, hitFleetCivController);
+            // if the bool areWePlaceholder is true then the diplomacyController needs first contact to build diplomacyController / diplomacyManager / diplomacyData
             if (this.FleetData.Destination == hitGO)
             {
                 if (this.FleetData.CivEnum != hitGO.GetComponent<FleetController>().FleetData.CivEnum)
@@ -225,7 +226,7 @@ namespace Assets.Core
                         DiplomacyManager.Instance.FistContactDiplomacy(this.FleetData.OurCivController, hitFleetCivController, hitGO);
                         this.FleetState = FleetState.FleetDipolmacy;
                     }
-                    else if (!diplomacyController.areWePlaceholder && diplomacyController.DiplomacyData.DiplomacyEnumOfCivs == DiplomacyStatusEnum.TotalWar)
+                    else if (!diplomacyController.areWePlaceholder && diplomacyController.DiplomacyData.DiplomacyEnumOfCivs == DiplomacyStatusEnum.War)
                     {
                         //**** Do Combat **** Set Vulcans and Federation at war in Diplomacy Data for testing
                         //Do this in combat code, TimeManager.current.PauseTime();
@@ -251,12 +252,12 @@ namespace Assets.Core
                     }
                 }
             }
-            else if (!diplomacyController.areWePlaceholder && diplomacyController.DiplomacyData.DiplomacyEnumOfCivs == DiplomacyStatusEnum.TotalWar)
+            else if (!diplomacyController.areWePlaceholder && diplomacyController.DiplomacyData.DiplomacyEnumOfCivs == DiplomacyStatusEnum.War)
             {
                 //**** Do Combat ****
             }
 
-            /// I am thinking that checking the hitGO for reaching the Destination is redundant. If all controllers are checking the both of
+            /// I am thinking that checking the hitGO for reaching the Destination is redundant. If all controllers are checking both of
             /// the controllers for the two in a hit are checked above so do not check again.
             //else if (thisFleetController.gameObject == hitGO.GetComponent<FleetController>().FleetData.Destination)
             //{
@@ -311,7 +312,7 @@ namespace Assets.Core
                             }
                         }
                     }
-                    else if (!diplomacyController.areWePlaceholder && diplomacyController.DiplomacyData.DiplomacyEnumOfCivs == DiplomacyStatusEnum.TotalWar)
+                    else if (!diplomacyController.areWePlaceholder && diplomacyController.DiplomacyData.DiplomacyEnumOfCivs == DiplomacyStatusEnum.War)
                     {
                         // is it do combat or do we get an option to blockaid or what???
                         //**** Do Combat **

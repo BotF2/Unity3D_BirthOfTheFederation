@@ -4,14 +4,14 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class FirstContactUIController : MonoBehaviour
+public class DiplomacyUIController : MonoBehaviour
 {
-    public static FirstContactUIController Instance;
+    public static DiplomacyUIController Instance;
     private Camera galaxyEventCamera;
     [SerializeField]
     private Canvas parentCanvas;
     private DiplomacyController controller;
-    public GameObject FirstContactUIToggle; // GameObject controlles this active UI on/off
+    public GameObject DiplomacyUIToggle; // GameObject controlles this active UI on/off
     [SerializeField]
     private TMP_Text theirNameTMP;
     [SerializeField]
@@ -44,7 +44,7 @@ public class FirstContactUIController : MonoBehaviour
 
     private void Start()
     {
-        FirstContactUIToggle.SetActive(false);
+        DiplomacyUIToggle.SetActive(false);
         galaxyEventCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>() as Camera;
         parentCanvas.worldCamera = galaxyEventCamera;
 
@@ -55,7 +55,7 @@ public class FirstContactUIController : MonoBehaviour
         controller = ourDiplomacyController;
         TimeManager.Instance.PauseTime(); // ToDo: put a pause indicator on screen
         GameObject aNull = new GameObject();
-        MenuManager.Instance.OpenMenu(Menu.FirstContactMenu, aNull);
+        MenuManager.Instance.OpenMenu(Menu.DiplomacyMenu, aNull);
        // YourStarSysUIManager.Instance.CloseUnLoadStarSysUI();
         //FleetUIController.Instance.CloseUnLoadFleetUI();
         //FleetSelectionUI.Instance.UnLoadShipManagerUI();
@@ -63,7 +63,7 @@ public class FirstContactUIController : MonoBehaviour
             LoadCivDataInUI(ourDiplomacyController.DiplomacyData.CivTwo, ourDiplomacyController);
         else if (GameController.Instance.AreWeLocalPlayer(ourDiplomacyController.DiplomacyData.CivTwo.CivData.CivEnum))
             LoadCivDataInUI(ourDiplomacyController.DiplomacyData.CivOne, ourDiplomacyController);
-        FirstContactUIToggle.SetActive(true);
+        DiplomacyUIToggle.SetActive(true);
         Destroy(aNull);
 
     }
@@ -79,7 +79,7 @@ public class FirstContactUIController : MonoBehaviour
     public void CloseUnLoadFirstContactUI()
     {
         SwitchToTab(0);
-        FirstContactUIToggle.SetActive(false);
+        DiplomacyUIToggle.SetActive(false);
         TimeManager.Instance.ResumeTime();
     }
     public void SwitchToTab(int TabID)
