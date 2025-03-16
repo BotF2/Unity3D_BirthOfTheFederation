@@ -16,7 +16,6 @@ public class CombatManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
     }
-
     public void InstatniateCombat(List<ShipController> sideOneShips, List<ShipController> sideTwoShips)
     { // call from diplomacy total war or from Diplomacy UI on fleet meets fleet 
 
