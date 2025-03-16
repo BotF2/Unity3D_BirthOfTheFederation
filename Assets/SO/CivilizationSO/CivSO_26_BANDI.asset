@@ -17,10 +17,10 @@ MonoBehaviour:
   CivShortName: BANDI
   CivLongName: BANDI
   CivHomeSystem: BANDI
-  WarLikeEnum: 3
-  XenophbiaEnum: 1
-  RuthlessEnum: 0
-  GreedyEnum: 0
+  WarLikeEnum: 1
+  XenophbiaEnum: -1
+  RuthlessEnum: -2
+  GreedyEnum: -2
   CivImage: {fileID: 21300000, guid: 0b575cef1b79844468a50c719fbc88a6, type: 3}
   Insignia: {fileID: 21300000, guid: 2c6b2cb518cb54345b4d7f00a3a812f9, type: 3}
   Population: 0

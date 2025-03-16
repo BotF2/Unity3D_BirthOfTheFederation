@@ -17,10 +17,10 @@ MonoBehaviour:
   CivShortName: ELAURIANS
   CivLongName: ELAURIANS
   CivHomeSystem: ELAURIA
-  WarLikeEnum: 2
-  XenophbiaEnum: 2
-  RuthlessEnum: 2
-  GreedyEnum: 2
+  WarLikeEnum: 0
+  XenophbiaEnum: 0
+  RuthlessEnum: 0
+  GreedyEnum: 0
   CivImage: {fileID: 21300000, guid: 03dc99805f8c7c34080242706086bbb9, type: 3}
   Insignia: {fileID: 21300000, guid: aef54f8795a46034ebb458f9856dd344, type: 3}
   Population: 0

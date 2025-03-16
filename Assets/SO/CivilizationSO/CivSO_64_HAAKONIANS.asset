@@ -17,10 +17,10 @@ MonoBehaviour:
   CivShortName: HAAKONIANS
   CivLongName: HAAKONIANS
   CivHomeSystem: HAAKONIA
-  WarLikeEnum: 0
-  XenophbiaEnum: 1
-  RuthlessEnum: 0
-  GreedyEnum: 1
+  WarLikeEnum: -2
+  XenophbiaEnum: -1
+  RuthlessEnum: -2
+  GreedyEnum: -1
   CivImage: {fileID: 21300000, guid: 265b94bf2d8f98f4e8bb8c08fcf0fe86, type: 3}
   Insignia: {fileID: 21300000, guid: 0a049bc652fa7ab4190709936db5c948, type: 3}
   Population: 0

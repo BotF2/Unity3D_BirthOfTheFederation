@@ -17,10 +17,10 @@ MonoBehaviour:
   CivShortName: BOSLICS
   CivLongName: BOSLICS
   CivHomeSystem: BOSLIC
-  WarLikeEnum: 1
-  XenophbiaEnum: 1
-  RuthlessEnum: 0
-  GreedyEnum: 0
+  WarLikeEnum: -1
+  XenophbiaEnum: -1
+  RuthlessEnum: -2
+  GreedyEnum: -2
   CivImage: {fileID: 21300000, guid: 069532d40b0f1f94e9c0ac26dbbf61df, type: 3}
   Insignia: {fileID: 21300000, guid: d50cab35a7a32ab4188ab75594f6cce4, type: 3}
   Population: 0

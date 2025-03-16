@@ -17,10 +17,10 @@ MonoBehaviour:
   CivShortName: ARBAZAN
   CivLongName: ARBAZAN
   CivHomeSystem: ARBAZ
-  WarLikeEnum: 3
-  XenophbiaEnum: 1
-  RuthlessEnum: 2
-  GreedyEnum: 2
+  WarLikeEnum: 1
+  XenophbiaEnum: -1
+  RuthlessEnum: 0
+  GreedyEnum: 0
   CivImage: {fileID: 21300000, guid: eed8e3f2cd3d45748b6637b12249db92, type: 3}
   Insignia: {fileID: 21300000, guid: 300c311aea4c0024b8bfd52919ef4d33, type: 3}
   Population: 0

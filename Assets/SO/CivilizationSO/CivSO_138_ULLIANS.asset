@@ -17,10 +17,10 @@ MonoBehaviour:
   CivShortName: ULLIANS
   CivLongName: ULLIANS
   CivHomeSystem: ULLIA
-  WarLikeEnum: 1
-  XenophbiaEnum: 1
-  RuthlessEnum: 0
-  GreedyEnum: 1
+  WarLikeEnum: -1
+  XenophbiaEnum: -1
+  RuthlessEnum: -2
+  GreedyEnum: -1
   CivImage: {fileID: 21300000, guid: d35fe667802b5d04a9e5036df3e4fb1f, type: 3}
   Insignia: {fileID: 21300000, guid: cdead3588dc56cf469d0a037f204e787, type: 3}
   Population: 0

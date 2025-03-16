@@ -17,10 +17,10 @@ MonoBehaviour:
   CivShortName: MIRADORN
   CivLongName: MIRADORN
   CivHomeSystem: MIRADORN
-  WarLikeEnum: 1
-  XenophbiaEnum: 1
-  RuthlessEnum: 0
-  GreedyEnum: 0
+  WarLikeEnum: -1
+  XenophbiaEnum: -1
+  RuthlessEnum: -2
+  GreedyEnum: -2
   CivImage: {fileID: 21300000, guid: a2acd999c0096074ca3fdc80b602a148, type: 3}
   Insignia: {fileID: 21300000, guid: 307162f2d2aa6834bac952722cbfb497, type: 3}
   Population: 0

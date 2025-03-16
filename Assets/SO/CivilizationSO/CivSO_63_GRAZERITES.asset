@@ -17,9 +17,9 @@ MonoBehaviour:
   CivShortName: GRAZERITES
   CivLongName: GRAZERITES
   CivHomeSystem: GRAZERITES
-  WarLikeEnum: 4
-  XenophbiaEnum: 3
-  RuthlessEnum: 3
+  WarLikeEnum: 2
+  XenophbiaEnum: 1
+  RuthlessEnum: 1
   GreedyEnum: 0
   CivImage: {fileID: 21300000, guid: dd1ba7f17253ce7438cb8fd87047b890, type: 3}
   Insignia: {fileID: 21300000, guid: 3bed9bb5b26dd534080d3074e7de65ab, type: 3}

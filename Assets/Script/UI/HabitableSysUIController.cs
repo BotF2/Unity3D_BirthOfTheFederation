@@ -52,7 +52,7 @@ public class HabitableSysUIController: MonoBehaviour
             //YourStarSysUIManager.Instance.CloseUnLoadStarSysUI();
             //FleetUIController.Instance.CloseUnLoadFleetUI();
             ////FleetSelectionUI.current.UnLoadShipManagerUI();
-            //FirstContactUIController.Instance.CloseUnLoadFirstContactUI();
+            //FirstContactUIController.Instance.CloseUnLoadDiplomacyUI();
             //HabitableSysUIToggle.SetActive(true);
             visitingFleetCivEnum = discoveringFleetController.FleetData.CivEnum;
             Destroy(aNull);

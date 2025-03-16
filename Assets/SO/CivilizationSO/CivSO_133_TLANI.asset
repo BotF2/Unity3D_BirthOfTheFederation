@@ -17,10 +17,10 @@ MonoBehaviour:
   CivShortName: TLANI
   CivLongName: TLANI
   CivHomeSystem: TLANI
-  WarLikeEnum: 0
-  XenophbiaEnum: 1
-  RuthlessEnum: 0
-  GreedyEnum: 1
+  WarLikeEnum: -2
+  XenophbiaEnum: -1
+  RuthlessEnum: -2
+  GreedyEnum: -1
   CivImage: {fileID: 21300000, guid: b9d09e4d65d82ea43be946218c5cf7e2, type: 3}
   Insignia: {fileID: 21300000, guid: a63b619cedc563548adce04d6fce678f, type: 3}
   Population: 0

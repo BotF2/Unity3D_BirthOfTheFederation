@@ -17,10 +17,10 @@ MonoBehaviour:
   CivShortName: BOMAR
   CivLongName: BOMAR
   CivHomeSystem: BOMAR
-  WarLikeEnum: 1
-  XenophbiaEnum: 0
-  RuthlessEnum: 1
-  GreedyEnum: 2
+  WarLikeEnum: -1
+  XenophbiaEnum: -2
+  RuthlessEnum: -1
+  GreedyEnum: 0
   CivImage: {fileID: 21300000, guid: 0806e8f813c74e34c86e6d9a3134d091, type: 3}
   Insignia: {fileID: 21300000, guid: e9df2c1c60f632644863b8d0b737a44a, type: 3}
   Population: 0

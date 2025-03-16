@@ -17,10 +17,10 @@ MonoBehaviour:
   CivShortName: PAKLED
   CivLongName: PAKLED
   CivHomeSystem: PAKLED
-  WarLikeEnum: 1
-  XenophbiaEnum: 2
-  RuthlessEnum: 0
-  GreedyEnum: 0
+  WarLikeEnum: -1
+  XenophbiaEnum: 0
+  RuthlessEnum: -2
+  GreedyEnum: -2
   CivImage: {fileID: 21300000, guid: 18643e6633ab4424fbd3f26068daa9a9, type: 3}
   Insignia: {fileID: 21300000, guid: fdbd7a90446e7b4498dcc05f119de3ea, type: 3}
   Population: 0

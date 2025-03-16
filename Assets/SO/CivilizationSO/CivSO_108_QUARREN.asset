@@ -17,10 +17,10 @@ MonoBehaviour:
   CivShortName: QUARREN
   CivLongName: QUARREN
   CivHomeSystem: QUARREN
-  WarLikeEnum: 1
-  XenophbiaEnum: 1
-  RuthlessEnum: 0
-  GreedyEnum: 0
+  WarLikeEnum: -1
+  XenophbiaEnum: -1
+  RuthlessEnum: -2
+  GreedyEnum: -2
   CivImage: {fileID: 21300000, guid: 9ac53fb503a2f1d499ee4be5c4f6ffa1, type: 3}
   Insignia: {fileID: 21300000, guid: f6942f23393383e44b98ce6255e044b8, type: 3}
   Population: 0

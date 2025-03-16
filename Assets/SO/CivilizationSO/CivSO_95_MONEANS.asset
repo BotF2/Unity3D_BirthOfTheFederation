@@ -17,10 +17,10 @@ MonoBehaviour:
   CivShortName: MONEANS
   CivLongName: MONEANS
   CivHomeSystem: MONEA
-  WarLikeEnum: 2
-  XenophbiaEnum: 1
-  RuthlessEnum: 3
-  GreedyEnum: 1
+  WarLikeEnum: 0
+  XenophbiaEnum: -1
+  RuthlessEnum: 1
+  GreedyEnum: -1
   CivImage: {fileID: 21300000, guid: 3c974b9b4cabd5b4091bb1df6a95e7b0, type: 3}
   Insignia: {fileID: 21300000, guid: ebe127c05d99ac04797987627847ab0b, type: 3}
   Population: 0

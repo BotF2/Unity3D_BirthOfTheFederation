@@ -244,7 +244,7 @@ public class FleetUIController : MonoBehaviour
         GameObject aNull = new GameObject();
         MenuManager.Instance.OpenMenu(Menu.AFleetMenu, aNull);
         //YourStarSysUIManager.Instance.CloseUnLoadStarSysUI();
-        //FirstContactUIController.Instance.CloseUnLoadFirstContactUI();
+        //FirstContactUIController.Instance.CloseUnLoadDiplomacyUI();
         //FleetSelectionUI.current.UnLoadShipManagerUI();
         fleetUIToggle.SetActive(true);
 

@@ -13,6 +13,8 @@ public class DiplomacyUIController : MonoBehaviour
     private DiplomacyController controller;
     public GameObject DiplomacyUIToggle; // GameObject controlles this active UI on/off
     [SerializeField]
+    private GameObject firstContatct;
+    [SerializeField]
     private TMP_Text theirNameTMP;
     [SerializeField]
     private Image theirInsignia;
@@ -23,7 +25,25 @@ public class DiplomacyUIController : MonoBehaviour
     [SerializeField]
     private TMP_Text relationPointsTMP;
     [SerializeField]
+    private TMP_Text traitOneTMP;
+    [SerializeField]
+    private TMP_Text traitTwoTMP;
+    [SerializeField]
+    private TMP_Text traitThreeTMP;
+    [SerializeField]
+    private TMP_Text traitFourTMP;
+    [SerializeField]
+    private TMP_Text ourTraitOneTMP;
+    [SerializeField]
+    private TMP_Text ourTraitTwoTMP;
+    [SerializeField]
+    private TMP_Text ourTraitThreeTMP;
+    [SerializeField]
+    private TMP_Text ourTraitFourTMP;
+    [SerializeField]
     private TMP_Text transmissionTMP;
+    [SerializeField]
+    private TMP_Text descriptionTMP;
     [SerializeField]
     private GameObject[] UI_PanelGOs;
     [SerializeField]
@@ -50,15 +70,17 @@ public class DiplomacyUIController : MonoBehaviour
 
     }
 
-    public void LoadFirstContactUI(DiplomacyController ourDiplomacyController)
+    public void LoadDiplomacyUI(DiplomacyController ourDiplomacyController)
     {
         controller = ourDiplomacyController;
         TimeManager.Instance.PauseTime(); // ToDo: put a pause indicator on screen
+        if(ourDiplomacyController.DiplomacyData.IsFirstContact)
+        {
+            firstContatct.SetActive(true);
+        }
         GameObject aNull = new GameObject();
         MenuManager.Instance.OpenMenu(Menu.DiplomacyMenu, aNull);
-       // YourStarSysUIManager.Instance.CloseUnLoadStarSysUI();
-        //FleetUIController.Instance.CloseUnLoadFleetUI();
-        //FleetSelectionUI.Instance.UnLoadShipManagerUI();
+
         if (GameController.Instance.AreWeLocalPlayer(ourDiplomacyController.DiplomacyData.CivOne.CivData.CivEnum))
             LoadCivDataInUI(ourDiplomacyController.DiplomacyData.CivTwo, ourDiplomacyController);
         else if (GameController.Instance.AreWeLocalPlayer(ourDiplomacyController.DiplomacyData.CivTwo.CivData.CivEnum))
@@ -75,12 +97,29 @@ public class DiplomacyUIController : MonoBehaviour
         relationTMP.text = ourDiplomacyController.DiplomacyData.DiplomacyEnumOfCivs.ToString();
         relationPointsTMP.text = ourDiplomacyController.DiplomacyData.DiplomacyPointsOfCivs.ToString();
         transmissionTMP.text = othersController.CivData.Decription;
+        relationTMP.text = ourDiplomacyController.DiplomacyData.DiplomacyEnumOfCivs.ToString();
+        traitOneTMP.text = othersController.CivData.Warlike.ToString();
+        traitTwoTMP.text = othersController.CivData.Xenophbia.ToString();
+        traitThreeTMP.text = othersController.CivData.Ruthelss.ToString();
+        traitFourTMP.text = othersController.CivData.Greedy.ToString();
+        var ourCivData = CivManager.Instance.GetCivDataByCivEnum(GameController.Instance.GameData.LocalPlayerCivEnum);   
+        ourTraitOneTMP.text = ourCivData.Warlike.ToString();
+        ourTraitTwoTMP.text = ourCivData.Xenophbia.ToString();
+        ourTraitThreeTMP.text = ourCivData.Ruthelss.ToString();
+        ourTraitFourTMP.text = ourCivData.Greedy.ToString();
+        descriptionTMP.text = othersController.CivData.Decription;
+        relationPointsTMP.text = ((int)ourDiplomacyController.DiplomacyData.DiplomacyPointsOfCivs).ToString();
     }
-    public void CloseUnLoadFirstContactUI()
+    public void CloseUnLoadDiplomacyUI()
     {
         SwitchToTab(0);
         DiplomacyUIToggle.SetActive(false);
         TimeManager.Instance.ResumeTime();
+    }
+    public void CombatScene()
+    {
+        SceneController.Instance.LoadCombatScene();
+        MenuManager.Instance.CloseMenu(Menu.DiplomacyMenu);
     }
     public void SwitchToTab(int TabID)
     {

@@ -17,9 +17,9 @@ MonoBehaviour:
   CivShortName: MINTAKANS
   CivLongName: MINTAKANS
   CivHomeSystem: MINTAKA
-  WarLikeEnum: 3
-  XenophbiaEnum: 3
-  RuthlessEnum: 3
+  WarLikeEnum: 1
+  XenophbiaEnum: 1
+  RuthlessEnum: 1
   GreedyEnum: 0
   CivImage: {fileID: 21300000, guid: cbc1466ef1c3a0f41b404f7e7a08520e, type: 3}
   Insignia: {fileID: 21300000, guid: 54487c666d82c3948915065cac60533f, type: 3}

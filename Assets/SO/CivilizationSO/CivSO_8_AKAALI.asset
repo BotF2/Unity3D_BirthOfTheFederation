@@ -17,9 +17,9 @@ MonoBehaviour:
   CivShortName: AKAALI
   CivLongName: AKAALI
   CivHomeSystem: AKAALI
-  WarLikeEnum: 3
-  XenophbiaEnum: 2
-  RuthlessEnum: 2
+  WarLikeEnum: 1
+  XenophbiaEnum: 0
+  RuthlessEnum: 0
   GreedyEnum: 0
   CivImage: {fileID: 21300000, guid: b4a45498aebde49409b5b909954e0476, type: 3}
   Insignia: {fileID: 21300000, guid: 8979a3e53bc975941a6379860833949d, type: 3}

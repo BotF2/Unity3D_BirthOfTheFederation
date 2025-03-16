@@ -17,10 +17,10 @@ MonoBehaviour:
   CivShortName: KTARIANS
   CivLongName: KTARIANS
   CivHomeSystem: KTARIA
-  WarLikeEnum: 1
-  XenophbiaEnum: 1
-  RuthlessEnum: 0
-  GreedyEnum: 0
+  WarLikeEnum: -1
+  XenophbiaEnum: -1
+  RuthlessEnum: -2
+  GreedyEnum: -2
   CivImage: {fileID: 21300000, guid: cc66ba2845dfddd48bd898ed83a34bdd, type: 3}
   Insignia: {fileID: 21300000, guid: ecc525053536a6e418a52ec10dd9869d, type: 3}
   Population: 0

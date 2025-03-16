@@ -17,10 +17,10 @@ MonoBehaviour:
   CivShortName: TANUGANS
   CivLongName: TANUGANS
   CivHomeSystem: TANUGA
-  WarLikeEnum: 2
-  XenophbiaEnum: 1
-  RuthlessEnum: 1
-  GreedyEnum: 1
+  WarLikeEnum: 0
+  XenophbiaEnum: -1
+  RuthlessEnum: -1
+  GreedyEnum: -1
   CivImage: {fileID: 21300000, guid: 41e910326a98f124687b3910f11cc07e, type: 3}
   Insignia: {fileID: 21300000, guid: 72e78a546975f8b4cb8c0a5f65c0f985, type: 3}
   Population: 0

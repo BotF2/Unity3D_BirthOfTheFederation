@@ -51,7 +51,6 @@ namespace Assets.Core
             DestinationLine = this.GetComponentInChildren<MapLineMovable>();
             DestinationLine.GetLineRenderer();
             DestinationLine.transform.SetParent(transform, false);
-            
         }
         void Update()
         {
@@ -108,7 +107,7 @@ namespace Assets.Core
             }
             else
             {
-               //FleetData.Destination.;
+                //FleetData.Destination.;
             }
 
         }
@@ -213,56 +212,41 @@ namespace Assets.Core
         }
         public void OnFleetEncounteredFleet(GameObject hitGO)
         {
+            if (this.FleetData.Destination == hitGO.gameObject)
+            {
+                FleetUIController.Instance.ClickCancelDestinationButton();
+                FleetUIController.Instance.CloseUnLoadFleetUI();
+                OnArrivedAtDestination();//? should we do other stuff here for FleetController at destination?
+            }
             CivController hitFleetCivController = hitGO.GetComponent<FleetController>().FleetData.OurCivController;
-            DiplomacyController diplomacyController = DiplomacyManager.Instance.GetTheDiplomacyController(this.FleetData.OurCivController, hitFleetCivController);
-            // if the bool areWePlaceholder is true then the diplomacyController needs first contact to build diplomacyController / diplomacyManager / diplomacyData
-            if (this.FleetData.Destination == hitGO)
-            {
-                if (this.FleetData.CivEnum != hitGO.GetComponent<FleetController>().FleetData.CivEnum)
+            if (hitFleetCivController.CivData.CivEnum != this.FleetData.CivEnum 
+                && (this.FleetData.CivEnum == GameController.Instance.GameData.LocalPlayerCivEnum 
+                || hitFleetCivController.CivData.CivEnum == GameController.Instance.GameData.LocalPlayerCivEnum))
+            { 
+                // if we did not hit one of our fleets is this first contact, ie there is no DipolomcacyController yet
+                if (!DiplomacyManager.Instance.FoundADiplomacyController(this.FleetData.OurCivController, hitFleetCivController))
                 {
-                    if (diplomacyController.areWePlaceholder)
-                    {
-                        // FistContactDiplomacy for both local palyer using the UI and for non local human players using their UI and for AI without a UI
-                        DiplomacyManager.Instance.FistContactDiplomacy(this.FleetData.OurCivController, hitFleetCivController, hitGO);
-                        this.FleetState = FleetState.FleetDipolmacy;
-                    }
-                    else if (!diplomacyController.areWePlaceholder && diplomacyController.DiplomacyData.DiplomacyEnumOfCivs == DiplomacyStatusEnum.War)
-                    {
-                        //**** Do Combat **** Set Vulcans and Federation at war in Diplomacy Data for testing
-                        //Do this in combat code, TimeManager.current.PauseTime();
-                    }
-                    // is this fleet we hit our destination
-                    if (this.FleetData.Destination == hitGO.gameObject)
-                    {
-                        FleetUIController.Instance.ClickCancelDestinationButton();
-                        FleetUIController.Instance.CloseUnLoadFleetUI();
-                        //enuManager.Instance.OpenMenu
-                        //YourStarSysUIManager.Instance.CloseUnLoadStarSysUI();
-                        OnArrivedAtDestination();//? should we do other stuff here for FleetController at destination?
-                    }
+                    DiplomacyManager.Instance.InstantiateDiplomacyController(this.FleetData.OurCivController, hitFleetCivController);
                 }
-                else if (GameController.Instance.AreWeLocalPlayer(this.FleetData.CivEnum))
+                else
                 {
-                    // local player fleet hits another local player fleet, manage ships?
-                    if (this.FleetData.ShipsList.Count >= this.FleetData.ShipsList.Count)
-                    {
-                        //this.FleetData.FleetGroupControllers.Add(thisFleetController);
-                        //this.FleetState = FleetState.FleetsInRendezvous;
-                        //ToDo: manage fleets in conjoined for ship exchange and what to do with original fleets, two or more
-                    }
+                    var diplomacyController = DiplomacyManager.Instance.GetDiplomacyController(this.FleetData.OurCivController, hitFleetCivController);
+                    diplomacyController.DiplomacyData.IsFirstContact = false;                    
                 }
             }
-            else if (!diplomacyController.areWePlaceholder && diplomacyController.DiplomacyData.DiplomacyEnumOfCivs == DiplomacyStatusEnum.War)
+            else if (hitFleetCivController.CivData.CivEnum != this.FleetData.CivEnum && (this.FleetData.CivEnum >= CivEnum.TERRAN|| 
+                hitFleetCivController.CivData.CivEnum >= CivEnum.TERRAN))
             {
-                //**** Do Combat ****
+                //ToDo: ******** AI diplomacy where a major civ is involved
             }
-
+        }
+           
             /// I am thinking that checking the hitGO for reaching the Destination is redundant. If all controllers are checking both of
             /// the controllers for the two in a hit are checked above so do not check again.
             //else if (thisFleetController.gameObject == hitGO.GetComponent<FleetController>().FleetData.Destination)
             //{
             //    FleetUIController.current.ClickCancelDestinationButton();
-            //    FleetUIController.current.CloseUnLoadFirstContactUI();
+            //    FleetUIController.current.CloseUnLoadDiplomacyUI();
             //    YourStarSysUIManager.current.CloseUnLoadStarSysUI();   
             //}
 
@@ -273,7 +257,7 @@ namespace Assets.Core
             //3) ?first contatact > what kind of hail?
             //4) ?combat
             //5) ?move ships in and out of fleets
-        }
+        
         public void OnFleetEncounteredStarSys(GameObject hitGO)
         {
 
@@ -285,23 +269,29 @@ namespace Assets.Core
             EncounterUnknownSystem(hitGO, hitSysCivController, hitCivEnum);
             if (this.FleetData.Destination == hitGO)
             {
+                // is this system we hit our destination
+                if (this.FleetData.Destination == hitGO.gameObject)
+                {
+                    FleetUIController.Instance.ClickCancelDestinationButton();
+                    FleetUIController.Instance.CloseUnLoadFleetUI();
+                    OnArrivedAtDestination();//? should we do other stuff here for FleetController at destination?
+                    OnEnterStarSystem();
+                }
                 int firstUninhabited = (int)CivEnum.ZZUNINHABITED1; // all lower than this are inhabited (including Borg UniComplex and inhabitable Nebulas)
                 if (this.FleetData.CivEnum != hitCivEnum)
                 {
-                    DiplomacyController diplomacyController = DiplomacyManager.Instance.GetTheDiplomacyController(this.FleetData.OurCivController, hitSysCivController);
-                    if (diplomacyController.areWePlaceholder && (int)hitSysCivController.CivData.CivEnum < firstUninhabited)
+                    // DiplomacyController diplomacyController = DiplomacyManager.Instance.InstantiateADiplomacyController(this.FleetData.OurCivController, hitSysCivController);
+                    if ((int)hitSysCivController.CivData.CivEnum < firstUninhabited && !DiplomacyManager.Instance.FoundADiplomacyController(this.FleetData.OurCivController, hitSysCivController))
                     {   // First Contact
-                        Destroy(diplomacyController.gameObject);
+
                         // ToDo: FirstContactDiplomacy for both local palyer using the UI and for non local human players using their UI and for AI without a UI
-                        DiplomacyManager.Instance.FistContactDiplomacy(this.FleetData.OurCivController, hitSysCivController, hitGO);
+                        DiplomacyManager.Instance.InstantiateDiplomacyController(this.FleetData.OurCivController, hitSysCivController);
                         this.FleetState = FleetState.FleetDipolmacy;
 
                     }
-                    // If an uninhabited system
-                    else if (diplomacyController.areWePlaceholder && (int)hitSysCivController.CivData.CivEnum >= firstUninhabited)
+                    else if ((int)hitSysCivController.CivData.CivEnum >= firstUninhabited)
                     {
                         //React to Uninhabited system contact
-                        Destroy(diplomacyController.gameObject);
                         if (GameController.Instance.AreWeLocalPlayer(this.FleetData.CivEnum))
                             hitGO.GetComponent<StarSysController>().DoHabitalbeSystemUI(this);
                         foreach (ShipController shipController in this.FleetData.GetShipList())
@@ -312,20 +302,18 @@ namespace Assets.Core
                             }
                         }
                     }
-                    else if (!diplomacyController.areWePlaceholder && diplomacyController.DiplomacyData.DiplomacyEnumOfCivs == DiplomacyStatusEnum.War)
-                    {
-                        // is it do combat or do we get an option to blockaid or what???
-                        //**** Do Combat **
+                    else
+                    {  // Not First Contact
+                        var diplomacyController = DiplomacyManager.Instance.GetDiplomacyController(this.FleetData.OurCivController, hitSysCivController);
+                        diplomacyController.DiplomacyData.IsFirstContact = false;
                     }
+                    // If an uninhabited system
 
-                    // is this fleet we hit our destination
-                    if (this.FleetData.Destination == hitGO.gameObject)
-                    {
-                        FleetUIController.Instance.ClickCancelDestinationButton();
-                        FleetUIController.Instance.CloseUnLoadFleetUI();
-                        OnArrivedAtDestination();//? should we do other stuff here for FleetController at destination?
-                        OnEnterStarSystem();
-                    }
+                    //else //if (diplomacyController.DiplomacyData.DiplomacyEnumOfCivs == DiplomacyStatusEnum.War)
+                    //{
+                    //    // is it do combat or do we get an option to blockaid or what???
+                    //    //**** Do Combat **
+                    //}
                 }
                 else if (GameController.Instance.AreWeLocalPlayer(this.FleetData.CivEnum)) // is our civ's system and we are local player
                 {
@@ -337,12 +325,6 @@ namespace Assets.Core
             {
                 //For now do nothing, even if at war
             }
-
-
-            //1) player get the FleetController of the new fleet GO
-            //2) player ask your factionOwner (CivManager) if player already know the faction of the new fleet
-            //3) ?first contatact > what kind of hail, diplomacy vs firstUninhabited ?colonize vs terraform a rock vs do fleet busness in our system
-            //4) ?combat vs diplomacy and or traid...
         }
         private void EncounterUnknownSystem(GameObject hitGO, CivController civController, CivEnum civEnum)
         {  
@@ -403,7 +385,7 @@ namespace Assets.Core
             Vector3 nextPosition = Vector3.MoveTowards(rb.position, FleetData.Destination.transform.position,
             FleetData.CurrentWarpFactor * warpFudgeFactor * Time.fixedDeltaTime);
             rb.MovePosition(nextPosition); // kinematic with physics movement
-            rb.linearVelocity = Vector3.zero;
+            //rb.linearVelocity = Vector3.zero;
             // OnArrivedAtDestination();
 
             // update dropline
@@ -432,7 +414,7 @@ namespace Assets.Core
         void OnArrivedAtDestination()
         {
             // Logic to handle what happens when the fleet arrives at the destination
-            ;           //FleetUIController.current.ClickCancelDestinationButton(); 
+                      //FleetUIController.current.ClickCancelDestinationButton(); 
                         // Debug.Log("Arrived at destination: " + this.FleetData.Destination.name);
                         // Example: Stop the fleet, update UI, trigger events, etc.
 

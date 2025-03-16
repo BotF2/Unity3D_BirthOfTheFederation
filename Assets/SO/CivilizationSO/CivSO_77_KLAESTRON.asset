@@ -17,10 +17,10 @@ MonoBehaviour:
   CivShortName: KLAESTRON
   CivLongName: KLAESTRON
   CivHomeSystem: KLAESTRON
-  WarLikeEnum: 1
-  XenophbiaEnum: 1
-  RuthlessEnum: 0
-  GreedyEnum: 2
+  WarLikeEnum: -1
+  XenophbiaEnum: -1
+  RuthlessEnum: -2
+  GreedyEnum: 0
   CivImage: {fileID: 0}
   Insignia: {fileID: 21300000, guid: 25ebb8312d33a664ea98b65bd6cd92f3, type: 3}
   Population: 0

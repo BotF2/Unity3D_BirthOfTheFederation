@@ -17,10 +17,10 @@ MonoBehaviour:
   CivShortName: ZAHL
   CivLongName: ZAHL
   CivHomeSystem: ZAHL
-  WarLikeEnum: 3
-  XenophbiaEnum: 4
-  RuthlessEnum: 2
-  GreedyEnum: 2
+  WarLikeEnum: 1
+  XenophbiaEnum: 2
+  RuthlessEnum: 0
+  GreedyEnum: 0
   CivImage: {fileID: 21300000, guid: 908e5e535da3cea469a2415accc890b8, type: 3}
   Insignia: {fileID: 21300000, guid: b78d493ebde59ce4ea5f97a3f1b52df9, type: 3}
   Population: 0

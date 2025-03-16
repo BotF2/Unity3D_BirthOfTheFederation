@@ -17,9 +17,9 @@ MonoBehaviour:
   CivShortName: OCAMPA
   CivLongName: OCAMPA
   CivHomeSystem: OCAMPA
-  WarLikeEnum: 2
-  XenophbiaEnum: 4
-  RuthlessEnum: 3
+  WarLikeEnum: 0
+  XenophbiaEnum: 2
+  RuthlessEnum: 1
   GreedyEnum: 0
   CivImage: {fileID: 21300000, guid: 672da374ad466e04eb849c69c7cac8fe, type: 3}
   Insignia: {fileID: 21300000, guid: ab99832ab758a9f4188754cd4f2793ef, type: 3}

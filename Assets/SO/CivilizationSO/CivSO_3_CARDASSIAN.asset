@@ -17,10 +17,10 @@ MonoBehaviour:
   CivShortName: CARDASSIAN
   CivLongName: Cardassian Union
   CivHomeSystem: CARDASSIA
-  WarLikeEnum: 1
-  XenophbiaEnum: 1
-  RuthlessEnum: 0
-  GreedyEnum: 0
+  WarLikeEnum: -1
+  XenophbiaEnum: -1
+  RuthlessEnum: -2
+  GreedyEnum: -2
   CivImage: {fileID: 21300000, guid: c72d1e1efe3abc8498879263caae4611, type: 3}
   Insignia: {fileID: 21300000, guid: fe3216cef2c7a434ebc99bee3423171a, type: 3}
   Population: 0

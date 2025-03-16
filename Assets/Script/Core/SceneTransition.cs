@@ -5,20 +5,20 @@ using UnityEngine.SceneManagement;
 
 public class SceneTransition : MonoBehaviour
 {
-    public static SceneTransition Instance;
+    //public static SceneTransition Instance;
     public Animator Transition;
     public float WaitForSeconds = 1f;
     private void Awake()
     {
-        if (Instance != null)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
+        //if (Instance != null)
+        //{
+        //    Destroy(gameObject);
+        //}
+        //else
+        //{
+        //    Instance = this;
+        //    DontDestroyOnLoad(gameObject);
+        //}
     }
     public void LoadCombatScene()
     {

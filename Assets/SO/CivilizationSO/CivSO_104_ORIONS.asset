@@ -17,10 +17,10 @@ MonoBehaviour:
   CivShortName: ORIONS
   CivLongName: ORIONS
   CivHomeSystem: ORION
-  WarLikeEnum: 1
-  XenophbiaEnum: 2
-  RuthlessEnum: 0
-  GreedyEnum: 0
+  WarLikeEnum: -1
+  XenophbiaEnum: 0
+  RuthlessEnum: -2
+  GreedyEnum: -2
   CivImage: {fileID: 21300000, guid: e3f1e21dcfb182749bc6c74b9fa40df9, type: 3}
   Insignia: {fileID: 21300000, guid: e31458f608e584f4a858faf446f4020a, type: 3}
   Population: 0

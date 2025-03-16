@@ -17,10 +17,10 @@ MonoBehaviour:
   CivShortName: TZENKETHI
   CivLongName: TZENKETHI
   CivHomeSystem: TZENKETHI
-  WarLikeEnum: 0
-  XenophbiaEnum: 0
-  RuthlessEnum: 0
-  GreedyEnum: 2
+  WarLikeEnum: -2
+  XenophbiaEnum: -2
+  RuthlessEnum: -2
+  GreedyEnum: 0
   CivImage: {fileID: 21300000, guid: 87cd3f40472922d408c07937b0ef2d89, type: 3}
   Insignia: {fileID: 21300000, guid: ebd63201eca4fa8458a000b41ee90229, type: 3}
   Population: 0

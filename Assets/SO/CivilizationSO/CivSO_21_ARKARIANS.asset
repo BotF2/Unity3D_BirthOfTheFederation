@@ -17,10 +17,10 @@ MonoBehaviour:
   CivShortName: ARKARIANS
   CivLongName: ARKARIANS
   CivHomeSystem: ARKARI
-  WarLikeEnum: 2
-  XenophbiaEnum: 1
-  RuthlessEnum: 4
-  GreedyEnum: 1
+  WarLikeEnum: 0
+  XenophbiaEnum: -1
+  RuthlessEnum: 2
+  GreedyEnum: -1
   CivImage: {fileID: 0}
   Insignia: {fileID: 0}
   Population: 0

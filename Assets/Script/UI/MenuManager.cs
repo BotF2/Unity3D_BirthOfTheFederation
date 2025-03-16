@@ -34,7 +34,6 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private GameObject diplomacyMenu;
     [SerializeField] private GameObject intellMenu;
     [SerializeField] private GameObject encyclopedianMenu;
-    //[SerializeField] private GameObject firstContactMenu;
     [SerializeField] private GameObject habitableSysMenu;
     [SerializeField] private GameObject combat;
     [SerializeField] private GameObject openMenu;
@@ -55,6 +54,57 @@ public class MenuManager : MonoBehaviour
     {
         buildMenu = prefabMenu;
         buildMenu.SetActive(true);
+    }
+    public void CloseMenu(Menu enumMenu)
+    {
+        switch (enumMenu)
+        {
+            case Menu.None:
+                openMenu = null;
+                break;
+            case Menu.SystemsMenu:
+                systemsMenu.SetActive(false);
+                openMenu = systemsMenu;
+                break;
+            case Menu.ASystemMenu:
+                aSystemMenu.SetActive(false);
+                openMenu = aSystemMenu;
+                break;
+            case Menu.BuildMenu:
+                buildMenu.SetActive(false);
+                openMenu = buildMenu;
+                break;
+            case Menu.FleetsMenu:
+                fleetsMenu.SetActive(false);
+                openMenu = fleetsMenu;
+                break;
+            case Menu.AFleetMenu:
+                aFleetMenu.SetActive(false);
+                openMenu = aFleetMenu;
+                break;
+            case Menu.DiplomacyMenu:
+                TimeManager.Instance.ResumeTime();
+                diplomacyMenu.SetActive(false);
+                openMenu = diplomacyMenu;
+                break;
+            case Menu.IntellMenu:
+                intellMenu.SetActive(false);
+                openMenu = intellMenu;
+                break;
+            case Menu.EncyclopedianMenu:                
+                encyclopedianMenu.SetActive(false);
+                openMenu = encyclopedianMenu;
+                break;
+            case Menu.HabitableSysMenu:
+                habitableSysMenu.SetActive(false);
+                openMenu = habitableSysMenu;
+                break;
+            case Menu.Combat:
+                //combat.SetActive(true);
+                break;
+            default:
+                break;
+        }
     }
     public void OpenMenu(Menu menuEnum, GameObject callingMenu)
     {
@@ -88,6 +138,7 @@ public class MenuManager : MonoBehaviour
                 openMenu = aFleetMenu;
                 break;
             case Menu.DiplomacyMenu:
+                TimeManager.Instance.PauseTime();
                 diplomacyMenu.SetActive(true);
                 openMenu = diplomacyMenu;
                 break;
@@ -99,10 +150,6 @@ public class MenuManager : MonoBehaviour
                 encyclopedianMenu.SetActive(true);
                 openMenu = encyclopedianMenu;
                 break;
-            //case Menu.FirstContactMenu:
-            //    firstContactMenu.SetActive(true);
-            //    openMenu = firstContactMenu;
-            //    break;
             case Menu.HabitableSysMenu:
                 habitableSysMenu.SetActive(true);
                 openMenu = habitableSysMenu;

@@ -17,9 +17,9 @@ MonoBehaviour:
   CivShortName: DREMANS
   CivLongName: DREMANS
   CivHomeSystem: DREMA
-  WarLikeEnum: 3
-  XenophbiaEnum: 3
-  RuthlessEnum: 3
+  WarLikeEnum: 1
+  XenophbiaEnum: 1
+  RuthlessEnum: 1
   GreedyEnum: 0
   CivImage: {fileID: 21300000, guid: d3aa5c504b0cef944b5096fc2fb55a40, type: 3}
   Insignia: {fileID: 21300000, guid: 2f97a1a5a9f84f74fbdfafe052f5e47d, type: 3}

@@ -17,10 +17,10 @@ MonoBehaviour:
   CivShortName: MAQUIS
   CivLongName: MAQUIS
   CivHomeSystem: MAQUIS
-  WarLikeEnum: 1
-  XenophbiaEnum: 0
-  RuthlessEnum: 0
-  GreedyEnum: 1
+  WarLikeEnum: -1
+  XenophbiaEnum: -2
+  RuthlessEnum: -2
+  GreedyEnum: -1
   CivImage: {fileID: 21300000, guid: 0b5f68b6b97ff954eb310c7eb119b616, type: 3}
   Insignia: {fileID: 21300000, guid: c5817ff215b9e734aafec666d452580d, type: 3}
   Population: 0

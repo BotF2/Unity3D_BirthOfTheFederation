@@ -17,10 +17,10 @@ MonoBehaviour:
   CivShortName: HAZARI
   CivLongName: HAZARI
   CivHomeSystem: HAZARI
-  WarLikeEnum: 0
-  XenophbiaEnum: 1
-  RuthlessEnum: 0
-  GreedyEnum: 0
+  WarLikeEnum: -2
+  XenophbiaEnum: -1
+  RuthlessEnum: -2
+  GreedyEnum: -2
   CivImage: {fileID: 21300000, guid: f2965b8eabb4c6a498a8f6e3c3bec55c, type: 3}
   Insignia: {fileID: 21300000, guid: 1b6edbe05b64e83468cb8b14e0f31428, type: 3}
   Population: 0
