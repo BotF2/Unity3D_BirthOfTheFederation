@@ -29,5 +29,7 @@ MonoBehaviour:
   CivTechLevel: 100
   Playable: 0
   HasWarp: 0
-  Decription: ToDo, connect to libaray of civSO descriptions
+  Decription: The Takarians are a bronze age civilization, who are just beginning
+    to expand their commerce and trade network beyond international borders. They
+    are best left to develop on their own.
   IntelPoints: 0

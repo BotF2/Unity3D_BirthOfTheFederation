@@ -29,5 +29,6 @@ MonoBehaviour:
   CivTechLevel: 100
   Playable: 0
   HasWarp: 1
-  Decription: ToDo, connect to libaray of civSO descriptions
+  Decription: The Quarren have a workforce crisis, and will stop at nothing to recruit
+    foreign labor, and by whatever means necessary. We must observe them carefully.
   IntelPoints: 0

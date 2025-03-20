@@ -29,5 +29,6 @@ MonoBehaviour:
   CivTechLevel: 100
   Playable: 0
   HasWarp: 1
-  Decription: ToDo, connect to libaray of civSO descriptions
+  Decription: The Bolians are productive trade merchants. With their resources and
+    connections the economical benefits will be immense.
   IntelPoints: 0

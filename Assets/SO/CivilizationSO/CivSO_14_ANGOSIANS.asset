@@ -29,5 +29,6 @@ MonoBehaviour:
   CivTechLevel: 100
   Playable: 0
   HasWarp: 0
-  Decription: ToDo, connect to libaray of civSO descriptions
+  Decription: The Angosians have a nearly perfect society, but they pay a high price.
+    Their enhanced soldiers deserve social, as well as military, respect.
   IntelPoints: 0

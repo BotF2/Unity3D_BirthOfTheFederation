@@ -9,28 +9,28 @@ public class CivSOImporter : EditorWindow
 #if UNITY_EDITOR
 
 
-    [MenuItem("Tools/Import CivSO CSV")]
+    [MenuItem("Tools/Import CivSO TSV")]
     public static void ShowWindow()
     {
-        GetWindow<CivSOImporter>("CivSO CSV Importer");
+        GetWindow<CivSOImporter>("CivSO TSV Importer");
     }
 
-    private string filePath = $"Assets/Resources/Data/Civilizations.csv";
+    private string filePath = $"Assets/Resources/Data/Civilizations.tsv";
 
     void OnGUI()
     {
-        GUILayout.Label("CivSO CSV Importer", EditorStyles.boldLabel);
-        filePath = EditorGUILayout.TextField("CSV File Path", filePath);
+        GUILayout.Label("CivSO TSV Importer", EditorStyles.boldLabel);
+        filePath = EditorGUILayout.TextField("TSV File Path", filePath);
 
-        if (GUILayout.Button("Import CIV CSV"))
+        if (GUILayout.Button("Import CIV TSV"))
         {
             //Output the Game data path to the console
             Debug.Log("dataPath : " + Application.dataPath);
-            ImportCIVCSV(filePath);
+            ImportCIVTSV(filePath);
         }
     }
 
-    private static void ImportCIVCSV(string filePath)
+    private static void ImportCIVTSV(string filePath)
     {
         if (!File.Exists(filePath))
         {
@@ -42,7 +42,7 @@ public class CivSOImporter : EditorWindow
 
         foreach (string line in lines)
         {
-            string[] fields = line.Split(',');
+            string[] fields = line.Split('\t');
 
             if (fields.Length > 8)
             {
@@ -65,7 +65,7 @@ public class CivSOImporter : EditorWindow
                 civSO.CivTechLevel = TechLevel.EARLY;// StartingTechLevel enum
                 civSO.HasWarp = bool.Parse(fields[11]);
                 civSO.Playable = bool.Parse(fields[12]);
-                civSO.Decription = "ToDo, connect to libaray of civSO descriptions";
+                civSO.Decription = fields[13];
                 string assetPath = $"Assets/SO/CivilizationSO/CivSO_{civSO.CivInt}_{civSO.CivShortName}.asset";
                 AssetDatabase.CreateAsset(civSO, assetPath);
                 AssetDatabase.SaveAssets();

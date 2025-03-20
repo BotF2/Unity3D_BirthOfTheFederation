@@ -29,5 +29,6 @@ MonoBehaviour:
   CivTechLevel: 100
   Playable: 0
   HasWarp: 1
-  Decription: ToDo, connect to libaray of civSO descriptions
+  Decription: The Wadi are a diplomatically precarious race to deal with. They value
+    entertainment above all else, even if the stakes mean your life.
   IntelPoints: 0

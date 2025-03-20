@@ -29,5 +29,6 @@ MonoBehaviour:
   CivTechLevel: 100
   Playable: 0
   HasWarp: 0
-  Decription: ToDo, connect to libaray of civSO descriptions
+  Decription: The Edo enjoy an idyllic existence, but their legal system is a high
+    price to pay for their bliss.
   IntelPoints: 0

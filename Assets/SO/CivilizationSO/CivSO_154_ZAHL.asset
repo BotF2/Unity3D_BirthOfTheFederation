@@ -29,5 +29,6 @@ MonoBehaviour:
   CivTechLevel: 100
   Playable: 0
   HasWarp: 1
-  Decription: ToDo, connect to libaray of civSO descriptions
+  Decription: The Zahl are a generally hospitable people, but their swagger hides
+    various conceits, particularly when political matters are concerned.
   IntelPoints: 0

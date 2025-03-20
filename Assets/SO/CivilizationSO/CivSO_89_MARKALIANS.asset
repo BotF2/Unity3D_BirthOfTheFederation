@@ -29,5 +29,8 @@ MonoBehaviour:
   CivTechLevel: 100
   Playable: 0
   HasWarp: 1
-  Decription: ToDo, connect to libaray of civSO descriptions
+  Decription: The Markalians will be a difficult race to trust, for many of their
+    markets and business ventures involve illicit activity. But they have contacts
+    throughout the galaxy, and those contacts could bring us lucrative trade contracts
+    indeed.
   IntelPoints: 0

@@ -29,5 +29,7 @@ MonoBehaviour:
   CivTechLevel: 100
   Playable: 0
   HasWarp: 1
-  Decription: ToDo, connect to libaray of civSO descriptions
+  Decription: The Arbazan are a highly conservative, yet sophisticated culture. Due
+    to their temperate moralistic ways, they are seen to be arrogant, thus making
+    diplomatic overtures difficult.
   IntelPoints: 0

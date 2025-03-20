@@ -29,5 +29,7 @@ MonoBehaviour:
   CivTechLevel: 100
   Playable: 0
   HasWarp: 1
-  Decription: ToDo, connect to libaray of civSO descriptions
+  Decription: The Numiri have for a time been at war with the Baneans, with whom
+    they once shared a homeworld. Because of the war they are cynical of all other
+    races, and deeply suspicious.
   IntelPoints: 0

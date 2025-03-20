@@ -197,7 +197,7 @@ namespace Assets.Core
                 SysData.CurrentOwner = starSysSO.FirstOwner;
                 SysData.SystemType = starSysSO.StarType;
                 SysData.StarSprit = starSysSO.StarSprit;
-                SysData.Description = "description here";
+                SysData.Description = starSysSO.Description;
 
                 InstantiateSystem(SysData, civSOList[i]);
                 //if (civSOList[i].HasWarp)
@@ -226,7 +226,7 @@ namespace Assets.Core
                 starSystemNewGameOb.transform.Translate(new Vector3(sysData.GetPosition().x,
                     sysData.GetPosition().y, sysData.GetPosition().z));
                 starSystemNewGameOb.transform.SetParent(galaxyCenter.transform, true);
-                starSystemNewGameOb.transform.localScale = new Vector3(1, 1, 1);
+                starSystemNewGameOb.transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
                 StarSysController starSysController = starSystemNewGameOb.GetComponentInChildren<StarSysController>();
                 //if (civSO.HasWarp)
                 //    FleetManager.Instance.FleetDataFromSO(starSysController, false);

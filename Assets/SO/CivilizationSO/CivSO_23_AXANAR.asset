@@ -29,5 +29,7 @@ MonoBehaviour:
   CivTechLevel: 100
   Playable: 0
   HasWarp: 1
-  Decription: ToDo, connect to libaray of civSO descriptions
+  Decription: The Axanar are an androgynous species with a long life span. They could
+    be useful allies, for they value peace and friendship, but when necessary they
+    are capable of defending themselves.
   IntelPoints: 0

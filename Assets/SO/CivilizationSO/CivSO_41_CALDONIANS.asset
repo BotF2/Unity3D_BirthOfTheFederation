@@ -29,5 +29,6 @@ MonoBehaviour:
   CivTechLevel: 100
   Playable: 0
   HasWarp: 1
-  Decription: ToDo, connect to libaray of civSO descriptions
+  Decription: The Caldonians are disciplined researchers, and share our love of knowledge
+    for its own sake.
   IntelPoints: 0

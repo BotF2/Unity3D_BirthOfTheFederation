@@ -29,5 +29,6 @@ MonoBehaviour:
   CivTechLevel: 100
   Playable: 0
   HasWarp: 1
-  Decription: ToDo, connect to libaray of civSO descriptions
+  Decription: The Ledosians are a relatively Peaceful people, and they pride themselves
+    on their laws and regulations.
   IntelPoints: 0

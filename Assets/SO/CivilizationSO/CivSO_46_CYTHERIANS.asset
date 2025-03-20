@@ -29,5 +29,6 @@ MonoBehaviour:
   CivTechLevel: 100
   Playable: 0
   HasWarp: 0
-  Decription: ToDo, connect to libaray of civSO descriptions
+  Decription: The Cytherians have reached the peak of corporeal development, but
+    they invest little interest in younger races, thus negotiations will be difficult.
   IntelPoints: 0

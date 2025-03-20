@@ -29,5 +29,6 @@ MonoBehaviour:
   CivTechLevel: 100
   Playable: 0
   HasWarp: 1
-  Decription: ToDo, connect to libaray of civSO descriptions
+  Decription: The Flaxians are a race that specializes in political intrigue and
+    sabotage. They are to be approached with extreme caution.
   IntelPoints: 0

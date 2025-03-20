@@ -29,5 +29,7 @@ MonoBehaviour:
   CivTechLevel: 100
   Playable: 0
   HasWarp: 0
-  Decription: ToDo, connect to libaray of civSO descriptions
+  Decription: The Elaysians come from a small planet with naturally low gravity.
+    This can be a problem for them when adapting to the conditions of most other
+    races.
   IntelPoints: 0

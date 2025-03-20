@@ -29,5 +29,6 @@ MonoBehaviour:
   CivTechLevel: 100
   Playable: 0
   HasWarp: 1
-  Decription: ToDo, connect to libaray of civSO descriptions
+  Decription: The B'Omar are slightly xenophobic but they maintain a wide network
+    of colonies due to their ever-growing population levels.
   IntelPoints: 0

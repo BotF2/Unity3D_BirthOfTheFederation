@@ -29,5 +29,7 @@ MonoBehaviour:
   CivTechLevel: 100
   Playable: 0
   HasWarp: 1
-  Decription: ToDo, connect to libaray of civSO descriptions
+  Decription: The Moneans live in an artificially maintained aqua sphere, and the
+    opportunity to discover how it functions will provide researchers with years
+    of useful data.
   IntelPoints: 0

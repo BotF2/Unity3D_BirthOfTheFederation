@@ -96,7 +96,7 @@ public class DiplomacyUIController : MonoBehaviour
         theirRaceImage.sprite = othersController.CivData.CivRaceSprite;
         relationTMP.text = ourDiplomacyController.DiplomacyData.DiplomacyEnumOfCivs.ToString();
         relationPointsTMP.text = ourDiplomacyController.DiplomacyData.DiplomacyPointsOfCivs.ToString();
-        transmissionTMP.text = othersController.CivData.Decription;
+        //transmissionTMP.text = messages from diplomacy, AI and player 
         relationTMP.text = ourDiplomacyController.DiplomacyData.DiplomacyEnumOfCivs.ToString();
         traitOneTMP.text = othersController.CivData.Warlike.ToString();
         traitTwoTMP.text = othersController.CivData.Xenophbia.ToString();

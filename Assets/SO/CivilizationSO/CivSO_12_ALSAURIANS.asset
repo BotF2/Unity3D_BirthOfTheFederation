@@ -29,5 +29,7 @@ MonoBehaviour:
   CivTechLevel: 100
   Playable: 0
   HasWarp: 1
-  Decription: ToDo, connect to libaray of civSO descriptions
+  Decription: The Alsaurians have for long suffered under the oppression of the neighboring
+    Mokra Order. It would thus be prudent to remain neutral in diplomatic matters
+    until lasting peace is achieved.
   IntelPoints: 0

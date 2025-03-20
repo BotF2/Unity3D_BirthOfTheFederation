@@ -29,5 +29,7 @@ MonoBehaviour:
   CivTechLevel: 100
   Playable: 0
   HasWarp: 1
-  Decription: ToDo, connect to libaray of civSO descriptions
+  Decription: The Akritirian people are governed by an oppressive and often brutal
+    regime that values obedience above all else, and they are unforgiving if common
+    order is compromised. Their government should be approached with caution.
   IntelPoints: 0

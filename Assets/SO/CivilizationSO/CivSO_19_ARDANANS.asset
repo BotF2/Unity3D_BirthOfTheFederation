@@ -29,5 +29,7 @@ MonoBehaviour:
   CivTechLevel: 100
   Playable: 0
   HasWarp: 0
-  Decription: ToDo, connect to libaray of civSO descriptions
+  Decription: The Ardanans live in anti-gravity levitated cities due to the unstable
+    nature of their planet's crust. Various social issues would first need to be
+    addressed if they are to be serious candidates for membership.
   IntelPoints: 0

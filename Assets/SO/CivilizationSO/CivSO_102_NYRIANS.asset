@@ -29,5 +29,6 @@ MonoBehaviour:
   CivTechLevel: 100
   Playable: 0
   HasWarp: 1
-  Decription: ToDo, connect to libaray of civSO descriptions
+  Decription: The Nyrians are experts in stealth, evasion and subterfuge. It would
+    be wise to observe them closely before forging diplomatic ties.
   IntelPoints: 0

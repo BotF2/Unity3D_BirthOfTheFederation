@@ -29,5 +29,17 @@ MonoBehaviour:
   CivTechLevel: 100
   Playable: 1
   HasWarp: 1
-  Decription: ToDo, connect to libaray of civSO descriptions
+  Decription: The Cardassians use any means necessary to ensure the absolute loyalty
+    of their subjects. A national indoctrination, mixed with effective control methods,
+    promotes an unconditional belief in the Cardassian systems and work ethics, which
+    results in exceptional industrial and mining capacity. These state-promoted plants
+    clearly work far more effectively than their food and energy installations however,
+    and their research advances at a slow rate. Their intelligence services, the
+    Obsidian Order, is their biggest strength, it is known as to be the best of the
+    galaxy. Not even a Cardassian Gul, can order a soup without the Order knowing
+    it. And sometimes people die, after doing the wrong thing... sabotaging other
+    empires military installations, is also a specialty of the Obsidian Order. Cardassian
+    ships continue the principle of community-controlled actions in space. Individually
+    not very efficient, they are developed to attack in tight formations. The individual
+    does not count, only the state does. FOR CARDASSIA!
   IntelPoints: 0

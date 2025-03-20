@@ -29,5 +29,7 @@ MonoBehaviour:
   CivTechLevel: 100
   Playable: 0
   HasWarp: 0
-  Decription: ToDo, connect to libaray of civSO descriptions
+  Decription: The Bre'ellians suffer with overpopulation. A necessary first step
+    in helping them deal with the problem is terraforming the rest of their system
+    to give them more breathing room.
   IntelPoints: 0

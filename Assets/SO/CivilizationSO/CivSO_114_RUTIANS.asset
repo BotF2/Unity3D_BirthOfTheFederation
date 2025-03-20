@@ -29,5 +29,7 @@ MonoBehaviour:
   CivTechLevel: 100
   Playable: 0
   HasWarp: 1
-  Decription: ToDo, connect to libaray of civSO descriptions
+  Decription: The Rutians are reluctant to align themselves exclusively with any
+    other race, and this is indeed advisable at this time, for they are yet to unify
+    their world government.
   IntelPoints: 0

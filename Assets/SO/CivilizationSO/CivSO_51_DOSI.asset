@@ -29,5 +29,7 @@ MonoBehaviour:
   CivTechLevel: 100
   Playable: 0
   HasWarp: 0
-  Decription: ToDo, connect to libaray of civSO descriptions
+  Decription: The Dosi are brokers and intermediary traders, of some sway and influence
+    across many sectors. If we want to open any negotiations with them, we must first
+    recognize and understand the treaties they maintain with existing clients.
   IntelPoints: 0

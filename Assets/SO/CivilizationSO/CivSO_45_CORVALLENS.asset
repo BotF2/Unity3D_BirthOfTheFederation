@@ -29,5 +29,7 @@ MonoBehaviour:
   CivTechLevel: 100
   Playable: 0
   HasWarp: 1
-  Decription: ToDo, connect to libaray of civSO descriptions
+  Decription: The Corvallens are a neutral race of traders, raiders, smugglers and
+    mercenaries, and cannot be trusted. We must be cautious in any dealings we have
+    with them.
   IntelPoints: 0

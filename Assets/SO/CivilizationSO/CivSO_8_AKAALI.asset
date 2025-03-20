@@ -29,5 +29,8 @@ MonoBehaviour:
   CivTechLevel: 100
   Playable: 0
   HasWarp: 0
-  Decription: ToDo, connect to libaray of civSO descriptions
+  Decription: The Akaali are a primitive culture still finding their way, but they
+    are skilled in managing the few resources they have. Any interaction in current
+    planetary affairs would be inadvisable though, for it would hinder rather than
+    benefit their development.
   IntelPoints: 0

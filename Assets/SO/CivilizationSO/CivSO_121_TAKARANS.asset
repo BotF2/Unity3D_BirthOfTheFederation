@@ -29,5 +29,7 @@ MonoBehaviour:
   CivTechLevel: 100
   Playable: 0
   HasWarp: 0
-  Decription: ToDo, connect to libaray of civSO descriptions
+  Decription: The Takarans are incredibly resilient, and highly intelligent. Their
+    people are noted for their proficiency in theoretical physics, as well as their
+    unusual biochemistry.
   IntelPoints: 0

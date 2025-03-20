@@ -29,5 +29,6 @@ MonoBehaviour:
   CivTechLevel: 100
   Playable: 0
   HasWarp: 1
-  Decription: ToDo, connect to libaray of civSO descriptions
+  Decription: The Hekarans have some radical ideas about improving and refining warp
+    science. Their research could be of great benefit to our own propulsion programs.
   IntelPoints: 0

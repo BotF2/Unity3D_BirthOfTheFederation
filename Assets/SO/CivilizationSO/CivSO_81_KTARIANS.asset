@@ -29,5 +29,7 @@ MonoBehaviour:
   CivTechLevel: 100
   Playable: 0
   HasWarp: 0
-  Decription: ToDo, connect to libaray of civSO descriptions
+  Decription: The Ktarians are a very intelligent and resourceful people, but they
+    have a reputation for cunning, and duplicity. It remains to be seen whether they
+    are indeed trustworthy
   IntelPoints: 0

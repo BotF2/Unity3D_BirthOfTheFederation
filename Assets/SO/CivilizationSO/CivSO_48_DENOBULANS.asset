@@ -29,5 +29,7 @@ MonoBehaviour:
   CivTechLevel: 100
   Playable: 0
   HasWarp: 1
-  Decription: ToDo, connect to libaray of civSO descriptions
+  Decription: The amicable Denobulans are a highly sociable race, and they have an
+    interest or point of view in just about anything. They would be an interesting
+    addition to both our scientific and diplomatic circles.
   IntelPoints: 0

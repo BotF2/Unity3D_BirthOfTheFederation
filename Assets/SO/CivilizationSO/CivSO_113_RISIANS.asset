@@ -29,5 +29,7 @@ MonoBehaviour:
   CivTechLevel: 100
   Playable: 0
   HasWarp: 0
-  Decription: ToDo, connect to libaray of civSO descriptions
+  Decription: The Risians live for recreation, entertainment, and enjoyment. Their
+    whole world is a pleasure park for any vacationer, sight-seer, or mere traveler
+    passing through.
   IntelPoints: 0

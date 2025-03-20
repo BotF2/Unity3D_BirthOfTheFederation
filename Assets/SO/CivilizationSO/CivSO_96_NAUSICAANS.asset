@@ -29,5 +29,6 @@ MonoBehaviour:
   CivTechLevel: 100
   Playable: 0
   HasWarp: 1
-  Decription: ToDo, connect to libaray of civSO descriptions
+  Decription: The Nausicaans are a proud and strong race, and fearsome in battle.
+    They are always at war, but never have a shortage of new recruits.
   IntelPoints: 0

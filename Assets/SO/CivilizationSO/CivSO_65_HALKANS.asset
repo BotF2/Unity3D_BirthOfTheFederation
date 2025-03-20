@@ -29,5 +29,6 @@ MonoBehaviour:
   CivTechLevel: 100
   Playable: 0
   HasWarp: 0
-  Decription: ToDo, connect to libaray of civSO descriptions
+  Decription: The Halkans live in total peace, having renounced technology, economics,
+    and strife of any kind.
   IntelPoints: 0

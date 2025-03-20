@@ -29,5 +29,6 @@ MonoBehaviour:
   CivTechLevel: 100
   Playable: 0
   HasWarp: 0
-  Decription: ToDo, connect to libaray of civSO descriptions
+  Decription: The Antedeans have advanced technology, particularly in aquatic science,
+    but they find travelling in space alien to their nature.
   IntelPoints: 0

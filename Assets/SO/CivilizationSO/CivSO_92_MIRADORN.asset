@@ -29,5 +29,7 @@ MonoBehaviour:
   CivTechLevel: 100
   Playable: 0
   HasWarp: 0
-  Decription: ToDo, connect to libaray of civSO descriptions
+  Decription: The Miradorn are a symbiogenetic species, coupled as twins, and each
+    set of twins operates as one unit. They are a passionate yet argumentative race,
+    which will complicate diplomacy.
   IntelPoints: 0

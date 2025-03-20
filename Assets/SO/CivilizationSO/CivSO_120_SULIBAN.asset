@@ -29,5 +29,7 @@ MonoBehaviour:
   CivTechLevel: 100
   Playable: 0
   HasWarp: 1
-  Decription: ToDo, connect to libaray of civSO descriptions
+  Decription: The nomadic Suliban are normally a non-threatening race, but they are
+    easily swayed, and quite susceptible to outside influence and coercion. They
+    would make great allies, but cannot be entirely trusted.
   IntelPoints: 0

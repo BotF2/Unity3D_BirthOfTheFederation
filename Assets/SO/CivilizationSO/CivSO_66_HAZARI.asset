@@ -29,5 +29,7 @@ MonoBehaviour:
   CivTechLevel: 100
   Playable: 0
   HasWarp: 1
-  Decription: ToDo, connect to libaray of civSO descriptions
+  Decription: The Hazari are a people who seek to profit from tasks and missions
+    performed for other races. They make particularly efficient bounty hunters -
+    for the right price.
   IntelPoints: 0

@@ -29,5 +29,7 @@ MonoBehaviour:
   CivTechLevel: 100
   Playable: 0
   HasWarp: 1
-  Decription: ToDo, connect to libaray of civSO descriptions
+  Decription: The Haakonians are a people that now appreciate peace, after enduring
+    a long war with the Talaxians. They seek above all else to absolve themselves
+    of past misdeeds, but their weapons technology remains.
   IntelPoints: 0

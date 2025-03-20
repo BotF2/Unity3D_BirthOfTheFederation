@@ -29,5 +29,7 @@ MonoBehaviour:
   CivTechLevel: 100
   Playable: 0
   HasWarp: 1
-  Decription: ToDo, connect to libaray of civSO descriptions
+  Decription: The Evora are relatively new to warp science. If they are to continue
+    to grow and develop in space, they must be protected from any that would seek
+    to exploit them.
   IntelPoints: 0

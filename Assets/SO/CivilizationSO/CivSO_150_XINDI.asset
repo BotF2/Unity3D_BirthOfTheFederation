@@ -29,5 +29,6 @@ MonoBehaviour:
   CivTechLevel: 100
   Playable: 0
   HasWarp: 1
-  Decription: ToDo, connect to libaray of civSO descriptions
+  Decription: The Xindi races are diverse and scattered, and each have their own
+    traits, characteristics, and agendas. Unifying them would be a great achievement.
   IntelPoints: 0

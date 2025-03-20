@@ -29,5 +29,7 @@ MonoBehaviour:
   CivTechLevel: 100
   Playable: 0
   HasWarp: 0
-  Decription: ToDo, connect to libaray of civSO descriptions
+  Decription: Kesprytt is a planet of two species, physiologically alike, but culturally
+    far apart. Through an uneasy peace, each lives in the shadow of fear, accusation,
+    and suspicion of the other - but there is peace, none the less.
   IntelPoints: 0

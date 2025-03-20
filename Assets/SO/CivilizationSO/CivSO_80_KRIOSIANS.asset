@@ -29,5 +29,8 @@ MonoBehaviour:
   CivTechLevel: 100
   Playable: 0
   HasWarp: 1
-  Decription: ToDo, connect to libaray of civSO descriptions
+  Decription: The Kriosians live under a politically unstable regime, where revolt
+    follows conciliation, and conciliation follows revolt. There are many social
+    issues yet to address if the Kriosians are to become productive members of the
+    galactic community.
   IntelPoints: 0

@@ -29,5 +29,7 @@ MonoBehaviour:
   CivTechLevel: 100
   Playable: 0
   HasWarp: 0
-  Decription: ToDo, connect to libaray of civSO descriptions
+  Decription: The Horta are an extraordinary silicon-based life form, who have no
+    technology, government, or culture; but they are intelligent, and their world
+    is replete with raw materials.
   IntelPoints: 0

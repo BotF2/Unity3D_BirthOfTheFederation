@@ -29,5 +29,7 @@ MonoBehaviour:
   CivTechLevel: 100
   Playable: 0
   HasWarp: 1
-  Decription: ToDo, connect to libaray of civSO descriptions
+  Decription: The Klaestron regime is currently in transition, and any negotiations
+    with them should be delayed until the government has found some stability, and
+    eliminated the long-standing corruption that has afflicted it.
   IntelPoints: 0

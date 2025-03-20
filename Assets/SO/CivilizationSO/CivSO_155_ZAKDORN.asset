@@ -29,5 +29,6 @@ MonoBehaviour:
   CivTechLevel: 100
   Playable: 0
   HasWarp: 1
-  Decription: ToDo, connect to libaray of civSO descriptions
+  Decription: The Zakdorn talent for strategy cannot be overstated. Their genius
+    could be a great boon to our officer training programs.
   IntelPoints: 0

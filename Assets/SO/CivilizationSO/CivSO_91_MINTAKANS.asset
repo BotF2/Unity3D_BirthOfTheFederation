@@ -29,5 +29,8 @@ MonoBehaviour:
   CivTechLevel: 100
   Playable: 0
   HasWarp: 0
-  Decription: ToDo, connect to libaray of civSO descriptions
+  Decription: Mintakans are a passive bronze age proto-vulcanoid civilization. Although
+    still far from even the industrial age, the highly logical and analytical Mintakans
+    would comfortably accept a rudimentary understanding of interstellar reality
+    and off-world life forms.
   IntelPoints: 0

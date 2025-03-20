@@ -29,5 +29,7 @@ MonoBehaviour:
   CivTechLevel: 100
   Playable: 0
   HasWarp: 1
-  Decription: ToDo, connect to libaray of civSO descriptions
+  Decription: The Tak Tak are an unusual race, most notably so in their unconventional
+    method of communication. They are advanced in biochemical research, as well as
+    weapons.
   IntelPoints: 0

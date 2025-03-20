@@ -29,5 +29,6 @@ MonoBehaviour:
   CivTechLevel: 100
   Playable: 0
   HasWarp: 1
-  Decription: ToDo, connect to libaray of civSO descriptions
+  Decription: The Boslics are a trading race, and have been known to deal in arms
+    and other contraband.
   IntelPoints: 0

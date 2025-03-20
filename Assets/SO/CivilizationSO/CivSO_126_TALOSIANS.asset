@@ -29,5 +29,7 @@ MonoBehaviour:
   CivTechLevel: 100
   Playable: 0
   HasWarp: 0
-  Decription: ToDo, connect to libaray of civSO descriptions
+  Decription: The remnants of the Talosian civilization lack industry, government,
+    even sophisticated technology - but they retain their knowledge, and they have
+    highly advanced mental abilities.
   IntelPoints: 0

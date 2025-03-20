@@ -29,5 +29,6 @@ MonoBehaviour:
   CivTechLevel: 100
   Playable: 0
   HasWarp: 1
-  Decription: ToDo, connect to libaray of civSO descriptions
+  Decription: The Tamarians appear to have ideals similar to our own. If we can overcome
+    the language barrier, we will both profit from this contact.
   IntelPoints: 0

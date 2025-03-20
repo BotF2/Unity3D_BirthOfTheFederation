@@ -29,5 +29,6 @@ MonoBehaviour:
   CivTechLevel: 100
   Playable: 0
   HasWarp: 1
-  Decription: ToDo, connect to libaray of civSO descriptions
+  Decription: The Xyrillians have a rare and unusual physiology. But more importantly,
+    they share many of our ideas. They would be useful allies.
   IntelPoints: 0

@@ -29,5 +29,8 @@ MonoBehaviour:
   CivTechLevel: 100
   Playable: 0
   HasWarp: 1
-  Decription: ToDo, connect to libaray of civSO descriptions
+  Decription: The Maquis are a 24th-century paramilitary organization, a group of
+    freedom fighters and former Federation colonists, who fought against the Cardassian
+    occupation of their homes in the Demilitarized Zone after their colonies were
+    ceded to the Cardassian Union.
   IntelPoints: 0

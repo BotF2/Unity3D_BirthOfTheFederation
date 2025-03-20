@@ -29,5 +29,7 @@ MonoBehaviour:
   CivTechLevel: 100
   Playable: 0
   HasWarp: 1
-  Decription: ToDo, connect to libaray of civSO descriptions
+  Decription: The Pakled are a shining example of what happens when a race is prematurely
+    brought into the warp age. However, their skill at obtaining technology is to
+    be admired.
   IntelPoints: 0

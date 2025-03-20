@@ -29,5 +29,6 @@ MonoBehaviour:
   CivTechLevel: 100
   Playable: 0
   HasWarp: 0
-  Decription: ToDo, connect to libaray of civSO descriptions
+  Decription: The Excalbians are a rare example of silicon-based life. It would be
+    a worthy study alone just to understand how they function.
   IntelPoints: 0

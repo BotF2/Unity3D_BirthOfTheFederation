@@ -29,5 +29,7 @@ MonoBehaviour:
   CivTechLevel: 100
   Playable: 0
   HasWarp: 1
-  Decription: ToDo, connect to libaray of civSO descriptions
+  Decription: The Nezu system contains a hazardous number of asteroids and meteors,
+    which have long afflicted the Nezu people. They have however endured the affliction,
+    and risen to become a trade race of some influence.
   IntelPoints: 0

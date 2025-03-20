@@ -29,5 +29,7 @@ MonoBehaviour:
   CivTechLevel: 100
   Playable: 0
   HasWarp: 1
-  Decription: ToDo, connect to libaray of civSO descriptions
+  Decription: The T-Rogorans are a volatile and extremely violent people. It may
+    be impossible to appease them or negotiate with them diplomatically. It is not
+    a language they understand.
   IntelPoints: 0

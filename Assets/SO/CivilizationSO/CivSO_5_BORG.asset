@@ -29,5 +29,17 @@ MonoBehaviour:
   CivTechLevel: 100
   Playable: 1
   HasWarp: 1
-  Decription: ToDo, connect to libaray of civSO descriptions
+  Decription: 'We are the Borg. You will be assimilated. The Borg are/were a pseudo-species
+    of cybernetic beings, or cyborgs, from the Delta Quadrant. No single individual
+    truly existed within the Borg Collective (with the sole exception of the Borg
+    Queen), as all Borg were linked into a hive mind. Their ultimate goal was the
+    attainment of ''perfection'' through the forcible assimilation of diverse sentient
+    species, technologies, and knowledge. In addition to this stronghold in the Delta
+    Quadrant, the Borg also dispatched vessels throughout the galaxy via transwarp
+    conduits. When the Borg encounters other species and new technologies, they will
+    assimilate both the crew and the ship as well, adding their distinctiveness to
+    their own. Individual drones have demonstrated puzzlement at other species''
+    unwillingness to be assimilated, the drones believing in the superiority of their
+    way of life. In fact the Borg are twice as powerful as any other empire, since
+    their cubes are gigantic and almost unbeatable, so: RESISTANCE IS FUTILE!'
   IntelPoints: 0

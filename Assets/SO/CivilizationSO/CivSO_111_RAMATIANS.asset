@@ -29,5 +29,7 @@ MonoBehaviour:
   CivTechLevel: 100
   Playable: 0
   HasWarp: 0
-  Decription: ToDo, connect to libaray of civSO descriptions
+  Decription: The Ramatians have developed a complex form of communication due to
+    their hearing disability. It has provided them with a unique perspective into
+    the psyche.
   IntelPoints: 0

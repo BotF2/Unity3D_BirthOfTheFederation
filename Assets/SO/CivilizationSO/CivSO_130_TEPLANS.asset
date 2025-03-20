@@ -29,5 +29,7 @@ MonoBehaviour:
   CivTechLevel: 100
   Playable: 0
   HasWarp: 1
-  Decription: ToDo, connect to libaray of civSO descriptions
+  Decription: The Teplans have long suffered from the deadly Blight, a plague unleashed
+    by a powerful neighboring empire for defying them. Now their civilization is
+    broken, and dying.
   IntelPoints: 0

@@ -29,5 +29,6 @@ MonoBehaviour:
   CivTechLevel: 100
   Playable: 0
   HasWarp: 1
-  Decription: ToDo, connect to libaray of civSO descriptions
+  Decription: The Lissepians are a race of interstellar merchants, but they are neither
+    scrupulous, nor very particular with whom they treat with.
   IntelPoints: 0

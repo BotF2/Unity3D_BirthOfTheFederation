@@ -29,5 +29,8 @@ MonoBehaviour:
   CivTechLevel: 100
   Playable: 0
   HasWarp: 1
-  Decription: ToDo, connect to libaray of civSO descriptions
+  Decription: The Vidiians are an advanced race, but they are in decline as their
+    attention is now focused purely on finding a cure for a devastating disease that
+    is sweeping through their civilization. Millions will die if a cure cannot be
+    found.
   IntelPoints: 0

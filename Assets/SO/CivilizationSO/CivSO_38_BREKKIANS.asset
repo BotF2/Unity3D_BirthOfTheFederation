@@ -29,5 +29,7 @@ MonoBehaviour:
   CivTechLevel: 100
   Playable: 0
   HasWarp: 1
-  Decription: ToDo, connect to libaray of civSO descriptions
+  Decription: The Brekkians are not a very developed race. Their economy relies on
+    supplying the powerful narcotic Felicium to other civilizations, capitalizing
+    on their dependency on the drug to perpetuate the profitable business.
   IntelPoints: 0

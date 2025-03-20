@@ -29,5 +29,11 @@ MonoBehaviour:
   CivTechLevel: 100
   Playable: 0
   HasWarp: 1
-  Decription: ToDo, connect to libaray of civSO descriptions
+  Decription: The Ferengi are a race of hucksters, living for material wealth and
+    possessions, and the constant desire to acquire more by any means necessary.
+    Their traders can be found across most of the known galaxy, and their trading
+    fleet is an unparalleled economic force. But the Ferengi cannot be trusted, and
+    it will be difficult to maintain political links without a financial incentive
+    to keep their interest. The potential boon to our economy that Ferengi membership
+    would bring cannot be overstated, however.
   IntelPoints: 0

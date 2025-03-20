@@ -29,5 +29,8 @@ MonoBehaviour:
   CivTechLevel: 100
   Playable: 0
   HasWarp: 1
-  Decription: ToDo, connect to libaray of civSO descriptions
+  Decription: The Ornarans have the unique ability to create a significant electrical
+    discharge from their hands. This is produced at great strain to the Ornaran but
+    can incapacitate the unwary. The Ornarans have been known to use this ability
+    to commandeer ships and supplies to feed their collapsing economy.
   IntelPoints: 0

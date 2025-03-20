@@ -29,5 +29,8 @@ MonoBehaviour:
   CivTechLevel: 100
   Playable: 0
   HasWarp: 0
-  Decription: ToDo, connect to libaray of civSO descriptions
+  Decription: The Ventaxians are a moderately advanced race on the verge of warp
+    capability. But much of their culture lies still in their dark heritage of fear
+    and superstition. A great deal of social change would be needed before they could
+    safely enter the galactic community.
   IntelPoints: 0

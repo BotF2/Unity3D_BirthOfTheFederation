@@ -29,5 +29,6 @@ MonoBehaviour:
   CivTechLevel: 100
   Playable: 0
   HasWarp: 1
-  Decription: ToDo, connect to libaray of civSO descriptions
+  Decription: The Tellarites are a race of accomplished and highly skilled engineers.
+    Their industrial skills would be a most welcome addition to our empire.
   IntelPoints: 0

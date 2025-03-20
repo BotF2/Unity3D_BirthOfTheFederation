@@ -32,7 +32,7 @@ public class GalaxyCameraDragMoveZoom : MonoBehaviour //, IPointerClickHandler
     {
         DoZoom();
         KeyboardInputs();
-        if (!Input.GetKey(KeyCode.Space) && Application.isPlayer)
+        if (!Input.GetKey(KeyCode.Space)) // && Application.isPlayer)
             DrageCameraWithLeftMouse();
         RotateCamerWithRightMouse();
         CameraMoveLimits();

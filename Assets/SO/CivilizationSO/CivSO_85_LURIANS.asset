@@ -29,5 +29,7 @@ MonoBehaviour:
   CivTechLevel: 100
   Playable: 0
   HasWarp: 1
-  Decription: ToDo, connect to libaray of civSO descriptions
+  Decription: The Lurians are merchants in their most prolific capacity, but negotiations
+    may be lengthy, for they are not skilled diplomats, and they are slow to enter
+    into open discourse with newly contacted races.
   IntelPoints: 0

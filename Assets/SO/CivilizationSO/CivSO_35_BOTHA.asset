@@ -29,5 +29,7 @@ MonoBehaviour:
   CivTechLevel: 100
   Playable: 0
   HasWarp: 1
-  Decription: ToDo, connect to libaray of civSO descriptions
+  Decription: The Botha are an elusive race that are not to be entirely trusted.
+    But if they were on our side, their skill for intelligence gathering would be
+    an asset.
   IntelPoints: 0

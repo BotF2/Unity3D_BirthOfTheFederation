@@ -29,5 +29,7 @@ MonoBehaviour:
   CivTechLevel: 100
   Playable: 0
   HasWarp: 1
-  Decription: ToDo, connect to libaray of civSO descriptions
+  Decription: The Gorn will be meticulous in any border agreements we make with them.
+    But perhaps they should not be provoked; the Gorn lay claim to a large area of
+    space and trade relations with the species would be particularly lucrative.
   IntelPoints: 0

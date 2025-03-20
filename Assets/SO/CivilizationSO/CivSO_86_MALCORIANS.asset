@@ -29,5 +29,7 @@ MonoBehaviour:
   CivTechLevel: 100
   Playable: 0
   HasWarp: 1
-  Decription: ToDo, connect to libaray of civSO descriptions
+  Decription: Malcorian society suffers from xenophobic tendencies, and has entered
+    the warp age before it could fully comprehend the existence of aliens. We will
+    have to be careful when contacting them.
   IntelPoints: 0

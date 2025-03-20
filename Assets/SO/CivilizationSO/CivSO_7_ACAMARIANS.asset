@@ -29,5 +29,6 @@ MonoBehaviour:
   CivTechLevel: 100
   Playable: 0
   HasWarp: 1
-  Decription: ToDo, connect to libaray of civSO descriptions
+  Decription: The Acamarians wish to preserve their social structure. Will we take
+    steps to ensure that they can?
   IntelPoints: 0

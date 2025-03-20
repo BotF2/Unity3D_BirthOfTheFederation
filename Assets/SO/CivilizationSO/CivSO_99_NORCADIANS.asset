@@ -29,5 +29,8 @@ MonoBehaviour:
   CivTechLevel: 100
   Playable: 0
   HasWarp: 1
-  Decription: ToDo, connect to libaray of civSO descriptions
+  Decription: The Norcadians are an advanced humanoid species from Norcadia Prime
+    in the Delta Quadrant, known for creating and popularizing the violent martial
+    arts sport of tsunkatse. The Norcadians are native to Norcadia Prime, a planet
+    located in the Delta Quadrant.
   IntelPoints: 0

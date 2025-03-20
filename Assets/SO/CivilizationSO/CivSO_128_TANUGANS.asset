@@ -29,5 +29,7 @@ MonoBehaviour:
   CivTechLevel: 100
   Playable: 0
   HasWarp: 1
-  Decription: ToDo, connect to libaray of civSO descriptions
+  Decription: The Tanugans have for long suffered from an energy crisis, which they
+    labor continually to resolve. If we assisted them, they might be willing to share
+    their research.
   IntelPoints: 0

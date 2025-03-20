@@ -29,5 +29,7 @@ MonoBehaviour:
   CivTechLevel: 100
   Playable: 0
   HasWarp: 1
-  Decription: ToDo, connect to libaray of civSO descriptions
+  Decription: The Vulcans have suppressed their emotions in favor of pure logic.
+    They are extremely reasonable and cordial in diplomatic relations, which bodes
+    well for their clarity of thought. They would be a great asset.
   IntelPoints: 0
