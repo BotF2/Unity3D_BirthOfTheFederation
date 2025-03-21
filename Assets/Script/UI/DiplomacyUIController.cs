@@ -1,4 +1,6 @@
 using Assets.Core;
+using NUnit.Framework;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -48,6 +50,7 @@ public class DiplomacyUIController : MonoBehaviour
     private GameObject[] UI_PanelGOs;
     [SerializeField]
     private Image[] TabButtonMasks;
+
 
     private void Awake()
     {
@@ -120,6 +123,7 @@ public class DiplomacyUIController : MonoBehaviour
     {
         SceneController.Instance.LoadCombatScene();
         MenuManager.Instance.CloseMenu(Menu.DiplomacyMenu);
+        //CombatManager.Instance.InstatniateCombat(controller.DiplomacyData.CivOne.CivData.FleetControllers, controller.DiplomacyData.CivTwo.CivData.FleetControllers);
     }
     public void SwitchToTab(int TabID)
     {
