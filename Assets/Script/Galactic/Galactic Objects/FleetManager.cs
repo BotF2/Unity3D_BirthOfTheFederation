@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using System.Linq;
 using UnityEngine.Rendering;
+using UnityEngine.UIElements;
 
 
 
@@ -39,6 +40,8 @@ namespace Assets.Core
         private List<int> destinationIntsInUse = new List<int>() { 0 };
         private Dictionary<CivEnum, List<int>> fleetNumsInUse  = new Dictionary<CivEnum, List<int>>();
         public List<FleetController> FleetConrollersInGame = new List<FleetController>();
+
+        private List<CivEnum> localPlayerCanSeeMyInsigniaList = new List<CivEnum>();
 
 
         private void Awake()
@@ -191,12 +194,13 @@ namespace Assets.Core
                         if (Renderers[i].name == "InsigniaSprite")
                         {
                             Renderers[i].sprite = fleetController.FleetData.Insignia;
-                            if (!GameController.Instance.AreWeLocalPlayer(fleetController.FleetData.CivEnum))
+                            if (!GameController.Instance.AreWeLocalPlayer(fleetController.FleetData.CivEnum) && !localPlayerCanSeeMyInsigniaList.Contains(fleetData.CivEnum))
                             {
                                 Renderers[i].gameObject.SetActive(false);
                             }
+                            else Renderers[i].gameObject.SetActive(true);
                         }
-                        if (Renderers[i].name == "InsigniaUnknown" && GameController.Instance.AreWeLocalPlayer(fleetController.FleetData.CivEnum))
+                        if (Renderers[i].name == "InsigniaUnknown" && (GameController.Instance.AreWeLocalPlayer(fleetController.FleetData.CivEnum) || localPlayerCanSeeMyInsigniaList.Contains(fleetData.CivEnum )))
                         {
                             Renderers[i].gameObject.SetActive(false);
                         }
@@ -225,7 +229,7 @@ namespace Assets.Core
                 foreach (var civCon in CivManager.Instance.CivControllersInGame)
                 {
                     if (civCon.CivData.CivEnum == fleetData.CivEnum)
-                        fleetData.OurCivController = civCon;
+                        fleetData.CivController = civCon;
                 }
                 List<FleetController> list = new List<FleetController>() { fleetController };
                 fleetController.FleetData.FleetGroupControllers = list;
@@ -246,6 +250,12 @@ namespace Assets.Core
         void AddFleetConrollerFromAllControllers(FleetController fleetController)
         {
             FleetControllerList.Add(fleetController);
+        }
+        public void FleetToFleetManagement(EncounterController encounterController)
+        {
+            List<ShipController> shipListA = encounterController.EncounterData.FleetControllerCivOne.FleetData.GetShipList();
+            List<ShipController> shipListB = encounterController.EncounterData.FleetContollerCivTwo.FleetData.GetShipList();
+            // destroy encoutner on Resoltion.
         }
         public void GetFleetGroupInSystemForShipTransfer(StarSysController starSysCon)
         {
@@ -345,6 +355,40 @@ namespace Assets.Core
         {
             fleetNumsInUse[civEnum].Remove(fleetInt);
         }
-
+        public void ExposeAllFleetInsigniaSprites(CivEnum civEnum)
+        {
+            localPlayerCanSeeMyInsigniaList.Add(civEnum);
+            foreach (var fleetController in FleetControllerList)
+            {
+                if (fleetController.FleetData.CivEnum == civEnum)
+                {
+                    Transform[] transforms = fleetController.gameObject.GetComponentsInChildren<Transform>();
+                    foreach (Transform t in transforms)
+                    {
+                        if (t.name == "InsigniaHolder")
+                        {
+                            t.GetChild(0).gameObject.SetActive(true);// activate the child of holder so the sprite renderer can be found
+                            break;
+                        }
+                    }
+                    var Renderers = fleetController.gameObject.GetComponentsInChildren<SpriteRenderer>();
+                    for (int i = 0; i < Renderers.Length; i++)
+                    {
+                        if (Renderers[i] != null)
+                        {
+                            if (Renderers[i].name == "InsigniaSprite")
+                            {
+                                Renderers[i].gameObject.SetActive(true);
+                                var fog = fleetController.gameObject.GetComponent<csFogVisibilityAgent>();
+                                if (fog != null)
+                                    fog.spriteRenderers.Add(Renderers[i]);
+                            }
+                            else if (Renderers[i].name == "InsigniaUnknown")
+                                Renderers[i].gameObject.SetActive(false);
+                        }
+                    }
+                }
+            }
+        }
     }
 }

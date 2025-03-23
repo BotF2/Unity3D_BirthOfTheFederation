@@ -2,6 +2,7 @@ using Assets.Core;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.UIElements.UxmlAttributeDescription;
 
 
 public enum DiplomacyStatusEnum // between two civs held in the DiplomacyData
@@ -52,8 +53,7 @@ public enum GreedyEnum
 public class DiplomacyManager : MonoBehaviour
 {
     public static DiplomacyManager Instance;
-    public List<DiplomacyController> ManagersDiplomacyControllerList;
-    public GameObject diplomacyPrefab;
+    public List<DiplomacyController> DiplomacyControllerList = new List<DiplomacyController>();
     public GameObject diplomacyUIGO;
 
 
@@ -70,58 +70,57 @@ public class DiplomacyManager : MonoBehaviour
         }
 
     }
-    public DiplomacyController InstantiateDiplomacyController(CivController civPartyOne, CivController civPartyTwo) //, GameObject hitGO)
+    public void FirstContactGetNewDiplomacyContoller(CivController civPartyOne, CivController civPartyTwo)
     {
-        // instantiation is frist contact
-        GameObject DiplomacyNewGameOb = (GameObject)Instantiate(diplomacyPrefab, new Vector3(0, 0, 0),
-                Quaternion.identity);
-        var diplomacyController = DiplomacyNewGameOb.GetComponent<DiplomacyController>();
-        diplomacyController.areWePlaceholder = false;
+        // is frist contact diplomacy
         DiplomacyData ourDiplomacyData = new DiplomacyData();
-        diplomacyController.DiplomacyData = ourDiplomacyData;
-        diplomacyController.DiplomacyData.CivOne = civPartyOne;
-        diplomacyController.DiplomacyData.CivTwo = civPartyTwo;
-        diplomacyController.DiplomacyData.IsFirstContact = true;
-        // ToDo: use traits to set diplomacy relation out of the gate and for AI actions
+        ourDiplomacyData = ourDiplomacyData;
+        ourDiplomacyData.CivOne = civPartyOne;
+        ourDiplomacyData.CivTwo = civPartyTwo;
+        ourDiplomacyData.IsFirstContact = true;
+        DiplomacyController diplomacyController = new DiplomacyController(ourDiplomacyData);
+        #region testing auto combat
         // For Testing..... 
-        if ((diplomacyController.DiplomacyData.CivOne.CivData.CivEnum == CivEnum.FED
-            && diplomacyController.DiplomacyData.CivTwo.CivData.CivEnum == CivEnum.VULCANS)
-            || (diplomacyController.DiplomacyData.CivOne.CivData.CivEnum == CivEnum.VULCANS
-            && diplomacyController.DiplomacyData.CivTwo.CivData.CivEnum == CivEnum.FED))
-        {
-            diplomacyController.DiplomacyData.DiplomacyEnumOfCivs = DiplomacyStatusEnum.War;
-            diplomacyController.DiplomacyData.DiplomacyPointsOfCivs = 0;
-        }
-        else
-        {
+        //if ((diplomacyController.DiplomacyData.CivOne.CivData.CivEnum == CivEnum.FED
+        //    && diplomacyController.DiplomacyData.CivTwo.CivData.CivEnum == CivEnum.VULCANS)
+        //    || (diplomacyController.DiplomacyData.CivOne.CivData.CivEnum == CivEnum.VULCANS
+        //    && diplomacyController.DiplomacyData.CivTwo.CivData.CivEnum == CivEnum.FED))
+        //{
+        //    diplomacyController.DiplomacyData.DiplomacyEnumOfCivs = DiplomacyStatusEnum.War;
+        //    diplomacyController.DiplomacyData.DiplomacyPointsOfCivs = 0;
+        //}
+        //else
+        //{
 
-            diplomacyController.DiplomacyData.DiplomacyEnumOfCivs = DiplomacyStatusEnum.Neutral;
-            diplomacyController.DiplomacyData.DiplomacyPointsOfCivs = 60; //60 = netural on a -20 to 120 scale
-        }
-        ManagersDiplomacyControllerList.Add(diplomacyController);
+        //    diplomacyController.DiplomacyData.DiplomacyEnumOfCivs = DiplomacyStatusEnum.Neutral;
+        //    diplomacyController.DiplomacyData.DiplomacyPointsOfCivs = 60; //60 = netural on a -20 to 120 scale
+        //}
+        #endregion
+        DiplomacyControllerList.Add(diplomacyController);
+        diplomacyController.FirstContact(civPartyOne, civPartyTwo);
         diplomacyController.DiplomacyData.DiplomacyEnumOfCivs = CalculateDiplomaticStatusOnFirstContact(diplomacyController);
         diplomacyController.DiplomacyData.DiplomacyPointsOfCivs = (int)diplomacyController.DiplomacyData.DiplomacyEnumOfCivs;
         if (GameController.Instance.AreWeLocalPlayer(civPartyOne.CivData.CivEnum) ||
             GameController.Instance.AreWeLocalPlayer(civPartyTwo.CivData.CivEnum))
             DiplomacyUIController.Instance.LoadDiplomacyUI(diplomacyController);
-        else DoDiplomacyForAI(civPartyOne, civPartyTwo); //, hitGO);
-        return diplomacyController;
-
+        // ToDo: do some AI for the non-player civs regarding the encounter with a played playable civ
+        else DoDiplomacyForAI(civPartyOne, civPartyTwo);
+       
     }
     private void DoDiplomacyForAI(CivController civOne, CivController civTwo) //, GameObject weHitGO)
     {
-        //Do some diplomacy without a UI by/for either civ
+        //Do Combat or so some other diplomacy without a UI by/for either civ
     }
     public bool FoundADiplomacyController(CivController civPartyOne, CivController civPartyTwo) //, GameObject hitGO)
     {
         bool found = false;
         //List<DiplomacyController> placeholderControllers = new List<DiplomacyController>();
-        for (int i = 0; i < ManagersDiplomacyControllerList.Count; i++)
+        for (int i = 0; i < DiplomacyControllerList.Count; i++)
         {
-            if (ManagersDiplomacyControllerList[i] != null && !ManagersDiplomacyControllerList[i].areWePlaceholder)
+            if (DiplomacyControllerList[i] != null) 
             {
-                if (ManagersDiplomacyControllerList[i].DiplomacyData.CivOne == civPartyOne && ManagersDiplomacyControllerList[i].DiplomacyData.CivTwo == civPartyTwo
-                    || ManagersDiplomacyControllerList[i].DiplomacyData.CivTwo == civPartyOne && ManagersDiplomacyControllerList[i].DiplomacyData.CivOne == civPartyTwo)
+                if (DiplomacyControllerList[i].DiplomacyData.CivOne == civPartyOne && DiplomacyControllerList[i].DiplomacyData.CivTwo == civPartyTwo
+                    || DiplomacyControllerList[i].DiplomacyData.CivTwo == civPartyOne && DiplomacyControllerList[i].DiplomacyData.CivOne == civPartyTwo)
                 {
                     found = true;
                     break;
@@ -134,12 +133,12 @@ public class DiplomacyManager : MonoBehaviour
     public DiplomacyController GetDiplomacyController(CivController civPartyOne, CivController civPartyTwo)
     {
         DiplomacyController diplomacyController = null;
-        for (int i = 0; i < ManagersDiplomacyControllerList.Count; i++)
+        for (int i = 0; i < DiplomacyControllerList.Count; i++)
         {
-            if (ManagersDiplomacyControllerList[i] != null && ((ManagersDiplomacyControllerList[i].DiplomacyData.CivOne == civPartyOne && ManagersDiplomacyControllerList[i].DiplomacyData.CivTwo == civPartyTwo)
-                || (ManagersDiplomacyControllerList[i].DiplomacyData.CivOne == civPartyTwo && ManagersDiplomacyControllerList[i].DiplomacyData.CivTwo == civPartyOne)))
+            if (DiplomacyControllerList[i] != null && ((DiplomacyControllerList[i].DiplomacyData.CivOne == civPartyOne && DiplomacyControllerList[i].DiplomacyData.CivTwo == civPartyTwo)
+                || (DiplomacyControllerList[i].DiplomacyData.CivOne == civPartyTwo && DiplomacyControllerList[i].DiplomacyData.CivTwo == civPartyOne)))
             {
-                diplomacyController = ManagersDiplomacyControllerList[i];
+                diplomacyController = DiplomacyControllerList[i];
                 break;
             }
         }

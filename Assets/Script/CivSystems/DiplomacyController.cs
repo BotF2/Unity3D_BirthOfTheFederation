@@ -3,48 +3,48 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class DiplomacyController : MonoBehaviour
+public class DiplomacyController
 {
     private DiplomacyData diplomacyData; // holds civOne and two and diplomacy enum
     public DiplomacyData DiplomacyData { get { return diplomacyData; } set { diplomacyData = value; } }
-    public bool areWePlaceholder = false;
-    private List<string> diplomaticTransmissions;
-    private string declareWar = "The A civ declares war on the B.";
-    private string demandCreditsAvoidWar = "The A civ demand X something to avoid a state of war with the B.";
-    private string offerCreditsImproveRelations = "The A civ offers the B X something to improve relations by x# points.";
-    private string demandCredits = "The A demand X something from the B.";
-    private string requestCrditsImproveRelations = "The A request X something from the B to improve relations by x# points.";
+ 
+    private static string declareWar = "The A civ declares war on the B.";
+    private static string requestSomething = "The A request X something from the B to improve relations by x# points.";
+    private static string demandSomething = "The A civ demand X to avoid a degraded state of relations with the B Civ.";
+    private static string offerSomething = "The A civ offers the B X to improve relations.";
+    private static string demandStopInterferance = "The A civ demand X that B civ stop doing interferance.";
 
+    private List<string> diplomaticTransmissions = new List<string> { declareWar, requestSomething, demandSomething, offerSomething, demandStopInterferance};
+    public List<string> DiplomaticTransmissions { get { return diplomaticTransmissions; } set { diplomaticTransmissions = value; } }
 
-    private void Start()
+    public DiplomacyController(DiplomacyData diplomacyData)
     {
-        //GalaxyEventCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>() as Camera;
-        //DiplomacyUICanvas.worldCamera = GalaxyEventCamera;
-        diplomaticTransmissions = new List<string>() {
-            declareWar,demandCreditsAvoidWar,offerCreditsImproveRelations,demandCredits, requestCrditsImproveRelations};
+        DiplomacyData = diplomacyData;
     }
 
-    public void FirstContact(CivController civPartyOne, CivController civPartyTwo, GameObject hitGO)
+    public void FirstContact(CivController civPartyOne, CivController civPartyTwo)
     {
         TimeManager.Instance.PauseTime();
         civPartyOne.CivData.AddToCivControllersWeKnow(civPartyTwo);
         civPartyTwo.CivData.AddToCivControllersWeKnow(civPartyOne);
         this.DiplomacyData.DiplomacyEnumOfCivs = DiplomacyStatusEnum.Neutral;
         this.DiplomacyData.DiplomacyPointsOfCivs = (int)DiplomacyStatusEnum.Neutral;
-        if (GameController.Instance.AreWeLocalPlayer(civPartyOne.CivData.CivEnum)) // temp to fed
-        {
-            if (hitGO.GetComponent<FleetController>() != null)
-                civPartyTwo.ResetSprites(hitGO);
-            if (hitGO.GetComponent<StarSysController>() != null)
-                civPartyTwo.ResetNames(hitGO);
-        }
-        else if (GameController.Instance.AreWeLocalPlayer(civPartyTwo.CivData.CivEnum))
-        {
-            if (hitGO.GetComponent<FleetController>() != null)
-                civPartyOne.ResetSprites(hitGO);
-            if (hitGO.GetComponent<StarSysController>() != null)
-                civPartyOne.ResetNames(hitGO);
-        }
+        //if (GameController.Instance.AreWeLocalPlayer(civPartyOne.CivData.CivEnum)) // temp to fed
+        //{
+        //    if (hitGO.GetComponent<FleetController>() != null)
+        //        civPartyTwo.ResetFleetSprites(hitGO);
+        //        civPartyTwo.ResetName(hitGO);
+        //    if (hitGO.GetComponent<StarSysController>() != null)
+        //        civPartyTwo.ResetSysNames(hitGO);
+        //        civPartyTwo.ResetSprite(hitGO);
+        //}
+        //else if (GameController.Instance.AreWeLocalPlayer(civPartyTwo.CivData.CivEnum))
+        //{
+        //    if (hitGO.GetComponent<FleetController>() != null)
+        //        civPartyOne.ResetFleetSprites(hitGO);
+        //    if (hitGO.GetComponent<StarSysController>() != null)
+        //        civPartyOne.ResetSprite(hitGO);
+        //}
         //FirstContactUIController.current.FirstContactUIToggle.SetActive(true);
     }
     public void NextDiplomaticContact(DiplomacyController controller)

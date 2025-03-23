@@ -38,7 +38,7 @@ namespace FischlWorks_FogWar
         [Range(0, 2)]
         private int additionalRadius = 0;
 
-        private List<SpriteRenderer> spriteRenderers = null;
+        public List<SpriteRenderer> spriteRenderers = null;
         private List<LineRenderer> lineRenderers = null;
         //** not using MeshRenderer in Galaxy map currently
         //private List<MeshRenderer> meshRenderers = null; 

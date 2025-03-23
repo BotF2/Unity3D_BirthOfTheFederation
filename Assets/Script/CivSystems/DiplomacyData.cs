@@ -1,4 +1,6 @@
 using Assets.Core;
+using NUnit.Framework;
+using System.Collections.Generic;
 
 public class DiplomacyData
 {
@@ -8,4 +10,5 @@ public class DiplomacyData
     public DiplomacyStatusEnum DiplomacyEnumOfCivs = DiplomacyStatusEnum.Neutral; // friendly, allied, at war
     public int DiplomacyPointsOfCivs = 60; // neutral
     public bool IsFirstContact = true;
+
 }

@@ -28,64 +28,7 @@ namespace Assets.Core
             TimeManager.Instance.OnStardateSpecialEvent = DoStardateEvent;
             diplomacyManager = DiplomacyManager.Instance;
         }
-        //public void UpdateCredits()
-        //{
-        //    CivData.Credits += 50;
-        //}
-        //public void Diplomacy(CivController civPartyOne, CivController civPartyTwo, GameObject hitGO)
-        //{
-        //    if (!civPartyOne.CivData.CivControllersWeKnow.Contains(civPartyTwo))
-        //    {
-        //        FirstContact(civPartyOne, civPartyTwo, hitGO);
-        //    }
-        //}
-        //private void FirstContact(CivController civPartyOne, CivController civPartyTwo, GameObject hitGO)
-        //{
-        //    civPartyOne.CivData.AddToCivControllersWeKnow(civPartyTwo);
-        //    civPartyTwo.CivData.AddToCivControllersWeKnow(civPartyOne);
-        //    ResetSprites(civPartyTwo, hitGO);
-        //    ResetNames(civPartyTwo, hitGO);
-        //    // ToDo: Update the system name and/or the fleet name/insignia;
 
-        //}
-        public void ResetSprites(GameObject hitGO)
-        {
-            var gOs = hitGO.GetComponentsInChildren<RectTransform>(true);//??
-            foreach (var gO in gOs)
-            {
-                gO.gameObject.SetActive(true);
-            }
-            var Renderers = hitGO.GetComponentsInChildren<SpriteRenderer>();
-            foreach (var oneRenderer in Renderers)
-            {
-                if (oneRenderer != null)
-                {
-                    if (oneRenderer.name == "InsigniaUnknown")
-                        oneRenderer.gameObject.SetActive(false);
-                    else if (oneRenderer.name == "OwnerInsignia")
-                        oneRenderer.gameObject.SetActive(true);
-                    //if (oneRenderer.name == "StarSprite")
-                    //    oneRenderer.sprite = hitGO.GetComponent<StarSysController>().StarSysData.StarSprit;
-                }
-            }
-        }
-        public void ResetNames(GameObject hitGO)
-        {
-            TextMeshProUGUI[] TheText = hitGO.GetComponentsInChildren<TextMeshProUGUI>();
-            foreach (var OneTMPtest in TheText)
-            {
-                OneTMPtest.enabled = true;
-                if (OneTMPtest != null && OneTMPtest.name == "SysName (TMP)")
-                {
-                    if (!GameController.Instance.AreWeLocalPlayer(hitGO.GetComponent<StarSysController>().StarSysData.CurrentOwner)) // **** LocalPlayerCivEnum by NetCode check)
-
-                        OneTMPtest.text = hitGO.GetComponent<StarSysController>().StarSysData.SysName;
-                }
-                else if (OneTMPtest != null && OneTMPtest.name == "SysDescription (TMP)")
-                    OneTMPtest.text = hitGO.GetComponent<StarSysController>().StarSysData.Description;
-
-            }
-        }
         public void DoStardateEvent(TrekStardateEventSO specialEvent)
         {
             if (specialEvent != null)

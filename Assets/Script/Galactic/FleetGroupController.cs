@@ -140,7 +140,7 @@ public class FleetGroupController : MonoBehaviour
     }
     public void OnFleetEncounteredFleet(FleetController fleetController)
     {
-        //CivManager.current.Diplomacy(this.fleetData.OurCivController, fleetController.fleetData.OurCivController);
+        //CivManager.current.Diplomacy(this.fleetData.CivController, fleetController.fleetData.CivController);
         //// is it our fleet or not? Diplomacy or manage fleets or keep going?
         //if (fleetController.gameObject == this.FleetData.Destination)
         //{
@@ -160,7 +160,7 @@ public class FleetGroupController : MonoBehaviour
     {
         //????StarSysManager.current.
         //FleetManager.current.GetFleetGroupInSystemForShipTransfer(StarSysController);
-        //CivManager.current.Diplomacy(this.fleetData.OurCivController, StarSysController.StarSysData.CurrentCivController);
+        //CivManager.current.Diplomacy(this.fleetData.CivController, StarSysController.StarSysData.CurrentCivController);
         //// is it our fleet or not? Diplomacy or manage fleets or keep going?
         //if (StarSysController.gameObject == this.FleetData.Destination)
         //{

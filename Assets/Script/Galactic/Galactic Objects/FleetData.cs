@@ -9,7 +9,7 @@ public class FleetData
 {
     public int CivIndex;
     public Sprite Insignia;
-    public CivController OurCivController;
+    public CivController CivController;
     public CivEnum CivEnum;
     public Vector3 Position;
     public List<ShipController> ShipsList;
@@ -37,7 +37,7 @@ public class FleetData
                 from x in CivManager.Instance.CivControllersInGame
                 where (x.CivData.CivInt == (int)CivEnum)
                 select x;
-        OurCivController = ourCivManagers.ToList().FirstOrDefault();
+        CivController = ourCivManagers.ToList().FirstOrDefault();
     }
     public FleetData(string name)
     {
@@ -71,6 +71,7 @@ public class FleetData
     {
         return description;
     }
+    public string GetFleetName() { return this.Name; }
 }
 
 
