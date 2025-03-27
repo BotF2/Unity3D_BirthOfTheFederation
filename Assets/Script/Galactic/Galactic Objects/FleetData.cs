@@ -22,7 +22,7 @@ public class FleetData
     public string Name;
     private string description;
     public int FleetInt;
-    //public float yAboveGalaxyImage; // used in FleetManager
+    public List<int> EncounterIDs;
     public FleetData(FleetSO fleetSO)
     {
         Insignia = fleetSO.Insignia;

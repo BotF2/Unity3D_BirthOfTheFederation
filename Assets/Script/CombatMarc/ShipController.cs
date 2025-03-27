@@ -37,11 +37,12 @@ public class ShipController : MonoBehaviour
     }
     void OnTriggerEnter(Collider collider)
     {
+        // this if for CombatScene, not galaxy map 
         ShipController shipController = collider.gameObject.GetComponent<ShipController>();
         if (shipController != null) // it is a shipController 
         {
             OnShipEncounteredShip(shipController);
-            Debug.Log("fleet Controller collided with " + shipController.gameObject.name);
+            Debug.Log("Controller collided with " + shipController.gameObject.name);
         }
         //OtherController otherController = collider.gameObject.GetComponent<OtherController>();
         //if (otherSysController != null)

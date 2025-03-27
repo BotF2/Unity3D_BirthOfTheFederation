@@ -70,6 +70,13 @@ public class DiplomacyManager : MonoBehaviour
         }
 
     }
+    public void Combat(FleetController fleetConA, FleetController fleetConB)
+    {
+        SceneController.Instance.LoadCombatScene();
+        MenuManager.Instance.CloseMenu(Menu.DiplomacyMenu);
+        ShipManager.Instance.ShipsFromFleetsForCombat(); //shipType, fleetGOinSys, this);
+        //CombatManager.Instance.InstatniateCombat(controller.DiplomacyData.CivOne.CivData.FleetControllers, controller.DiplomacyData.CivTwo.CivData.FleetControllers);
+    }
     public void FirstContactGetNewDiplomacyContoller(CivController civPartyOne, CivController civPartyTwo)
     {
         // is frist contact diplomacy

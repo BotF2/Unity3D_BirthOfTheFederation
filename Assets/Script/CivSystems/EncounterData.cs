@@ -8,6 +8,7 @@ public class EncounterData
     public FleetController FleetControllerCivOne;
     public FleetController FleetContollerCivTwo;
     public StarSysController StarSysController;
+    //public int EncoutnerID;
     public EncounterType EncounterType;
     public bool isCompleted = false;
 }

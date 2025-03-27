@@ -6,6 +6,7 @@ using Assets.Core;
 
 public enum EncounterType
 {
+    FirstContact,
     Diplomacy,
     Combat,  
     FleetManagement,
@@ -19,7 +20,7 @@ public enum EncounterType
 public class EncounterManager : MonoBehaviour
 {
     public List<EncounterController> EncounterControllers = new List<EncounterController>(); // EncounterController is not MonoBehavior
-
+    //public int EncounterID;
     public static EncounterManager Instance { get; private set; }
     private void Awake()
     {
@@ -32,30 +33,69 @@ public class EncounterManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
+        //EncounterID = -9999;
     }
-    public EncounterController FirstContactFleetOnFleet(FleetController fleetA, FleetController fleetB)
+    public EncounterController FirstContactFleetOnFleetNewEncounter(FleetController fleetA, FleetController fleetB)
     {
-        // is frist contact ********TODO: use encounters to update diplomacy relations!
+        // is frist contact ********TODO: if not first then use encounters to update diplomacy relations!
         EncounterData encounterData = new EncounterData();
         encounterData.FleetControllerCivOne = fleetA;
         encounterData.FleetContollerCivTwo = fleetB;
+        encounterData.EncounterType = EncounterType.FirstContact;
+        //encounterData.EncoutnerID = GetNewEncounterID();
         EncounterController encounterController = new EncounterController(encounterData);
         EncounterControllers.Add(encounterController);
         encounterController.EncounterData.isCompleted = false;
         return encounterController;
     }
-    public EncounterController FirstContactFleetOnStarSys(FleetController fleetCon, StarSysController starSysCon)
+    public EncounterController FirstContactFleetOnStarSysNewEncounnter(FleetController fleetCon, StarSysController starSysCon)
     {
         // instantiation is frist contact
         EncounterData encounterData = new EncounterData();
         encounterData.FleetControllerCivOne = fleetCon;
         encounterData.StarSysController = starSysCon;
+        encounterData.EncounterType = EncounterType.FirstContact;
+        //encounterData.EncoutnerID = GetNewEncounterID();
         EncounterController encounterController = new EncounterController(encounterData);
+        EncounterControllers.Add(encounterController);
         encounterController.EncounterData.FleetControllerCivOne = fleetCon;
         encounterController.EncounterData.StarSysController = starSysCon;
         return encounterController; 
 
     }
+    public EncounterController FleetManagementNewEncounter(FleetController fleetA, FleetController fleetB)
+    {
+        // is frist contact ********TODO: if not first then use encounters to update diplomacy relations!
+        EncounterData encounterData = new EncounterData();
+        encounterData.FleetControllerCivOne = fleetA;
+        encounterData.FleetContollerCivTwo = fleetB;
+        encounterData.EncounterType = EncounterType.FleetManagement;
+        //encounterData.EncoutnerID = GetNewEncounterID();
+        EncounterController encounterController = new EncounterController(encounterData);
+        EncounterControllers.Add(encounterController);
+        encounterController.EncounterData.isCompleted = false;
+        return encounterController;
+    }
+    public EncounterController FeetsNotSameCivNewEncounter(FleetController fleetA, FleetController fleetB)
+    {
+        // is frist contact ********TODO: if not first then use encounters to update diplomacy relations!
+        EncounterData encounterData = new EncounterData();
+        encounterData.FleetControllerCivOne = fleetA;
+        encounterData.FleetContollerCivTwo = fleetB;
+        encounterData.EncounterType = EncounterType.Diplomacy;
+        //encounterData.EncoutnerID = GetNewEncounterID();
+        EncounterController encounterController = new EncounterController(encounterData);
+        EncounterControllers.Add(encounterController);
+        encounterController.EncounterData.isCompleted = false;
+        return encounterController;
+    }
+    //private int GetNewEncounterID()
+    //{
+    //    EncounterID++;
+    //    if (EncounterID >= 9999)
+    //        EncounterID = -9999;
+    //    return EncounterID;
+    //}
     public void ResolveEncounterType(EncounterType encounter)
     {
         EncounterType encounterType = EncounterType.Diplomacy;
@@ -78,37 +118,5 @@ public class EncounterManager : MonoBehaviour
             default:
                 break;
         }
-    }
-    public bool FoundEncoutnerController(CivController civPartyOne, CivController civPartyTwo) //, GameObject hitGO)
-    {
-        bool found = false;
-        for (int i = 0; i < EncounterControllers.Count; i++)
-        {
-            if (EncounterControllers[i] != null)
-            {
-                if (EncounterControllers[i].EncounterData.CivOne == civPartyOne && EncounterControllers[i].EncounterData.CivTwo == civPartyTwo
-                    || EncounterControllers[i].EncounterData.CivTwo == civPartyOne && EncounterControllers[i].EncounterData.CivOne == civPartyTwo)
-                {
-                    found = true;
-                    break;
-                }
-            }
-        }
-
-        return found;
-    }
-    public EncounterController GetEncounterController(CivController civPartyOne, CivController civPartyTwo)
-    {
-         EncounterController encounterController= null;
-        for (int i = 0; i < EncounterControllers.Count; i++)
-        {
-            if (EncounterControllers[i] != null && ((EncounterControllers[i].EncounterData.CivOne == civPartyOne && EncounterControllers[i].EncounterData.CivTwo == civPartyTwo)
-                || (EncounterControllers[i].EncounterData.CivOne == civPartyTwo && EncounterControllers[i].EncounterData.CivTwo == civPartyOne)))
-            {
-                encounterController = EncounterControllers[i];
-                break;
-            }
-        }
-        return encounterController;
     }
 }

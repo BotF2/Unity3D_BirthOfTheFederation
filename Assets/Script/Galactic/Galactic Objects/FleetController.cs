@@ -194,53 +194,60 @@ namespace Assets.Core
 
         void OnTriggerEnter(Collider collider) // Not using OnCollisionEnter....
         {
-            EncounterController encounterController;
-            FleetController hitFleetController = collider.gameObject.GetComponent<FleetController>();// the collider is on the hit gameObject this fleet hit
-            if (hitFleetController != null) // it is a FleetController and not a StarSystem or other with collider                                                                                                                                                    leetController
+            // check ID for the OnTriggerEnter so only one side of the colliding objects reports the collision
+            if (gameObject.GetInstanceID() < collider.gameObject.GetInstanceID())
             {
-                if (this.FleetData.Destination == hitFleetController.gameObject)
-                {
-                    FleetUIController.Instance.ClickCancelDestinationButton();
-                    FleetUIController.Instance.CloseUnLoadFleetUI();
-                    OnArrivedAtDestination();//? should we do other stuff here for FleetController at destination?
-                }
-                if (!EncounterManager.Instance.FoundEncoutnerController(hitFleetController.FleetData.CivController, this.FleetData.CivController))
-                { 
-                    encounterController = EncounterManager.Instance.FirstContactFleetOnFleet(this, hitFleetController);
-                    EncounterUnknownFleetGetNameAndSprite(collider.gameObject);
-                }
-            else encounterController = EncounterManager.Instance.GetEncounterController(hitFleetController.FleetData.CivController, this.FleetData.CivController);
 
-                if (hitFleetController.FleetData.CivEnum == this.FleetData.CivEnum)
+                EncounterController encounterController;
+                FleetController hitFleetController = collider.gameObject.GetComponent<FleetController>();// the collider is on the hit gameObject this fleet hit
+                if (hitFleetController != null) // it is a FleetController and not a StarSystem or other with collider                                                                                                                                                    leetController
                 {
-                    encounterController.EncounterData.EncounterType = EncounterType.FleetManagement;
-                    // Fleet management will be handeld by FleetManger FleetControllers and not by the enounter controller at this time.
-                    FleetManager.Instance.FleetToFleetManagement(encounterController); // encoutner has fleet controllers for ships // ToDo: build out this method with a UI to move ships from fleet to fleet;
-                }
-                else
-                {
-                    encounterController.EncounterData.EncounterType = EncounterType.Diplomacy;
-                    if (!DiplomacyManager.Instance.FoundADiplomacyController(this.FleetData.CivController, hitFleetController.FleetData.CivController))
-                        DiplomacyManager.Instance.FirstContactGetNewDiplomacyContoller(this.FleetData.CivController, hitFleetController.FleetData.CivController);
-                    else // Not First Contact
+                    if (this.FleetData.Destination == hitFleetController.gameObject)
                     {
-                        var diplomacyController = DiplomacyManager.Instance.GetDiplomacyController(this.FleetData.CivController, hitFleetController.FleetData.CivController);
-                        diplomacyController.DiplomacyData.IsFirstContact = false;
-                        //diplomacyController.DoDiplomacy();
+                        FleetUIController.Instance.ClickCancelDestinationButton();
+                        FleetUIController.Instance.CloseUnLoadFleetUI();
+                        OnArrivedAtDestination();//? should we do other stuff here for FleetController at destination?
+                    }
+                    if (!DiplomacyManager.Instance.FoundADiplomacyController(hitFleetController.FleetData.CivController, this.FleetData.CivController))
+                    {
+                        encounterController = EncounterManager.Instance.FirstContactFleetOnFleetNewEncounter(this, hitFleetController);
+                        EncounterUnknownFleetGetNameAndSprite(collider.gameObject); // setactive ships sprite and name
+                    }
+                    // if the encoutner is indeed reported by only one side of the collision,
+                    // then no need for finding a saved encoutner
+
+                    else if (hitFleetController.FleetData.CivEnum == this.FleetData.CivEnum)
+                    {
+                        encounterController = EncounterManager.Instance.FleetManagementNewEncounter(this, hitFleetController);
+                        //encounterController.EncounterData.EncounterType = EncounterType.FleetManagement;
+                        // Fleet management will be handeld by FleetManger FleetControllers and not by the enounter controller at this time.
+                        FleetManager.Instance.FleetToFleetManagement(encounterController); // encoutner has fleet controllers for ships // ToDo: build out this method with a UI to move ships from fleet to fleet;
+                    }
+                    else
+                    {
+                        encounterController = EncounterManager.Instance.FeetsNotSameCivNewEncounter(this, hitFleetController);
+                        if (!DiplomacyManager.Instance.FoundADiplomacyController(this.FleetData.CivController, hitFleetController.FleetData.CivController))
+                            DiplomacyManager.Instance.FirstContactGetNewDiplomacyContoller(this.FleetData.CivController, hitFleetController.FleetData.CivController);
+                        else // Not First Contact
+                        {
+                            var diplomacyController = DiplomacyManager.Instance.GetDiplomacyController(this.FleetData.CivController, hitFleetController.FleetData.CivController);
+                            diplomacyController.DiplomacyData.IsFirstContact = false;
+                            //diplomacyController.DoDiplomacy();
+                        }
                     }
                 }
-            }   
-            StarSysController hitStarSysController = collider.gameObject.GetComponent<StarSysController>();
-            if (hitStarSysController != null)
-            {
-                OnFleetEncounteredStarSys(collider.gameObject); // hitStarSysController and its GO
+                StarSysController hitStarSysController = collider.gameObject.GetComponent<StarSysController>();
+                if (hitStarSysController != null)
+                {
+                    OnFleetEncounteredStarSys(collider.gameObject); // hitStarSysController and its GO
+                }
+                PlayerDefinedTargetController playerTargetController = collider.gameObject.GetComponent<PlayerDefinedTargetController>();
+                if (playerTargetController != null)
+                {
+                    OnFleetEncounteredPlayerDefinedTarget(playerTargetController);
+                }
             }
-            PlayerDefinedTargetController playerTargetController = collider.gameObject.GetComponent<PlayerDefinedTargetController>();
-            if (playerTargetController != null)
-            {
-                OnFleetEncounteredPlayerDefinedTarget(playerTargetController);
-            }
-        }  
+        }
             /// I am thinking that checking the hitGO for reaching the Destination is redundant. If all controllers are checking both of
             /// the controllers for the two in a hit are checked above so do not check again.
         

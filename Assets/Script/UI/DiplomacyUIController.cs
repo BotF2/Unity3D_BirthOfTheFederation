@@ -3,6 +3,7 @@ using NUnit.Framework;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 
 
@@ -70,7 +71,6 @@ public class DiplomacyUIController : MonoBehaviour
         DiplomacyUIToggle.SetActive(false);
         galaxyEventCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>() as Camera;
         parentCanvas.worldCamera = galaxyEventCamera;
-
     }
 
     public void LoadDiplomacyUI(DiplomacyController ourDiplomacyController)
@@ -121,9 +121,7 @@ public class DiplomacyUIController : MonoBehaviour
     }
     public void CombatScene()
     {
-        SceneController.Instance.LoadCombatScene();
-        MenuManager.Instance.CloseMenu(Menu.DiplomacyMenu);
-        //CombatManager.Instance.InstatniateCombat(controller.DiplomacyData.CivOne.CivData.FleetControllers, controller.DiplomacyData.CivTwo.CivData.FleetControllers);
+        //DiplomacyManager.Instance.Combat();
     }
     public void SwitchToTab(int TabID)
     {
