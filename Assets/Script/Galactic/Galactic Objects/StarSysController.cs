@@ -133,7 +133,7 @@ namespace Assets.Core
                 if (shipBuildingItem != lastShipBuildingItem)
                 {
                     var shipBuildableItem = shipBuildingItem.gameObject.GetComponentInChildren<ShipBuildableItem>();
-                    ShipTimeToBuild = ShipManager.Instance.GetShipBuildDuration(shipBuildableItem.ShipType, this.StarSysData.CurrentCivController.CivData.TechLevel, this.StarSysData.CurrentOwner);
+                    ShipTimeToBuild = ShipManager.Instance.GetShipBuildDuration(shipBuildableItem.ShipType, this.StarSysData.CurrentCivController.CivData.TechLevel, this.StarSysData.CurrentOwnerCivEnum);
                     lastShipBuildingItem = shipBuildingItem;
                     shipStartTimer = true;
                 }
@@ -144,7 +144,7 @@ namespace Assets.Core
         private void Update()
         {
             // Did anything change in the build queue?
-            if (GameController.Instance.AreWeLocalPlayer(this.StarSysData.CurrentOwner))
+            if (GameController.Instance.AreWeLocalPlayer(this.StarSysData.CurrentOwnerCivEnum))
             {
                 if (buildListGridLayoutGroup != null)
                 {
@@ -217,7 +217,7 @@ namespace Assets.Core
                     switch (sysBuildQueueList[0].gameObject.GetComponentInChildren<FactoryBuildableItem>().FacilityType)
                     {
                         case StarSysFacilities.PowerPlanet:
-                            this.StarSysData.PowerPlants.Add(StarSysManager.Instance.AddSystemFacilities(1, StarSysManager.Instance.PowerPlantPrefab, (int)this.StarSysData.CurrentOwner, this.StarSysData, 0)[0]);
+                            this.StarSysData.PowerPlants.Add(StarSysManager.Instance.AddSystemFacilities(1, StarSysManager.Instance.PowerPlantPrefab, (int)this.StarSysData.CurrentOwnerCivEnum, this.StarSysData, 0)[0]);
                             if (starSysListUIGameObject != null)
                             {
                                 TextMeshProUGUI[] theTextItems = starSysListUIGameObject.GetComponentsInChildren<TextMeshProUGUI>();
@@ -237,23 +237,23 @@ namespace Assets.Core
                             break;
 
                         case StarSysFacilities.Factory:
-                            var factory = (StarSysManager.Instance.AddSystemFacilities(1, StarSysManager.Instance.FactoryPrefab, (int)this.StarSysData.CurrentOwner, this.StarSysData, 0)[0]);
+                            var factory = (StarSysManager.Instance.AddSystemFacilities(1, StarSysManager.Instance.FactoryPrefab, (int)this.StarSysData.CurrentOwnerCivEnum, this.StarSysData, 0)[0]);
                             AddSysFacility(factory, "FactoryLoad", "NumFactoryRatio", StarSysFacilities.Factory);
                             break;
                         case StarSysFacilities.Shipyard:
-                            var shipyard = StarSysManager.Instance.AddSystemFacilities(1, StarSysManager.Instance.ShipyardPrefab, (int)this.StarSysData.CurrentOwner, this.StarSysData, 0)[0];
+                            var shipyard = StarSysManager.Instance.AddSystemFacilities(1, StarSysManager.Instance.ShipyardPrefab, (int)this.StarSysData.CurrentOwnerCivEnum, this.StarSysData, 0)[0];
                             AddSysFacility(shipyard, "YardLoad", "NumYardsOnRatio", StarSysFacilities.Shipyard);
                             break;
                         case StarSysFacilities.ShieldGenerator:
-                            var shieldGenerator = StarSysManager.Instance.AddSystemFacilities(1, StarSysManager.Instance.ShieldGeneratorPrefab, (int)this.StarSysData.CurrentOwner, this.StarSysData, 0)[0];
+                            var shieldGenerator = StarSysManager.Instance.AddSystemFacilities(1, StarSysManager.Instance.ShieldGeneratorPrefab, (int)this.StarSysData.CurrentOwnerCivEnum, this.StarSysData, 0)[0];
                             AddSysFacility(shieldGenerator, "ShieldLoad", "NumShieldRatio", StarSysFacilities.ShieldGenerator);
                             break;
                         case StarSysFacilities.OrbitalBattery:
-                            var orbitalBatterie = StarSysManager.Instance.AddSystemFacilities(1, StarSysManager.Instance.OrbitalBatteryPrefab, (int)this.StarSysData.CurrentOwner, this.StarSysData, 0)[0];
+                            var orbitalBatterie = StarSysManager.Instance.AddSystemFacilities(1, StarSysManager.Instance.OrbitalBatteryPrefab, (int)this.StarSysData.CurrentOwnerCivEnum, this.StarSysData, 0)[0];
                             AddSysFacility(orbitalBatterie, "OBLoad", "NumOBRatio", StarSysFacilities.OrbitalBattery);
                             break;
                         case StarSysFacilities.ResearchCenter:
-                            var researchCenter = StarSysManager.Instance.AddSystemFacilities(1, StarSysManager.Instance.ResearchCenterPrefab, (int)this.StarSysData.CurrentOwner, this.StarSysData, 0)[0];
+                            var researchCenter = StarSysManager.Instance.AddSystemFacilities(1, StarSysManager.Instance.ResearchCenterPrefab, (int)this.StarSysData.CurrentOwnerCivEnum, this.StarSysData, 0)[0];
                             AddSysFacility(researchCenter, "ResearchLoad", "NumResearchRatio", StarSysFacilities.ResearchCenter);
 
                             break;
@@ -458,17 +458,17 @@ namespace Assets.Core
             return timeDuration;
             //ToD use tech level to set features of system production, defence....
         }
-        public void DoHabitalbeSystemUI(FleetController discoveringFleetCon)
+        public void DoHabitalbeSystemUI(CivController discoveringCiv)
         {
-            if (discoveringFleetCon != null)
+            if (discoveringCiv != null)
             {
-                HabitableSysUIController.Instance.LoadHabitableSysUI(this, discoveringFleetCon);
+                HabitableSysUIController.Instance.LoadHabitableSysUI(this, discoveringCiv);
             } 
         }
 
         public void UpdateOwner(CivEnum newOwner) // system captured or colonized
         {
-            starSysData.CurrentOwner = newOwner;
+            starSysData.CurrentOwnerCivEnum = newOwner;
         }
         private void OnMouseDown()
         {
@@ -478,7 +478,7 @@ namespace Assets.Core
             {
                 GameObject hitObject = hit.collider.gameObject;
                 // what a Star System Controller does with a hit
-                if (hitObject.tag != "GalaxyImage" && GameController.Instance.AreWeLocalPlayer(this.StarSysData.CurrentOwner)) // this 'StarSystem' is a local player galaxy object hit
+                if (hitObject.tag != "GalaxyImage" && GameController.Instance.AreWeLocalPlayer(this.StarSysData.CurrentOwnerCivEnum)) // this 'StarSystem' is a local player galaxy object hit
                 {
                     if (FleetUIController.Instance.MouseClickSetsDestination == false) // not while our FleetUIController was looking for a destination
                     {

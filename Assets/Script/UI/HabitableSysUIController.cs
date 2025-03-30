@@ -15,10 +15,6 @@ public class HabitableSysUIController: MonoBehaviour
     public GameObject HabitableSysUIToggle;
     [SerializeField]
     private TMP_Text sysCurrentOwnerNameTMP;
-    [SerializeField]
-    private CivEnum visitingFleetCivEnum;
-    [SerializeField]
-    private CivData visitingCivData;
 
     private void Awake()
     {
@@ -39,11 +35,11 @@ public class HabitableSysUIController: MonoBehaviour
         galaxyEventCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>() as Camera;
         parentCanvas.worldCamera = galaxyEventCamera;
     }
-    public void LoadHabitableSysUI(StarSysController starSysController, FleetController discoveringFleetController)
+    public void LoadHabitableSysUI(StarSysController starSysController, CivController discoveringFleetCivController)
     {
         int firstUninhabited = (int)CivEnum.ZZUNINHABITED1;
         this.starSysController = starSysController;
-        if ((int)this.starSysController.StarSysData.CurrentOwner >= firstUninhabited) // not already been clamed
+        if ((int)this.starSysController.StarSysData.CurrentOwnerCivEnum >= firstUninhabited) // not already been clamed
         {
             TimeManager.Instance.PauseTime(); // ToDo: put a pause indicator on screen
                                               //ToDo: manage open UIs so we keep a UI with interaction pending when a fleet reaches a new target and player need more than one UI still open
@@ -54,8 +50,9 @@ public class HabitableSysUIController: MonoBehaviour
             ////FleetSelectionUI.current.UnLoadShipManagerUI();
             //FirstContactUIController.Instance.CloseUnLoadDiplomacyUI();
             //HabitableSysUIToggle.SetActive(true);
-            visitingFleetCivEnum = discoveringFleetController.FleetData.CivEnum;
+           // visitingFleetCivEnum = discoveringFleetCivController.CivData.CivEnum;
             Destroy(aNull);
+            ClamSystem(discoveringFleetCivController, starSysController);
         }
     }
     public void CloseUnLoadHabitableSysUI()
@@ -64,12 +61,12 @@ public class HabitableSysUIController: MonoBehaviour
         HabitableSysUIToggle.SetActive(false);
         TimeManager.Instance.ResumeTime();
     }
-    private void ClamSystem()
+    private void ClamSystem(CivController civCon, StarSysController sysCon)
     {
-        starSysController.StarSysData.CurrentOwner = visitingFleetCivEnum;
-        visitingCivData = CivManager.Instance.GetCivDataByCivEnum(visitingFleetCivEnum);
-        visitingCivData.StarSysOwned.Add(starSysController);
-        sysCurrentOwnerNameTMP.text = visitingCivData.CivShortName;
-        starSysController.StarSysData.CurrentCivController = visitingCivData.CivControllersWeKnow[0];       
+        sysCon.StarSysData.CurrentOwnerCivEnum = civCon.CivData.CivEnum;
+  
+        civCon.CivData.StarSysOwned.Add(starSysController);
+        sysCurrentOwnerNameTMP.text = civCon.CivData.CivShortName;
+        starSysController.StarSysData.CurrentCivController = civCon;
     }
 }

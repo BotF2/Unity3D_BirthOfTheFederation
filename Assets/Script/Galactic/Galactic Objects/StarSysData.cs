@@ -15,8 +15,8 @@ public class StarSysData
     public GameObject SysGameObject;
     private string sysName;
     public string SysName { get { return sysName; } }
-    private CivEnum firstOwner;
-    public CivEnum CurrentOwner;
+    private CivEnum firstOwnerCivEnum;
+    public CivEnum CurrentOwnerCivEnum;
     public CivController CurrentCivController;
     public GalaxyObjectType SystemType;
     //public StartingTechLevel is a civ level value, not a system data value.
@@ -62,7 +62,7 @@ public class StarSysData
         starSysInt = starSysSO.StarSysInt;
         position = new Vector3(starSysSO.Position.x, starSysSO.Position.y, starSysSO.Position.z);
         sysName = starSysSO.SysName;
-        firstOwner = starSysSO.FirstOwner;
+        firstOwnerCivEnum = starSysSO.FirstOwner;
     }
     public StarSysData(string v)
     {
@@ -78,5 +78,5 @@ public class StarSysData
         return this.position;
     }
     public string GetSysName() { return this.sysName; }
-    public CivEnum GetFirstOwner() { return this.firstOwner; }
+    public CivEnum GetFirstOwner() { return this.firstOwnerCivEnum; }
 }

@@ -47,7 +47,9 @@ public class ToolTipController : MonoBehaviour, IPointerEnterHandler, IPointerEx
             ///***** ToDo maybe - also see civs we know?
             else
             {
-                foreach (CivController civCon in localPlayerCivCon.CivData.CivControllersWeKnow)
+                var starSysCon = eventData.selectedObject.GetComponent<StarSysController>();
+                //foreach (CivController civCon in localPlayerCivCon.CivData.CivControllersWeKnow)
+                if (starSysCon != null && DiplomacyManager.Instance.FoundADiplomacyController(localPlayerCivCon, starSysCon.StarSysData.CurrentCivController))
                 {
                     HoverManager.Instance.ShowTip(TextComponent.text);
                 }

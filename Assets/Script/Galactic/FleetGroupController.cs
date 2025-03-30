@@ -240,15 +240,15 @@ public class FleetGroupController : MonoBehaviour
     //    FleetData.CurrentWarpFactor += delta;
     //    FleetData.CurrentWarpFactor += delta;
     //}
-    //public void AddFleetController(FleetController ourUIFleetController) // do we need this?
+    //public void AddFleetController(FleetController FleetController) // do we need this?
     //{
-    //    if (!FleetManager.current.FleetControllerList.Contains(ourUIFleetController))
-    //        FleetManager.current.FleetControllerList.Add(ourUIFleetController);
+    //    if (!FleetManager.current.FleetControllerList.Contains(FleetController))
+    //        FleetManager.current.FleetControllerList.Add(FleetController);
     //}
-    //public void RemoveFleetController(FleetController ourUIFleetController)
+    //public void RemoveFleetController(FleetController FleetController)
     //{
-    //    if (FleetManager.current.FleetControllerList.Contains(ourUIFleetController))
-    //        FleetManager.current.FleetControllerList.Remove(ourUIFleetController);
+    //    if (FleetManager.current.FleetControllerList.Contains(FleetController))
+    //        FleetManager.current.FleetControllerList.Remove(FleetController);
     //}
 }
 

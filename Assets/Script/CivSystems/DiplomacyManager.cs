@@ -2,8 +2,6 @@ using Assets.Core;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.UIElements.UxmlAttributeDescription;
-
 
 public enum DiplomacyStatusEnum // between two civs held in the DiplomacyData
 {
@@ -15,6 +13,16 @@ public enum DiplomacyStatusEnum // between two civs held in the DiplomacyData
     Friendly = 80,
     Allied = 100,
     Membership = 120
+}
+public enum DiplomaticEventEnum // Diplomacy AI uses to move relations                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+{
+    DeclareWar,
+    Sabatoge,
+    Disinformation,
+    GatherIntel,
+    OfferTrade,
+    ShareTech,
+    GiveAid
 }
 public enum WarLikeEnum // held by the civ
 {
@@ -70,18 +78,26 @@ public class DiplomacyManager : MonoBehaviour
         }
 
     }
-    public void Combat(FleetController fleetConA, FleetController fleetConB)
+    public void SpaceCombatScene(FleetController fleetConA, FleetController fleetConB, StarSysController aNull)
     {
         SceneController.Instance.LoadCombatScene();
         MenuManager.Instance.CloseMenu(Menu.DiplomacyMenu);
         ShipManager.Instance.ShipsFromFleetsForCombat(); //shipType, fleetGOinSys, this);
         //CombatManager.Instance.InstatniateCombat(controller.DiplomacyData.CivOne.CivData.FleetControllers, controller.DiplomacyData.CivTwo.CivData.FleetControllers);
     }
-    public void FirstContactGetNewDiplomacyContoller(CivController civPartyOne, CivController civPartyTwo)
+    public void SpaceCombatScene(FleetController fleetConA, FleetController fleetConB)
+    {
+        SceneController.Instance.LoadCombatScene();
+        MenuManager.Instance.CloseMenu(Menu.DiplomacyMenu);
+        ShipManager.Instance.ShipsFromFleetsForCombat(); //shipType, fleetGOinSys, this);
+        //CombatManager.Instance.InstatniateCombat(controller.DiplomacyData.CivOne.CivData.FleetControllers, controller.DiplomacyData.CivTwo.CivData.FleetControllers);
+    }
+    public void FirstContactGetNewDiplomacyContoller(EncounterController encounterController)
     {
         // is frist contact diplomacy
+        var civPartyOne = encounterController.EncounterData.CivOne;
+        var civPartyTwo = encounterController.EncounterData.CivTwo;
         DiplomacyData ourDiplomacyData = new DiplomacyData();
-        ourDiplomacyData = ourDiplomacyData;
         ourDiplomacyData.CivOne = civPartyOne;
         ourDiplomacyData.CivTwo = civPartyTwo;
         ourDiplomacyData.IsFirstContact = true;
@@ -109,14 +125,18 @@ public class DiplomacyManager : MonoBehaviour
         diplomacyController.DiplomacyData.DiplomacyPointsOfCivs = (int)diplomacyController.DiplomacyData.DiplomacyEnumOfCivs;
         if (GameController.Instance.AreWeLocalPlayer(civPartyOne.CivData.CivEnum) ||
             GameController.Instance.AreWeLocalPlayer(civPartyTwo.CivData.CivEnum))
+        {
             DiplomacyUIController.Instance.LoadDiplomacyUI(diplomacyController);
+        }
+        else DoDiplomacyForAI(encounterController);
+  
         // ToDo: do some AI for the non-player civs regarding the encounter with a played playable civ
-        else DoDiplomacyForAI(civPartyOne, civPartyTwo);
+        
        
     }
-    private void DoDiplomacyForAI(CivController civOne, CivController civTwo) //, GameObject weHitGO)
+    private void DoDiplomacyForAI(EncounterController encounterController) //, GameObject weHitGO)
     {
-        //Do Combat or so some other diplomacy without a UI by/for either civ
+        //Do SpaceCombatScene or so some other diplomacy without a UI by/for either civ
     }
     public bool FoundADiplomacyController(CivController civPartyOne, CivController civPartyTwo) //, GameObject hitGO)
     {

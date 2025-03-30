@@ -11,7 +11,7 @@ public class ShipController : MonoBehaviour
     private void Start()
     {
         //rb = GetComponent<Rigidbody>();
-        //combatEventCamera = GameObject.FindGameObjectWithTag("Combat Camera").GetComponent<Camera>();
+        //combatEventCamera = GameObject.FindGameObjectWithTag("SpaceCombatScene Camera").GetComponent<Camera>();
         //var CanvasGO = GameObject.Find("CombatShipUI");
         //CombatUICanvas = CanvasGO.GetComponent<canvas>();
         //CombatUICanvas.worldCamera = combatEventCamera;
@@ -37,7 +37,7 @@ public class ShipController : MonoBehaviour
     }
     void OnTriggerEnter(Collider collider)
     {
-        // this if for CombatScene, not galaxy map 
+        // this if for SpaceCombatScene, not galaxy map 
         ShipController shipController = collider.gameObject.GetComponent<ShipController>();
         if (shipController != null) // it is a shipController 
         {

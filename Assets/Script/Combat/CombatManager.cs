@@ -6,7 +6,7 @@ public class CombatManager : MonoBehaviour
 {
     public static CombatManager Instance;
     public static Dictionary<string, int[]> ShipDataDictionary = new Dictionary<string, int[]>();
-    public static string[] FriendNameArray; // For current Combat ****
+    public static string[] FriendNameArray; // For current SpaceCombatScene ****
     public static string[] EnemyNameArray;
 
     public int friends;

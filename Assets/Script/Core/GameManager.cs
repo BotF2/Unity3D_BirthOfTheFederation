@@ -390,7 +390,7 @@ namespace Assets.Core
         //public GameObject Enemy_Y1_Z1;
         //public GameObject Enemy_Y1_Z2;
 
-        //public GameObject[] animationEmpties = new GameObject[12]; // Populated in Unity Hierarchy under Combat for animation empty objexts
+        //public GameObject[] animationEmpties = new GameObject[12]; // Populated in Unity Hierarchy under SpaceCombatScene for animation empty objexts
         // { FriendScout_Y0_Z0, 
         //    FriendDestroyer_Y0_Z1, FriendCapitalShip_Y0_Z2, FriendColony_Y1_Z0, Friend_Y1_Z1, Friend_Y1_Z2, 
         //    EnemyScout_Y0_Z0, EnemyDestroyer_Y0_Z1, EnemyCapital_Y0_Z2, EnemyColony_Y1_Z0, Enemy_Y1_Z1, Enemy_Y1_Z2 };
@@ -398,7 +398,7 @@ namespace Assets.Core
         #endregion
 
         //public static List<string> StartGameObjectNames = new List<string>();
-        //public  string[] FriendNameArray; // For old Combat ****
+        //public  string[] FriendNameArray; // For old SpaceCombatScene ****
         //public  string[] EnemyNameArray;
 
         //public int friends;

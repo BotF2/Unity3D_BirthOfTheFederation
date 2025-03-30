@@ -36,7 +36,7 @@ namespace Assets.Core
         //public CivData LocalPlayerCivEnum;// This will be set by NetCode checking if NetworkObject belongs to the local player by comparing the NetworkObject.OwnerClientId with NetworkManager.Singleton.LocalClientId. 
         public bool isSinglePlayer;
         public List<CivEnum> InGamePlayableCivs;
-        public CivController LocalPlayerCivContoller;
+        public CivController LocalPlayerCivContoller; // ToDo: set by NetCode checking if NetworkObject belongs to the local player by comparing the NetworkObject.OwnerClientId with NetworkManager.Singleton.LocalClientId.
 
         //public bool nowCivsCanJoinTheFederation = true; // for use with testing a muliple star system Federation
         private int HoldCivSize = 0;// used in testing of a multiStarSystem civilization/faction
@@ -224,8 +224,8 @@ namespace Assets.Core
             civController.CivData = civData;
             civController.CivShortName = civData.CivShortName;
             CivControllersInGame.Add(civController);
-            civController.CivData.CivControllersWeKnow = new List<CivController>() { civController };
-            civController.CivData.CivEnumsWeKnow = new List<CivEnum>() { civController.CivData.CivEnum };
+            //civController.CivData.CivControllersWeKnow = new List<CivController>() { civController };
+            //civController.CivData.CivEnumsWeKnow = new List<CivEnum>() { civController.CivData.CivEnum };
             civNewGameOb.transform.SetParent(civFolder.transform, true);
             civNewGameOb.name = civData.CivShortName.ToString();
 
@@ -290,7 +290,7 @@ namespace Assets.Core
         {
             for (int i = 0; i < CivControllersInGame.Count; i++)
             {
-                if (CivControllersInGame[i].CivData.CivEnum == controllers[0].StarSysData.CurrentOwner)
+                if (CivControllersInGame[i].CivData.CivEnum == controllers[0].StarSysData.CurrentOwnerCivEnum)
                 {
                     CivControllersInGame[i].CivData.StarSysOwned = controllers;
                     CivControllersInGame[i].CivData.CivHomeSystem = controllers[0].StarSysData.SysName;

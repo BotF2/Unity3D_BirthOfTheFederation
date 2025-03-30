@@ -23,7 +23,7 @@ public class SceneController : MonoBehaviour
     {
         previousSceneName = SceneManager.GetActiveScene().name; // Store
        // TimeManager.Instance.PauseTime(); does not work
-        SceneManager.LoadSceneAsync("CombatScene", LoadSceneMode.Additive);
+        SceneManager.LoadSceneAsync("SpaceCombatScene", LoadSceneMode.Additive);
         HideScene(previousSceneName);
     }
     private void HideScene(string sceneName)
@@ -50,7 +50,7 @@ public class SceneController : MonoBehaviour
     }
     public void LoadMainMenuScene()
     {
-        SceneManager.UnloadSceneAsync("CombatScene");
+        SceneManager.UnloadSceneAsync("SpaceCombatScene");
         MenuManager.Instance.CloseMenu(Menu.DiplomacyMenu);
 
         if (!string.IsNullOrEmpty(previousSceneName))

@@ -194,7 +194,7 @@ namespace Assets.Core
             {
                 StarSysSO starSysSO = GetStarSObyInt(civSOList[i].CivInt);
                 SysData = new StarSysData(starSysSO);
-                SysData.CurrentOwner = starSysSO.FirstOwner;
+                SysData.CurrentOwnerCivEnum = starSysSO.FirstOwner;
                 SysData.SystemType = starSysSO.StarType;
                 SysData.StarSprit = starSysSO.StarSprit;
                 SysData.Description = starSysSO.Description;
@@ -243,7 +243,7 @@ namespace Assets.Core
                     TheText[i].enabled = true;
                     if (TheText[i] != null && TheText[i].name == "SysName")
                     {
-                        if (!GameController.Instance.AreWeLocalPlayer(sysData.CurrentOwner)) // != CivManager.current.LocalPlayerCivEnum)
+                        if (!GameController.Instance.AreWeLocalPlayer(sysData.CurrentOwnerCivEnum)) // != CivManager.current.LocalPlayerCivEnum)
                         {
                             TheText[i].text = "UNKNOWN";
                         }
@@ -305,7 +305,7 @@ namespace Assets.Core
                 }
                 if (civSO.HasWarp)
                      FleetManager.Instance.BuildFirstFleets(starSysController, false); // fleet for first ships as game loads, not for ships instatiated by working shipyard in system
-                if (GameController.Instance.AreWeLocalPlayer(sysData.CurrentOwner)) 
+                if (GameController.Instance.AreWeLocalPlayer(sysData.CurrentOwnerCivEnum)) 
                 {
                     StarSysSO starSysSO = GetStarSObyInt(civSO.CivInt);
                     sysData.PowerPlants = AddSystemFacilities(starSysSO.PowerStations, PowerPlantPrefab, civSO.CivInt, sysData, 1);
@@ -791,13 +791,13 @@ namespace Assets.Core
             foreach (var sysCon in StarSysControllerList)
             {
                 if (sysCon.StarSysData.GetFirstOwner() == civCurrent)
-                    sysCon.StarSysData.CurrentOwner = civNew;
+                    sysCon.StarSysData.CurrentOwnerCivEnum = civNew;
             }
         }
 
         public void NewSystemListUI(StarSysController sysController)
         {
-            if (sysController.StarSysData.CurrentOwner == GameController.Instance.GameData.LocalPlayerCivEnum)
+            if (sysController.StarSysData.CurrentOwnerCivEnum == GameController.Instance.GameData.LocalPlayerCivEnum)
             {
                 currentActiveSysCon = sysController;
                 GameObject thisStarSysUIGameObject = (GameObject)Instantiate(sysUIPrefab, new Vector3(0, 0, 0),
@@ -1102,42 +1102,42 @@ namespace Assets.Core
                 case "PowerPlantData":
                     GameObject imageObPower = (GameObject)Instantiate(powerPlantInventorySlotPrefab, new Vector3(0, 0, 0),
                         Quaternion.identity);
-                    var powerPlantSO = GetPowrPlantSObyCivInt((int)sysCon.StarSysData.CurrentOwner);
+                    var powerPlantSO = GetPowrPlantSObyCivInt((int)sysCon.StarSysData.CurrentOwnerCivEnum);
                     imageObPower.GetComponentInChildren<Image>().sprite = powerPlantSO.PowerPlantSprite;
                     imageObPower.transform.SetParent(powerPlantInventorySlot.transform, false);
                     break;
                 case "FactoryData":
                     GameObject imageObFactory = (GameObject)Instantiate(factoryInventorySlotPrefab, new Vector3(0, 0, 0),
                         Quaternion.identity);
-                    var factorySO = GetFactorySObyCivInt((int)sysCon.StarSysData.CurrentOwner);
+                    var factorySO = GetFactorySObyCivInt((int)sysCon.StarSysData.CurrentOwnerCivEnum);
                     imageObFactory.GetComponentInChildren<Image>().sprite = factorySO.FactorySprite;
                     imageObFactory.transform.SetParent(factoryInventorySlot.transform, false);
                     break;
                 case "ShipyardData":
                     GameObject imageObShipyard = (GameObject)Instantiate(shipyardInventorySlotPrefab, new Vector3(0, 0, 0),
                         Quaternion.identity);
-                    var shipyardSO = GetShipyardSObyCivInt((int)sysCon.StarSysData.CurrentOwner);
+                    var shipyardSO = GetShipyardSObyCivInt((int)sysCon.StarSysData.CurrentOwnerCivEnum);
                     imageObShipyard.GetComponentInChildren<Image>().sprite = shipyardSO.ShipyardSprite;
                     imageObShipyard.transform.SetParent(shipyardInventorySlot.transform, false);
                     break;
                 case "ShieldGeneratorData":
                     GameObject imageObShield = (GameObject)Instantiate(shieldGenInventorySlotPrefab, new Vector3(0, 0, 0),
                         Quaternion.identity);
-                    var shieldSO = GetShieldGeneratorSObyCivInt((int)sysCon.StarSysData.CurrentOwner);
+                    var shieldSO = GetShieldGeneratorSObyCivInt((int)sysCon.StarSysData.CurrentOwnerCivEnum);
                     imageObShield.GetComponentInChildren<Image>().sprite = shieldSO.ShieldGeneratorSprite;
                     imageObShield.transform.SetParent(shieldGenInventorySlot.transform, false);
                     break;
                 case "OrbitalBatteryData":
                     GameObject imageObOB = (GameObject)Instantiate(orbitalBatteryInventorySlotPrefab, new Vector3(0, 0, 0),
                         Quaternion.identity);
-                    var orbitalSO = GetOrbitalBatterySObyCivInt((int)sysCon.StarSysData.CurrentOwner);
+                    var orbitalSO = GetOrbitalBatterySObyCivInt((int)sysCon.StarSysData.CurrentOwnerCivEnum);
                     imageObOB.GetComponentInChildren<Image>().sprite = orbitalSO.OrbitalBatterySprite;
                     imageObOB.transform.SetParent(orbitalBatteryInventorySlot.transform, false);
                     break;
                 case "ResearchCenterData":
                     GameObject imageObRC = (GameObject)Instantiate(researchCenterInventorySlotPrefab, new Vector3(0, 0, 0),
                         Quaternion.identity);
-                    var researchSO = GetResearchCenterSObyCivInt((int)sysCon.StarSysData.CurrentOwner);
+                    var researchSO = GetResearchCenterSObyCivInt((int)sysCon.StarSysData.CurrentOwnerCivEnum);
                     imageObRC.GetComponentInChildren<Image>().sprite = researchSO.ResearchCenterSprite;
                     imageObRC.transform.SetParent(researchCenterInventorySlot.transform, false);
                     break;

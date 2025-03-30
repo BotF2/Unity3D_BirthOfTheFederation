@@ -16,8 +16,11 @@ public class DiplomacyController
 
     private List<string> diplomaticTransmissions = new List<string> { declareWar, requestSomething, demandSomething, offerSomething, demandStopInterferance};
     public List<string> DiplomaticTransmissions { get { return diplomaticTransmissions; } set { diplomaticTransmissions = value; } }
-
-    public DiplomacyController(DiplomacyData diplomacyData)
+    public List<DiplomaticEventEnum> DiplomaticEvents = new List<DiplomaticEventEnum>
+    { DiplomaticEventEnum.DeclareWar, DiplomaticEventEnum.Sabatoge, DiplomaticEventEnum.Disinformation, DiplomaticEventEnum.GatherIntel,
+        DiplomaticEventEnum.OfferTrade, DiplomaticEventEnum.ShareTech, DiplomaticEventEnum.GiveAid};
+        
+public DiplomacyController(DiplomacyData diplomacyData)
     {
         DiplomacyData = diplomacyData;
     }
@@ -25,27 +28,9 @@ public class DiplomacyController
     public void FirstContact(CivController civPartyOne, CivController civPartyTwo)
     {
         TimeManager.Instance.PauseTime();
-        civPartyOne.CivData.AddToCivControllersWeKnow(civPartyTwo);
-        civPartyTwo.CivData.AddToCivControllersWeKnow(civPartyOne);
         this.DiplomacyData.DiplomacyEnumOfCivs = DiplomacyStatusEnum.Neutral;
         this.DiplomacyData.DiplomacyPointsOfCivs = (int)DiplomacyStatusEnum.Neutral;
-        //if (GameController.Instance.AreWeLocalPlayer(civPartyOne.CivData.CivEnum)) // temp to fed
-        //{
-        //    if (hitGO.GetComponent<FleetController>() != null)
-        //        civPartyTwo.ResetFleetSprites(hitGO);
-        //        civPartyTwo.ResetName(hitGO);
-        //    if (hitGO.GetComponent<StarSysController>() != null)
-        //        civPartyTwo.ResetSysNames(hitGO);
-        //        civPartyTwo.ResetSprite(hitGO);
-        //}
-        //else if (GameController.Instance.AreWeLocalPlayer(civPartyTwo.CivData.CivEnum))
-        //{
-        //    if (hitGO.GetComponent<FleetController>() != null)
-        //        civPartyOne.ResetFleetSprites(hitGO);
-        //    if (hitGO.GetComponent<StarSysController>() != null)
-        //        civPartyOne.ResetSprite(hitGO);
-        //}
-        //FirstContactUIController.current.FirstContactUIToggle.SetActive(true);
+
     }
     public void NextDiplomaticContact(DiplomacyController controller)
     {

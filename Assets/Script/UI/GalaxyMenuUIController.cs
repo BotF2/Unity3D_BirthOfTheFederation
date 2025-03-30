@@ -212,7 +212,7 @@ public class GalaxyMenuUIController : MonoBehaviour
         {
             foreach (var sysCon in StarSysManager.Instance.StarSysControllerList)
             {
-                if (sysCon.StarSysListUIGameObject != null && GameController.Instance.AreWeLocalPlayer(sysCon.StarSysData.CurrentOwner))
+                if (sysCon.StarSysListUIGameObject != null && GameController.Instance.AreWeLocalPlayer(sysCon.StarSysData.CurrentOwnerCivEnum))
                 {
                     SetupSystemUI(sysCon);
                     break;

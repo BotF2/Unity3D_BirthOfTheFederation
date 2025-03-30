@@ -32,7 +32,7 @@ public class SceneTransition : MonoBehaviour
     {
         Transition.SetTrigger("Start");
         yield return new WaitForSeconds(WaitForSeconds);
-        SceneManager.LoadScene("CombatScene");
+        SceneManager.LoadScene("SpaceCombatScene");
     }
     IEnumerable LoadSceneMainMenu()
 

@@ -81,7 +81,7 @@ namespace Assets.Core
             // system builds a ship and we need a fleet in the system
             GameObject fleetGO = new GameObject();
 
-            FleetSO fleetSO = GetFleetSObyInt((int)sysCon.StarSysData.CurrentOwner);
+            FleetSO fleetSO = GetFleetSObyInt((int)sysCon.StarSysData.CurrentOwnerCivEnum);
             FleetData fleetData = new FleetData(fleetSO);
             if (fleetSO != null)
             {
@@ -93,7 +93,7 @@ namespace Assets.Core
         public void BuildFirstFleets(StarSysController sysCon, bool inSystem)
         {
            // first path here is sent on loading the game for civs with warp, first fleets from Systems/Civs with warp
-            FleetSO fleetSO = GetFleetSObyInt((int)sysCon.StarSysData.CurrentOwner);
+            FleetSO fleetSO = GetFleetSObyInt((int)sysCon.StarSysData.CurrentOwnerCivEnum);
            //int xyzBump = 1;
            var position = sysCon.StarSysData.GetPosition();
 
@@ -133,7 +133,7 @@ namespace Assets.Core
     
             IEnumerable<StarSysController> ourCivSysCons =
                 from x in StarSysManager.Instance.StarSysControllerList
-                where (x.StarSysData.CurrentOwner == fleetData.CivEnum)
+                where (x.StarSysData.CurrentOwnerCivEnum == fleetData.CivEnum)
                 select x;
             var ourSysCons = ourCivSysCons.ToList();
             if (fleetData.CivEnum != CivEnum.ZZUNINHABITED1)
@@ -251,11 +251,20 @@ namespace Assets.Core
         {
             FleetControllerList.Add(fleetController);
         }
-        public void FleetToFleetManagement(EncounterController encounterController)
+        public void FleetToFleetManagement(FleetController fleetConA, FleetController fleetConB)
         {
-            List<ShipController> shipListA = encounterController.EncounterData.FleetControllerCivOne.FleetData.GetShipList();
-            List<ShipController> shipListB = encounterController.EncounterData.FleetContollerCivTwo.FleetData.GetShipList();
-            // destroy encoutner on Resoltion.
+            List<ShipController> shipListA = fleetConA.FleetData.GetShipList();
+            List<ShipController> shipListB = fleetConB.FleetData.GetShipList();
+            // we already know the civ of fleetConA == the civ of fleetConB
+            if (GameController.Instance.AreWeLocalPlayer(fleetConA.FleetData.CivEnum))
+            {
+                //call up UI for civ
+            }
+            else
+            {
+                //call up AI for civ fleet management
+            }
+
         }
         public void GetFleetGroupInSystemForShipTransfer(StarSysController starSysCon)
         {

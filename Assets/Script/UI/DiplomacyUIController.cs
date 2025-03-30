@@ -121,14 +121,10 @@ public class DiplomacyUIController : MonoBehaviour
     }
     public void CombatScene()
     {
-        //DiplomacyManager.Instance.Combat();
+       // DiplomacyManager.Instance.SpaceCombatScene();
     }
     public void SwitchToTab(int TabID)
     {
-        foreach (GameObject tabGO in UI_PanelGOs)
-        {
-            tabGO.SetActive(false);
-        }
         UI_PanelGOs[TabID].SetActive(true);
 
         foreach (Image image in TabButtonMasks)

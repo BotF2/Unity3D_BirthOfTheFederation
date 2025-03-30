@@ -107,7 +107,7 @@ public class ShipManager : MonoBehaviour
     public void ShipsFromFleetsForCombat() // GameObject fleetGOA, GameObject fleetGOB)
     {
 
-        //ShipSO ourShipSO = GetShipSO(shipType, sysCon.StarSysData.CurrentCivController.CivData.TechLevel, sysCon.StarSysData.CurrentOwner);
+        //ShipSO ourShipSO = GetShipSO(shipType, sysCon.StarSysData.CurrentCivController.CivData.TechLevel, sysCon.StarSysData.CurrentOwnerCivEnum);
         //List<ShipSO> shipSOAsList = new List<ShipSO> { ourShipSO };
         //var ourShipGOList = ShipGameObjectWithDataFromSO(shipSOAsList); // takes a list of ShipSO
         //for (int i = 0; i < ourShipGOList.Count; i++)
@@ -118,7 +118,7 @@ public class ShipManager : MonoBehaviour
     }
     public void BuildShipInOurFleet(ShipType shipType, GameObject fleetGO, StarSysController sysCon)
     {
-        ShipSO ourShipSO = GetShipSO(shipType, sysCon.StarSysData.CurrentCivController.CivData.TechLevel, sysCon.StarSysData.CurrentOwner);
+        ShipSO ourShipSO = GetShipSO(shipType, sysCon.StarSysData.CurrentCivController.CivData.TechLevel, sysCon.StarSysData.CurrentOwnerCivEnum);
         List<ShipSO> shipSOAsList = new List<ShipSO> { ourShipSO };
         var ourShipGOList = ShipGameObjectWithDataFromSO(shipSOAsList); // takes a list of ShipSO
         for (int i = 0; i < ourShipGOList.Count; i++)

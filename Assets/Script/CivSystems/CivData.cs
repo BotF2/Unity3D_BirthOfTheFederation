@@ -27,17 +27,17 @@ namespace Assets.Core
         public bool HasWarp;
         public string Decription = "We are the Borg";
         public List<StarSysController> StarSysOwned;
-        public List<CivController> CivControllersWeKnow;
-        public List<CivEnum> CivEnumsWeKnow;
+        //public List<CivController> CivControllersWeKnow;
+        //public List<CivEnum> CivEnumsWeKnow;
         //public float TaxRate; // universal or variable by civ/sys??
         //public float GrowthRate; // universal or variable by civ/sys??
         public float IntelPoints;
 
-        public void AddToCivControllersWeKnow(CivController civControllerWeFound)
-        {
-            CivControllersWeKnow.Add(civControllerWeFound);
-            CivEnumsWeKnow.Add(civControllerWeFound.CivData.CivEnum);
-        }
+        //public void AddToCivControllersWeKnow(CivController civControllerWeFound)
+        //{
+        //    CivControllersWeKnow.Add(civControllerWeFound);
+        //    CivEnumsWeKnow.Add(civControllerWeFound.CivData.CivEnum);
+        //}
     }
 }
 

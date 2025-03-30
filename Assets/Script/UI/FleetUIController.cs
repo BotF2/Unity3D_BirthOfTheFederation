@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class FleetUIController : MonoBehaviour
 {
     public static FleetUIController Instance;
-    public FleetController ourUIFleetController;
+    public FleetController FleetController;
     private Camera galaxyEventCamera;
     [SerializeField]
     private Canvas parentCanvas;
@@ -80,8 +80,8 @@ public class FleetUIController : MonoBehaviour
     {
         if (warpButtonPress)
         {
-            ourUIFleetController.FleetData.CurrentWarpFactor += warpChange;
-            warpSlider.value = ourUIFleetController.FleetData.CurrentWarpFactor / maxSliderValue;
+            FleetController.FleetData.CurrentWarpFactor += warpChange;
+            warpSlider.value = FleetController.FleetData.CurrentWarpFactor / maxSliderValue;
         }
     }
 
@@ -89,12 +89,12 @@ public class FleetUIController : MonoBehaviour
     {
         float localValue = value * maxSliderValue;
         warpSliderText.text = localValue.ToString("0.0");
-        if (ourUIFleetController != null)
-            ourUIFleetController.FleetData.CurrentWarpFactor = localValue;
+        if (FleetController != null)
+            FleetController.FleetData.CurrentWarpFactor = localValue;
     }
     public void ResetWarpSlider(float value)
     {
-        maxSliderValue = ourUIFleetController.FleetData.MaxWarpFactor;
+        maxSliderValue = FleetController.FleetData.MaxWarpFactor;
         warpSlider.value = value / maxSliderValue;
         warpSliderText.text = value.ToString("0.0");
     }
@@ -120,7 +120,7 @@ public class FleetUIController : MonoBehaviour
             MouseClickSetsDestination = true;
             MousePointerChanger.Instance.ChangeToGalaxyMapCursor();
             MousePointerChanger.Instance.HaveGalaxyMapCursor = true;
-            if (ourUIFleetController.FleetData.Destination != null)
+            if (FleetController.FleetData.Destination != null)
             {
                 cancelDestinationButtonGO.SetActive(true);
                 getDestinationButtonGO.SetActive(false);
@@ -138,10 +138,10 @@ public class FleetUIController : MonoBehaviour
         MouseClickSetsDestination = false;
         selectDestinationCursorButtonGO.SetActive(true);
         getDestinationButtonGO.SetActive(true);
-        if (ourUIFleetController.FleetData.Destination != null)
+        if (FleetController.FleetData.Destination != null)
         {
-            ourUIFleetController.FleetData.Destination = null;
-            ourUIFleetController.DestinationLine.gameObject.SetActive(false);
+            FleetController.FleetData.Destination = null;
+            FleetController.DestinationLine.gameObject.SetActive(false);
         }
         else
         {
@@ -153,7 +153,7 @@ public class FleetUIController : MonoBehaviour
     {
         //this.TurnOffCurrentMapDestination();
 
-        ourUIFleetController.FleetData.Destination = hitObject;
+        FleetController.FleetData.Destination = hitObject;
         CivEnum civ = CivEnum.ZZUNINHABITED53; // star civ as uninhabited
         bool weKnowThem = false;
         bool isFleet = aFleet;
@@ -162,13 +162,21 @@ public class FleetUIController : MonoBehaviour
         if (hitObject.GetComponent<StarSysController>() != null)
         {
             StarSysController starSysController = hitObject.GetComponent<StarSysController>();
-            civ = starSysController.StarSysData.CurrentOwner;
+            civ = starSysController.StarSysData.CurrentOwnerCivEnum;
             typeOfDestination = (int)starSysController.StarSysData.SystemType;
+            if (DiplomacyManager.Instance.FoundADiplomacyController(CivManager.Instance.LocalPlayerCivContoller, starSysController.StarSysData.CurrentCivController))
+            {
+                weKnowThem = true;
+            }
         }
         else if (hitObject.GetComponent<FleetController>() != null)
         {
             isFleet = true;
             civ = hitObject.GetComponent<FleetController>().FleetData.CivEnum;
+            if (DiplomacyManager.Instance.FoundADiplomacyController(CivManager.Instance.LocalPlayerCivContoller, hitObject.GetComponent<FleetController>().FleetData.CivController))
+            {
+                weKnowThem = true;
+            }
         }
         else if (hitObject.GetComponent<PlayerDefinedTargetController>() != null)
         {
@@ -177,10 +185,7 @@ public class FleetUIController : MonoBehaviour
             typeOfDestination = (int)playerTargetController.PlayerTargetData.GalaxyObjectType;
         }
         // Fix this
-        if (CivManager.Instance.LocalPlayerCivContoller.CivData.CivEnumsWeKnow.Contains(civ))
-        {
-            weKnowThem = true;
-        }
+
         if (isFleet)
             destinationName.text = "Warp Signture";
         else
@@ -231,7 +236,7 @@ public class FleetUIController : MonoBehaviour
     }
     public void GetPlayerDefinedTargetDestination()
     {
-        PlayerDefinedTargetManager.instance.PlayerTargetFromData(ourUIFleetController.gameObject);
+        PlayerDefinedTargetManager.instance.PlayerTargetFromData(FleetController.gameObject);
     }
     public void OnClickShipManager()
     {
@@ -250,9 +255,9 @@ public class FleetUIController : MonoBehaviour
 
         List<string> listings = new List<string>();
 
-        ourUIFleetController = rayHitGO.GetComponent<FleetController>();
+        FleetController = rayHitGO.GetComponent<FleetController>();
         cancelDestinationButtonGO.SetActive(false);
-        FleetName.text = ourUIFleetController.FleetData.Name;
+        FleetName.text = FleetController.FleetData.Name;
         PlayerDefinedTargetManager.instance.nameDestination = FleetName.text;
         WarpSliderChange(0f);
 
@@ -261,12 +266,12 @@ public class FleetUIController : MonoBehaviour
         shipDropdown.options.Clear();
         List<TMP_Dropdown.OptionData> newShipItems = new List<TMP_Dropdown.OptionData>();
         string name;
-        for (int i = 0; i < ourUIFleetController.FleetData.ShipsList.Count; i++)
+        for (int i = 0; i < FleetController.FleetData.ShipsList.Count; i++)
         {
-            if (ourUIFleetController.FleetData.ShipsList[i] != null)
+            if (FleetController.FleetData.ShipsList[i] != null)
             {
                 TMP_Dropdown.OptionData newDataItem = new TMP_Dropdown.OptionData();
-                name = ourUIFleetController.FleetData.ShipsList[i].name;
+                name = FleetController.FleetData.ShipsList[i].name;
                 name = name.Replace("(CLONE)", string.Empty);
                 newDataItem.text = name;
                 newShipItems.Add(newDataItem);
@@ -274,9 +279,9 @@ public class FleetUIController : MonoBehaviour
         }
         shipDropdown.AddOptions(newShipItems);
         shipDropdown.RefreshShownValue();
-        ourUIFleetController.UpdateMaxWarp();
-        maxSliderValue = ourUIFleetController.FleetData.MaxWarpFactor;
-        ResetWarpSlider(ourUIFleetController.FleetData.CurrentWarpFactor);
+        FleetController.UpdateMaxWarp();
+        maxSliderValue = FleetController.FleetData.MaxWarpFactor;
+        ResetWarpSlider(FleetController.FleetData.CurrentWarpFactor);
         Destroy(aNull);
     }
     private void ReorderDropdownOptions(TMP_Dropdown dropdown)

@@ -12,29 +12,32 @@ public class EncounterController
     {
         EncounterData = encounterData;
     }
-    // ******** ??? Resolve here or Diplomacy in Diplomacy, FleetqManagement in FleetManagement, etc.
-    public void ResolveCombat()
+    public void ResolveFirstContact(EncounterController thisEncounterController)
     {
-        //Stop Time
-        //Debug.Log($"Battle between {EncounterData.FactionA.Name} and {EncounterData.FactionB.Name}");
-        // Apply combat logic (e.g., damage, ship destruction, retreat)
+        DiplomacyManager.Instance.FirstContactGetNewDiplomacyContoller(thisEncounterController);
+
+        EncounterData.isCompleted = true;
+    }
+    public void ResolveDiplomacy(CivController controllerA, CivController controllerB)
+    {
+        if (DiplomacyManager.Instance.FoundADiplomacyController(controllerA, controllerB))
+        {
+            DiplomacyManager.Instance.GetDiplomacyController(controllerA, controllerB).FirstContact(controllerA, controllerB);
+        }
         EncounterData.isCompleted = true;
         // destroy the encounter controller
     }
-
-    public void ResolveDiplomacy()
+    public void ResolveCombat()
     {
-        //Debug.Log($"Diplomatic meeting between {encounterData.FactionA.Name} and {encounterData.FactionB.Name}");
-        // Change diplomatic status
+        //Stop Time
+        // call this from DiplomacyControllers, pass the encounter back, find it and load the combat scene
         EncounterData.isCompleted = true;
         // destroy the encounter controller
     }
     public void ResolveFleetManagment()
     {
-        //Debug.Log($"Espionage operation between {encounterData.FactionA.Name} and {encounterData.FactionB.Name}");
-        // Modify faction intelligence levels
+        // Sending this to the FleetManager from the EncounterManager
         EncounterData.isCompleted = true;
-        // destroy the encounter controller
     }
     public void ResolveEnterSystem()
     {
@@ -50,7 +53,20 @@ public class EncounterController
         EncounterData.isCompleted = true;
         // destroy the encounter controller
     }
-
+    public void ResolveDisinformation()
+    {
+        //Debug.Log($"Espionage operation between {encounterData.FactionA.Name} and {encounterData.FactionB.Name}");
+        // Modify faction intelligence levels
+        EncounterData.isCompleted = true;
+        // destroy the encounter controller
+    }
+    public void ResolveSabatoge()
+    {
+        //Debug.Log($"Espionage operation between {encounterData.FactionA.Name} and {encounterData.FactionB.Name}");
+        // Modify faction intelligence levels
+        EncounterData.isCompleted = true;
+        // destroy the encounter controller
+    }
     public void ResolveEspionage()
     {
         //Debug.Log($"Espionage operation between {encounterData.FactionA.Name} and {encounterData.FactionB.Name}");
@@ -58,10 +74,11 @@ public class EncounterController
         EncounterData.isCompleted = true;
         // destroy the encounter controller
     }
-    public void ResolveUnenhabitedSystem()
+    public void ResolveUninhabitedSystem(CivController realCivController, StarSysController sysCon)
     {
-        //Debug.Log($"Espionage operation between {encounterData.FactionA.Name} and {encounterData.FactionB.Name}");
-        // Modify faction intelligence levels
+        // UI for uninhabited system management
+        if (GameController.Instance.AreWeLocalPlayer(realCivController.CivData.CivEnum))
+            sysCon.DoHabitalbeSystemUI(realCivController);
         EncounterData.isCompleted = true;
         // destroy the encounter controller
     }
