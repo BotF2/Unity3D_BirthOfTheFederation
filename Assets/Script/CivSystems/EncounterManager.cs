@@ -8,7 +8,7 @@ public enum EncounterType
 {
     FirstContact,
     Diplomacy, // civ to civ and civs can be local player or AI
-    Combat,  
+    Combat,  //? is this a subtype of Diplomacy as seen by Diplomacy
     FleetManagement, // fleet to fleet by one civ (local player or AI)
     EnterSystem,
     UninhabitedSystem,

@@ -17,8 +17,8 @@ public class DiplomacyController
     private List<string> diplomaticTransmissions = new List<string> { declareWar, requestSomething, demandSomething, offerSomething, demandStopInterferance};
     public List<string> DiplomaticTransmissions { get { return diplomaticTransmissions; } set { diplomaticTransmissions = value; } }
     public List<DiplomaticEventEnum> DiplomaticEvents = new List<DiplomaticEventEnum>
-    { DiplomaticEventEnum.DeclareWar, DiplomaticEventEnum.Sabatoge, DiplomaticEventEnum.Disinformation, DiplomaticEventEnum.GatherIntel,
-        DiplomaticEventEnum.OfferTrade, DiplomaticEventEnum.ShareTech, DiplomaticEventEnum.GiveAid};
+    { DiplomaticEventEnum.War, DiplomaticEventEnum.DiscoveredSabatoge, DiplomaticEventEnum.DiscoveredDisinformation, DiplomaticEventEnum.DiscoveredIntellectualTheft,
+        DiplomaticEventEnum.Trade, DiplomaticEventEnum.ShareTech, DiplomaticEventEnum.GiveAid};
         
 public DiplomacyController(DiplomacyData diplomacyData)
     {

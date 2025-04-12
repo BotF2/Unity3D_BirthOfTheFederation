@@ -48,9 +48,12 @@ public class DiplomacyUIController : MonoBehaviour
     [SerializeField]
     private TMP_Text descriptionTMP;
     [SerializeField]
+    private GameObject descriptionPanel;
+    [SerializeField]
     private GameObject[] UI_PanelGOs;
     [SerializeField]
     private Image[] TabButtonMasks;
+
 
 
     private void Awake()
@@ -79,7 +82,10 @@ public class DiplomacyUIController : MonoBehaviour
         TimeManager.Instance.PauseTime(); // ToDo: put a pause indicator on screen
         if(ourDiplomacyController.DiplomacyData.IsFirstContact)
         {
-            firstContatct.SetActive(true);
+            if (firstContatct != null)
+            {
+                firstContatct.SetActive(true);
+            }
         }
         GameObject aNull = new GameObject();
         MenuManager.Instance.OpenMenu(Menu.DiplomacyMenu, aNull);
@@ -118,6 +124,17 @@ public class DiplomacyUIController : MonoBehaviour
         SwitchToTab(0);
         DiplomacyUIToggle.SetActive(false);
         TimeManager.Instance.ResumeTime();
+    }
+    public void OpenCloseDescritionPanel()
+    {
+        if (descriptionPanel.activeSelf)
+        {
+            descriptionPanel.SetActive(false);
+        }
+        else
+        {
+            descriptionPanel.SetActive(true);
+        }
     }
     public void CombatScene()
     {

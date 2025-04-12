@@ -16,6 +16,7 @@ public enum Menu
     FleetsMenu,
     AFleetMenu,
     DiplomacyMenu,
+    InteractionMenu,
     IntellMenu,
     EncyclopedianMenu,
     FirstContactMenu,
@@ -32,11 +33,12 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private GameObject fleetsMenu;
     [SerializeField] private GameObject aFleetMenu;
     [SerializeField] private GameObject diplomacyMenu;
+    [SerializeField] private GameObject interactionMenu;
     [SerializeField] private GameObject intellMenu;
     [SerializeField] private GameObject encyclopedianMenu;
     [SerializeField] private GameObject habitableSysMenu;
     [SerializeField] private GameObject combat;
-    [SerializeField] private GameObject openMenu;
+    [SerializeField] private GameObject openMenuWas;
 
     private void Awake()
     {
@@ -60,46 +62,51 @@ public class MenuManager : MonoBehaviour
         switch (enumMenu)
         {
             case Menu.None:
-                openMenu = null;
+                openMenuWas = null;
                 break;
             case Menu.SystemsMenu:
                 systemsMenu.SetActive(false);
-                openMenu = systemsMenu;
+                openMenuWas = systemsMenu;
                 break;
             case Menu.ASystemMenu:
                 aSystemMenu.SetActive(false);
-                openMenu = aSystemMenu;
+                openMenuWas = aSystemMenu;
                 break;
             case Menu.BuildMenu:
                 buildMenu.SetActive(false);
-                openMenu = buildMenu;
+                openMenuWas = buildMenu;
                 break;
             case Menu.FleetsMenu:
                 fleetsMenu.SetActive(false);
-                openMenu = fleetsMenu;
+                openMenuWas = fleetsMenu;
                 break;
             case Menu.AFleetMenu:
                 aFleetMenu.SetActive(false);
-                openMenu = aFleetMenu;
+                openMenuWas = aFleetMenu;
                 break;
             case Menu.DiplomacyMenu:
                 TimeManager.Instance.ResumeTime();
                 diplomacyMenu.SetActive(false);
-                openMenu = diplomacyMenu;
+                interactionMenu.SetActive(false);
+                openMenuWas = diplomacyMenu;
+                break;
+            case Menu.InteractionMenu:
+                interactionMenu.SetActive(false);
+                openMenuWas = interactionMenu;
                 break;
             case Menu.IntellMenu:
                 intellMenu.SetActive(false);
-                openMenu = intellMenu;
+                openMenuWas = intellMenu;
                 break;
             case Menu.EncyclopedianMenu:                
                 encyclopedianMenu.SetActive(false);
-                openMenu = encyclopedianMenu;
+                openMenuWas = encyclopedianMenu;
                 break;
             case Menu.HabitableSysMenu:
                 habitableSysMenu.SetActive(false);
-                openMenu = habitableSysMenu;
+                openMenuWas = habitableSysMenu;
                 break;
-            case Menu.Combat:
+            case Menu.Combat:// change scenes
                 //combat.SetActive(true);
                 break;
             default:
@@ -110,49 +117,54 @@ public class MenuManager : MonoBehaviour
     {
         if (callingMenu != null)
             callingMenu.SetActive(false);
-        if (openMenu != null)
-            openMenu.SetActive(false);
+        if (openMenuWas != null)
+            openMenuWas.SetActive(false);
         switch (menuEnum)
         {
             case Menu.None:
-                openMenu = null;
+                openMenuWas = null;
                 break;
             case Menu.SystemsMenu:
                 systemsMenu.SetActive(true);
-                openMenu = systemsMenu;
+                openMenuWas = systemsMenu;
                 break;
             case Menu.ASystemMenu:
                 aSystemMenu.SetActive(true);
-                openMenu = aSystemMenu;
+                openMenuWas = aSystemMenu;
                 break;
             case Menu.BuildMenu:
                 buildMenu.SetActive(true);
-                openMenu = buildMenu;
+                openMenuWas = buildMenu;
                 break;
             case Menu.FleetsMenu:
                 fleetsMenu.SetActive(true);
-                openMenu = fleetsMenu;
+                openMenuWas = fleetsMenu;
                 break;
             case Menu.AFleetMenu:
                 aFleetMenu.SetActive(true);
-                openMenu = aFleetMenu;
+                openMenuWas = aFleetMenu;
                 break;
             case Menu.DiplomacyMenu:
                 TimeManager.Instance.PauseTime();
                 diplomacyMenu.SetActive(true);
-                openMenu = diplomacyMenu;
+                openMenuWas = diplomacyMenu;
+                break;
+            case Menu.InteractionMenu:
+                TimeManager.Instance.PauseTime();
+                interactionMenu.SetActive(true);
+                openMenuWas = interactionMenu;
                 break;
             case Menu.IntellMenu:
                 intellMenu.SetActive(true);
-                openMenu = intellMenu;
+                openMenuWas = intellMenu;
                 break;
             case Menu.EncyclopedianMenu:                
                 encyclopedianMenu.SetActive(true);
-                openMenu = encyclopedianMenu;
+                openMenuWas = encyclopedianMenu;
                 break;
             case Menu.HabitableSysMenu:
                 habitableSysMenu.SetActive(true);
-                openMenu = habitableSysMenu;
+                openMenuWas = habitableSysMenu;
                 break;
             case Menu.Combat:
                 //combat.SetActive(true);
