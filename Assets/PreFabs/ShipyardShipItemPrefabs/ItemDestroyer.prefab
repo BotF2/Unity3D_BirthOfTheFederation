@@ -86,14 +86,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 6321614478493960930}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68500666628f3de47bf74dcfdabb0951, type: 3}
+  m_Script: {fileID: 11500000, guid: 4bcaa16d36be50a41a71a3e79bccc423, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   originalParent: {fileID: 0}
-  StarSysController: {fileID: 0}
-  ShipType: 1
-  ShipSprite: {fileID: 21300000, guid: 66ff3af9d301b9a44bf8304a811a29e5, type: 3}
-  BuildDuration: 6
+  FleetController: {fileID: 0}
+  ShipType: 0
+  ShipSprite: {fileID: 0}
+  BuildDuration: 0
 --- !u!225 &6321614478493960943
 CanvasGroup:
   m_ObjectHideFlags: 0

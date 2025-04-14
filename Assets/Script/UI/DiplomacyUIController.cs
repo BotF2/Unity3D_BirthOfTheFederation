@@ -88,8 +88,7 @@ public class DiplomacyUIController : MonoBehaviour
             }
         }
         GameObject aNull = new GameObject();
-        MenuManager.Instance.OpenMenu(Menu.DiplomacyMenu, aNull);
-
+        GalaxyMenuUIController.Instance.OpenMenu(Menu.DiplomacyMenu, aNull);
         if (GameController.Instance.AreWeLocalPlayer(ourDiplomacyController.DiplomacyData.CivOne.CivData.CivEnum))
             LoadCivDataInUI(ourDiplomacyController.DiplomacyData.CivTwo, ourDiplomacyController);
         else if (GameController.Instance.AreWeLocalPlayer(ourDiplomacyController.DiplomacyData.CivTwo.CivData.CivEnum))

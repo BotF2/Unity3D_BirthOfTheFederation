@@ -241,16 +241,15 @@ public class FleetUIController : MonoBehaviour
     public void OnClickShipManager()
     {
         GameObject aNull = new GameObject();
-        MenuManager.Instance.OpenMenu(Menu.FleetsMenu, aNull);
+        GalaxyMenuUIController.Instance.OpenMenu(Menu.AFleetMenu, aNull);
+        SubMenuManager.Instance.OpenMenu(Menu.FleetsMenu, aNull);
         Destroy(aNull);
     }
     public void LoadFleetUI(GameObject rayHitGO)
     {
         GameObject aNull = new GameObject();
-        MenuManager.Instance.OpenMenu(Menu.AFleetMenu, aNull);
-        //YourStarSysUIManager.Instance.CloseUnLoadStarSysUI();
-        //FirstContactUIController.Instance.CloseUnLoadDiplomacyUI();
-        //FleetSelectionUI.current.UnLoadShipManagerUI();
+        GalaxyMenuUIController.Instance.OpenMenu(Menu.AFleetMenu, aNull);
+
         fleetUIToggle.SetActive(true);
 
         List<string> listings = new List<string>();

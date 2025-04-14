@@ -7,26 +7,26 @@ using Assets.Core;
 using UnityEngine.UIElements;
 using Button = UnityEngine.UI.Button;
 
-public enum Menu
-{
-    None,
-    SystemsMenu,
-    ASystemMenu,
-    BuildMenu,
-    FleetsMenu,
-    AFleetMenu,
-    DiplomacyMenu,
-    InteractionMenu,
-    IntellMenu,
-    EncyclopedianMenu,
-    FirstContactMenu,
-    HabitableSysMenu,
-    Combat
-}
+//public enum Menu
+//{
+//    None,
+//    SystemsMenu,
+//    ASystemMenu,
+//    BuildMenu,
+//    FleetsMenu,
+//    AFleetMenu,
+//    DiplomacyMenu,
+//    ADiplomacyMenu,
+//    IntellMenu,
+//    EncyclopedianMenu,
+//    FirstContactMenu,
+//    HabitableSysMenu,
+//    Combat
+//}
 
-public class MenuManager : MonoBehaviour
+public class SubMenuManager : MonoBehaviour
 {
-    public static MenuManager Instance { get; private set; }
+    public static SubMenuManager Instance { get; private set; }
     [SerializeField] private GameObject systemsMenu;
     [SerializeField] private GameObject aSystemMenu;
     public GameObject buildMenu;
@@ -52,67 +52,67 @@ public class MenuManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
     }
-    public void SetBuildMenu(GameObject prefabMenu)
-    {
-        buildMenu = prefabMenu;
-        buildMenu.SetActive(true);
-    }
-    public void CloseMenu(Menu enumMenu)
-    {
-        switch (enumMenu)
-        {
-            case Menu.None:
-                openMenuWas = null;
-                break;
-            case Menu.SystemsMenu:
-                systemsMenu.SetActive(false);
-                openMenuWas = systemsMenu;
-                break;
-            case Menu.ASystemMenu:
-                aSystemMenu.SetActive(false);
-                openMenuWas = aSystemMenu;
-                break;
-            case Menu.BuildMenu:
-                buildMenu.SetActive(false);
-                openMenuWas = buildMenu;
-                break;
-            case Menu.FleetsMenu:
-                fleetsMenu.SetActive(false);
-                openMenuWas = fleetsMenu;
-                break;
-            case Menu.AFleetMenu:
-                aFleetMenu.SetActive(false);
-                openMenuWas = aFleetMenu;
-                break;
-            case Menu.DiplomacyMenu:
-                TimeManager.Instance.ResumeTime();
-                diplomacyMenu.SetActive(false);
-                interactionMenu.SetActive(false);
-                openMenuWas = diplomacyMenu;
-                break;
-            case Menu.InteractionMenu:
-                interactionMenu.SetActive(false);
-                openMenuWas = interactionMenu;
-                break;
-            case Menu.IntellMenu:
-                intellMenu.SetActive(false);
-                openMenuWas = intellMenu;
-                break;
-            case Menu.EncyclopedianMenu:                
-                encyclopedianMenu.SetActive(false);
-                openMenuWas = encyclopedianMenu;
-                break;
-            case Menu.HabitableSysMenu:
-                habitableSysMenu.SetActive(false);
-                openMenuWas = habitableSysMenu;
-                break;
-            case Menu.Combat:// change scenes
-                //combat.SetActive(true);
-                break;
-            default:
-                break;
-        }
-    }
+    //public void SetActiveBuildMenu(GameObject prefabMenu)
+    //{
+    //    buildMenu = prefabMenu;
+    //    buildMenu.SetActive(true);
+    //}
+    //public void CloseMenu(Menu enumMenu)
+    //{
+    //    switch (enumMenu)
+    //    {
+    //        case Menu.None:
+    //            openMenuWas = null;
+    //            break;
+    //        case Menu.SystemsMenu:
+    //            systemsMenu.SetActive(false);
+    //            openMenuWas = systemsMenu;
+    //            break;
+    //        case Menu.ASystemMenu:
+    //            aSystemMenu.SetActive(false);
+    //            openMenuWas = aSystemMenu;
+    //            break;
+    //        case Menu.BuildMenu:
+    //            buildMenu.SetActive(false);
+    //            openMenuWas = buildMenu;
+    //            break;
+    //        case Menu.FleetsMenu:
+    //            fleetsMenu.SetActive(false);
+    //            openMenuWas = fleetsMenu;
+    //            break;
+    //        case Menu.AFleetMenu:
+    //            aFleetMenu.SetActive(false);
+    //            openMenuWas = aFleetMenu;
+    //            break;
+    //        case Menu.DiplomacyMenu:
+    //            TimeManager.Instance.ResumeTime();
+    //            diplomacyMenu.SetActive(false);
+    //            interactionMenu.SetActive(false);
+    //            openMenuWas = diplomacyMenu;
+    //            break;
+    //        case Menu.ADiplomacyMenu:
+    //            interactionMenu.SetActive(false);
+    //            openMenuWas = interactionMenu;
+    //            break;
+    //        case Menu.IntellMenu:
+    //            intellMenu.SetActive(false);
+    //            openMenuWas = intellMenu;
+    //            break;
+    //        case Menu.EncyclopedianMenu:                
+    //            encyclopedianMenu.SetActive(false);
+    //            openMenuWas = encyclopedianMenu;
+    //            break;
+    //        case Menu.HabitableSysMenu:
+    //            habitableSysMenu.SetActive(false);
+    //            openMenuWas = habitableSysMenu;
+    //            break;
+    //        case Menu.Combat:// change scenes
+    //            //combat.SetActive(true);
+    //            break;
+    //        default:
+    //            break;
+    //    }
+    //}
     public void OpenMenu(Menu menuEnum, GameObject callingMenu)
     {
         if (callingMenu != null)
@@ -149,7 +149,7 @@ public class MenuManager : MonoBehaviour
                 diplomacyMenu.SetActive(true);
                 openMenuWas = diplomacyMenu;
                 break;
-            case Menu.InteractionMenu:
+            case Menu.ADiplomacyMenu:
                 TimeManager.Instance.PauseTime();
                 interactionMenu.SetActive(true);
                 openMenuWas = interactionMenu;

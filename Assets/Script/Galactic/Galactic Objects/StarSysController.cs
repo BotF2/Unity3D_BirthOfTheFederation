@@ -19,8 +19,8 @@ namespace Assets.Core
         private StarSysData starSysData;
         public StarSysData StarSysData { get { return starSysData; } set { starSysData = value; } }
         [SerializeField]
-        private GameObject starSysListUIGameObject; //The instantiated system UI for system list, a prefab clone, not a class but a game object
-        // instantiated by StarSysManager from a prefab and added to StarSysController, NewSystemListUI()
+        private GameObject starSysListUIGameObject; //The instantiated system UI for this system. a prefab clone, not a class but a game object
+        // instantiated by StarSysManager from a prefab and added to StarSysController
         public GameObject StarSysListUIGameObject { get { return starSysListUIGameObject; } set { starSysListUIGameObject = value; } }
         private Camera galaxyEventCamera;
         [SerializeField]
@@ -132,7 +132,7 @@ namespace Assets.Core
 
                 if (shipBuildingItem != lastShipBuildingItem)
                 {
-                    var shipBuildableItem = shipBuildingItem.gameObject.GetComponentInChildren<ShipBuildableItem>();
+                    var shipBuildableItem = shipBuildingItem.gameObject.GetComponentInChildren<ShipInFleetItem>();
                     ShipTimeToBuild = ShipManager.Instance.GetShipBuildDuration(shipBuildableItem.ShipType, this.StarSysData.CurrentCivController.CivData.TechLevel, this.StarSysData.CurrentOwnerCivEnum);
                     lastShipBuildingItem = shipBuildingItem;
                     shipStartTimer = true;
@@ -299,7 +299,7 @@ namespace Assets.Core
                     shipBuildingItem = null;
                     CivEnum localPlayerCivEnum = CivManager.Instance.LocalPlayerCivContoller.CivData.CivEnum;
                    
-                    switch (shipBuildQueueList[0].gameObject.GetComponentInChildren<ShipBuildableItem>().ShipType)
+                    switch (shipBuildQueueList[0].gameObject.GetComponentInChildren<ShipInFleetItem>().ShipType)
                     {
                         case ShipType.Scout:
                             shipType = ShipType.Scout;        
@@ -342,7 +342,7 @@ namespace Assets.Core
                         ShipManager.Instance.BuildShipInOurFleet(shipType, this.StarSysData.FleetsInSystem[0], this); // put a ship in the fleet
                     }
                         var imageTransform = shipBuildQueueList[0];
-                    imageTransform.SetParent(imageTransform.GetComponent<ShipBuildableItem>().originalParent, false);
+                    imageTransform.SetParent(imageTransform.GetComponent<ShipInFleetItem>().originalParent, false);
                     if (imageTransform.parent.childCount > 1)
                     {
                         Destroy(imageTransform.gameObject);
@@ -483,7 +483,7 @@ namespace Assets.Core
                     if (FleetUIController.Instance.MouseClickSetsDestination == false) // not while our FleetUIController was looking for a destination
                     {
                         GameObject aNull = new GameObject();
-                        MenuManager.Instance.OpenMenu(Menu.ASystemMenu, aNull); // get a single system UI on map system click
+                        GalaxyMenuUIController.Instance.OpenMenu(Menu.ASystemMenu, aNull); // set the system UI to this system
                         GalaxyMenuUIController.Instance.OpenASystemUI(this);
                         Destroy(aNull);
                     }
@@ -565,16 +565,13 @@ namespace Assets.Core
         public void BuildClick(StarSysController sysCon) // open build and ship build list UI
         {
             StarSysManager.Instance.InstantiateSysBuildListUI(this);
-
-            MenuManager.Instance.OpenMenu(Menu.BuildMenu, null);
+            GalaxyMenuUIController.Instance.OpenMenu(Menu.BuildMenu, null);
 
         }
         public void ShipClick(StarSysController sysCon) // open build and ship build list UI
         {
             StarSysManager.Instance.InstantiateSysBuildListUI(this);
-
-            MenuManager.Instance.OpenMenu(Menu.BuildMenu, null);
-
+            GalaxyMenuUIController.Instance.OpenMenu(Menu.BuildMenu, null);
         }
         public void FacilityOnClick(StarSysController sysCon, string name)
         {

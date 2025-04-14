@@ -5,13 +5,13 @@ using UnityEngine.EventSystems;
 using Assets.Core;
 
 
-public class ShipBuildableItem : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
+public class ShipInFleetItem : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
     private RectTransform rectTransform;
     private CanvasGroup canvasGroup;
     public Transform originalParent;
     
-    public StarSysController StarSysController;
+    public FleetController FleetController;
     public ShipType ShipType;
     public Sprite ShipSprite;
     public int BuildDuration;
@@ -23,7 +23,7 @@ public class ShipBuildableItem : MonoBehaviour, IBeginDragHandler, IEndDragHandl
     }
     public void OnBeginDrag(PointerEventData eventData)
     {
-        var theDragedScript = eventData.pointerDrag.GetComponent<ShipBuildableItem>();
+        var theDragedScript = eventData.pointerDrag.GetComponent<ShipInFleetItem>();
         switch (eventData.pointerDrag.name)
         {
             case "ItemScout":
@@ -67,7 +67,7 @@ public class ShipBuildableItem : MonoBehaviour, IBeginDragHandler, IEndDragHandl
         if (eventData.pointerEnter != null && eventData.pointerEnter.CompareTag("ShipBuildSlot"))
         {
             transform.SetParent(eventData.pointerEnter.transform);
-            var theDragedScript = eventData.pointerDrag.GetComponent<ShipBuildableItem>();
+            var theDragedScript = eventData.pointerDrag.GetComponent<ShipInFleetItem>();
             switch (eventData.pointerDrag.name)
             {
                 case "ItemPowerPlant":

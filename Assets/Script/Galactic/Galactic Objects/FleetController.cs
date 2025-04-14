@@ -31,13 +31,16 @@ namespace Assets.Core
         public PlayerDefinedTargetController TargetController;
         private Vector3 vectorOffset;
         private float ourZCoordinate;
-
+        [SerializeField]
+        private GameObject fleetListUIGameObject; //The instantiated fleet UI for this fleet controller, a prefab clone, not a class but a game object
+        // instantiated by FleetManager from a prefab and added to FleetController.
+        public GameObject FleetListUIGameObject { get { return fleetListUIGameObject; } set { fleetListUIGameObject = value; } }
         private void Start()
         {
             rb = GetComponent<Rigidbody>();
             rb.isKinematic = true;
             galaxyEventCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-            var CanvasGO = GameObject.Find("CanvasFleetUI");
+            var CanvasGO = GameObject.Find("CanvasGalaxyMenuRibbon");
             FleetUICanvas = CanvasGO.GetComponent<Canvas>();
             FleetUICanvas.worldCamera = galaxyEventCamera;
             CanvasToolTip.worldCamera = galaxyEventCamera;
@@ -413,6 +416,11 @@ namespace Assets.Core
                 FleetManager.Instance.FleetControllerList.Remove(this);
                 Destroy(fleetGO.gameObject);
             }
+        }
+        public void ShipManageClick(FleetController fleetCon) // open ship manager UI
+        {
+            FleetManager.Instance.InstantiateFleetsShipManagerUI(this);
+            GalaxyMenuUIController.Instance.OpenMenu(Menu.ManageShipsMenu, null);
         }
     }
 }

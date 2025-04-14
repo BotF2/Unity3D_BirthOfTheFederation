@@ -46,7 +46,7 @@ public class FleetSelectionUI : MonoBehaviour
     public void LoadShipUIManager(FleetController fleetController)
     {
         GameObject aNull = new GameObject();
-        MenuManager.Instance.OpenMenu(Menu.FirstContactMenu, aNull);
+        GalaxyMenuUIController.Instance.OpenMenu(Menu.FirstContactMenu, aNull);
         //YourStarSysUIManager.Instance.CloseUnLoadStarSysUI();
         //FleetUIController.Instance.CloseUnLoadFleetUI();
         FleetsManagerUIToggle.SetActive(true);

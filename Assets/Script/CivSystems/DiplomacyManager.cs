@@ -102,14 +102,16 @@ public class DiplomacyManager : MonoBehaviour
     public void SpaceCombatScene(FleetController fleetConA, FleetController fleetConB, StarSysController aNull)
     {
         SceneController.Instance.LoadCombatScene();
-        MenuManager.Instance.CloseMenu(Menu.DiplomacyMenu);
+        GalaxyMenuUIController.Instance.CloseMenu(Menu.DiplomacyMenu);
+        //SubMenuManager.Instance.CloseMenu(Menu.DiplomacyMenu);
         ShipManager.Instance.ShipsFromFleetsForCombat(); //shipType, fleetGOinSys, this);
         //CombatManager.Instance.InstatniateCombat(controller.DiplomacyData.CivOne.CivData.FleetControllers, controller.DiplomacyData.CivTwo.CivData.FleetControllers);
     }
     public void SpaceCombatScene(FleetController fleetConA, FleetController fleetConB)
     {
         SceneController.Instance.LoadCombatScene();
-        MenuManager.Instance.CloseMenu(Menu.DiplomacyMenu);
+        GalaxyMenuUIController.Instance.CloseMenu(Menu.DiplomacyMenu);
+        //SubMenuManager.Instance.CloseMenu(Menu.DiplomacyMenu);
         ShipManager.Instance.ShipsFromFleetsForCombat(); //shipType, fleetGOinSys, this);
         //CombatManager.Instance.InstatniateCombat(controller.DiplomacyData.CivOne.CivData.FleetControllers, controller.DiplomacyData.CivTwo.CivData.FleetControllers);
     }
@@ -147,7 +149,7 @@ public class DiplomacyManager : MonoBehaviour
         if (GameController.Instance.AreWeLocalPlayer(civPartyOne.CivData.CivEnum) ||
             GameController.Instance.AreWeLocalPlayer(civPartyTwo.CivData.CivEnum))
         {
-            //MenuManager.Instance.OpenMenu(Menu.DiplomacyMenu, diplomacyUIGO);
+            //SubMenuManager.Instance.OpenMenu(Menu.DiplomacyMenu, diplomacyUIGO);
             DiplomacyUIController.Instance.LoadDiplomacyUI(diplomacyController);
         }
         //else if (GameController.Instance.AreWeLocalPlayer(civPartyTwo.CivData.CivEnum))

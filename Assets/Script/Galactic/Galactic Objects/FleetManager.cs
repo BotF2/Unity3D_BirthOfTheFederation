@@ -9,6 +9,7 @@ using UnityEngine.UIElements;
 
 
 
+
 namespace Assets.Core
 {
     /// <summary>
@@ -24,6 +25,8 @@ namespace Assets.Core
         [SerializeField]
         private GameObject fleetPrefab;
         [SerializeField]
+        private GameObject shipManagerMenuPrefab;
+        [SerializeField]
         private Material fogPlaneMaterial;
         [SerializeField]
         private GameObject galaxyImage;
@@ -35,7 +38,8 @@ namespace Assets.Core
         private GameObject fleetGroupPrefab;
         [SerializeField]
         private Sprite unknownfleet;
-
+        [SerializeField]
+        private GameObject canvasShipManager;
         [SerializeField]
         private List<int> destinationIntsInUse = new List<int>() { 0 };
         private Dictionary<CivEnum, List<int>> fleetNumsInUse  = new Dictionary<CivEnum, List<int>>();
@@ -130,7 +134,7 @@ namespace Assets.Core
         public GameObject InstantiateFleet(StarSysController sysCon, FleetData fleetData, Vector3 position, bool inSystem)
         {
             GameObject fleetNewGameOb = new GameObject();
-    
+
             IEnumerable<StarSysController> ourCivSysCons =
                 from x in StarSysManager.Instance.StarSysControllerList
                 where (x.StarSysData.CurrentOwnerCivEnum == fleetData.CivEnum)
@@ -242,7 +246,33 @@ namespace Assets.Core
                 return fleetNewGameOb;
 
         }
+        public void InstantiateFleetsShipManagerUI(FleetController fleetCon)
+        {
+            GameObject shipManagerUIInstance = (GameObject)Instantiate(shipManagerMenuPrefab, new Vector3(0, -70, 0),
+                Quaternion.identity);
+            GalaxyMenuUIController.Instance.SetActiveManageFleetsShipMenu(shipManagerUIInstance);
+            shipManagerUIInstance.layer = 5; //UI layer
+            canvasShipManager.SetActive(true);
 
+            // getting the ships data so they can send images for drag drop
+            shipManagerUIInstance.transform.SetParent(canvasShipManager.transform, false);
+            ShipInFleetItem[] ships = shipManagerUIInstance.GetComponentsInChildren<ShipInFleetItem>();
+
+
+            for (int m = 0; m < ships.Length; m++)
+            {
+                ships[m].FleetController = fleetCon;
+                if (ships[m].ShipType == ShipType.Scout)
+                {
+                    // To Do Find subtypes, unlike facilities with prefabs the ship data is in the SOs;
+                }
+                else if (ships[m].ShipType == ShipType.Destroyer) { }
+                else if (ships[m].ShipType == ShipType.Transport) { }
+                else if (ships[m].ShipType == ShipType.Cruiser) { }
+                else if (ships[m].ShipType == ShipType.LtCruiser) { }
+                else if (ships[m].ShipType == ShipType.HvyCruiser) { }
+            }
+        }
         void RemoveFleetConrollerFromAllControllers(FleetController fleetController)
         {
             FleetControllerList.Remove(fleetController);

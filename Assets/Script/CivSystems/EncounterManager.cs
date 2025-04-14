@@ -115,7 +115,7 @@ public class EncounterManager : MonoBehaviour
     }
     private EncounterController FirstContactFleetOnFleetInstantiateEncounterController(FleetController fleetA, FleetController fleetB)
     {
-        // is frist contact ********TODO: if not first then use encounters to update diplomacy relations!
+        // is frist contact ********TODO: if not first contact then use encounters to update diplomacy relations!
         EncounterData encounterData = new EncounterData();
         encounterData.FleetControllerCivOne = fleetA;
         encounterData.CivOne = fleetA.FleetData.CivController;

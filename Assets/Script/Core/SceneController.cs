@@ -51,7 +51,8 @@ public class SceneController : MonoBehaviour
     public void LoadMainMenuScene()
     {
         SceneManager.UnloadSceneAsync("SpaceCombatScene");
-        MenuManager.Instance.CloseMenu(Menu.DiplomacyMenu);
+        GalaxyMenuUIController.Instance.CloseMenu(Menu.DiplomacyMenu);
+        //SubMenuManager.Instance.CloseMenu(Menu.DiplomacyMenu);
 
         if (!string.IsNullOrEmpty(previousSceneName))
         {

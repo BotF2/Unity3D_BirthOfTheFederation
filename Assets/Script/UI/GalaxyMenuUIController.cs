@@ -9,7 +9,23 @@ using System.Runtime.CompilerServices;
 using System.Diagnostics;
 using System;
 using System.Linq;
-
+public enum Menu
+{
+    None,
+    SystemsMenu,
+    ASystemMenu,
+    BuildMenu,
+    FleetsMenu,
+    AFleetMenu,
+    ManageShipsMenu,
+    DiplomacyMenu,
+    ADiplomacyMenu,
+    IntellMenu,
+    EncyclopedianMenu,
+    FirstContactMenu,
+    HabitableSysMenu,
+    Combat
+}
 public class GalaxyMenuUIController : MonoBehaviour
 {
     public static GalaxyMenuUIController Instance; // { get; private set; }
@@ -22,11 +38,21 @@ public class GalaxyMenuUIController : MonoBehaviour
     [SerializeField]
     private GameObject aSystemView;
     [SerializeField]
-    private GameObject aSysContainer;
+    private GameObject buildMenu;
     [SerializeField]
     private GameObject fleetsMenuView;
+    [SerializeField]
+    private GameObject fleetListContainer;
+    [SerializeField]
+    private GameObject aFleetMenu;
+    [SerializeField]
+    private GameObject manageFleetShipsMenu;
     [SerializeField] 
     private GameObject diplomacyMenuView;
+    [SerializeField]
+    private GameObject diplomacyListContainter;
+    [SerializeField]
+    private GameObject aDiplomacyView;
     [SerializeField] 
     private GameObject intelMenuView;
     [SerializeField] 
@@ -46,11 +72,16 @@ public class GalaxyMenuUIController : MonoBehaviour
     [SerializeField]
     private GameObject encyclopediaBackground;
     [SerializeField]
+    private GameObject habitableSysMenu;
+    [SerializeField]
     private List<StarSysController> sysControllers;
     [SerializeField]
-    private List<GameObject> listOfUIgos;
+    private List<GameObject> listOfStarSysUIgos;
+    [SerializeField]
+    private List<GameObject> listOfFleetUIgos;
     [SerializeField]
     private GameObject powerOverload;
+    [SerializeField] private GameObject openMenuWas;
 
 
     private void Awake()
@@ -68,9 +99,13 @@ public class GalaxyMenuUIController : MonoBehaviour
     void Start()
     {
         systemsMenuView.SetActive(false);
-        aSystemView.SetActive(false);   
+        aSystemView.SetActive(false);
+        buildListUI.SetActive(false);
         fleetsMenuView.SetActive(false);
+        aFleetMenu.SetActive(false);
+        manageFleetShipsMenu.SetActive(false);
         diplomacyMenuView.SetActive(false); 
+        aDiplomacyView.SetActive(false);
         intelMenuView.SetActive(false) ;
         encyclopediaMenuView.SetActive(false);
         closeMenuButton.SetActive(false);
@@ -79,19 +114,93 @@ public class GalaxyMenuUIController : MonoBehaviour
         diplomacyBackground.SetActive(false);
         intelBackground.SetActive(false);
         encyclopediaBackground.SetActive(false);
-        buildListUI.SetActive(false);
-        SetUISystemsData();//get our system ui game objects to match your sys controllers
-    }
 
+        SetUISystemsData();//get our system ui game objects to match your sys controllers
+        SetUIFleetData();//get our fleet ui game objects to match your fleet controllers
+    }
+    public void SetActiveBuildMenu(GameObject prefabMenu)
+    {
+        buildMenu = prefabMenu;
+        buildMenu.SetActive(true);
+    }
+    public void SetActiveManageFleetsShipMenu(GameObject prefabMenu)
+    {
+        manageFleetShipsMenu = prefabMenu;
+        manageFleetShipsMenu.SetActive(true);
+    }
     public void CloseTheOpenGalaxyUI()
     {
-        MenuManager.Instance.OpenMenu(Menu.None, aNull);
+        OpenMenu(Menu.None, aNull);
         closeMenuButton.SetActive(false);
         sysBackground.SetActive(false);
         fleetBackground.SetActive(false);
         diplomacyBackground.SetActive(false);
         intelBackground.SetActive(false);
         encyclopediaBackground.SetActive(false);
+    }
+    public void OpenMenu(Menu menuEnum, GameObject callingMenu)
+    {
+        if (callingMenu != null)
+            callingMenu.SetActive(false);
+        if (openMenuWas != null)
+            openMenuWas.SetActive(false);
+        switch (menuEnum)
+        {
+            case Menu.None:
+                openMenuWas = null;
+                break;
+            case Menu.SystemsMenu:
+                systemsMenuView.SetActive(true);
+                openMenuWas = systemsMenuView;
+                break;
+            case Menu.ASystemMenu:
+                aSystemView.SetActive(true);
+                openMenuWas = aSystemView;
+                break;
+            case Menu.BuildMenu:
+                buildMenu.SetActive(true);
+                openMenuWas = buildMenu;
+                break;
+            case Menu.FleetsMenu:
+                fleetsMenuView.SetActive(true);
+                openMenuWas = fleetsMenuView;
+                break;
+            case Menu.AFleetMenu:
+                aFleetMenu.SetActive(true);
+                openMenuWas = aFleetMenu;
+                break;
+            case Menu.ManageShipsMenu:
+                manageFleetShipsMenu.SetActive(true);
+                openMenuWas = manageFleetShipsMenu;
+                break;
+            case Menu.DiplomacyMenu:
+                TimeManager.Instance.PauseTime();
+                diplomacyMenuView.SetActive(true);
+                openMenuWas = diplomacyMenuView;
+                break;
+            case Menu.ADiplomacyMenu:
+                TimeManager.Instance.PauseTime();
+                aDiplomacyView.SetActive(true);
+                openMenuWas = aDiplomacyView;
+                break;
+            case Menu.IntellMenu:
+                intelMenuView.SetActive(true);
+                openMenuWas = intelMenuView;
+                break;
+            case Menu.EncyclopedianMenu:
+                encyclopediaMenuView.SetActive(true);
+                openMenuWas = encyclopediaMenuView;
+                break;
+            case Menu.HabitableSysMenu:
+                habitableSysMenu.SetActive(true);
+                openMenuWas = habitableSysMenu;
+                break;
+            case Menu.Combat:
+                //combat.SetActive(true);
+                break;
+            default:
+                break;
+        }
     }
     public void OpenSystems()
     {
@@ -102,12 +211,12 @@ public class GalaxyMenuUIController : MonoBehaviour
             fleetBackground.SetActive(false);
             diplomacyBackground.SetActive(false);
             intelBackground.SetActive(false);
-            MenuManager.Instance.OpenMenu(Menu.SystemsMenu, aNull);    
+            SubMenuManager.Instance.OpenMenu(Menu.SystemsMenu, aNull);    
             SetUISystemsData();
         }
         else
         {
-            MenuManager.Instance.OpenMenu(Menu.None, systemsMenuView);
+            SubMenuManager.Instance.OpenMenu(Menu.None, systemsMenuView);
 
             sysBackground.SetActive(false);
         }
@@ -115,7 +224,7 @@ public class GalaxyMenuUIController : MonoBehaviour
     }
     public void OpenASystemUI(StarSysController theSysCon) // now system ui open single system view when our system is clicked on galaxy map
     {
-        if (listOfUIgos.Contains(theSysCon.StarSysListUIGameObject))
+        if (listOfStarSysUIgos.Contains(theSysCon.StarSysListUIGameObject))
         {
             aSystemView.SetActive(true);
             closeMenuButton.SetActive(true);
@@ -126,7 +235,7 @@ public class GalaxyMenuUIController : MonoBehaviour
             encyclopediaBackground.SetActive(false);
             buildListUI.SetActive(false);
             theSysCon.StarSysListUIGameObject.SetActive(true);
-            theSysCon.StarSysListUIGameObject.transform.SetParent(aSysContainer.transform, false);
+            theSysCon.StarSysListUIGameObject.transform.SetParent(aSystemView.transform, false);
             sysBackground.SetActive(true);
         }
     }
@@ -134,7 +243,7 @@ public class GalaxyMenuUIController : MonoBehaviour
     {
         if (!fleetsMenuView.activeSelf)
         {
-            MenuManager.Instance.OpenMenu (Menu.FleetsMenu, aNull);
+            SubMenuManager.Instance.OpenMenu (Menu.FleetsMenu, aNull);
             fleetBackground.SetActive(true);
             closeMenuButton.SetActive(true);
             sysBackground.SetActive(false);
@@ -144,7 +253,7 @@ public class GalaxyMenuUIController : MonoBehaviour
         }
         else
         {
-            MenuManager.Instance.OpenMenu(Menu.None, fleetsMenuView);
+            SubMenuManager.Instance.OpenMenu(Menu.None, fleetsMenuView);
             fleetBackground.SetActive(false);
         }
     }
@@ -152,7 +261,7 @@ public class GalaxyMenuUIController : MonoBehaviour
     {
         if (!diplomacyMenuView.activeSelf)
         {
-            MenuManager.Instance.OpenMenu(Menu.DiplomacyMenu, aNull);
+            SubMenuManager.Instance.OpenMenu(Menu.DiplomacyMenu, aNull);
             diplomacyBackground.SetActive(true);
             closeMenuButton.SetActive(true);
             sysBackground.SetActive(false);
@@ -162,17 +271,71 @@ public class GalaxyMenuUIController : MonoBehaviour
         } 
         else 
         {
-            MenuManager.Instance.OpenMenu(Menu.None, diplomacyMenuView);    
+            SubMenuManager.Instance.OpenMenu(Menu.None, diplomacyMenuView);    
 
             diplomacyBackground.SetActive(false);
         }
     }
-
+    public void CloseMenu(Menu enumMenu)
+    {
+        switch (enumMenu)
+        {
+            case Menu.None:
+                openMenuWas = null;
+                break;
+            case Menu.SystemsMenu:
+                systemsMenuView.SetActive(false);
+                openMenuWas = systemsMenuView;
+                break;
+            case Menu.ASystemMenu:
+                aSystemView.SetActive(false);
+                openMenuWas = aSystemView;
+                break;
+            case Menu.BuildMenu:
+                buildMenu.SetActive(false);
+                openMenuWas = buildMenu;
+                break;
+            case Menu.FleetsMenu:
+                fleetsMenuView.SetActive(false);
+                openMenuWas = fleetsMenuView;
+                break;
+            case Menu.AFleetMenu:
+                aFleetMenu.SetActive(false);
+                openMenuWas = aFleetMenu;
+                break;
+            case Menu.DiplomacyMenu:
+                TimeManager.Instance.ResumeTime();
+                diplomacyMenuView.SetActive(false);
+                openMenuWas = diplomacyMenuView;
+                break;
+            case Menu.ADiplomacyMenu:
+                aDiplomacyView.SetActive(false);
+                openMenuWas = aDiplomacyView;
+                break;
+            case Menu.IntellMenu:
+                intelMenuView.SetActive(false);
+                openMenuWas = intelMenuView;
+                break;
+            case Menu.EncyclopedianMenu:
+                encyclopediaMenuView.SetActive(false);
+                openMenuWas = encyclopediaMenuView;
+                break;
+            case Menu.HabitableSysMenu:
+                habitableSysMenu.SetActive(false);
+                openMenuWas = habitableSysMenu;
+                break;
+            case Menu.Combat:// change scenes
+                //combat.SetActive(true);
+                break;
+            default:
+                break;
+        }
+    }
     public void OpenIntel()
     {
         if (!intelMenuView.activeSelf)
         {
-            MenuManager.Instance.OpenMenu(Menu.IntellMenu, aNull);
+            SubMenuManager.Instance.OpenMenu(Menu.IntellMenu, aNull);
             intelBackground.SetActive(true);
             closeMenuButton.SetActive(true);
             sysBackground.SetActive(false);
@@ -182,7 +345,7 @@ public class GalaxyMenuUIController : MonoBehaviour
         }
         else
         { 
-            MenuManager.Instance.OpenMenu(Menu.None, intelMenuView);
+            SubMenuManager.Instance.OpenMenu(Menu.None, intelMenuView);
             intelBackground.SetActive(false);
         }
 
@@ -192,7 +355,7 @@ public class GalaxyMenuUIController : MonoBehaviour
     {
         if (!encyclopediaMenuView.activeSelf)
         {
-            MenuManager.Instance.OpenMenu(Menu.EncyclopedianMenu, aNull);
+            SubMenuManager.Instance.OpenMenu(Menu.EncyclopedianMenu, aNull);
             encyclopediaBackground.SetActive(true);
             closeMenuButton.SetActive(true);
             sysBackground.SetActive(false);
@@ -202,8 +365,22 @@ public class GalaxyMenuUIController : MonoBehaviour
         }
         else 
         {
-            MenuManager.Instance.OpenMenu(Menu.None, encyclopediaMenuView);
+            SubMenuManager.Instance.OpenMenu(Menu.None, encyclopediaMenuView);
             encyclopediaBackground.SetActive(false);
+        }
+    }
+    private void SetUIFleetData()
+     {
+        if (FleetManager.Instance.FleetControllerList.Count > 0)
+        {
+            foreach (var fleetCon in FleetManager.Instance.FleetControllerList)
+            {
+                if (fleetCon.FleetListUIGameObject != null && GameController.Instance.AreWeLocalPlayer(fleetCon.FleetData.CivEnum))
+                {
+                    SetupFleetUI(fleetCon);
+                    break;
+                }
+            }
         }
     }
     private void SetUISystemsData()
@@ -223,21 +400,47 @@ public class GalaxyMenuUIController : MonoBehaviour
     public void RemoveSystem(StarSysController sysController)
     {
         sysControllers.Remove(sysController);
-        listOfUIgos.Remove(sysController.StarSysListUIGameObject);
+        listOfStarSysUIgos.Remove(sysController.StarSysListUIGameObject);
     }
 
+    public void SetupFleetUI(FleetController fleetController)
+    {
+        if (fleetController.FleetListUIGameObject != null)
+        {
+            if (!FleetManager.Instance.FleetControllerList.Contains(fleetController) && !listOfFleetUIgos.Contains(fleetController.FleetListUIGameObject))
+            {
+                fleetController.FleetListUIGameObject.SetActive(true);
+                fleetController.FleetListUIGameObject.transform.SetParent(fleetListContainer.transform, false);
+                FleetManager.Instance.FleetControllerList.Add(fleetController);// add to list for content (queue) folder systems
+                listOfStarSysUIgos.Add(fleetController.FleetListUIGameObject);
+            }
+            Button[] listButtons = fleetController.FleetListUIGameObject.GetComponentsInChildren<Button>();
+            foreach (var listButton in listButtons)
+            {
+                switch (listButton.name)
+                {
+                    case "ButtonShipManager":
+                        listButton.onClick.RemoveAllListeners();
+                        listButton.onClick.AddListener(() => fleetController.ShipManageClick(fleetController));
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+    }
     public void SetupSystemUI(StarSysController sysController)
     {
         if (sysController.StarSysListUIGameObject != null)
         {
 
-            if (!sysControllers.Contains(sysController) && !listOfUIgos.Contains(sysController.StarSysListUIGameObject))
+            if (!sysControllers.Contains(sysController) && !listOfStarSysUIgos.Contains(sysController.StarSysListUIGameObject))
             {
                 sysController.StarSysListUIGameObject.SetActive(true);
                 sysController.StarSysListUIGameObject.transform.SetParent(sysListContainer.transform, false);
 
                 sysControllers.Add(sysController);// add to list for content (queue) folder systems
-                listOfUIgos.Add(sysController.StarSysListUIGameObject);
+                listOfStarSysUIgos.Add(sysController.StarSysListUIGameObject);
                 RectTransform[] minMapDotTransfor = sysController.StarSysListUIGameObject.GetComponentsInChildren<RectTransform>();
                 for (int i = 0; i < minMapDotTransfor.Length; i++)
                 {
