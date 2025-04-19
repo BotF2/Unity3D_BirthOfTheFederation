@@ -12,6 +12,7 @@ public class GameController : MonoBehaviour
     // 2. use this.AreWeLocalPlayer() to do 3.
     // 2. Check if a NetworkObject belongs to the local player by comparing the NetworkObject.OwnerClientId with NetworkManager.Singleton.LocalClientId.
     /// </summary>
+
     public static GameController Instance;
     private GameData gameData;
     public GameData GameData { get { return gameData; } set { gameData = value; } }

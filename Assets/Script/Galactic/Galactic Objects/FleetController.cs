@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Android;
 
@@ -26,6 +27,7 @@ namespace Assets.Core
         [SerializeField]
         private List<string> shipDropdownOptions;
         private Camera galaxyEventCamera;
+        private GameObject aNull = null; // used to pass a null object to the UI when needed
         public Canvas FleetUICanvas { get; private set; }
         public Canvas CanvasToolTip;
         public PlayerDefinedTargetController TargetController;
@@ -244,7 +246,9 @@ namespace Assets.Core
                     }
                     EncounterManager.Instance.RegisterEncounter(this, sysCon);
                     if (weAreLocalPlayer)
+                    {
                         EncounterUnknownSystemShowName(collider.gameObject, sysCon.StarSysData.CurrentOwnerCivEnum);
+                    }
                 }
                 else if (!isOurDestination)
                 {
@@ -266,8 +270,11 @@ namespace Assets.Core
         
         private void EncounterUnknownSystemShowName(GameObject hitGO, CivEnum civEnum)
         {  
-            var sysData = hitGO.GetComponent<StarSysController>().StarSysData;
-
+            var sysCon = hitGO.GetComponent<StarSysController>();
+            var sysData = sysCon.StarSysData;
+            if (sysCon.StarSystUIGameObject == null)
+                StarSysManager.Instance.InstantiateSysUIGameObject(sysCon);
+            //GalaxyMenuUIController.Instance.SetupSystemUI(sysCon);
             TextMeshProUGUI[] TheText = hitGO.GetComponentsInChildren<TextMeshProUGUI>();
             for (int i = 0; i < TheText.Length; i++)
             {
@@ -283,6 +290,7 @@ namespace Assets.Core
                     TheText[i].text = sysData.Description;
 
             }
+            GalaxyMenuUIController.Instance.OpenMenu(Menu.SystemsMenu, null);
         }
         private void EncounterUnknownFleetGetNameAndSprite(GameObject hitGO)
         {

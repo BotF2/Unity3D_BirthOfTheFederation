@@ -85,7 +85,6 @@ public class DiplomacyManager : MonoBehaviour
     public List<DiplomacyController> DiplomacyControllerList = new List<DiplomacyController>();
     public GameObject diplomacyUIGO;
 
-
     private void Awake()
     {
         if (Instance != null)
@@ -149,8 +148,8 @@ public class DiplomacyManager : MonoBehaviour
         if (GameController.Instance.AreWeLocalPlayer(civPartyOne.CivData.CivEnum) ||
             GameController.Instance.AreWeLocalPlayer(civPartyTwo.CivData.CivEnum))
         {
-            //SubMenuManager.Instance.OpenMenu(Menu.DiplomacyMenu, diplomacyUIGO);
             DiplomacyUIController.Instance.LoadDiplomacyUI(diplomacyController);
+            GalaxyMenuUIController.Instance.OpenMenu(Menu.DiplomacyMenu, diplomacyUIGO);
         }
         //else if (GameController.Instance.AreWeLocalPlayer(civPartyTwo.CivData.CivEnum))
         //{
@@ -185,7 +184,7 @@ public class DiplomacyManager : MonoBehaviour
 
         return found;
     }
-    public DiplomacyController GetDiplomacyController(CivController civPartyOne, CivController civPartyTwo)
+    public DiplomacyController ReturnADiplomacyController(CivController civPartyOne, CivController civPartyTwo)
     {
         DiplomacyController diplomacyController = null;
         for (int i = 0; i < DiplomacyControllerList.Count; i++)

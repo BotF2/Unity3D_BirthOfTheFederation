@@ -120,7 +120,7 @@ namespace Assets.Core
         public void SetShipBuildPerfabs(CivEnum localCiv)
         {
           
-            TechLevel techLevel = CivManager.Instance.LocalPlayerCivContoller.CivData.TechLevel;
+            TechLevel techLevel = GameController.Instance.GameData.StartingTechLevel;// to do GameDate to know staring tech level
             List<ShipSO> shipSOList = new List<ShipSO>();
             switch (techLevel)
             {
@@ -194,6 +194,7 @@ namespace Assets.Core
             {
                 StarSysSO starSysSO = GetStarSObyInt(civSOList[i].CivInt);
                 SysData = new StarSysData(starSysSO);
+               
                 SysData.CurrentOwnerCivEnum = starSysSO.FirstOwner;
                 SysData.SystemType = starSysSO.StarType;
                 SysData.StarSprit = starSysSO.StarSprit;
@@ -202,8 +203,8 @@ namespace Assets.Core
                 InstantiateSystem(SysData, civSOList[i]);
                 //if (civSOList[i].HasWarp)
                 //    FleetManager.Instance.FleetDataFromSO(, false);
-                if (SysData.CurrentCivController != null)
-                    starSysDatas.Add(SysData);
+                //if (SysData.CurrentCivController != null)
+                //    starSysDatas.Add(SysData);
             }
             starSysDatas.Remove(starSysDatas[0]); // pull out the null
         }
@@ -211,11 +212,11 @@ namespace Assets.Core
         {
             GameObject starSystemNewGameOb = new GameObject();
             if (MainMenuUIController.Instance.MainMenuData.SelectedGalaxyType == GalaxyMapType.RANDOM)
-            { // do something random with fleetData.position
+            { // do something random with sys and fleetData.position
             }
             else if (MainMenuUIController.Instance.MainMenuData.SelectedGalaxyType == GalaxyMapType.RING)
             {
-                // do something in a ring with fleetData.position
+                // do something in a ring with sys and fleetData.position
             }
             else
             {
@@ -305,7 +306,7 @@ namespace Assets.Core
                 }
                 if (civSO.HasWarp)
                      FleetManager.Instance.BuildFirstFleets(starSysController, false); // fleet for first ships as game loads, not for ships instatiated by working shipyard in system
-                if (GameController.Instance.AreWeLocalPlayer(sysData.CurrentOwnerCivEnum)) 
+                if (true) //(GameController.Instance.AreWeLocalPlayer(sysData.CurrentOwnerCivEnum)) 
                 {
                     StarSysSO starSysSO = GetStarSObyInt(civSO.CivInt);
                     sysData.PowerPlants = AddSystemFacilities(starSysSO.PowerStations, PowerPlantPrefab, civSO.CivInt, sysData, 1);
@@ -315,9 +316,13 @@ namespace Assets.Core
                     sysData.OrbitalBatteries = AddSystemFacilities(starSysSO.OrbitalBatteries, OrbitalBatteryPrefab, civSO.CivInt, sysData,1);
                     sysData.ResearchCenters = AddSystemFacilities(starSysSO.ResearchCenters, ResearchCenterPrefab, civSO.CivInt, sysData,1);
                     SetParentForFacilities(starSystemNewGameOb, sysData);
-                    NewSystemListUI(starSysController);
+
+                }
+                if (GameController.Instance.AreWeLocalPlayer(sysData.CurrentOwnerCivEnum))
+                {
                     localPlayerTheme = ThemeManager.Instance.GetLocalPlayerTheme();
                 }
+                InstantiateSysUIGameObject(starSysController);
                 //***** This is temporary so we can test a multi-starsystem civ
                 //******* before diplomacy will alow civs/systems to join another civ
                 //if (systemCount == 8)
@@ -365,7 +370,8 @@ namespace Assets.Core
         public List<GameObject> AddSystemFacilities(int numOf, GameObject prefab, int civInt, StarSysData sysData, int onOff)
         {
             List<GameObject> list = new List<GameObject>();
-            //******Tech level*********
+            TechLevel techLevel = GameController.Instance.GameData.StartingTechLevel;
+            int startingStarDate = 1010;
             switch (prefab.name)
             {
                 // "SysName" not done here. See in each system ribbon is set in GalaxyMenuUIController without a facility game object needed
@@ -373,11 +379,11 @@ namespace Assets.Core
                     {
                         PowerPlantData powerPlantData = new PowerPlantData("null");
                         var powerPlantSO = GetPowrPlantSObyCivInt(civInt);
-                        powerPlantData.CivInt = powerPlantSO.CivInt;
-                        powerPlantData.TechLevel = powerPlantSO.TechLevel;
-                        powerPlantData.FacilitiesEnumType = powerPlantSO.FacilitiesEnumType;
+                        powerPlantData.CivInt = civInt;
+                        powerPlantData.TechLevel = techLevel;
+                        powerPlantData.FacilitiesEnumType = StarSysFacilities.PowerPlanet;
                         powerPlantData.Name = powerPlantSO.Name;                       
-                        powerPlantData.StartStarDate = powerPlantSO.StartStarDate;
+                        powerPlantData.StartStarDate = startingStarDate;
                         powerPlantData.BuildDuration = powerPlantSO.BuildDuration;
                         powerPlantData.PowerOutput = powerPlantSO.PowerOutput;  
                         powerPlantData.PowerPlantSprite = powerPlantSO.PowerPlantSprite;
@@ -404,11 +410,11 @@ namespace Assets.Core
                     {
                         FactoryData factoryData = new FactoryData("null");
                         var factorySO = GetFactorySObyCivInt(civInt);
-                        factoryData.CivInt = factorySO.CivInt;
-                        factoryData.TechLevel = factorySO.TechLevel;
-                        factoryData.FacilitiesEnumType = factorySO.FacilitiesEnumType;
+                        factoryData.CivInt = civInt;
+                        factoryData.TechLevel = techLevel;
+                        factoryData.FacilitiesEnumType = StarSysFacilities.Factory;
                         factoryData.Name = factorySO.Name;
-                        factoryData.StartStarDate = factorySO.StartStarDate;
+                        factoryData.StartStarDate = startingStarDate;
                         factoryData.PowerLoad = factorySO.PowerLoad;
                         factoryData.BuildDuration = factorySO.BuildDuration;
                         factoryData.FactorySprite = factorySO.FactorySprite;
@@ -436,11 +442,11 @@ namespace Assets.Core
                     {
                         ShipyardData syData = new ShipyardData("null");
                         var sSO = GetShipyardSObyCivInt(civInt);
-                        syData.CivInt = sSO.CivInt;
-                        syData.TechLevel = sSO.TechLevel;
-                        syData.FacilitiesEnumType = sSO.FacilitiesEnumType;
+                        syData.CivInt = civInt;
+                        syData.TechLevel = techLevel;
+                        syData.FacilitiesEnumType = StarSysFacilities.Shipyard;
                         syData.Name = sSO.Name;
-                        syData.StartStarDate = sSO.StartStarDate;
+                        syData.StartStarDate = startingStarDate;
                         syData.BuildDuration = sSO.BuildDuration;
                         syData.PowerLoad = sSO.PowerLoad;
                         syData.ShipyardSprite = sSO.ShipyardSprite;
@@ -468,11 +474,11 @@ namespace Assets.Core
                     {
                         ShieldGeneratorData sgData = new ShieldGeneratorData("null");
                         var sgSO = GetShieldGeneratorSObyCivInt(civInt);
-                        sgData.CivInt = sgSO.CivInt;
-                        sgData.TechLevel = sgSO.TechLevel;
-                        sgData.FacilitiesEnumType = sgSO.FacilitiesEnumType;
+                        sgData.CivInt = civInt;
+                        sgData.TechLevel = techLevel;
+                        sgData.FacilitiesEnumType = StarSysFacilities.ShieldGenerator;
                         sgData.Name = sgSO.Name;
-                        sgData.StartStarDate = sgSO.StartStarDate;
+                        sgData.StartStarDate = startingStarDate;
                         sgData.BuildDuration = sgSO.BuildDuration;
                         sgData.PowerLoad = sgSO.PowerLoad;
                         sgData.ShieldGeneratorSprite = sgSO.ShieldGeneratorSprite;
@@ -500,11 +506,11 @@ namespace Assets.Core
                     {
                         OrbitalBatteryData obData = new OrbitalBatteryData("null");
                         var sgSO = GetOrbitalBatterySObyCivInt(civInt);
-                        obData.CivInt = sgSO.CivInt;
-                        obData.TechLevel = sgSO.TechLevel;
-                        obData.FacilitiesEnumType = sgSO.FacilitiesEnumType;
+                        obData.CivInt = civInt;
+                        obData.TechLevel = techLevel;
+                        obData.FacilitiesEnumType = StarSysFacilities.OrbitalBattery;
                         obData.Name = sgSO.Name;
-                        obData.StartStarDate = sgSO.StartStarDate;
+                        obData.StartStarDate = startingStarDate;
                         obData.BuildDuration = sgSO.BuildDuration;
                         obData.PowerLoad = sgSO.PowerLoad;
                         obData.OrbitalBatterySprite = sgSO.OrbitalBatterySprite;
@@ -532,11 +538,11 @@ namespace Assets.Core
                     {
                         ResearchCenterData researchData = new ResearchCenterData("null");
                         var sgSO = GetResearchCenterSObyCivInt(civInt);
-                        researchData.CivInt = sgSO.CivInt;
-                        researchData.TechLevel = sgSO.TechLevel;
-                        researchData.FacilitiesEnumType = sgSO.FacilitiesEnumType;
+                        researchData.CivInt = civInt;
+                        researchData.TechLevel = techLevel;
+                        researchData.FacilitiesEnumType = StarSysFacilities.ResearchCenter;
                         researchData.Name = sgSO.Name;
-                        researchData.StartStarDate = sgSO.StartStarDate;
+                        researchData.StartStarDate = startingStarDate;
                         researchData.BuildDuration = sgSO.BuildDuration;
                         researchData.PowerLoad = sgSO.PowerLoad;
                         researchData.ResearchCenterSprite = sgSO.ResearchCenterSprite;
@@ -696,7 +702,7 @@ namespace Assets.Core
         {
             PowerPlantSO result = null;
             for(int i = 0;i< powerPlantSOList.Count;i++)
-            {
+            {              
                 if (powerPlantSOList[i].CivInt == civInt)
                 {
                     result = powerPlantSOList[i];
@@ -795,15 +801,15 @@ namespace Assets.Core
             }
         }
 
-        public void NewSystemListUI(StarSysController sysController)
+        public void InstantiateSysUIGameObject(StarSysController sysController)
         {
-            if (sysController.StarSysData.CurrentOwnerCivEnum == GameController.Instance.GameData.LocalPlayerCivEnum)
+            if (true) //sysController.StarSysData.CurrentOwnerCivEnum == GameController.Instance.GameData.LocalPlayerCivEnum)
             {
                 currentActiveSysCon = sysController;
                 GameObject thisStarSysUIGameObject = (GameObject)Instantiate(sysUIPrefab, new Vector3(0, 0, 0),
                     Quaternion.identity);
                 thisStarSysUIGameObject.layer = 5;
-                sysController.StarSysListUIGameObject = thisStarSysUIGameObject; 
+                sysController.StarSystUIGameObject = thisStarSysUIGameObject; 
                 thisStarSysUIGameObject.transform.SetParent(contentFolderParent.transform, false); // load into List of systems
             }    
         }

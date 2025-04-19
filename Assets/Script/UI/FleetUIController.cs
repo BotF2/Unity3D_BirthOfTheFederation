@@ -242,7 +242,7 @@ public class FleetUIController : MonoBehaviour
     {
         GameObject aNull = new GameObject();
         GalaxyMenuUIController.Instance.OpenMenu(Menu.AFleetMenu, aNull);
-        SubMenuManager.Instance.OpenMenu(Menu.FleetsMenu, aNull);
+        //SubMenuManager.Instance.OpenMenu(Menu.FleetsMenu, aNull);
         Destroy(aNull);
     }
     public void LoadFleetUI(GameObject rayHitGO)
@@ -294,7 +294,8 @@ public class FleetUIController : MonoBehaviour
     {
         MouseClickSetsDestination = false;
         MousePointerChanger.Instance.ResetCursor();
-        fleetUIToggle.SetActive(false);
+        //fleetUIToggle.SetActive(false);//The single fleet UI
+        GalaxyMenuUIController.Instance.CloseMenu(Menu.AFleetMenu); // The single fleet UI
     }
     private string GetDebuggerDisplay()
     {

@@ -93,7 +93,7 @@ public class DiplomacyUIController : MonoBehaviour
             LoadCivDataInUI(ourDiplomacyController.DiplomacyData.CivTwo, ourDiplomacyController);
         else if (GameController.Instance.AreWeLocalPlayer(ourDiplomacyController.DiplomacyData.CivTwo.CivData.CivEnum))
             LoadCivDataInUI(ourDiplomacyController.DiplomacyData.CivOne, ourDiplomacyController);
-        DiplomacyUIToggle.SetActive(true);
+        DiplomacyUIToggle.SetActive(true);// In the content folder of diplo srollview, scrollview control in GalaxyMenuUI
         Destroy(aNull);
 
     }

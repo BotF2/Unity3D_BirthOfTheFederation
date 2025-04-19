@@ -22,7 +22,7 @@ public class EncounterController
     {
         if (DiplomacyManager.Instance.FoundADiplomacyController(controllerA, controllerB))
         {
-            DiplomacyManager.Instance.GetDiplomacyController(controllerA, controllerB).FirstContact(controllerA, controllerB);
+            DiplomacyManager.Instance.ReturnADiplomacyController(controllerA, controllerB).FirstContact(controllerA, controllerB);
         }
         EncounterData.isCompleted = true;
         // destroy the encounter controller

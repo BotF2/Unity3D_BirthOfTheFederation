@@ -166,9 +166,13 @@ namespace Assets.Core
         public void CreateNewGameBySelections(int sizeGame, int gameTechLevel, int galaxyType, int localPlayerCivInt, bool isSingleVsMultiplayer)
         {
             MainMenuUIController.Instance.MainMenuData.SelectedGalaxySize = (GalaxySize)sizeGame;
+            GameController.Instance.GameData.GalaxySize = (GalaxySize)sizeGame;
             MainMenuUIController.Instance.MainMenuData.SelectedTechLevel = (TechLevel)gameTechLevel;
+            GameController.Instance.GameData.StartingTechLevel = (TechLevel)gameTechLevel;
             MainMenuUIController.Instance.MainMenuData.SelectedGalaxyType = (GalaxyMapType)galaxyType;
+            GameController.Instance.GameData.GalaxyMapType = (GalaxyMapType)galaxyType;
             isSinglePlayer = isSingleVsMultiplayer;
+            GameController.Instance.GameData.LocalPlayerCivEnum = (CivEnum)localPlayerCivInt;
             CivDataFromSO(CivSOsInGame, localPlayerCivInt);
             CreateCivEnumList(CivSOsInGame);
         }
@@ -195,19 +199,6 @@ namespace Assets.Core
                 civData.HasWarp = civSOList[i].HasWarp;
                 civData.Decription = civSOList[i].Decription;
                 civData.IntelPoints = civSOList[i].IntelPoints;
-                if ((int)civData.CivEnum <= 6) // playable races, major civilization
-                {
-                    civData.Population = 20;
-                    //civData.Credits = 300;
-                    //civData.TechPoints = 100; // set to tech level early at 100 points
-                    //civData.TechLevel = TechLevel.EARLY;
-                }
-                else if ((int)civData.CivEnum >= 159)// uninhabited system
-                {
-                    civData.Population = 0;
-                    //civData.Credits = 0;
-                    civData.TechPoints = 0;
-                }
                 CivDataInGameList.Add(civData);
                 InstantiateCivilizations(civData, localPayerCivInt);
 

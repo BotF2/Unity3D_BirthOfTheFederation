@@ -8,9 +8,7 @@ namespace Assets.Core
         // in CivManager but need in a Data file for save game ?
         public CivEnum LocalPlayerCivEnum; // temp set to fed for now
         public TechLevel StartingTechLevel;
-
-
-        //public CivController LocalPlayerCivController;
-
+        public GalaxySize GalaxySize;
+        public GalaxyMapType GalaxyMapType;
     }
 }
