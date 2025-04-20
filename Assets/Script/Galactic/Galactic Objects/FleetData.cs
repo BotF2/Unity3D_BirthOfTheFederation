@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Assets.Core;
 using System.Linq;
+using UnityEngine.UI;
 
 
 
@@ -23,6 +24,10 @@ public class FleetData
     private string description;
     public int FleetInt;
     public List<int> EncounterIDs;
+    public Button FleetButtonUp;
+    public Button FleetButtonDown;
+    public bool WarpButtonPressed = false;
+
     public FleetData(FleetSO fleetSO)
     {
         Insignia = fleetSO.Insignia;
@@ -71,6 +76,7 @@ public class FleetData
     {
         return description;
     }
+
     public string GetFleetName() { return this.Name; }
 }
 

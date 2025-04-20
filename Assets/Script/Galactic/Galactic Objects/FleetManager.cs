@@ -25,6 +25,10 @@ namespace Assets.Core
         [SerializeField]
         private GameObject fleetPrefab;
         [SerializeField]
+        private GameObject fleetUIPrefab;
+        [SerializeField] 
+        private GameObject contentFolderParent;
+        [SerializeField]
         private GameObject shipManagerMenuPrefab;
         [SerializeField]
         private Material fogPlaneMaterial;
@@ -170,6 +174,7 @@ namespace Assets.Core
                 int fleetInt = GetNewFleetInt(fleetData.CivEnum);
                 fleetNewGameOb.name = fleetData.CivShortName.ToString() + " Fleet " + fleetInt.ToString(); // name game object
                 fleetData.Name = fleetNewGameOb.name;
+ 
                 fleetController.FleetData.FleetInt = fleetInt;
                 fleetController.Name = fleetData.Name;
                 FleetConrollersInGame.Add(fleetController);
@@ -240,11 +245,24 @@ namespace Assets.Core
                 fleetNewGameOb.SetActive(true);
                 if (!inSystem) // all first fleets are not in system
                     ShipManager.Instance.BuildShipsOfFirstFleet(fleetNewGameOb);
-
+                InstantiateFleetUIGameObject(fleetController);
             }
             else fleetNewGameOb.name = "killMe";
-                return fleetNewGameOb;
 
+            return fleetNewGameOb;
+
+        }
+        private void InstantiateFleetUIGameObject(FleetController fleetCon)
+        {
+            if (true) //fleetCon.StarSysData.CurrentOwnerCivEnum == GameController.Instance.GameData.LocalPlayerCivEnum)
+            {
+                //currentActiveFleetCon = fleetCon;
+                GameObject thisFleetUIGameObject = (GameObject)Instantiate(fleetUIPrefab, new Vector3(0, 0, 0),
+                    Quaternion.identity);
+                thisFleetUIGameObject.layer = 5;
+                fleetCon.FleetListUIGameObject = thisFleetUIGameObject;
+                thisFleetUIGameObject.transform.SetParent(contentFolderParent.transform, false); // load into List of systems
+            }
         }
         public void InstantiateFleetsShipManagerUI(FleetController fleetCon)
         {

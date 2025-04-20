@@ -371,7 +371,7 @@ namespace Assets.Core
         {
             List<GameObject> list = new List<GameObject>();
             TechLevel techLevel = GameController.Instance.GameData.StartingTechLevel;
-            int startingStarDate = 1010;
+            int startingStarDate = TimeManager.Instance.StaringStardate;
             switch (prefab.name)
             {
                 // "SysName" not done here. See in each system ribbon is set in GalaxyMenuUIController without a facility game object needed
@@ -701,78 +701,79 @@ namespace Assets.Core
         private PowerPlantSO GetPowrPlantSObyCivInt(int  civInt)
         {
             PowerPlantSO result = null;
-            for(int i = 0;i< powerPlantSOList.Count;i++)
-            {              
-                if (powerPlantSOList[i].CivInt == civInt)
-                {
-                    result = powerPlantSOList[i];
-                    break;
-                }
+            if (civInt <= 6)
+            {
+                result = powerPlantSOList[civInt];
+            }
+            else
+            {
+                result = powerPlantSOList[0];
             }
             return result;
         }
         private FactorySO GetFactorySObyCivInt(int civInt)
         {
             FactorySO result = null;
-            for (int i = 0; i < factorySOList.Count; i++)
+            if(civInt <= 6)
             {
-                if (factorySOList[i].CivInt == civInt)
-                {
-                    result = factorySOList[i];
-                    break;
-                }
+                result = factorySOList[civInt];
             }
+            else
+            {
+                result = factorySOList[0];                 
+            }          
             return result;
         }
         private ShipyardSO GetShipyardSObyCivInt(int civInt)
         {
             ShipyardSO result = null;
-            for (int i = 0;i< shipyardSOList.Count;i++)
-            {
-                if (shipyardSOList[i].CivInt == civInt)
+
+                if (civInt <= 6)
                 {
-                    result = shipyardSOList[i];
-                    break;
-                }
+                    result = shipyardSOList[civInt];
             }
+                else
+                {
+                    result = shipyardSOList[0];
+                }               
             return result;
         }
         private ShieldGeneratorSO GetShieldGeneratorSObyCivInt(int civInt)
         {
             ShieldGeneratorSO result = null;
-            for (int i = 0;i< shieldGeneratorSOList.Count;i++)
+            if (civInt <= 6)
             {
-                if (shieldGeneratorSOList[i].CivInt == civInt)
-                {
-                    result = shieldGeneratorSOList[i];
-                    break;
-                }
+                result = shieldGeneratorSOList[civInt];
             }
+            else
+            {
+                result = shieldGeneratorSOList[0];
+            }        
             return result;
         }
         private OrbitalBatterySO GetOrbitalBatterySObyCivInt(int civInt)
         {
             OrbitalBatterySO result = null;
-            for (int i = 0;i< orbitalBatterySOList.Count;i++)
+            if (civInt <= 6)
             {
-                if (orbitalBatterySOList[i].CivInt == civInt)
-                {
-                    result = orbitalBatterySOList[i];
-                    break;
-                }
+                result = orbitalBatterySOList[civInt];
             }
+            else
+            {
+                result = orbitalBatterySOList[0];
+            }    
             return result;
         }
         private ResearchCenterSO GetResearchCenterSObyCivInt(int civInt)
         {
             ResearchCenterSO result = null;
-            for (int i = 0; i< researchCenterSOList.Count; i++)
+            if ( civInt <= 6)
             {
-                if (researchCenterSOList[i].CivInt == civInt)
-                {
-                    result = researchCenterSOList[i];
-                    break;
-                }
+                result = researchCenterSOList[civInt];
+            }
+            else
+            {
+                result = researchCenterSOList[0];
             }
             return result;
         }

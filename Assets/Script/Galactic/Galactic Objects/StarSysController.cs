@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
 using Unity.VisualScripting;
+using UnityEditor;
 
 
 namespace Assets.Core
@@ -484,22 +485,21 @@ namespace Assets.Core
                 {
                     if (GameController.Instance.AreWeLocalPlayer(this.StarSysData.CurrentOwnerCivEnum)) // this 'StarSystem' is a local player galaxy object hit
                     {
-                        if (FleetUIController.Instance.MouseClickSetsDestination == false) // not while our FleetUIController was looking for a destination
-                        {
-                            GameObject aNull = new GameObject();
-                            GalaxyMenuUIController.Instance.OpenMenu(Menu.ASystemMenu, aNull); // set the system UI to this system
-                            GalaxyMenuUIController.Instance.SetUpASystemUI(this);
-                            Destroy(aNull);
-                        }
-                        else
-                        {
-                            NewDestination(hitObject); // one of our systems hit 
-                        }
+                        GameObject NotAMenuGO = new GameObject();
+                        //if (!GameController.Instance.isUpdating && !EditorApplication.isCompiling)
+                        GalaxyMenuUIController.Instance.SetUpASystemUI(this);
+                        GalaxyMenuUIController.Instance.OpenMenu(Menu.ASystemMenu, NotAMenuGO); // set the system UI to this system
+
+                        Destroy(NotAMenuGO);
+                        //else
+                        //{
+                        //    NewDestination(hitObject); // one of our systems hit 
+                        //}
                     }
-                    else if (FleetUIController.Instance.MouseClickSetsDestination == true)
-                    {
-                        NewDestination(hitObject);
-                    }
+                    //else if (GalaxyMenuUIController.Instance.MouseClickSetsDestination == true)
+                    //{
+                    //    NewDestination(hitObject);
+                    //}
                     else if (DiplomacyManager.Instance.FoundADiplomacyController(this.StarSysData.CurrentCivController, CivManager.Instance.LocalPlayerCivContoller))
                     { // this is a system local player does not own but we know them
                         DiplomacyUIController.Instance.LoadDiplomacyUI(DiplomacyManager.Instance.ReturnADiplomacyController(this.StarSysData.CurrentCivController, CivManager.Instance.LocalPlayerCivContoller));
@@ -508,12 +508,12 @@ namespace Assets.Core
                 }
             }
         }
-        private void NewDestination(GameObject hitObject)
-        {
-            bool isFleet = false;
-            FleetUIController.Instance.SetAsDestination(hitObject, isFleet);
+        //private void NewDestination(GameObject hitObject)
+        //{
+        //    bool isFleet = false;
+        //    hitObject.GetComponent<FleetController>().SetAsDestination(hitObject, isFleet);
 
-        }
+        //}
 
         public void OnEnable()
         {

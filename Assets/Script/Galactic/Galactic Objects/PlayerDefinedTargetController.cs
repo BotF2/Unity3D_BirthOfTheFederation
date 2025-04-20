@@ -36,25 +36,25 @@ public class PlayerDefinedTargetController : MonoBehaviour
     private void DragWithLeftMouse()
     {
         if (Input.GetMouseButtonDown(0))
-        {
-            lastMousePosition = Input.mousePosition;
-            if (FleetUIController.Instance.MouseClickSetsDestination)
-            {
-                Ray ray = galaxyEventCamera.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit;
-                if (Physics.Raycast(ray, out hit))
-                {
-                    GameObject hitObject = hit.collider.gameObject;
-                    if (hitObject.tag != "GalaxyImage" &&
-                        GameController.Instance.AreWeLocalPlayer(this.PlayerTargetData.CivOwnerEnum))
-                    {
-                        if (FleetUIController.Instance.MouseClickSetsDestination == true) // while FleetUIController was looking for a destination
-                        {
-                            NewDestination(hitObject); // target hit as destination
-                        }
-                    }
-                }
-            }
+        {// This looks to be backward, copy past from fleet looking for a destination
+            //lastMousePosition = Input.mousePosition;
+            //if (true) // is used by FleetController to know if we are sellecting a destination
+            //{
+            //    Ray ray = galaxyEventCamera.ScreenPointToRay(Input.mousePosition);
+            //    RaycastHit hit;
+            //    if (Physics.Raycast(ray, out hit))
+            //    {
+            //        GameObject hitObject = hit.collider.gameObject;
+            //        if (hitObject.tag != "GalaxyImage" &&
+            //            GameController.Instance.AreWeLocalPlayer(this.PlayerTargetData.CivOwnerEnum))
+            //        {
+            //            if (true) // while FleetController was looking for a destination
+            //            {
+            //                NewDestination(hitObject); // target hit as destination
+            //            }
+            //        }
+            //    }
+            //}
         }
         else if (Input.GetMouseButton(0) && Input.GetKey(KeyCode.Space))
         {
@@ -77,8 +77,9 @@ public class PlayerDefinedTargetController : MonoBehaviour
     }
     private void NewDestination(GameObject hitObject)
     {
-        bool isFleet = false;
-        FleetUIController.Instance.SetAsDestination(hitObject, isFleet);
+        //var fleetCon = hitObject.GetComponent<FleetController>();
+        //bool isFleet = false;
+        //fleetCon.SetAsDestination(hitObject, isFleet);
         //this.CanvasDestination.gameObject.SetActive(true);
     }
     ///

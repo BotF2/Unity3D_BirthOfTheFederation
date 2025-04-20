@@ -19,6 +19,7 @@ public class TimeManager : MonoBehaviour
     public List<TrekRandomEventSO> RandomEvents;
     public List<TrekStardateEventSO> StardateEvents;
     public bool timeRunning = false;
+    public int StaringStardate = 1010; // the starting stardate
     void Awake()
     {
         if (Instance == null)
@@ -34,7 +35,7 @@ public class TimeManager : MonoBehaviour
         GameManager.Instance.TimeManager = this;
         timer = timeSpeedup;
         //timeCoroutine = StartCoroutine(TimeProgression());
-        currentStardate = 1010;
+        currentStardate = StaringStardate;
     }
 
     void Update()
