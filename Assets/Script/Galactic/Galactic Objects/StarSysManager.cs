@@ -804,14 +804,18 @@ namespace Assets.Core
 
         public void InstantiateSysUIGameObject(StarSysController sysController)
         {
-            if (true) //sysController.StarSysData.CurrentOwnerCivEnum == GameController.Instance.GameData.LocalPlayerCivEnum)
+            if (sysController.StarSysData.CurrentOwnerCivEnum == GameController.Instance.GameData.LocalPlayerCivEnum)
             {
                 currentActiveSysCon = sysController;
-                GameObject thisStarSysUIGameObject = (GameObject)Instantiate(sysUIPrefab, new Vector3(0, 0, 0),
-                    Quaternion.identity);
-                thisStarSysUIGameObject.layer = 5;
-                sysController.StarSystUIGameObject = thisStarSysUIGameObject; 
-                thisStarSysUIGameObject.transform.SetParent(contentFolderParent.transform, false); // load into List of systems
+                if (sysController.StarSystUIGameObject == null)
+                {
+                    GameObject thisStarSysUIGameObject = (GameObject)Instantiate(sysUIPrefab, new Vector3(0, 0, 0),
+                        Quaternion.identity);
+                    thisStarSysUIGameObject.layer = 5;
+                    sysController.StarSystUIGameObject = thisStarSysUIGameObject;
+                    sysController.StarSystUIGameObject.SetActive(true);
+                    thisStarSysUIGameObject.transform.SetParent(contentFolderParent.transform, false); // load into List of systems
+                }
             }    
         }
 

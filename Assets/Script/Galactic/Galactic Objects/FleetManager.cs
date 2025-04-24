@@ -18,6 +18,7 @@ namespace Assets.Core
     public class FleetManager : MonoBehaviour
     {
         public static FleetManager Instance;
+        public FleetController currentActiveFleetCon;
         [SerializeField]
         private csFogWar fogWar;
         [SerializeField]
@@ -100,10 +101,9 @@ namespace Assets.Core
         }
         public void BuildFirstFleets(StarSysController sysCon, bool inSystem)
         {
-           // first path here is sent on loading the game for civs with warp, first fleets from Systems/Civs with warp
+            // first path here is sent on loading the game for civs with warp, first fleets from Systems/Civs with warp
             FleetSO fleetSO = GetFleetSObyInt((int)sysCon.StarSysData.CurrentOwnerCivEnum);
-           //int xyzBump = 1;
-           var position = sysCon.StarSysData.GetPosition();
+            var position = sysCon.StarSysData.GetPosition();
 
             // *** This is an option for more fleets/ships with larger galaxy
             //switch (GameManager.current.GalaxySize)
@@ -125,7 +125,7 @@ namespace Assets.Core
             CivData thisCivData = CivManager.Instance.GetCivDataByCivEnum(fleetSO.CivOwnerEnum); // new CivData();
 
             FleetData fleetData = new FleetData(fleetSO); // FleetData is not MonoBehavior so new is OK
-            fleetData.CurrentWarpFactor = 9f;
+            fleetData.CurrentWarpFactor = 3f;
             fleetData.CivLongName = thisCivData.CivLongName; //.CivLongName;
             fleetData.CivShortName = thisCivData.CivShortName;
             GameObject aFleet = InstantiateFleet(sysCon, fleetData, position, inSystem);  
@@ -138,12 +138,13 @@ namespace Assets.Core
         public GameObject InstantiateFleet(StarSysController sysCon, FleetData fleetData, Vector3 position, bool inSystem)
         {
             GameObject fleetNewGameOb = new GameObject();
-
+   
             IEnumerable<StarSysController> ourCivSysCons =
                 from x in StarSysManager.Instance.StarSysControllerList
                 where (x.StarSysData.CurrentOwnerCivEnum == fleetData.CivEnum)
                 select x;
             var ourSysCons = ourCivSysCons.ToList();
+                
             if (fleetData.CivEnum != CivEnum.ZZUNINHABITED1)
             {
                 fleetNewGameOb = (GameObject)Instantiate(fleetPrefab, new Vector3(0, 0, 0),
@@ -152,6 +153,7 @@ namespace Assets.Core
                 fleetNewGameOb.layer = 6; // galaxy layer
 
                 var fleetController = fleetNewGameOb.GetComponentInChildren<FleetController>();
+                currentActiveFleetCon = fleetController;
                 fleetController.BackgroundGalaxyImage = galaxyImage;
                 fleetController.FleetData = fleetData;
 
@@ -163,8 +165,9 @@ namespace Assets.Core
                     var transGalaxyCenter = galaxyCenter.gameObject.transform;
                     var trans = sysCon.gameObject.transform;
                     fleetNewGameOb.transform.SetParent(transGalaxyCenter, true); // parent is galaxy center, it is not in a star system
-                    // now put it near the home world and visible/seen on the galaxy map, in galaxy space. It is not 'hidden' in the system
+                                                                                    // now put it near the home world and visible/seen on the galaxy map, in galaxy space. It is not 'hidden' in the system
                     fleetNewGameOb.transform.Translate(new Vector3(trans.position.x + 20f, trans.position.y + 20f, trans.position.z));
+                    fleetData.Position = fleetNewGameOb.transform.position;
                 }
                 else // it is in the system so 'hidden' on the galaxy map inside the system
                 {
@@ -174,7 +177,7 @@ namespace Assets.Core
                 int fleetInt = GetNewFleetInt(fleetData.CivEnum);
                 fleetNewGameOb.name = fleetData.CivShortName.ToString() + " Fleet " + fleetInt.ToString(); // name game object
                 fleetData.Name = fleetNewGameOb.name;
- 
+
                 fleetController.FleetData.FleetInt = fleetInt;
                 fleetController.Name = fleetData.Name;
                 FleetConrollersInGame.Add(fleetController);
@@ -209,7 +212,7 @@ namespace Assets.Core
                             }
                             else Renderers[i].gameObject.SetActive(true);
                         }
-                        if (Renderers[i].name == "InsigniaUnknown" && (GameController.Instance.AreWeLocalPlayer(fleetController.FleetData.CivEnum) || localPlayerCanSeeMyInsigniaList.Contains(fleetData.CivEnum )))
+                        if (Renderers[i].name == "InsigniaUnknown" && (GameController.Instance.AreWeLocalPlayer(fleetController.FleetData.CivEnum) || localPlayerCanSeeMyInsigniaList.Contains(fleetData.CivEnum)))
                         {
                             Renderers[i].gameObject.SetActive(false);
                         }
@@ -248,20 +251,22 @@ namespace Assets.Core
                 InstantiateFleetUIGameObject(fleetController);
             }
             else fleetNewGameOb.name = "killMe";
-
             return fleetNewGameOb;
-
         }
         private void InstantiateFleetUIGameObject(FleetController fleetCon)
         {
-            if (true) //fleetCon.StarSysData.CurrentOwnerCivEnum == GameController.Instance.GameData.LocalPlayerCivEnum)
+            if (fleetCon.FleetData.CivEnum == GameController.Instance.GameData.LocalPlayerCivEnum)
             {
-                //currentActiveFleetCon = fleetCon;
-                GameObject thisFleetUIGameObject = (GameObject)Instantiate(fleetUIPrefab, new Vector3(0, 0, 0),
+                currentActiveFleetCon = fleetCon;
+                if (fleetCon.FleetUIGameObject == null)
+                {
+                    GameObject thisFleetUIGameObject = (GameObject)Instantiate(fleetUIPrefab, new Vector3(0, 0, 0),
                     Quaternion.identity);
-                thisFleetUIGameObject.layer = 5;
-                fleetCon.FleetListUIGameObject = thisFleetUIGameObject;
-                thisFleetUIGameObject.transform.SetParent(contentFolderParent.transform, false); // load into List of systems
+                    thisFleetUIGameObject.SetActive(true);
+                    thisFleetUIGameObject.layer = 5;
+                    fleetCon.FleetUIGameObject = thisFleetUIGameObject;
+                    thisFleetUIGameObject.transform.SetParent(contentFolderParent.transform, false); // load into List of fleets
+                }
             }
         }
         public void InstantiateFleetsShipManagerUI(FleetController fleetCon)

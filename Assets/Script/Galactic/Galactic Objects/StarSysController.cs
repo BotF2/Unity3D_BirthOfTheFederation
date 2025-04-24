@@ -323,22 +323,23 @@ namespace Assets.Core
                         default:
                             break;
                     }
-                    if (this.StarSysData.FleetsInSystem.Count == 0) // there is always a feel in the system waiting for new ships
-                    {
-                        IEnumerable<CivSO> civSOs =
-                            from civSO in CivManager.Instance.CivSOsInGame
-                            where civSO.CivEnum == this.StarSysData.CurrentCivController.CivData.CivEnum
-                            select civSO;
-                        CivSO theCivSO = civSOs.ToList().FirstOrDefault();
-                        GameObject fleetGOinSys = FleetManager.Instance.BuildShipInSystemWithFleet(this, true, localPlayerCivEnum); // need fleet for the new ship of our civ and in system true
-                        if (fleetGOinSys.name == "killMe")
-                            Destroy(fleetGOinSys);
-                        else
-                        {
-                            ShipManager.Instance.BuildShipInOurFleet(shipType, fleetGOinSys, this); // put a ship in the fleet
-                            this.StarSysData.FleetsInSystem.Add(fleetGOinSys);
-                        }
-                    }else if (this.StarSysData.FleetsInSystem.Count > 0)
+                    //if (this.StarSysData.FleetsInSystem.Count == 0) // there is always a feel in the system waiting for new ships
+                    //{
+                    //    IEnumerable<CivSO> civSOs =
+                    //        from civSO in CivManager.Instance.CivSOsInGame
+                    //        where civSO.CivEnum == this.StarSysData.CurrentCivController.CivData.CivEnum
+                    //        select civSO;
+                    //    CivSO theCivSO = civSOs.ToList().FirstOrDefault();
+                     //   GameObject fleetGOinSys = FleetManager.Instance.BuildShipInSystemWithFleet(this, true, localPlayerCivEnum); // need fleet for the new ship of our civ and in system true
+                    //    if (fleetGOinSys.name == "killMe")
+                    //        Destroy(fleetGOinSys);
+                    //    else
+                    //    {
+                    //        ShipManager.Instance.BuildShipInOurFleet(shipType, fleetGOinSys, this); // put a ship in the fleet
+                    //        this.StarSysData.FleetsInSystem.Add(fleetGOinSys);
+                    //    }
+                    //}
+                    if (this.StarSysData.FleetsInSystem.Count > 0)
                     {
                         ShipManager.Instance.BuildShipInOurFleet(shipType, this.StarSysData.FleetsInSystem[0], this); // put a ship in the fleet
                     }
@@ -479,26 +480,24 @@ namespace Assets.Core
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
-                GameObject hitObject = hit.collider.gameObject;
+                GameObject sysGO = hit.collider.gameObject;
                 // what a Star System Controller does with a hit
-                if (hitObject.tag != "GalaxyImage")
+                if (sysGO.tag != "GalaxyImage")
                 {
                     if (GameController.Instance.AreWeLocalPlayer(this.StarSysData.CurrentOwnerCivEnum)) // this 'StarSystem' is a local player galaxy object hit
                     {
-                        GameObject NotAMenuGO = new GameObject();
-                        //if (!GameController.Instance.isUpdating && !EditorApplication.isCompiling)
-                        GalaxyMenuUIController.Instance.SetUpASystemUI(this);
-                        GalaxyMenuUIController.Instance.OpenMenu(Menu.ASystemMenu, NotAMenuGO); // set the system UI to this system
+                        //GalaxyMenuUIController.Instance.SetUpASystemUI(this);
+                        GalaxyMenuUIController.Instance.OpenMenu(Menu.ASystemMenu, sysGO); // set the system UI to this system
 
-                        Destroy(NotAMenuGO);
+                        //Destroy(Sys);
                         //else
                         //{
-                        //    NewDestination(hitObject); // one of our systems hit 
+                        //    NewDestination(sysGO); // one of our systems hit 
                         //}
                     }
                     //else if (GalaxyMenuUIController.Instance.MouseClickSetsDestination == true)
                     //{
-                    //    NewDestination(hitObject);
+                    //    NewDestination(sysGO);
                     //}
                     else if (DiplomacyManager.Instance.FoundADiplomacyController(this.StarSysData.CurrentCivController, CivManager.Instance.LocalPlayerCivContoller))
                     { // this is a system local player does not own but we know them
@@ -508,10 +507,10 @@ namespace Assets.Core
                 }
             }
         }
-        //private void NewDestination(GameObject hitObject)
+        //private void NewDestination(GameObject sysGO)
         //{
         //    bool isFleet = false;
-        //    hitObject.GetComponent<FleetController>().SetAsDestination(hitObject, isFleet);
+        //    sysGO.GetComponent<FleetController>().SetAsDestination(sysGO, isFleet);
 
         //}
 

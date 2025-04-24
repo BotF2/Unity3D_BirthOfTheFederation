@@ -50,15 +50,15 @@ public class GalaxyMenuUIController : MonoBehaviour
     private GameObject aFleetMenuView;
     [SerializeField]
     private GameObject manageFleetShipsMenu;
-    [SerializeField] 
+    [SerializeField]
     private GameObject diplomacyMenuView;
     [SerializeField]
     private GameObject diplomacyListContainter;
     [SerializeField]
     private GameObject aDiplomacyMenuView;
-    [SerializeField] 
+    [SerializeField]
     private GameObject intelMenuView;
-    [SerializeField] 
+    [SerializeField]
     private GameObject encyclopediaMenuView;
     [SerializeField]
     private GameObject aNull;
@@ -86,8 +86,10 @@ public class GalaxyMenuUIController : MonoBehaviour
     private List<GameObject> listOfFleetUiGos;
     [SerializeField]
     private GameObject powerOverload;
-    [SerializeField] 
+    [SerializeField]
     private GameObject openMenuWas;
+    [SerializeField]
+    private Menu openMenuEnumWas;
     [SerializeField]
     private GameObject fleetUI_Prefab;// GameObject controlles this active UI on/off
 
@@ -113,9 +115,9 @@ public class GalaxyMenuUIController : MonoBehaviour
         fleetsMenuView.SetActive(false);
         aFleetMenuView.SetActive(false);
         manageFleetShipsMenu.SetActive(false);
-        diplomacyMenuView.SetActive(false); 
+        diplomacyMenuView.SetActive(false);
         aDiplomacyMenuView.SetActive(false);
-        intelMenuView.SetActive(false) ;
+        intelMenuView.SetActive(false);
         encyclopediaMenuView.SetActive(false);
         closeMenuButton.SetActive(false);
         sysBackground.SetActive(false);
@@ -137,9 +139,8 @@ public class GalaxyMenuUIController : MonoBehaviour
         manageFleetShipsMenu = prefabMenu;
         manageFleetShipsMenu.SetActive(true);
     }
-    public void CloseTheOpenGalaxyUI()
+    public void CloseTheBackgrounds()
     {
-        OpenMenu(Menu.None, aNull);
         closeMenuButton.SetActive(false);
         sysBackground.SetActive(false);
         fleetBackground.SetActive(false);
@@ -147,72 +148,113 @@ public class GalaxyMenuUIController : MonoBehaviour
         intelBackground.SetActive(false);
         encyclopediaBackground.SetActive(false);
     }
-    public void OpenMenu(Menu menuEnum, GameObject callingMenu)
+    public void SystemButtonPressed()
     {
-        if (callingMenu != null)
-            callingMenu.SetActive(false);
+        if (systemsMenuView.activeSelf)
+            CloseMenu(Menu.SystemsMenu);
+        else
+            OpenMenu(Menu.SystemsMenu, null);
+    }
+    public void FleetButtonPressed()
+    {
+        if (fleetsMenuView.activeSelf)
+            CloseMenu(Menu.FleetsMenu); 
+        else
+            OpenMenu(Menu.FleetsMenu, null);
+    }
+    public void OpenMenu(Menu menuEnum, GameObject callingMenuOrGalaxyObject)
+    {
+
         if (openMenuWas != null)
+        {
             openMenuWas.SetActive(false);
+            CloseMenu(openMenuEnumWas);
+        }
+        
         switch (menuEnum)
         {
             case Menu.None:
                 openMenuWas = null;
                 break;
             case Menu.SystemsMenu:
+                CloseTheBackgrounds();
+                MoveBackAnySysUIGO();
                 systemsMenuView.SetActive(true);
                 sysBackground.SetActive(true);
                 openMenuWas = systemsMenuView;
+                openMenuEnumWas = Menu.SystemsMenu;
                 break;
             case Menu.ASystemMenu:
-                CloseTheOpenGalaxyUI();
+                CloseTheBackgrounds();
+                SetUpASystemUI(callingMenuOrGalaxyObject.GetComponentInChildren<StarSysController>());
                 sysBackground.SetActive(true);
                 aSystemMenuView.SetActive(true);
+                MoveTheSysUIGO(callingMenuOrGalaxyObject);
                 openMenuWas = aSystemMenuView;
+                openMenuEnumWas = Menu.ASystemMenu;
+                StarSysManager.Instance.currentActiveSysCon = callingMenuOrGalaxyObject.GetComponentInChildren<StarSysController>();
                 break;
             case Menu.BuildMenu:
+                InactivateCallingMenu(callingMenuOrGalaxyObject);
                 sysBuildMenu.SetActive(true);
                 openMenuWas = sysBuildMenu;
+                openMenuEnumWas = Menu.BuildMenu;
                 break;
             case Menu.FleetsMenu:
+                CloseTheBackgrounds();
+                MoveBackAnyFleetUIGO();
                 fleetsMenuView.SetActive(true);
                 fleetBackground.SetActive(true);
                 openMenuWas = fleetsMenuView;
+                openMenuEnumWas = Menu.FleetsMenu;
                 break;
             case Menu.AFleetMenu:
-                CloseTheOpenGalaxyUI();
+                CloseTheBackgrounds();
+                SetUpAFleetUI(callingMenuOrGalaxyObject.GetComponentInChildren<FleetController>());
                 aFleetMenuView.SetActive(true);
                 fleetBackground.SetActive(true);
+                MoveTheFleetUIGO(callingMenuOrGalaxyObject);
                 openMenuWas = aFleetMenuView;
+                openMenuEnumWas = Menu.AFleetMenu;
                 break;
             case Menu.ManageShipsMenu:
+                InactivateCallingMenu(callingMenuOrGalaxyObject);
                 manageFleetShipsMenu.SetActive(true);
                 openMenuWas = manageFleetShipsMenu;
+                openMenuEnumWas = Menu.ManageShipsMenu;
                 break;
             case Menu.DiplomacyMenu:
+                InactivateCallingMenu(callingMenuOrGalaxyObject);
                 TimeManager.Instance.PauseTime();
                 diplomacyMenuView.SetActive(true);
                 diplomacyBackground.SetActive(true);
                 openMenuWas = diplomacyMenuView;
+                openMenuEnumWas = Menu.DiplomacyMenu;
                 break;
             case Menu.ADiplomacyMenu:
                 TimeManager.Instance.PauseTime();
                 aDiplomacyMenuView.SetActive(true);
                 diplomacyBackground.SetActive(true);
                 openMenuWas = aDiplomacyMenuView;
+                openMenuEnumWas = Menu.ADiplomacyMenu;
                 break;
             case Menu.IntellMenu:
                 intelMenuView.SetActive(true);
                 intelBackground.SetActive(true);
                 openMenuWas = intelMenuView;
+                openMenuEnumWas = Menu.IntellMenu;
                 break;
             case Menu.EncyclopedianMenu:
+                InactivateCallingMenu(callingMenuOrGalaxyObject);
                 encyclopediaMenuView.SetActive(true);
                 intelBackground.SetActive(true);
                 openMenuWas = encyclopediaMenuView;
+                openMenuEnumWas = Menu.EncyclopedianMenu;
                 break;
             case Menu.HabitableSysMenu:
                 habitableSysMenu.SetActive(true);
                 openMenuWas = habitableSysMenu;
+                openMenuEnumWas = Menu.HabitableSysMenu;
                 break;
             case Menu.Combat:
                 //combat.SetActive(true);
@@ -221,78 +263,81 @@ public class GalaxyMenuUIController : MonoBehaviour
                 break;
         }
     }
-
-    //public void OpenSystems()
-    //{
-    //    if (!systemsMenuView.activeSelf)
-    //    {
-    //        sysBackground.SetActive(true);
-    //        closeMenuButton.SetActive(true);
-    //        fleetBackground.SetActive(false);
-    //        diplomacyBackground.SetActive(false);
-    //        intelBackground.SetActive(false);
-    //        OpenMenu(Menu.SystemsMenu, aNull);   
-    //        //SetUISystemsData();
-    //    }
-    //    else
-    //    {
-    //        OpenMenu(Menu.None, systemsMenuView);   
-    //        sysBackground.SetActive(false);
-    //    }
-    //}
-    public void SetUpASystemUI(StarSysController theSysCon) // now system ui open single system view when our system is clicked on galaxy map
+    private void InactivateCallingMenu(GameObject callingMenu)
     {
-        if (listOfStarSysUiGos.Contains(theSysCon.StarSystUIGameObject))
+        if (callingMenu != null)
+            callingMenu.SetActive(false);
+    }
+    private void MoveTheSysUIGO(GameObject sysConGO)
+    {
+        int numFound =0;
+        List<GameObject> foundGoList = new List<GameObject>();
+        for (int i = 0; i < aSystemMenuView.transform.childCount; i++)
         {
-            //aSystemMenuView.SetActive(true);
-            //closeMenuButton.SetActive(true);
-            //systemsMenuView.SetActive(false);
-            //fleetBackground.SetActive(false);
-            //diplomacyBackground.SetActive(false);
-            //intelBackground.SetActive(false);
-            //encyclopediaBackground.SetActive(false);
-            //buildListUI.SetActive(false);
-            theSysCon.StarSystUIGameObject.SetActive(true);
-            theSysCon.StarSystUIGameObject.transform.SetParent(aSystemMenuView.transform, false);
-            //sysBackground.SetActive(true);
+            numFound = i;
+            if (i > 0)
+                foundGoList.Add(aSystemMenuView.transform.GetChild(i).gameObject);
+        }
+        if (numFound > 0)
+            for (int j = 0; j < numFound; j++)
+                Destroy(foundGoList[j]);
+        for (int i = 0; i < listOfStarSysUiGos.Count; i++) 
+        {
+            if (listOfStarSysUiGos[i] == sysConGO)
+            {
+                listOfStarSysUiGos[i].transform.SetParent(aSystemMenuView.transform, false);
+            }
         }
     }
-    //public void OpenFleets()
-    //{
-    //    if (!fleetsMenuView.activeSelf)
-    //    {
-    //        OpenMenu(Menu.FleetsMenu, aNull);
-    //        fleetBackground.SetActive(true);
-    //        closeMenuButton.SetActive(true);
-    //        sysBackground.SetActive(false);
-    //        diplomacyBackground.SetActive(false);
-    //        intelBackground.SetActive(false);
-    //        encyclopediaBackground.SetActive(false);
-    //    }
-    //    else
-    //    {
-    //        OpenMenu(Menu.None, fleetsMenuView);
-    //        fleetBackground.SetActive(false);
-    //    }
-    //}
-    //public void OpenDiplomacy()
-    //{
-    //    if (!diplomacyMenuView.activeSelf)
-    //    {
-    //        OpenMenu(Menu.DiplomacyMenu, aNull);
-    //        diplomacyBackground.SetActive(true);
-    //        closeMenuButton.SetActive(true);
-    //        sysBackground.SetActive(false);
-    //        fleetBackground.SetActive(false);
-    //        intelBackground.SetActive(false);
-    //        encyclopediaBackground.SetActive(false);
-    //    } 
-    //    else 
-    //    {
-    //        OpenMenu(Menu.None, diplomacyMenuView);
-    //        diplomacyBackground.SetActive(false);
-    //    }
-    //}
+    private void MoveBackAnySysUIGO()
+    {
+
+        for (int i = 0; i < aSystemMenuView.transform.childCount; i++)
+        {
+            if (aSystemMenuView.transform.GetChild(i).gameObject != null)
+                aSystemMenuView.transform.GetChild(i).gameObject.transform.SetParent(sysListContainer.transform, false); ;
+        }
+    }
+    private void MoveTheFleetUIGO(GameObject fleetConGO)
+    {
+        int numFound = 0;
+        List<GameObject> foundGoList = new List<GameObject>();
+        for (int i = 0; i < aFleetMenuView.transform.childCount; i++)
+        {
+            numFound = i;
+            if (i > 0)
+                foundGoList.Add(aFleetMenuView.transform.GetChild(i).gameObject);
+        }
+        //if (numFound > 0)
+        //    for (int j = 0; j < numFound; j++)
+        //        Destroy(foundGoList[j]);
+        for (int i = 0; i < listOfFleetUiGos.Count; i++)
+        {
+            if (listOfFleetUiGos[i] == fleetConGO)
+            {
+                listOfFleetUiGos[i].transform.SetParent(aFleetMenuView.transform, false);
+            }
+        }
+    }
+    private void MoveBackAnyFleetUIGO()
+    {
+        for (int i = 0; i < aFleetMenuView.transform.childCount; i++)
+        {
+            if (aFleetMenuView.transform.GetChild(i).gameObject != null)
+                aFleetMenuView.transform.GetChild(i).gameObject.transform.SetParent(fleetListContainer.transform, false); ;
+        }
+    }
+
+    private void SetUpAFleetUI(FleetController theFleetCon)
+    {
+        theFleetCon.FleetUIGameObject.SetActive(true);
+        theFleetCon.FleetUIGameObject.transform.SetParent(aFleetMenuView.transform, false );
+    }
+    private void SetUpASystemUI(StarSysController theSysCon) // now system ui open single system view when our system is clicked on galaxy map
+    {
+        theSysCon.StarSystUIGameObject.SetActive(true);
+        theSysCon.StarSystUIGameObject.transform.SetParent(aSystemMenuView.transform, false);
+    }
     public void CloseMenu(Menu enumMenu)
     {
         switch (enumMenu)
@@ -301,10 +346,12 @@ public class GalaxyMenuUIController : MonoBehaviour
                 openMenuWas = null;
                 break;
             case Menu.SystemsMenu:
+                sysBackground.SetActive(false);
                 systemsMenuView.SetActive(false);
                 openMenuWas = systemsMenuView;
                 break;
             case Menu.ASystemMenu:
+                sysBackground.SetActive(false);
                 aSystemMenuView.SetActive(false);
                 openMenuWas = aSystemMenuView;
                 break;
@@ -313,27 +360,33 @@ public class GalaxyMenuUIController : MonoBehaviour
                 openMenuWas = sysBuildMenu;
                 break;
             case Menu.FleetsMenu:
+                fleetBackground.SetActive(false);
                 fleetsMenuView.SetActive(false);
                 openMenuWas = fleetsMenuView;
                 break;
             case Menu.AFleetMenu:
+                fleetBackground.SetActive(false);
                 aFleetMenuView.SetActive(false);
                 openMenuWas = aFleetMenuView;
                 break;
             case Menu.DiplomacyMenu:
+                diplomacyBackground.SetActive(false);
                 TimeManager.Instance.ResumeTime();
                 diplomacyMenuView.SetActive(false);
                 openMenuWas = diplomacyMenuView;
                 break;
             case Menu.ADiplomacyMenu:
+                diplomacyBackground.SetActive(false);
                 aDiplomacyMenuView.SetActive(false);
                 openMenuWas = aDiplomacyMenuView;
                 break;
             case Menu.IntellMenu:
+                intelBackground.SetActive(false);
                 intelMenuView.SetActive(false);
                 openMenuWas = intelMenuView;
                 break;
             case Menu.EncyclopedianMenu:
+                encyclopediaBackground.SetActive(false);
                 encyclopediaMenuView.SetActive(false);
                 openMenuWas = encyclopediaMenuView;
                 break;
@@ -348,107 +401,121 @@ public class GalaxyMenuUIController : MonoBehaviour
                 break;
         }
     }
-    //public void OpenIntel()
-    //{
-    //    if (!intelMenuView.activeSelf)
-    //    {
-    //        OpenMenu(Menu.IntellMenu, aNull);
-    //        intelBackground.SetActive(true);
-    //        closeMenuButton.SetActive(true);
-    //        sysBackground.SetActive(false);
-    //        fleetBackground.SetActive(false);
-    //        diplomacyBackground.SetActive(false);
-    //        encyclopediaBackground.SetActive(false);
-    //    }
-    //    else
-    //    { 
-    //        OpenMenu(Menu.None, intelMenuView);
-    //        intelBackground.SetActive(false);
-    //    }
-    //}
 
-    //public void OpenEncyclopedia()
-    //{
-    //    if (!encyclopediaMenuView.activeSelf)
-    //    {
-    //        OpenMenu(Menu.EncyclopedianMenu, aNull);
-    //        encyclopediaBackground.SetActive(true);
-    //        closeMenuButton.SetActive(true);
-    //        sysBackground.SetActive(false);
-    //        fleetBackground.SetActive(false);
-    //        diplomacyBackground.SetActive(false);
-    //        intelBackground.SetActive(false);
-    //    }
-    //    else 
-    //    {
-    //        OpenMenu(Menu.None, encyclopediaMenuView);
-    //        encyclopediaBackground.SetActive(false);
-    //    }
-    //} 
-    private void SetupFleetUIData()
-     {
-        if (FleetManager.Instance.FleetControllerList.Count > 0)
-        {
-            foreach (var fleetCon in FleetManager.Instance.FleetControllerList)
-            {
-                if (fleetCon.FleetListUIGameObject != null && GameController.Instance.AreWeLocalPlayer(fleetCon.FleetData.CivEnum))
-                {
-                    SetupFleetUI(fleetCon);
-                    break;
-                }
-            }
-        }
-    }
-    private void SetUISystemsData()
-    {
-    //    if (StarSysManager.Instance.StarSysControllerList.Count > 0)
-    //    {
-    //        foreach (var sysCon in StarSysManager.Instance.StarSysControllerList)
-    //        {
-    //            if (sysCon.StarSystUIGameObject != null) //  && GameController.Instance.AreWeLocalPlayer(sysCon.StarSysData.CurrentOwnerCivEnum))
-    //            {
-    //                SetupSystemUIData(sysCon);
-
-    //            }
-    //        }
-    //    }
-    }
     public void RemoveSystem(StarSysController sysController)
     {
         sysControllers.Remove(sysController);
         listOfStarSysUiGos.Remove(sysController.StarSystUIGameObject);
     }
 
-    public void SetupFleetUI(FleetController fleetController)
-    { // populate the fleet UI with the data from the fleetController
-        //if (fleetController.FleetListUIGameObject != null)
-        //{
-        foreach(var fleetCon in FleetManager.Instance.FleetControllerList)
+    public void SetupFleetUIData()
+    { // populate the fleet UI with the data from the fleetController...
+        if (FleetManager.Instance.FleetControllerList.Count > 0)
         {
-            if (GameController.Instance.AreWeLocalPlayer(fleetCon.FleetData.CivEnum))
+            for (int j = 0; j < FleetManager.Instance.FleetControllerList.Count; j++)
             {
-                if (!listOfFleetUiGos.Contains(fleetController.FleetListUIGameObject) && GameController.Instance.AreWeLocalPlayer(fleetController.FleetData.CivEnum))
+                var fleetCon = FleetManager.Instance.FleetControllerList[j];
+                if (GameController.Instance.AreWeLocalPlayer(fleetCon.FleetData.CivEnum))
                 {
-                    fleetController.FleetListUIGameObject.SetActive(true);
-                    fleetController.FleetListUIGameObject.transform.SetParent(fleetListContainer.transform, false);
-                    fleetControllers.Add(fleetController);// add to list for ContentFleets (queue) folder 
-                    listOfFleetUiGos.Add(fleetController.FleetListUIGameObject);
-                    var rootTrans = fleetController.transform.root;
-                    RectTransform[] minMapDotTransfor = fleetController.gameObject.GetComponentsInChildren<RectTransform>();
-                    for (int i = 0; i < minMapDotTransfor.Length; i++)
+                    if (!listOfFleetUiGos.Contains(fleetCon.FleetListUIGameObject))
                     {
-                        if (minMapDotTransfor[i].name == "RedDot")
+                        fleetCon.FleetUIGameObject.SetActive(true);
+                        fleetCon.FleetUIGameObject.transform.SetParent(fleetListContainer.transform, false);
+                        fleetControllers.Add(fleetCon);// add to list for ContentFleets (queue) folder 
+                        listOfFleetUiGos.Add(fleetCon.FleetUIGameObject);
+                        RectTransform[] minMapDotTransfor = fleetCon.FleetUIGameObject.GetComponentsInChildren<RectTransform>();
+                        for (int i = 0; i < minMapDotTransfor.Length; i++)
                         {
-                            float x = rootTrans.position.x * 0.12f; // 0.12f is our cosmologic constant, fudge factor
-                            float y = 0f;
-                            float z = rootTrans.position.z * 0.12f;
-                            minMapDotTransfor[i].Translate(new Vector3(x, z, y), Space.Self); // flip z and y from main galaxy map to UI mini map
-                            break;
+                            if (minMapDotTransfor[i].name == "RedDot")
+                            {
+                                float x = fleetCon.FleetData.Position.x * 0.12f; // 0.12f is our cosmologic constant, fudge factor
+                                float y = 0f;
+                                float z = fleetCon.FleetData.Position.z * 0.12f;
+                                minMapDotTransfor[i].Translate(new Vector3(x, z, y), Space.Self); // flip z and y from main galaxy map to UI mini map
+                                break;
+                            }
+                        }
+                    }
+
+                    TextMeshProUGUI[] ourTMPs = fleetCon.FleetUIGameObject.GetComponentsInChildren<TextMeshProUGUI>();
+                    for (int i = 0; i < ourTMPs.Length; i++)
+                    {
+                        int techLevelInt = (int)CivManager.Instance.LocalPlayerCivContoller.CivData.TechLevel / 100; // Early Tech level = 100, Supreme = 900;
+                        ourTMPs[i].enabled = true;
+                        var name = ourTMPs[i].name;
+
+                        switch (name)
+                        {
+                            case "Text FleetName (TMP)":
+                                ourTMPs[i].text = fleetCon.FleetData.Name;
+                                break;
+                            case "Destination Name Text":
+                                ourTMPs[i].text = fleetCon.FleetData.Destination.name;
+                                break;
+                            case "Destination Coordinates":
+                                string X = fleetCon.FleetData.Destination.transform.position.x.ToString();
+                                string Y = fleetCon.FleetData.Destination.transform.position.y.ToString();
+                                string Z = fleetCon.FleetData.Destination.transform.position.z.ToString();
+                                ourTMPs[i].text = "X = "+ X +" Y = "+ Y +" Z =  "+Z;
+                                break;
+                            case "Warp Value Text (TMP)":
+                                //ourTMPs[i].text = 
+                                break;
+                        }
+                    }
+                    Button[] listButtons = fleetCon.FleetUIGameObject.GetComponentsInChildren<Button>();
+                    foreach (var listButton in listButtons)
+                    {
+                        switch (listButton.name)
+                        {
+                            case "ButtonShipManager":
+
+                                listButton.onClick.RemoveAllListeners();
+                                listButton.onClick.AddListener(() => fleetCon.ShipManageClick(fleetCon));
+                                break;
+                            case "ButtonWarpUp":
+                                fleetCon.FleetData.FleetButtonUp = listButton;
+                                listButton.onClick.RemoveAllListeners();
+                                listButton.onClick.AddListener(() => fleetCon.WarpButtonUp(fleetCon));
+                                break;
+                            case "ButtonWarpDown":
+                                fleetCon.FleetData.FleetButtonDown = listButton;
+                                listButton.onClick.RemoveAllListeners();
+                                listButton.onClick.AddListener(() => fleetCon.WarpButtonDown(fleetCon));
+                                break;
+                            default:
+                                break;
                         }
                     }
                 }
+            }
+        }
+    }
+    public void SetupSystemUIData()
+    { // populate the system UI with the data from the sysController
 
-                TextMeshProUGUI[] OneTMP = fleetController.FleetListUIGameObject.GetComponentsInChildren<TextMeshProUGUI>();
+        foreach (var sysController in StarSysManager.Instance.StarSysControllerList)
+        {
+            if (!listOfStarSysUiGos.Contains(sysController.StarSystUIGameObject) && GameController.Instance.AreWeLocalPlayer(sysController.StarSysData.CurrentOwnerCivEnum))
+            {
+                sysController.StarSystUIGameObject.SetActive(true);
+                sysController.StarSystUIGameObject.transform.SetParent(sysListContainer.transform, false);
+                sysControllers.Add(sysController);// add to list for the ContentSystems (queue) folder
+                listOfStarSysUiGos.Add(sysController.StarSystUIGameObject);
+                RectTransform[] minMapDotTransfor = sysController.StarSystUIGameObject.GetComponentsInChildren<RectTransform>();
+                for (int i = 0; i < minMapDotTransfor.Length; i++)
+                {
+                    if (minMapDotTransfor[i].name == "RedDot")
+                    {
+                        float x = sysController.StarSysData.GetPosition().x * 0.12f; // 0.12f is our cosmologic constant, fudge factor
+                        float y = 0f;
+                        float z = sysController.StarSysData.GetPosition().z * 0.12f;
+                        minMapDotTransfor[i].Translate(new Vector3(x, z, y), Space.Self); // flip z and y from main galaxy map to UI mini map
+                        break;
+                    }
+                }
+
+                TextMeshProUGUI[] OneTMP = sysController.StarSystUIGameObject.GetComponentsInChildren<TextMeshProUGUI>();
                 for (int i = 0; i < OneTMP.Length; i++)
                 {
                     int techLevelInt = (int)CivManager.Instance.LocalPlayerCivContoller.CivData.TechLevel / 100; // Early Tech level = 100, Supreme = 900;
@@ -457,118 +524,119 @@ public class GalaxyMenuUIController : MonoBehaviour
 
                     switch (name)
                     {
-                        case "Text FleetName (TMP)":
-                            OneTMP[i].text = fleetController.FleetData.Name;
+                        case "SysName": // text in the button for sys activation
+                            OneTMP[i].text = sysController.StarSysData.SysName;
                             break;
-                        case "Destination Name Text":
-                            OneTMP[i].text = fleetController.FleetData.Destination.name;
+                        case "HeaderPowerUnitText":
+                            //if (sysController.StarSysData.PowerPlants.Count > 0)  
+                            OneTMP[i].text = sysController.StarSysData.PowerPlantData.Name;
                             //ToDo: can make it race specific here, not defaul "Plasma Reactor"
                             break;
-                        //case "NumPUnits":
-                        //    OneTMP[i].text = (sysController.StarSysData.PowerPlants.Count).ToString();
-                        //    break;
-                        //case "NumTotalEOut":
-                        //    sysController.StarSysData.TotalSysPowerOutput = sysController.StarSysData.PowerPlants.Count * sysController.StarSysData.PowerPlantData.PowerOutput;
-                        //    OneTMP[i].text = (sysController.StarSysData.TotalSysPowerOutput).ToString();
-                        //    break;
-                        //// ToDo: use techLevelInt in power output 
-                        ////case "NumP Load": *** do this last to get total power load sum with UpdateSystemPowerLoad(sysController);
+                        case "NumPUnits":
+                            OneTMP[i].text = (sysController.StarSysData.PowerPlants.Count).ToString();
+                            break;
+                        case "NumTotalEOut":
+                            sysController.StarSysData.TotalSysPowerOutput = sysController.StarSysData.PowerPlants.Count * sysController.StarSysData.PowerPlantData.PowerOutput;
+                            OneTMP[i].text = (sysController.StarSysData.TotalSysPowerOutput).ToString();
+                            break;
+                        // ToDo: use techLevelInt in power output 
+                        //case "NumP Load": *** do this last to get total power load sum with UpdateSystemPowerLoad(sysController);
 
-                        //case "NameFactory":
-                        //    OneTMP[i].text = sysController.StarSysData.FactoryData.Name;
-                        //    break;
-                        //case "NumFactoryRatio":
-                        //    int count = 0;
-                        //    foreach (var item in sysController.StarSysData.Factories)
-                        //    {
-                        //        TextMeshProUGUI TheText = item.GetComponent<TextMeshProUGUI>();
-                        //        if (TheText.text == "1") // 1 = on and 0 = off
-                        //            count++;
-                        //    }
-                        //    OneTMP[i].text = count.ToString() + "/" + (sysController.StarSysData.Factories.Count).ToString();
-                        //    break;
-                        //case "FactoryLoad":
-                        //    // for now all are turned on
-                        //    OneTMP[i].text = (sysController.StarSysData.FactoryData.PowerLoad * sysController.StarSysData.Factories.Count).ToString();
-                        //    // ToDo: work in tech levels
-                        //    break;
+                        case "NameFactory":
+                            OneTMP[i].text = sysController.StarSysData.FactoryData.Name;
+                            break;
+                        case "NumFactoryRatio":
+                            int count = 0;
+                            foreach (var item in sysController.StarSysData.Factories)
+                            {
+                                TextMeshProUGUI TheText = item.GetComponent<TextMeshProUGUI>();
+                                if (TheText.text == "1") // 1 = on and 0 = off
+                                    count++;
+                            }
+                            OneTMP[i].text = count.ToString() + "/" + (sysController.StarSysData.Factories.Count).ToString();
+                            break;
+                        case "FactoryLoad":
+                            // for now all are turned on
+                            OneTMP[i].text = (sysController.StarSysData.FactoryData.PowerLoad * sysController.StarSysData.Factories.Count).ToString();
+                            // ToDo: work in tech levels
+                            break;
 
-                        //case "ShipyardName":
-                        //    OneTMP[i].text = sysController.StarSysData.ShipyardData.Name;
-                        //    break;
-                        //case "NumYardsOnRatio":
-                        //    int count1 = 0;
-                        //    foreach (var item in sysController.StarSysData.Shipyards)
-                        //    {
-                        //        TextMeshProUGUI TheText = item.GetComponent<TextMeshProUGUI>();
-                        //        if (TheText.text == "1")
-                        //            count1++;
-                        //    }
-                        //    OneTMP[i].text = count1.ToString() + "/" + (sysController.StarSysData.Shipyards.Count).ToString();
-                        //    break;
-                        //case "YardLoad":
-                        //    // for now all are turned on
-                        //    OneTMP[i].text = (sysController.StarSysData.ShipyardData.PowerLoad * sysController.StarSysData.Shipyards.Count).ToString();
-                        //    // ToDo: work in tech levels
-                        //    break;
-                        ////ToDo: Yard's build Queue here
-                        //case "ShieldName":
-                        //    OneTMP[i].text = sysController.StarSysData.ShieldGeneratorData.Name;
-                        //    break;
-                        //case "NumShieldRatio":
-                        //    int count2 = 0;
-                        //    foreach (var item in sysController.StarSysData.ShieldGenerators)
-                        //    {
-                        //        TextMeshProUGUI TheText = item.GetComponent<TextMeshProUGUI>();
-                        //        if (TheText.text == "1")
-                        //            count2++;
-                        //    }
-                        //    OneTMP[i].text = count2.ToString() + "/" + (sysController.StarSysData.ShieldGenerators.Count).ToString();
-                        //    break;
-                        //case "ShieldLoad":
-                        //    OneTMP[i].text = (sysController.StarSysData.ShieldGeneratorData.PowerLoad * sysController.StarSysData.ShieldGenerators.Count).ToString();
-                        //    // ToDo: work in tech levels
-                        //    break;
-                        //case "OBName":
-                        //    OneTMP[i].text = sysController.StarSysData.OrbitalBatteryData.Name;
-                        //    break;
-                        //case "NumOBRatio":
-                        //    int count3 = 0;
-                        //    foreach (var item in sysController.StarSysData.OrbitalBatteries)
-                        //    {
-                        //        TextMeshProUGUI TheText = item.GetComponent<TextMeshProUGUI>();
-                        //        if (TheText.text == "1")
-                        //            count3++;
-                        //    }
-                        //    OneTMP[i].text = count3.ToString() + "/" + (sysController.StarSysData.OrbitalBatteries.Count).ToString();
-                        //    break;
-                        //case "OBLoad":
-                        //    OneTMP[i].text = (sysController.StarSysData.OrbitalBatteryData.PowerLoad * sysController.StarSysData.OrbitalBatteries.Count).ToString();
-                        //    // ToDo: work in tech levels
-                        //    break;
-                        //case "ResearchName":
-                        //    OneTMP[i].text = sysController.StarSysData.ResearchCenterData.Name;
-                        //    break;
-                        //case "NumResearchRatio":
-                        //    int count4 = 0;
-                        //    foreach (var item in sysController.StarSysData.ResearchCenters)
-                        //    {
-                        //        TextMeshProUGUI TheText = item.GetComponent<TextMeshProUGUI>();
-                        //        if (TheText.text == "1")
-                        //            count4++;
-                        //    }
-                        //    OneTMP[i].text = count4.ToString() + "/" + (sysController.StarSysData.ResearchCenters.Count).ToString();
-                        //    break;
-                        //case "ResearchLoad":
-                        //    OneTMP[i].text = (sysController.StarSysData.ResearchCenterData.PowerLoad * sysController.StarSysData.ResearchCenters.Count).ToString();
-                        //    // ToDo: work in tech levels
-                        //    break;
-                        //case "PowerOverload":
-                        //    OneTMP[i].gameObject.SetActive(false);
-                        //    powerOverload = OneTMP[i].gameObject; //.SetActive(true);
-                        //    break;
-                        //default:
-                        //    break;
+                        case "ShipyardName":
+                            OneTMP[i].text = sysController.StarSysData.ShipyardData.Name;
+                            break;
+                        case "NumYardsOnRatio":
+                            int count1 = 0;
+                            foreach (var item in sysController.StarSysData.Shipyards)
+                            {
+                                TextMeshProUGUI TheText = item.GetComponent<TextMeshProUGUI>();
+                                if (TheText.text == "1")
+                                    count1++;
+                            }
+                            OneTMP[i].text = count1.ToString() + "/" + (sysController.StarSysData.Shipyards.Count).ToString();
+                            break;
+                        case "YardLoad":
+                            // for now all are turned on
+                            OneTMP[i].text = (sysController.StarSysData.ShipyardData.PowerLoad * sysController.StarSysData.Shipyards.Count).ToString();
+                            // ToDo: work in tech levels
+                            break;
+                        //ToDo: Yard's build Queue here
+                        case "ShieldName":
+                            OneTMP[i].text = sysController.StarSysData.ShieldGeneratorData.Name;
+                            break;
+                        case "NumShieldRatio":
+                            int count2 = 0;
+                            foreach (var item in sysController.StarSysData.ShieldGenerators)
+                            {
+                                TextMeshProUGUI TheText = item.GetComponent<TextMeshProUGUI>();
+                                if (TheText.text == "1")
+                                    count2++;
+                            }
+                            OneTMP[i].text = count2.ToString() + "/" + (sysController.StarSysData.ShieldGenerators.Count).ToString();
+                            break;
+                        case "ShieldLoad":
+                            OneTMP[i].text = (sysController.StarSysData.ShieldGeneratorData.PowerLoad * sysController.StarSysData.ShieldGenerators.Count).ToString();
+                            // ToDo: work in tech levels
+                            break;
+                        case "OBName":
+                            OneTMP[i].text = sysController.StarSysData.OrbitalBatteryData.Name;
+                            break;
+                        case "NumOBRatio":
+                            int count3 = 0;
+                            foreach (var item in sysController.StarSysData.OrbitalBatteries)
+                            {
+                                TextMeshProUGUI TheText = item.GetComponent<TextMeshProUGUI>();
+                                if (TheText.text == "1")
+                                    count3++;
+                            }
+                            OneTMP[i].text = count3.ToString() + "/" + (sysController.StarSysData.OrbitalBatteries.Count).ToString();
+                            break;
+                        case "OBLoad":
+                            OneTMP[i].text = (sysController.StarSysData.OrbitalBatteryData.PowerLoad * sysController.StarSysData.OrbitalBatteries.Count).ToString();
+                            // ToDo: work in tech levels
+                            break;
+                        case "ResearchName":
+                            OneTMP[i].text = sysController.StarSysData.ResearchCenterData.Name;
+                            break;
+                        case "NumResearchRatio":
+                            int count4 = 0;
+                            foreach (var item in sysController.StarSysData.ResearchCenters)
+                            {
+                                TextMeshProUGUI TheText = item.GetComponent<TextMeshProUGUI>();
+                                if (TheText.text == "1")
+                                    count4++;
+                            }
+                            OneTMP[i].text = count4.ToString() + "/" + (sysController.StarSysData.ResearchCenters.Count).ToString();
+                            break;
+                        case "ResearchLoad":
+                            OneTMP[i].text = (sysController.StarSysData.ResearchCenterData.PowerLoad * sysController.StarSysData.ResearchCenters.Count).ToString();
+                            // ToDo: work in tech levels
+                            break;
+                        case "PowerOverload":
+                            OneTMP[i].gameObject.SetActive(false);
+                            powerOverload = OneTMP[i].gameObject; //.SetActive(true);
+                            break;
+                        default:
+                            break;
 
                     }
                     if (true)//GameController.Instance.AreWeLocalPlayer(sysController.StarSysData.CurrentOwnerCivEnum))
@@ -576,291 +644,112 @@ public class GalaxyMenuUIController : MonoBehaviour
                         //UpdateSystemPowerLoad(sysController);
                     }
                 }
-                Button[] listButtons = fleetController.FleetListUIGameObject.GetComponentsInChildren<Button>();
+                Image[] listOfImages = sysController.StarSystUIGameObject.GetComponentsInChildren<Image>();
+                for (int i = 0; i < listOfImages.Length; i++)
+                {
+                    // int techLevelInt = (int)CivManager.Instance.LocalPlayerCivContoller.CivData.StartingTechLevel / 100; // Early Tech level = 100, Supreme = 900;
+                    listOfImages[i].enabled = true;
+                    var name = listOfImages[i].name.ToString();
+                    switch (name)
+                    {
+                        case "PowerUnitImage":
+                            listOfImages[i].sprite = ThemeManager.Instance.CurrentTheme.PowerPlantImage;
+
+                            break;
+                        case "FactoryImage":
+                            listOfImages[i].sprite = ThemeManager.Instance.CurrentTheme.FactoryImage;
+
+                            break;
+                        case "shipyardImage":
+                            listOfImages[i].sprite = ThemeManager.Instance.CurrentTheme.ShipyardImage;
+
+                            break;
+                        case "ShieldPlantImage":
+                            listOfImages[i].sprite = ThemeManager.Instance.CurrentTheme.ShieldImage;
+
+                            break;
+                        case "OrbitalBatteriesImage":
+                            listOfImages[i].sprite = ThemeManager.Instance.CurrentTheme.OrbitalBatteriesImage;
+
+                            break;
+                        case "ResearchImage":
+                            listOfImages[i].sprite = ThemeManager.Instance.CurrentTheme.ResearchCenterImage;
+                            break;
+                        case "PowerOverload":
+                            powerOverload = listOfImages[i].gameObject;
+                            listOfImages[i].gameObject.SetActive(false);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+
+                Button[] listButtons = sysController.StarSystUIGameObject.GetComponentsInChildren<Button>();
                 foreach (var listButton in listButtons)
                 {
                     switch (listButton.name)
                     {
-                        case "ButtonShipManager":
-                            
+                        case "BuildButton":
                             listButton.onClick.RemoveAllListeners();
-                            listButton.onClick.AddListener(() => fleetController.ShipManageClick(fleetController));
+                            listButton.onClick.AddListener(() => sysController.BuildClick(sysController));
                             break;
-                        case "ButtonWarpUp":
-                            fleetController.FleetData.FleetButtonUp = listButton;
+                        case "ShipButton":
                             listButton.onClick.RemoveAllListeners();
-                            listButton.onClick.AddListener(() => fleetController.WarpButtonUp(fleetController));
+                            listButton.onClick.AddListener(() => sysController.ShipClick(sysController));
                             break;
-                        case "ButtonWarpDown":
-                            fleetController.FleetData.FleetButtonDown = listButton;
+                        case "FactoryButtonOn":
                             listButton.onClick.RemoveAllListeners();
-                            listButton.onClick.AddListener(() => fleetController.WarpButtonDown(fleetController));
+                            listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
+                            break;
+                        case "FactoryButtonOff":
+                            listButton.onClick.RemoveAllListeners();
+                            listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
+                            break;
+                        case "YardButtonOn":
+                            listButton.onClick.RemoveAllListeners();
+                            listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
+                            break;
+                        case "YardButtonOff":
+                            listButton.onClick.RemoveAllListeners();
+                            listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
+                            break;
+                        case "ShieldButtonOn":
+                            listButton.onClick.RemoveAllListeners();
+                            listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
+                            break;
+                        case "ShieldButtonOff":
+                            listButton.onClick.RemoveAllListeners();
+                            listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
+                            break;
+                        case "OBButtonOn":
+                            listButton.onClick.RemoveAllListeners();
+                            listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
+                            break;
+                        case "OBButtonOff":
+                            listButton.onClick.RemoveAllListeners();
+                            listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
+                            break;
+                        case "ResearchButtonOn":
+                            listButton.onClick.RemoveAllListeners();
+                            listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
+                            break;
+                        case "ResearchButtonOff":
+                            listButton.onClick.RemoveAllListeners();
+                            listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
                             break;
                         default:
                             break;
                     }
                 }
             }
-
-        }
-    }
-    public void SetupSystemUIData()
-    { // populate the system UI with the data from the sysController
-        //if (sysController.StarSystUIGameObject != null)
-        //{
-            foreach (var sysController in StarSysManager.Instance.StarSysControllerList)
+            if (sysController.StarSystUIGameObject != null)
             {
-                if (!listOfStarSysUiGos.Contains(sysController.StarSystUIGameObject) && GameController.Instance.AreWeLocalPlayer(sysController.StarSysData.CurrentOwnerCivEnum))
-                {
-                    sysController.StarSystUIGameObject.SetActive(true);
-                    sysController.StarSystUIGameObject.transform.SetParent(sysListContainer.transform, false);
-                    sysControllers.Add(sysController);// add to list for the ContentSystems (queue) folder
-                    listOfStarSysUiGos.Add(sysController.StarSystUIGameObject);
-                    RectTransform[] minMapDotTransfor = sysController.StarSystUIGameObject.GetComponentsInChildren<RectTransform>();
-                    for (int i = 0; i < minMapDotTransfor.Length; i++)
-                    {
-                        if (minMapDotTransfor[i].name == "RedDot")
-                        {
-                            float x = sysController.StarSysData.GetPosition().x * 0.12f; // 0.12f is our cosmologic constant, fudge factor
-                            float y = 0f;
-                            float z = sysController.StarSysData.GetPosition().z * 0.12f;
-                            minMapDotTransfor[i].Translate(new Vector3(x, z, y), Space.Self); // flip z and y from main galaxy map to UI mini map
-                            break;
-                        }
-                    }
-
-                    TextMeshProUGUI[] OneTMP = sysController.StarSystUIGameObject.GetComponentsInChildren<TextMeshProUGUI>();
-                    for (int i = 0; i < OneTMP.Length; i++)
-                    {
-                        int techLevelInt = (int)CivManager.Instance.LocalPlayerCivContoller.CivData.TechLevel / 100; // Early Tech level = 100, Supreme = 900;
-                        OneTMP[i].enabled = true;
-                        var name = OneTMP[i].name;
-
-                        switch (name)
-                        {
-                            case "SysName": // text in the button for sys activation
-                                OneTMP[i].text = sysController.StarSysData.SysName;
-                                break;
-                            case "HeaderPowerUnitText":
-                                //if (sysController.StarSysData.PowerPlants.Count > 0)  
-                                OneTMP[i].text = sysController.StarSysData.PowerPlantData.Name;
-                                //ToDo: can make it race specific here, not defaul "Plasma Reactor"
-                                break;
-                            case "NumPUnits":
-                                OneTMP[i].text = (sysController.StarSysData.PowerPlants.Count).ToString();
-                                break;
-                            case "NumTotalEOut":
-                                sysController.StarSysData.TotalSysPowerOutput = sysController.StarSysData.PowerPlants.Count * sysController.StarSysData.PowerPlantData.PowerOutput;
-                                OneTMP[i].text = (sysController.StarSysData.TotalSysPowerOutput).ToString();
-                                break;
-                            // ToDo: use techLevelInt in power output 
-                            //case "NumP Load": *** do this last to get total power load sum with UpdateSystemPowerLoad(sysController);
-
-                            case "NameFactory":
-                                OneTMP[i].text = sysController.StarSysData.FactoryData.Name;
-                                break;
-                            case "NumFactoryRatio":
-                                int count = 0;
-                                foreach (var item in sysController.StarSysData.Factories)
-                                {
-                                    TextMeshProUGUI TheText = item.GetComponent<TextMeshProUGUI>();
-                                    if (TheText.text == "1") // 1 = on and 0 = off
-                                        count++;
-                                }
-                                OneTMP[i].text = count.ToString() + "/" + (sysController.StarSysData.Factories.Count).ToString();
-                                break;
-                            case "FactoryLoad":
-                                // for now all are turned on
-                                OneTMP[i].text = (sysController.StarSysData.FactoryData.PowerLoad * sysController.StarSysData.Factories.Count).ToString();
-                                // ToDo: work in tech levels
-                                break;
-
-                            case "ShipyardName":
-                                OneTMP[i].text = sysController.StarSysData.ShipyardData.Name;
-                                break;
-                            case "NumYardsOnRatio":
-                                int count1 = 0;
-                                foreach (var item in sysController.StarSysData.Shipyards)
-                                {
-                                    TextMeshProUGUI TheText = item.GetComponent<TextMeshProUGUI>();
-                                    if (TheText.text == "1")
-                                        count1++;
-                                }
-                                OneTMP[i].text = count1.ToString() + "/" + (sysController.StarSysData.Shipyards.Count).ToString();
-                                break;
-                            case "YardLoad":
-                                // for now all are turned on
-                                OneTMP[i].text = (sysController.StarSysData.ShipyardData.PowerLoad * sysController.StarSysData.Shipyards.Count).ToString();
-                                // ToDo: work in tech levels
-                                break;
-                            //ToDo: Yard's build Queue here
-                            case "ShieldName":
-                                OneTMP[i].text = sysController.StarSysData.ShieldGeneratorData.Name;
-                                break;
-                            case "NumShieldRatio":
-                                int count2 = 0;
-                                foreach (var item in sysController.StarSysData.ShieldGenerators)
-                                {
-                                    TextMeshProUGUI TheText = item.GetComponent<TextMeshProUGUI>();
-                                    if (TheText.text == "1")
-                                        count2++;
-                                }
-                                OneTMP[i].text = count2.ToString() + "/" + (sysController.StarSysData.ShieldGenerators.Count).ToString();
-                                break;
-                            case "ShieldLoad":
-                                OneTMP[i].text = (sysController.StarSysData.ShieldGeneratorData.PowerLoad * sysController.StarSysData.ShieldGenerators.Count).ToString();
-                                // ToDo: work in tech levels
-                                break;
-                            case "OBName":
-                                OneTMP[i].text = sysController.StarSysData.OrbitalBatteryData.Name;
-                                break;
-                            case "NumOBRatio":
-                                int count3 = 0;
-                                foreach (var item in sysController.StarSysData.OrbitalBatteries)
-                                {
-                                    TextMeshProUGUI TheText = item.GetComponent<TextMeshProUGUI>();
-                                    if (TheText.text == "1")
-                                        count3++;
-                                }
-                                OneTMP[i].text = count3.ToString() + "/" + (sysController.StarSysData.OrbitalBatteries.Count).ToString();
-                                break;
-                            case "OBLoad":
-                                OneTMP[i].text = (sysController.StarSysData.OrbitalBatteryData.PowerLoad * sysController.StarSysData.OrbitalBatteries.Count).ToString();
-                                // ToDo: work in tech levels
-                                break;
-                            case "ResearchName":
-                                OneTMP[i].text = sysController.StarSysData.ResearchCenterData.Name;
-                                break;
-                            case "NumResearchRatio":
-                                int count4 = 0;
-                                foreach (var item in sysController.StarSysData.ResearchCenters)
-                                {
-                                    TextMeshProUGUI TheText = item.GetComponent<TextMeshProUGUI>();
-                                    if (TheText.text == "1")
-                                        count4++;
-                                }
-                                OneTMP[i].text = count4.ToString() + "/" + (sysController.StarSysData.ResearchCenters.Count).ToString();
-                                break;
-                            case "ResearchLoad":
-                                OneTMP[i].text = (sysController.StarSysData.ResearchCenterData.PowerLoad * sysController.StarSysData.ResearchCenters.Count).ToString();
-                                // ToDo: work in tech levels
-                                break;
-                            case "PowerOverload":
-                                OneTMP[i].gameObject.SetActive(false);
-                                powerOverload = OneTMP[i].gameObject; //.SetActive(true);
-                                break;
-                            default:
-                                break;
-
-                        }
-                        if (true)//GameController.Instance.AreWeLocalPlayer(sysController.StarSysData.CurrentOwnerCivEnum))
-                        {  
-                           //UpdateSystemPowerLoad(sysController);
-                        }
-                    }
-                    Image[] listOfImages = sysController.StarSystUIGameObject.GetComponentsInChildren<Image>();
-                    for (int i = 0; i < listOfImages.Length; i++)
-                    {
-                        // int techLevelInt = (int)CivManager.Instance.LocalPlayerCivContoller.CivData.StartingTechLevel / 100; // Early Tech level = 100, Supreme = 900;
-                        listOfImages[i].enabled = true;
-                        var name = listOfImages[i].name.ToString();
-                        switch (name)
-                        {
-                            case "PowerUnitImage":
-                                listOfImages[i].sprite = ThemeManager.Instance.CurrentTheme.PowerPlantImage;
-
-                                break;
-                            case "FactoryImage":
-                                listOfImages[i].sprite = ThemeManager.Instance.CurrentTheme.FactoryImage;
-
-                                break;
-                            case "shipyardImage":
-                                listOfImages[i].sprite = ThemeManager.Instance.CurrentTheme.ShipyardImage;
-
-                                break;
-                            case "ShieldPlantImage":
-                                listOfImages[i].sprite = ThemeManager.Instance.CurrentTheme.ShieldImage;
-
-                                break;
-                            case "OrbitalBatteriesImage":
-                                listOfImages[i].sprite = ThemeManager.Instance.CurrentTheme.OrbitalBatteriesImage;
-
-                                break;
-                            case "ResearchImage":
-                                listOfImages[i].sprite = ThemeManager.Instance.CurrentTheme.ResearchCenterImage;
-                                break;
-                            case "PowerOverload":
-                                powerOverload = listOfImages[i].gameObject;
-                                listOfImages[i].gameObject.SetActive(false);
-                                break;
-                            default:
-                                break;
-                        }
-                    }
-
-                    Button[] listButtons = sysController.StarSystUIGameObject.GetComponentsInChildren<Button>();
-                    foreach (var listButton in listButtons)
-                    {
-                        switch (listButton.name)
-                        {
-                            case "BuildButton":
-                                listButton.onClick.RemoveAllListeners();
-                                listButton.onClick.AddListener(() => sysController.BuildClick(sysController));
-                                break;
-                            case "ShipButton":
-                                listButton.onClick.RemoveAllListeners();
-                                listButton.onClick.AddListener(() => sysController.ShipClick(sysController));
-                                break;
-                            case "FactoryButtonOn":
-                                listButton.onClick.RemoveAllListeners();
-                                listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
-                                break;
-                            case "FactoryButtonOff":
-                                listButton.onClick.RemoveAllListeners();
-                                listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
-                                break;
-                            case "YardButtonOn":
-                                listButton.onClick.RemoveAllListeners();
-                                listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
-                                break;
-                            case "YardButtonOff":
-                                listButton.onClick.RemoveAllListeners();
-                                listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
-                                break;
-                            case "ShieldButtonOn":
-                                listButton.onClick.RemoveAllListeners();
-                                listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
-                                break;
-                            case "ShieldButtonOff":
-                                listButton.onClick.RemoveAllListeners();
-                                listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
-                                break;
-                            case "OBButtonOn":
-                                listButton.onClick.RemoveAllListeners();
-                                listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
-                                break;
-                            case "OBButtonOff":
-                                listButton.onClick.RemoveAllListeners();
-                                listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
-                                break;
-                            case "ResearchButtonOn":
-                                listButton.onClick.RemoveAllListeners();
-                                listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
-                                break;
-                            case "ResearchButtonOff":
-                                listButton.onClick.RemoveAllListeners();
-                                listButton.onClick.AddListener(() => sysController.FacilityOnClick(sysController, listButton.name));
-                                break;
-                            default:
-                                break;
-                        }
-                    }
-                }
-
                 sysController.StarSystUIGameObject.SetActive(true);
+
                 sysController.StarSystUIGameObject.transform.SetParent(sysListContainer.transform, false);
             }
-        //}
+
+        }
     }
     public void UpdateFacilityUI(StarSysController sysController, int plusMinus, string loadName, string ratioName, StarSysFacilities facilityType)
     {

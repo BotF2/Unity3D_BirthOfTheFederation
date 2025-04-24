@@ -18,7 +18,7 @@ namespace Assets.Core
         private FleetData fleetData;
         public FleetData FleetData { get { return fleetData; } set { fleetData = value; } }
 
-        private GameObject fleetUIGameObject; //The instantiated fleet UI for this fleet. a prefab clone, not a class but a game object
+        public GameObject FleetUIGameObject; //The instantiated fleet UI for this fleet. a prefab clone, not a class but a game object
         // instantiated by FleetManager from a prefab and added to FleetController
         public string Name;
         public int intName = 1;
@@ -145,7 +145,9 @@ namespace Assets.Core
         {
             if (FleetData.CivEnum != CivEnum.ZZUNINHABITED1) // move
             {
-                if (FleetData.Destination != null && FleetData.CurrentWarpFactor > 0f)
+               
+                if (FleetData.Destination != null && 
+                    FleetData.Destination.name != "No Destination" && FleetData.CurrentWarpFactor > 0f)
                 {
                     FleetState = FleetState.FleetAtWarp;
                     MoveToDesitinationGO();
@@ -168,18 +170,19 @@ namespace Assets.Core
 
             if (Physics.Raycast(ray, out hit))
             {
-                GameObject hitObject = hit.collider.gameObject;
-                // What a fleet FleetController does with a hit
-                /// ********** In multiplayer game ?? 
-
-                if (MouseClickSetsDestination == false) // the destination mouse pointer is off so open FleetUI for this FleetController
-                {
-                    if (GameController.Instance.AreWeLocalPlayer(this.FleetData.CivEnum))
-                        LoadFleetUI(hitObject);
-                }
-                else if (MouseClickSetsDestination == true && hitObject != this)
-                {
-                    NewDestination(hitObject);  // one of local player's objects as destination
+                GameObject galaxyGo = hit.collider.gameObject;
+                if (galaxyGo.tag != "GalaxyImage")
+                {   // What a fleet FleetController does with a hit
+                    if (MouseClickSetsDestination == false) // the destination mouse pointer is off so open FleetUI for this FleetController
+                    {
+                        if (GameController.Instance.AreWeLocalPlayer(this.FleetData.CivEnum))
+                            //LoadAFleetUI(galaxyGo);
+                            GalaxyMenuUIController.Instance.OpenMenu(Menu.AFleetMenu, galaxyGo);
+                    }
+                    else if (MouseClickSetsDestination == true && galaxyGo != this)
+                    {
+                        NewDestination(galaxyGo);  // one of local player's objects as destination
+                    }
                 }
             }
 
@@ -231,7 +234,7 @@ namespace Assets.Core
 
                 if (hitObject.GetComponent<FleetController>() != null)
                 {
-                    //hitObject.GetComponent<FleetController>().CanvasDestination.gameObject.SetActive(true);
+                    //galaxyGo.GetComponent<FleetController>().CanvasDestination.gameObject.SetActive(true);
                     isFleet = true;
                 }
                 SetAsDestination(hitObject, isFleet);
@@ -313,9 +316,12 @@ namespace Assets.Core
         {
             var sysCon = hitGO.GetComponent<StarSysController>();
             var sysData = sysCon.StarSysData;
+            // ****ADD the order to colonize here so fleet now owns this system
             if (sysCon.StarSystUIGameObject == null)
-                StarSysManager.Instance.InstantiateSysUIGameObject(sysCon);
-            //GalaxyMenuUIController.Instance.SetupSystemUIData(sysCon);
+            {
+                
+               // StarSysManager.Instance.InstantiateSysUIGameObject(sysCon);
+            }
             TextMeshProUGUI[] TheText = hitGO.GetComponentsInChildren<TextMeshProUGUI>();
             for (int i = 0; i < TheText.Length; i++)
             {
@@ -331,7 +337,7 @@ namespace Assets.Core
                     TheText[i].text = sysData.Description;
 
             }
-            GalaxyMenuUIController.Instance.OpenMenu(Menu.SystemsMenu, null);
+            GalaxyMenuUIController.Instance.OpenMenu(Menu.SystemsMenu, sysCon.gameObject);
         }
         private void EncounterUnknownFleetGetNameAndSprite(GameObject hitGO)
         {
@@ -395,10 +401,7 @@ namespace Assets.Core
             Vector3 nextPosition = Vector3.MoveTowards(rb.position, FleetData.Destination.transform.position,
             FleetData.CurrentWarpFactor * warpFudgeFactor * Time.fixedDeltaTime);
             rb.MovePosition(nextPosition); // kinematic with physics movement
-            //rb.linearVelocity = Vector3.zero;
-            // OnArrivedAtDestination();
-
-            // update dropline
+            this.FleetData.Position = nextPosition;
             Vector3 galaxyPlanePoint = new Vector3(rb.position.x, -60f, rb.position.z);
             Vector3[] points = { rb.position, galaxyPlanePoint };
             DropLine.SetUpLine(points);
@@ -645,46 +648,43 @@ namespace Assets.Core
             //SubMenuManager.Instance.OpenMenu(Menu.FleetsMenu, notAMenu);
             Destroy(notAMenu);
         }
-        public void LoadFleetUI(GameObject rayHitGO)
-        {
-            if (this == rayHitGO.GetComponent<FleetController>())
-            { 
-                //GameObject aFleetNotAMenu = new GameObject();
-                GalaxyMenuUIController.Instance.OpenMenu(Menu.AFleetMenu, rayHitGO);
-                //???? instantiate fleetUI_prefab?
-                //fleetUI_Prefab.SetActive(true);
+        //public void LoadAFleetUI(GameObject rayHitGO)
+        //{
+        //    if (this == rayHitGO.GetComponent<FleetController>())
+        //    { 
+        //        //GameObject aFleetNotAMenu = new GameObject();
+        //        GalaxyMenuUIController.Instance.OpenMenu(Menu.AFleetMenu, rayHitGO);
+        //        //???? instantiate fleetUI_prefab?
+        //        //fleetUI_Prefab.SetActive(true);
+        //        if (cancelDestinationButtonGO != null)
+        //            cancelDestinationButtonGO.SetActive(false);
+        //        FleetName.text = FleetData.Name;
+        //        PlayerDefinedTargetManager.instance.nameDestination = FleetName.text;
+        //        WarpSliderChange(0f);
 
-                List<string> listings = new List<string>();
-
-
-                cancelDestinationButtonGO.SetActive(false);
-                FleetName.text = FleetData.Name;
-                PlayerDefinedTargetManager.instance.nameDestination = FleetName.text;
-                WarpSliderChange(0f);
-
-                //ship dropdown
-                var shipDropdown = ShipDropdownGO.GetComponent<TMP_Dropdown>();
-                shipDropdown.options.Clear();
-                List<TMP_Dropdown.OptionData> newShipItems = new List<TMP_Dropdown.OptionData>();
-                string name;
-                for (int i = 0; i < FleetData.ShipsList.Count; i++)
-                {
-                    if (FleetData.ShipsList[i] != null)
-                    {
-                        TMP_Dropdown.OptionData newDataItem = new TMP_Dropdown.OptionData();
-                        name = FleetData.ShipsList[i].name;
-                        name = name.Replace("(CLONE)", string.Empty);
-                        newDataItem.text = name;
-                        newShipItems.Add(newDataItem);
-                    }
-                }
-                shipDropdown.AddOptions(newShipItems);
-                shipDropdown.RefreshShownValue();
-                UpdateMaxWarp();
-                maxSliderValue = FleetData.MaxWarpFactor;
-                ResetWarpSlider(FleetData.CurrentWarpFactor);
-            }
-        }
+        //        //ship dropdown
+        //        var shipDropdown = ShipDropdownGO.GetComponent<TMP_Dropdown>();
+        //        shipDropdown.options.Clear();
+        //        List<TMP_Dropdown.OptionData> newShipItems = new List<TMP_Dropdown.OptionData>();
+        //        string name;
+        //        for (int i = 0; i < FleetData.ShipsList.Count; i++)
+        //        {
+        //            if (FleetData.ShipsList[i] != null)
+        //            {
+        //                TMP_Dropdown.OptionData newDataItem = new TMP_Dropdown.OptionData();
+        //                name = FleetData.ShipsList[i].name;
+        //                name = name.Replace("(CLONE)", string.Empty);
+        //                newDataItem.text = name;
+        //                newShipItems.Add(newDataItem);
+        //            }
+        //        }
+        //        shipDropdown.AddOptions(newShipItems);
+        //        shipDropdown.RefreshShownValue();
+        //        UpdateMaxWarp();
+        //        maxSliderValue = FleetData.MaxWarpFactor;
+        //        ResetWarpSlider(FleetData.CurrentWarpFactor);
+        //    }
+        //}
         private void ReorderDropdownOptions(TMP_Dropdown dropdown)
         {
             List<TMP_Dropdown.OptionData> options = dropdown.options;
