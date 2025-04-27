@@ -486,19 +486,18 @@ namespace Assets.Core
                 {
                     if (GameController.Instance.AreWeLocalPlayer(this.StarSysData.CurrentOwnerCivEnum)) // this 'StarSystem' is a local player galaxy object hit
                     {
-                        //GalaxyMenuUIController.Instance.SetUpASystemUI(this);
+                        GalaxyMenuUIController.Instance.UpdateFacilityUI(this, 0, "FactoryLoad", "NumFactoryRatio", StarSysFacilities.Factory);
+                        GalaxyMenuUIController.Instance.UpdateFacilityUI(this, 0, "YardLoad", "NumYardsOnRatio", StarSysFacilities.Shipyard);
+                        GalaxyMenuUIController.Instance.UpdateFacilityUI(this, 0, "ShieldLoad", "NumShieldRatio", StarSysFacilities.ShieldGenerator);
+                        GalaxyMenuUIController.Instance.UpdateFacilityUI(this, 0, "OBLoad", "NumOBRatio", StarSysFacilities.OrbitalBattery);
+                        GalaxyMenuUIController.Instance.UpdateFacilityUI(this, 0, "ResearchLoad", "NumResearchRatio", StarSysFacilities.ResearchCenter);
+                        GalaxyMenuUIController.Instance.UpdateSystemPowerLoad(this);
                         GalaxyMenuUIController.Instance.OpenMenu(Menu.ASystemMenu, sysGO); // set the system UI to this system
-
-                        //Destroy(Sys);
-                        //else
-                        //{
-                        //    NewDestination(sysGO); // one of our systems hit 
-                        //}
                     }
-                    //else if (GalaxyMenuUIController.Instance.MouseClickSetsDestination == true)
-                    //{
-                    //    NewDestination(sysGO);
-                    //}
+                    else if (GalaxyMenuUIController.Instance.MouseClickSetsDestination == true)
+                    {
+                        NewDestination(sysGO);
+                    }
                     else if (DiplomacyManager.Instance.FoundADiplomacyController(this.StarSysData.CurrentCivController, CivManager.Instance.LocalPlayerCivContoller))
                     { // this is a system local player does not own but we know them
                         DiplomacyUIController.Instance.LoadDiplomacyUI(DiplomacyManager.Instance.ReturnADiplomacyController(this.StarSysData.CurrentCivController, CivManager.Instance.LocalPlayerCivContoller));
@@ -507,12 +506,18 @@ namespace Assets.Core
                 }
             }
         }
-        //private void NewDestination(GameObject sysGO)
-        //{
-        //    bool isFleet = false;
-        //    sysGO.GetComponent<FleetController>().SetAsDestination(sysGO, isFleet);
+        private void NewDestination(GameObject sysGO)
+        {
+            bool isFleet = true;
 
-        //}
+            for (int i = 0; i < FleetManager.Instance.FleetConrollersInGame.Count; i++)
+            {
+                if (FleetManager.Instance.FleetConrollersInGame[i].MouseClickSetsDestination == true)
+                {
+                    FleetManager.Instance.FleetConrollersInGame[i].SetAsDestination(sysGO, isFleet);
+                }
+            }
+        }
 
         public void OnEnable()
         {

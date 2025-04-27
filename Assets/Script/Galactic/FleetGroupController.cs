@@ -10,10 +10,9 @@ public class FleetGroupController : MonoBehaviour
     public List<FleetController> MemberFleets { get { return memberFleets; } set { memberFleets = value; } }
     public string Name;
 
-    public FleetState fleetState;
     public bool isArrived = false;
     [SerializeField]
-    private float maxWarpFactor = 9.8f;
+    private float maxWarpFactor = 3f;
     private float fudgeFactor = 1f;
     private float dropOutOfWarpDistance = 0.5f; // stop, but should be destination collider?
     private Rigidbody rb;

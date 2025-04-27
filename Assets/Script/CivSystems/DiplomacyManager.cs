@@ -149,7 +149,7 @@ public class DiplomacyManager : MonoBehaviour
             GameController.Instance.AreWeLocalPlayer(civPartyTwo.CivData.CivEnum))
         {
             DiplomacyUIController.Instance.LoadDiplomacyUI(diplomacyController);
-            GalaxyMenuUIController.Instance.OpenMenu(Menu.DiplomacyMenu, diplomacyUIGO);
+            GalaxyMenuUIController.Instance.OpenMenu(Menu.DiplomacyMenu, null);
         }
         //else if (GameController.Instance.AreWeLocalPlayer(civPartyTwo.CivData.CivEnum))
         //{

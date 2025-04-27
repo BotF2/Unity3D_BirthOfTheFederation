@@ -4084,7 +4084,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 895974089}
         m_TargetAssemblyTypeName: GalaxyMenuUIController, Assembly-CSharp
-        m_MethodName: OpenIntel
+        m_MethodName: IntelButtonPressed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6401,120 +6401,6 @@ MonoBehaviour:
   references:
     version: 2
     RefIds: []
---- !u!1001 &342592113
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 1169095162}
-    m_Modifications:
-    - target: {fileID: 1058961442618899432, guid: fc0b9c37cb292ce4cb4d38099c4f78c3, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3032268092837810025, guid: fc0b9c37cb292ce4cb4d38099c4f78c3, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3127805292150332128, guid: fc0b9c37cb292ce4cb4d38099c4f78c3, type: 3}
-      propertyPath: m_Name
-      value: FleetUI_Perfab
-      objectReference: {fileID: 0}
-    - target: {fileID: 3127805292150332128, guid: fc0b9c37cb292ce4cb4d38099c4f78c3, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5822297372921351177, guid: fc0b9c37cb292ce4cb4d38099c4f78c3, type: 3}
-      propertyPath: m_Pivot.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5822297372921351177, guid: fc0b9c37cb292ce4cb4d38099c4f78c3, type: 3}
-      propertyPath: m_Pivot.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5822297372921351177, guid: fc0b9c37cb292ce4cb4d38099c4f78c3, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5822297372921351177, guid: fc0b9c37cb292ce4cb4d38099c4f78c3, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5822297372921351177, guid: fc0b9c37cb292ce4cb4d38099c4f78c3, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5822297372921351177, guid: fc0b9c37cb292ce4cb4d38099c4f78c3, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5822297372921351177, guid: fc0b9c37cb292ce4cb4d38099c4f78c3, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 1900
-      objectReference: {fileID: 0}
-    - target: {fileID: 5822297372921351177, guid: fc0b9c37cb292ce4cb4d38099c4f78c3, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: 5822297372921351177, guid: fc0b9c37cb292ce4cb4d38099c4f78c3, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5822297372921351177, guid: fc0b9c37cb292ce4cb4d38099c4f78c3, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5822297372921351177, guid: fc0b9c37cb292ce4cb4d38099c4f78c3, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5822297372921351177, guid: fc0b9c37cb292ce4cb4d38099c4f78c3, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5822297372921351177, guid: fc0b9c37cb292ce4cb4d38099c4f78c3, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5822297372921351177, guid: fc0b9c37cb292ce4cb4d38099c4f78c3, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5822297372921351177, guid: fc0b9c37cb292ce4cb4d38099c4f78c3, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5822297372921351177, guid: fc0b9c37cb292ce4cb4d38099c4f78c3, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 5822297372921351177, guid: fc0b9c37cb292ce4cb4d38099c4f78c3, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -75
-      objectReference: {fileID: 0}
-    - target: {fileID: 5822297372921351177, guid: fc0b9c37cb292ce4cb4d38099c4f78c3, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5822297372921351177, guid: fc0b9c37cb292ce4cb4d38099c4f78c3, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5822297372921351177, guid: fc0b9c37cb292ce4cb4d38099c4f78c3, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: fc0b9c37cb292ce4cb4d38099c4f78c3, type: 3}
---- !u!224 &342592114 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 5822297372921351177, guid: fc0b9c37cb292ce4cb4d38099c4f78c3, type: 3}
-  m_PrefabInstance: {fileID: 342592113}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &345065900
 GameObject:
   m_ObjectHideFlags: 0
@@ -12476,120 +12362,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1001 &581503627
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 1982436958}
-    m_Modifications:
-    - target: {fileID: 1058961442618899432, guid: fc0b9c37cb292ce4cb4d38099c4f78c3, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3032268092837810025, guid: fc0b9c37cb292ce4cb4d38099c4f78c3, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3127805292150332128, guid: fc0b9c37cb292ce4cb4d38099c4f78c3, type: 3}
-      propertyPath: m_Name
-      value: FleetUI_Perfab
-      objectReference: {fileID: 0}
-    - target: {fileID: 3127805292150332128, guid: fc0b9c37cb292ce4cb4d38099c4f78c3, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5822297372921351177, guid: fc0b9c37cb292ce4cb4d38099c4f78c3, type: 3}
-      propertyPath: m_Pivot.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5822297372921351177, guid: fc0b9c37cb292ce4cb4d38099c4f78c3, type: 3}
-      propertyPath: m_Pivot.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5822297372921351177, guid: fc0b9c37cb292ce4cb4d38099c4f78c3, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5822297372921351177, guid: fc0b9c37cb292ce4cb4d38099c4f78c3, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5822297372921351177, guid: fc0b9c37cb292ce4cb4d38099c4f78c3, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5822297372921351177, guid: fc0b9c37cb292ce4cb4d38099c4f78c3, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5822297372921351177, guid: fc0b9c37cb292ce4cb4d38099c4f78c3, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 1900
-      objectReference: {fileID: 0}
-    - target: {fileID: 5822297372921351177, guid: fc0b9c37cb292ce4cb4d38099c4f78c3, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: 5822297372921351177, guid: fc0b9c37cb292ce4cb4d38099c4f78c3, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5822297372921351177, guid: fc0b9c37cb292ce4cb4d38099c4f78c3, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5822297372921351177, guid: fc0b9c37cb292ce4cb4d38099c4f78c3, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5822297372921351177, guid: fc0b9c37cb292ce4cb4d38099c4f78c3, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5822297372921351177, guid: fc0b9c37cb292ce4cb4d38099c4f78c3, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5822297372921351177, guid: fc0b9c37cb292ce4cb4d38099c4f78c3, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5822297372921351177, guid: fc0b9c37cb292ce4cb4d38099c4f78c3, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5822297372921351177, guid: fc0b9c37cb292ce4cb4d38099c4f78c3, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5822297372921351177, guid: fc0b9c37cb292ce4cb4d38099c4f78c3, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5822297372921351177, guid: fc0b9c37cb292ce4cb4d38099c4f78c3, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5822297372921351177, guid: fc0b9c37cb292ce4cb4d38099c4f78c3, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5822297372921351177, guid: fc0b9c37cb292ce4cb4d38099c4f78c3, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: fc0b9c37cb292ce4cb4d38099c4f78c3, type: 3}
---- !u!224 &581503628 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 5822297372921351177, guid: fc0b9c37cb292ce4cb4d38099c4f78c3, type: 3}
-  m_PrefabInstance: {fileID: 581503627}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &583302049
 GameObject:
   m_ObjectHideFlags: 0
@@ -18928,6 +18700,21 @@ MonoBehaviour:
   openMenuWas: {fileID: 0}
   openMenuEnumWas: 0
   fleetUI_Prefab: {fileID: 0}
+  warpSlider: {fileID: 0}
+  warpSliderText: {fileID: 0}
+  maxSliderValue: 9.8
+  warpChange: 0.1
+  warpButtonPress: 0
+  shipList: []
+  shipDropdownGO: {fileID: 0}
+  dropdownShipText: {fileID: 0}
+  FleetName: {fileID: 0}
+  selectDestinationCursorButtonGO: {fileID: 0}
+  cancelDestinationButtonGO: {fileID: 0}
+  dragDestinationTargetButtonGO: {fileID: 0}
+  MouseClickSetsDestination: 0
+  destinationName: {fileID: 0}
+  destinationCoordinates: {fileID: 0}
 --- !u!224 &895974090
 RectTransform:
   m_ObjectHideFlags: 0
@@ -24708,14 +24495,13 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 342592114}
+  m_Children: []
   m_Father: {fileID: 966764659}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: -70}
-  m_SizeDelta: {x: 1920, y: 0}
+  m_SizeDelta: {x: 1920, y: 200}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1178420023
 GameObject:
@@ -25897,7 +25683,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 895974089}
         m_TargetAssemblyTypeName: GalaxyMenuUIController, Assembly-CSharp
-        m_MethodName: OpenEncyclopedia
+        m_MethodName: EncylopediaButtonPressed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -27484,10 +27270,10 @@ MonoBehaviour:
       - m_Target: {fileID: 895974089}
         m_TargetAssemblyTypeName: GalaxyMenuUIController, Assembly-CSharp
         m_MethodName: FleetButtonPressed
-        m_Mode: 1
+        m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgumentAssemblyTypeName: Assets.Core.FleetController, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -28866,7 +28652,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af897107989d2304baf7e9ac4bbf676e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentActiveFleetCon: {fileID: 0}
+  parentCanavas: {fileID: 966764658}
   fogWar: {fileID: 1784209282}
   fleetSOList:
   - {fileID: 11400000, guid: 4e857a658d1d61042a6138005602794c, type: 2}
@@ -40068,7 +39854,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 895974089}
         m_TargetAssemblyTypeName: GalaxyMenuUIController, Assembly-CSharp
-        m_MethodName: OpenDiplomacy
+        m_MethodName: DiplomacyButtonPressed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -41217,8 +41003,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 581503628}
+  m_Children: []
   m_Father: {fileID: 1307268507}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}

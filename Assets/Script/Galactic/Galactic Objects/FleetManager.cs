@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using System.Linq;
 using UnityEngine.Rendering;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 
 
@@ -18,7 +18,8 @@ namespace Assets.Core
     public class FleetManager : MonoBehaviour
     {
         public static FleetManager Instance;
-        public FleetController currentActiveFleetCon;
+        [SerializeField]
+        private Canvas parentCanavas;
         [SerializeField]
         private csFogWar fogWar;
         [SerializeField]
@@ -153,11 +154,10 @@ namespace Assets.Core
                 fleetNewGameOb.layer = 6; // galaxy layer
 
                 var fleetController = fleetNewGameOb.GetComponentInChildren<FleetController>();
-                currentActiveFleetCon = fleetController;
+                //currentActiveFleetCon = fleetController;
                 fleetController.BackgroundGalaxyImage = galaxyImage;
                 fleetController.FleetData = fleetData;
-
-                fleetController.FleetState = FleetState.FleetStationary;
+                //fleetController.FleetState = FleetState.FleetStationary;
 
                 FleetControllerList.Add(fleetController); // add to list of all fleet controllers
                 if (!inSystem)
@@ -181,6 +181,7 @@ namespace Assets.Core
                 fleetController.FleetData.FleetInt = fleetInt;
                 fleetController.Name = fleetData.Name;
                 FleetConrollersInGame.Add(fleetController);
+                fleetController.FleetData.CurrentWarpFactor = 0f;
                 TextMeshProUGUI TheText = fleetNewGameOb.GetComponentInChildren<TextMeshProUGUI>();
 
                 if (GameController.Instance.AreWeLocalPlayer(fleetData.CivEnum))
@@ -245,23 +246,26 @@ namespace Assets.Core
                 }
                 List<FleetController> list = new List<FleetController>() { fleetController };
                 fleetController.FleetData.FleetGroupControllers = list;
+                fleetController.UpdateMaxWarp();
                 fleetNewGameOb.SetActive(true);
                 if (!inSystem) // all first fleets are not in system
                     ShipManager.Instance.BuildShipsOfFirstFleet(fleetNewGameOb);
                 InstantiateFleetUIGameObject(fleetController);
             }
             else fleetNewGameOb.name = "killMe";
+            
             return fleetNewGameOb;
         }
         private void InstantiateFleetUIGameObject(FleetController fleetCon)
         {
             if (fleetCon.FleetData.CivEnum == GameController.Instance.GameData.LocalPlayerCivEnum)
             {
-                currentActiveFleetCon = fleetCon;
                 if (fleetCon.FleetUIGameObject == null)
                 {
                     GameObject thisFleetUIGameObject = (GameObject)Instantiate(fleetUIPrefab, new Vector3(0, 0, 0),
-                    Quaternion.identity);
+                    Quaternion.identity); //parentCanavas.transform);
+                    //RectTransform rt = thisFleetUIGameObject.GetComponent<RectTransform>();
+                    //rt.anchoredPosition = Vector2.zero; // Set position if needed
                     thisFleetUIGameObject.SetActive(true);
                     thisFleetUIGameObject.layer = 5;
                     fleetCon.FleetUIGameObject = thisFleetUIGameObject;

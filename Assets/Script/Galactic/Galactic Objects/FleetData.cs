@@ -15,9 +15,10 @@ public class FleetData
     public Vector3 Position;
     public List<ShipController> ShipsList;
     public List<FleetController> FleetGroupControllers; // used to hold fleets exchanging ships
-    public float MaxWarpFactor = 9.8f;
+    public float MaxWarpFactor = 3f;
     public float CurrentWarpFactor = 0f;
     public GameObject Destination = new GameObject();
+    public GameObject LastDestination;
     public string CivLongName;
     public string CivShortName;
     public string Name;

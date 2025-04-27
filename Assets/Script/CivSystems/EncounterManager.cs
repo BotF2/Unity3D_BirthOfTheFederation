@@ -81,7 +81,7 @@ public class EncounterManager : MonoBehaviour
                 {
                     // First Contact
                     encounterController = FirstContactFleetOnStarSysInstantiateEncounnterController(fleetConA, sysCon);
-                    encounterController.ResolveFirstContact(encounterController);
+                    encounterController.ResolveFirstContact(encounterController); // make a Diplomacy controller
                     EncounterControllers.Add(encounterController);
                 }
                 else if (sysCon.StarSysData.CurrentCivController.CivData.CivEnum != fleetConA.FleetData.CivEnum)

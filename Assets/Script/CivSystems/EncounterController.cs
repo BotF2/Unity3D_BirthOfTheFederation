@@ -14,14 +14,16 @@ public class EncounterController
     }
     public void ResolveFirstContact(EncounterController thisEncounterController)
     {
-        DiplomacyManager.Instance.FirstContactGetNewDiplomacyContoller(thisEncounterController);
 
+        DiplomacyManager.Instance.FirstContactGetNewDiplomacyContoller(thisEncounterController);
+        GalaxyMenuUIController.Instance.OpenMenu(Menu.DiplomacyMenu, null);
         EncounterData.isCompleted = true;
     }
     public void ResolveDiplomacy(CivController controllerA, CivController controllerB)
     {
         if (DiplomacyManager.Instance.FoundADiplomacyController(controllerA, controllerB))
         {
+            GalaxyMenuUIController.Instance.OpenMenu(Menu.ADiplomacyMenu, null);
             DiplomacyManager.Instance.ReturnADiplomacyController(controllerA, controllerB).FirstContact(controllerA, controllerB);
         }
         EncounterData.isCompleted = true;

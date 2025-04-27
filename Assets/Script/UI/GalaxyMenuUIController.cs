@@ -4,11 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Assets.Core;
-using Unity.VisualScripting;
-using System.Runtime.CompilerServices;
-using System.Diagnostics;
 using System;
 using System.Linq;
+using UnityEngine.Experimental.XR.Interaction;
 public enum Menu
 {
     None,
@@ -92,6 +90,47 @@ public class GalaxyMenuUIController : MonoBehaviour
     private Menu openMenuEnumWas;
     [SerializeField]
     private GameObject fleetUI_Prefab;// GameObject controlles this active UI on/off
+    [SerializeField]
+    private Slider warpSlider;
+    [SerializeField]
+    private TextMeshProUGUI warpSliderText;
+    [SerializeField]
+    private float maxSliderValue = 10f;
+    [SerializeField]
+    private GameObject warpUpButtonGO;
+    [SerializeField]
+    private GameObject warpDownButtonGO;
+    [SerializeField]
+    private float warpChange = 0.1f;
+    [SerializeField]
+    private bool warpButtonPress = false;
+
+    [SerializeField]
+    private List<ShipData> shipList;
+    private bool deltaShipList = false;
+    private TMP_Dropdown shipDropdown;
+    [SerializeField]
+    private GameObject shipDropdownGO;
+    [SerializeField]
+    private TMP_Text dropdownShipText;
+    [SerializeField]
+    private TMP_Text FleetName;
+    [SerializeField]
+    private GameObject selectDestinationCursorButtonGO;
+    [SerializeField]
+    private GameObject cancelDestinationButtonGO;
+    [SerializeField]
+    private GameObject dragDestinationTargetButtonGO;
+    //[SerializeField]
+    //private TMP_Text selectDestinationBttonText;
+
+    public bool MouseClickSetsDestination = false;// used by FleetController and StarSysController
+
+    [SerializeField]
+    private TMP_Text destinationName;
+    [SerializeField]
+    private TMP_Text destinationCoordinates;
+
 
     private void Awake()
     {
@@ -125,10 +164,11 @@ public class GalaxyMenuUIController : MonoBehaviour
         diplomacyBackground.SetActive(false);
         intelBackground.SetActive(false);
         encyclopediaBackground.SetActive(false);
-
+        
         SetupSystemUIData();//get our system ui game objects to match your sys controllers
         SetupFleetUIData();//get our fleet ui game objects to match your fleet controllers
     }
+
     public void SetActiveBuildMenu(GameObject prefabMenu)
     {
         sysBuildMenu = prefabMenu;
@@ -155,13 +195,48 @@ public class GalaxyMenuUIController : MonoBehaviour
         else
             OpenMenu(Menu.SystemsMenu, null);
     }
-    public void FleetButtonPressed()
+    public void FleetButtonPressed(FleetController fleetCon)
     {
         if (fleetsMenuView.activeSelf)
-            CloseMenu(Menu.FleetsMenu); 
+        {
+            CloseMenu(Menu.FleetsMenu);
+        }
+        else if (aFleetMenuView.activeSelf)
+        {
+            CloseMenu(Menu.AFleetMenu);
+            OpenMenu(Menu.FleetsMenu, null);
+        }
         else
             OpenMenu(Menu.FleetsMenu, null);
     }
+    public void DiplomacyButtonPressed()
+    {
+  
+        //if (diplomacyMenuView != null)
+        //    diplomacyMenuView.SetActive(false);
+        //if (aDiplomacyMenuView != null)
+        //    aDiplomacyMenuView.SetActive(false);
+
+    }
+    public void IntelButtonPressed()
+    {
+
+        //if (diplomacyMenuView != null)
+        //    diplomacyMenuView.SetActive(false);
+        //if (aDiplomacyMenuView != null)
+        //    aDiplomacyMenuView.SetActive(false);
+
+    }
+    public void EncylopediaButtonPressed()
+    {
+
+        //if (diplomacyMenuView != null)
+        //    diplomacyMenuView.SetActive(false);
+        //if (aDiplomacyMenuView != null)
+        //    aDiplomacyMenuView.SetActive(false);
+
+    }
+
     public void OpenMenu(Menu menuEnum, GameObject callingMenuOrGalaxyObject)
     {
 
@@ -268,65 +343,6 @@ public class GalaxyMenuUIController : MonoBehaviour
         if (callingMenu != null)
             callingMenu.SetActive(false);
     }
-    private void MoveTheSysUIGO(GameObject sysConGO)
-    {
-        int numFound =0;
-        List<GameObject> foundGoList = new List<GameObject>();
-        for (int i = 0; i < aSystemMenuView.transform.childCount; i++)
-        {
-            numFound = i;
-            if (i > 0)
-                foundGoList.Add(aSystemMenuView.transform.GetChild(i).gameObject);
-        }
-        if (numFound > 0)
-            for (int j = 0; j < numFound; j++)
-                Destroy(foundGoList[j]);
-        for (int i = 0; i < listOfStarSysUiGos.Count; i++) 
-        {
-            if (listOfStarSysUiGos[i] == sysConGO)
-            {
-                listOfStarSysUiGos[i].transform.SetParent(aSystemMenuView.transform, false);
-            }
-        }
-    }
-    private void MoveBackAnySysUIGO()
-    {
-
-        for (int i = 0; i < aSystemMenuView.transform.childCount; i++)
-        {
-            if (aSystemMenuView.transform.GetChild(i).gameObject != null)
-                aSystemMenuView.transform.GetChild(i).gameObject.transform.SetParent(sysListContainer.transform, false); ;
-        }
-    }
-    private void MoveTheFleetUIGO(GameObject fleetConGO)
-    {
-        int numFound = 0;
-        List<GameObject> foundGoList = new List<GameObject>();
-        for (int i = 0; i < aFleetMenuView.transform.childCount; i++)
-        {
-            numFound = i;
-            if (i > 0)
-                foundGoList.Add(aFleetMenuView.transform.GetChild(i).gameObject);
-        }
-        //if (numFound > 0)
-        //    for (int j = 0; j < numFound; j++)
-        //        Destroy(foundGoList[j]);
-        for (int i = 0; i < listOfFleetUiGos.Count; i++)
-        {
-            if (listOfFleetUiGos[i] == fleetConGO)
-            {
-                listOfFleetUiGos[i].transform.SetParent(aFleetMenuView.transform, false);
-            }
-        }
-    }
-    private void MoveBackAnyFleetUIGO()
-    {
-        for (int i = 0; i < aFleetMenuView.transform.childCount; i++)
-        {
-            if (aFleetMenuView.transform.GetChild(i).gameObject != null)
-                aFleetMenuView.transform.GetChild(i).gameObject.transform.SetParent(fleetListContainer.transform, false); ;
-        }
-    }
 
     private void SetUpAFleetUI(FleetController theFleetCon)
     {
@@ -365,6 +381,7 @@ public class GalaxyMenuUIController : MonoBehaviour
                 openMenuWas = fleetsMenuView;
                 break;
             case Menu.AFleetMenu:
+                CloseUnLoadFleetUI();
                 fleetBackground.SetActive(false);
                 aFleetMenuView.SetActive(false);
                 openMenuWas = aFleetMenuView;
@@ -402,98 +419,332 @@ public class GalaxyMenuUIController : MonoBehaviour
         }
     }
 
-    public void RemoveSystem(StarSysController sysController)
-    {
-        sysControllers.Remove(sysController);
-        listOfStarSysUiGos.Remove(sysController.StarSystUIGameObject);
-    }
 
+    #region FleetUI
+    private void MoveTheFleetUIGO(GameObject fleetConGO)
+    {
+        //int numFound = 0;
+        //List<GameObject> foundGoList = new List<GameObject>();
+        //for (int i = 0; i < aFleetMenuView.transform.childCount; i++)
+        //{
+        //    //numFound = i;
+        //    //if (i > 0)
+        //    foundGoList.Add(aFleetMenuView.transform.GetChild(i).gameObject);
+        //}
+
+        for (int i = 0; i < listOfFleetUiGos.Count; i++)
+        {
+            if (listOfFleetUiGos[i] == fleetConGO)
+            {
+                listOfFleetUiGos[i].transform.SetParent(aFleetMenuView.transform, false);
+            }
+        }
+    }
+    private void MoveBackAnyFleetUIGO()
+    {
+        for (int i = 0; i < aFleetMenuView.transform.childCount; i++)
+        {
+            if (aFleetMenuView.transform.GetChild(i).gameObject != null)
+                aFleetMenuView.transform.GetChild(i).gameObject.transform.SetParent(fleetListContainer.transform, false); ;
+        }
+    }
     public void SetupFleetUIData()
     { // populate the fleet UI with the data from the fleetController...
-        if (FleetManager.Instance.FleetControllerList.Count > 0)
+
+        for (int j = 0; j < FleetManager.Instance.FleetControllerList.Count; j++)
         {
-            for (int j = 0; j < FleetManager.Instance.FleetControllerList.Count; j++)
-            {
-                var fleetCon = FleetManager.Instance.FleetControllerList[j];
-                if (GameController.Instance.AreWeLocalPlayer(fleetCon.FleetData.CivEnum))
+            var fleetCon = FleetManager.Instance.FleetControllerList[j];
+            if (!listOfStarSysUiGos.Contains(fleetCon.FleetUIGameObject) && GameController.Instance.AreWeLocalPlayer(fleetCon.FleetData.CivEnum)) 
+            {       
                 {
-                    if (!listOfFleetUiGos.Contains(fleetCon.FleetListUIGameObject))
-                    {
-                        fleetCon.FleetUIGameObject.SetActive(true);
-                        fleetCon.FleetUIGameObject.transform.SetParent(fleetListContainer.transform, false);
-                        fleetControllers.Add(fleetCon);// add to list for ContentFleets (queue) folder 
-                        listOfFleetUiGos.Add(fleetCon.FleetUIGameObject);
-                        RectTransform[] minMapDotTransfor = fleetCon.FleetUIGameObject.GetComponentsInChildren<RectTransform>();
-                        for (int i = 0; i < minMapDotTransfor.Length; i++)
+                    fleetCon.FleetUIGameObject.SetActive(true);
+                    fleetCon.FleetUIGameObject.transform.SetParent(fleetListContainer.transform, false);
+                    fleetControllers.Add(fleetCon);// add to list for ContentFleets GalaxyMenuUI knows 
+                    listOfFleetUiGos.Add(fleetCon.FleetUIGameObject); // add to list of FleetUI Game Objects GalaxyMenuUI knows
+                    RectTransform[] rectTransforms = fleetCon.FleetUIGameObject.GetComponentsInChildren<RectTransform>();
+                    for (int i = 0; i < rectTransforms.Length; i++)
+                    {               
+                        switch (rectTransforms[i].name)
                         {
-                            if (minMapDotTransfor[i].name == "RedDot")
-                            {
+                            case "RedDot":
+                                rectTransforms[i].gameObject.SetActive(true);
                                 float x = fleetCon.FleetData.Position.x * 0.12f; // 0.12f is our cosmologic constant, fudge factor
                                 float y = 0f;
                                 float z = fleetCon.FleetData.Position.z * 0.12f;
-                                minMapDotTransfor[i].Translate(new Vector3(x, z, y), Space.Self); // flip z and y from main galaxy map to UI mini map
+                                rectTransforms[i].Translate(new Vector3(x, z, y), Space.Self); // flip z and y from main galaxy map to UI mini map
                                 break;
-                            }
-                        }
-                    }
-
-                    TextMeshProUGUI[] ourTMPs = fleetCon.FleetUIGameObject.GetComponentsInChildren<TextMeshProUGUI>();
-                    for (int i = 0; i < ourTMPs.Length; i++)
-                    {
-                        int techLevelInt = (int)CivManager.Instance.LocalPlayerCivContoller.CivData.TechLevel / 100; // Early Tech level = 100, Supreme = 900;
-                        ourTMPs[i].enabled = true;
-                        var name = ourTMPs[i].name;
-
-                        switch (name)
-                        {
-                            case "Text FleetName (TMP)":
-                                ourTMPs[i].text = fleetCon.FleetData.Name;
+                            case "DestinationDragTarget Button":
+                                rectTransforms[i].gameObject.SetActive(true);
+                                dragDestinationTargetButtonGO = rectTransforms[i].gameObject;
                                 break;
-                            case "Destination Name Text":
-                                ourTMPs[i].text = fleetCon.FleetData.Destination.name;
-                                break;
-                            case "Destination Coordinates":
-                                string X = fleetCon.FleetData.Destination.transform.position.x.ToString();
-                                string Y = fleetCon.FleetData.Destination.transform.position.y.ToString();
-                                string Z = fleetCon.FleetData.Destination.transform.position.z.ToString();
-                                ourTMPs[i].text = "X = "+ X +" Y = "+ Y +" Z =  "+Z;
-                                break;
-                            case "Warp Value Text (TMP)":
-                                //ourTMPs[i].text = 
-                                break;
-                        }
-                    }
-                    Button[] listButtons = fleetCon.FleetUIGameObject.GetComponentsInChildren<Button>();
-                    foreach (var listButton in listButtons)
-                    {
-                        switch (listButton.name)
-                        {
-                            case "ButtonShipManager":
-
-                                listButton.onClick.RemoveAllListeners();
-                                listButton.onClick.AddListener(() => fleetCon.ShipManageClick(fleetCon));
+                            case "Cancel Destination Button":
+                                rectTransforms[i].gameObject.SetActive(true);
+                                cancelDestinationButtonGO = rectTransforms[i].gameObject;
                                 break;
                             case "ButtonWarpUp":
-                                fleetCon.FleetData.FleetButtonUp = listButton;
-                                listButton.onClick.RemoveAllListeners();
-                                listButton.onClick.AddListener(() => fleetCon.WarpButtonUp(fleetCon));
+                                rectTransforms[i].gameObject.SetActive(true);
+                                warpUpButtonGO = rectTransforms[i].gameObject;
                                 break;
                             case "ButtonWarpDown":
-                                fleetCon.FleetData.FleetButtonDown = listButton;
-                                listButton.onClick.RemoveAllListeners();
-                                listButton.onClick.AddListener(() => fleetCon.WarpButtonDown(fleetCon));
+                                rectTransforms[i].gameObject.SetActive(true);
+                                warpDownButtonGO = rectTransforms[i].gameObject;
+                                break;
+                            case "SelectDestinationCursorButton":
+                                rectTransforms[i].gameObject.SetActive(true);
+                                selectDestinationCursorButtonGO = rectTransforms[i].gameObject;
+                                break;
+                            case "Destination Coordinates":
+                                rectTransforms[i].gameObject.SetActive(true);
+                                destinationCoordinates = rectTransforms[i].GetComponent<TextMeshProUGUI>();
+                                fleetCon.DestinationCoordinates = destinationCoordinates;
+                                break;
+                            case "Destination Name Text":
+                                rectTransforms[i].gameObject.SetActive(true);
+                                destinationName = rectTransforms[i].GetComponent<TextMeshProUGUI>();
+                                fleetCon.DestinationName = destinationName;
+                                break;
+                            case "WarpSlider":
+                                rectTransforms[i].gameObject.SetActive(true);
+                                warpSlider = rectTransforms[i].GetComponent<Slider>();
+                                fleetCon.DestinationName = destinationName;
                                 break;
                             default:
                                 break;
                         }
                     }
                 }
+
+                TextMeshProUGUI[] ourTMPs = fleetCon.FleetUIGameObject.GetComponentsInChildren<TextMeshProUGUI>();
+                for (int i = 0; i < ourTMPs.Length; i++)
+                {
+                    int techLevelInt = (int)CivManager.Instance.LocalPlayerCivContoller.CivData.TechLevel / 100; // Early Tech level = 100, Supreme = 900;
+                    ourTMPs[i].enabled = true;
+                    var name = ourTMPs[i].name;
+
+                    switch (name)
+                    {
+                        case "Text FleetName (TMP)":
+                            ourTMPs[i].text = fleetCon.FleetData.Name;
+                            break;
+                        case "Destination Name Text":
+                            ourTMPs[i].text = fleetCon.FleetData.Destination.name;
+                            break;
+                        case "Destination Coordinates":
+                            string X = fleetCon.FleetData.Destination.transform.position.x.ToString();
+                            string Y = fleetCon.FleetData.Destination.transform.position.y.ToString();
+                            string Z = fleetCon.FleetData.Destination.transform.position.z.ToString();
+                            ourTMPs[i].text = "X = "+ X +" Y = "+ Y +" Z =  "+Z;
+                            break;
+                        case "Warp Value Text (TMP)":
+                            ourTMPs[i].text = fleetCon.FleetData.CurrentWarpFactor.ToString("0.0");
+                            break;
+                            case "FleetMaxWarpFactor":
+                            ourTMPs[i].text = fleetCon.FleetData.MaxWarpFactor.ToString("0.0");
+
+                            break;
+                    }
+                }
+                Slider slider = fleetCon.FleetUIGameObject.GetComponentInChildren<Slider>();
+                if (slider != null)
+                {
+                    slider.value = 0;
+                    //slider.onValueChanged.RemoveAllListeners();
+                    //slider.onValueChanged.AddListener((value) => fleetCon.SliderOnValueChange(value));
+                }
+                Button[] listButtons = fleetCon.FleetUIGameObject.GetComponentsInChildren<Button>();
+                foreach (var listButton in listButtons)
+                {
+                    switch (listButton.name)
+                    {
+                        case "SelectDestinationCursorButton":
+                            listButton.onClick.RemoveAllListeners();
+                            listButton.onClick.AddListener(() => fleetCon.SelectedDestinationCursor(fleetCon));
+                            break;
+                        case "Cancel Destination Button":
+                            listButton.onClick.RemoveAllListeners();
+                            listButton.onClick.AddListener(() => fleetCon.ClickCancelDestinationButton(fleetCon));
+                            break;
+                        case "DestinationDragTarget Button":
+                            listButton.onClick.RemoveAllListeners();
+                            listButton.onClick.AddListener(() => fleetCon.GetPlayerDefinedTargetDestination(fleetCon));
+                            break;
+                        case "ButtonShipManager":
+                            listButton.onClick.RemoveAllListeners();
+                            listButton.onClick.AddListener(() => fleetCon.ShipManageClick(fleetCon));
+                            break;
+                        case "ButtonWarpUp":
+                            fleetCon.FleetData.FleetButtonUp = listButton;
+                            listButton.onClick.RemoveAllListeners();
+                            listButton.onClick.AddListener(() => fleetCon.FleetOnWarpUpClick(fleetCon));
+                            break;
+                        case "ButtonWarpDown":
+                            fleetCon.FleetData.FleetButtonDown = listButton;
+                            listButton.onClick.RemoveAllListeners();
+                            listButton.onClick.AddListener(() => fleetCon.FleetOnWarpDownClick(fleetCon));
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                //ship dropdown
+                var shipDropdown = fleetCon.FleetUIGameObject.GetComponentInChildren<TMP_Dropdown>();
+                shipDropdown.options.Clear();
+                shipDropdown.captionText.text = "Ship List";
+                List<TMP_Dropdown.OptionData> newShipItems = new List<TMP_Dropdown.OptionData>();
+                string nameShip;
+                for (int i = 0; i < fleetCon.FleetData.ShipsList.Count; i++)
+                {
+                    if (fleetCon.FleetData.ShipsList[i] != null)
+                    {
+                        TMP_Dropdown.OptionData newDataItem = new TMP_Dropdown.OptionData();
+                        nameShip = fleetCon.FleetData.ShipsList[i].name;
+                        nameShip = nameShip.Replace("(CLONE)", string.Empty);
+                        newDataItem.text = nameShip;
+                        newShipItems.Add(newDataItem);                          
+                    }
+                }
+                shipDropdown.AddOptions(newShipItems);
+                shipDropdown.RefreshShownValue();
             }
+            if (fleetCon.FleetUIGameObject != null)
+            {
+                fleetCon.FleetUIGameObject.SetActive(true);
+
+                fleetCon.FleetUIGameObject.transform.SetParent(fleetListContainer.transform, false);
+            }
+        }
+        
+    }
+    public void OnClickShipManager()
+    {
+        GameObject notAMenu = new GameObject();
+        OpenMenu(Menu.AFleetMenu, notAMenu);
+        //Destroy(notAMenu);
+    }
+    public void CloseUnLoadFleetUI()
+    {
+        MouseClickSetsDestination = false;
+        MousePointerChanger.Instance.ResetCursor();
+    }
+    private void ReorderDropdownOptions(TMP_Dropdown dropdown)
+    {
+        List<TMP_Dropdown.OptionData> options = dropdown.options;
+        options.Reverse();
+        // Update the UI
+        dropdown.RefreshShownValue();
+    }
+    public void UpdateFleetWarpUI(FleetController fleetCon, float theirWarp) 
+    {
+        float maxSliderValue = fleetCon.FleetData.MaxWarpFactor;
+        float warpSliderValue = theirWarp;
+        Slider slider = fleetCon.FleetUIGameObject.GetComponentInChildren<Slider>();
+        if (slider != null)
+        {
+            slider.onValueChanged.RemoveAllListeners();
+            slider.value = warpSliderValue;
+
+            slider.onValueChanged.AddListener((value) => fleetCon.SliderOnValueChange(value));
+        }
+
+        TextMeshProUGUI[] OneTMP = fleetCon.FleetUIGameObject.GetComponentsInChildren<TextMeshProUGUI>();
+        for (int i = 0; i < OneTMP.Length; i++)
+        {
+            OneTMP[i].enabled = true;
+            var itemName = OneTMP[i].name.ToString();
+            bool areWeDoneYet = false;
+            bool areWeThereYet = false;
+            // ToDo: work in tech levels
+            if ("Warp Value Text (TMP)" == OneTMP[i].name)
+            {
+                OneTMP[i].text = warpSliderValue.ToString("0.0");
+                areWeThereYet = true;
+            }
+            if ("FleetMaxWarpFactor" == OneTMP[i].name)
+            {
+                OneTMP[i].text = maxSliderValue.ToString("0.0");
+                areWeDoneYet = true;
+            }
+            else if (areWeDoneYet && areWeThereYet)
+            {
+                break;
+            }
+        }
+        
+    }
+    public void SelectedDestinationCursor(FleetController fleetCon)
+    {
+        if (MousePointerChanger.Instance.HaveGalaxyMapCursor == false)
+        {
+            dragDestinationTargetButtonGO.SetActive(false); // to see cancel destination button
+            cancelDestinationButtonGO.SetActive(true);
+            selectDestinationCursorButtonGO.SetActive(false);
+            //selectDestinationBttonText.text = "Select Destination";
+            MouseClickSetsDestination = true;
+            MousePointerChanger.Instance.ChangeToGalaxyMapCursor();
+            MousePointerChanger.Instance.HaveGalaxyMapCursor = true;
+
+        }
+    }
+    public void ClickCancelDestinationButton()
+    {
+        MousePointerChanger.Instance.ResetCursor();
+        MousePointerChanger.Instance.HaveGalaxyMapCursor = false;
+        destinationName.text = "No Destination";
+        destinationCoordinates.text = "";
+        MouseClickSetsDestination = false;
+        selectDestinationCursorButtonGO.SetActive(true);
+        dragDestinationTargetButtonGO.SetActive(true);
+        cancelDestinationButtonGO.SetActive(false);
+    }
+    public void SetAsDestination(string nameDestination, string newCoordinates)
+    {
+        destinationName.text = nameDestination;
+        destinationCoordinates.text = newCoordinates;
+        MouseClickSetsDestination = false;
+        cancelDestinationButtonGO.SetActive(true);
+        dragDestinationTargetButtonGO.SetActive(false);
+    }
+    #endregion FleetUI
+
+    #region Star System UI
+    public void RemoveSystem(StarSysController sysController)
+    {
+        sysControllers.Remove(sysController);
+        listOfStarSysUiGos.Remove(sysController.StarSystUIGameObject);
+    }
+    private void MoveTheSysUIGO(GameObject sysConGO)
+    {
+        int numFound = 0;
+        List<GameObject> foundGoList = new List<GameObject>();
+        for (int i = 0; i < aSystemMenuView.transform.childCount; i++)
+        {
+            numFound = i;
+            if (i > 0)
+                foundGoList.Add(aSystemMenuView.transform.GetChild(i).gameObject);
+        }
+        if (numFound > 0)
+            for (int j = 0; j < numFound; j++)
+                Destroy(foundGoList[j]);
+        for (int i = 0; i < listOfStarSysUiGos.Count; i++)
+        {
+            if (listOfStarSysUiGos[i] == sysConGO)
+            {
+                listOfStarSysUiGos[i].transform.SetParent(aSystemMenuView.transform, false);
+            }
+        }
+    }
+    private void MoveBackAnySysUIGO()
+    {
+
+        for (int i = 0; i < aSystemMenuView.transform.childCount; i++)
+        {
+            if (aSystemMenuView.transform.GetChild(i).gameObject != null)
+                aSystemMenuView.transform.GetChild(i).gameObject.transform.SetParent(sysListContainer.transform, false); ;
         }
     }
     public void SetupSystemUIData()
     { // populate the system UI with the data from the sysController
-
+        
         foreach (var sysController in StarSysManager.Instance.StarSysControllerList)
         {
             if (!listOfStarSysUiGos.Contains(sysController.StarSystUIGameObject) && GameController.Instance.AreWeLocalPlayer(sysController.StarSysData.CurrentOwnerCivEnum))
@@ -788,7 +1039,7 @@ public class GalaxyMenuUIController : MonoBehaviour
             {
                 OneTMP[i].enabled = true;
                 var itemName = OneTMP[i].name.ToString();
-                bool bobbyHasABrainWorm = false;
+                bool areWeDoneLooking = false;
                 // ToDo: work in tech levels
                 if (loadName == OneTMP[i].name)
                 {
@@ -805,9 +1056,9 @@ public class GalaxyMenuUIController : MonoBehaviour
                             numOn++;
                     }
                     OneTMP[i].text = numOn.ToString() + "/" + (facilities.Count).ToString();
-                    bobbyHasABrainWorm = true;
+                    areWeDoneLooking = true;
                 }
-                else if (bobbyHasABrainWorm)
+                else if (areWeDoneLooking)
                 {
                     break;
                 }
@@ -881,6 +1132,38 @@ public class GalaxyMenuUIController : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
         }
     }
+    #endregion Star System UI
+
+    #region Player Defined Drag Target Destination
+    public void GetPlayerDefinedTargetDestination(FleetController fleetCon)
+    {
+        dragDestinationTargetButtonGO.SetActive(false); // to see cancel destination button
+        cancelDestinationButtonGO.SetActive(true);
+        selectDestinationCursorButtonGO.SetActive(true);
+        //selectDestinationBttonText.text = "Select Destination";
+        MouseClickSetsDestination = true;
+        MousePointerChanger.Instance.ChangeToGalaxyMapCursor();
+        MousePointerChanger.Instance.HaveGalaxyMapCursor = true;
+    }
+    #endregion Player Defined Drag Target Destination
+
+    #region Diplomacy
+    // ToDo: Build out Diplomacy UI here along the lines of FleetUI and SysUI
+    // ToDo: Build out Encounters and Diplomacy to work with traites for AI and human players
+    public void SetupDiplomacyUIData()
+    {
+        //for (int i = 0; i < CivManager.Instance.CivControllerList.Count; i++)
+        //{
+        //    var civCon = CivManager.Instance.CivControllerList[i];
+        //    if (!listOfDiplomacyUiGos.Contains(civCon.DiplomacyUIGameObject) && GameController.Instance.AreWeLocalPlayer(civCon.CivData.CivEnum))
+        //    {
+        //        civCon.DiplomacyUIGameObject.SetActive(true);
+        //        civCon.DiplomacyUIGameObject.transform.SetParent(diplomacyListContainer.transform, false);
+        //        listOfDiplomacyUiGos.Add(civCon.DiplomacyUIGameObject); // add to list of FleetUI Game Objects GalaxyMenuUI knows
+        //    }
+        //}
+    }
+    #endregion Diplomacy
 }
 
 
