@@ -106,6 +106,7 @@ public class EncounterManager : MonoBehaviour
                     }
                 }
             }
+            sysCon.gameObject.SetActive(true);
         }
     }
     public void RegisterEncounter(FleetController fleetConA, PlayerDefinedTargetController playerTargetCon)

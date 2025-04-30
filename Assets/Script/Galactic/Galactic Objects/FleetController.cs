@@ -206,14 +206,14 @@ namespace Assets.Core
         {
             bool weAreLocalPlayer = GameController.Instance.AreWeLocalPlayer(this.FleetData.CivEnum);
 
-            //bool isOurDestination = false;
+            bool isOurDestination = false;
             if (this.FleetData.Destination == collider.gameObject)
             {
-                //isOurDestination = true;
+                isOurDestination = true;
                 if (weAreLocalPlayer)
                 {
                     
-                   // ClickCancelDestinationButton(this); // stop
+                    ClickCancelDestinationButton(this); // stop
                     CloseUnLoadFleetUI(); // we are there and have other things to do
                 }
             }
@@ -250,6 +250,7 @@ namespace Assets.Core
                     {
                         if (true) //isOurDestination)
                             OnArrivedAtDestination();//? should we do other stuff here for FleetController at fleet destination?
+                        // encounter leads to diplomacy and then change in menu
                         EncounterManager.Instance.RegisterEncounter(this, collider.gameObject.GetComponent<FleetController>());
                         if (weAreLocalPlayer)
                             EncounterUnknownFleetGetNameAndSprite(collider.gameObject); // setactive ships sprite and name
@@ -266,9 +267,9 @@ namespace Assets.Core
 
                 if (this.FleetData.CivEnum != sysCon.StarSysData.CurrentOwnerCivEnum)
                 {
-                    if (true) //isOurDestination)
+                    if (isOurDestination)
                     {
-                        OnArrivedAtDestination();//? should we do other stuff here for FleetController at system destination?
+                        OnArrivedAtDestination();
                         OnEnterStarSystem();
                     }
                     EncounterManager.Instance.RegisterEncounter(this, sysCon);
@@ -299,12 +300,7 @@ namespace Assets.Core
         {
             var sysCon = hitGO.GetComponent<StarSysController>();
             var sysData = sysCon.StarSysData;
-            // ****ADD the order to colonize here so fleet now owns this system
-            if (sysCon.StarSystUIGameObject == null)
-            {
-                
-               // StarSysManager.Instance.InstantiateSysUIGameObject(fleetCon);
-            }
+
             TextMeshProUGUI[] TheText = hitGO.GetComponentsInChildren<TextMeshProUGUI>();
             for (int i = 0; i < TheText.Length; i++)
             {
@@ -320,7 +316,7 @@ namespace Assets.Core
                     TheText[i].text = sysData.Description;
 
             }
-            GalaxyMenuUIController.Instance.OpenMenu(Menu.DiplomacyMenu, sysCon.gameObject);
+
         }
         private void EncounterUnknownFleetGetNameAndSprite(GameObject hitGO)
         {
@@ -343,7 +339,6 @@ namespace Assets.Core
 
             }
             FleetManager.Instance.ExposeAllFleetInsigniaSprites(civEnum);
-            GalaxyMenuUIController.Instance.OpenMenu(Menu.DiplomacyMenu, hitGO.gameObject);
         }
 
         public void OnFleetEncounteredPlayerDefinedTarget(PlayerDefinedTargetController playerTargetController)
@@ -410,7 +405,7 @@ namespace Assets.Core
         }
         void OnArrivedAtDestination()
         {
-            // Logic to handle what happens when the fleet arrives at the destination
+            // Logic to handle what happens when the fleet arrives at the system destination
             //GalaxyMenuUIController.Instance.ClickCancelDestinationButton(); 
         }
         void OnEnterStarSystem()
@@ -430,15 +425,17 @@ namespace Assets.Core
         }
         public void UpdateMaxWarp()
         {
-            float maxWarp = 3f;
+            float maxWarp = 10f;
             for (int i = 0; i < fleetData.ShipsList.Count; i++)
-            {
+            { // find the slowest ship
                 if (fleetData.ShipsList[i].ShipData.maxWarpFactor < maxWarp)
                 {
                     maxWarp = fleetData.ShipsList[i].ShipData.maxWarpFactor;
                 }
             }
             fleetData.MaxWarpFactor = maxWarp;
+            if(GalaxyMenuUIController.Instance != null)
+                GalaxyMenuUIController.Instance.UpdateFleetMaxWarpUI(this, maxWarp);
         }
         public void DestroyFleet(FleetData fleetData, GameObject fleetGO)
         {
@@ -466,7 +463,8 @@ namespace Assets.Core
                 warpChange = 0f;
                 return;
             }
-            SliderOnValueChange(warpChange); // this method updates the UI too
+
+            SliderOnValueChange(fleetCon.FleetData.CurrentWarpFactor + warpChange); // this called method updates the UI too
    
         }
         public void FleetOnWarpDownClick(FleetController fleetCon)
@@ -481,24 +479,25 @@ namespace Assets.Core
                 warpChange = 0f;
                 return;
             }
-            SliderOnValueChange(warpChange);
+            SliderOnValueChange(fleetCon.FleetData.CurrentWarpFactor + warpChange);
         }
 
-        public void SliderOnValueChange(float valueChange)
+        public void SliderOnValueChange(float newWarpValue)
         {
-            float warpSliderValue = this.FleetData.CurrentWarpFactor;
             float maxSliderValue = this.FleetData.MaxWarpFactor;
-            warpSliderValue += valueChange;
-            if (warpSliderValue > maxSliderValue)
+            
+            if (newWarpValue < 0f)
             {
-                warpSliderValue = maxSliderValue;
+                newWarpValue = 0f;
             }
-            else if (warpSliderValue < 0f)
+            if (newWarpValue > maxSliderValue)
             {
-                warpSliderValue = 0f;
+                this.FleetData.CurrentWarpFactor = maxSliderValue;
+                newWarpValue = maxSliderValue;
             }
-            this.FleetData.CurrentWarpFactor = warpSliderValue;
-            GalaxyMenuUIController.Instance.UpdateFleetWarpUI(this, FleetData.CurrentWarpFactor);
+
+            this.FleetData.CurrentWarpFactor = newWarpValue;
+            GalaxyMenuUIController.Instance.UpdateFleetWarpUI(this, newWarpValue);
         }
         public void SelectedDestinationCursor(FleetController fleetCon)
         {

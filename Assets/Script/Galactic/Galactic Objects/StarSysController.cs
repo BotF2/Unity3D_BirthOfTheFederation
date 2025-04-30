@@ -144,51 +144,48 @@ namespace Assets.Core
 
         private void Update()
         {
-            // Did anything change in the build queue?
-            //if (GameController.Instance.AreWeLocalPlayer(this.StarSysData.CurrentOwnerCivEnum))
-            //{
-                if (buildListGridLayoutGroup != null)
+            if (buildListGridLayoutGroup != null)
+            {
+                if (lastBuildQueueCount != buildListGridLayoutGroup.transform.childCount)
                 {
-                    if (lastBuildQueueCount != buildListGridLayoutGroup.transform.childCount)
+                    GridFactoryQueueUpdate();
+                }
+                else
+                {
+                    int counter = 0;
+                    foreach (var item in buildListGridLayoutGroup.transform)
                     {
-                        GridFactoryQueueUpdate();
-                    }
-                    else
-                    {
-                        int counter = 0;
-                        foreach (var item in buildListGridLayoutGroup.transform)
+                        if (sysBuildQueueList[counter] != null && (Transform)item != sysBuildQueueList[counter])
                         {
-                            if (sysBuildQueueList[counter] != null && (Transform)item != sysBuildQueueList[counter])
-                            {
-                                GridFactoryQueueUpdate();
-                                break;
-                            }
-                            else
-                                counter++;
+                            GridFactoryQueueUpdate();
+                            break;
                         }
+                        else
+                            counter++;
                     }
                 }
-                if (shipListGridLayoutGroup != null)
+            }
+            if (shipListGridLayoutGroup != null)
+            {
+                if (lastShipBuildQueueCount != shipListGridLayoutGroup.transform.childCount)
                 {
-                    if (lastShipBuildQueueCount != shipListGridLayoutGroup.transform.childCount)
+                    GridShipQueueUpdate();
+                }
+                else
+                {
+                    int counter = 0;
+                    foreach (var item in shipListGridLayoutGroup.transform)
                     {
-                        GridShipQueueUpdate();
-                    }
-                    else
-                    {
-                        int counter = 0;
-                        foreach (var item in shipListGridLayoutGroup.transform)
+                        if (shipBuildQueueList[counter] != null && (Transform)item != shipBuildQueueList[counter])
                         {
-                            if (shipBuildQueueList[counter] != null && (Transform)item != shipBuildQueueList[counter])
-                            {
-                                GridShipQueueUpdate();
-                                break;
-                            }
-                            else
-                                counter++;
+                            GridShipQueueUpdate();
+                            break;
                         }
+                        else
+                            counter++;
                     }
                 }
+            }
             //}
             // Are we building anything
             // 
@@ -323,22 +320,7 @@ namespace Assets.Core
                         default:
                             break;
                     }
-                    //if (this.StarSysData.FleetsInSystem.Count == 0) // there is always a feel in the system waiting for new ships
-                    //{
-                    //    IEnumerable<CivSO> civSOs =
-                    //        from civSO in CivManager.Instance.CivSOsInGame
-                    //        where civSO.CivEnum == this.StarSysData.CurrentCivController.CivData.CivEnum
-                    //        select civSO;
-                    //    CivSO theCivSO = civSOs.ToList().FirstOrDefault();
-                     //   GameObject fleetGOinSys = FleetManager.Instance.BuildShipInSystemWithFleet(this, true, localPlayerCivEnum); // need fleet for the new ship of our civ and in system true
-                    //    if (fleetGOinSys.name == "killMe")
-                    //        Destroy(fleetGOinSys);
-                    //    else
-                    //    {
-                    //        ShipManager.Instance.BuildShipInOurFleet(shipType, fleetGOinSys, this); // put a ship in the fleet
-                    //        this.StarSysData.FleetsInSystem.Add(fleetGOinSys);
-                    //    }
-                    //}
+
                     if (this.StarSysData.FleetsInSystem.Count > 0)
                     {
                         ShipManager.Instance.BuildShipInOurFleet(shipType, this.StarSysData.FleetsInSystem[0], this); // put a ship in the fleet
@@ -358,7 +340,8 @@ namespace Assets.Core
             }
         }
         private void AddSysFacility(GameObject faciltyGO, string loadName, string ratioName, StarSysFacilities facilityType )
-        {   if (GameController.Instance.AreWeLocalPlayer(this.StarSysData.CurrentOwnerCivEnum))
+        {
+            if (GameController.Instance.AreWeLocalPlayer(this.StarSysData.CurrentOwnerCivEnum))
             {
                 int newFacilityLoad = 0;
                 List<GameObject> facilities = new List<GameObject>();

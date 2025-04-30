@@ -16,7 +16,7 @@ public class EncounterController
     {
 
         DiplomacyManager.Instance.FirstContactGetNewDiplomacyContoller(thisEncounterController);
-        GalaxyMenuUIController.Instance.OpenMenu(Menu.DiplomacyMenu, null);
+        //GalaxyMenuUIController.Instance.OpenMenu(Menu.DiplomacyMenu, null);
         EncounterData.isCompleted = true;
     }
     public void ResolveDiplomacy(CivController controllerA, CivController controllerB)

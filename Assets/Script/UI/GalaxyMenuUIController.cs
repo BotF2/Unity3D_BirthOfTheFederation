@@ -92,8 +92,10 @@ public class GalaxyMenuUIController : MonoBehaviour
     private GameObject fleetUI_Prefab;// GameObject controlles this active UI on/off
     [SerializeField]
     private Slider warpSlider;
-    [SerializeField]
-    private TextMeshProUGUI warpSliderText;
+    //[SerializeField]
+    //private TextMeshProUGUI warpSliderText;
+    //[SerializeField]
+    //private TextMeshProUGUI fleetMaxWarpSliderText;
     [SerializeField]
     private float maxSliderValue = 10f;
     [SerializeField]
@@ -192,49 +194,49 @@ public class GalaxyMenuUIController : MonoBehaviour
     {
         if (systemsMenuView.activeSelf)
             CloseMenu(Menu.SystemsMenu);
+        if (aSystemMenuView.activeSelf)
+            CloseMenu(Menu.ASystemMenu);
         else
             OpenMenu(Menu.SystemsMenu, null);
     }
-    public void FleetButtonPressed(FleetController fleetCon)
+    public void FleetButtonPressed() // The CanvasGalaxyMenuRibbon/MainGalaxyMenuPanel/FleetsButton in the Hierarchy is set to this class.method
     {
         if (fleetsMenuView.activeSelf)
         {
             CloseMenu(Menu.FleetsMenu);
         }
-        else if (aFleetMenuView.activeSelf)
+        if (aFleetMenuView.activeSelf)
         {
             CloseMenu(Menu.AFleetMenu);
-            OpenMenu(Menu.FleetsMenu, null);
         }
         else
             OpenMenu(Menu.FleetsMenu, null);
     }
     public void DiplomacyButtonPressed()
     {
-  
-        //if (diplomacyMenuView != null)
-        //    diplomacyMenuView.SetActive(false);
-        //if (aDiplomacyMenuView != null)
-        //    aDiplomacyMenuView.SetActive(false);
+        if (diplomacyMenuView.activeSelf)
+            CloseMenu(Menu.DiplomacyMenu);
+        if (aDiplomacyMenuView.activeSelf)
+            CloseMenu(Menu.ADiplomacyMenu);
+        else
+            OpenMenu(Menu.DiplomacyMenu, null);
 
     }
     public void IntelButtonPressed()
     {
-
-        //if (diplomacyMenuView != null)
-        //    diplomacyMenuView.SetActive(false);
-        //if (aDiplomacyMenuView != null)
-        //    aDiplomacyMenuView.SetActive(false);
-
+        if (intelMenuView.activeSelf)
+            CloseMenu(Menu.IntellMenu);
+        //if (aI.activeSelf)
+        //    CloseMenu(Menu.AIntellMenu);
+        else
+            OpenMenu(Menu.IntellMenu, null);
     }
     public void EncylopediaButtonPressed()
     {
-
-        //if (diplomacyMenuView != null)
-        //    diplomacyMenuView.SetActive(false);
-        //if (aDiplomacyMenuView != null)
-        //    aDiplomacyMenuView.SetActive(false);
-
+        if (encyclopediaMenuView.activeSelf)
+            CloseMenu(Menu.EncyclopedianMenu);
+        else
+            OpenMenu(Menu.EncyclopedianMenu, null);
     }
 
     public void OpenMenu(Menu menuEnum, GameObject callingMenuOrGalaxyObject)
@@ -267,7 +269,7 @@ public class GalaxyMenuUIController : MonoBehaviour
                 MoveTheSysUIGO(callingMenuOrGalaxyObject);
                 openMenuWas = aSystemMenuView;
                 openMenuEnumWas = Menu.ASystemMenu;
-                StarSysManager.Instance.currentActiveSysCon = callingMenuOrGalaxyObject.GetComponentInChildren<StarSysController>();
+               // StarSysManager.Instance.currentActiveSysCon = callingMenuOrGalaxyObject.GetComponentInChildren<StarSysController>();
                 break;
             case Menu.BuildMenu:
                 InactivateCallingMenu(callingMenuOrGalaxyObject);
@@ -423,20 +425,13 @@ public class GalaxyMenuUIController : MonoBehaviour
     #region FleetUI
     private void MoveTheFleetUIGO(GameObject fleetConGO)
     {
-        //int numFound = 0;
-        //List<GameObject> foundGoList = new List<GameObject>();
-        //for (int i = 0; i < aFleetMenuView.transform.childCount; i++)
-        //{
-        //    //numFound = i;
-        //    //if (i > 0)
-        //    foundGoList.Add(aFleetMenuView.transform.GetChild(i).gameObject);
-        //}
 
         for (int i = 0; i < listOfFleetUiGos.Count; i++)
         {
             if (listOfFleetUiGos[i] == fleetConGO)
             {
                 listOfFleetUiGos[i].transform.SetParent(aFleetMenuView.transform, false);
+                return;
             }
         }
     }
@@ -454,7 +449,7 @@ public class GalaxyMenuUIController : MonoBehaviour
         for (int j = 0; j < FleetManager.Instance.FleetControllerList.Count; j++)
         {
             var fleetCon = FleetManager.Instance.FleetControllerList[j];
-            if (!listOfStarSysUiGos.Contains(fleetCon.FleetUIGameObject) && GameController.Instance.AreWeLocalPlayer(fleetCon.FleetData.CivEnum)) 
+            if (!listOfFleetUiGos.Contains(fleetCon.FleetUIGameObject) && GameController.Instance.AreWeLocalPlayer(fleetCon.FleetData.CivEnum)) 
             {       
                 {
                     fleetCon.FleetUIGameObject.SetActive(true);
@@ -538,18 +533,19 @@ public class GalaxyMenuUIController : MonoBehaviour
                         case "Warp Value Text (TMP)":
                             ourTMPs[i].text = fleetCon.FleetData.CurrentWarpFactor.ToString("0.0");
                             break;
-                            case "FleetMaxWarpFactor":
+                        case "FleetMaxWarpFactor":
                             ourTMPs[i].text = fleetCon.FleetData.MaxWarpFactor.ToString("0.0");
-
                             break;
                     }
                 }
                 Slider slider = fleetCon.FleetUIGameObject.GetComponentInChildren<Slider>();
                 if (slider != null)
                 {
+                    slider.onValueChanged.RemoveAllListeners();
                     slider.value = 0;
-                    //slider.onValueChanged.RemoveAllListeners();
-                    //slider.onValueChanged.AddListener((value) => fleetCon.SliderOnValueChange(value));
+                    slider.maxValue = fleetCon.FleetData.MaxWarpFactor;
+                    slider.enabled = true;
+                    slider.onValueChanged.AddListener((value) => fleetCon.SliderOnValueChange(value));
                 }
                 Button[] listButtons = fleetCon.FleetUIGameObject.GetComponentsInChildren<Button>();
                 foreach (var listButton in listButtons)
@@ -633,44 +629,85 @@ public class GalaxyMenuUIController : MonoBehaviour
         // Update the UI
         dropdown.RefreshShownValue();
     }
+    public void UpdateFleetMaxWarpUI(FleetController fleetCon, float theirMaxWarp)
+    {
+        float maxSliderValue = theirMaxWarp;
+
+        Slider slider = fleetCon.FleetUIGameObject.GetComponentInChildren<Slider>();
+        if (slider != null)
+        {
+            slider.onValueChanged.RemoveAllListeners();
+            slider.maxValue = theirMaxWarp;
+            if (fleetCon.FleetData.CurrentWarpFactor > theirMaxWarp)
+            {
+                fleetCon.FleetData.CurrentWarpFactor = theirMaxWarp;
+                slider.value = fleetCon.FleetData.CurrentWarpFactor;
+                slider.onValueChanged.AddListener((value) => fleetCon.SliderOnValueChange(value));
+            }
+        }
+
+        TextMeshProUGUI[] OneTMP = fleetCon.FleetUIGameObject.GetComponentsInChildren<TextMeshProUGUI>();
+        bool areWeDoneYet = false;
+        bool areWeDone = false;
+        for (int i = 0; i < OneTMP.Length; i++)
+        {
+            OneTMP[i].enabled = true;
+            var itemName = OneTMP[i].name.ToString();
+
+            if ("FleetMaxWarpFactor" == OneTMP[i].name)
+            {
+                OneTMP[i].text = maxSliderValue.ToString("0.0");
+                areWeDoneYet = true;
+            }
+            else if ("Warp Value Text (TMP)" == OneTMP[i].name)
+            {
+                OneTMP[i].text = fleetCon.FleetData.CurrentWarpFactor.ToString("0.0");
+            }
+            if (areWeDoneYet && areWeDone) 
+            {
+
+                return;
+            }
+        }
+    }
     public void UpdateFleetWarpUI(FleetController fleetCon, float theirWarp) 
     {
-        float maxSliderValue = fleetCon.FleetData.MaxWarpFactor;
         float warpSliderValue = theirWarp;
         Slider slider = fleetCon.FleetUIGameObject.GetComponentInChildren<Slider>();
         if (slider != null)
         {
             slider.onValueChanged.RemoveAllListeners();
             slider.value = warpSliderValue;
-
+            slider.maxValue = fleetCon.FleetData.MaxWarpFactor;
             slider.onValueChanged.AddListener((value) => fleetCon.SliderOnValueChange(value));
         }
 
         TextMeshProUGUI[] OneTMP = fleetCon.FleetUIGameObject.GetComponentsInChildren<TextMeshProUGUI>();
+        bool areWeThereYet = false;
+        bool areWeDoneYet = false;
         for (int i = 0; i < OneTMP.Length; i++)
         {
             OneTMP[i].enabled = true;
             var itemName = OneTMP[i].name.ToString();
-            bool areWeDoneYet = false;
-            bool areWeThereYet = false;
+
             // ToDo: work in tech levels
+            if ("FleetMaxWarpFactor" == OneTMP[i].name)
+            {
+                OneTMP[i].text = fleetCon.FleetData.MaxWarpFactor.ToString("0.0");
+                areWeDoneYet = true;
+            }
             if ("Warp Value Text (TMP)" == OneTMP[i].name)
             {
                 OneTMP[i].text = warpSliderValue.ToString("0.0");
                 areWeThereYet = true;
             }
-            if ("FleetMaxWarpFactor" == OneTMP[i].name)
+            else if (areWeThereYet && areWeDoneYet)
             {
-                OneTMP[i].text = maxSliderValue.ToString("0.0");
-                areWeDoneYet = true;
-            }
-            else if (areWeDoneYet && areWeThereYet)
-            {
-                break;
+                return;
             }
         }
-        
     }
+
     public void SelectedDestinationCursor(FleetController fleetCon)
     {
         if (MousePointerChanger.Instance.HaveGalaxyMapCursor == false)

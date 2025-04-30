@@ -270,6 +270,7 @@ namespace Assets.Core
                     thisFleetUIGameObject.layer = 5;
                     fleetCon.FleetUIGameObject = thisFleetUIGameObject;
                     thisFleetUIGameObject.transform.SetParent(contentFolderParent.transform, false); // load into List of fleets
+
                 }
             }
         }

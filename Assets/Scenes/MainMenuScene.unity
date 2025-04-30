@@ -18701,8 +18701,9 @@ MonoBehaviour:
   openMenuEnumWas: 0
   fleetUI_Prefab: {fileID: 0}
   warpSlider: {fileID: 0}
-  warpSliderText: {fileID: 0}
-  maxSliderValue: 9.8
+  maxSliderValue: 10
+  warpUpButtonGO: {fileID: 0}
+  warpDownButtonGO: {fileID: 0}
   warpChange: 0.1
   warpButtonPress: 0
   shipList: []
@@ -20994,6 +20995,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1010800466}
   m_CullTransparentMesh: 1
+--- !u!224 &1013067031 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5822297372921351177, guid: fc0b9c37cb292ce4cb4d38099c4f78c3, type: 3}
+  m_PrefabInstance: {fileID: 1184667621}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1013483134
 GameObject:
   m_ObjectHideFlags: 0
@@ -24579,6 +24585,115 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1178420023}
   m_CullTransparentMesh: 1
+--- !u!1001 &1184667621
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1982436958}
+    m_Modifications:
+    - target: {fileID: 1058961442618899432, guid: fc0b9c37cb292ce4cb4d38099c4f78c3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3032268092837810025, guid: fc0b9c37cb292ce4cb4d38099c4f78c3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3127805292150332128, guid: fc0b9c37cb292ce4cb4d38099c4f78c3, type: 3}
+      propertyPath: m_Name
+      value: FleetUI_Perfab
+      objectReference: {fileID: 0}
+    - target: {fileID: 3127805292150332128, guid: fc0b9c37cb292ce4cb4d38099c4f78c3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5822297372921351177, guid: fc0b9c37cb292ce4cb4d38099c4f78c3, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5822297372921351177, guid: fc0b9c37cb292ce4cb4d38099c4f78c3, type: 3}
+      propertyPath: m_Pivot.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5822297372921351177, guid: fc0b9c37cb292ce4cb4d38099c4f78c3, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5822297372921351177, guid: fc0b9c37cb292ce4cb4d38099c4f78c3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5822297372921351177, guid: fc0b9c37cb292ce4cb4d38099c4f78c3, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5822297372921351177, guid: fc0b9c37cb292ce4cb4d38099c4f78c3, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5822297372921351177, guid: fc0b9c37cb292ce4cb4d38099c4f78c3, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1900
+      objectReference: {fileID: 0}
+    - target: {fileID: 5822297372921351177, guid: fc0b9c37cb292ce4cb4d38099c4f78c3, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 5822297372921351177, guid: fc0b9c37cb292ce4cb4d38099c4f78c3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5822297372921351177, guid: fc0b9c37cb292ce4cb4d38099c4f78c3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5822297372921351177, guid: fc0b9c37cb292ce4cb4d38099c4f78c3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5822297372921351177, guid: fc0b9c37cb292ce4cb4d38099c4f78c3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5822297372921351177, guid: fc0b9c37cb292ce4cb4d38099c4f78c3, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5822297372921351177, guid: fc0b9c37cb292ce4cb4d38099c4f78c3, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5822297372921351177, guid: fc0b9c37cb292ce4cb4d38099c4f78c3, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5822297372921351177, guid: fc0b9c37cb292ce4cb4d38099c4f78c3, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5822297372921351177, guid: fc0b9c37cb292ce4cb4d38099c4f78c3, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5822297372921351177, guid: fc0b9c37cb292ce4cb4d38099c4f78c3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5822297372921351177, guid: fc0b9c37cb292ce4cb4d38099c4f78c3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5822297372921351177, guid: fc0b9c37cb292ce4cb4d38099c4f78c3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: fc0b9c37cb292ce4cb4d38099c4f78c3, type: 3}
 --- !u!1 &1188121742
 GameObject:
   m_ObjectHideFlags: 0
@@ -27270,10 +27385,10 @@ MonoBehaviour:
       - m_Target: {fileID: 895974089}
         m_TargetAssemblyTypeName: GalaxyMenuUIController, Assembly-CSharp
         m_MethodName: FleetButtonPressed
-        m_Mode: 2
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: Assets.Core.FleetController, Assembly-CSharp
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -40760,7 +40875,6 @@ MonoBehaviour:
   ShieldGeneratorPrefab: {fileID: 8721351806507026755, guid: b0545075bb36c2c499e0801a9a598f68, type: 3}
   OrbitalBatteryPrefab: {fileID: 5454051914275515245, guid: d3ffd69f497d6db498b7847ffec0b573, type: 3}
   ResearchCenterPrefab: {fileID: 3385001668930454785, guid: e08024a6cdf269e4096d554d8fa1dd0b, type: 3}
-  currentActiveSysCon: {fileID: 0}
   fleetPrefab: {fileID: 8531124223347370568, guid: ef3b3036010abf54e8925e887e9010ad, type: 3}
   scoutBluePrintPrefab: {fileID: 6321614478493960930, guid: f0379e6abf6e2424c9c6ef2a2faec298, type: 3}
   destroyerBluePrintPrefab: {fileID: 6321614478493960930, guid: 5581d5fd566eab24eb436aa8ae660008, type: 3}
@@ -41003,7 +41117,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1013067031}
   m_Father: {fileID: 1307268507}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}

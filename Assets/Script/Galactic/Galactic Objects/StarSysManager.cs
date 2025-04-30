@@ -48,7 +48,7 @@ namespace Assets.Core
         public GameObject ShieldGeneratorPrefab;
         public GameObject OrbitalBatteryPrefab;
         public GameObject ResearchCenterPrefab;
-        public StarSysController currentActiveSysCon;
+        //public StarSysController currentActiveSysCon;
 
         private GameObject powerPlantInventorySlot;
         private GameObject factoryInventorySlot;
@@ -806,7 +806,7 @@ namespace Assets.Core
         {
             if (sysController.StarSysData.CurrentOwnerCivEnum == GameController.Instance.GameData.LocalPlayerCivEnum)
             {
-                currentActiveSysCon = sysController;
+                //currentActiveSysCon = sysController;
                 if (sysController.StarSystUIGameObject == null)
                 {
                     GameObject thisStarSysUIGameObject = (GameObject)Instantiate(sysUIPrefab, new Vector3(0, 0, 0),
@@ -1106,8 +1106,8 @@ namespace Assets.Core
         
         public void NewImageInEmptyBuildableInventory(GameObject prefab, StarSysController sysCon) 
         {
-            if (sysCon == null)
-                sysCon = currentActiveSysCon;
+            //if (sysCon == null)
+            //    sysCon = currentActiveSysCon;
             switch (prefab.name)
             {
                 case "PowerPlantData":
