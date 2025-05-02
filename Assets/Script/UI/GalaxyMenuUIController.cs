@@ -127,7 +127,8 @@ public class GalaxyMenuUIController : MonoBehaviour
     private TextMeshProUGUI destinationName;
     [SerializeField]
     private TextMeshProUGUI destinationCoordinates;
-
+    
+    public List<FleetController> FleetConsLookingForDestination;
 
     private void Awake()
     {
@@ -461,9 +462,10 @@ public class GalaxyMenuUIController : MonoBehaviour
                                 float z = fleetCon.FleetData.Position.z * 0.12f;
                                 rectTransforms[i].Translate(new Vector3(x, z, y), Space.Self); // flip z and y from main galaxy map to UI mini map
                                 break;
+
                             case "DestinationDragTarget Button":
-                                rectTransforms[i].gameObject.SetActive(true);
-                                dragDestinationTargetButtonGO = rectTransforms[i].gameObject;
+                                rectTransforms[i].gameObject.SetActive(true); // Ensure the GameObject is active
+                                dragDestinationTargetButtonGO = rectTransforms[i].gameObject; // Assign the GameObject reference to the variable
                                 break;
                             case "Cancel Destination Button":
                                 rectTransforms[i].gameObject.SetActive(true);
@@ -484,17 +486,15 @@ public class GalaxyMenuUIController : MonoBehaviour
                             case "Destination Coordinates":
                                 rectTransforms[i].gameObject.SetActive(true);
                                 destinationCoordinates = rectTransforms[i].GetComponent<TextMeshProUGUI>();
-                                fleetCon.DestinationCoordinates = destinationCoordinates;
                                 break;
                             case "Destination Name Text":
                                 rectTransforms[i].gameObject.SetActive(true);
                                 destinationName = rectTransforms[i].GetComponent<TextMeshProUGUI>();
-                                fleetCon.DestinationName = destinationName;
                                 break;
                             case "WarpSlider":
                                 rectTransforms[i].gameObject.SetActive(true);
                                 warpSlider = rectTransforms[i].GetComponent<Slider>();
-                                fleetCon.DestinationName = destinationName;
+                                //fleetConWaitingForDestination.destinationName = destinationName;
                                 break;
                             default:
                                 break;
@@ -515,13 +515,10 @@ public class GalaxyMenuUIController : MonoBehaviour
                             ourTMPs[i].text = fleetCon.FleetData.Name;
                             break;
                         case "Destination Name Text":
-                            ourTMPs[i].text = fleetCon.FleetData.Destination.name;
+                            ourTMPs[i].text = "No Destination";
                             break;
                         case "Destination Coordinates":
-                            string X = fleetCon.FleetData.Destination.transform.position.x.ToString();
-                            string Y = fleetCon.FleetData.Destination.transform.position.y.ToString();
-                            string Z = fleetCon.FleetData.Destination.transform.position.z.ToString();
-                            ourTMPs[i].text = "X = "+ X +" Y = "+ Y +" Z =  "+Z;
+                            ourTMPs[i].text = "";
                             break;
                         case "Warp Value Text (TMP)":
                             ourTMPs[i].text = fleetCon.FleetData.CurrentWarpFactor.ToString("0.0");
@@ -701,12 +698,13 @@ public class GalaxyMenuUIController : MonoBehaviour
         }
     }
 
-    public void SelectedDestinationCursor(FleetController fleetCon)
+    public void SelectedDestinationCursor(FleetController fleetConWaitingForDestination)
     {
-        if (GameController.Instance.AreWeLocalPlayer(fleetCon.FleetData.CivEnum))
+        if (GameController.Instance.AreWeLocalPlayer(fleetConWaitingForDestination.FleetData.CivEnum))
         {
             if (MousePointerChanger.Instance.HaveGalaxyMapCursor == false)
             {
+                FleetConsLookingForDestination.Add(fleetConWaitingForDestination); // list for mulitplayer games
                 dragDestinationTargetButtonGO.SetActive(false); // to see cancel destination button
                 cancelDestinationButtonGO.SetActive(true);
                 selectDestinationCursorButtonGO.SetActive(false);
@@ -718,6 +716,8 @@ public class GalaxyMenuUIController : MonoBehaviour
     }
     public void ClickCancelDestinationButton(FleetController fleetCon)
     {
+        FleetConsLookingForDestination.Remove(fleetCon);
+        UpdateFleetWarpUI(fleetCon, 0f);
         MousePointerChanger.Instance.ResetCursor();
         MousePointerChanger.Instance.HaveGalaxyMapCursor = false;
         destinationName.text = "No Destination";

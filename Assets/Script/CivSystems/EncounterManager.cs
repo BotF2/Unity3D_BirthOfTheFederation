@@ -56,15 +56,6 @@ public class EncounterManager : MonoBehaviour
                 EncounterControllers.Add(encounterController);
             }
         }
-        // **** do we need to add encoutners to the EncounterControllers list, check if they are completed and remove them from the list?
-        // check for completed encounters and remove them from the list
-        //for (int i = 0; i < EncounterControllers.Count; i++)
-        //{
-        //    if (EncounterControllers[i].EncounterData.isCompleted)
-        //    {
-        //        EncounterControllers.RemoveAt(i);
-        //    }
-        //}
     }
     public void RegisterEncounter(FleetController fleetConA, StarSysController sysCon)
     {

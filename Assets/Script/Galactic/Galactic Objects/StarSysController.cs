@@ -67,7 +67,203 @@ namespace Assets.Core
             OnOffSysFacilityEvents.current.FacilityOnClick += FacilityOnClick;// subscribe methode to the event += () => Debug.Log("Action Invoked!");
             starDateOfCompletion = 0f;
         }
+        private void Update()
+        {
+            if (buildListGridLayoutGroup != null)
+            {
+                if (lastBuildQueueCount != buildListGridLayoutGroup.transform.childCount)
+                {
+                    GridFactoryQueueUpdate();
+                }
+                else
+                {
+                    int counter = 0;
+                    foreach (var item in buildListGridLayoutGroup.transform)
+                    {
+                        if (sysBuildQueueList[counter] != null && (Transform)item != sysBuildQueueList[counter])
+                        {
+                            GridFactoryQueueUpdate();
+                            break;
+                        }
+                        else
+                            counter++;
+                    }
+                }
+            }
+            if (shipListGridLayoutGroup != null)
+            {
+                if (lastShipBuildQueueCount != shipListGridLayoutGroup.transform.childCount)
+                {
+                    GridShipQueueUpdate();
+                }
+                else
+                {
+                    int counter = 0;
+                    foreach (var item in shipListGridLayoutGroup.transform)
+                    {
+                        if (shipBuildQueueList[counter] != null && (Transform)item != shipBuildQueueList[counter])
+                        {
+                            GridShipQueueUpdate();
+                            break;
+                        }
+                        else
+                            counter++;
+                    }
+                }
+            }
+            //}
+            // Are we building anything
+            // 
+            if (building && TimeToBuild > 0) //&& GameController.Instance.AreWeLocalPlayer(this.StarSysData.CurrentOwnerCivEnum)
+            {
 
+                if (starTimer)
+                {
+                    startDate = TimeManager.Instance.CurrentStarDate();
+                    starDateOfCompletion = TimeManager.Instance.CurrentStarDate() + TimeToBuild;
+                    starTimer = false;
+                }
+                else if (TimeManager.Instance.CurrentStarDate() <= starDateOfCompletion)
+                {
+                    currentProgress = (int)(TimeManager.Instance.CurrentStarDate() - startDate);
+                    if (TimeToBuild <= 0)
+                        TimeToBuild = 1;
+                    SetBuildProgress((float)currentProgress / (float)TimeToBuild);
+                }
+                else if (TimeManager.Instance.CurrentStarDate() >= starDateOfCompletion)
+                {
+                    building = false;
+                    SetBuildProgress(0);
+                    starTimer = true;
+                    TimeToBuild = 0;
+                    buildingItem = null;
+                    switch (sysBuildQueueList[0].gameObject.GetComponentInChildren<FactoryBuildableItem>().FacilityType)
+                    {
+                        case StarSysFacilities.PowerPlanet:
+                            this.StarSysData.PowerPlants.Add(StarSysManager.Instance.AddSystemFacilities(1, StarSysManager.Instance.PowerPlantPrefab, (int)this.StarSysData.CurrentOwnerCivEnum, this.StarSysData, 0)[0]);
+                            if (starSysUIGameObject != null)
+                            {
+                                TextMeshProUGUI[] theTextItems = starSysUIGameObject.GetComponentsInChildren<TextMeshProUGUI>();
+                                for (int j = 0; j < theTextItems.Length; j++)
+                                {
+                                    theTextItems[j].enabled = true;
+                                    if (theTextItems[j].name == "NumPUnits")
+                                        theTextItems[j].text = this.StarSysData.PowerPlants.Count.ToString();
+                                    else if (theTextItems[j].name == "NumTotalEOut")
+                                    {
+                                        this.starSysData.TotalSysPowerOutput = (this.StarSysData.PowerPlants.Count) * (this.StarSysData.PowerPlantData.PowerOutput);
+                                        theTextItems[j].text = this.starSysData.TotalSysPowerOutput.ToString();
+                                    }
+                                }
+                            }
+                            GalaxyMenuUIController.Instance.UpdateSystemPowerLoad(this);
+                            break;
+
+                        case StarSysFacilities.Factory:
+                            var factory = (StarSysManager.Instance.AddSystemFacilities(1, StarSysManager.Instance.FactoryPrefab, (int)this.StarSysData.CurrentOwnerCivEnum, this.StarSysData, 0)[0]);
+                            AddSysFacility(factory, "FactoryLoad", "NumFactoryRatio", StarSysFacilities.Factory);
+                            break;
+                        case StarSysFacilities.Shipyard:
+                            var shipyard = StarSysManager.Instance.AddSystemFacilities(1, StarSysManager.Instance.ShipyardPrefab, (int)this.StarSysData.CurrentOwnerCivEnum, this.StarSysData, 0)[0];
+                            AddSysFacility(shipyard, "YardLoad", "NumYardsOnRatio", StarSysFacilities.Shipyard);
+                            break;
+                        case StarSysFacilities.ShieldGenerator:
+                            var shieldGenerator = StarSysManager.Instance.AddSystemFacilities(1, StarSysManager.Instance.ShieldGeneratorPrefab, (int)this.StarSysData.CurrentOwnerCivEnum, this.StarSysData, 0)[0];
+                            AddSysFacility(shieldGenerator, "ShieldLoad", "NumShieldRatio", StarSysFacilities.ShieldGenerator);
+                            break;
+                        case StarSysFacilities.OrbitalBattery:
+                            var orbitalBatterie = StarSysManager.Instance.AddSystemFacilities(1, StarSysManager.Instance.OrbitalBatteryPrefab, (int)this.StarSysData.CurrentOwnerCivEnum, this.StarSysData, 0)[0];
+                            AddSysFacility(orbitalBatterie, "OBLoad", "NumOBRatio", StarSysFacilities.OrbitalBattery);
+                            break;
+                        case StarSysFacilities.ResearchCenter:
+                            var researchCenter = StarSysManager.Instance.AddSystemFacilities(1, StarSysManager.Instance.ResearchCenterPrefab, (int)this.StarSysData.CurrentOwnerCivEnum, this.StarSysData, 0)[0];
+                            AddSysFacility(researchCenter, "ResearchLoad", "NumResearchRatio", StarSysFacilities.ResearchCenter);
+
+                            break;
+                        default:
+                            break;
+                    }
+                    var imageTransform = sysBuildQueueList[0];
+                    imageTransform.SetParent(imageTransform.GetComponent<FactoryBuildableItem>().originalParent, false);
+                    if (imageTransform.parent.childCount > 1)
+                    {
+                        Destroy(imageTransform.gameObject);
+                    }
+                    sysBuildQueueList.Remove(sysBuildQueueList[0]);
+                }
+            }
+            else if (TimeToBuild < 0)
+            {
+                TimeToBuild = 0;
+
+            }
+            if (shipBuilding && ShipTimeToBuild > 0) //&& GameController.Instance.AreWeLocalPlayer(this.StarSysData.CurrentOwnerCivEnum)
+            {
+                if (shipStartTimer)
+                {
+                    shipStartDate = TimeManager.Instance.CurrentStarDate();
+                    shipStarDateOfCompletion = TimeManager.Instance.CurrentStarDate() + ShipTimeToBuild;
+                    shipStartTimer = false;
+                }
+                else if (TimeManager.Instance.CurrentStarDate() <= shipStarDateOfCompletion)
+                {
+                    shipCurrentProgress = (int)(TimeManager.Instance.CurrentStarDate() - shipStartDate);
+                    if (ShipTimeToBuild <= 0)
+                        ShipTimeToBuild = 1;
+                    SetShipBuildProgress((float)shipCurrentProgress / (float)ShipTimeToBuild);
+                }
+                else if (TimeManager.Instance.CurrentStarDate() >= shipStarDateOfCompletion)
+                {
+                    ShipType shipType = new ShipType();
+                    shipBuilding = false;
+                    SetShipBuildProgress(0.02f);
+                    shipStartTimer = true;
+                    ShipTimeToBuild = 0;
+                    shipBuildingItem = null;
+                    CivEnum localPlayerCivEnum = CivManager.Instance.LocalPlayerCivContoller.CivData.CivEnum;
+
+                    switch (shipBuildQueueList[0].gameObject.GetComponentInChildren<ShipInFleetItem>().ShipType)
+                    {
+                        case ShipType.Scout:
+                            shipType = ShipType.Scout;
+                            break;
+                        case ShipType.Destroyer:
+                            shipType = ShipType.Destroyer;
+                            break;
+                        case ShipType.Cruiser:
+                            shipType = ShipType.Cruiser;
+                            break;
+                        case ShipType.LtCruiser:
+                            shipType = ShipType.LtCruiser;
+                            break;
+                        case ShipType.HvyCruiser:
+                            shipType = ShipType.HvyCruiser;
+                            break;
+                        case ShipType.Transport:
+                            shipType = ShipType.Transport;
+                            break;
+                        default:
+                            break;
+                    }
+
+                    if (this.StarSysData.FleetsInSystem.Count > 0)
+                    {
+                        ShipManager.Instance.BuildShipInOurFleet(shipType, this.StarSysData.FleetsInSystem[0], this); // put a ship in the fleet
+                    }
+                    var imageTransform = shipBuildQueueList[0];
+                    imageTransform.SetParent(imageTransform.GetComponent<ShipInFleetItem>().originalParent, false);
+                    if (imageTransform.parent.childCount > 1)
+                    {
+                        Destroy(imageTransform.gameObject);
+                    }
+                    shipBuildQueueList.Remove(shipBuildQueueList[0]);
+                }
+            }
+            else if (ShipTimeToBuild < 0)
+            {
+                ShipTimeToBuild = 0;
+            }
+        }
         public void GridFactoryQueueUpdate()
         {
             lastBuildQueueCount = this.buildListGridLayoutGroup.transform.childCount;
@@ -142,203 +338,7 @@ namespace Assets.Core
             else { shipBuilding = false; }
         }
 
-        private void Update()
-        {
-            if (buildListGridLayoutGroup != null)
-            {
-                if (lastBuildQueueCount != buildListGridLayoutGroup.transform.childCount)
-                {
-                    GridFactoryQueueUpdate();
-                }
-                else
-                {
-                    int counter = 0;
-                    foreach (var item in buildListGridLayoutGroup.transform)
-                    {
-                        if (sysBuildQueueList[counter] != null && (Transform)item != sysBuildQueueList[counter])
-                        {
-                            GridFactoryQueueUpdate();
-                            break;
-                        }
-                        else
-                            counter++;
-                    }
-                }
-            }
-            if (shipListGridLayoutGroup != null)
-            {
-                if (lastShipBuildQueueCount != shipListGridLayoutGroup.transform.childCount)
-                {
-                    GridShipQueueUpdate();
-                }
-                else
-                {
-                    int counter = 0;
-                    foreach (var item in shipListGridLayoutGroup.transform)
-                    {
-                        if (shipBuildQueueList[counter] != null && (Transform)item != shipBuildQueueList[counter])
-                        {
-                            GridShipQueueUpdate();
-                            break;
-                        }
-                        else
-                            counter++;
-                    }
-                }
-            }
-            //}
-            // Are we building anything
-            // 
-            if ( building && TimeToBuild > 0) //&& GameController.Instance.AreWeLocalPlayer(this.StarSysData.CurrentOwnerCivEnum)
-            { 
 
-                if (starTimer)
-                {
-                    startDate = TimeManager.Instance.CurrentStarDate();
-                    starDateOfCompletion = TimeManager.Instance.CurrentStarDate() + TimeToBuild;
-                    starTimer = false;
-                }
-                else if(TimeManager.Instance.CurrentStarDate() <= starDateOfCompletion)
-                {
-                   currentProgress = (int)(TimeManager.Instance.CurrentStarDate() - startDate);
-                    if (TimeToBuild <= 0)
-                        TimeToBuild = 1;
-                   SetBuildProgress((float)currentProgress / (float)TimeToBuild);
-                }
-                else if (TimeManager.Instance.CurrentStarDate() >= starDateOfCompletion)
-                {
-                    building = false;
-                    SetBuildProgress(0);
-                    starTimer = true;
-                    TimeToBuild = 0;
-                    buildingItem = null;
-                    switch (sysBuildQueueList[0].gameObject.GetComponentInChildren<FactoryBuildableItem>().FacilityType)
-                    {
-                        case StarSysFacilities.PowerPlanet:
-                            this.StarSysData.PowerPlants.Add(StarSysManager.Instance.AddSystemFacilities(1, StarSysManager.Instance.PowerPlantPrefab, (int)this.StarSysData.CurrentOwnerCivEnum, this.StarSysData, 0)[0]);
-                            if (starSysUIGameObject != null)
-                            {
-                                TextMeshProUGUI[] theTextItems = starSysUIGameObject.GetComponentsInChildren<TextMeshProUGUI>();
-                                for (int j = 0; j < theTextItems.Length; j++)
-                                {
-                                    theTextItems[j].enabled = true;
-                                    if (theTextItems[j].name == "NumPUnits")
-                                        theTextItems[j].text = this.StarSysData.PowerPlants.Count.ToString();
-                                    else if (theTextItems[j].name == "NumTotalEOut")
-                                    {
-                                        this.starSysData.TotalSysPowerOutput = (this.StarSysData.PowerPlants.Count) * (this.StarSysData.PowerPlantData.PowerOutput);
-                                        theTextItems[j].text = this.starSysData.TotalSysPowerOutput.ToString();
-                                    }
-                                }
-                            }
-                            GalaxyMenuUIController.Instance.UpdateSystemPowerLoad(this);
-                            break;
-
-                        case StarSysFacilities.Factory:
-                            var factory = (StarSysManager.Instance.AddSystemFacilities(1, StarSysManager.Instance.FactoryPrefab, (int)this.StarSysData.CurrentOwnerCivEnum, this.StarSysData, 0)[0]);
-                            AddSysFacility(factory, "FactoryLoad", "NumFactoryRatio", StarSysFacilities.Factory);
-                            break;
-                        case StarSysFacilities.Shipyard:
-                            var shipyard = StarSysManager.Instance.AddSystemFacilities(1, StarSysManager.Instance.ShipyardPrefab, (int)this.StarSysData.CurrentOwnerCivEnum, this.StarSysData, 0)[0];
-                            AddSysFacility(shipyard, "YardLoad", "NumYardsOnRatio", StarSysFacilities.Shipyard);
-                            break;
-                        case StarSysFacilities.ShieldGenerator:
-                            var shieldGenerator = StarSysManager.Instance.AddSystemFacilities(1, StarSysManager.Instance.ShieldGeneratorPrefab, (int)this.StarSysData.CurrentOwnerCivEnum, this.StarSysData, 0)[0];
-                            AddSysFacility(shieldGenerator, "ShieldLoad", "NumShieldRatio", StarSysFacilities.ShieldGenerator);
-                            break;
-                        case StarSysFacilities.OrbitalBattery:
-                            var orbitalBatterie = StarSysManager.Instance.AddSystemFacilities(1, StarSysManager.Instance.OrbitalBatteryPrefab, (int)this.StarSysData.CurrentOwnerCivEnum, this.StarSysData, 0)[0];
-                            AddSysFacility(orbitalBatterie, "OBLoad", "NumOBRatio", StarSysFacilities.OrbitalBattery);
-                            break;
-                        case StarSysFacilities.ResearchCenter:
-                            var researchCenter = StarSysManager.Instance.AddSystemFacilities(1, StarSysManager.Instance.ResearchCenterPrefab, (int)this.StarSysData.CurrentOwnerCivEnum, this.StarSysData, 0)[0];
-                            AddSysFacility(researchCenter, "ResearchLoad", "NumResearchRatio", StarSysFacilities.ResearchCenter);
-
-                            break;
-                        default:
-                            break;
-                    }
-                    var imageTransform = sysBuildQueueList[0];
-                    imageTransform.SetParent(imageTransform.GetComponent<FactoryBuildableItem>().originalParent, false);
-                    if (imageTransform.parent.childCount > 1)
-                    {
-                        Destroy(imageTransform.gameObject);
-                    }
-                    sysBuildQueueList.Remove(sysBuildQueueList[0]);
-                }
-            }
-            else if (TimeToBuild < 0)
-            {
-                TimeToBuild = 0;
-
-            }
-            if ( shipBuilding && ShipTimeToBuild > 0) //&& GameController.Instance.AreWeLocalPlayer(this.StarSysData.CurrentOwnerCivEnum)
-            {
-                if (shipStartTimer)
-                {
-                    shipStartDate = TimeManager.Instance.CurrentStarDate();
-                    shipStarDateOfCompletion = TimeManager.Instance.CurrentStarDate() + ShipTimeToBuild;
-                    shipStartTimer = false;
-                }
-                else if (TimeManager.Instance.CurrentStarDate() <= shipStarDateOfCompletion)
-                {
-                    shipCurrentProgress = (int)(TimeManager.Instance.CurrentStarDate() - shipStartDate);
-                    if (ShipTimeToBuild <= 0)
-                        ShipTimeToBuild = 1;
-                    SetShipBuildProgress((float)shipCurrentProgress / (float)ShipTimeToBuild);
-                }
-                else if (TimeManager.Instance.CurrentStarDate() >= shipStarDateOfCompletion)
-                {
-                    ShipType shipType = new ShipType();
-                    shipBuilding = false;
-                    SetShipBuildProgress(0.02f);
-                    shipStartTimer = true;
-                    ShipTimeToBuild = 0;
-                    shipBuildingItem = null;
-                    CivEnum localPlayerCivEnum = CivManager.Instance.LocalPlayerCivContoller.CivData.CivEnum;
-                   
-                    switch (shipBuildQueueList[0].gameObject.GetComponentInChildren<ShipInFleetItem>().ShipType)
-                    {
-                        case ShipType.Scout:
-                            shipType = ShipType.Scout;        
-                            break;
-                        case ShipType.Destroyer:
-                            shipType = ShipType.Destroyer;
-                            break;
-                        case ShipType.Cruiser:
-                            shipType = ShipType.Cruiser;
-                            break;
-                        case ShipType.LtCruiser:
-                            shipType = ShipType.LtCruiser;
-                            break;
-                        case ShipType.HvyCruiser:
-                            shipType = ShipType.HvyCruiser;
-                            break;
-                        case ShipType.Transport:
-                            shipType = ShipType.Transport;
-                            break;
-                        default:
-                            break;
-                    }
-
-                    if (this.StarSysData.FleetsInSystem.Count > 0)
-                    {
-                        ShipManager.Instance.BuildShipInOurFleet(shipType, this.StarSysData.FleetsInSystem[0], this); // put a ship in the fleet
-                    }
-                        var imageTransform = shipBuildQueueList[0];
-                    imageTransform.SetParent(imageTransform.GetComponent<ShipInFleetItem>().originalParent, false);
-                    if (imageTransform.parent.childCount > 1)
-                    {
-                        Destroy(imageTransform.gameObject);
-                    }
-                    shipBuildQueueList.Remove(shipBuildQueueList[0]);
-                }
-            }
-            else if (ShipTimeToBuild < 0)
-            {
-                ShipTimeToBuild = 0;
-            }
-        }
         private void AddSysFacility(GameObject faciltyGO, string loadName, string ratioName, StarSysFacilities facilityType )
         {
             if (GameController.Instance.AreWeLocalPlayer(this.StarSysData.CurrentOwnerCivEnum))

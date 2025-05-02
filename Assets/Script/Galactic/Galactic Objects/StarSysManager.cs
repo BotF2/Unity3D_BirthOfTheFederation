@@ -101,7 +101,7 @@ namespace Assets.Core
         private GameObject galaxyCenter;
         private Camera galaxyEventCamera;
         private int starSystemCounter = 0;
-
+        private List<CivEnum> localPlayerCanSeeMyNameList = new List<CivEnum>();
         //private int systemCount = -1; // Used only in testing multiple systems in Federation
         private void Awake()
         {
@@ -1192,6 +1192,44 @@ namespace Assets.Core
                     break;
                 default:
                     break;
+            }
+        }
+        public void ExposeAllSystemName(CivEnum civEnum)
+        {
+            localPlayerCanSeeMyNameList.Add(civEnum);
+            foreach (var starSysController in StarSysControllerList)
+            {
+                if (starSysController.StarSysData.CurrentOwnerCivEnum == civEnum)
+                {
+                    Transform[] transforms = starSysController.gameObject.GetComponentsInChildren<Transform>();
+                    for (int i = 0; i < transforms.Length; i++)
+                    {
+                        GameObject ourGO = transforms[i].gameObject;
+                        if (ourGO.name == "SysName")
+                        {
+                            ourGO.SetActive(true);
+                            ourGO.GetComponentInChildren<TextMeshProUGUI>().text = starSysController.StarSysData.SysName;
+                            break;
+                        }
+                    }
+                    // Not changing a sys sprite for now
+                    //var Renderers = starSysController.gameObject.GetComponentsInChildren<SpriteRenderer>();
+                    //for (int i = 0; i < Renderers.Length; i++)
+                    //{
+                    //    if (Renderers[i] != null)
+                    //    {
+                    //        if (Renderers[i].name == "StarSprite")
+                    //        {
+                    //            Renderers[i].gameObject.SetActive(true);
+                    //            //var fog = starSysController.gameObject.GetComponent<csFogVisibilityAgent>();
+                    //            //if (fog != null)
+                    //            //    fog.spriteRenderers.Add(Renderers[i]);
+                    //        }
+                    //        else if (Renderers[i].name == "InsigniaUnknown")
+                    //            Renderers[i].gameObject.SetActive(false);
+                    //    }
+                    //}
+                }
             }
         }
     }   
