@@ -206,7 +206,7 @@ public class FleetGroupController : MonoBehaviour
         //else
         //{
         //    rb.velocity = Vector3.zero;
-        //    OnArrivedAtDestination();
+        //    OnAtFleetDestination();
         //}
         //Vector3 galaxyPlanePoint = new Vector3(rb.position.x, -60f, rb.position.z);
         //Vector3[] points = { rb.position, galaxyPlanePoint };

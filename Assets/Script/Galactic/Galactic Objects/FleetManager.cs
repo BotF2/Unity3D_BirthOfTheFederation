@@ -36,8 +36,8 @@ namespace Assets.Core
         private Material fogPlaneMaterial;
         [SerializeField]
         private GameObject galaxyImage;
-        [SerializeField]
-        private GameObject galaxyCenter;
+
+        public GameObject GalaxyCenter;
         public List<FleetController> FleetControllerList;
         public List<GameObject> FleetGOList = new List<GameObject>(); // all fleetGO GOs made
         [SerializeField]
@@ -162,7 +162,7 @@ namespace Assets.Core
                 FleetControllerList.Add(fleetController); // add to list of all fleet controllers
                 if (!inSystem)
                 {
-                    var transGalaxyCenter = galaxyCenter.gameObject.transform;
+                    var transGalaxyCenter = GalaxyCenter.gameObject.transform;
                     var trans = sysCon.gameObject.transform;
                     fleetNewGameOb.transform.SetParent(transGalaxyCenter, true); // parent is galaxy center, it is not in a star system
                                                                                     // now put it near the home world and visible/seen on the galaxy map, in galaxy space. It is not 'hidden' in the system

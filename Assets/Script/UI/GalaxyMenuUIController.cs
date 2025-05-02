@@ -92,10 +92,7 @@ public class GalaxyMenuUIController : MonoBehaviour
     private GameObject fleetUI_Prefab;// GameObject controlles this active UI on/off
     [SerializeField]
     private Slider warpSlider;
-    //[SerializeField]
-    //private TextMeshProUGUI warpSliderText;
-    //[SerializeField]
-    //private TextMeshProUGUI fleetMaxWarpSliderText;
+
     [SerializeField]
     private float maxSliderValue = 10f;
     [SerializeField]
@@ -123,15 +120,13 @@ public class GalaxyMenuUIController : MonoBehaviour
     private GameObject cancelDestinationButtonGO;
     [SerializeField]
     private GameObject dragDestinationTargetButtonGO;
-    //[SerializeField]
-    //private TMP_Text selectDestinationBttonText;
 
     public bool MouseClickSetsDestination = false;// used by FleetController and StarSysController
 
     [SerializeField]
-    private TMP_Text destinationName;
+    private TextMeshProUGUI destinationName;
     [SerializeField]
-    private TMP_Text destinationCoordinates;
+    private TextMeshProUGUI destinationCoordinates;
 
 
     private void Awake()
@@ -226,8 +221,6 @@ public class GalaxyMenuUIController : MonoBehaviour
     {
         if (intelMenuView.activeSelf)
             CloseMenu(Menu.IntellMenu);
-        //if (aI.activeSelf)
-        //    CloseMenu(Menu.AIntellMenu);
         else
             OpenMenu(Menu.IntellMenu, null);
     }
@@ -710,19 +703,20 @@ public class GalaxyMenuUIController : MonoBehaviour
 
     public void SelectedDestinationCursor(FleetController fleetCon)
     {
-        if (MousePointerChanger.Instance.HaveGalaxyMapCursor == false)
+        if (GameController.Instance.AreWeLocalPlayer(fleetCon.FleetData.CivEnum))
         {
-            dragDestinationTargetButtonGO.SetActive(false); // to see cancel destination button
-            cancelDestinationButtonGO.SetActive(true);
-            selectDestinationCursorButtonGO.SetActive(false);
-            //selectDestinationBttonText.text = "Select Destination";
-            MouseClickSetsDestination = true;
-            MousePointerChanger.Instance.ChangeToGalaxyMapCursor();
-            MousePointerChanger.Instance.HaveGalaxyMapCursor = true;
-
+            if (MousePointerChanger.Instance.HaveGalaxyMapCursor == false)
+            {
+                dragDestinationTargetButtonGO.SetActive(false); // to see cancel destination button
+                cancelDestinationButtonGO.SetActive(true);
+                selectDestinationCursorButtonGO.SetActive(false);
+                MouseClickSetsDestination = true;
+                MousePointerChanger.Instance.ChangeToGalaxyMapCursor();
+                MousePointerChanger.Instance.HaveGalaxyMapCursor = true;
+            }
         }
     }
-    public void ClickCancelDestinationButton()
+    public void ClickCancelDestinationButton(FleetController fleetCon)
     {
         MousePointerChanger.Instance.ResetCursor();
         MousePointerChanger.Instance.HaveGalaxyMapCursor = false;
@@ -732,6 +726,28 @@ public class GalaxyMenuUIController : MonoBehaviour
         selectDestinationCursorButtonGO.SetActive(true);
         dragDestinationTargetButtonGO.SetActive(true);
         cancelDestinationButtonGO.SetActive(false);
+        for (int i = 0; i < listOfFleetUiGos.Count; i++)
+        {
+            if (listOfFleetUiGos[i].GetComponentInChildren<FleetController>() == fleetCon)
+            {
+                TextMeshProUGUI[] ourTMPs = listOfFleetUiGos[i].GetComponentsInChildren<TextMeshProUGUI>();
+                for (int j = 0; j < ourTMPs.Length; j++)
+                {
+                    ourTMPs[j].enabled = true;
+                    var name = ourTMPs[i].name;
+                    switch (name)
+                    {
+                        case "Destination Name Text":
+                            ourTMPs[j].text = "No Destination";
+                            break;
+                        case "Destination Coordinates":
+                            ourTMPs[j].text = "";
+                            break;
+                    }
+                }
+                return;
+            }
+        }
     }
     public void SetAsDestination(string nameDestination, string newCoordinates)
     {

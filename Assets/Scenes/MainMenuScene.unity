@@ -28934,7 +28934,7 @@ MonoBehaviour:
   shipManagerMenuPrefab: {fileID: 8637087807823003284, guid: 7997ef2e58d487c48bdbe97951aa4adc, type: 3}
   fogPlaneMaterial: {fileID: 2100000, guid: 36b93ac6fcf129c449491654e397fe4a, type: 2}
   galaxyImage: {fileID: 843799567}
-  galaxyCenter: {fileID: 564492290}
+  GalaxyCenter: {fileID: 564492290}
   FleetControllerList: []
   FleetGOList: []
   fleetGroupPrefab: {fileID: 3717699476320669143, guid: 724c5663d5780da4a9ab08bdbf7ccc98, type: 3}

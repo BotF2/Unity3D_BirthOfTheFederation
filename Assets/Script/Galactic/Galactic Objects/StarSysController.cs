@@ -495,7 +495,7 @@ namespace Assets.Core
 
             for (int i = 0; i < FleetManager.Instance.FleetConrollersInGame.Count; i++)
             {
-                if (FleetManager.Instance.FleetConrollersInGame[i].MouseClickSetsDestination == true)
+                if (GalaxyMenuUIController.Instance.MouseClickSetsDestination == true)
                 {
                     FleetManager.Instance.FleetConrollersInGame[i].SetAsDestination(sysGO, isFleet);
                 }
