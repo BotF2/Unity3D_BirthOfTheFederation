@@ -258,19 +258,6 @@ namespace Assets.Core
                         TheText[i].text = sysData.Description;
 
                 }
-                var Renderers = starSystemNewGameOb.GetComponentsInChildren<SpriteRenderer>();
-                for (int i = 0;i < Renderers.Length; i++)
-                {
-                    if (Renderers[i] != null)
-                    {
-                        if (Renderers[i].name == "OwnerInsignia")
-                        {
-                            Renderers[i].sprite = civSO.Insignia;
-                        } // ToDo: random map with random sprites on nebula, wormholes
-                        else if (Renderers[i].name == "StarSprite")
-                            Renderers[i].sprite = sysData.StarSprit;
-                    }
-                }
 
                 MapLineFixed ourDropLine = starSystemNewGameOb.GetComponentInChildren<MapLineFixed>();
 
@@ -280,6 +267,33 @@ namespace Assets.Core
                     galaxyImage.transform.position.y, starSystemNewGameOb.transform.position.z);
                 Vector3[] points = { starSystemNewGameOb.transform.position, galaxyPlanePoint };
                 ourDropLine.SetUpLine(points);
+
+                var Renderers = starSystemNewGameOb.GetComponentsInChildren<SpriteRenderer>();
+                for (int i = 0;i < Renderers.Length; i++)
+                {
+                    if (Renderers[i] != null)
+                    {
+                        if (Renderers[i].name == "OwnerInsignia")
+                        {
+                            Renderers[i].sprite = civSO.Insignia;
+                            Renderers[i].gameObject.transform.position =
+                                new Vector3(starSystemNewGameOb.transform.position.x, galaxyPlanePoint.y, starSystemNewGameOb.transform.position.z);
+                            Renderers[i].gameObject.layer = 4; // water layer (also used by fog of war for obsticles with shows to line of sight
+                            if (!GameController.Instance.AreWeLocalPlayer(sysData.CurrentOwnerCivEnum))
+                            {
+                                Renderers[i].sortingOrder = 0;
+                                Renderers[i].enabled = false;
+                            }
+
+                        } // ToDo: random map with random sprites on nebula, wormholes
+                        else if (Renderers[i].name == "StarSprite")
+                        {
+                            Renderers[i].sprite = sysData.StarSprit;
+                            Renderers[i].sortingOrder = 1;
+                        }
+                    }
+                }
+
 
                 starSysController.name = sysData.GetSysName();
                 starSysController.StarSysData = sysData;
@@ -1205,11 +1219,26 @@ namespace Assets.Core
                     for (int i = 0; i < transforms.Length; i++)
                     {
                         GameObject ourGO = transforms[i].gameObject;
+                        bool oneDown = false;
+                        bool oneMoreDown = false;
                         if (ourGO.name == "SysName")
                         {
                             ourGO.SetActive(true);
                             ourGO.GetComponentInChildren<TextMeshProUGUI>().text = starSysController.StarSysData.SysName;
-                            break;
+                            oneDown = true;
+                           
+                        }
+                        if (ourGO.name == "OwnerInsignia")
+                        {
+                            ourGO.SetActive(true);
+                            ourGO.GetComponent<SpriteRenderer>().enabled = true;
+                            ourGO.GetComponent<SpriteRenderer>().sortingOrder = 0;
+                            oneMoreDown = true;
+                            
+                        }
+                        if (oneDown && oneMoreDown)
+                        {
+                            return;
                         }
                     }
                     // Not changing a sys sprite for now

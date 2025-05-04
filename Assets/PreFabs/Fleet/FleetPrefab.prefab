@@ -34,7 +34,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 49.028805, y: -50.4022}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!120 &4970423174887535027
@@ -1096,18 +1096,32 @@ MonoBehaviour:
   m_GameObject: {fileID: 8531124223347370568}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 375c4de48bdc9b846863cda91b3ffa25, type: 3}
+  m_Script: {fileID: 11500000, guid: 943eac7281cfde645a725ab77e1c1184, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fleetUIGameObject: {fileID: 0}
+  FleetUIGameObject: {fileID: 0}
   Name: 
   intName: 1
-  FleetState: 0
   DropLine: {fileID: 0}
   DestinationLine: {fileID: 0}
   BackgroundGalaxyImage: {fileID: 0}
   shipDropdownOptions: []
-  CanvasToolTip: {fileID: 2810528529038315648}
+  CanvasToolTip: {fileID: 0}
   TargetController: {fileID: 0}
+  warpUpButtonGO: {fileID: 0}
+  warpDownButtonGO: {fileID: 0}
+  warpChange: 0.1
+  warpSlider: {fileID: 0}
+  warpSliderText: {fileID: 0}
+  maxSliderValue: 10
+  shipList: []
+  ShipDropdownGO: {fileID: 0}
+  dropdownShipText: {fileID: 0}
+  FleetName: {fileID: 0}
+  destinationName: {fileID: 0}
+  destinationCoordinates: {fileID: 0}
+  selectDestinationBttonText: {fileID: 0}
 --- !u!114 &3017837512546761231
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -17,7 +17,7 @@ MonoBehaviour:
   SysName: ASCHELAN
   FirstOwner: 168
   CurrentOwner: 168
-  StarType: 0
+  StarType: 5
   StarSprit: {fileID: 21300000, guid: 5f58c88d843d11e499453658e7aa9fde, type: 3}
   Population: 0
   PopulationLimit: 10

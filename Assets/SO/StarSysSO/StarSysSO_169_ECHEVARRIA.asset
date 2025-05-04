@@ -17,7 +17,7 @@ MonoBehaviour:
   SysName: ECHEVARRIA
   FirstOwner: 169
   CurrentOwner: 169
-  StarType: 0
+  StarType: 5
   StarSprit: {fileID: 21300000, guid: 83cb302a0253c814c86f71517a347e17, type: 3}
   Population: 0
   PopulationLimit: 10

@@ -17,7 +17,7 @@ MonoBehaviour:
   SysName: ACHERNAR
   FirstOwner: 165
   CurrentOwner: 165
-  StarType: 0
+  StarType: 5
   StarSprit: {fileID: 21300000, guid: 7d8a4045ff8fe61449b191910c78ec31, type: 3}
   Population: 0
   PopulationLimit: 10

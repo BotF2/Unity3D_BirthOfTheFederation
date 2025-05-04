@@ -132,44 +132,47 @@ namespace Assets.Core
             GameObject aFleet = InstantiateFleet(sysCon, fleetData, position, inSystem);  
             if (aFleet.name == "killMe")
             {
-                Destroy(aFleet);
+                Destroy(aFleet); // temp fleet GO for uninhabited systems
             }
         }
         
         public GameObject InstantiateFleet(StarSysController sysCon, FleetData fleetData, Vector3 position, bool inSystem)
         {
-            GameObject fleetNewGameOb = new GameObject();
-   
-            IEnumerable<StarSysController> ourCivSysCons =
+                IEnumerable<StarSysController> ourCivSysCons =
                 from x in StarSysManager.Instance.StarSysControllerList
                 where (x.StarSysData.CurrentOwnerCivEnum == fleetData.CivEnum)
                 select x;
             var ourSysCons = ourCivSysCons.ToList();
-                
-            if (fleetData.CivEnum != CivEnum.ZZUNINHABITED1)
+
+            if (fleetData.CivEnum < CivEnum.ZZUNINHABITED1)
             {
-                fleetNewGameOb = (GameObject)Instantiate(fleetPrefab, new Vector3(0, 0, 0),
+                GameObject fleetNewGameOb = (GameObject)Instantiate(fleetPrefab, new Vector3(0, 0, 0),
                         Quaternion.identity);
                 FleetGOList.Add(fleetNewGameOb);
                 fleetNewGameOb.layer = 6; // galaxy layer
 
                 var fleetController = fleetNewGameOb.GetComponentInChildren<FleetController>();
-                //currentActiveFleetCon = fleetController;
                 fleetController.BackgroundGalaxyImage = galaxyImage;
                 fleetController.FleetData = fleetData;
-                //fleetController.FleetState = FleetState.FleetStationary;
-
+                Canvas[] canvasArray = fleetNewGameOb.GetComponentsInChildren<Canvas>();
+                for (int j = 0; j < canvasArray.Length; j++)
+                {
+                    if (canvasArray[j].name == "CanvasToolTip")
+                    {
+                        fleetController.CanvasToolTip = canvasArray[j];
+                    }
+                }
                 FleetControllerList.Add(fleetController); // add to list of all fleet controllers
                 if (!inSystem)
                 {
                     var transGalaxyCenter = GalaxyCenter.gameObject.transform;
                     var trans = sysCon.gameObject.transform;
                     fleetNewGameOb.transform.SetParent(transGalaxyCenter, true); // parent is galaxy center, it is not in a star system
-                                                                                    // now put it near the home world and visible/seen on the galaxy map, in galaxy space. It is not 'hidden' in the system
+                                                                                 // now put it near the home world and visible/seen on the galaxy map, in galaxy space. It is not 'hidden' in the system
                     fleetNewGameOb.transform.Translate(new Vector3(trans.position.x + 20f, trans.position.y + 20f, trans.position.z));
                     fleetData.Position = fleetNewGameOb.transform.position;
                 }
-                else // it is in the system so 'hidden' on the galaxy map inside the system
+                else // it is in the system shipyard so 'hidden' on the galaxy map inside the system
                 {
                     fleetNewGameOb.transform.SetParent(sysCon.gameObject.transform, false);
                 }
@@ -235,9 +238,9 @@ namespace Assets.Core
                         ourLineToGalaxyImageScript[i].SetUpLine(points);
                         fleetController.DropLine = ourLineToGalaxyImageScript[i];
                     }
-                    // eles if "DestinationLine" is done in FleetController
-                }
 
+                }
+                fleetController.FleetData.Destination = GalaxyCenter;
                 fleetController.FleetData.ShipsList.Clear();
                 foreach (var civCon in CivManager.Instance.CivControllersInGame)
                 {
@@ -251,10 +254,16 @@ namespace Assets.Core
                 if (!inSystem) // all first fleets are not in system
                     ShipManager.Instance.BuildShipsOfFirstFleet(fleetNewGameOb);
                 InstantiateFleetUIGameObject(fleetController);
+                return fleetNewGameOb;
             }
-            else fleetNewGameOb.name = "killMe";
+            else 
+            {
+                GameObject fleetNewGameOb = new GameObject();
+                fleetNewGameOb.name = "killMe";
+                return fleetNewGameOb;
+            }
             
-            return fleetNewGameOb;
+            
         }
         private void InstantiateFleetUIGameObject(FleetController fleetCon)
         {

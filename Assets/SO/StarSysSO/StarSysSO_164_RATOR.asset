@@ -17,7 +17,7 @@ MonoBehaviour:
   SysName: RATOR
   FirstOwner: 164
   CurrentOwner: 164
-  StarType: 0
+  StarType: 5
   StarSprit: {fileID: 21300000, guid: 16452eff12e1dc446be79b9323249996, type: 3}
   Population: 0
   PopulationLimit: 10

@@ -17,7 +17,7 @@ MonoBehaviour:
   SysName: NEQUENCIA
   FirstOwner: 170
   CurrentOwner: 170
-  StarType: 0
+  StarType: 5
   StarSprit: {fileID: 21300000, guid: 37f43cf2c0796bf44973efd08231096a, type: 3}
   Population: 0
   PopulationLimit: 10

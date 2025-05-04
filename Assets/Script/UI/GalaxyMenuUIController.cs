@@ -190,7 +190,7 @@ public class GalaxyMenuUIController : MonoBehaviour
     {
         if (systemsMenuView.activeSelf)
             CloseMenu(Menu.SystemsMenu);
-        if (aSystemMenuView.activeSelf)
+        else if (aSystemMenuView.activeSelf)
             CloseMenu(Menu.ASystemMenu);
         else
             OpenMenu(Menu.SystemsMenu, null);
@@ -201,7 +201,7 @@ public class GalaxyMenuUIController : MonoBehaviour
         {
             CloseMenu(Menu.FleetsMenu);
         }
-        if (aFleetMenuView.activeSelf)
+        else if (aFleetMenuView.activeSelf)
         {
             CloseMenu(Menu.AFleetMenu);
         }
@@ -212,7 +212,7 @@ public class GalaxyMenuUIController : MonoBehaviour
     {
         if (diplomacyMenuView.activeSelf)
             CloseMenu(Menu.DiplomacyMenu);
-        if (aDiplomacyMenuView.activeSelf)
+        else if (aDiplomacyMenuView.activeSelf)
             CloseMenu(Menu.ADiplomacyMenu);
         else
             OpenMenu(Menu.DiplomacyMenu, null);
@@ -263,7 +263,6 @@ public class GalaxyMenuUIController : MonoBehaviour
                 MoveTheSysUIGO(callingMenuOrGalaxyObject);
                 openMenuWas = aSystemMenuView;
                 openMenuEnumWas = Menu.ASystemMenu;
-               // StarSysManager.Instance.currentActiveSysCon = callingMenuOrGalaxyObject.GetComponentInChildren<StarSysController>();
                 break;
             case Menu.BuildMenu:
                 InactivateCallingMenu(callingMenuOrGalaxyObject);

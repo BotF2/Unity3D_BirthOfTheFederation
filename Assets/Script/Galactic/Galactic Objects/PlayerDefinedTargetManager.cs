@@ -10,14 +10,15 @@ namespace Assets.Core
         private GameObject playerTargetPrefab;
         [SerializeField]
         private GameObject galaxyImageGO;
-        public GameObject galaxyCenter;
+        public GameObject GalaxyCenter;
         public string nameDestination;
+        
         //public KeyCode heldKeyForMouseDown = KeyCode.Space;
         [SerializeField]
         private PlayerDefinedTargetSO playerDefinedTargetSO;
         [SerializeField]
         private Camera galaxyEventCamera;
-        //  public List<PlayerDefinedTargetController> ManagersPlayerTargetControllerList;
+       //public List<PlayerDefinedTargetController> ListPlayerTargetControllerList;
         public List<GameObject> PlayerTargetGOList = new List<GameObject>(); // all player Defined GOs made
 
         private void Awake()
@@ -55,35 +56,44 @@ namespace Assets.Core
             Vector3 position = fleetGO.transform.position;
             GameObject playerDefinedTargetGO = (GameObject)Instantiate(playerTargetPrefab, new Vector3(0, 0, 0),
                     Quaternion.identity);
+            PlayerTargetGOList.Add(playerDefinedTargetGO);
+            playerDefinedTargetGO.layer = 6;
             var playerController = playerDefinedTargetGO.GetComponentInChildren<PlayerDefinedTargetController>();
             playerController.galaxyEventCamera = galaxyEventCamera;
             playerController.galaxyBackgroundImage = galaxyImageGO;
             playerController.PlayerTargetData = playerTargetData;
-            //playerController.TextComponent ToDo: number the destinations
-            // Get position x and y defined by player
-            playerDefinedTargetGO.transform.Translate(new Vector3(position.x + 20f, position.y, position.z));
-            playerDefinedTargetGO.transform.SetParent(galaxyCenter.transform, true);
+            
+            playerController.PlayerTargetData.FleetController = fleetGO.GetComponentInChildren<FleetController>();
+            playerController.PlayerTargetData.CivOwnerEnum = playerController.PlayerTargetData.FleetController.FleetData.CivEnum;
 
-            playerDefinedTargetGO.transform.localScale = new Vector3(1, 1, 1);
+            playerDefinedTargetGO.transform.SetParent(GalaxyCenter.transform, true);
+            playerDefinedTargetGO.transform.Translate(new Vector3(position.x + 20f, position.y, position.z));
+            
+            playerDefinedTargetGO.transform.localScale = new Vector3(1f, 1f, 1f);
 
             playerDefinedTargetGO.SetActive(true);
             PlayerTargetGOList.Add(playerDefinedTargetGO);
-            AddPlayerControllerToAllControllers(playerController);
-
-            //MapLineMovable ourLineToGalaxyImageScript = playerDefinedTargetGO.GetComponentInChildren<MapLineMovable>();
-
-            //ourLineToGalaxyImageScript.GetLineRenderer();
-            //ourLineToGalaxyImageScript.transform.SetParent(playerDefinedTargetGO.transform, false);
-            // The line from Fleet to underlying galaxy image and to destination
+            //AddPlayerControllerToAllControllers(playerController);
+            Canvas[] canvasArray = playerDefinedTargetGO.GetComponentsInChildren<Canvas>();
+            for (int j = 0; j < canvasArray.Length; j++)
+            {
+                if (canvasArray[j].name == "CanvasToolTip")
+                {
+                    playerController.CanvasToolTip = canvasArray[j];
+                }
+            }
+            var transGalaxyCenter = GalaxyCenter.gameObject.transform;
+            var trans = fleetGO.gameObject.transform;
             MapLineMovable itemMapLineScript = playerDefinedTargetGO.GetComponentInChildren<MapLineMovable>();
 
             itemMapLineScript.GetLineRenderer();
+            itemMapLineScript.lineRenderer.startColor = Color.yellow;
+            itemMapLineScript.lineRenderer.endColor = Color.yellow;
             itemMapLineScript.transform.SetParent(playerDefinedTargetGO.transform, false);
             Vector3 galaxyPlanePoint = new Vector3(playerDefinedTargetGO.transform.position.x,
                 galaxyImageGO.transform.position.y, playerDefinedTargetGO.transform.position.z);
             Vector3[] points = { playerDefinedTargetGO.transform.position, galaxyPlanePoint };
             itemMapLineScript.SetUpLine(points);
-            //fleetController.FleetData.yAboveGalaxyImage = galaxyCenter.transform.position.y - galaxyPlanePoint.y;
             playerController.DropLine = itemMapLineScript;
 
             fleetGO.GetComponent<FleetController>().TargetController = playerController;

@@ -17,7 +17,7 @@ MonoBehaviour:
   SysName: HAYASHI
   FirstOwner: 158
   CurrentOwner: 158
-  StarType: 0
+  StarType: 5
   StarSprit: {fileID: 21300000, guid: fd0b21833f7cf0b47bf8533572158c7f, type: 3}
   Population: 0
   PopulationLimit: 10

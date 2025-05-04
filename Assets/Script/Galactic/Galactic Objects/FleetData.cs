@@ -17,7 +17,7 @@ public class FleetData
     public List<FleetController> FleetGroupControllers; // used to hold fleets exchanging ships
     public float MaxWarpFactor = 3f;
     public float CurrentWarpFactor = 0f;
-    public GameObject Destination = new GameObject();
+    public GameObject Destination;
     public GameObject LastDestination;
     public string CivLongName;
     public string CivShortName;
@@ -44,7 +44,6 @@ public class FleetData
                 where (x.CivData.CivInt == (int)CivEnum)
                 select x;
         CivController = ourCivManagers.ToList().FirstOrDefault();
-        Destination.name = "No Destination";
     }
     public FleetData(string name)
     {

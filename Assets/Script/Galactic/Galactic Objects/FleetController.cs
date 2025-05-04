@@ -23,7 +23,6 @@ namespace Assets.Core
         // instantiated by FleetManager from a prefab and added to FleetController
         public string Name;
         public int intName = 1;
-        //public FleetState FleetState;
         private float warpFudgeFactor = 10f;
         private Rigidbody rb;
         public MapLineMovable DropLine;
@@ -32,20 +31,19 @@ namespace Assets.Core
         [SerializeField]
         private List<string> shipDropdownOptions;
         private Camera galaxyEventCamera;
-        private GameObject aNull = null; // used to pass a null object to the UI when needed
+        private GameObject aNull = null; // used to pass a null object to the UI when needed in Diplomacy
         public Canvas FleetUICanvas { get; private set; }
         public Canvas CanvasToolTip;
         public PlayerDefinedTargetController TargetController;
         private Vector3 vectorOffset;
         private float ourZCoordinate;
-
+        [SerializeField]
         private GameObject warpUpButtonGO;
         [SerializeField]
         private GameObject warpDownButtonGO;
         [SerializeField]
         private float warpChange = 0.1f;
-        //[SerializeField]
-        //private bool warpButtonPress = false;
+
         [SerializeField]
         private Slider warpSlider;
         [SerializeField]
@@ -54,7 +52,6 @@ namespace Assets.Core
         private float maxSliderValue = 10f;
         [SerializeField]
         private List<ShipData> shipList;
-        private bool deltaShipList = false;
         private TMP_Dropdown shipDropdown;
         [SerializeField]
         public GameObject ShipDropdownGO;
@@ -80,12 +77,10 @@ namespace Assets.Core
             CanvasToolTip.worldCamera = galaxyEventCamera;
             FleetData.CurrentWarpFactor = 0f;
             for (int i = 0; i < FleetData.ShipsList.Count; i++)
-            //foreach (var shipCon in this.FleetData.ShipsList)
             {
                 if (FleetData.ShipsList[i].ShipData.maxWarpFactor < this.FleetData.MaxWarpFactor)
                 { this.FleetData.MaxWarpFactor = FleetData.ShipsList[i].ShipData.maxWarpFactor; }
             }
-            //FleetState = FleetState.FleetStationary;
             DestinationLine = this.GetComponentInChildren<MapLineMovable>();
             DestinationLine.GetLineRenderer();
             DestinationLine.transform.SetParent(transform, false);
@@ -102,13 +97,8 @@ namespace Assets.Core
         {    
             if (FleetData.Destination != FleetManager.Instance.GalaxyCenter && FleetData.CurrentWarpFactor > 0f)
             {
-                //FleetState = FleetState.FleetAtWarp;
                 MoveToDesitinationGO();
                 DrawDestinationLine(FleetData.Destination.transform.position);
-            }
-            else
-            {
-                //FleetData.Destination.;
             }
         }
         public Rigidbody GetRigidbody() { return rb; }
@@ -162,7 +152,6 @@ namespace Assets.Core
                 isOurDestination = true;
                 if (weAreLocalPlayer)
                 {
-                    ClickCancelDestinationButton(this); // stop
                     CloseUnLoadFleetUI(); // we are there and have other things to do
                 }
             }
@@ -172,12 +161,14 @@ namespace Assets.Core
                 FleetController hitFleetCon = collider.gameObject.GetComponent<FleetController>();
                 // if (gameObject.GetInstanceID() < collider.gameObject.GetInstanceID())// *** check ID of the OnTriggerEnter so only one of the two fleet colliding objects reports the collision
 
-                if (this.FleetData.CivEnum != hitFleetCon.FleetData.CivEnum)
+                if (isOurDestination)
                 {
-                    if (weAreLocalPlayer) // only the local player acts on collision
+                    ClickCancelDestinationButton(this);// we stop, cancel destination
+
+                    if (FleetData.CivEnum != hitFleetCon.FleetData.CivEnum)
                     {
                         OnADestinationThatIsFleet();//? should we do other stuff here for FleetController at fleet destination?
-                        // encounter leads to diplomacy and then change in menu
+                                                    // encounter leads to diplomacy and then change in menu
                         EncounterManager.Instance.RegisterEncounter(this, hitFleetCon);
                         EncounterUnknownFleetGetNameAndSprite(collider.gameObject); // setactive sprite and name
 
@@ -189,35 +180,40 @@ namespace Assets.Core
                             hitFleetCon.FleetData.Destination = FleetManager.Instance.GalaxyCenter;
                             CloseUnLoadFleetUI(); // need more code to handle this encounter 
                         }
+
                     }
                 }
             }
             else if (collider.gameObject.GetComponent<StarSysController>() != null) // only the fleetController reporst a collition for now, not the systems, sysControllers
             {
                 var sysCon = collider.gameObject.GetComponent<StarSysController>();
-
-                if (this.FleetData.CivEnum != sysCon.StarSysData.CurrentOwnerCivEnum)
+                if (isOurDestination)
                 {
-                    if (isOurDestination)
+                    ClickCancelDestinationButton(this); // we stop, cancel destination
+
+                    if (this.FleetData.CivEnum != sysCon.StarSysData.CurrentOwnerCivEnum)
                     {
-                        OnEnterStarSystem(); // ToDo
-                    }
-                    EncounterManager.Instance.RegisterEncounter(this, sysCon);
-                    if (weAreLocalPlayer)
-                    {
-                        EncounterUnknownSystemShowName(collider.gameObject);
+                        if (isOurDestination)
+                        {
+                            OnEnterStarSystem(); // ToDo
+                        }
+                        EncounterManager.Instance.RegisterEncounter(this, sysCon);
+                        if (weAreLocalPlayer)
+                        {
+                            EncounterUnknownSystemShowName(collider.gameObject);
+                        }
                     }
                 }
             }
             else if (collider.gameObject.GetComponent<PlayerDefinedTargetController>() != null)
             {
-                if (weAreLocalPlayer) // && isOurDestination
-                    OnADestinationThatIsPlayerTarget();//? should we anounce FleetController at target destination?
-
-
-                // no encounter, just fleet stopping at a player defined target
-                // EncounterManager.Instance.RegisterEncounter(this, collider.gameObject.GetComponent<PlayerDefinedTargetController>());
+                if (isOurDestination) 
+                {
+                    ClickCancelDestinationButton(this); // we stop, cancel destination
+                    Destroy(collider.gameObject); // remove the player defined target
+                }                                 
             }
+            
         }
         private Vector3 GetMouseWorldPosition()
         {
@@ -245,18 +241,16 @@ namespace Assets.Core
             DestinationLine.lineRenderer.startColor = Color.blue;
             DestinationLine.lineRenderer.endColor = Color.red;
             // turn off cursor of destination
-            bool isFleet = false;
-            MousePointerChanger.Instance.ResetCursor(); // reset to default cursor because we just got the destination
-            MousePointerChanger.Instance.HaveGalaxyMapCursor = false;
 
-            if (hitObject.GetComponent<FleetController>() != null)
-            {
-                isFleet = true;
-            }
-            SetAsDestination(hitObject, isFleet);
+            MousePointerChanger.Instance.ResetCursor(); // reset to default cursor because we just got to destination
+            MousePointerChanger.Instance.HaveGalaxyMapCursor = false;
+            SetAsDestination(hitObject);
 
         }
-
+        public void PlayerTargetAsNewDestination(GameObject destinationGo)
+        {
+            this.FleetData.Destination = destinationGo;
+        }
 
 
         private void EncounterUnknownSystemShowName(GameObject hitGO)
@@ -305,7 +299,6 @@ namespace Assets.Core
             Vector3 galaxyPlanePoint = new Vector3(rb.position.x, -60f, rb.position.z);
             Vector3[] points = { rb.position, galaxyPlanePoint };
             DropLine.SetUpLine(points);
-            //this.FleetState = FleetState.FleetAtWarp;
         }
         void DrawDestinationLine(Vector3 destinationPoint)
         {
@@ -449,14 +442,10 @@ namespace Assets.Core
             GalaxyMenuUIController.Instance.MouseClickSetsDestination = false;      
         }
 
-        public void SetAsDestination(GameObject hitObject, bool aFleet)
+        public void SetAsDestination(GameObject hitObject)
         {
-            FleetData.Destination = hitObject;
-            
-            CivEnum civ = CivEnum.ZZUNINHABITED53; // star civ as uninhabited
-            bool weKnowThem = false;
-            bool isFleet = aFleet;
-            int typeOfDestination = 0;// galaxy object type Enum SystemType
+            FleetData.Destination = hitObject;           
+            int typeOfDestination = -1;// galaxy object type Enum SystemType if =>1
 
             destinationCoordinates.text = "X " + (hitObject.transform.position.x).ToString()
                 + " / Y " + (hitObject.transform.position.y).ToString()
@@ -464,70 +453,76 @@ namespace Assets.Core
             if (hitObject.GetComponent<StarSysController>() != null)
             {
                 StarSysController starSysController = hitObject.GetComponent<StarSysController>();
-                //civ = starSysController.StarSysData.CurrentOwnerCivEnum;
-                typeOfDestination = (int)starSysController.StarSysData.SystemType;
+
                 if (DiplomacyManager.Instance.FoundADiplomacyController(CivManager.Instance.LocalPlayerCivContoller, starSysController.StarSysData.CurrentCivController))
                 {
-                    weKnowThem = true;
+                    typeOfDestination = -1;
+                    destinationName.text += starSysController.StarSysData.SysName;
+                }
+                else // unknown system
+                {
+                    typeOfDestination = (int)starSysController.StarSysData.SystemType;
                 }
             }
             else if (hitObject.GetComponent<FleetController>() != null)
             {
-                isFleet = true;
-
-                if (DiplomacyManager.Instance.FoundADiplomacyController(CivManager.Instance.LocalPlayerCivContoller, hitObject.GetComponent<FleetController>().FleetData.CivController))
+                FleetController fleetCon = hitObject.GetComponent<FleetController>();
+                
+                if (DiplomacyManager.Instance.FoundADiplomacyController(CivManager.Instance.LocalPlayerCivContoller, fleetCon.FleetData.CivController))
                 {
-                    weKnowThem = true;
+                    typeOfDestination = -1;
+                    destinationName.text += fleetCon.FleetData.Name;
+                }
+                else // unknown fleet
+                {    
+                    typeOfDestination = (int)GalaxyObjectType.UnknownFleet;
                 }
             }
-            else if (hitObject.GetComponent<PlayerDefinedTargetController>() != null)
-            {
-                PlayerDefinedTargetController playerTargetController = hitObject.GetComponent<PlayerDefinedTargetController>();
-                civ = playerTargetController.PlayerTargetData.CivOwnerEnum;
-                typeOfDestination = (int)playerTargetController.PlayerTargetData.GalaxyObjectType;
-            }
 
-            if (isFleet)
-                destinationName.text = "Warp Signture";
-            else
+            switch (typeOfDestination)
             {
-                switch (typeOfDestination)
-                {
-                    case (int)GalaxyObjectType.BlueStar:
-                        destinationName.text = "Blue Star at";
-                        break;
-                    case (int)GalaxyObjectType.WhiteStar:
-                        destinationName.text = "White Star at";
-                        break;
-                    case (int)GalaxyObjectType.YellowStar:
-                        destinationName.text = "Yellow Star at";
-                        break;
-                    case (int)GalaxyObjectType.OrangeStar:
-                        destinationName.text = "Orange Star at";
-                        break;
-                    case (int)GalaxyObjectType.RedStar:
-                        destinationName.text = "Red Star at";
-                        break;
-                    case (int)GalaxyObjectType.Nebula:
-                    case (int)GalaxyObjectType.OmarianNebula:
-                    case (int)GalaxyObjectType.OrionNebula:
-                        destinationName.text = "Nebula at";
-                        break;
-                    case (int)GalaxyObjectType.Station:
-                        destinationName.text = "Station at";
-                        break;
-                    case (int)GalaxyObjectType.BlackHole:
-                        destinationName.text = "Black Hole at";
-                        break;
-                    case (int)GalaxyObjectType.WormHole:
-                        destinationName.text = "WormHole at";
-                        break;
-                    case (int)GalaxyObjectType.TargetDestination:
-                        destinationName.text = "Target at";
-                        break;
-                    default:
-                        break;
-                }
+                case -1:
+                    destinationName.text = "";
+                    break;
+                case (int)GalaxyObjectType.BlueStar:
+                    destinationName.text = "Blue Star at";
+                    break;
+                case (int)GalaxyObjectType.WhiteStar:
+                    destinationName.text = "White Star at";
+                    break;
+                case (int)GalaxyObjectType.YellowStar:
+                    destinationName.text = "Yellow Star at";
+                    break;
+                case (int)GalaxyObjectType.OrangeStar:
+                    destinationName.text = "Orange Star at";
+                    break;
+                case (int)GalaxyObjectType.RedStar:
+                    destinationName.text = "Red Star at";
+                    break;
+                case (int)GalaxyObjectType.Nebula:
+                case (int)GalaxyObjectType.OmarianNebula:
+                case (int)GalaxyObjectType.OrionNebula:
+                    destinationName.text = "Nebula at";
+                    break;
+                case (int)GalaxyObjectType.Station:
+                    destinationName.text = "Station at";
+                    break;
+                case (int)GalaxyObjectType.BlackHole:
+                    destinationName.text = "Black Hole at";
+                    break;
+                case (int)GalaxyObjectType.WormHole:
+                    destinationName.text = "WormHole at";
+                    break;
+                case (int)GalaxyObjectType.TargetDestination:
+                    destinationName.text = "Target at";
+                    break;
+                case (int)GalaxyObjectType.UnknownFleet:
+                    destinationName.text = "Fleet at";
+                    break;
+                default:
+                    destinationName.text = "Unknown at";
+                    break;
+            
             }
             GalaxyMenuUIController.Instance.SetAsDestination(destinationName.text, destinationCoordinates.text);
         }
@@ -536,6 +531,7 @@ namespace Assets.Core
         {
             if (this == fleetCon)
             {
+                destinationName.text = "Target at";
                 PlayerDefinedTargetManager.instance.PlayerTargetFromData(gameObject);
                 GalaxyMenuUIController.Instance.GetPlayerDefinedTargetDestination(this);
             }

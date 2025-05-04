@@ -5,6 +5,7 @@ public class PlayerDefinedTargetData
 {
     public Sprite Insignia;
     public CivEnum CivOwnerEnum;
+    public FleetController FleetController;
     public Vector3 Position;
     public string CivShortName;
     public GalaxyObjectType GalaxyObjectType = GalaxyObjectType.TargetDestination;

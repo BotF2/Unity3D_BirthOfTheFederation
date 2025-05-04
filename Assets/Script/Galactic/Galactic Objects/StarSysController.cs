@@ -491,13 +491,11 @@ namespace Assets.Core
         }
         private void NewDestination(GameObject sysGO)
         {
-            bool isFleet = true;
-
             for (int i = 0; i < FleetManager.Instance.FleetConrollersInGame.Count; i++)
             {
                 if (GalaxyMenuUIController.Instance.MouseClickSetsDestination == true)
                 {
-                    FleetManager.Instance.FleetConrollersInGame[i].SetAsDestination(sysGO, isFleet);
+                    FleetManager.Instance.FleetConrollersInGame[i].SetAsDestination(sysGO);
                 }
             }
         }

@@ -8,98 +8,55 @@ public class PlayerDefinedTargetController : MonoBehaviour
 {
     public PlayerDefinedTargetData PlayerTargetData;
     public Sprite Insignia;
-    public CivEnum CivOwnerEnum;
-    public Vector3 Position;
-    private Vector3 lastMousePosition;
-    [SerializeField]
-    private float mouseSpeed = 2f;
-    private Rigidbody rb;
     public MapLineMovable DropLine;
-    private TMP_Text ourDestination;
     public Camera galaxyEventCamera;
-    //public InputAction actionPlayerTargetDestination;  
     public GameObject galaxyBackgroundImage;
-    [SerializeField]
-    private Canvas CanvasToolTip;
-    public string Name;
+    public Canvas CanvasToolTip;
+    private Rigidbody rb;
 
     void Start()
     {
         galaxyEventCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        CanvasToolTip.worldCamera = galaxyEventCamera;
         rb = GetComponent<Rigidbody>();
         rb.isKinematic = true;
     }
-    private void Update()
+    private void FixedUpdate()
     {
-        DragWithLeftMouse();
+        if (transform.hasChanged)
+            MoveTheDropline();
     }
-    private void DragWithLeftMouse()
+    private void OnMouseDown()
     {
-        if (Input.GetMouseButtonDown(0))
-        {// This looks to be backward, copy past from fleet looking for a destination
-            //lastMousePosition = Input.mousePosition;
-            //if (true) // is used by FleetController to know if we are sellecting a destination
-            //{
-            //    Ray ray = galaxyEventCamera.ScreenPointToRay(Input.mousePosition);
-            //    RaycastHit hit;
-            //    if (Physics.Raycast(ray, out hit))
-            //    {
-            //        GameObject hitObject = hit.collider.gameObject;
-            //        if (hitObject.tag != "GalaxyImage" &&
-            //            GameController.Instance.AreWeLocalPlayer(this.PlayerTargetData.CivOwnerEnum))
-            //        {
-            //            if (true) // while FleetController was looking for a destination
-            //            {
-            //                NewDestination(hitObject); // target hit as destination
-            //            }
-            //        }
-            //    }
-            //}
-        }
-        else if (Input.GetMouseButton(0) && Input.GetKey(KeyCode.Space))
+        Ray ray = galaxyEventCamera.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit))
         {
-            Vector3 delta = (Input.mousePosition - lastMousePosition) / mouseSpeed;
-            MoveTarget(delta.x, delta.y);
-            lastMousePosition = Input.mousePosition;
-            rb.MovePosition(transform.position); // kinematic with physics movement
-            rb.linearVelocity = Vector3.zero;
-            // update drop line
-            Vector3 galaxyPlanePoint = new Vector3(rb.position.x, -60f, rb.position.z);
-            Vector3[] points = { rb.position, galaxyPlanePoint };
-            DropLine.SetUpLine(points);
+            GameObject galaxyGo = hit.collider.gameObject;
+            if (galaxyGo.tag != "GalaxyImage")
+            {
+                // What a player defined target does with a hit
+                PlayerDefinedTargetController clickedPlayerTargetCon = galaxyGo.GetComponentInChildren<PlayerDefinedTargetController>();
+
+                if (GameController.Instance.AreWeLocalPlayer(clickedPlayerTargetCon.PlayerTargetData.CivOwnerEnum))
+                {
+                    PlayerDefinedTargetDrag.Instance.SetPlayerTargetDrag(true, this);
+                    GalaxyCameraDragMoveZoom.Instance.SetPlayerTargetDrag(true);
+                }             
+            }
         }
     }
-    private void MoveTarget(float xInput, float zInput)
+    private void OnMouseUp()
     {
-        float zMove = Mathf.Cos(transform.eulerAngles.y * Mathf.PI / 180) * zInput + Mathf.Sin(transform.eulerAngles.y * Mathf.PI / 180) * xInput;
-        float xMove = Mathf.Sin(transform.eulerAngles.y * Mathf.PI / 180) * zInput + Mathf.Cos(transform.eulerAngles.y * Mathf.PI / 180) * xInput;
-        transform.position = transform.position + new Vector3(xMove, 0, zMove);
+        PlayerTargetData.FleetController.PlayerTargetAsNewDestination(this.gameObject); 
+        PlayerDefinedTargetDrag.Instance.SetPlayerTargetDrag(false, this);
+        GalaxyCameraDragMoveZoom.Instance.SetPlayerTargetDrag(false);
     }
-    private void NewDestination(GameObject hitObject)
+    private void MoveTheDropline()
     {
-        //var fleetCon = hitObject.GetComponent<FleetController>();
-        //bool isFleet = false;
-        //fleetCon.SetAsDestination(hitObject, isFleet);
-        //this.CanvasDestination.gameObject.SetActive(true);
+        Vector3 galaxyPlanePoint = new Vector3(rb.position.x, -60f, rb.position.z);
+        Vector3[] points = { rb.position, galaxyPlanePoint };
+        DropLine.SetUpLine(points);
     }
-    ///
-    /// Doing trigger collider in the fleetController for now, sort by type of StarSysController on hit object
-    /// 
-
-    //void OnTriggerEnter(Collider collider)
-    //{
-
-    //    FleetController fleetController = collider.gameObject.GetComponent<FleetController>();
-    //    if (fleetController != null) // it is a FleetController
-    //    {
-    //        OnEncounteredByFleet(fleetController);
-    //    }
-    //}
-    //public void OnEncounteredByFleet(FleetController fleetController)
-    //{
-    //    if (fleetController.FleetData.Destination == this)
-    //    {
-    //        fleetController.FleetData.Destination = null;
-    //    }
-    //}
 }

@@ -307,7 +307,8 @@ namespace Assets.Core
         Station,
         BlackHole,
         WormHole,
-        TargetDestination
+        TargetDestination,
+        UnknownFleet,
 
     }
     public enum PlanetType

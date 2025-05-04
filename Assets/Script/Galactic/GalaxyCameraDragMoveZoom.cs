@@ -4,6 +4,7 @@ using UnityEngine.EventSystems;
 
 public class GalaxyCameraDragMoveZoom : MonoBehaviour //, IPointerClickHandler
 {
+    public static GalaxyCameraDragMoveZoom Instance;
     [SerializeField]
     private Camera galaxyCam;
     [SerializeField]
@@ -24,26 +25,39 @@ public class GalaxyCameraDragMoveZoom : MonoBehaviour //, IPointerClickHandler
     private float minZ = -1140f;
     [SerializeField]
     private float maxZ = 500f;
-
+    [SerializeField]
     private Vector3 lastMousePosition;
+    private bool playerTargetDrag = false;
 
-    [Obsolete]
+    private void Awake()
+    {
+        if (Instance != null) { Destroy(gameObject); }
+        else
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+    }
     void Update()
     {
         DoZoom();
         KeyboardInputs();
-        if (!Input.GetKey(KeyCode.Space)) // && Application.isPlayer)
+        if (!playerTargetDrag)//!Input.GetKey(KeyCode.Space))
             DrageCameraWithLeftMouse();
         RotateCamerWithRightMouse();
         CameraMoveLimits();
     }
-
+    public void SetPlayerTargetDrag(bool value)
+    {
+        playerTargetDrag = value;
+    }
     private void MoveCamera(float xInput, float zInput)
     {
         float zMove = Mathf.Cos(transform.eulerAngles.y * Mathf.PI / 180) * zInput + Mathf.Sin(transform.eulerAngles.y * Mathf.PI / 180) * xInput;
         float xMove = Mathf.Sin(transform.eulerAngles.y * Mathf.PI / 180) * zInput - Mathf.Cos(transform.eulerAngles.y * Mathf.PI / 180) * xInput;
         transform.position = transform.position + new Vector3(xMove, 0, zMove);
     }
+
     private void DoZoom()
     {
         galaxyCam.fieldOfView -= Input.GetAxis("Mouse ScrollWheel") * zoomSpeed;
@@ -58,14 +72,13 @@ public class GalaxyCameraDragMoveZoom : MonoBehaviour //, IPointerClickHandler
         galaxyCam.fieldOfView = Mathf.Clamp(galaxyCam.fieldOfView, 25f, 90f);
 
     }
-
     void DrageCameraWithLeftMouse()
     {
-        if (Input.GetMouseButtonDown(0)) // && !Input.GetKey(KeyCode.Space)) done in Update
+        if (Input.GetMouseButtonDown(0)) 
         {
             lastMousePosition = Input.mousePosition;
         }
-        else if (Input.GetMouseButton(0)) // && !Input.GetKey(KeyCode.Space))
+        else if (Input.GetMouseButton(0)) 
         {
             if (EventSystem.current != null)
             {

@@ -17,7 +17,7 @@ MonoBehaviour:
   SysName: DEBRUNE
   FirstOwner: 162
   CurrentOwner: 162
-  StarType: 0
+  StarType: 5
   StarSprit: {fileID: 21300000, guid: 459289eb8f3e662469cf734a1c1236fd, type: 3}
   Population: 0
   PopulationLimit: 10
