@@ -277,7 +277,7 @@ namespace Assets.Core
                         {
                             Renderers[i].sprite = civSO.Insignia;
                             Renderers[i].gameObject.transform.position =
-                                new Vector3(starSystemNewGameOb.transform.position.x, galaxyPlanePoint.y, starSystemNewGameOb.transform.position.z);
+                                new Vector3(starSystemNewGameOb.transform.position.x, galaxyPlanePoint.y + 1f, starSystemNewGameOb.transform.position.z);
                             Renderers[i].gameObject.layer = 4; // water layer (also used by fog of war for obsticles with shows to line of sight
                             if (!GameController.Instance.AreWeLocalPlayer(sysData.CurrentOwnerCivEnum))
                             {
