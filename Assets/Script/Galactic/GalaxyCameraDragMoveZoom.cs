@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using Assets.Core;
 
 public class GalaxyCameraDragMoveZoom : MonoBehaviour //, IPointerClickHandler
 {
@@ -27,7 +28,18 @@ public class GalaxyCameraDragMoveZoom : MonoBehaviour //, IPointerClickHandler
     private float maxZ = 500f;
     [SerializeField]
     private Vector3 lastMousePosition;
+    [SerializeField]
     private bool playerTargetDrag = false;
+    [SerializeField]
+    private Vector3 homePosition;
+    [SerializeField]
+    private Vector3 lastCameraPosition;
+    [SerializeField]
+    private bool foundHomePosition = false;
+    [SerializeField]
+    private bool atHomePosition = true;
+
+
 
     private void Awake()
     {
@@ -148,7 +160,39 @@ public class GalaxyCameraDragMoveZoom : MonoBehaviour //, IPointerClickHandler
         pos.z = Mathf.Clamp(pos.z, minZ, maxZ);
         transform.position = pos;
     }
+    public void SetCameraToLocalPlayerHome()
+    {
 
+
+        if (foundHomePosition == false)
+        {
+            var localCivEneum = GameController.Instance.GameData.LocalPlayerCivEnum;
+            var listStarSystems = StarSysManager.Instance.StarSysControllerList;
+            for (int i = 0; i < listStarSystems.Count; i++)
+            {
+                if (listStarSystems[i].StarSysData.CurrentOwnerCivEnum == localCivEneum)
+                {
+                    lastCameraPosition = transform.position;
+                    transform.position = new Vector3(listStarSystems[i].transform.position.x, listStarSystems[i].transform.position.y + 100f, listStarSystems[i].transform.position.z - 400f);
+                    homePosition = transform.position;
+                    foundHomePosition = true;
+                    atHomePosition = true;
+                    break;
+                }
+            }
+        }
+        else if (atHomePosition)
+        {
+            transform.position = lastCameraPosition;
+            atHomePosition = false;
+        }
+        else
+        {
+            transform.position = homePosition;
+            atHomePosition = true;
+        }
+
+    }
     public void OnPointerClick(PointerEventData eventData)
     {
         throw new NotImplementedException();
