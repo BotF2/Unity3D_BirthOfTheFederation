@@ -14773,7 +14773,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 889922731}
         m_TargetAssemblyTypeName: GalaxyCameraDragMoveZoom, Assembly-CSharp
-        m_MethodName: SetCameraToLocalPayerHomeSystem
+        m_MethodName: SetCameraToLocalPlayerHome
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -18648,6 +18648,11 @@ MonoBehaviour:
   minZ: -1140
   maxZ: 500
   lastMousePosition: {x: 0, y: 0, z: 0}
+  playerTargetDrag: 0
+  homePosition: {x: 0, y: 0, z: 0}
+  lastCameraPosition: {x: 0, y: 0, z: 0}
+  foundHomePosition: 0
+  atHomePosition: 1
 --- !u!1 &894349520
 GameObject:
   m_ObjectHideFlags: 0
@@ -20281,7 +20286,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &966764656
 MonoBehaviour:
   m_ObjectHideFlags: 0
