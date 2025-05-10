@@ -6,25 +6,26 @@ public class MousePointerChanger : MonoBehaviour
     public static MousePointerChanger Instance;
     // Reference to the new cursor texture
     [SerializeField]
-    private Texture2D galaxyMapCursorFed;
+    private Texture2D galaxyMapCursorForFedDestination;
     [SerializeField]
-    private Texture2D galaxyMapCursorRom;
+    private Texture2D galaxyMapCursorForRomDestination;
     [SerializeField]
-    private Texture2D galaxyMapCursorKling;
+    private Texture2D galaxyMapCursorForKlingDestination;
     [SerializeField]
-    private Texture2D galaxyMapCursorCard;
+    private Texture2D galaxyMapCursorForCardDestination;
     [SerializeField]
-    private Texture2D galaxyMapCursorDom;
+    private Texture2D galaxyMapCursorForDomDestination;
     [SerializeField]
-    private Texture2D galaxyMapCursorBorg;
+    private Texture2D galaxyMapCursorForBorgDestination;
     [SerializeField]
     private Texture2D galaxyMapCursorTerran;
     public bool HaveGalaxyMapCursor = false;
-
+    public FleetController fleetConBehindGalaxyMapDestinationCursor = null; // used by FleetUIController to check if the cursor is in use
+    //public StarSysController starSysForCursor = null;
 
     // Define the hot spot of the cursor (the point that will be the "clicking" point)
     private Vector2 hotSpot = Vector2.zero;
-    // Cursor mode - Auto uses system default, ForceSoftware uses Unity's software cursor
+    // uses Unity's software cursor
     public CursorMode cursorMode = CursorMode.Auto;
 
     private void Awake()
@@ -39,21 +40,26 @@ public class MousePointerChanger : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
     }
-    // Call this function to change the cursor
+    public void ChangeToGalaxyMapCursor(FleetController fleetCon)
+    {
+        fleetConBehindGalaxyMapDestinationCursor = fleetCon;
+        ChangeToGalaxyMapCursor();
+    }
+
     public void ChangeToGalaxyMapCursor()
     {
         if (GameController.Instance.AreWeLocalPlayer(CivEnum.FED))
-            ChangeCursor(galaxyMapCursorFed, hotSpot, cursorMode);
+            ChangeCursor(galaxyMapCursorForFedDestination, hotSpot, cursorMode);
         else if (GameController.Instance.AreWeLocalPlayer(CivEnum.ROM))
-            ChangeCursor(galaxyMapCursorRom, hotSpot, cursorMode);
+            ChangeCursor(galaxyMapCursorForRomDestination, hotSpot, cursorMode);
         else if (GameController.Instance.AreWeLocalPlayer(CivEnum.KLING))
-            ChangeCursor(galaxyMapCursorKling, hotSpot, cursorMode);
+            ChangeCursor(galaxyMapCursorForKlingDestination, hotSpot, cursorMode);
         else if (GameController.Instance.AreWeLocalPlayer(CivEnum.CARD))
-            ChangeCursor(galaxyMapCursorCard, hotSpot, cursorMode);
+            ChangeCursor(galaxyMapCursorForCardDestination, hotSpot, cursorMode);
         else if (GameController.Instance.AreWeLocalPlayer(CivEnum.DOM))
-            ChangeCursor(galaxyMapCursorDom, hotSpot, cursorMode);
+            ChangeCursor(galaxyMapCursorForDomDestination, hotSpot, cursorMode);
         else if (GameController.Instance.AreWeLocalPlayer(CivEnum.BORG))
-            ChangeCursor(galaxyMapCursorBorg, hotSpot, cursorMode);
+            ChangeCursor(galaxyMapCursorForBorgDestination, hotSpot, cursorMode);
         else ChangeCursor(galaxyMapCursorTerran, hotSpot, cursorMode);
     }
 

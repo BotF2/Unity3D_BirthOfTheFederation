@@ -1,9 +1,10 @@
 using Assets.Core;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
-public class DiplomacyController
+public class DiplomacyController : MonoBehaviour
 {
     private DiplomacyData diplomacyData; // holds civOne and two and diplomacy enum
     public DiplomacyData DiplomacyData { get { return diplomacyData; } set { diplomacyData = value; } }
@@ -19,8 +20,9 @@ public class DiplomacyController
     public List<DiplomaticEventEnum> DiplomaticEvents = new List<DiplomaticEventEnum>
     { DiplomaticEventEnum.War, DiplomaticEventEnum.DiscoveredSabatoge, DiplomaticEventEnum.DiscoveredDisinformation, DiplomaticEventEnum.DiscoveredIntellectualTheft,
         DiplomaticEventEnum.Trade, DiplomaticEventEnum.ShareTech, DiplomaticEventEnum.GiveAid};
-        
-public DiplomacyController(DiplomacyData diplomacyData)
+    public GameObject DiplomacyUIGameObject; //The instantiated UI for this civ pair. a prefab clone, not a class but a game object
+                                         // instantiated by DiplomacyManager from a prefab and added to DiplomacyController
+    public DiplomacyController(DiplomacyData diplomacyData)
     {
         DiplomacyData = diplomacyData;
     }
@@ -30,13 +32,13 @@ public DiplomacyController(DiplomacyData diplomacyData)
         TimeManager.Instance.PauseTime();
         this.DiplomacyData.DiplomacyEnumOfCivs = DiplomacyStatusEnum.Neutral;
         this.DiplomacyData.DiplomacyPointsOfCivs = (int)DiplomacyStatusEnum.Neutral;
-
+        // ToDo: set this up to actually instantaite it
+        GameObject diplomacyCon = DiplomacyManager.Instance.InstantiateDiplomacyController(civPartyOne, civPartyTwo);
+        // ToDo: turn this back on below
+        // GalaxyMenuUIController.Instance.SetUpDiplomacyUI(diplomacyCon.GetComponent<DiplomacyController>());
+        GalaxyMenuUIController.Instance.OpenMenu(Menu.DiplomacyMenu, diplomacyCon);
     }
-    public void NextDiplomaticContact(DiplomacyController controller)
-    {
-       // ToDo: New UI for ongoing diplomacy
-
-    }
+   
     public void CloseUnLoadDipolmacyUI()
     {
 

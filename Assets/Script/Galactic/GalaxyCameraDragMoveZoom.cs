@@ -173,7 +173,7 @@ public class GalaxyCameraDragMoveZoom : MonoBehaviour //, IPointerClickHandler
                 if (listStarSystems[i].StarSysData.CurrentOwnerCivEnum == localCivEneum)
                 {
                     lastCameraPosition = transform.position;
-                    transform.position = new Vector3(listStarSystems[i].transform.position.x, listStarSystems[i].transform.position.y + 100f, listStarSystems[i].transform.position.z - 400f);
+                    transform.position = new Vector3(listStarSystems[i].transform.position.x, listStarSystems[i].transform.position.y + 100f, listStarSystems[i].transform.position.z - 250f);
                     homePosition = transform.position;
                     foundHomePosition = true;
                     atHomePosition = true;

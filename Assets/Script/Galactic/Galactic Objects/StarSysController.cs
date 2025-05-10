@@ -479,7 +479,11 @@ namespace Assets.Core
                     }
                     else if (GalaxyMenuUIController.Instance.MouseClickSetsDestination == true)
                     {
-                        NewDestination(sysGO);
+                        FleetController theFleetConLookingForDestination = MousePointerChanger.Instance.fleetConBehindGalaxyMapDestinationCursor;
+                        theFleetConLookingForDestination.FleetData.Destination = sysGO;
+                        theFleetConLookingForDestination.SetAsDestinationInUI(sysGO);
+
+                        //GalaxyMenuUIController.Instance.SetAsDestinationInUI(sysGO.name, sysGO.transform.position);
                     }
                     else if (DiplomacyManager.Instance.FoundADiplomacyController(this.StarSysData.CurrentCivController, CivManager.Instance.LocalPlayerCivContoller))
                     { // this is a system local player does not own but we know them
@@ -489,16 +493,16 @@ namespace Assets.Core
                 }
             }
         }
-        private void NewDestination(GameObject sysGO)
-        {
-            for (int i = 0; i < FleetManager.Instance.FleetConrollersInGame.Count; i++)
-            {
-                if (GalaxyMenuUIController.Instance.MouseClickSetsDestination == true)
-                {
-                    FleetManager.Instance.FleetConrollersInGame[i].SetAsDestination(sysGO);
-                }
-            }
-        }
+        //private void NewDestination(GameObject sysGO)
+        //{
+        //    for (int i = 0; i < FleetManager.Instance.FleetConrollersInGame.Count; i++)
+        //    {
+        //        if (GalaxyMenuUIController.Instance.MouseClickSetsDestination == true)
+        //        {
+        //            FleetManager.Instance.FleetConrollersInGame[i].SetAsDestinationInUI(sysGO);
+        //        }
+        //    }
+        //}
 
         public void OnEnable()
         {

@@ -27,6 +27,7 @@ public class FleetData
     public List<int> EncounterIDs;
     public Button FleetButtonUp;
     public Button FleetButtonDown;
+    public Button FleetButtonUIClose;
     public bool WarpButtonPressed = false;
 
     public FleetData(FleetSO fleetSO)

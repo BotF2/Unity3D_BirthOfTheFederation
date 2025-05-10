@@ -95,7 +95,7 @@ namespace Assets.Core
         
         private void FixedUpdate()
         {    
-            if (FleetData.Destination != FleetManager.Instance.GalaxyCenter && FleetData.CurrentWarpFactor > 0f)
+            if (FleetData.Destination != FleetManager.Instance.GalaxyCenter && this.FleetData.CurrentWarpFactor > 0f)
             {
                 MoveToDesitinationGO();
                 DrawDestinationLine(FleetData.Destination.transform.position);
@@ -110,26 +110,23 @@ namespace Assets.Core
 
             if (Physics.Raycast(ray, out hit))
             {
-                GameObject galaxyGo = hit.collider.gameObject;
-                if (galaxyGo.tag != "GalaxyImage")
+                GameObject fleetGo = hit.collider.gameObject;
+                if (fleetGo.tag != "GalaxyImage")
                 { 
                     // What a fleet FleetController does with a hit
-                    FleetController clickedFleetCon = galaxyGo.GetComponentInChildren<FleetController>();
+                    FleetController clickedFleetCon = fleetGo.GetComponentInChildren<FleetController>();
                     if (GalaxyMenuUIController.Instance.MouseClickSetsDestination == false) // the destination mouse pointer is off so open FleetUI for this FleetController
                     {   
                         if (GameController.Instance.AreWeLocalPlayer(clickedFleetCon.FleetData.CivEnum))
                         {
-                            GalaxyMenuUIController.Instance.OpenMenu(Menu.AFleetMenu, galaxyGo);
+                            GalaxyMenuUIController.Instance.OpenMenu(Menu.AFleetMenu, fleetGo);
                         }
                     }
                     else if (GalaxyMenuUIController.Instance.MouseClickSetsDestination == true && clickedFleetCon == this) 
                     {
-                        for (int i = 0; i < GalaxyMenuUIController.Instance.FleetConsLookingForDestination.Count; i++)
-                        {
-                            FleetController aFleetCon = GalaxyMenuUIController.Instance.FleetConsLookingForDestination[i];
-                            if (GameController.Instance.AreWeLocalPlayer(aFleetCon.FleetData.CivEnum)) //found local player fleet looking for destination
-                                aFleetCon.NewDestination(galaxyGo);
-                        }
+                        FleetController theFleetConLookingForDestination = MousePointerChanger.Instance.fleetConBehindGalaxyMapDestinationCursor; 
+                        theFleetConLookingForDestination.FleetData.Destination = fleetGo; // set the destination for the fleet looking for a destination
+                        theFleetConLookingForDestination.SetAsDestinationInUI(fleetGo);
                     }
                 }
             }
@@ -244,7 +241,7 @@ namespace Assets.Core
 
             MousePointerChanger.Instance.ResetCursor(); // reset to default cursor because we just got to destination
             MousePointerChanger.Instance.HaveGalaxyMapCursor = false;
-            SetAsDestination(hitObject);
+            SetAsDestinationInUI(hitObject);
 
         }
         public void PlayerTargetAsNewDestination(GameObject destinationGo)
@@ -411,11 +408,10 @@ namespace Assets.Core
             }
             if (newWarpValue > maxSliderValue)
             {
-                this.FleetData.CurrentWarpFactor = maxSliderValue;
                 newWarpValue = maxSliderValue;
             }
 
-            this.FleetData.CurrentWarpFactor = newWarpValue;
+            FleetData.CurrentWarpFactor = newWarpValue;
             GalaxyMenuUIController.Instance.UpdateFleetWarpUI(this, newWarpValue);
         }
         public void SelectedDestinationCursor(FleetController fleetCon)
@@ -424,7 +420,7 @@ namespace Assets.Core
             {
                 GalaxyMenuUIController.Instance.MouseClickSetsDestination = true;
                 GalaxyMenuUIController.Instance.SelectedDestinationCursor(this);
-                MousePointerChanger.Instance.ChangeToGalaxyMapCursor();
+                MousePointerChanger.Instance.ChangeToGalaxyMapCursor(fleetCon);
                 MousePointerChanger.Instance.HaveGalaxyMapCursor = true;
             }
         }
@@ -442,9 +438,9 @@ namespace Assets.Core
             GalaxyMenuUIController.Instance.MouseClickSetsDestination = false;      
         }
 
-        public void SetAsDestination(GameObject hitObject)
+        public void SetAsDestinationInUI(GameObject hitObject)
         {
-            FleetData.Destination = hitObject;           
+            //FleetData.Destination = hitObject;           
             int typeOfDestination = -1;// galaxy object type Enum SystemType if =>1
 
             destinationCoordinates.text = "X " + (hitObject.transform.position.x).ToString()
@@ -543,43 +539,7 @@ namespace Assets.Core
             //SubMenuManager.Instance.OpenMenu(Menu.FleetsMenu, notAMenu);
             Destroy(notAMenu);
         }
-        //public void LoadAFleetUI(GameObject rayHitGO)
-        //{
-        //    if (this == rayHitGO.GetComponent<FleetController>())
-        //    { 
-        //        //GameObject aFleetNotAMenu = new GameObject();
-        //        GalaxyMenuUIController.Instance.OpenMenu(Menu.AFleetMenu, rayHitGO);
-        //        //???? instantiate fleetUI_prefab?
-        //        //fleetUI_Prefab.SetActive(true);
-        //        if (cancelDestinationButtonGO != null)
-        //            cancelDestinationButtonGO.SetActive(false);
-        //        FleetName.text = FleetData.Name;
-        //        PlayerDefinedTargetManager.instance.nameDestination = FleetName.text;
-        //        SliderOnValueChange(0f);
 
-        //        //ship dropdown
-        //        var shipDropdown = ShipDropdownGO.GetComponent<TMP_Dropdown>();
-        //        shipDropdown.options.Clear();
-        //        List<TMP_Dropdown.OptionData> newShipItems = new List<TMP_Dropdown.OptionData>();
-        //        string name;
-        //        for (int i = 0; i < FleetData.ShipsList.Count; i++)
-        //        {
-        //            if (FleetData.ShipsList[i] != null)
-        //            {
-        //                TMP_Dropdown.OptionData newDataItem = new TMP_Dropdown.OptionData();
-        //                name = FleetData.ShipsList[i].name;
-        //                name = name.Replace("(CLONE)", string.Empty);
-        //                newDataItem.text = name;
-        //                newShipItems.Add(newDataItem);
-        //            }
-        //        }
-        //        shipDropdown.AddOptions(newShipItems);
-        //        shipDropdown.RefreshShownValue();
-        //        UpdateMaxWarp();
-        //        maxSliderValue = FleetData.MaxWarpFactor;
-        //        ResetWarpSlider(FleetData.CurrentWarpFactor);
-        //    }
-        //}
         private void ReorderDropdownOptions(TMP_Dropdown dropdown)
         {
             List<TMP_Dropdown.OptionData> options = dropdown.options;
@@ -591,8 +551,8 @@ namespace Assets.Core
         {
             GalaxyMenuUIController.Instance.MouseClickSetsDestination = false;
             MousePointerChanger.Instance.ResetCursor();
-            //fleetUI_Prefab.SetActive(false);//The single fleet UI
             GalaxyMenuUIController.Instance.CloseMenu(Menu.AFleetMenu); // The single fleet UI
+            GalaxyMenuUIController.Instance.CloseMenu(Menu.FleetsMenu); 
         }
         private string GetDebuggerDisplay()
         {

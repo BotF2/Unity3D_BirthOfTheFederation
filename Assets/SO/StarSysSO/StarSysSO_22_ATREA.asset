@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarSysSO_22_ATREA
   m_EditorClassIdentifier: 
   StarSysInt: 22
-  Position: {x: -90, y: -5, z: -1150}
+  Position: {x: -90, y: -5, z: -800}
   SysName: ATREA
   FirstOwner: 22
   CurrentOwner: 22

@@ -3331,7 +3331,7 @@ GameObject:
   - component: {fileID: 1679908977585844699}
   - component: {fileID: 1249881857625091475}
   m_Layer: 5
-  m_Name: DiplomacyUIToggle
+  m_Name: DiplomacyUIprefab
   m_TagString: fleetUIRoot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
