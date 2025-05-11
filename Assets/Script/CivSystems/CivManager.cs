@@ -70,7 +70,7 @@ namespace Assets.Core
             //            civCon.CivData.CivEnum = CivControllersInGame[0].CivData.CivEnum;
             //            civCon.CivData.CivShortName = CivControllersInGame[0].CivData.CivShortName;
             //            civCon.CivData.CivLongName = CivControllersInGame[0].CivData.CivLongName;
-            //            civCon.CivData.CivHomeSystem = CivControllersInGame[0].CivData.CivHomeSystem;
+            //            civCon.CivData.CivHomeSystemName = CivControllersInGame[0].CivData.CivHomeSystemName;
             //            civCon.CivData.TraitOne = CivControllersInGame[0].CivData.TraitOne;
             //            civCon.CivData.TraitTwo = CivControllersInGame[0].CivData.TraitTwo;
             //            civCon.CivData.CivRaceSprite = CivControllersInGame[0].CivData.CivRaceSprite;
@@ -203,7 +203,7 @@ namespace Assets.Core
                 InstantiateCivilizations(civData, localPayerCivInt);
 
             }
-            if (CivDataInGameList[0].CivHomeSystem != null) { }
+            if (CivDataInGameList[0].CivHomeSystemName != null) { }
             else
                 CivDataInGameList.Remove(CivDataInGameList[0]); // remove the null entered by field
             StarSysManager.Instance.SysDataFromSO(civSOList);
@@ -284,7 +284,8 @@ namespace Assets.Core
                 if (CivControllersInGame[i].CivData.CivEnum == controllers[0].StarSysData.CurrentOwnerCivEnum)
                 {
                     CivControllersInGame[i].CivData.StarSysOwned = controllers;
-                    CivControllersInGame[i].CivData.CivHomeSystem = controllers[0].StarSysData.SysName;
+                    CivControllersInGame[i].CivData.CivHomeSystemName = controllers[0].StarSysData.SysName;
+                    CivControllersInGame[i].CivData.HomeStarSystemPosition = controllers[0].transform.position;
                 }
             }
         }

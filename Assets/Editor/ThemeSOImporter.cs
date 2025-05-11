@@ -51,7 +51,7 @@ public class ThemeSOImporter : EditorWindow
                 //themeSO.CivEnum = GetMyCivEnum(fields[1]);
                 //themeSO.CivShortName = fields[2];
                 //themeSO.CivLongName = fields[3];
-                //themeSO.CivHomeSystem = fields[4];
+                //themeSO.CivHomeSystemName = fields[4];
                 //themeSO.WarLikeEnum = GetWarLikeEnum(fields[5]);
                 //themeSO.XenophbiaEnum = GetXenophobiaEnum(fields[6]);
                 //themeSO.RuthlessEnum = GetRuthlessEnum(fields[7]);

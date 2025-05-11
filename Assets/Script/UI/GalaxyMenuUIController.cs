@@ -1202,10 +1202,10 @@ public class GalaxyMenuUIController : MonoBehaviour
     }
     #endregion Player Defined Drag Target Destination
 
-    #region Diplomacy
-    // ToDo: Build out Diplomacy UI here along the lines of FleetUI and SysUI
+    #region Diplomacy UI
+
     // ToDo: Build out Encounters and Diplomacy to work with traites for AI and human players
-    public void SetUpDiplomacyUI(DiplomacyController diplomacyCon) 
+    public void SetUpDiplomacyUIData(DiplomacyController diplomacyCon) 
     {
         CivController partyOne = diplomacyCon.DiplomacyData.CivOne;
         CivController partyTwo = diplomacyCon.DiplomacyData.CivTwo;
@@ -1215,12 +1215,16 @@ public class GalaxyMenuUIController : MonoBehaviour
         if (GameController.Instance.AreWeLocalPlayer(partyOne.CivData.CivEnum))
         {
             notLocalPlayerCiv = partyTwo.CivData.CivEnum;
-            FindHomeSystem(partyTwo, out homeSysController);
+            FindTheirHomeSystem(partyTwo, out homeSysController);
         }
         else
         {
             notLocalPlayerCiv = partyOne.CivData.CivEnum;
-            FindHomeSystem(partyOne, out homeSysController);
+            FindTheirHomeSystem(partyOne, out homeSysController);
+        }
+        if (DiplomacyManager.Instance.DiplomacyControllerList.Contains(diplomacyCon))
+        {
+            return;
         }
         //DiplomacyUIGameObject.SetActive(true);
         //DiplomacyUIGameObject.transform.SetParent(diplomacyListContainer.transform, false);
@@ -1243,31 +1247,18 @@ public class GalaxyMenuUIController : MonoBehaviour
             }
         }  
     }
-    private void FindHomeSystem(CivController civCon, out StarSysController homeSysController)
+    private void FindTheirHomeSystem(CivController civCon, out StarSysController homeSysController)
     {
         homeSysController = null;
         List<StarSysController> SystemCons = civCon.CivData.StarSysOwned;
         for (int i = 0; i < SystemCons.Count; i++)
         {
-            if (SystemCons[i].StarSysData.SysName == civCon.CivData.CivHomeSystem)
+            if (SystemCons[i].StarSysData.SysName == civCon.CivData.CivHomeSystemName)
             {
                 homeSysController = SystemCons[i];
                 return;
             }
         }
-    }
-    public void SetupDiplomacyUIData()
-    {
-        //for (int i = 0; i < CivManager.Instance.CivControllerList.Count; i++)
-        //{
-        //    var civCon = CivManager.Instance.CivControllerList[i];
-        //    if (!listOfDiplomacyUiGos.Contains(civCon.DiplomacyUIGameObject) && GameController.Instance.AreWeLocalPlayer(civCon.CivData.CivEnum))
-        //    {
-        //        civCon.DiplomacyUIGameObject.SetActive(true);
-        //        civCon.DiplomacyUIGameObject.transform.SetParent(diplomacyListContainer.transform, false);
-        //        listOfDiplomacyUiGos.Add(civCon.DiplomacyUIGameObject); // add to list of FleetUI Game Objects GalaxyMenuUI knows
-        //    }
-        //}
     }
     #endregion Diplomacy
 }

@@ -14,18 +14,16 @@ public class EncounterController
     }
     public void ResolveFirstContact(EncounterController thisEncounterController)
     {
-
-        DiplomacyManager.Instance.FirstContactGetNewDiplomacyContoller(thisEncounterController);
         //GalaxyMenuUIController.Instance.OpenMenu(Menu.DiplomacyMenu, null);
-        EncounterData.isCompleted = true;
+
     }
-    public void ResolveDiplomacy(CivController controllerA, CivController controllerB)
-    {
-        if (DiplomacyManager.Instance.FoundADiplomacyController(controllerA, controllerB))
-        {
-            GalaxyMenuUIController.Instance.OpenMenu(Menu.ADiplomacyMenu, null);
-            DiplomacyManager.Instance.ReturnADiplomacyController(controllerA, controllerB).FirstContact(controllerA, controllerB);
-        }
+    public void ResolveEncounter(CivController controllerA, CivController controllerB)
+    {  // Do all this in?
+        //if (DiplomacyManager.Instance.FoundADiplomacyController(controllerA, controllerB))
+        //{
+        //    //GalaxyMenuUIController.Instance.OpenMenu(Menu.ADiplomacyMenu, null);
+        //    //DiplomacyManager.Instance.ReturnADiplomacyController(controllerA, controllerB).FirstContact(controllerA, controllerB);
+        //}
         EncounterData.isCompleted = true;
         // destroy the encounter controller
     }
@@ -36,9 +34,13 @@ public class EncounterController
         EncounterData.isCompleted = true;
         // destroy the encounter controller
     }
-    public void ResolveFleetManagment()
+    public void ResolveFleetToStrangGalacticEncounter(EncounterController strangeEncounter)
     {
-        // Sending this to the FleetManager from the EncounterManager
+        // ToDo: Resolve the encounter with the strange galactic object
+    }
+    public void ResolveFleetEncounter()
+    {
+        // Sending this to AI / EncounterManager
         EncounterData.isCompleted = true;
     }
     public void ResolveEnterSystem()
@@ -81,6 +83,10 @@ public class EncounterController
         // UI for uninhabited system management
         if (GameController.Instance.AreWeLocalPlayer(realCivController.CivData.CivEnum))
             sysCon.DoHabitalbeSystemUI(realCivController);
+        else
+        {
+            // do AI uninhabited system management
+        }
         EncounterData.isCompleted = true;
         // destroy the encounter controller
     }

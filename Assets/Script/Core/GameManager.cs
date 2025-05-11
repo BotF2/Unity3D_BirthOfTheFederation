@@ -305,10 +305,12 @@ namespace Assets.Core
         OrionNebula,
         UniComplex,
         Station,
-        BlackHole,
-        WormHole,
         TargetDestination,
         UnknownFleet,
+        BlackHole,
+        WormHole,
+        SomeBadAssGalacticObject,
+
 
     }
     public enum PlanetType

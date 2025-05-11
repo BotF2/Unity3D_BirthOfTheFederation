@@ -156,7 +156,7 @@ namespace Assets.Core
             if (collider.gameObject.GetComponent<FleetController>() != null)
             {
                 FleetController hitFleetCon = collider.gameObject.GetComponent<FleetController>();
-                // if (gameObject.GetInstanceID() < collider.gameObject.GetInstanceID())// *** check ID of the OnTriggerEnter so only one of the two fleet colliding objects reports the collision
+               
 
                 if (isOurDestination)
                 {
@@ -164,24 +164,30 @@ namespace Assets.Core
 
                     if (FleetData.CivEnum != hitFleetCon.FleetData.CivEnum)
                     {
-                        OnADestinationThatIsFleet();//? should we do other stuff here for FleetController at fleet destination?
-                                                    // encounter leads to diplomacy and then change in menu
-                        EncounterManager.Instance.RegisterEncounter(this, hitFleetCon);
-                        EncounterUnknownFleetGetNameAndSprite(collider.gameObject); // setactive sprite and name
+                        OnADestinationThatIsOtherCivFleet(hitFleetCon);
+                        // encounter leads to diplomacy and then change in menu
+                        if (gameObject.GetInstanceID() < collider.gameObject.GetInstanceID()) // only one side reports the collision
+                        {
+                            EncounterManager.Instance.ResolveEncounter(this, hitFleetCon);
+                            EncounterUnknownFleetGetNameAndSprite(collider.gameObject); // setactive sprite and name
+                        }
 
                         if (hitFleetCon.FleetData.Destination == this.gameObject) // they are coming for us
                         {
-                            ClickCancelDestinationButton(this); // we stop
-                            hitFleetCon.FleetData.CurrentWarpFactor = 0f; // stop their fleet
-                            hitFleetCon.FleetData.LastDestination = this.gameObject; // save their previous destination
-                            hitFleetCon.FleetData.Destination = FleetManager.Instance.GalaxyCenter;
+                            ClickCancelDestinationButton(hitFleetCon); // they stop
+
                             CloseUnLoadFleetUI(); // need more code to handle this encounter 
                         }
 
                     }
+                    else //our fleet
+                    {
+                        // do ships?
+                        OnADestinationThatIsOurOtherFleet(hitFleetCon); // we are the same fleet, do ships?
+                    }
                 }
             }
-            else if (collider.gameObject.GetComponent<StarSysController>() != null) // only the fleetController reporst a collition for now, not the systems, sysControllers
+            else if (collider.gameObject.GetComponent<StarSysController>() != null) // only the fleetController reporst a collition for now, not the sys
             {
                 var sysCon = collider.gameObject.GetComponent<StarSysController>();
                 if (isOurDestination)
@@ -190,11 +196,9 @@ namespace Assets.Core
 
                     if (this.FleetData.CivEnum != sysCon.StarSysData.CurrentOwnerCivEnum)
                     {
-                        if (isOurDestination)
-                        {
-                            OnEnterStarSystem(); // ToDo
-                        }
-                        EncounterManager.Instance.RegisterEncounter(this, sysCon);
+                        OnEnterForeignStarSystem(); // ToDo
+                        
+                        EncounterManager.Instance.ResolveEncounter(this, sysCon);
                         if (weAreLocalPlayer)
                         {
                             EncounterUnknownSystemShowName(collider.gameObject);
@@ -314,17 +318,22 @@ namespace Assets.Core
             DestinationLine.lineRenderer.endColor = Color.red;
             DestinationLine.SetUpLine(points);
         }
-        void OnADestinationThatIsFleet()
+        void OnADestinationThatIsOtherCivFleet(FleetController theirFleetCon)
         {
-            // Logic to handle what happens when the fleet arrives at the system destination
+            // Fleet only Logic to handle what happens when our fleet arrives at thier fleet destination
             //GalaxyMenuUIController.Instance.ClickCancelDestinationButton(); 
+        }
+        void OnADestinationThatIsOurOtherFleet(FleetController ourOtherFleet)
+        {
+            // Logic to handle what happens when the fleet arrives at our other fleet as destination
+            // how do we manage both fleets trying to do something with the other fleet?
         }
         void OnADestinationThatIsPlayerTarget()
         {
             // Logic to handle what happens when the fleet arrives at the system destination
             //GalaxyMenuUIController.Instance.ClickCancelDestinationButton(); 
         }
-        void OnEnterStarSystem()
+        void OnEnterForeignStarSystem()
         {
             // do something
         }

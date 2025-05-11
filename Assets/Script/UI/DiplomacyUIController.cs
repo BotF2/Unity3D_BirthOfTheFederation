@@ -77,8 +77,7 @@ public class DiplomacyUIController : MonoBehaviour
 
     public void LoadDiplomacyUI(DiplomacyController ourDiplomacyController)
     {
-        controller = ourDiplomacyController;
-        TimeManager.Instance.PauseTime(); // ToDo: put a pause indicator on screen
+        //TimeManager.Instance.PauseTime(); // ToDo: put a pause indicator on screen
         if(ourDiplomacyController.DiplomacyData.IsFirstContact)
         {
             if (firstContatct != null)

@@ -10,7 +10,8 @@ namespace Assets.Core
         public CivEnum CivEnum;
         public string CivShortName;
         public string CivLongName;
-        public string CivHomeSystem;
+        public string CivHomeSystemName;
+        public Vector3 HomeStarSystemPosition; 
         public WarLikeEnum Warlike;// a enum scale from most worklike 0 to neutral 3 and most peasful 5
         public XenophobiaEnum Xenophbia; // XenophobiaEnum
         public RuthlessEnum Ruthelss; //XenophobiaEnum

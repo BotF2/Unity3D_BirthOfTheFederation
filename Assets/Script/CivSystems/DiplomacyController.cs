@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 
-public class DiplomacyController : MonoBehaviour
+public class DiplomacyController //: MonoBehaviour
 {
     private DiplomacyData diplomacyData; // holds civOne and two and diplomacy enum
     public DiplomacyData DiplomacyData { get { return diplomacyData; } set { diplomacyData = value; } }
@@ -29,14 +29,11 @@ public class DiplomacyController : MonoBehaviour
 
     public void FirstContact(CivController civPartyOne, CivController civPartyTwo)
     {
-        TimeManager.Instance.PauseTime();
+        //TimeManager.Instance.PauseTime();
         this.DiplomacyData.DiplomacyEnumOfCivs = DiplomacyStatusEnum.Neutral;
         this.DiplomacyData.DiplomacyPointsOfCivs = (int)DiplomacyStatusEnum.Neutral;
-        // ToDo: set this up to actually instantaite it
-        GameObject diplomacyCon = DiplomacyManager.Instance.InstantiateDiplomacyController(civPartyOne, civPartyTwo);
-        // ToDo: turn this back on below
-        // GalaxyMenuUIController.Instance.SetUpDiplomacyUI(diplomacyCon.GetComponent<DiplomacyController>());
-        GalaxyMenuUIController.Instance.OpenMenu(Menu.DiplomacyMenu, diplomacyCon);
+        // new DiplomacyController and not instatiated, only the DiplomacyUI is a gameObject and uses MonoBehaviour
+        GalaxyMenuUIController.Instance.OpenMenu(Menu.DiplomacyMenu, this.DiplomacyUIGameObject);
     }
    
     public void CloseUnLoadDipolmacyUI()
