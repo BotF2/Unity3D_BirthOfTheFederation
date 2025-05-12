@@ -283,10 +283,13 @@ public class DiplomacyManager : MonoBehaviour
         DiplomacyData diplomacyData = new DiplomacyData();
         diplomacyData.CivOne = civPartyOne;
         diplomacyData.CivTwo = civPartyTwo;
-        diplomacyData.IsFirstContact = true;
         diplomacyData.DiplomacyEnumOfCivs = DiplomacyStatusEnum.Neutral;
         diplomacyData.DiplomacyPointsOfCivs = (int)DiplomacyStatusEnum.Neutral;
         DiplomacyController diplomacyController = new DiplomacyController(diplomacyData);
+        InstantiateDiplomacyUIGameObject(diplomacyController);
+        GalaxyMenuUIController.Instance.SetUpDiplomacyUIData(diplomacyController);
+        
+
         if (GameController.Instance.AreWeLocalPlayer(civPartyOne.CivData.CivEnum))
         {
             diplomacyData.PositionOfNonLocalPlayerHomeSys = civPartyTwo.CivData.HomeStarSystemPosition;

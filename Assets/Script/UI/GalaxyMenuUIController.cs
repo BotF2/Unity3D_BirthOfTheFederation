@@ -230,7 +230,7 @@ public class GalaxyMenuUIController : MonoBehaviour
         else
             OpenMenu(Menu.EncyclopedianMenu, null);
     }
-
+    // Home System view is in GalaxyCameraDragMoveZoom.cs
     public void OpenMenu(Menu menuEnum, GameObject callingMenuOrGalaxyObject)
     {
 
@@ -294,6 +294,7 @@ public class GalaxyMenuUIController : MonoBehaviour
             case Menu.DiplomacyMenu:
                 InactivateCallingMenu(callingMenuOrGalaxyObject);
                 TimeManager.Instance.PauseTime();
+                // ToDo: put a pause indicator on screen
                 diplomacyMenuView.SetActive(true);
                 diplomacyBackground.SetActive(true);
                 openMenuWas = diplomacyMenuView;
@@ -382,13 +383,14 @@ public class GalaxyMenuUIController : MonoBehaviour
                 break;
             case Menu.DiplomacyMenu:
                 diplomacyBackground.SetActive(false);
-                TimeManager.Instance.ResumeTime();
                 diplomacyMenuView.SetActive(false);
+                TimeManager.Instance.ResumeTime();
                 openMenuWas = diplomacyMenuView;
                 break;
             case Menu.ADiplomacyMenu:
                 diplomacyBackground.SetActive(false);
                 aDiplomacyMenuView.SetActive(false);
+                TimeManager.Instance.ResumeTime();
                 openMenuWas = aDiplomacyMenuView;
                 break;
             case Menu.IntellMenu:
@@ -1206,7 +1208,7 @@ public class GalaxyMenuUIController : MonoBehaviour
 
     // ToDo: Build out Encounters and Diplomacy to work with traites for AI and human players
     public void SetUpDiplomacyUIData(DiplomacyController diplomacyCon) 
-    {
+    {            
         CivController partyOne = diplomacyCon.DiplomacyData.CivOne;
         CivController partyTwo = diplomacyCon.DiplomacyData.CivTwo;
         CivEnum notLocalPlayerCiv = CivEnum.ZZUNINHABITED1;
@@ -1214,13 +1216,17 @@ public class GalaxyMenuUIController : MonoBehaviour
 
         if (GameController.Instance.AreWeLocalPlayer(partyOne.CivData.CivEnum))
         {
+            
+            aDiplomacyMenuView.SetActive(true);// In the content folder of diplo srollview, scrollview control in GalaxyMenuUI
             notLocalPlayerCiv = partyTwo.CivData.CivEnum;
             FindTheirHomeSystem(partyTwo, out homeSysController);
+            // LoadCivDataInUI(ourDiplomacyController.DiplomacyData.CivTwo, ourDiplomacyController);
         }
         else
         {
             notLocalPlayerCiv = partyOne.CivData.CivEnum;
             FindTheirHomeSystem(partyOne, out homeSysController);
+            //LoadCivDataInUI(ourDiplomacyController.DiplomacyData.CivOne, ourDiplomacyController);
         }
         if (DiplomacyManager.Instance.DiplomacyControllerList.Contains(diplomacyCon))
         {
@@ -1245,7 +1251,8 @@ public class GalaxyMenuUIController : MonoBehaviour
                 default:
                     break;
             }
-        }  
+        }
+        GalaxyMenuUIController.Instance.OpenMenu(Menu.ADiplomacyMenu, null);
     }
     private void FindTheirHomeSystem(CivController civCon, out StarSysController homeSysController)
     {

@@ -10,6 +10,5 @@ public class DiplomacyData
     public Vector3 PositionOfNonLocalPlayerHomeSys;
     public DiplomacyStatusEnum DiplomacyEnumOfCivs = DiplomacyStatusEnum.Neutral; // friendly, allied, at war
     public int DiplomacyPointsOfCivs = 60; // neutral
-    public bool IsFirstContact = true;
-
+    //public bool IsFirstContact = true;
 }

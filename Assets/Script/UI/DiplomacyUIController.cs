@@ -77,45 +77,18 @@ public class DiplomacyUIController : MonoBehaviour
 
     public void LoadDiplomacyUI(DiplomacyController ourDiplomacyController)
     {
-        //TimeManager.Instance.PauseTime(); // ToDo: put a pause indicator on screen
-        if(ourDiplomacyController.DiplomacyData.IsFirstContact)
-        {
-            if (firstContatct != null)
-            {
-                firstContatct.SetActive(true);
-            }
-        }
-        GameObject aNull = new GameObject();
-        GalaxyMenuUIController.Instance.OpenMenu(Menu.DiplomacyMenu, aNull);
-        if (GameController.Instance.AreWeLocalPlayer(ourDiplomacyController.DiplomacyData.CivOne.CivData.CivEnum))
-            LoadCivDataInUI(ourDiplomacyController.DiplomacyData.CivTwo, ourDiplomacyController);
-        else if (GameController.Instance.AreWeLocalPlayer(ourDiplomacyController.DiplomacyData.CivTwo.CivData.CivEnum))
-            LoadCivDataInUI(ourDiplomacyController.DiplomacyData.CivOne, ourDiplomacyController);
-        DiplomacyUIToggle.SetActive(true);// In the content folder of diplo srollview, scrollview control in GalaxyMenuUI
-        Destroy(aNull);
+
+        //if (GameController.Instance.AreWeLocalPlayer(ourDiplomacyController.DiplomacyData.CivOne.CivData.CivEnum))
+        //    LoadCivDataInUI(ourDiplomacyController.DiplomacyData.CivTwo, ourDiplomacyController);
+        //else if (GameController.Instance.AreWeLocalPlayer(ourDiplomacyController.DiplomacyData.CivTwo.CivData.CivEnum))
+        //    LoadCivDataInUI(ourDiplomacyController.DiplomacyData.CivOne, ourDiplomacyController);
+        
 
     }
-    private void LoadCivDataInUI(CivController othersController, DiplomacyController ourDiplomacyController)
-    {
-        theirNameTMP.text = othersController.CivData.CivShortName;
-        theirInsignia.sprite = othersController.CivData.InsigniaSprite;
-        theirRaceImage.sprite = othersController.CivData.CivRaceSprite;
-        relationTMP.text = ourDiplomacyController.DiplomacyData.DiplomacyEnumOfCivs.ToString();
-        relationPointsTMP.text = ourDiplomacyController.DiplomacyData.DiplomacyPointsOfCivs.ToString();
-        //transmissionTMP.text = messages from diplomacy, AI and player 
-        relationTMP.text = ourDiplomacyController.DiplomacyData.DiplomacyEnumOfCivs.ToString();
-        traitOneTMP.text = othersController.CivData.Warlike.ToString();
-        traitTwoTMP.text = othersController.CivData.Xenophbia.ToString();
-        traitThreeTMP.text = othersController.CivData.Ruthelss.ToString();
-        traitFourTMP.text = othersController.CivData.Greedy.ToString();
-        var ourCivData = CivManager.Instance.GetCivDataByCivEnum(GameController.Instance.GameData.LocalPlayerCivEnum);   
-        ourTraitOneTMP.text = ourCivData.Warlike.ToString();
-        ourTraitTwoTMP.text = ourCivData.Xenophbia.ToString();
-        ourTraitThreeTMP.text = ourCivData.Ruthelss.ToString();
-        ourTraitFourTMP.text = ourCivData.Greedy.ToString();
-        descriptionTMP.text = othersController.CivData.Decription;
-        relationPointsTMP.text = ((int)ourDiplomacyController.DiplomacyData.DiplomacyPointsOfCivs).ToString();
-    }
+    //private void LoadCivDataInUI(CivController othersController, DiplomacyController ourDiplomacyController)
+    //{
+  
+    //}
     public void CloseUnLoadDiplomacyUI()
     {
         SwitchToTab(0);
