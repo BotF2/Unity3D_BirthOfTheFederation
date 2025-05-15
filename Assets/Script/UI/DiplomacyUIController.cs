@@ -70,9 +70,9 @@ public class DiplomacyUIController : MonoBehaviour
 
     private void Start()
     {
-        DiplomacyUIToggle.SetActive(false);
-        galaxyEventCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>() as Camera;
-        parentCanvas.worldCamera = galaxyEventCamera;
+        //DiplomacyUIToggle.SetActive(false);
+        //galaxyEventCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>() as Camera;
+        //parentCanvas.worldCamera = galaxyEventCamera;
     }
 
     public void LoadDiplomacyUI(DiplomacyController ourDiplomacyController)
@@ -91,7 +91,7 @@ public class DiplomacyUIController : MonoBehaviour
     //}
     public void CloseUnLoadDiplomacyUI()
     {
-        SwitchToTab(0);
+        //SwitchToTab(0);
         DiplomacyUIToggle.SetActive(false);
         TimeManager.Instance.ResumeTime();
     }
@@ -110,15 +110,15 @@ public class DiplomacyUIController : MonoBehaviour
     {
        // DiplomacyManager.Instance.SpaceCombatScene();
     }
-    public void SwitchToTab(int TabID)
-    {
-        UI_PanelGOs[TabID].SetActive(true);
+    //public void SwitchToTab(int TabID)
+    //{
+    //    UI_PanelGOs[TabID].SetActive(true);
 
-        foreach (Image image in TabButtonMasks)
-        {
-            image.gameObject.SetActive(true);
-        }
-        TabButtonMasks[TabID].gameObject.SetActive(false);
+    //    foreach (Image image in TabButtonMasks)
+    //    {
+    //        image.gameObject.SetActive(true);
+    //    }
+    //    TabButtonMasks[TabID].gameObject.SetActive(false);
 
-    }
+    //}
 }

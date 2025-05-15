@@ -204,6 +204,10 @@ namespace Assets.Core
                             EncounterUnknownSystemShowName(collider.gameObject);
                         }
                     }
+                    else // ToDo: enter our system
+                    {
+
+                    }
                 }
             }
             else if (collider.gameObject.GetComponent<PlayerDefinedTargetController>() != null)
@@ -441,8 +445,8 @@ namespace Assets.Core
             FleetData.LastDestination = FleetData.Destination; // save previous destination if we want to continue later 
             FleetData.Destination = FleetManager.Instance.GalaxyCenter;
             FleetData.CurrentWarpFactor = 0f; // stop the fleet
-            MousePointerChanger.Instance.ResetCursor();
-            MousePointerChanger.Instance.HaveGalaxyMapCursor = false;
+            //MousePointerChanger.Instance.ResetCursor();
+            //MousePointerChanger.Instance.HaveGalaxyMapCursor = false;
             GalaxyMenuUIController.Instance.ClickCancelDestinationButton(this);
             GalaxyMenuUIController.Instance.MouseClickSetsDestination = false;      
         }

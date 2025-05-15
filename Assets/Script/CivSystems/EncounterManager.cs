@@ -49,7 +49,7 @@ public class EncounterManager : MonoBehaviour
             }
             else // Not First Contact and we do fleets of same civ management back in FleetController
             {
-                DiplomacyManager.Instance.NextDiplomacyControllerActions(civPartyOne, civPartyTwo);
+                DiplomacyManager.Instance.UpdateOurDiplomacyController(civPartyOne, civPartyTwo);
                 NextFleetToFleetEncounter(fleetConA, fleetConB); // Will we need this? Is it all done in Diplomacy and FleetControllers?
             }
         }
@@ -73,7 +73,7 @@ public class EncounterManager : MonoBehaviour
                 }
                 else 
                 { // not first contact
-                    DiplomacyManager.Instance.NextDiplomacyControllerActions(civPartyOne, civPartyTwo);
+                    DiplomacyManager.Instance.UpdateOurDiplomacyController(civPartyOne, civPartyTwo);
                     FeetToSysNotSameCivNotFirstEncounter(fleetConA, sysCon);
                 }
             }

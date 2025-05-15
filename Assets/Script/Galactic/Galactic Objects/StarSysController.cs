@@ -488,7 +488,8 @@ namespace Assets.Core
                     else if (DiplomacyManager.Instance.FoundADiplomacyController(this.StarSysData.CurrentCivController, CivManager.Instance.LocalPlayerCivContoller))
                     { // this is a system local player does not own but we know them
                         DiplomacyUIController.Instance.LoadDiplomacyUI(DiplomacyManager.Instance.ReturnADiplomacyController(this.StarSysData.CurrentCivController, CivManager.Instance.LocalPlayerCivContoller));
-                        GalaxyMenuUIController.Instance.OpenMenu(Menu.ADiplomacyMenu, null);
+                        var diplomacyController = DiplomacyManager.Instance.ReturnADiplomacyController(this.StarSysData.CurrentCivController, CivManager.Instance.LocalPlayerCivContoller);
+                        GalaxyMenuUIController.Instance.OpenMenu(Menu.ADiplomacyMenu, diplomacyController.DiplomacyUIGameObject);
                     }
                 }
             }

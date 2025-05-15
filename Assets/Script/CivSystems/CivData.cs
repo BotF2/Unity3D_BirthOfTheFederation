@@ -5,7 +5,6 @@ namespace Assets.Core
 
     public class CivData // has list of civsInGame, it's starSytems Data
     {
-
         public int CivInt;
         public CivEnum CivEnum;
         public string CivShortName;

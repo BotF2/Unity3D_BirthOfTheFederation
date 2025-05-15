@@ -28,15 +28,14 @@ namespace Assets.Core
         private GameObject fleetPrefab;
         [SerializeField]
         private GameObject fleetUIPrefab;
-        [SerializeField] 
-        private GameObject contentFolderParent;
+        //[SerializeField] 
+        //private GameObject contentFolderParent;
         [SerializeField]
         private GameObject shipManagerMenuPrefab;
         [SerializeField]
         private Material fogPlaneMaterial;
         [SerializeField]
         private GameObject galaxyImage;
-
         public GameObject GalaxyCenter;
         public List<FleetController> FleetControllerList;
         public List<GameObject> FleetGOList = new List<GameObject>(); // all fleetGO GOs made
@@ -272,13 +271,11 @@ namespace Assets.Core
                 if (fleetCon.FleetUIGameObject == null)
                 {
                     GameObject thisFleetUIGameObject = (GameObject)Instantiate(fleetUIPrefab, new Vector3(0, 0, 0),
-                    Quaternion.identity); //parentCanavas.transform);
-                    //RectTransform rt = thisFleetUIGameObject.GetComponent<RectTransform>();
-                    //rt.anchoredPosition = Vector2.zero; // Set position if needed
+                    Quaternion.identity); 
                     thisFleetUIGameObject.SetActive(true);
                     thisFleetUIGameObject.layer = 5;
                     fleetCon.FleetUIGameObject = thisFleetUIGameObject;
-                    thisFleetUIGameObject.transform.SetParent(contentFolderParent.transform, false); // load into List of fleets
+                   // thisFleetUIGameObject.transform.SetParent(contentFolderParent.transform, false); // load into List of fleets
 
                 }
             }

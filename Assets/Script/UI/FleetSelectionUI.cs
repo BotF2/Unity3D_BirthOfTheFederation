@@ -48,7 +48,7 @@ public class FleetSelectionUI : MonoBehaviour
         GameObject aNull = new GameObject();
         GalaxyMenuUIController.Instance.OpenMenu(Menu.FirstContactMenu, aNull);
         //YourStarSysUIManager.Instance.CloseUnLoadStarSysUI();
-        //FleetUIController.Instance.CloseUnLoadFleetUI();
+        //FleetUIController.Instance.CloseDestinationSelectionCursor();
         FleetsManagerUIToggle.SetActive(true);
         clickedFleetController = fleetController;
         CivName.text = clickedFleetController.FleetData.CivLongName;

@@ -46,7 +46,7 @@ public class HabitableSysUIController: MonoBehaviour
             GameObject aNull = new GameObject();
             GalaxyMenuUIController.Instance.OpenMenu(Menu.HabitableSysMenu, aNull);
             //YourStarSysUIManager.Instance.CloseUnLoadStarSysUI();
-            //FleetUIController.Instance.CloseUnLoadFleetUI();
+            //FleetUIController.Instance.CloseDestinationSelectionCursor();
             ////FleetSelectionUI.current.UnLoadShipManagerUI();
             //FirstContactUIController.Instance.CloseUnLoadDiplomacyUI();
             //HabitableSysUIToggle.SetActive(true);

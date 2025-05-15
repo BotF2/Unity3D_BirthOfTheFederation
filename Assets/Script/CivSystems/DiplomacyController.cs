@@ -27,20 +27,19 @@ public class DiplomacyController //: MonoBehaviour
         DiplomacyData = diplomacyData;
     }
 
-    public void FirstContact(CivController civPartyOne, CivController civPartyTwo)
-    {
-        //TimeManager.Instance.PauseTime();
-        this.DiplomacyData.DiplomacyEnumOfCivs = DiplomacyStatusEnum.Neutral;
-        this.DiplomacyData.DiplomacyPointsOfCivs = (int)DiplomacyStatusEnum.Neutral;
-        // new DiplomacyController and not instatiated, only the DiplomacyUI is a gameObject and uses MonoBehaviour
-        GalaxyMenuUIController.Instance.OpenMenu(Menu.DiplomacyMenu, this.DiplomacyUIGameObject);
-    }
+    //public void FirstContact(CivController civPartyOne, CivController civPartyTwo)
+    //{
+    //    //this.DiplomacyData.DiplomacyEnumOfCivs = DiplomacyStatusEnum.Neutral;
+    //    //this.DiplomacyData.DiplomacyPointsOfCivs = (int)DiplomacyStatusEnum.Neutral;
+    //    //// new DiplomacyController and not instatiated, only the DiplomacyUI is a gameObject and uses MonoBehaviour
+    //    //GalaxyMenuUIController.Instance.OpenMenu(Menu.DiplomacyMenu, this.DiplomacyUIGameObject);
+    //}
    
-    public void CloseUnLoadDipolmacyUI()
-    {
+    //public void CloseUnLoadDipolmacyUI()
+    //{
 
-        DiplomacyUIController.Instance.DiplomacyUIToggle.SetActive(false);
-    }
+    //    DiplomacyUIController.Instance.DiplomacyUIToggle.SetActive(false);
+    //}
     public void AddDiplomaticPoints(int points)
     {
         this.DiplomacyData.DiplomacyPointsOfCivs += points;
@@ -92,4 +91,45 @@ public class DiplomacyController //: MonoBehaviour
             this.DiplomacyData.DiplomacyEnumOfCivs = DiplomacyStatusEnum.War;
         }
     }
+    public void ProposeTrade(DiplomacyController diplomacyData)
+    {
+        // ToDo: 
+    }
+    public void Engagement(DiplomacyController dilomacyCon)
+    {
+        // ToDo: 
+    }
+    public void ProposeTech(DiplomacyController dilomacyCon)
+    {
+        // ToDo:
+    }
+    public void SendAid(DiplomacyController diplomacyController)
+    {
+        //ToDo:
+    }
+    public void OfferAlliance(DiplomacyController diplomacyController)
+    {
+        //ToDo:
+    }
+    public void GatherIntel(DiplomacyController diplomacyController)
+    {
+        //ToDo:
+    }
+    public void Theft(DiplomacyController diplomacyController)
+    {
+        //ToDo:
+    }
+    public void Disinformation(DiplomacyController diplomacyController)
+    {
+        //ToDo:
+    }
+    public void Sabatoge(DiplomacyController diplomacyController)
+    {
+        //ToDo:
+    }
+    public void Combat(DiplomacyController diplomacyController)
+    {
+        //ToDo:
+    }
+
 }
