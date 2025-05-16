@@ -9,11 +9,11 @@ public class DiplomacyController //: MonoBehaviour
     private DiplomacyData diplomacyData; // holds civOne and two and diplomacy enum
     public DiplomacyData DiplomacyData { get { return diplomacyData; } set { diplomacyData = value; } }
  
-    private static string declareWar = "The A civ declares war on the B.";
-    private static string requestSomething = "The A request X something from the B to improve relations by x# points.";
-    private static string demandSomething = "The A civ demand X to avoid a degraded state of relations with the B Civ.";
-    private static string offerSomething = "The A civ offers the B X to improve relations.";
-    private static string demandStopInterferance = "The A civ demand X that B civ stop doing interferance.";
+    private static string declareWar = "The A declares war on the B.";
+    private static string requestSomething = "The A request X from the B.";
+    private static string demandSomething = "The A demand X from the B.";
+    private static string offerSomething = "The A offers the B X.";
+    private static string demandStopInterferance = "The A demand that the B stop X.";
 
     private List<string> diplomaticTransmissions = new List<string> { declareWar, requestSomething, demandSomething, offerSomething, demandStopInterferance};
     public List<string> DiplomaticTransmissions { get { return diplomaticTransmissions; } set { diplomaticTransmissions = value; } }
@@ -69,7 +69,7 @@ public class DiplomacyController //: MonoBehaviour
         {
             this.DiplomacyData.DiplomacyEnumOfCivs = DiplomacyStatusEnum.Allied;
         }
-        else if (currentStatusPoints >= (int)DiplomacyStatusEnum.Membership && ((int)this.DiplomacyData.CivOne.CivData.CivInt > 6 || (int)this.DiplomacyData.CivTwo.CivData.CivInt > 6))
+        else if (currentStatusPoints >= (int)DiplomacyStatusEnum.Membership && ((int)this.DiplomacyData.CivMajor.CivData.CivInt > 6 || (int)this.DiplomacyData.CivOther.CivData.CivInt > 6))
         {
             // only minors AI civ can become member of a playable major race
             this.DiplomacyData.DiplomacyEnumOfCivs = DiplomacyStatusEnum.Membership;

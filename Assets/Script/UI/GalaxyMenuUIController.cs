@@ -399,6 +399,7 @@ public class GalaxyMenuUIController : MonoBehaviour
                 openMenuWas = systemsMenuView;
                 break;
             case Menu.ASystemMenu:
+                MoveBackAnySysUIGO();
                 sysBackground.SetActive(false);
                 aSystemMenuView.SetActive(false);
                 openMenuWas = aSystemMenuView;
@@ -414,6 +415,7 @@ public class GalaxyMenuUIController : MonoBehaviour
                 openMenuWas = fleetsMenuView;
                 break;
             case Menu.AFleetMenu:
+                MoveBackAnyFleetUIGO();
                 CloseDestinationSelectionCursor();
                 fleetBackground.SetActive(false);
                 aFleetMenuView.SetActive(false);
@@ -426,6 +428,7 @@ public class GalaxyMenuUIController : MonoBehaviour
                 openMenuWas = diplomacyMenuView;
                 break;
             case Menu.ADiplomacyMenu:
+                MoveBackAnyDiplomacyUIGO();
                 diplomacyBackground.SetActive(false);
                 aDiplomacyMenuView.SetActive(false);
                 TimeManager.Instance.ResumeTime();
@@ -442,6 +445,7 @@ public class GalaxyMenuUIController : MonoBehaviour
                 openMenuWas = encyclopediaMenuView;
                 break;
             case Menu.HabitableSysMenu:
+                TimeManager.Instance.ResumeTime();
                 habitableSysMenu.SetActive(false);
                 openMenuWas = habitableSysMenu;
                 break;
@@ -1266,8 +1270,8 @@ public class GalaxyMenuUIController : MonoBehaviour
     }
     public void SetUpDiplomacyUIData(DiplomacyController diplomacyCon)
     {
-        CivController partyOne = diplomacyCon.DiplomacyData.CivOne;
-        CivController partyTwo = diplomacyCon.DiplomacyData.CivTwo;
+        CivController partyOne = diplomacyCon.DiplomacyData.CivMajor;
+        CivController partyTwo = diplomacyCon.DiplomacyData.CivOther;
         CivController notLocalPlayerCiv;
         CivController localPlayerCiv;
         StarSysController homeSysController;
@@ -1280,31 +1284,39 @@ public class GalaxyMenuUIController : MonoBehaviour
             notLocalPlayerCiv = partyTwo;
             localPlayerCiv = partyOne;
             FindTheirHomeSystem(partyTwo, out homeSysController);
-            //LoadCivDataInUI(ourDiplomacyController.DiplomacyData.CivTwo, ourDiplomacyController);
+            //LoadCivDataInUI(ourDiplomacyController.DiplomacyData.CivOther, ourDiplomacyController);
         }
         else
         {
             notLocalPlayerCiv = partyOne;
             localPlayerCiv = partyTwo;
             FindTheirHomeSystem(partyOne, out homeSysController);
-            //LoadCivDataInUI(ourDiplomacyController.DiplomacyData.CivOne, ourDiplomacyController);
+            //LoadCivDataInUI(ourDiplomacyController.DiplomacyData.CivMajor, ourDiplomacyController);
         }
         Image[] listOfImages = diplomacyCon.DiplomacyUIGameObject.GetComponentsInChildren<Image>();
         for (int q = 0; q < listOfImages.Length; q++)
         {
             // int techLevelInt = (int)CivManager.Instance.LocalPlayerCivContoller.CivData.StartingTechLevel / 100; // Early Tech level = 100, Supreme = 900;
+            bool foundRaceImage = false;
+            bool foundInsigniaImage = false;
             listOfImages[q].enabled = true;
             var name = listOfImages[q].name.ToString();
             switch (name)
             {
                 case "RaceImage":
                     listOfImages[q].sprite = notLocalPlayerCiv.CivData.CivRaceSprite;
+                    foundRaceImage = true;
                     break;
                 case "InsigniaTheirCiv (TMP)":
                     listOfImages[q].sprite = notLocalPlayerCiv.CivData.InsigniaSprite;
+                    foundInsigniaImage = true;
                     break;
                 default:
                     break;
+            }
+            if (foundRaceImage && foundInsigniaImage)
+            {
+                break;
             }
         }
         RectTransform[] rectTransforms = diplomacyCon.DiplomacyUIGameObject.GetComponentsInChildren<RectTransform>();
@@ -1314,9 +1326,9 @@ public class GalaxyMenuUIController : MonoBehaviour
             {
                 case "RedDot":
                     rectTransforms[i].gameObject.SetActive(true);
-                    float x = homeSysController.StarSysData.GetPosition().x * 0.12f; // 0.12f is our cosmologic constant, fudge factor
+                    float x = homeSysController.StarSysData.GetPosition().x * 0.12f; // 0.12f is our cosmologic constant, fudge factor to mini map
                     float y = 0f;
-                    float z = homeSysController.StarSysData.GetPosition().z * 0.12f; // 0.12f is our cosmologic constant, fudge factor
+                    float z = homeSysController.StarSysData.GetPosition().z * 0.12f; 
                     rectTransforms[i].Translate(new Vector3(x, z, y), Space.Self); // flip z and y from main galaxy map to UI mini map
                     break;
                 case "InteractionButton":

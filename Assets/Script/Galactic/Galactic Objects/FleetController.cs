@@ -157,21 +157,19 @@ namespace Assets.Core
             {
                 FleetController hitFleetCon = collider.gameObject.GetComponent<FleetController>();
                
-
                 if (isOurDestination)
                 {
                     ClickCancelDestinationButton(this);// we stop, cancel destination
 
-                    if (FleetData.CivEnum != hitFleetCon.FleetData.CivEnum)
+                    if (FleetData.CivEnum != hitFleetCon.FleetData.CivEnum)//if not one of ours
                     {
-                        OnADestinationThatIsOtherCivFleet(hitFleetCon);
+                        OnADestinationThatIsOtherCivFleet(hitFleetCon); //ToDo for fleets
                         // encounter leads to diplomacy and then change in menu
-                        if (gameObject.GetInstanceID() < collider.gameObject.GetInstanceID()) // only one side reports the collision
-                        {
-                            EncounterManager.Instance.ResolveEncounter(this, hitFleetCon);
-                            EncounterUnknownFleetGetNameAndSprite(collider.gameObject); // setactive sprite and name
-                        }
-
+                        //Not sure whey we do not need this: if (gameObject.GetInstanceID() < collider.gameObject.GetInstanceID()) // only one side reports the collision
+                        
+                        EncounterManager.Instance.ResolveEncounter(this, hitFleetCon);
+                        EncounterUnknownFleetGetNameAndSprite(collider.gameObject); // setactive sprite and name
+                        
                         if (hitFleetCon.FleetData.Destination == this.gameObject) // they are coming for us
                         {
                             ClickCancelDestinationButton(hitFleetCon); // they stop
@@ -183,7 +181,7 @@ namespace Assets.Core
                     else //our fleet
                     {
                         // do ships?
-                        OnADestinationThatIsOurOtherFleet(hitFleetCon); // we are the same fleet, do ships?
+                        OnADestinationThatIsOurOtherFleet(hitFleetCon); // we are the same civ fleets, do ships?
                     }
                 }
             }
@@ -201,7 +199,7 @@ namespace Assets.Core
                         EncounterManager.Instance.ResolveEncounter(this, sysCon);
                         if (weAreLocalPlayer)
                         {
-                            EncounterUnknownSystemShowName(collider.gameObject);
+                            EncounterUnknownSystemShowName(collider.gameObject); // update Galaxy view to expose insignia/name
                         }
                     }
                     else // ToDo: enter our system
@@ -453,10 +451,12 @@ namespace Assets.Core
 
         public void SetAsDestinationInUI(GameObject hitObject)
         {
+            
             //FleetData.Destination = hitObject;           
             int typeOfDestination = -1;// galaxy object type Enum SystemType if =>1
-
-            destinationCoordinates.text = "X " + (hitObject.transform.position.x).ToString()
+            string destinationNameText = "";
+            //destinationCoordinates.text
+            string coordiantesText= "X " + (hitObject.transform.position.x).ToString()
                 + " / Y " + (hitObject.transform.position.y).ToString()
                 + " / Z " + (hitObject.transform.position.z).ToString();
             if (hitObject.GetComponent<StarSysController>() != null)
@@ -466,7 +466,7 @@ namespace Assets.Core
                 if (DiplomacyManager.Instance.FoundADiplomacyController(CivManager.Instance.LocalPlayerCivContoller, starSysController.StarSysData.CurrentCivController))
                 {
                     typeOfDestination = -1;
-                    destinationName.text += starSysController.StarSysData.SysName;
+                    destinationNameText += starSysController.StarSysData.SysName;
                 }
                 else // unknown system
                 {
@@ -480,7 +480,8 @@ namespace Assets.Core
                 if (DiplomacyManager.Instance.FoundADiplomacyController(CivManager.Instance.LocalPlayerCivContoller, fleetCon.FleetData.CivController))
                 {
                     typeOfDestination = -1;
-                    destinationName.text += fleetCon.FleetData.Name;
+                    //destinationName.text
+                    destinationNameText = fleetCon.FleetData.Name;
                 }
                 else // unknown fleet
                 {    
@@ -491,49 +492,48 @@ namespace Assets.Core
             switch (typeOfDestination)
             {
                 case -1:
-                    destinationName.text = "";
                     break;
                 case (int)GalaxyObjectType.BlueStar:
-                    destinationName.text = "Blue Star at";
+                    destinationNameText = "Blue Star at";
                     break;
                 case (int)GalaxyObjectType.WhiteStar:
-                    destinationName.text = "White Star at";
+                    destinationNameText = "White Star at";
                     break;
                 case (int)GalaxyObjectType.YellowStar:
-                    destinationName.text = "Yellow Star at";
+                    destinationNameText = "Yellow Star at";
                     break;
                 case (int)GalaxyObjectType.OrangeStar:
-                    destinationName.text = "Orange Star at";
+                    destinationNameText = "Orange Star at";
                     break;
                 case (int)GalaxyObjectType.RedStar:
-                    destinationName.text = "Red Star at";
+                    destinationNameText = "Red Star at";
                     break;
                 case (int)GalaxyObjectType.Nebula:
                 case (int)GalaxyObjectType.OmarianNebula:
                 case (int)GalaxyObjectType.OrionNebula:
-                    destinationName.text = "Nebula at";
+                    destinationNameText = "Nebula at";
                     break;
                 case (int)GalaxyObjectType.Station:
-                    destinationName.text = "Station at";
+                    destinationNameText = "Station at";
                     break;
                 case (int)GalaxyObjectType.BlackHole:
-                    destinationName.text = "Black Hole at";
+                    destinationNameText = "Black Hole at";
                     break;
                 case (int)GalaxyObjectType.WormHole:
-                    destinationName.text = "WormHole at";
+                    destinationNameText = "WormHole at";
                     break;
                 case (int)GalaxyObjectType.TargetDestination:
-                    destinationName.text = "Target at";
+                    destinationNameText = "Target at";
                     break;
                 case (int)GalaxyObjectType.UnknownFleet:
-                    destinationName.text = "Fleet at";
+                    destinationNameText = "Fleet at";
                     break;
                 default:
-                    destinationName.text = "Unknown at";
+                    destinationName.text = "";
                     break;
             
             }
-            GalaxyMenuUIController.Instance.SetAsDestination(destinationName.text, destinationCoordinates.text);
+            GalaxyMenuUIController.Instance.SetAsDestination(destinationNameText, coordiantesText);
         }
 
         public void GetPlayerDefinedTargetDestination(FleetController fleetCon)

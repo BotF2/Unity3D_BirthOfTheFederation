@@ -41,16 +41,9 @@ public class HabitableSysUIController: MonoBehaviour
         this.starSysController = starSysController;
         if ((int)this.starSysController.StarSysData.CurrentOwnerCivEnum >= firstUninhabited) // not already been clamed
         {
-            TimeManager.Instance.PauseTime(); // ToDo: put a pause indicator on screen
-                                              //ToDo: manage open UIs so we keep a UI with interaction pending when a fleet reaches a new target and player need more than one UI still open
+            //ToDo: manage open UIs so we keep a UI with interaction pending when a fleet reaches a new target and player need more than one UI still open
             GameObject aNull = new GameObject();
             GalaxyMenuUIController.Instance.OpenMenu(Menu.HabitableSysMenu, aNull);
-            //YourStarSysUIManager.Instance.CloseUnLoadStarSysUI();
-            //FleetUIController.Instance.CloseDestinationSelectionCursor();
-            ////FleetSelectionUI.current.UnLoadShipManagerUI();
-            //FirstContactUIController.Instance.CloseUnLoadDiplomacyUI();
-            //HabitableSysUIToggle.SetActive(true);
-           // visitingFleetCivEnum = discoveringFleetCivController.CivData.CivEnum;
             Destroy(aNull);
             ClamSystem(discoveringFleetCivController, starSysController);
         }
