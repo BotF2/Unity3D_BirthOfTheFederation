@@ -17,10 +17,18 @@ MonoBehaviour:
   CivShortName: TALAXIANS
   CivLongName: TALAXIANS
   CivHomeSystem: TALAX
-  TraitOne: Peaceful
-  TraitTwo: Humility
-  CivImage: {fileID: 0}
-  Insignia: {fileID: 0}
-  Population: 5
-  Credits: 2
-  TechPoints: 2
+  WarLikeEnum: 1
+  XenophbiaEnum: 1
+  RuthlessEnum: 1
+  GreedyEnum: 0
+  CivImage: {fileID: 21300000, guid: fdef1945ccbaf7545b9681699afeec7c, type: 3}
+  Insignia: {fileID: 21300000, guid: 4a0e1fe1e81bdd14993713f63ff98fb1, type: 3}
+  Population: 0
+  Credits: 0
+  TechPoints: 0
+  CivTechLevel: 100
+  Playable: 0
+  HasWarp: 1
+  Decription: The Talaxians are personable people who share many of our own ideals.
+    Culturally and diplomatically they would blend in well with us.
+  IntelPoints: 0

@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5751d0611b14fb4f8de49a3a8fd4206, type: 3}
+  m_Name: CivSO_27_BANEANS
+  m_EditorClassIdentifier: 
+  CivInt: 27
+  CivEnum: 27
+  CivShortName: BANEANS
+  CivLongName: BANEANS
+  CivHomeSystem: BANEA
+  WarLikeEnum: 1
+  XenophbiaEnum: -1
+  RuthlessEnum: 1
+  GreedyEnum: 0
+  CivImage: {fileID: 21300000, guid: 72aa98a57d454bc49809b4aa9c1ec184, type: 3}
+  Insignia: {fileID: 21300000, guid: 70d1f28920d66af41908cc19bc2b80d3, type: 3}
+  Population: 0
+  Credits: 0
+  TechPoints: 0
+  CivTechLevel: 100
+  Playable: 0
+  HasWarp: 0
+  Decription: The Baneans are strict when it comes to security and law, due mainly
+    to their many troubles with the Numiri.
+  IntelPoints: 0

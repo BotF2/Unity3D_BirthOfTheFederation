@@ -17,10 +17,19 @@ MonoBehaviour:
   CivShortName: ZIBALIANS
   CivLongName: ZIBALIANS
   CivHomeSystem: ZIBAL
-  TraitOne: Humility
-  TraitTwo: Compation
-  CivImage: {fileID: 0}
-  Insignia: {fileID: 0}
-  Population: 5
-  Credits: 2
-  TechPoints: 2
+  WarLikeEnum: 1
+  XenophbiaEnum: -1
+  RuthlessEnum: -2
+  GreedyEnum: -2
+  CivImage: {fileID: 21300000, guid: c2fcbe051c24a8546a7c553c98fb2b4a, type: 3}
+  Insignia: {fileID: 21300000, guid: 302a563f1b882924aa42ddc6da4b255f, type: 3}
+  Population: 0
+  Credits: 0
+  TechPoints: 0
+  CivTechLevel: 100
+  Playable: 0
+  HasWarp: 1
+  Decription: The Zibalians are merchants who maintain a number of trade holdings
+    across multiple sectors. But they are buyers rather than sellers, and some are
+    thieves.
+  IntelPoints: 0

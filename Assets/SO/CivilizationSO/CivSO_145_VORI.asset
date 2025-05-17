@@ -17,10 +17,18 @@ MonoBehaviour:
   CivShortName: VORI
   CivLongName: VORI
   CivHomeSystem: VORI
-  TraitOne: Warlike
-  TraitTwo: Materialistic
-  CivImage: {fileID: 0}
-  Insignia: {fileID: 0}
-  Population: 5
-  Credits: 2
-  TechPoints: 2
+  WarLikeEnum: -1
+  XenophbiaEnum: -2
+  RuthlessEnum: -1
+  GreedyEnum: 0
+  CivImage: {fileID: 21300000, guid: 17b978ecd8db2a043b1464f1376e9f8d, type: 3}
+  Insignia: {fileID: 21300000, guid: a55b190b3727d834b95514b1191a74f6, type: 3}
+  Population: 0
+  Credits: 0
+  TechPoints: 0
+  CivTechLevel: 100
+  Playable: 0
+  HasWarp: 0
+  Decription: The Vori and the Kradin are involved in a grim war of mutual hatred
+    and distrust. It may well take a great diplomatic effort to solve the crisis.
+  IntelPoints: 0

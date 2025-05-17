@@ -17,10 +17,30 @@ MonoBehaviour:
   CivShortName: KLINGON
   CivLongName: Klingon Empire
   CivHomeSystem: KRONOS
-  TraitOne: Warlike
-  TraitTwo: Honorable
+  WarLikeEnum: -2
+  XenophbiaEnum: 0
+  RuthlessEnum: 2
+  GreedyEnum: 0
   CivImage: {fileID: 21300000, guid: b126cfe016a216d4ab3fc9d194dc64ed, type: 3}
-  Insignia: {fileID: 0}
-  Population: 20
-  Credits: 100
-  TechPoints: 10
+  Insignia: {fileID: 21300000, guid: 314213c0075b78447b6dd9514ca2fe63, type: 3}
+  Population: 0
+  Credits: 0
+  TechPoints: 0
+  CivTechLevel: 100
+  Playable: 1
+  HasWarp: 1
+  Decription: The Klingons are some of the most feared warriors in the galaxy. Their
+    quest for glory and honor in battle makes them masters in the field of combat;
+    be it in ground or space-based combat, their weapons arm quickly and strike hard.
+    Some of their warships possess cloaking devices, with which the Klingons strike
+    from the shadows at their prey. Their vigorous industrial forges process countless
+    masses of raw materials, keeping their resource-hungry war machine running, whilst
+    gigantic hunting parties guarantee the population's food supply. However, all
+    things that do not directly serve battle are of lower importance to them and
+    thus are less effective. The Klingons consider espionage a cowardly and dishonorable
+    act, but are willing to defend themselves through internal security as necessary.
+    Since Klingon engineers and scientists are not that qualified, you better conquer
+    other words in order not to fall behind, in comparison to other empires. Minor
+    empires, especially other warmongers respect the Klingon Empire. WHEN FOLLOWING
+    THE WAY OF THE WARRIOR, EVERYDAY IS A GOOD DAY TO DIE!
+  IntelPoints: 0

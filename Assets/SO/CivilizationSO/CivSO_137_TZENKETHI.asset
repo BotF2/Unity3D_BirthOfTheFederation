@@ -17,10 +17,21 @@ MonoBehaviour:
   CivShortName: TZENKETHI
   CivLongName: TZENKETHI
   CivHomeSystem: TZENKETHI
-  TraitOne: Peaceful
-  TraitTwo: Religious
-  CivImage: {fileID: 0}
-  Insignia: {fileID: 0}
-  Population: 5
-  Credits: 2
-  TechPoints: 2
+  WarLikeEnum: -2
+  XenophbiaEnum: -2
+  RuthlessEnum: -2
+  GreedyEnum: 0
+  CivImage: {fileID: 21300000, guid: 87cd3f40472922d408c07937b0ef2d89, type: 3}
+  Insignia: {fileID: 21300000, guid: ebd63201eca4fa8458a000b41ee90229, type: 3}
+  Population: 0
+  Credits: 0
+  TechPoints: 0
+  CivTechLevel: 100
+  Playable: 0
+  HasWarp: 1
+  Decription: The Tzenkethi are an obscure, reptilian people known for raiding colonies
+    and outposts on the edge of frontier space. The ruler of the Tzenkethi is the
+    Autarch, a totalitarian tsar that leads by ruthless example, following a merciless
+    drive towards expansion, conquest, and obliteration of everything that might
+    stand in the way.
+  IntelPoints: 0

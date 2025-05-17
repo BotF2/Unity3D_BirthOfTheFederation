@@ -1,5 +1,3 @@
-using Assets.Core;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,21 +16,21 @@ namespace Assets.Core
 
         private void Start()
         {
-           
-            //if (GameManager.Instance._statePassedMain_Init) // ToDo: how do we know if combat is over? && GameManager.Instance.FriendShips.Count > 0)
+
+            //if (GameManager.current._statePassedMain_Init) // ToDo: how do we know if combat is over? && GameManager.current.FriendShips.Count > 0)
             //{
-            //    string whoTorpedo = gameObject.name.Substring(0, 3);
-            //  //  string friendShips = GameManager.Instance.FriendNameArray[0].Substring(0, 3); 
+            //    string whoTorpedo = gameObject.CivName.Substring(0, 3);
+            //  //  string friendShips = GameManager.current.FriendNameArray[0].Substring(0, 3); 
             //    if (whoTorpedo == friendShips)
-            //        theLocalTargetList = GameManager.Instance.EnemyShips;
+            //        theLocalTargetList = GameManager.current.EnemyShips;
             //    else
-            //        theLocalTargetList = GameManager.Instance.FriendShips;
+            //        theLocalTargetList = GameManager.current.FriendShips;
             //    homingTorpedo = transform.GetComponent<Rigidbody>();
             //    if (homingTorpedo != null)
             //    {
             //        FindTargetNearTorpedo(theLocalTargetList);
             //    }
-            //    if (target == null)
+            //    if (_destination == null)
             //    {
             //        Destroy(gameObject, 0.3f);
             //    }
@@ -41,13 +39,13 @@ namespace Assets.Core
 
         private void FixedUpdate()
         {
-            //if (target != null && homingTorpedo != null)
+            //if (_destination != null && homingTorpedo != null)
             //{
-            //    var targetRotation = Quaternion.LookRotation(target.position - transform.position);
+            //    var targetRotation = Quaternion.LookRotation(_destination.position - transform.position);
             //    homingTorpedo.MoveRotation(Quaternion.RotateTowards(transform.rotation, targetRotation, turnRate));
             //    transform.Translate(Vector3.forward * speed * Time.deltaTime * 3);
             //}
-            //if (target == null)
+            //if (_destination == null)
             //{
             //    Destroy(gameObject);
             //}
@@ -56,7 +54,7 @@ namespace Assets.Core
 
         //public void OnCollisionEnter(Collision collision)
         //{
-        //    if (this.gameObject.tag != collision.gameObject.name) // do not blow up the torpedo if it hits the ship collider on launching
+        //    if (this.gameObject.tag != collision.gameObject.CivName) // do not blow up the torpedo if it hits the ship collider on launching
         //        Destroy(this.gameObject, 0.3f); // kill weapon gameobject holding speed script
         //}
         //public void FindTargetNearTorpedo(List<GameObject> theTargets)
@@ -70,7 +68,7 @@ namespace Assets.Core
         //            if (diff < distance)
         //            {
         //                distance = diff;
-        //                target = possibleTarget.transform;
+        //                _destination = possibleTarget.transform;
         //            }
         //        }
         //    }

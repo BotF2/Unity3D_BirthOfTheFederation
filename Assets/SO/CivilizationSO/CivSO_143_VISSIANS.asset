@@ -17,10 +17,19 @@ MonoBehaviour:
   CivShortName: VISSIANS
   CivLongName: VISSIANS
   CivHomeSystem: VISSIA
-  TraitOne: Arrogant
-  TraitTwo: Ruthless
-  CivImage: {fileID: 0}
-  Insignia: {fileID: 0}
-  Population: 5
-  Credits: 2
-  TechPoints: 2
+  WarLikeEnum: 1
+  XenophbiaEnum: 2
+  RuthlessEnum: 1
+  GreedyEnum: 0
+  CivImage: {fileID: 21300000, guid: 694e5f99b5f187f4d9237e61e0574b8d, type: 3}
+  Insignia: {fileID: 21300000, guid: e003f8cb9c4b9d54bbc42ce66d3318db, type: 3}
+  Population: 0
+  Credits: 0
+  TechPoints: 0
+  CivTechLevel: 100
+  Playable: 0
+  HasWarp: 1
+  Decription: The Vissians are a generally friendly and amiable people, and highly
+    advanced. However, their social divisions are not ideal, and will require further
+    examination before membership is to be considered.
+  IntelPoints: 0

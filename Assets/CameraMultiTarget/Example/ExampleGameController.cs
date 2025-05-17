@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class ExampleGameController : MonoBehaviour
@@ -22,9 +19,9 @@ public class ExampleGameController : MonoBehaviour
     ////}
 
     //private GameObject CreateTarget() {
-    //    GameObject target = GameObject.Instantiate(targetPrefab);
-    //    target.AddComponent<ExampleTargetBehaviour>();
-    //    return target;
+    //    GameObject _destination = GameObject.Instantiate(targetPrefab);
+    //    _destination.AddComponent<ExampleTargetBehaviour>();
+    //    return _destination;
     //}
 
 }

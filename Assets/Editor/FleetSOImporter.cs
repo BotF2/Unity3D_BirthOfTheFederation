@@ -1,18 +1,19 @@
-using UnityEngine;
-using UnityEditor;
-using System.IO;
 using Assets.Core;
 using System;
+using System.IO;
+using UnityEditor;
+using UnityEngine;
 
 public class FleetSOImporter : EditorWindow
 {
+#if UNITY_EDITOR
     [MenuItem("Tools/Import FleetSO CSV")]
     public static void ShowWindow()
     {
         GetWindow<FleetSOImporter>("FleetSO CSV Importer");
     }
 
-    private string filePath = $"Assets/Resources/Data/Fleets.csv";
+    private string filePath = $"Assets/Resources/Data/FleetSO.csv";
 
     void OnGUI()
     {
@@ -41,7 +42,7 @@ public class FleetSOImporter : EditorWindow
         {
             string[] fields = line.Split(',');
 
-            if (fields.Length == 4) // Ensure there are enough fields
+            if (fields.Length > 4) // Ensure there are enough fields
             {
                 string imageString = fields[1];
                 foreach (string file in Directory.GetFiles($"Assets/Resources/Insignias/", "*.png"))
@@ -55,15 +56,15 @@ public class FleetSOImporter : EditorWindow
                         imageString = "Insignias/" + imageString + "S";
                     }
                 }
-                FleetSO fleet = CreateInstance<FleetSO>();
+                FleetSO fleetSO = CreateInstance<FleetSO>();
                 //index, insignia, fleetName, civOwnerEnum, defaultWarp
-                fleet.CivIndex = int.Parse(fields[0]);
-                fleet.Insignia = Resources.Load<Sprite>(imageString);
-                fleet.CivOwnerEnum = GetMyCivEnum(fields[2]);
-                fleet.DefaultWarpFactor = float.Parse(fields[3]);
-
-                string assetPath = $"Assets/SO/FleetSO/FleetSO_{fleet.CivIndex}_{fleet.CivOwnerEnum}.asset";
-                AssetDatabase.CreateAsset(fleet, assetPath);
+                fleetSO.CivIndex = int.Parse(fields[0]);
+                fleetSO.Insignia = Resources.Load<Sprite>(imageString);
+                fleetSO.CivOwnerEnum = GetMyCivEnum(fields[2]);
+                fleetSO.CurrentWarpFactor = float.Parse(fields[3]);
+                fleetSO.Description = fields[4];
+                string assetPath = $"Assets/SO/FleetSO/FleetSO_{fleetSO.CivIndex}_{fleetSO.CivOwnerEnum}.asset";
+                AssetDatabase.CreateAsset(fleetSO, assetPath);
                 AssetDatabase.SaveAssets();
             }
         }
@@ -76,4 +77,5 @@ public class FleetSOImporter : EditorWindow
         Enum.TryParse(title, out st);
         return st;
     }
+#endif
 }

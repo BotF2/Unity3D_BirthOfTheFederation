@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5751d0611b14fb4f8de49a3a8fd4206, type: 3}
+  m_Name: CivSO_84_LOKIRRIM
+  m_EditorClassIdentifier: 
+  CivInt: 84
+  CivEnum: 84
+  CivShortName: LOKIRRIM
+  CivLongName: LOKIRRIM
+  CivHomeSystem: LOKIRRIM
+  WarLikeEnum: 0
+  XenophbiaEnum: -2
+  RuthlessEnum: 0
+  GreedyEnum: 0
+  CivImage: {fileID: 21300000, guid: 0e1b099bc06165b4e92e528b59d79ac5, type: 3}
+  Insignia: {fileID: 21300000, guid: c67a6b26974768d4c8fb221864aa9822, type: 3}
+  Population: 0
+  Credits: 0
+  TechPoints: 0
+  CivTechLevel: 100
+  Playable: 0
+  HasWarp: 1
+  Decription: The Lokirrim are an advanced race with advanced scientific theories,
+    which would be of great benefit to our researchers.
+  IntelPoints: 0

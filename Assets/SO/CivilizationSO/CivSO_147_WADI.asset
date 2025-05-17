@@ -17,10 +17,18 @@ MonoBehaviour:
   CivShortName: WADI
   CivLongName: WADI
   CivHomeSystem: WADI
-  TraitOne: Compation
-  TraitTwo: Neutral
-  CivImage: {fileID: 0}
-  Insignia: {fileID: 0}
-  Population: 5
-  Credits: 2
-  TechPoints: 2
+  WarLikeEnum: 0
+  XenophbiaEnum: 0
+  RuthlessEnum: -1
+  GreedyEnum: 0
+  CivImage: {fileID: 21300000, guid: b036832272cf9854cba906708288b1c4, type: 3}
+  Insignia: {fileID: 21300000, guid: bc943285825213f498f72ff6dc4e4861, type: 3}
+  Population: 0
+  Credits: 0
+  TechPoints: 0
+  CivTechLevel: 100
+  Playable: 0
+  HasWarp: 1
+  Decription: The Wadi are a diplomatically precarious race to deal with. They value
+    entertainment above all else, even if the stakes mean your life.
+  IntelPoints: 0

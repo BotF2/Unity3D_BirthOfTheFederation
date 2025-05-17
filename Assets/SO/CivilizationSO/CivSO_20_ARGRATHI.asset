@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5751d0611b14fb4f8de49a3a8fd4206, type: 3}
+  m_Name: CivSO_20_ARGRATHI
+  m_EditorClassIdentifier: 
+  CivInt: 20
+  CivEnum: 20
+  CivShortName: ARGRATHI
+  CivLongName: ARGRATHI
+  CivHomeSystem: ARGRATHI
+  WarLikeEnum: 1
+  XenophbiaEnum: -1
+  RuthlessEnum: -2
+  GreedyEnum: 0
+  CivImage: {fileID: 21300000, guid: e55e8c77b360f0d40bb2ca7a03bd3205, type: 3}
+  Insignia: {fileID: 0}
+  Population: 0
+  Credits: 0
+  TechPoints: 0
+  CivTechLevel: 100
+  Playable: 0
+  HasWarp: 0
+  Decription: The Argrathi are a humanoid race who are prone to suspicion. They are
+    ruled by the Argrathi Authority, who do not take well to any meddling, and should
+    be approached with caution.
+  IntelPoints: 0

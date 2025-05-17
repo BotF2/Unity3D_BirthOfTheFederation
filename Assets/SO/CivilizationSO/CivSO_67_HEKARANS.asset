@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5751d0611b14fb4f8de49a3a8fd4206, type: 3}
+  m_Name: CivSO_67_HEKARANS
+  m_EditorClassIdentifier: 
+  CivInt: 67
+  CivEnum: 67
+  CivShortName: HEKARANS
+  CivLongName: HEKARANS
+  CivHomeSystem: HEKARA
+  WarLikeEnum: 1
+  XenophbiaEnum: 1
+  RuthlessEnum: 1
+  GreedyEnum: 0
+  CivImage: {fileID: 21300000, guid: f338b35c8ad10c8438a98a6152579a4d, type: 3}
+  Insignia: {fileID: 21300000, guid: a24c3f97ee0583f40baea3ef14fe4c97, type: 3}
+  Population: 0
+  Credits: 0
+  TechPoints: 0
+  CivTechLevel: 100
+  Playable: 0
+  HasWarp: 1
+  Decription: The Hekarans have some radical ideas about improving and refining warp
+    science. Their research could be of great benefit to our own propulsion programs.
+  IntelPoints: 0

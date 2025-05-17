@@ -17,10 +17,32 @@ MonoBehaviour:
   CivShortName: ROMULAN
   CivLongName: Romulan Star Empire
   CivHomeSystem: ROMULUS
-  TraitOne: Arrogent
-  TraitTwo: Hostile
+  WarLikeEnum: -1
+  XenophbiaEnum: -2
+  RuthlessEnum: -2
+  GreedyEnum: -1
   CivImage: {fileID: 21300000, guid: ce09c123ea9d6984ebb51c0f4c5327b6, type: 3}
-  Insignia: {fileID: 0}
-  Population: 20
-  Credits: 100
-  TechPoints: 10
+  Insignia: {fileID: 21300000, guid: 1b5479184d7cea445b4270a277fa0adb, type: 3}
+  Population: 0
+  Credits: 0
+  TechPoints: 0
+  CivTechLevel: 100
+  Playable: 1
+  HasWarp: 1
+  Decription: To outsiders, the Romulans are an enigmatic race. To the Romulans,
+    however, other races have hardly any mystery left, for their talented intelligence
+    agency, the Tal Shiar, has solved each of those mysteries. Romulan interests
+    are protected by a veil of secrecy and covertness, just as their ships are hidden
+    from prying eyes by powerful cloaking technologies. Their ships move undetected
+    in groups until they are close to their unsuspecting victim, before decloaking
+    and destroying their target in the ambush. Reports on Romulan society show it
+    functions on exceptional research achievements. The basic supply of energy and
+    food for the populace is sufficient to meet day-to-day needs, and is rigorously
+    regulated to be resource-saving, as are their fleet maintenance costs; Romulan
+    fleets expect to decimate the enemy before they have any chance at mounting a
+    defense. In the 24th century, the Romulans became famous for their powerful and
+    cost/performance efficient D'deridex class warbirds, which can however be build
+    only slowly, so you shouldn't start a long, or even a multi-border war. Better
+    use the deceptiveness of the Tal Shiar. WHEN KNOWLEDGE IS POWER, BEING UNKNOWN
+    MEANS TO BE UNCONQUERABLE.
+  IntelPoints: 0

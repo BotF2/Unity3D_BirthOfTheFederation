@@ -17,10 +17,19 @@ MonoBehaviour:
   CivShortName: SULIBAN
   CivLongName: SULIBAN
   CivHomeSystem: SULIBAN
-  TraitOne: Compation
-  TraitTwo: Peaceful
-  CivImage: {fileID: 0}
-  Insignia: {fileID: 0}
-  Population: 5
-  Credits: 2
-  TechPoints: 2
+  WarLikeEnum: -1
+  XenophbiaEnum: -1
+  RuthlessEnum: -2
+  GreedyEnum: -2
+  CivImage: {fileID: 21300000, guid: abdd7d45edcef0e4ea9e6dd3757b1798, type: 3}
+  Insignia: {fileID: 21300000, guid: 64a86285b36cb434b929e95365212c65, type: 3}
+  Population: 0
+  Credits: 0
+  TechPoints: 0
+  CivTechLevel: 100
+  Playable: 0
+  HasWarp: 1
+  Decription: The nomadic Suliban are normally a non-threatening race, but they are
+    easily swayed, and quite susceptible to outside influence and coercion. They
+    would make great allies, but cannot be entirely trusted.
+  IntelPoints: 0

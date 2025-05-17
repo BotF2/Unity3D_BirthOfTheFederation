@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d485fe411844ae438bd196572fccc8b, type: 3}
+  m_Name: PowerPlantSO_2_Matter Furnace
+  m_EditorClassIdentifier: 
+  CivInt: 2
+  TechLevel: 100
+  FacilitiesEnumType: 0
+  Name: Matter Furnaces
+  StartStarDate: 0
+  BuildDuration: 8
+  PowerOutput: 20
+  PowerPlantSprite: {fileID: 21300000, guid: 0a34e6bbee394d04ca1f5b1eb0018ab6, type: 3}
+  Description: Klingon power sources are primarily based on matter-antimatter reactors,
+    similar to the Federation's warp cores. However, Klingon technology and engineering
+    practices reflect their cultural priorities of ruggedness, simplicity, and combat
+    efficiency, making their systems distinct in design and operation.

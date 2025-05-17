@@ -1,11 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
-using System;
 using UnityEngine;
 
 namespace Assets.Core
 {
-   
+
     public class E_Animator1 : MonoBehaviour
     {
         public Animator anim;
@@ -24,7 +21,7 @@ namespace Assets.Core
                 PlayWarp();
                 //if (once == 0 && anim.GetCurrentAnimatorStateInfo(0).IsName("E1_allGoodThings"))
                 //{
-                //    shipLayerSetup.OnStateEnter(anim, anim.GetCurrentAnimatorStateInfo(anim.GetLayerIndex(anim.name)), anim.GetLayerIndex(anim.name));
+                //    shipLayerSetup.OnStateEnter(anim, anim.GetCurrentAnimatorStateInfo(anim.GetLayerIndex(anim.CivName)), anim.GetLayerIndex(anim.CivName));
                 //    once = 1;
                 //}
             }

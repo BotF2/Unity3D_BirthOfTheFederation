@@ -17,10 +17,18 @@ MonoBehaviour:
   CivShortName: XYRILLIANS
   CivLongName: XYRILLIANS
   CivHomeSystem: XYRILLIA
-  TraitOne: Ruthless
-  TraitTwo: Humility
-  CivImage: {fileID: 0}
-  Insignia: {fileID: 0}
-  Population: 5
-  Credits: 2
-  TechPoints: 2
+  WarLikeEnum: 1
+  XenophbiaEnum: 1
+  RuthlessEnum: 1
+  GreedyEnum: 0
+  CivImage: {fileID: 21300000, guid: 6cc3c2c9a47d4c1429df58ae9a84531d, type: 3}
+  Insignia: {fileID: 21300000, guid: 56b753e80b338af4abb23c11c144f401, type: 3}
+  Population: 0
+  Credits: 0
+  TechPoints: 0
+  CivTechLevel: 100
+  Playable: 0
+  HasWarp: 1
+  Decription: The Xyrillians have a rare and unusual physiology. But more importantly,
+    they share many of our ideas. They would be useful allies.
+  IntelPoints: 0

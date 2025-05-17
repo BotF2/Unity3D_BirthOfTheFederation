@@ -1,19 +1,28 @@
-using System.Collections;
-using System.Collections.Generic;
+using Assets.Core;
 using UnityEngine;
 
 public class ShipData : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        //little code change :D
-        Debug.Log("asdf");
-    }
+    public string ShipName;
+    public CivEnum CivEnum;
+    public TechLevel TechLevel;
+    public ShipType ShipType;
+    public Sprite ShipSprite;
+    public float maxWarpFactor;
+    //public float currentWarpFactor;
+    public int ShieldMaxHealth;
+    public int HullMaxHealth;
+    public int TorpedoDamage;
+    public int BeamDamage;
+    public int BuildDuration;
+    public GameObject Mesh;
 
-    // Update is called once per frame
-    void Update()
+    public ShipData(string name)
     {
-        
+        ShipName = name;
+    }
+    public ShipData()
+    {
+
     }
 }

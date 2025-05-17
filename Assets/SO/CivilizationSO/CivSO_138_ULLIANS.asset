@@ -17,10 +17,18 @@ MonoBehaviour:
   CivShortName: ULLIANS
   CivLongName: ULLIANS
   CivHomeSystem: ULLIA
-  TraitOne: Warlike
-  TraitTwo: Intellectual
-  CivImage: {fileID: 0}
-  Insignia: {fileID: 0}
-  Population: 5
-  Credits: 2
-  TechPoints: 2
+  WarLikeEnum: -1
+  XenophbiaEnum: -1
+  RuthlessEnum: -2
+  GreedyEnum: -1
+  CivImage: {fileID: 21300000, guid: d35fe667802b5d04a9e5036df3e4fb1f, type: 3}
+  Insignia: {fileID: 21300000, guid: cdead3588dc56cf469d0a037f204e787, type: 3}
+  Population: 0
+  Credits: 0
+  TechPoints: 0
+  CivTechLevel: 100
+  Playable: 0
+  HasWarp: 0
+  Decription: The Ullians act as historians for many alien cultures. Their knowledge
+    of this galaxy would be of enormous academic interest.
+  IntelPoints: 0

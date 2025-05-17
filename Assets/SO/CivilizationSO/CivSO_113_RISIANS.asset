@@ -17,10 +17,19 @@ MonoBehaviour:
   CivShortName: RISIANS
   CivLongName: RISIANS
   CivHomeSystem: RISA
-  TraitOne: Peaceful
-  TraitTwo: Neutral
-  CivImage: {fileID: 0}
-  Insignia: {fileID: 0}
-  Population: 5
-  Credits: 2
-  TechPoints: 2
+  WarLikeEnum: 1
+  XenophbiaEnum: 2
+  RuthlessEnum: 1
+  GreedyEnum: -1
+  CivImage: {fileID: 21300000, guid: 170983bd976d6194595377cee2cf8983, type: 3}
+  Insignia: {fileID: 21300000, guid: 6dcdb13c138475048859b02ee1e3f45f, type: 3}
+  Population: 0
+  Credits: 0
+  TechPoints: 0
+  CivTechLevel: 100
+  Playable: 0
+  HasWarp: 0
+  Decription: The Risians live for recreation, entertainment, and enjoyment. Their
+    whole world is a pleasure park for any vacationer, sight-seer, or mere traveler
+    passing through.
+  IntelPoints: 0

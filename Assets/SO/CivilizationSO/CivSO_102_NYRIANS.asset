@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5751d0611b14fb4f8de49a3a8fd4206, type: 3}
+  m_Name: CivSO_102_NYRIANS
+  m_EditorClassIdentifier: 
+  CivInt: 102
+  CivEnum: 102
+  CivShortName: NYRIANS
+  CivLongName: NYRIANS
+  CivHomeSystem: NYRIA
+  WarLikeEnum: -1
+  XenophbiaEnum: 0
+  RuthlessEnum: -2
+  GreedyEnum: -1
+  CivImage: {fileID: 21300000, guid: a6af7c931af096241a4df265838a0258, type: 3}
+  Insignia: {fileID: 21300000, guid: 6146aa7e0d4f4d644a60f6e6d0c35543, type: 3}
+  Population: 0
+  Credits: 0
+  TechPoints: 0
+  CivTechLevel: 100
+  Playable: 0
+  HasWarp: 1
+  Decription: The Nyrians are experts in stealth, evasion and subterfuge. It would
+    be wise to observe them closely before forging diplomatic ties.
+  IntelPoints: 0

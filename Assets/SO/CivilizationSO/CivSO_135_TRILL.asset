@@ -17,10 +17,18 @@ MonoBehaviour:
   CivShortName: TRILL
   CivLongName: TRILL
   CivHomeSystem: TRILL
-  TraitOne: Honorable
-  TraitTwo: Warlike
-  CivImage: {fileID: 0}
-  Insignia: {fileID: 0}
-  Population: 5
-  Credits: 2
-  TechPoints: 2
+  WarLikeEnum: 1
+  XenophbiaEnum: 2
+  RuthlessEnum: 2
+  GreedyEnum: 2
+  CivImage: {fileID: 21300000, guid: f58b3530ddcb65d4eacb84035938196b, type: 3}
+  Insignia: {fileID: 21300000, guid: 1d3012f675889734d8d24ced723b3cf5, type: 3}
+  Population: 0
+  Credits: 0
+  TechPoints: 0
+  CivTechLevel: 100
+  Playable: 0
+  HasWarp: 0
+  Decription: The joined Trill live several times as long as even the oldest members
+    of our race. Their wisdom could be a great asset to our empire.
+  IntelPoints: 0

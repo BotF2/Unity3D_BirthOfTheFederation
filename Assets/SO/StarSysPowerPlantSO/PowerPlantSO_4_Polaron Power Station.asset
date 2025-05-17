@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d485fe411844ae438bd196572fccc8b, type: 3}
+  m_Name: PowerPlantSO_4_Polaron Power Station
+  m_EditorClassIdentifier: 
+  CivInt: 4
+  TechLevel: 100
+  FacilitiesEnumType: 0
+  Name: Polaron Power Stations
+  StartStarDate: 0
+  BuildDuration: 8
+  PowerOutput: 30
+  PowerPlantSprite: {fileID: 21300000, guid: debd3118c20cd4543acef1038acddaf9, type: 3}
+  Description: "The Dominion\u2019s power sources are likely built around matter-antimatter
+    reactors, polaron energy systems, and potentially exotic Gamma Quadrant technologies.
+    Their integration of biomechanical engineering and focus on militaristic efficiency
+    ensures their power systems are highly reliable and optimized for large-scale
+    operations."

@@ -4,36 +4,34 @@
 TagManager:
   serializedVersion: 3
   tags:
+  - Galactic Camera
+  - WarpSliderHandle
   - GalacticCamera
   - GalacticCanvas
   - Galatic Camera
-  - CARD_SCOUT_I(CLONE)
-  - FED_CRUISER_II(CLONE)
-  - FED_CRUISER_III(CLONE)
-  - FED_DESTROYER_I(CLONE)
-  - FED_DESTROYER_II(CLONE)
-  - FED_SCOUT_II(CLONE)
-  - FED_SCOUT_IV(CLONE)
-  - FED_COLONYSHIP_I(CLONE)
-  - KLING_CRUISER_II(CLONE)
-  - KLING_DESTROYER_I(CLONE)
-  - KLING_SCOUT_I(CLONE)
-  - KLING_COLONYSHIP_I(CLONE)
-  - ROM_CRUISER_II
-  - ROM_CRUISER_III(CLONE)
-  - ROM_SCOUT_III(CLONE)
-  - SolarSystemViewObject
-  - BORG_CRUISER_II(CLONE)
+  - fleetUIRoot
+  - fleet
+  - FleetUICanvas
+  - DropdownShipsGO
+  - DropdownDestinationsGO
+  - FleetPlaceHolder
+  - ShipPlaceHolder
+  - PreFabGalaxyDestinationDropdown
+  - DestroyTemp
+  - GalaxyImage
+  - FactoryBuildSlot
+  - ShipBuildSlot
+  - InventorySlot
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - StarSystem
+  - 
   - Water
   - UI
   - Galaxy
-  - 
-  - 
+  - Background
+  - Fog of War Plane
   - 
   - 
   - 

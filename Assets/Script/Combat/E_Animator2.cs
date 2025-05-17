@@ -1,11 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
-using System;
 using UnityEngine;
 
 namespace Assets.Core
 {
-   
+
     public class E_Animator2 : MonoBehaviour
     {
         public Animator anim;
@@ -25,12 +22,12 @@ namespace Assets.Core
                 anim.SetBool("EnemyWarp2", true); // code state turns on warp animation
                 PlayWarp();
                 // how to get animation done to inform code of state????
-                //if (once == 0 && anim.GetCurrentAnimatorStateInfo(anim.GetLayerIndex(anim.name)).IsName("E2_allGoodThings"))
+                //if (once == 0 && anim.GetCurrentAnimatorStateInfo(anim.GetLayerIndex(anim.CivName)).IsName("E2_allGoodThings"))
                 //{
-                //    shipLayerSetup.OnStateEnter(anim, anim.GetCurrentAnimatorStateInfo(anim.GetLayerIndex(anim.name)), anim.GetLayerIndex(anim.name));
+                //    shipLayerSetup.OnStateEnter(anim, anim.GetCurrentAnimatorStateInfo(anim.GetLayerIndex(anim.CivName)), anim.GetLayerIndex(anim.CivName));
                 //    once = 1;
                 //}
-            } 
+            }
             // lets warp animation run
         }
         public void PlayWarp() // called in animation - warp

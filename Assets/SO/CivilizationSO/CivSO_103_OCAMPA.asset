@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5751d0611b14fb4f8de49a3a8fd4206, type: 3}
+  m_Name: CivSO_103_OCAMPA
+  m_EditorClassIdentifier: 
+  CivInt: 103
+  CivEnum: 103
+  CivShortName: OCAMPA
+  CivLongName: OCAMPA
+  CivHomeSystem: OCAMPA
+  WarLikeEnum: 0
+  XenophbiaEnum: 2
+  RuthlessEnum: 1
+  GreedyEnum: 0
+  CivImage: {fileID: 21300000, guid: 672da374ad466e04eb849c69c7cac8fe, type: 3}
+  Insignia: {fileID: 21300000, guid: ab99832ab758a9f4188754cd4f2793ef, type: 3}
+  Population: 0
+  Credits: 0
+  TechPoints: 0
+  CivTechLevel: 100
+  Playable: 0
+  HasWarp: 0
+  Decription: Ocampa is a harsh desert world, and their people are short lived, but
+    they have achieved much in their subterranean dwellings deep beneath the ground.
+  IntelPoints: 0

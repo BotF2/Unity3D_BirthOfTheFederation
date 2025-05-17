@@ -17,10 +17,32 @@ MonoBehaviour:
   CivShortName: FEDERATION
   CivLongName: United Federation of Planets
   CivHomeSystem: SOL
-  TraitOne: Compation
-  TraitTwo: Peaceful
+  WarLikeEnum: 1
+  XenophbiaEnum: 2
+  RuthlessEnum: 1
+  GreedyEnum: 2
   CivImage: {fileID: 21300000, guid: 9f337b818e6ce7f49ada896cbf5c1bd4, type: 3}
   Insignia: {fileID: 21300000, guid: 18273931b6c901041bb9c53c43cea038, type: 3}
-  Population: 20
-  Credits: 100
-  TechPoints: 10
+  Population: 0
+  Credits: 0
+  TechPoints: 0
+  CivTechLevel: 100
+  Playable: 1
+  HasWarp: 1
+  Decription: 'The United Federation of Planets is a coalition of worlds bound by
+    a mutual desire for peace, the pursuit of scientific understanding, and trade.
+    By far however, the most numerous of the Federation races is one of the founding
+    members, the Humans of Sol. The people of the Federation live in a society based
+    on the values of liberty and equality. Their strength lies in extremely effective
+    research, which grants them fast access to new technologies. Their high-quality
+    products come at the expense of high resource costs, however. Because of their
+    moral convictions, they quickly show weaknesses in the field of espionage and
+    sabotage by Starfleet intelligence. However when under attack, some citizens
+    of the Federation were known to effectively change their attitude to the ends
+    justify the means. With a fleet of well-rounded starships, the Federation is
+    equally likely to be seen conducting trade, exploration, humanitarian, and diplomatic
+    missions, as they are to be seen conducting military patrols and combat maneuvers.
+    Starfleet is capable of ending battles, but do not want to start them. OUR CONTINUING
+    MISSION: TO EXPLORE STRANGE NEW WORLDS, TO SEEK OUT NEW LIFE AND NEW CIVILIZATIONS,
+    TO BOLDLY GO WHERE NO ONE HAS GONE BEFORE!'
+  IntelPoints: 0

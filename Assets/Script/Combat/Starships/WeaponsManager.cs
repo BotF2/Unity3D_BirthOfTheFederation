@@ -1,6 +1,6 @@
-﻿using System.Collections;
+﻿using Assets.SpaceCombat.AutoBattle.Scripts.Audio;
+using System.Collections;
 using System.Collections.Generic;
-using Assets.SpaceCombat.AutoBattle.Scripts.Audio;
 using UnityEngine;
 
 namespace Assets.SpaceCombat.AutoBattle.Scripts.Starships
@@ -46,10 +46,10 @@ namespace Assets.SpaceCombat.AutoBattle.Scripts.Starships
                 //{
                 //    while (photonTorpedoHardPoint.LoadedTorpedos != 0)
                 //    {
-                //        var gameObject = Instantiate(photonTorpedoHardPoint.WeaponPrefab, photonTorpedoHardPoint.HardPoint.transform.Position, Quaternion.identity);
+                //        var gameObject = Instantiate(photonTorpedoHardPoint.WeaponPrefab, photonTorpedoHardPoint.HardPoint.transform.position, Quaternion.identity);
 
                 //        var photonTorpedoScript = gameObject.GetComponent<PhotonTorpedo>();
-                //        photonTorpedoScript.SetCurrentTarget(target);
+                //        photonTorpedoScript.SetCurrentTarget(_destination);
                 //        Physics.IgnoreCollision(gameObject.GetComponent<Collider>(), StarshipCollider);
 
                 //        photonTorpedoHardPoint.LoadedTorpedos--;
@@ -58,7 +58,7 @@ namespace Assets.SpaceCombat.AutoBattle.Scripts.Starships
 
                 //if (photonTorpedoHardPoint.WeaponRecharge >= photonTorpedoHardPoint.FireRate)
                 //{
-                //    var gameObject = Instantiate(photonTorpedoHardPoint.WeaponPrefab, photonTorpedoHardPoint.HardPoint.transform.Position, Quaternion.identity);
+                //    var gameObject = Instantiate(photonTorpedoHardPoint.WeaponPrefab, photonTorpedoHardPoint.HardPoint.transform.position, Quaternion.identity);
 
                 //    //var photonTorpedoAudioSource = gameObject.AddComponent<AudioSource>();
                 //    //photonTorpedoAudioSource.playOnAwake = false;
@@ -66,7 +66,7 @@ namespace Assets.SpaceCombat.AutoBattle.Scripts.Starships
                 //    //photonTorpedoAudioSource.Play();
 
                 //    var photonTorpedoScript = gameObject.GetComponent<PhotonTorpedo>();
-                //    photonTorpedoScript.SetCurrentTarget(target);
+                //    photonTorpedoScript.SetCurrentTarget(_destination);
                 //    Physics.IgnoreCollision(gameObject.GetComponent<Collider>(), StarshipCollider);
                 //    photonTorpedoHardPoint.WeaponRecharge = 0;
                 //}

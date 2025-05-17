@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Core
@@ -26,7 +24,7 @@ namespace Assets.Core
                 {
                     if (Input.mouseScrollDelta == Vector2.zero)
                         return;
-                    else//GameManager.Instance._statePassedCombatInit)
+                    else//GameManager.current._statePassedCombatInit)
                     {
                         bool turnOffNormalize = false;
                         if (cameraMultiTarget._normalizeFieldOfView)
@@ -63,7 +61,7 @@ namespace Assets.Core
         {
             _startZoomerUpdate = false;
             _doneWithWideAngle = false;
-        }         
-      
+        }
+
     }
 }
