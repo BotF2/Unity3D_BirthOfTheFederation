@@ -140,7 +140,7 @@ namespace Assets.Core
             public override void OnCameraCleanup(CommandBuffer cmd)
             {
                 source?.Release();
-                destination?.Release(); 
+                destination?.Release();
             }
             public override void FrameCleanup(CommandBuffer cmd)
             {
@@ -151,7 +151,7 @@ namespace Assets.Core
                 }
                 if (source == destination || (settings.srcType == settings.dstType && settings.srcType == Target.CameraColor))
                 {
-                    m_TemporaryColorTexture?.Release(); 
+                    m_TemporaryColorTexture?.Release();
                     //cmd.ReleaseTemporaryRT(m_TemporaryColorTexture.id);
                 }
             }
