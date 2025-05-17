@@ -130,7 +130,7 @@ namespace TMPro.Examples
                     vertices[vertexIndex + 2] = m_matrix.MultiplyPoint3x4(vertices[vertexIndex + 2]);
                     vertices[vertexIndex + 3] = m_matrix.MultiplyPoint3x4(vertices[vertexIndex + 3]);
 
-                    // Translate the character back to its original Position.
+                    // Translate the character back to its original position.
                     vertices[vertexIndex + 0] = vertices[vertexIndex + 0] + offset;
                     vertices[vertexIndex + 1] = vertices[vertexIndex + 1] + offset;
                     vertices[vertexIndex + 2] = vertices[vertexIndex + 2] + offset;
@@ -158,7 +158,7 @@ namespace TMPro.Examples
                     // We do this to make sure this character is rendered last and over other characters.
                     meshInfo.SwapVertexData(vertexIndex, lastVertexIndex);
 
-                    // Need to update the appropriate 
+                    // Need to update the appropriate
                     m_TextMeshPro.UpdateVertexData(TMP_VertexDataUpdateFlags.All);
                 }
                 #endregion
@@ -286,7 +286,7 @@ namespace TMPro.Examples
                     m_lastIndex = -1;
                 }
             }
-            
+
         }
 
 
@@ -306,7 +306,7 @@ namespace TMPro.Examples
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            //Debug.Log("Click at POS: " + eventData.Position + "  World POS: " + eventData.worldPosition);
+            //Debug.Log("Click at POS: " + eventData.position + "  World POS: " + eventData.worldPosition);
 
             // Check if Mouse Intersects any of the characters. If so, assign a random color.
             #region Character Selection Handling
@@ -314,7 +314,7 @@ namespace TMPro.Examples
             int charIndex = TMP_TextUtilities.FindIntersectingCharacter(m_TextMeshPro, Input.mousePosition, m_Camera, true);
             if (charIndex != -1 && charIndex != m_lastIndex)
             {
-                //Debug.Log("Character [" + m_TextMeshPro.textInfo.characterInfo[index].character + "] was selected at POS: " + eventData.Position);
+                //Debug.Log("Character [" + m_TextMeshPro.textInfo.characterInfo[index].character + "] was selected at POS: " + eventData.position);
                 m_lastIndex = charIndex;
 
                 Color32 c = new Color32((byte)Random.Range(0, 255), (byte)Random.Range(0, 255), (byte)Random.Range(0, 255), 255);
@@ -491,8 +491,8 @@ namespace TMPro.Examples
 
             // Restore UV0S
             // UVS0
-            Vector2[] src_uv0s = m_cachedMeshInfoVertexData[materialIndex].uvs0;
-            Vector2[] dst_uv0s = m_TextMeshPro.textInfo.meshInfo[materialIndex].uvs0;
+            Vector4[] src_uv0s = m_cachedMeshInfoVertexData[materialIndex].uvs0;
+            Vector4[] dst_uv0s = m_TextMeshPro.textInfo.meshInfo[materialIndex].uvs0;
             dst_uv0s[vertexIndex + 0] = src_uv0s[vertexIndex + 0];
             dst_uv0s[vertexIndex + 1] = src_uv0s[vertexIndex + 1];
             dst_uv0s[vertexIndex + 2] = src_uv0s[vertexIndex + 2];
@@ -540,7 +540,7 @@ namespace TMPro.Examples
             dst_uv2s[lastIndex + 2] = src_uv2s[lastIndex + 2];
             dst_uv2s[lastIndex + 3] = src_uv2s[lastIndex + 3];
 
-            // Need to update the appropriate 
+            // Need to update the appropriate
             m_TextMeshPro.UpdateVertexData(TMP_VertexDataUpdateFlags.All);
         }
     }

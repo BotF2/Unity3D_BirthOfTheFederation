@@ -17,10 +17,18 @@ MonoBehaviour:
   CivShortName: TAMARIANS
   CivLongName: TAMARIANS
   CivHomeSystem: TAMARIA
-  TraitOne: Materialistic
-  TraitTwo: Arrogant
-  CivImage: {fileID: 0}
-  Insignia: {fileID: 0}
-  Population: 5
-  Credits: 2
-  TechPoints: 2
+  WarLikeEnum: 0
+  XenophbiaEnum: 1
+  RuthlessEnum: 1
+  GreedyEnum: 0
+  CivImage: {fileID: 21300000, guid: 71d09d8cf83291348b77b344fc69a865, type: 3}
+  Insignia: {fileID: 21300000, guid: 7cc1495d84d203b4e816d352dd0b1d9d, type: 3}
+  Population: 0
+  Credits: 0
+  TechPoints: 0
+  CivTechLevel: 100
+  Playable: 0
+  HasWarp: 1
+  Decription: The Tamarians appear to have ideals similar to our own. If we can overcome
+    the language barrier, we will both profit from this contact.
+  IntelPoints: 0

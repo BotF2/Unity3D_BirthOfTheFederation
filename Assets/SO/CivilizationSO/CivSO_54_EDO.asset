@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5751d0611b14fb4f8de49a3a8fd4206, type: 3}
+  m_Name: CivSO_54_EDO
+  m_EditorClassIdentifier: 
+  CivInt: 54
+  CivEnum: 54
+  CivShortName: EDO
+  CivLongName: EDO
+  CivHomeSystem: EDO
+  WarLikeEnum: 1
+  XenophbiaEnum: -1
+  RuthlessEnum: 1
+  GreedyEnum: 0
+  CivImage: {fileID: 21300000, guid: c23d25872739ffa44bb7dc9b72213ce6, type: 3}
+  Insignia: {fileID: 21300000, guid: e0ea2e220860ef54d9cfe29f98dbff3a, type: 3}
+  Population: 0
+  Credits: 0
+  TechPoints: 0
+  CivTechLevel: 100
+  Playable: 0
+  HasWarp: 0
+  Decription: The Edo enjoy an idyllic existence, but their legal system is a high
+    price to pay for their bliss.
+  IntelPoints: 0

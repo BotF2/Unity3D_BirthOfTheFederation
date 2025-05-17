@@ -17,10 +17,34 @@ MonoBehaviour:
   CivShortName: DOMINION
   CivLongName: Dominion
   CivHomeSystem: OMARIAN_NEBULA
-  TraitOne: Religious
-  TraitTwo: Warlike
+  WarLikeEnum: -1
+  XenophbiaEnum: -2
+  RuthlessEnum: -1
+  GreedyEnum: 0
   CivImage: {fileID: 21300000, guid: 98730fb39c55c004981a281ea4f778b1, type: 3}
   Insignia: {fileID: 21300000, guid: c05efc7684b21b14cbb712987fd3bed7, type: 3}
-  Population: 30
-  Credits: 100
-  TechPoints: 10
+  Population: 0
+  Credits: 0
+  TechPoints: 0
+  CivTechLevel: 100
+  Playable: 1
+  HasWarp: 1
+  Decription: "In the gamma quadrant the Changelings where hunted by non-changelings
+    a.k.a the solids. In their bitterness, the Changelings, founded the Dominion.
+    Now known as The Founders, they breed genetically engineered beings like the
+    Vorta and the Jem\xB4hadar. The latter became an army that subjugated every other
+    race in the gamma quadrant one by one. In the end the entire galaxy will be ruled
+    by the Dominion so that no Changeling needs to fear again. Powerful polaran beam
+    weapons were made to fire though shields, creating heavy damage. However it was
+    shown this worked only with minor races, as all major empires, found quick ways
+    to adapt, technologically. The Dominion, however, has other means for galactic
+    dominion as well. The Changeling shape-shift to any form, which makes them very
+    good in espionage. If working, the Dominion also uses the diplomatic skill of
+    cunning Vorta to create valuable alliances and persuade minors to join them,
+    without a fight. The Jem\xB4hadar, dependent on Ketracel-While, are among the
+    best ground troops an empire can have and are sent if diplomacy fails. After
+    2000 years of Dominion rule without challengers, there are no species especially
+    skilled in technological advancement, which is the biggest flaw of this empire.
+    Both Vorta and Jem\xB4hadar where designed to view the Founders as near-mythical
+    gods. They know: VICTORY IS LIFE!"
+  IntelPoints: 0

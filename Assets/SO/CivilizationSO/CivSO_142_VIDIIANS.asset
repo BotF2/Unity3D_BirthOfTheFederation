@@ -17,10 +17,20 @@ MonoBehaviour:
   CivShortName: VIDIIANS
   CivLongName: VIDIIANS
   CivHomeSystem: VIDIIA
-  TraitOne: Humility
-  TraitTwo: Neutral
-  CivImage: {fileID: 0}
-  Insignia: {fileID: 0}
-  Population: 5
-  Credits: 2
-  TechPoints: 2
+  WarLikeEnum: -1
+  XenophbiaEnum: -1
+  RuthlessEnum: -2
+  GreedyEnum: -2
+  CivImage: {fileID: 21300000, guid: 821ee0593fc2a554e886d5fc4062586a, type: 3}
+  Insignia: {fileID: 21300000, guid: e53d33a6477d198418145336311133af, type: 3}
+  Population: 0
+  Credits: 0
+  TechPoints: 0
+  CivTechLevel: 100
+  Playable: 0
+  HasWarp: 1
+  Decription: The Vidiians are an advanced race, but they are in decline as their
+    attention is now focused purely on finding a cure for a devastating disease that
+    is sweeping through their civilization. Millions will die if a cure cannot be
+    found.
+  IntelPoints: 0

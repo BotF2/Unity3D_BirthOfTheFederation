@@ -1,36 +1,36 @@
-using UnityEngine;
-using UnityEditor;
-using System.IO;
 using Assets.Core;
 using System;
-using Unity.VisualScripting;
-using System.Diagnostics.Eventing.Reader;
-//using UnityEngine.Windows;
+using System.IO;
+using UnityEditor;
+using UnityEngine;
 
 public class CivSOImporter : EditorWindow
 {
-    [MenuItem("Tools/Import CivSO CSV")]
+#if UNITY_EDITOR
+
+
+    [MenuItem("Tools/Import CivSO TSV")]
     public static void ShowWindow()
     {
-        GetWindow<CivSOImporter>("CivSO CSV Importer");
+        GetWindow<CivSOImporter>("CivSO TSV Importer");
     }
 
-    private string filePath = $"Assets/Resources/Data/Civilizations.csv";
+    private string filePath = $"Assets/Resources/Data/Civilizations.tsv";
 
     void OnGUI()
     {
-        GUILayout.Label("CivSO CSV Importer", EditorStyles.boldLabel);
-        filePath = EditorGUILayout.TextField("CSV File Path", filePath);
+        GUILayout.Label("CivSO TSV Importer", EditorStyles.boldLabel);
+        filePath = EditorGUILayout.TextField("TSV File Path", filePath);
 
-        if (GUILayout.Button("Import CIV CSV"))
+        if (GUILayout.Button("Import CIV TSV"))
         {
             //Output the Game data path to the console
             Debug.Log("dataPath : " + Application.dataPath);
-            ImportCIVCSV(filePath);
+            ImportCIVTSV(filePath);
         }
     }
 
-    private static void ImportCIVCSV(string filePath)
+    private static void ImportCIVTSV(string filePath)
     {
         if (!File.Exists(filePath))
         {
@@ -42,52 +42,70 @@ public class CivSOImporter : EditorWindow
 
         foreach (string line in lines)
         {
-            string[] fields = line.Split(',');
+            string[] fields = line.Split('\t');
 
-            if (fields.Length == 12) // Ensure there are enough fields
+            if (fields.Length > 8)
             {
-                string imageString = fields[2].ToLower();
-                foreach (string file in Directory.GetFiles($"Assets/Resources/Races/", "*.png"))
-                {
-                    if(file == "Assets/Resources/Races/" + imageString +".png")
-                    {
-                        imageString = "Races/"+ imageString;
-                    }
-                    else if (file == "Assets/Resources/Races/"+ imageString + "s" +".png")
-                    {
-                        imageString = "Races/" + imageString+ "s"; 
-                    }
-                }
-
-
-                CivSO civ = CreateInstance<CivSO>();
-                //CivInt	,	Civ Enum	,	Civ Short Name	,	Civ Long Name	,	Home System	,	Triat One	,	Trait Two	,	Civ Image	,	Insginia	,	Population	,	Credits	,	Tech Points
-                civ.CivInt = int.Parse(fields[0]);
-                civ.CivEnum = GetMyCivEnum(fields[1]);
-                civ.CivShortName= fields[2];
-                civ.CivLongName = fields[3];
-                civ.CivHomeSystem = fields[4];
-                civ.TraitOne = fields[5];
-                civ.TraitTwo = fields[6];
-                civ.CivImage = Resources.Load<Sprite>(imageString);
-                civ.Insignia = Resources.Load<Sprite>("Insignias/" + fields[2].ToUpper());
-                civ.Population = int.Parse(fields[9]);
-                civ.Credits = int.Parse(fields[10]);
-                civ.TechPoints = int.Parse(fields[11]);
-
-
-                string assetPath = $"Assets/SO/CivilizationSO/CivSO_{civ.CivInt}_{civ.CivShortName}.asset";
-                AssetDatabase.CreateAsset(civ, assetPath);
+                CivSO civSO = CreateInstance<CivSO>();
+                civSO.CivInt = int.Parse(fields[0]);
+                civSO.CivEnum = GetMyCivEnum(fields[1]);
+                civSO.CivShortName = fields[2];
+                civSO.CivLongName = fields[3];
+                civSO.CivHomeSystem = fields[4];
+                civSO.WarLikeEnum = GetWarLikeEnum(fields[5]);
+                civSO.XenophbiaEnum = GetXenophobiaEnum(fields[6]);
+                civSO.RuthlessEnum = GetRuthlessEnum(fields[7]);
+                civSO.GreedyEnum = GetGreedyEnum(fields[8]);
+                Sprite race = Resources.Load<Sprite>("Races/" + fields[9].ToLower());
+                if (race == null) { race = Resources.Load<Sprite>("Races/" + fields[9].ToLower() + "s"); }
+                civSO.CivImage = race;
+                var name = Resources.Load<Sprite>("Insignias/" + fields[2].ToUpper());
+                if (name == null) { name = Resources.Load<Sprite>("Insignias/" + fields[2].ToUpper() + "S"); }
+                civSO.Insignia = name;
+                civSO.CivTechLevel = TechLevel.EARLY;// StartingTechLevel enum
+                civSO.HasWarp = bool.Parse(fields[11]);
+                civSO.Playable = bool.Parse(fields[12]);
+                civSO.Decription = fields[13];
+                string assetPath = $"Assets/SO/CivilizationSO/CivSO_{civSO.CivInt}_{civSO.CivShortName}.asset";
+                AssetDatabase.CreateAsset(civSO, assetPath);
                 AssetDatabase.SaveAssets();
             }
         }
 
         Debug.Log("CivSOImporter Import Complete");
     }
+
     public static CivEnum GetMyCivEnum(string title)
     {
         CivEnum st;
         Enum.TryParse(title, out st);
         return st;
     }
-} 
+    public static WarLikeEnum GetWarLikeEnum(string title)
+    {
+        WarLikeEnum st;
+        Enum.TryParse(title, out st);
+        return st;
+    }
+    public static XenophobiaEnum GetXenophobiaEnum(string title)
+    {
+        XenophobiaEnum st;
+        Enum.TryParse(title, out st);
+        return st;
+    }
+    public static RuthlessEnum GetRuthlessEnum(string title)
+    {
+        RuthlessEnum st;
+        Enum.TryParse(title, out st);
+        return st;
+    }
+    public static GreedyEnum GetGreedyEnum(string title)
+    {
+        GreedyEnum st;
+        Enum.TryParse(title, out st);
+        return st;
+    }
+
+#endif
+}
+

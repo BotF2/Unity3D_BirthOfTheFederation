@@ -17,7 +17,7 @@ namespace Assets.Plugins.YAFSM
         bool IsCurrentState(Type type);
 
         T CurrentState<T>() where T : IState;
-        T PreviousState<T>() where T : IState;  
+        T PreviousState<T>() where T : IState;
         T GetState<T>() where T : IState;
 
         void AddState<T>() where T : IState, new();

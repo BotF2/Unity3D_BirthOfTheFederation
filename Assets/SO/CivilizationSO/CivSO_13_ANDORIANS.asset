@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5751d0611b14fb4f8de49a3a8fd4206, type: 3}
+  m_Name: CivSO_13_ANDORIANS
+  m_EditorClassIdentifier: 
+  CivInt: 13
+  CivEnum: 13
+  CivShortName: ANDORIANS
+  CivLongName: ANDORIANS
+  CivHomeSystem: ANDORIA
+  WarLikeEnum: -2
+  XenophbiaEnum: 1
+  RuthlessEnum: 2
+  GreedyEnum: 0
+  CivImage: {fileID: 21300000, guid: 36c1a1d332581cc409cc180077246cfe, type: 3}
+  Insignia: {fileID: 21300000, guid: c7e0bfa7fc00a634590561df9e0f7d21, type: 3}
+  Population: 0
+  Credits: 0
+  TechPoints: 0
+  CivTechLevel: 100
+  Playable: 0
+  HasWarp: 1
+  Decription: The Andorians are a deeply passionate people with a bloody past, but
+    they desire a more Peaceful future.
+  IntelPoints: 0

@@ -17,10 +17,20 @@ MonoBehaviour:
   CivShortName: VENTAXIANS
   CivLongName: VENTAXIANS
   CivHomeSystem: VENTAXIA
-  TraitOne: Religious
-  TraitTwo: Arrogant
-  CivImage: {fileID: 0}
-  Insignia: {fileID: 0}
-  Population: 5
-  Credits: 2
-  TechPoints: 2
+  WarLikeEnum: -1
+  XenophbiaEnum: -2
+  RuthlessEnum: -1
+  GreedyEnum: 0
+  CivImage: {fileID: 21300000, guid: 99fbb5fc23b275b4eb0381875c770465, type: 3}
+  Insignia: {fileID: 21300000, guid: 044d8b595f55689458cee5fa4ad2a315, type: 3}
+  Population: 0
+  Credits: 0
+  TechPoints: 0
+  CivTechLevel: 100
+  Playable: 0
+  HasWarp: 0
+  Decription: The Ventaxians are a moderately advanced race on the verge of warp
+    capability. But much of their culture lies still in their dark heritage of fear
+    and superstition. A great deal of social change would be needed before they could
+    safely enter the galactic community.
+  IntelPoints: 0

@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5751d0611b14fb4f8de49a3a8fd4206, type: 3}
+  m_Name: CivSO_70_IYAARANS
+  m_EditorClassIdentifier: 
+  CivInt: 70
+  CivEnum: 70
+  CivShortName: IYAARANS
+  CivLongName: IYAARANS
+  CivHomeSystem: IYAARA
+  WarLikeEnum: 1
+  XenophbiaEnum: 2
+  RuthlessEnum: 1
+  GreedyEnum: 0
+  CivImage: {fileID: 21300000, guid: 8ab0e87e3afdbed4aaec51c3d07d91f5, type: 3}
+  Insignia: {fileID: 21300000, guid: 051bf7f02292ae1449587a0fac11a917, type: 3}
+  Population: 0
+  Credits: 0
+  TechPoints: 0
+  CivTechLevel: 100
+  Playable: 0
+  HasWarp: 1
+  Decription: The Iyaarans are a people who have little understanding of the common
+    concepts of emotion, desire, and pleasure. But they are willing to learn.
+  IntelPoints: 0

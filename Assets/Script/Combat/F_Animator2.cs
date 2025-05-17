@@ -1,19 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
-using System;
 using UnityEngine;
 
 namespace Assets.Core
 {
-   
+
     public class F_Animator2 : MonoBehaviour
     {
-        // must name class and file the same
+        // must CivName class and file the same
         public Animator anim;
         public AudioSource warpAudioSource_0;
-       // private SetShipLayerByAnimaStat shipLayerSetup;
+        // private SetShipLayerByAnimaStat shipLayerSetup;
         int once = 0;
-  
+
         void Start()
         {
             anim = GetComponent<Animator>();
@@ -28,11 +25,11 @@ namespace Assets.Core
                 PlayWarp();
                 //if (once == 0 && anim.GetCurrentAnimatorStateInfo(0).IsName("F2_allGoodThings"))
                 //{
-                //    shipLayerSetup.OnStateEnter(anim, anim.GetCurrentAnimatorStateInfo(anim.GetLayerIndex(anim.name)), anim.GetLayerIndex(anim.name));
+                //    shipLayerSetup.OnStateEnter(anim, anim.GetCurrentAnimatorStateInfo(anim.GetLayerIndex(anim.CivName)), anim.GetLayerIndex(anim.CivName));
                 //    once = 1;
                 //}
             }
-            //if (GameManager.Instance._statePassedCombatPlay)
+            //if (GameManager.current._statePassedCombatPlay)
             //    anim.SetBool("FriendStop2", true);
         }
         public void PlayWarp() // called in animation - warp

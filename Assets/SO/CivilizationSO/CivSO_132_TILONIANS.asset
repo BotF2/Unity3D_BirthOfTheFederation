@@ -17,10 +17,18 @@ MonoBehaviour:
   CivShortName: TILONIANS
   CivLongName: TILONIANS
   CivHomeSystem: TILONIA
-  TraitOne: Compation
-  TraitTwo: Honorable
-  CivImage: {fileID: 0}
-  Insignia: {fileID: 0}
-  Population: 5
-  Credits: 2
-  TechPoints: 2
+  WarLikeEnum: -1
+  XenophbiaEnum: -1
+  RuthlessEnum: -2
+  GreedyEnum: -1
+  CivImage: {fileID: 21300000, guid: feffe60c7902fad439d12e8c639935b4, type: 3}
+  Insignia: {fileID: 21300000, guid: 62eb5d836067b4443928713c57677195, type: 3}
+  Population: 0
+  Credits: 0
+  TechPoints: 0
+  CivTechLevel: 100
+  Playable: 0
+  HasWarp: 1
+  Decription: The Tilonians live in a state of political anarchy. If we are to have
+    any dealings with them, we must first comprehend the multiple the factions involved.
+  IntelPoints: 0

@@ -17,10 +17,18 @@ MonoBehaviour:
   CivShortName: YRIDIANS
   CivLongName: YRIDIANS
   CivHomeSystem: YRIDIA
-  TraitOne: Warlike
-  TraitTwo: Arrogant
-  CivImage: {fileID: 0}
-  Insignia: {fileID: 0}
-  Population: 5
-  Credits: 2
-  TechPoints: 2
+  WarLikeEnum: 0
+  XenophbiaEnum: -1
+  RuthlessEnum: -2
+  GreedyEnum: -2
+  CivImage: {fileID: 21300000, guid: 6f55e0cbddc08374ab3a26ba016fac21, type: 3}
+  Insignia: {fileID: 21300000, guid: 457c6a5279735de45af05819e6c47d37, type: 3}
+  Population: 0
+  Credits: 0
+  TechPoints: 0
+  CivTechLevel: 100
+  Playable: 0
+  HasWarp: 1
+  Decription: The Yridians survive by selling secret information. We must be extremely
+    cautious and circumspect in dealing with them.
+  IntelPoints: 0

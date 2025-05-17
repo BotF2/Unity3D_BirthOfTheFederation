@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5751d0611b14fb4f8de49a3a8fd4206, type: 3}
+  m_Name: CivSO_55_ELAURIANS
+  m_EditorClassIdentifier: 
+  CivInt: 55
+  CivEnum: 55
+  CivShortName: ELAURIANS
+  CivLongName: ELAURIANS
+  CivHomeSystem: ELAURIA
+  WarLikeEnum: 0
+  XenophbiaEnum: 0
+  RuthlessEnum: 0
+  GreedyEnum: 0
+  CivImage: {fileID: 21300000, guid: 03dc99805f8c7c34080242706086bbb9, type: 3}
+  Insignia: {fileID: 21300000, guid: aef54f8795a46034ebb458f9856dd344, type: 3}
+  Population: 0
+  Credits: 0
+  TechPoints: 0
+  CivTechLevel: 100
+  Playable: 0
+  HasWarp: 1
+  Decription: The El-Aurians were invaded long ago, and were dispersed as a people.
+    Now they exist as exiles in space, though lending a friendly ear to any who will
+    take them in.
+  IntelPoints: 0

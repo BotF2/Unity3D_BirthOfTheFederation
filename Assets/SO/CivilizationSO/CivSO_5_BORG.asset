@@ -17,10 +17,29 @@ MonoBehaviour:
   CivShortName: BORG
   CivLongName: Borg Collective
   CivHomeSystem: UNICOMPLEX
-  TraitOne: Materializtic
-  TraitTwo: Hostile
+  WarLikeEnum: -2
+  XenophbiaEnum: 0
+  RuthlessEnum: -1
+  GreedyEnum: -2
   CivImage: {fileID: 21300000, guid: 6ed7684e500f6d341b5ba9b422dc3b30, type: 3}
   Insignia: {fileID: 21300000, guid: d6f9a44a9dc9a3a4ea7c0c1fedc3d44b, type: 3}
-  Population: 40
-  Credits: 100
-  TechPoints: 10
+  Population: 0
+  Credits: 0
+  TechPoints: 0
+  CivTechLevel: 100
+  Playable: 1
+  HasWarp: 1
+  Decription: 'We are the Borg. You will be assimilated. The Borg are/were a pseudo-species
+    of cybernetic beings, or cyborgs, from the Delta Quadrant. No single individual
+    truly existed within the Borg Collective (with the sole exception of the Borg
+    Queen), as all Borg were linked into a hive mind. Their ultimate goal was the
+    attainment of ''perfection'' through the forcible assimilation of diverse sentient
+    species, technologies, and knowledge. In addition to this stronghold in the Delta
+    Quadrant, the Borg also dispatched vessels throughout the galaxy via transwarp
+    conduits. When the Borg encounters other species and new technologies, they will
+    assimilate both the crew and the ship as well, adding their distinctiveness to
+    their own. Individual drones have demonstrated puzzlement at other species''
+    unwillingness to be assimilated, the drones believing in the superiority of their
+    way of life. In fact the Borg are twice as powerful as any other empire, since
+    their cubes are gigantic and almost unbeatable, so: RESISTANCE IS FUTILE!'
+  IntelPoints: 0

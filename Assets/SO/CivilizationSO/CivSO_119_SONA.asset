@@ -17,10 +17,19 @@ MonoBehaviour:
   CivShortName: SONA
   CivLongName: SONA
   CivHomeSystem: SONA
-  TraitOne: Arrogant
-  TraitTwo: Ruthless
-  CivImage: {fileID: 0}
-  Insignia: {fileID: 0}
-  Population: 5
-  Credits: 2
-  TechPoints: 2
+  WarLikeEnum: -2
+  XenophbiaEnum: -1
+  RuthlessEnum: -2
+  GreedyEnum: -2
+  CivImage: {fileID: 21300000, guid: 87409252637effa4788bb5386b65d1ee, type: 3}
+  Insignia: {fileID: 21300000, guid: b762a397464cc90469753bb56cefde9a, type: 3}
+  Population: 0
+  Credits: 0
+  TechPoints: 0
+  CivTechLevel: 100
+  Playable: 0
+  HasWarp: 1
+  Decription: The rebellious Son'a were sent into exile from the Ba'ku homeworld.
+    Now they exist as pirates and mercenaries, and are definitely not to be trusted.
+    But they have impressive technology.
+  IntelPoints: 0

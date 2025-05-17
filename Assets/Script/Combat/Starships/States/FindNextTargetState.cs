@@ -1,5 +1,5 @@
-﻿using System.Linq;
-using Assets.Plugins.YAFSM;
+﻿using Assets.Plugins.YAFSM;
+using System.Linq;
 using UnityEngine;
 
 namespace Assets.SpaceCombat.AutoBattle.Scripts.Starships.States
@@ -7,7 +7,7 @@ namespace Assets.SpaceCombat.AutoBattle.Scripts.Starships.States
     public class FindNextTargetState : State
     {
         private StarshipController StarshipController => (StarshipController)Machine;
-    
+
         public override void Enter()
         {
             base.Enter();

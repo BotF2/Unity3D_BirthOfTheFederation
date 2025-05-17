@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5751d0611b14fb4f8de49a3a8fd4206, type: 3}
+  m_Name: CivSO_38_BREKKIANS
+  m_EditorClassIdentifier: 
+  CivInt: 38
+  CivEnum: 38
+  CivShortName: BREKKIANS
+  CivLongName: BREKKIANS
+  CivHomeSystem: BREKKA
+  WarLikeEnum: -1
+  XenophbiaEnum: -1
+  RuthlessEnum: -2
+  GreedyEnum: -2
+  CivImage: {fileID: 21300000, guid: ab24786caf4f4e6469d911e067062fc7, type: 3}
+  Insignia: {fileID: 21300000, guid: cf7cd9d2e334abe4aa90cda3bc90e777, type: 3}
+  Population: 0
+  Credits: 0
+  TechPoints: 0
+  CivTechLevel: 100
+  Playable: 0
+  HasWarp: 1
+  Decription: The Brekkians are not a very developed race. Their economy relies on
+    supplying the powerful narcotic Felicium to other civilizations, capitalizing
+    on their dependency on the drug to perpetuate the profitable business.
+  IntelPoints: 0

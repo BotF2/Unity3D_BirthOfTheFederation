@@ -1,11 +1,13 @@
-using UnityEngine;
-using UnityEditor;
-using System.IO;
 using Assets.Core;
 using System;
+using System.IO;
+using UnityEditor;
+using UnityEngine;
 
 public class StarSysSOImporter : EditorWindow
 {
+#if UNITY_EDITOR
+
     [MenuItem("Tools/Import StarSysSO CSV")]
     public static void ShowWindow()
     {
@@ -21,8 +23,6 @@ public class StarSysSOImporter : EditorWindow
 
         if (GUILayout.Button("Import StarSysSO CSV"))
         {
-
-
             //Output the Game data path to the console
             Debug.Log("dataPath : " + Application.dataPath);
             ImportStarSysCSV(filePath);
@@ -42,9 +42,9 @@ public class StarSysSOImporter : EditorWindow
         {
             string[] fields = line.Split(',');
 
-            if (fields.Length == 8) // Ensure there are enough fields
+            if (fields.Length > 7) // Ensure there are enough fields
             {
-                string imageString = fields[7];
+                string imageString = fields[6];
                 foreach (string file in Directory.GetFiles($"Assets/Resources/Stars/", "*.png"))
                 {
                     if (file == "Assets/Resources/Stars/" + imageString + ".png")
@@ -52,20 +52,82 @@ public class StarSysSOImporter : EditorWindow
                         imageString = "Stars/" + imageString;
                     }
                 }
+                string imagesPower = fields[17];
+                foreach (string file in Directory.GetFiles($"Assets/Resources/Facilities/", "*.png"))
+                {
+                    if (file == "Assets/Resources/Facilities/" + imagesPower + ".png")
+                    {
+                        imagesPower = "Facilities/" + imagesPower;
+                    }
+                }
+                string imagesFactory = fields[18];
+                foreach (string file in Directory.GetFiles($"Assets/Resources/Facilities/", "*.png"))
+                {
+                    if (file == "Assets/Resources/Facilities/" + imagesFactory + ".png")
+                    {
+                        imagesFactory = "Facilities/" + imagesFactory;
+                    }
+                }
+                string imagesShipyard = fields[19];
+                foreach (string file in Directory.GetFiles($"Assets/Resources/Facilities/", "*.png"))
+                {
+                    if (file == "Assets/Resources/Facilities/" + imagesShipyard + ".png")
+                    {
+                        imagesShipyard = "Facilities/" + imagesShipyard;
+                    }
+                }
+                string imagesShield = fields[20];
+                foreach (string file in Directory.GetFiles($"Assets/Resources/Facilities/", "*.png"))
+                {
+                    if (file == "Assets/Resources/Facilities/" + imagesShield + ".png")
+                    {
+                        imagesShield = "Facilities/" + imagesShield;
+                    }
+                }
+                string imagesOB = fields[21];
+                foreach (string file in Directory.GetFiles($"Assets/Resources/Facilities/", "*.png"))
+                {
+                    if (file == "Assets/Resources/Facilities/" + imagesOB + ".png")
+                    {
+                        imagesOB = "Facilities/" + imagesOB;
+                    }
+                }
+                string imagesRC = fields[22];
+                foreach (string file in Directory.GetFiles($"Assets/Resources/Facilities/", "*.png"))
+                {
+                    if (file == "Assets/Resources/Facilities/" + imagesRC + ".png")
+                    {
+                        imagesRC = "Facilities/" + imagesRC;
+                    }
+                }
 
-
-                if (fields.Length == 8) // Ensure there are enough fields
+                if (fields.Length >= 8) // Ensure there are enough fields
                 {
                     StarSysSO StarSysSO = CreateInstance<StarSysSO>();
-                    ////StarSysInt	,	StarSysSO Enum	,	StarSysSO Short Name	,	StarSysSO Long Name	,	Home System	,	Triat One	,	Trait Two	,	StarSysSO Image	,	Insginia	,	Population	,	Credits	,	Tech Points
+                    ////StarSysInt	,	StarSysSO Enum	,	StarSysSO Short TextComponent	,	StarSysSO Long TextComponent	,	Home System	,	Triat One	,	Trait Two	,	StarSysSO Image	,	Insginia	,	Population	,	Credits	,	StartingTechLevel Points
                     StarSysSO.StarSysInt = int.Parse(fields[0]);
-                    StarSysSO.Position = new Vector3((int.Parse(fields[1]))/10, (int.Parse(fields[2]))/10, (int.Parse(fields[3]))/10);
+                    StarSysSO.Position = new Vector3((int.Parse(fields[1])) / 10, (int.Parse(fields[2])) / 10, (int.Parse(fields[3])) / 10);
                     StarSysSO.SysName = fields[4];
                     StarSysSO.FirstOwner = GetMyCivEnum(fields[5]);
-                    StarSysSO.StarType = GetMyStarTypeEnum(fields[7]);
+                    StarSysSO.CurrentOwner = GetMyCivEnum(fields[5]);
+                    StarSysSO.StarType = GetMyStarTypeEnum(fields[6]);
                     StarSysSO.StarSprit = Resources.Load<Sprite>(imageString);
-                    StarSysSO.Population = int.Parse(fields[6]);
-
+                    StarSysSO.Population = int.Parse(fields[7]);
+                    StarSysSO.PopulationLimit = int.Parse(fields[8]);
+                    StarSysSO.Farms = int.Parse(fields[9]);
+                    StarSysSO.PowerStations = int.Parse(fields[10]);
+                    StarSysSO.Factories = int.Parse(fields[11]);
+                    StarSysSO.Shipyards = int.Parse(fields[12]);
+                    StarSysSO.ResearchCenters = int.Parse(fields[13]);
+                    StarSysSO.ShieldGenerators = int.Parse(fields[14]);
+                    StarSysSO.OrbitalBatteries = int.Parse(fields[15]);
+                    StarSysSO.Description = "descrition here...";
+                    StarSysSO.powerPlantSprite = Resources.Load<Sprite>(imagesPower);
+                    StarSysSO.factorySprite = Resources.Load<Sprite>(imagesFactory);
+                    StarSysSO.shipyardSprite = Resources.Load<Sprite>(imagesShipyard);
+                    StarSysSO.shieldSprite = Resources.Load<Sprite>(imagesShield);
+                    StarSysSO.orbitalSprite = Resources.Load<Sprite>(imagesOB);
+                    StarSysSO.researchCenterSprite = Resources.Load<Sprite>(imagesRC);
                     string assetPath = $"Assets/SO/StarSysSO/StarSysSO_{StarSysSO.StarSysInt}_{StarSysSO.SysName}.asset";
                     AssetDatabase.CreateAsset(StarSysSO, assetPath);
                     AssetDatabase.SaveAssets();
@@ -80,10 +142,12 @@ public class StarSysSOImporter : EditorWindow
         Enum.TryParse(title, out st);
         return st;
     }
-    public static StarType GetMyStarTypeEnum(string title)
+    public static GalaxyObjectType GetMyStarTypeEnum(string title)
     {
-        StarType st;
+        GalaxyObjectType st;
         Enum.TryParse(title, out st);
         return st;
     }
+
+#endif
 }

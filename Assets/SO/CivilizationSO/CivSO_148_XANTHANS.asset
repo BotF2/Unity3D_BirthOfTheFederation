@@ -17,10 +17,19 @@ MonoBehaviour:
   CivShortName: XANTHANS
   CivLongName: XANTHANS
   CivHomeSystem: XANTHAN
-  TraitOne: Neutral
-  TraitTwo: Materialistic
-  CivImage: {fileID: 0}
-  Insignia: {fileID: 0}
-  Population: 5
-  Credits: 2
-  TechPoints: 2
+  WarLikeEnum: 0
+  XenophbiaEnum: 0
+  RuthlessEnum: 0
+  GreedyEnum: 0
+  CivImage: {fileID: 21300000, guid: 89a07206aa04dcc40bca64d8c695e7c0, type: 3}
+  Insignia: {fileID: 21300000, guid: 0ad06addb654d2e43afbdfcbc58eaecd, type: 3}
+  Population: 0
+  Credits: 0
+  TechPoints: 0
+  CivTechLevel: 100
+  Playable: 0
+  HasWarp: 1
+  Decription: The Xanthan homeworld is a magnet for merchants, traffickers, and various
+    smuggling syndicates. We may welcome their trade, but not all the customers with
+    whom they keep company.
+  IntelPoints: 0

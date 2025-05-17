@@ -17,10 +17,19 @@ MonoBehaviour:
   CivShortName: TAKARANS
   CivLongName: TAKARANS
   CivHomeSystem: TAKARA
-  TraitOne: Neutral
-  TraitTwo: Peaceful
-  CivImage: {fileID: 0}
-  Insignia: {fileID: 0}
-  Population: 5
-  Credits: 2
-  TechPoints: 2
+  WarLikeEnum: 0
+  XenophbiaEnum: 1
+  RuthlessEnum: 1
+  GreedyEnum: 0
+  CivImage: {fileID: 21300000, guid: b9ba4438b9b49e24a93e87d856b3e5d4, type: 3}
+  Insignia: {fileID: 21300000, guid: 16afd7ac189d6a04bbdd9e3e8784ac7b, type: 3}
+  Population: 0
+  Credits: 0
+  TechPoints: 0
+  CivTechLevel: 100
+  Playable: 0
+  HasWarp: 0
+  Decription: The Takarans are incredibly resilient, and highly intelligent. Their
+    people are noted for their proficiency in theoretical physics, as well as their
+    unusual biochemistry.
+  IntelPoints: 0
