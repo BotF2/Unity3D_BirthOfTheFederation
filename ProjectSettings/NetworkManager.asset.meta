@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: 0000000000000000a000000000000000
+AssetOrigin:
+  serializedVersion: 1
+  productId: 116
+  packageName: C# game examples
+  packageVersion: 1.10
+  assetPath: ProjectSettings/NetworkManager.asset
+  uploadId: 248961
