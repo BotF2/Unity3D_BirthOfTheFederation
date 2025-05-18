@@ -1,7 +1,5 @@
 using UnityEngine;
 
-
-
 namespace Assets.Core
 {
     #region Enums
