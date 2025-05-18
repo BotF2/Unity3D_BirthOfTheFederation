@@ -36,20 +36,21 @@ public class EncounterManager : MonoBehaviour
     }
     public void ResolveEncounter(FleetController fleetConA, FleetController fleetConB)
     { // already not one of our fleets
+        var civPartyOne = fleetConA.FleetData.CivController;
+        var civPartyTwo = fleetConB.FleetData.CivController;
+        StarSysController sysCon = null;
         if (fleetConA != null)                                                                                                                                                    
         {
-            var civPartyOne = fleetConA.FleetData.CivController;
-            var civPartyTwo = fleetConB.FleetData.CivController;
             //have we met before?
             if (!DiplomacyManager.Instance.FoundADiplomacyController(civPartyOne, civPartyTwo))
             {   // First Contact
-                DiplomacyManager.Instance.FirstContactGetNewDiplomacyContoller(civPartyOne, civPartyTwo);
+                DiplomacyManager.Instance.FirstContactGetNewDiplomacyContoller(fleetConA, fleetConB, sysCon);
                 FirstContactFleetOnFleetEncounterController(fleetConA, fleetConB); 
                 // will we need this? Will AI need to remember this encounter outside of diplomacy?
             }
             else // Not First Contact and we do fleets of same civ management back in FleetController
             {
-                DiplomacyManager.Instance.UpdateOurDiplomacyController(civPartyOne, civPartyTwo);
+                DiplomacyManager.Instance.UpdateOurDiplomacyController(fleetConA, fleetConB, sysCon);
                 NextFleetToFleetEncounter(fleetConA, fleetConB); // Will we need this? Is it all done in Diplomacy and FleetControllers?
             }
         }
@@ -60,20 +61,21 @@ public class EncounterManager : MonoBehaviour
 
         if ((int)sysCon.StarSysData.CurrentOwnerCivEnum < firstUninhabited) // it is inhabited
         {
+            FleetController nullFleetController = null;
 
             if (fleetConA != null) // it is a FleetController and not a StarSystem or other with collider                                                                                                                                                    leetController
             {
-                var civPartyOne = fleetConA.FleetData.CivController;
-                var civPartyTwo = sysCon.StarSysData.CurrentCivController;
+                //var civPartyOne = fleetConA.FleetData.CivController;
+                //var civPartyTwo = sysCon.StarSysData.CurrentCivController;
                 //have we met before?
                 if (!DiplomacyManager.Instance.FoundADiplomacyController(sysCon.StarSysData.CurrentCivController, fleetConA.FleetData.CivController))
                 { // First Contact
-                    DiplomacyManager.Instance.FirstContactGetNewDiplomacyContoller(civPartyOne, civPartyTwo);
+                    DiplomacyManager.Instance.FirstContactGetNewDiplomacyContoller(fleetConA, nullFleetController, sysCon);
                     FirstContactFleetOnStarSysNewEncounnterController(fleetConA, sysCon); // do we do something specila with system entry here?
                 }
                 else 
                 { // not first contact
-                    DiplomacyManager.Instance.UpdateOurDiplomacyController(civPartyOne, civPartyTwo);
+                    DiplomacyManager.Instance.UpdateOurDiplomacyController(fleetConA, nullFleetController, sysCon);
                     FeetToSysNotSameCivNotFirstEncounter(fleetConA, sysCon);
                 }
             }

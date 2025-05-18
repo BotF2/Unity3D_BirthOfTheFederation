@@ -33,8 +33,8 @@ public class CombatManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
     }
-    public void InstatniateCombat(List<FleetController> listFleets)
-    { // call from diplomacy total war or from Diplomacy UI on fleet meets fleet 
+    public void InstatniateCombat(List<ShipController> listFriendShips, List<ShipController> listEnemyships)
+    { // call from diplomacy total war or from Diplomacy UI on fleet meeting fleet 
 
     }
     public void ResetFriendAndEnemyDictionaries()

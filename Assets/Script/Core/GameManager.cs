@@ -1,7 +1,5 @@
 using UnityEngine;
 
-
-
 namespace Assets.Core
 {
     #region Enums
@@ -426,7 +424,6 @@ namespace Assets.Core
         public bool _statePassedCombatMenu_Init = false;
         public bool _statePassedCombatInit = false; // COMBAT INIT
         public bool _statePassedCombatPlay = false;
-
 
         private void Awake()
         {
