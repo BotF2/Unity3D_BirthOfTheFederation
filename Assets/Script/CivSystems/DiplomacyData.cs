@@ -9,4 +9,7 @@ public class DiplomacyData
     public CivController CivOther; // a mionr civ if not a major civ that is not the local player
     public DiplomacyStatusEnum DiplomacyEnumOfCivs = DiplomacyStatusEnum.Neutral; // friendly, allied, at war
     public int DiplomacyPointsOfCivs = 60; // neutral
+    public FleetController currentFleetConCivA;
+    public FleetController currentFleetConCivB;
+    public StarSysController currentSysCon; // all civs involved in this diplomacy
 }

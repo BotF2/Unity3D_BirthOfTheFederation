@@ -1268,6 +1268,11 @@ public class GalaxyMenuUIController : MonoBehaviour
                 aDiplomacyMenuView.transform.GetChild(i).gameObject.transform.SetParent(diplomacyListContainter.transform, false); ;
         }
     }
+    public void ClickCombatButton(List<ShipController> firendShips, List<ShipController> enemyShips)
+    {
+       // EncounterManager.Instance.GetShipsForCombat(Di)
+        CombatManager.Instance.InstatniateCombat(firendShips, enemyShips);
+    }
     public void SetUpDiplomacyUIData(DiplomacyController diplomacyCon)
     {
         CivController partyOne = diplomacyCon.DiplomacyData.CivMajor;

@@ -427,7 +427,6 @@ namespace Assets.Core
         public bool _statePassedCombatInit = false; // COMBAT INIT
         public bool _statePassedCombatPlay = false;
 
-
         private void Awake()
         {
             if (Instance != null)
